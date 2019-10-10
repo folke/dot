@@ -2,8 +2,6 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
-alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
-
 # Load zplugin
 source ~/.zplugin/bin/zplugin.zsh
 
@@ -33,6 +31,13 @@ zplugin load zdharma/zsh-diff-so-fancy
 zplugin light "zdharma/zui"
 zplugin light "zdharma/zplugin-crasis"
 
+# Load system completions
+zplugin ice wait lucid atclone"print Installing completions...; \
+    zplugin creinstall -q /usr/local/share/zsh/site-functions;
+    zplugin creinstall -q /usr/local/Cellar/zsh/*/share/zsh/functions" \
+    atpull"%atclone" id-as"system-completions"
+zplugin snippet /dev/null
+
 zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
 
@@ -60,15 +65,20 @@ setopt pushdminus
 # Completion
 setopt auto_menu
 setopt always_to_end
+setopt correct
 setopt complete_in_word
+unsetopt complete_aliases
 unsetopt flow_control
 unsetopt menu_complete
-zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:*:*:*:*' menu select=0
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
+
+alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
+# compdef dot='git'
 
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 export FZF_DEFAULT_OPTS="--ansi --height=70%"
