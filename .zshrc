@@ -12,9 +12,6 @@ zplugin light denysdovhan/spaceship-prompt
 zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
 zplugin light zsh-users/zsh-completions
 
-zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"
-zplugin light zdharma/fast-syntax-highlighting
-
 zplugin ice wait lucid atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 
@@ -27,6 +24,13 @@ zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
 zplugin ice atclone"gdircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 zplugin light trapd00r/LS_COLORS
+
+# Semigraphical interface to zplugin
+zplugin light "zdharma/zui"
+zplugin light "zdharma/zplugin-crasis"
+
+zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"
+zplugin light zdharma/fast-syntax-highlighting
 
 # User configuration
 
@@ -64,14 +68,15 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 export FZF_DEFAULT_OPTS="--ansi --height=70%"
-export FZF_CTRL_T_COMMAND='fd --ignore-file .gitignore --type f --color=always --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND='fd --ignore-file ~/.gitignore --type f --color=always --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --line-range :300 {}'"
-export FZF_ALT_C_COMMAND='fd --ignore-file .gitignore --type d --color=always --hidden --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --ignore-file ~/.gitignore --type d --color=always --hidden --follow --exclude .git'
 
 
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 
-alias ls="gls --color=always"
+alias ls="gls --group-directories-first --color=always"
+alias grep='grep --color'
 alias l='exa --all --icons --group-directories-first'
 alias ll='exa --all --icons --group-directories-first --long'
 alias vim='nvim'
