@@ -1,6 +1,7 @@
 # Managing Dot Files with Git
 
-Create a `dot` alias that uses `.dot` as the git repository and your `$HOME` as the working directory
+Create a `dot` alias that uses `.dot` as the git repository and your `$HOME` as the working directory.
+Make sure to add it to your `.bashrc` or `.zshrc`
 ```bash
 alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
 ```
