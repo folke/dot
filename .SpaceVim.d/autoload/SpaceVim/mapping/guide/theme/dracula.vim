@@ -8,8 +8,8 @@
 
 
 " Color Palette {{{
-let s:gui01   = '#44475a'
-let s:gui02   = '#5f6a8e'
+let s:gui01   = '#6272a4'
+let s:gui02   = '#6272a4'
 let s:gui03   = '#ffb86c'
 let s:gui04   = '#bd93f9'
 let s:gui05   = '#ff5555'
@@ -31,7 +31,7 @@ let s:ctermWhite = '15'
 let s:ctermBlack = '16'
 
 let s:ctermChangedColor = '59'
-let s:guiChangedColor   = '#5f5f5f'
+let s:guiChangedColor   = '#44475a'
 
 " }}}
 
