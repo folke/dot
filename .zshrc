@@ -25,6 +25,10 @@ zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zplugin ice atclone"gdircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
 zplugin light trapd00r/LS_COLORS
 
+# diff-so-fancy
+zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
+zplugin load zdharma/zsh-diff-so-fancy
+
 # Semigraphical interface to zplugin
 zplugin light "zdharma/zui"
 zplugin light "zdharma/zplugin-crasis"

@@ -6,3 +6,7 @@
 [user]
 	name = Folke
 	email = folke.lemaitre@gmail.com
+[color]
+	ui = true
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
