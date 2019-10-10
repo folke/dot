@@ -2,6 +2,7 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
+source ~/.dot/dot.sh
 
 # Load zplugin
 source ~/.zplugin/bin/zplugin.zsh
