@@ -2,7 +2,7 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
-source ~/.dot/dot.sh
+alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
 
 # Load zplugin
 source ~/.zplugin/bin/zplugin.zsh
@@ -24,6 +24,9 @@ zplugin light lukechilds/zsh-nvm
 
 zplugin ice wait lucid
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+
+zplugin ice atclone"gdircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
+zplugin light trapd00r/LS_COLORS
 
 # User configuration
 
@@ -59,7 +62,11 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+export FZF_DEFAULT_OPTS="--ansi --height=70%"
+export FZF_CTRL_T_COMMAND='fd --ignore-file .gitignore --type f --color=always --hidden --follow --exclude .git'
+export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --line-range :300 {}'"
+export FZF_ALT_C_COMMAND='fd --ignore-file .gitignore --type d --color=always --hidden --follow --exclude .git'
 
 
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
