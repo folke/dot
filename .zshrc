@@ -1,5 +1,5 @@
 if [[ "$ZPROF" = true ]]; then
-  zmodload zsh/zprof
+    zmodload zsh/zprof
 fi
 
 # Load zplugin
@@ -78,7 +78,7 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
 alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
-# compdef dot='git'
+alias git='hub'
 
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 export FZF_DEFAULT_OPTS="--ansi --height=70%"
@@ -86,8 +86,8 @@ export FZF_CTRL_T_COMMAND='fd --ignore-file ~/.gitignore --type f --color=always
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --line-range :300 {}'"
 export FZF_ALT_C_COMMAND='fd --ignore-file ~/.gitignore --type d --color=always --hidden --follow --exclude .git'
 
-
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 
 alias ls="gls --group-directories-first --color=always"
 alias grep='grep --color'
@@ -96,8 +96,11 @@ alias ll='exa --all --icons --group-directories-first --long'
 alias vim='nvim'
 alias vi='nvim'
 
-unsetopt PROMPT_SP # Fix the annoying % character showing up in first tab on load
+alias update-zsh="zplugin self-update && zplugin update"
+alias update-brew="brew update && brew upgrade"
+alias update-all="update-brew && update-zsh"
 
+unsetopt PROMPT_SP # Fix the annoying % character showing up in first tab on load
 
 if [[ "$ZPROF" = true ]]; then
   zprof
@@ -109,5 +112,4 @@ function zprofile {
   now=$(($(gdate +%s%N)/1000000))
   elapsed=$(($now-$timer))
   echo "Zsh loaded in ${elapsed}ms"
-
 }
