@@ -5,8 +5,6 @@ fi
 # Load zplugin
 source ~/.zplugin/bin/zplugin.zsh
 
-zplugin light denysdovhan/spaceship-prompt
-
 zplugin ice wait lucid blockf atpull'zplugin creinstall -q .'
 zplugin light zsh-users/zsh-completions
 
@@ -14,7 +12,9 @@ zplugin ice wait lucid atload"_zsh_autosuggest_start"
 zplugin light zsh-users/zsh-autosuggestions
 
 export NVM_LAZY_LOAD=true
-zplugin ice wait"1" lucid
+# export NVM_NO_USE=true
+export NVM_AUTO_USE=true
+zplugin ice wait"!0" lucid
 zplugin light lukechilds/zsh-nvm
 
 zplugin ice wait lucid
@@ -27,10 +27,6 @@ zplugin light trapd00r/LS_COLORS
 zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
 zplugin load zdharma/zsh-diff-so-fancy
 
-# Semigraphical interface to zplugin
-zplugin light "zdharma/zui"
-zplugin light "zdharma/zplugin-crasis"
-
 # Load system completions
 zplugin ice wait lucid atclone"print Installing completions...; \
     zplugin creinstall -q /usr/local/share/zsh/site-functions;
@@ -40,6 +36,8 @@ zplugin snippet /dev/null
 
 zplugin ice wait lucid atinit"zpcompinit; zpcdreplay"
 zplugin light zdharma/fast-syntax-highlighting
+
+eval "$(starship init zsh)"
 
 # User configuration
 
@@ -66,7 +64,7 @@ setopt pushdminus
 setopt auto_menu
 setopt always_to_end
 setopt correct
-setopt complete_in_word
+# setopt complete_in_word
 unsetopt complete_aliases
 unsetopt flow_control
 unsetopt menu_complete
@@ -91,8 +89,9 @@ export PATH="/usr/local/sbin:$PATH"
 
 alias ls="gls --group-directories-first --color=always"
 alias grep='grep --color'
-alias l='exa --all --icons --group-directories-first'
+alias la='exa --all --icons --group-directories-first'
 alias ll='exa --all --icons --group-directories-first --long'
+alias l='ll'
 alias vim='nvim'
 alias vi='nvim'
 
