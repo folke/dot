@@ -20,10 +20,14 @@ zplugin light lukechilds/zsh-nvm
 zplugin ice wait lucid
 zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 
-zplugin ice atclone"gdircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh" nocompile'!'
-zplugin light trapd00r/LS_COLORS
+# Use vivid to generate colors to be used by ls and exa
+zplugin ice atclone" \
+    VIVID=\$(vivid*/vivid -d vivid*/share/vivid/filetypes.yml generate vivid*/share/vivid/themes/snazzy.yml); \
+    echo export LS_COLORS=\\\"\$VIVID\\\" > c.zsh;" \
+    atpull'%atclone' from"gh-r" pick"c.zsh" nocompile'!'
+zplugin light sharkdp/vivid
 
-# diff-so-fancy
+# diff-so-fancy§`aQq        `Ωa 
 zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
 zplugin load zdharma/zsh-diff-so-fancy
 
@@ -75,8 +79,8 @@ zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
-alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
 alias git='hub'
+alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
 
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 export FZF_DEFAULT_OPTS="--ansi --height=70%"
@@ -99,6 +103,14 @@ alias update-zsh="zplugin self-update && zplugin update"
 alias update-brew="brew update && brew upgrade"
 alias update-all="update-brew && update-zsh"
 
+function help {
+    if (( $# == 0 )) then
+        bat ~/HELP.md
+    else
+        bat -H $(cat ~/HELP.md| grep -n "$1" | head -1 | cut -d : -f 1) ~/HELP.md
+    fi
+}
+
 unsetopt PROMPT_SP # Fix the annoying % character showing up in first tab on load
 
 if [[ "$ZPROF" = true ]]; then
@@ -112,3 +124,5 @@ function zprofile {
   elapsed=$(($now-$timer))
   echo "Zsh loaded in ${elapsed}ms"
 }
+
+eval $(thefuck --alias)

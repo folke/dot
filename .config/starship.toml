@@ -8,3 +8,6 @@ use_symbol_for_status = true  # Show "✖" when the command failed
 disabled = true
 
 [git_status]
+
+[battery]
+discharging_symbol = "🔌 "
