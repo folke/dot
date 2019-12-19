@@ -1,7 +1,10 @@
 # Replace the "❯" symbol in the prompt with "➜"
 [character]      # The name of the module we are configuring is "character"
 symbol = "➜"     # The "symbol" segment is being set to "➜"
+use_symbol_for_status = true  # Show "✖" when the command failed
 
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
+
+[git_status]
