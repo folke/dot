@@ -17,19 +17,12 @@ export NVM_AUTO_USE=true
 zplugin ice wait"!0" lucid
 zplugin light lukechilds/zsh-nvm
 
-zplugin ice wait lucid
-zplugin snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
-
 # Use vivid to generate colors to be used by ls and exa
 zplugin ice atclone" \
     VIVID=\$(vivid*/vivid -d vivid*/share/vivid/filetypes.yml generate vivid*/share/vivid/themes/snazzy.yml); \
     echo export LS_COLORS=\\\"\$VIVID\\\" > c.zsh;" \
     atpull'%atclone' from"gh-r" pick"c.zsh" nocompile'!'
 zplugin light sharkdp/vivid
-
-# diff-so-fancy§`aQq        `Ωa 
-zplugin ice wait"2" lucid as"program" pick"bin/git-dsf"
-zplugin load zdharma/zsh-diff-so-fancy
 
 # Load system completions
 zplugin ice wait lucid atclone"print Installing completions...; \
@@ -52,11 +45,13 @@ SAVEHIST=10000
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_all_dups       # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
 setopt share_history          # share command history data
-
+setopt hist_find_no_dups
+setopt hist_save_no_dups
 
 # Changing directories
 setopt auto_cd
@@ -87,6 +82,16 @@ export FZF_DEFAULT_OPTS="--ansi --height=70%"
 export FZF_CTRL_T_COMMAND='fd --ignore-file ~/.gitignore --type f --color=always --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview-window 'right:60%' --preview 'bat --color=always --line-range :300 {}'"
 export FZF_ALT_C_COMMAND='fd --ignore-file ~/.gitignore --type d --color=always --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark
+--color=fg:-1,bg:-1,hl:#5fff87,fg+:-1,bg+:-1,hl+:#ffaf5f
+--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7
+'
+
+# bat configuration
+export BAT_THEME="Dracula"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
+
 
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"

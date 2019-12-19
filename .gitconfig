@@ -9,4 +9,4 @@
 [color]
 	ui = true
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta --dark --theme TwoDark
