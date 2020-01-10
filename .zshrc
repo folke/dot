@@ -1,4 +1,4 @@
-if [[ "$ZPROF" = true ]]; then
+if [[ "$ZPROF" == true ]]; then
     zmodload zsh/zprof
 fi
 
@@ -45,7 +45,7 @@ SAVEHIST=10000
 setopt extended_history       # record timestamp of command in HISTFILE
 setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
 setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_all_dups       # ignore duplicated commands history list
+setopt hist_ignore_all_dups   # ignore duplicated commands history list
 setopt hist_ignore_space      # ignore commands that start with space
 setopt hist_verify            # show command with history expansion to user before running it
 setopt inc_append_history     # add commands to HISTFILE in order of execution
@@ -75,6 +75,8 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 
 alias git='hub'
+alias g='git'
+alias gl='g l --color | emojify | less -rXF'
 alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
 
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
@@ -92,7 +94,6 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 export BAT_THEME="Dracula"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 
-
 export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
@@ -108,26 +109,41 @@ alias update-zsh="zplugin self-update && zplugin update"
 alias update-brew="brew update && brew upgrade"
 alias update-all="update-brew && update-zsh"
 
-function help {
-    if (( $# == 0 )) then
+function help() {
+    if (($# == 0)); then
         bat ~/HELP.md
     else
-        bat -H $(cat ~/HELP.md| grep -n "$1" | head -1 | cut -d : -f 1) ~/HELP.md
+        bat -H $(cat ~/HELP.md | grep -n "$1" | head -1 | cut -d : -f 1) ~/HELP.md
     fi
+}
+
+fuck() {
+    TF_PYTHONIOENCODING=$PYTHONIOENCODING
+    export TF_SHELL=zsh
+    export TF_ALIAS=fuck
+    TF_SHELL_ALIASES=$(alias)
+    export TF_SHELL_ALIASES
+    TF_HISTORY="$(fc -ln -10)"
+    export TF_HISTORY
+    export PYTHONIOENCODING=utf-8
+    TF_CMD=$(
+        thefuck THEFUCK_ARGUMENT_PLACEHOLDER $@
+    ) && eval $TF_CMD
+    unset TF_HISTORY
+    export PYTHONIOENCODING=$TF_PYTHONIOENCODING
+    test -n "$TF_CMD" && print -s $TF_CMD
 }
 
 unsetopt PROMPT_SP # Fix the annoying % character showing up in first tab on load
 
-if [[ "$ZPROF" = true ]]; then
-  zprof
+if [[ "$ZPROF" == true ]]; then
+    zprof
 fi
 
-function zprofile {
-  timer=$(($(gdate +%s%N)/1000000)) 
-  ZPROF=true /usr/local/bin/zsh -i -c exit
-  now=$(($(gdate +%s%N)/1000000))
-  elapsed=$(($now-$timer))
-  echo "Zsh loaded in ${elapsed}ms"
+function zprofile() {
+    timer=$(($(gdate +%s%N) / 1000000))
+    ZPROF=true /usr/local/bin/zsh -i -c exit
+    now=$(($(gdate +%s%N) / 1000000))
+    elapsed=$(($now - $timer))
+    echo "Zsh loaded in ${elapsed}ms"
 }
-
-eval $(thefuck --alias)

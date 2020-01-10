@@ -1,12 +1,23 @@
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
 [user]
-	name = Folke
-	email = folke.lemaitre@gmail.com
+name = Folke
+email = folke.lemaitre@gmail.com
+
 [color]
-	ui = true
+ui = true
+
 [core]
-	pager = delta --dark --theme TwoDark
+pager = delta --dark --theme TwoDark
+
+[alias]
+st = status -sb
+co = checkout
+c = commit --short
+ci = commit --short
+p = push
+l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short
