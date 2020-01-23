@@ -76,8 +76,9 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-
 
 alias git='hub'
 alias g='git'
-alias gl='g l --color | emojify | less -rXF'
+alias gl='g l --color | devmoji --log --color | less -rXF'
 alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
+alias tn="npx --no-install ts-node --transpile-only"
 
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 export FZF_DEFAULT_OPTS="--ansi --height=70%"

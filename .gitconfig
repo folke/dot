@@ -5,7 +5,7 @@ process = git-lfs filter-process
 required = true
 
 [user]
-name = Folke
+name = Folke Lemaitre
 email = folke.lemaitre@gmail.com
 
 [color]
