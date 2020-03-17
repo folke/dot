@@ -93,7 +93,7 @@ export BAT_THEME="Dracula"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 
 # Path
-export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:/usr/local/lib/ruby/gems/2.6.0/bin:/Users/folke/go/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # Tmux
