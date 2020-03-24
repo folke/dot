@@ -11,11 +11,7 @@ zinit light zsh-users/zsh-completions
 zinit ice wait lucid atload"_zsh_autosuggest_start"
 zinit light zsh-users/zsh-autosuggestions
 
-export NVM_LAZY_LOAD=true
-# export NVM_NO_USE=true
-export NVM_AUTO_USE=true
-zinit ice wait"!0" lucid
-zinit light lukechilds/zsh-nvm
+eval "$(fnm env --multi --use-on-cd)"
 
 # Use vivid to generate colors to be used by ls and exa
 zinit ice atclone" \
@@ -123,14 +119,16 @@ alias g='git'
 alias gl='g l --color | devmoji --log --color | less -rXF'
 alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
 alias tn="npx --no-install ts-node --transpile-only"
+alias tt="tn src/tt.ts"
 alias code="code-insiders"
 alias todo="ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
 alias ntop="htop --tree -p \$(pgrep -d, node)"
 
 # Update
-alias update-zsh="zinit self-update && zinit update"
+alias update-zsh="zinit selfgupdate && zinit update"
 alias update-brew="brew update && brew upgrade"
-alias update-all="update-brew && update-zsh"
+alias update-node="pnpm update -g"
+alias update="update-node && update-brew && update-zsh"
 
 function help() {
     if (($# == 0)); then
