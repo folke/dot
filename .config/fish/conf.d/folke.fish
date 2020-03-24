@@ -6,9 +6,6 @@ set -x  MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 set -x PATH $PATH /usr/local/opt/ruby/bin /usr/local/lib/ruby/gems/2.6.0/bin
 set -x PATH $PATH /Users/folke/go/bin
 
-# fzf
-set -U FZF_LEGACY_KEYBINDINGS 0
-
 # Tmux
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
