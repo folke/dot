@@ -9,31 +9,10 @@ SETUVAR --export ZLUA_LUAEXE:/usr/local/bin/lua
 SETUVAR --export ZLUA_SCRIPT:/Users/folke/\x2econfig/fisher/github\x2ecom/skywind3000/z\x2elua/z\x2elua
 SETUVAR --export _ZL_DATA:/Users/folke/\x2elocal/share/zlua/zlua\x2etxt
 SETUVAR _ZL_DATA_DIR:/Users/folke/\x2elocal/share/zlua
+SETUVAR __async_prompt_fish_prompt_text_79983:\x1b\x5bJ\x1b\x5b1\x3b36m\x7e\x1b\x5b0m\x20took\x20\x1b\x5b1\x3b33m2s\x1b\x5b0m\x20\x0a\x1b\x5b1\x3b32m\u276f\x1b\x5b0m\x20
+SETUVAR __async_prompt_fish_prompt_text_82250:\x1b\x5bJ\x1b\x5b1\x3b36m\x7e\x1b\x5b0m\x20\x0a\x1b\x5b1\x3b32m\u276f\x1b\x5b0m\x20
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_initialized:3100
-SETUVAR fish_color_autosuggestion:BD93F9
-SETUVAR fish_color_cancel:\x2dr
-SETUVAR fish_color_command:F8F8F2
-SETUVAR fish_color_comment:6272A4
-SETUVAR fish_color_cwd:green
-SETUVAR fish_color_cwd_root:red
-SETUVAR fish_color_end:50FA7B
-SETUVAR fish_color_error:FFB86C
-SETUVAR fish_color_escape:00a6b2
-SETUVAR fish_color_history_current:\x2d\x2dbold
-SETUVAR fish_color_host:normal
-SETUVAR fish_color_host_remote:yellow
-SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
-SETUVAR fish_color_normal:normal
-SETUVAR fish_color_operator:00a6b2
-SETUVAR fish_color_param:FF79C6
-SETUVAR fish_color_quote:F1FA8C
-SETUVAR fish_color_redirection:8BE9FD
-SETUVAR fish_color_search_match:bryellow\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3dbrblack
-SETUVAR fish_color_status:red
-SETUVAR fish_color_user:brgreen
-SETUVAR fish_color_valid_path:\x2d\x2dunderline
 SETUVAR fish_greeting:
 SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_completion:normal

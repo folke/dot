@@ -29,6 +29,17 @@
   statusline_unicode_symbols = true
   # Enable vim compatible mode, avoid changing origin vim key bindings
   vimcompatible = false
+  autocomplete_method = "coc"
+
+[[layers]] 
+  name = 'lsp'
+  filetypes = [
+    'typescript',
+    'javascript',
+    'css',
+    'vue',
+    'html'
+  ]
 
 # Enable autocomplete layer
 [[layers]]
@@ -44,12 +55,21 @@
   merged = 0
 
 [[layers]]
+  name = "lang#sh"
+
+[[layers]]
+  name = "lang#fish"
+
+[[layers]]
   name = 'shell'
   default_position = 'top'
   default_height = 30
 
 [[layers]]
 name = "VersionControl"
+
+[[layers]]
+  name = "lang#typescript"
 
 [[layers]]
 name = "git"

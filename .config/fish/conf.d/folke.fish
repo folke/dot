@@ -36,13 +36,18 @@ alias tn="npx --no-install ts-node --transpile-only"
 alias tt="tn src/tt.ts"
 alias code="code-insiders"
 alias todo="ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
-alias ntop="htop --tree -p (pgrep -d, node)"
+alias ntop="ultra --monitor"
 
 # Update
 alias update-fish="fisher self-update && fisher && fish_update_completions"
 alias update-brew="brew update && brew upgrade"
 alias update-node="pnpm update -g"
 alias update="update-node && update-brew && update-fish"
+
+# Dracula Theme
+if test -e ~/.config/fish/functions/dracula.fish
+  builtin source ~/.config/fish/functions/dracula.fish
+end
 
 function helpme
   bat ~/HELP.md
