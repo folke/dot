@@ -6,6 +6,9 @@ set -x  MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 set -x PATH $PATH /usr/local/opt/ruby/bin /usr/local/lib/ruby/gems/2.6.0/bin
 set -x PATH $PATH /Users/folke/go/bin
 
+# fzf
+set -U FZF_LEGACY_KEYBINDINGS 0
+
 # Tmux
 alias ta='tmux attach -t'
 alias tad='tmux attach -d -t'
@@ -39,10 +42,10 @@ alias todo="ag --color-line-number '1;36' --color-path '1;36' --print-long-lines
 alias ntop="htop --tree -p (pgrep -d, node)"
 
 # Update
-alias update-fish="fisher self-update && fisher"
+alias update-fish="fisher self-update && fisher && fish_update_completions"
 alias update-brew="brew update && brew upgrade"
 alias update-node="pnpm update -g"
-alias update="update-node && update-brew && update-zsh"
+alias update="update-node && update-brew && update-fish"
 
 function helpme
   bat ~/HELP.md
