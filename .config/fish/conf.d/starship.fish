@@ -1,1 +1,0 @@
-starship init fish | source

@@ -20,7 +20,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-set -g __done_version 1.13.0
+set -g __done_version 1.14.6
+
+function __done_run_powershell_script
+    set -l powershell_exe (command --search "powershell.exe")
+
+    if test $status -ne 0
+        and command --search wslvar
+
+        set -l powershell_exe (wslpath (wslvar windir)/System32/WindowsPowerShell/v1.0/powershell.exe)
+    end
+
+    if string length --quiet "$powershell_exe"
+        and test -x "$powershell_exe"
+
+        set cmd (string escape $argv)
+
+        eval "$powershell_exe -Command $cmd"
+    end
+end
 
 function __done_get_focused_window_id
     if type -q lsappinfo
@@ -30,9 +48,21 @@ function __done_get_focused_window_id
         swaymsg --type get_tree | jq '.. | objects | select(.focused == true) | .id'
     else if type -q xprop
         and test -n "$DISPLAY"
+        # Test that the X server at $DISPLAY is running
+        and xprop -grammar >/dev/null 2>&1
         xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2
     else if uname -a | string match --quiet --regex Microsoft
-        echo 12345 # dummy value since cannot get window state info under WSL
+        __done_run_powershell_script '
+Add-Type @"
+    using System;
+    using System.Runtime.InteropServices;
+    public class WindowsCompat {
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetForegroundWindow();
+    }
+"@
+[WindowsCompat]::GetForegroundWindow()
+'
     end
 end
 
@@ -140,7 +170,8 @@ if test -z "$SSH_CLIENT" # not over ssh
                 end
 
             else if type -q notify-send # Linux notify-send
-                set -l urgency
+                set -l urgency $__done_notification_urgency_level
+                # override user-defined urgency level if non-zero exitstatus
                 if test $exit_status -ne 0
                     set urgency "--urgency=critical"
                 end
@@ -159,17 +190,19 @@ if test -z "$SSH_CLIENT" # not over ssh
                     echo -e "\a" # bell sound
                 end
 
-            else if uname -a | string match --quiet --regex Microsoft; \
-                and set -l powershell_exe (command -v "powershell.exe"); \
-                or set -l powershell_exe \
-                    (wslpath (wslvar windir)/System32/WindowsPowerShell/v1.0/powershell.exe); \
-                and test -x "$powershell_exe"; \
-                and "$powershell_exe" -command "Import-Module -Name BurntToast" 2>/dev/null
-
+            else if uname -a | string match --quiet --regex Microsoft
                 if test "$__done_notify_sound" -eq 1
                     set soundopt "-Sound Default"
+                else
+                    set soundopt "-Silent"
                 end
-                command "$powershell_exe" -command New-BurntToastNotification -Text \""$title"\",\""$message"\" $soundopt
+
+                __done_run_powershell_script "
+                    Import-Module -Name BurntToast 2>&1 | Out-Null
+                    if (Get-Module -Name BurntToast) {
+                        New-BurntToastNotification -Text \"$title\",\"$message\" $soundopt
+                    }
+                "
 
             else # anything else
                 echo -e "\a" # bell sound

@@ -1,0 +1,9 @@
+#!/usr/bin/env fish
+
+set -gx TTC_REPOS ~/projects
+set -gx TTC_WEATHER "Ghent, Belgium"
+set -gx TTC_ACCESS_TOKEN 12702812-wzqRtb1yG3oM4VOjeIPjJvqe5dZ9QqDfuUJPbgJKI
+set -gx TTC_ACCESS_TOKEN_SECRET MP7XBH0lBelsGR1nkuxvfrW2pGwtF8Uq0P97jxm611bXH
+set -gx TTC_CONSUMER_KEY JQqzieSg4R5RjGrJ3DbhwQ
+set -gx TTC_CONSUMER_SECRET 1BWzNRiJhghBTwqwIR85GfetQWq5oK95lE00G4vEeo
+set -gx TTC_UPDATE_INTERVAL 5

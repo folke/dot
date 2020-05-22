@@ -39,7 +39,7 @@ function __fzf_open -d "Open files and directories."
     -o -type d -print \
     -o -type l -print 2> /dev/null | sed 's@^\./@@'"
 
-    eval "$FZF_OPEN_COMMAND | "(__fzfcmd) $preview_cmd "-m $FZF_DEFAULT_OPTS $FZF_OPEN_OPTS --query \"$fzf_query\"" | read -l select
+    set -l select (eval "$FZF_OPEN_COMMAND | "(__fzfcmd) $preview_cmd "-m $FZF_DEFAULT_OPTS $FZF_OPEN_OPTS --query \"$fzf_query\"" | string escape)
 
     # set how to open
     set -l open_cmd
@@ -54,7 +54,7 @@ function __fzf_open -d "Open files and directories."
 
     set -l open_status 0
     if not test -z "$select"
-        commandline "$open_cmd \"$select\"" ;and commandline -f execute
+        commandline "$open_cmd $select"; and commandline -f execute
         set open_status $status
     end
 
