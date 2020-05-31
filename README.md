@@ -3,7 +3,7 @@
 Create a `.dotfiles` folder, which we'll use to track your dotfiles
 
 ```bash
-git init --bare $HOME/.dotfiles
+git init --bare $HOME/.dot
 ```
 
 Create a `dot` alias that uses `.dot` as the git repository and your `$HOME` as the working directory.
