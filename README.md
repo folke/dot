@@ -1,5 +1,11 @@
 # Managing Dot Files with Git
 
+Create a `.dotfiles` folder, which we'll use to track your dotfiles
+
+```bash
+git init --bare $HOME/.dotfiles
+```
+
 Create a `dot` alias that uses `.dot` as the git repository and your `$HOME` as the working directory.
 Make sure to add it to your `.bashrc` or `.zshrc`
 
