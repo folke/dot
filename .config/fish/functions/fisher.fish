@@ -1,12 +1,13 @@
-set -g fisher_version 3.2.10
+set -g fisher_version 3.3.2
 
-function fisher -a cmd -d "fish package manager"
+function fisher -a cmd -d "fish plugin manager"
     set -q XDG_CACHE_HOME; or set XDG_CACHE_HOME ~/.cache
     set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+    set -q XDG_DATA_HOME; or set XDG_DATA_HOME ~/.local/share
 
     set -g fish_config $XDG_CONFIG_HOME/fish
     set -g fisher_cache $XDG_CACHE_HOME/fisher
-    set -g fisher_config $XDG_CONFIG_HOME/fisher
+    set -g fisher_data $XDG_DATA_HOME/fisher
 
     set -q fisher_path; or set -g fisher_path $fish_config
     set -g fishfile $fish_config/fishfile
@@ -41,6 +42,14 @@ function fisher -a cmd -d "fish package manager"
     # 2019-10-22: temp code, migrates fishfile from old path back to $fish_config
     if test -e "$fisher_path/fishfile"; and test ! -e "$fishfile"
         command mv -f "$fisher_path/fishfile" "$fishfile"
+    end
+
+    # 2020-06-23: temp code, migrates fisher data from XDG_CONFIG_HOME to XDG_DATA_HOME
+    set -l fisher_config $XDG_CONFIG_HOME/fisher
+    if test -d $fisher_config
+        echo "migrating local data from $fisher_config to $fisher_data"
+        command rm -rf $fisher_data
+        command mv -f $fisher_config $fisher_data
     end
 
     switch "$cmd"
@@ -89,9 +98,9 @@ end
 
 function _fisher_complete
     complete -ec fisher
-    complete -xc fisher -n __fish_use_subcommand -a add -d "Add packages"
-    complete -xc fisher -n __fish_use_subcommand -a rm -d "Remove packages"
-    complete -xc fisher -n __fish_use_subcommand -a ls -d "List installed packages matching REGEX"
+    complete -xc fisher -n __fish_use_subcommand -a add -d "Add plugins"
+    complete -xc fisher -n __fish_use_subcommand -a rm -d "Remove plugins"
+    complete -xc fisher -n __fish_use_subcommand -a ls -d "List installed plugins matching REGEX"
     complete -xc fisher -n __fish_use_subcommand -a --help -d "Show usage help"
     complete -xc fisher -n __fish_use_subcommand -a --version -d "$fisher_version"
     complete -xc fisher -n __fish_use_subcommand -a self-update -d "Update to the latest version"
@@ -115,40 +124,39 @@ function _fisher_copy_user_key_bindings
 end
 
 function _fisher_ls
-    for pkg in $fisher_config/*/*/*
+    for pkg in $fisher_data/*/*/*
         command readlink $pkg; or echo $pkg
     end
 end
 
 function _fisher_fmt
-    command sed "s|^[[:space:]]*||;s|^$fisher_config/||;s|^~|$HOME|;s|^\.\/*|$PWD/|;s|^https*:/*||;s|^github\.com/||;s|/*\$||"
+    command sed "s|^[[:space:]]*||;s|^$fisher_data/||;s|^~|$HOME|;s|^\.\/*|$PWD/|;s|^https*:/*||;s|^github\.com/||;s|/*\$||"
 end
 
 function _fisher_help
-    echo "usage: fisher add <package...>     Add packages"
-    echo "       fisher rm  <package...>     Remove packages"
-    echo "       fisher                      Update all packages"
-    echo "       fisher ls  [<regex>]        List installed packages matching <regex>"
-    echo "       fisher --help               Show this help"
-    echo "       fisher --version            Show the current version"
-    echo "       fisher self-update          Update to the latest version"
-    echo "       fisher self-uninstall       Uninstall from your system"
+    echo "usage: fisher add <plugin...>     Add plugin/s"
+    echo "       fisher rm  <plugin...>     Remove plugin/s"
+    echo "       fisher                     Update all plugins"
+    echo "       fisher ls  [<regex>]       List installed plugins matching <regex>"
+    echo "       fisher --help              Show this help"
+    echo "       fisher --version           Show the current version"
+    echo "       fisher self-update         Update to the latest version"
+    echo "       fisher self-uninstall      Uninstall from your system"
     echo "examples:"
-    echo "       fisher add jethrokuan/z rafaelrinaldi/pure"
+    echo "       fisher add jorgebucaran/z rafaelrinaldi/pure"
     echo "       fisher add gitlab.com/foo/bar@v2"
     echo "       fisher add ~/path/to/local/pkg"
     echo "       fisher add <file"
     echo "       fisher rm rafaelrinaldi/pure"
     echo "       fisher ls | fisher rm"
-    echo "       fisher ls fish-\*"
 end
 
 function _fisher_self_update -a file
-    set -l url "https://raw.githubusercontent.com/jorgebucaran/fisher/master/fisher.fish"
+    set -l url "https://raw.githubusercontent.com/jorgebucaran/fisher/main/fisher.fish"
     echo "fetching $url" >&2
     command curl -s "$url?nocache" >$file.
 
-    set -l next_version (command awk '{ print $4 } { exit }' <$file.)
+    set -l next_version (command awk '$4 ~ /^[0-9]+\.[0-9]+\.[0-9]+$/ { print v=$4 } { exit !v }' <$file.)
     switch "$next_version"
         case "" $fisher_version
             command rm -f $file.
@@ -171,7 +179,7 @@ function _fisher_self_uninstall
         _fisher_rm $pkg
     end
 
-    for file in $fisher_cache $fisher_config $fisher_path/{functions,completions,conf.d}/fisher.fish $fishfile
+    for file in $fisher_cache $fisher_data $fisher_path/{functions,completions,conf.d}/fisher.fish $fishfile
         echo "removing $file"
         command rm -Rf $file 2>/dev/null
     end | command sed "s|$HOME|~|" >&2
@@ -197,8 +205,8 @@ function _fisher_commit -a cmd
     for pkg in (_fisher_ls)
         _fisher_rm $pkg
     end
-    command rm -Rf $fisher_config
-    command mkdir -p $fisher_config
+    command rm -Rf $fisher_data
+    command mkdir -p $fisher_data
 
     set -l next_pkgs (_fisher_fmt <$fishfile | _fisher_parse -R $cmd (printf "%s\n" $argv | _fisher_fmt))
     set -l actual_pkgs (_fisher_fetch $next_pkgs)
@@ -210,7 +218,7 @@ function _fisher_commit -a cmd
     end
 
     if test -z "$actual_pkgs$updated_pkgs$old_pkgs$next_pkgs"
-        echo "fisher: nothing to commit -- try adding some packages" >&2
+        echo "fisher: nothing to commit -- try adding some plugins" >&2
         return 1
     end
 
@@ -235,7 +243,7 @@ function _fisher_commit -a cmd
             printf((res ? res : "done") " in %.2fs\n", E / 1000)
         }
         function fmt(action, n, s) {
-            return n ? (s ? s ", " : s) action " " n " package" (n > 1 ? "s" : "") : s
+            return n ? (s ? s ", " : s) action " " n " plugin" (n > 1 ? "s" : "") : s
         }
     ' >&2
 end
@@ -247,13 +255,13 @@ function _fisher_parse -a mode cmd
             for (n = split(ARGSTR, a, " "); i++ < n;) pkgs[getkey(a[i])] = a[i]
         }
         !NF { next } { k = getkey($1) }
-        MODE == "-R" && !(k in pkgs) && $0 = $1
+        MODE == "-R" && !(k in pkgs) && ($0 = $1)
         MODE == "-W" && (/^#/ || k in pkgs || CMD != "rm") { print pkgs[k] (sub($1, "") ? $0 : "") }
         MODE == "-W" || CMD == "rm" { delete pkgs[k] }
         END {
             for (k in pkgs) {
                 if (CMD != "rm" || MODE == "-W") print pkgs[k]
-                else print "fisher: cannot remove \""k"\" -- package is not in fishfile" > "/dev/stderr"
+                else print "fisher: cannot remove \""k"\" -- plugin is not in fishfile" > "/dev/stderr"
             }
         }
         function getkey(s,  a) {
@@ -283,43 +291,36 @@ function _fisher_fetch
 
         command awk -v PKG="$pkg" -v FS=/ '
             BEGIN {
-                if (split(PKG, tmp, /@+|:/) > 2) {
-                    if (tmp[4]) sub("@"tmp[4], "", PKG)
-                    print PKG "\t" tmp[2]"/"tmp[1]"/"tmp[3] "\t" (tmp[4] ? tmp[4] : "master")
-                } else {
-                    pkg = split(PKG, _, "/") <= 2 ? "github.com/"tmp[1] : tmp[1]
-                    tag = tmp[2] ? tmp[2] : "master"
-                    print (\
-                        pkg ~ /^github/ ? "https://codeload."pkg"/tar.gz/"tag : \
-                        pkg ~ /^gitlab/ ? "https://"pkg"/-/archive/"tag"/"tmp[split(pkg, tmp, "/")]"-"tag".tar.gz" : \
-                        pkg ~ /^bitbucket/ ? "https://"pkg"/get/"tag".tar.gz" : pkg \
-                    ) "\t" pkg
-                }
+                split(PKG, tmp, /@/)
+                pkg = split(PKG, _, "/") <= 2 ? "github.com/"tmp[1] : tmp[1]
+                tag = tmp[2] ? tmp[2] : "HEAD"
+                print pkg "\t" (\
+                    pkg ~ /^github/ ? "https://codeload."pkg"/tar.gz/"tag : \
+                    pkg ~ /^gitlab/ ? "https://"pkg"/-/archive/"tag"/"tmp[split(pkg, tmp, "/")]"-"tag".tar.gz" : \
+                    pkg ~ /^bitbucket/ ? "https://"pkg"/get/"tag".tar.gz" : pkg\
+                )
             }
-        ' | read -l url pkg branch
+        ' | read -l pkg url
 
-        if test ! -d "$fisher_config/$pkg"
+        if test ! -d "$fisher_data/$pkg"
             fish -c "
                 echo fetching $url >&2
-                command mkdir -p $fisher_config/$pkg $fisher_cache/(command dirname $pkg)
-                if test ! -z \"$branch\"
-                     command git clone $url $fisher_config/$pkg --branch $branch --depth 1 2>/dev/null
-                     or echo fisher: cannot clone \"$url\" -- is this a valid url\? >&2
-                else if command curl $curl_opts -Ss -w \"\" $url 2>&1 | command tar -xzf- -C $fisher_config/$pkg 2>/dev/null
+                command mkdir -p $fisher_data/$pkg $fisher_cache/(command dirname $pkg)
+                if command curl $curl_opts -Ss -w \"\" $url 2>&1 | command tar -xzf- -C $fisher_data/$pkg 2>/dev/null
                     command rm -Rf $fisher_cache/$pkg
-                    command mv -f $fisher_config/$pkg/* $fisher_cache/$pkg
-                    command rm -Rf $fisher_config/$pkg
-                    command cp -Rf {$fisher_cache,$fisher_config}/$pkg
+                    command mv -f $fisher_data/$pkg/* $fisher_cache/$pkg
+                    command rm -Rf $fisher_data/$pkg
+                    command cp -Rf {$fisher_cache,$fisher_data}/$pkg
                 else if test -d \"$fisher_cache/$pkg\"
                     echo fisher: cannot connect to server -- looking in \"$fisher_cache/$pkg\" | command sed 's|$HOME|~|' >&2
-                    command cp -Rf $fisher_cache/$pkg $fisher_config/$pkg/..
+                    command cp -Rf $fisher_cache/$pkg $fisher_data/$pkg/..
                 else
-                    command rm -Rf $fisher_config/$pkg
-                    echo fisher: cannot add \"$pkg\" -- is this a valid package\? >&2
+                    command rm -Rf $fisher_data/$pkg
+                    echo fisher: cannot add \"$pkg\" -- is this a valid plugin\? >&2
                 end
             " >/dev/null &
             set pkg_jobs $pkg_jobs (_fisher_jobs --last)
-            set next_pkgs $next_pkgs "$fisher_config/$pkg"
+            set next_pkgs $next_pkgs "$fisher_data/$pkg"
         end
     end
 
@@ -336,7 +337,7 @@ function _fisher_fetch
         end
     end
 
-    set -l local_prefix $fisher_config/local/$USER
+    set -l local_prefix $fisher_data/local/$USER
     if test ! -d "$local_prefix"
         command mkdir -p $local_prefix
     end

@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-set -g __done_version 1.14.6
+set -g __done_version 1.14.9
 
 function __done_run_powershell_script
     set -l powershell_exe (command --search "powershell.exe")
@@ -46,12 +46,15 @@ function __done_get_focused_window_id
     else if test -n "$SWAYSOCK"
         and type -q jq
         swaymsg --type get_tree | jq '.. | objects | select(.focused == true) | .id'
+    else if begin test "$XDG_SESSION_DESKTOP" = gnome; and type -q gdbus
+        end
+        gdbus call --session --dest org.gnome.Shell --object-path /org/gnome/Shell --method org.gnome.Shell.Eval 'global.display.focus_window.get_id()'
     else if type -q xprop
         and test -n "$DISPLAY"
         # Test that the X server at $DISPLAY is running
         and xprop -grammar >/dev/null 2>&1
         xprop -root 32x '\t$0' _NET_ACTIVE_WINDOW | cut -f 2
-    else if uname -a | string match --quiet --regex Microsoft
+    else if uname -a | string match --quiet --ignore-case --regex microsoft
         __done_run_powershell_script '
 Add-Type @"
     using System;
@@ -170,12 +173,20 @@ if test -z "$SSH_CLIENT" # not over ssh
                 end
 
             else if type -q notify-send # Linux notify-send
-                set -l urgency $__done_notification_urgency_level
+                # set urgency to normal
+                set -l urgency "normal"
+
+                # use user-defined urgency if set
+                if set -q __done_notification_urgency_level
+                    set urgency "$__done_notification_urgency_level"
+                end
                 # override user-defined urgency level if non-zero exitstatus
                 if test $exit_status -ne 0
-                    set urgency "--urgency=critical"
+                    set urgency "critical"
                 end
-                notify-send $urgency --icon=terminal --app-name=fish "$title" "$message"
+
+                notify-send --urgency=$urgency --icon=utilities-terminal --app-name=fish "$title" "$message"
+
                 if test "$__done_notify_sound" -eq 1
                     echo -e "\a" # bell sound
                 end
@@ -185,12 +196,12 @@ if test -z "$SSH_CLIENT" # not over ssh
                 if test $exit_status -ne 0
                     set urgency "--urgency=critical"
                 end
-                notify-desktop $urgency --icon=terminal --app-name=fish "$title" "$message"
+                notify-desktop $urgency --icon=utilities-terminal --app-name=fish "$title" "$message"
                 if test "$__done_notify_sound" -eq 1
                     echo -e "\a" # bell sound
                 end
 
-            else if uname -a | string match --quiet --regex Microsoft
+            else if uname -a | string match --quiet --ignore-case --regex microsoft
                 if test "$__done_notify_sound" -eq 1
                     set soundopt "-Sound Default"
                 else

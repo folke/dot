@@ -11,8 +11,9 @@
   # set spacevim theme. by default colorscheme layer is not loaded,
   # if you want to use more colorscheme, please load the colorscheme
   # layer
+#colorscheme = "nord"
+#colorscheme = "onedark"
   colorscheme = "dracula"
-  #colorscheme = "onedark"
   colorscheme_bg = "dark"
   # Disable guicolors in basic mode, many terminal do not support 24bit
   # true colors
@@ -41,6 +42,9 @@
     'html'
   ]
 
+[[layers]]
+  name = "sudo"
+
 # Enable autocomplete layer
 [[layers]]
   name = 'autocomplete'
@@ -52,6 +56,18 @@
 
 [[custom_plugins]]
   name = "dracula/vim"
+  merged = 0
+
+[[custom_plugins]]
+  name = "dylanaraps/wal.vim"
+  merged = 0
+
+[[custom_plugins]]
+  name = "romainl/Apprentice"
+  merged = 0
+
+[[custom_plugins]]
+  name = "kovetskiy/sxhkd-vim"
   merged = 0
 
 [[layers]]
