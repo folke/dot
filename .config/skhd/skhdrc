@@ -1,0 +1,30 @@
+# open terminal
+cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty -1 -d ~ &> /dev/null
+
+# focus window
+cmd - right : yabai -m window --focus east
+cmd - left : yabai -m window --focus west
+cmd - up : yabai -m window --focus north
+cmd - down : yabai -m window --focus south
+ctrl + cmd - right : yabai -m window --focus next
+ctrl + cmd - left : yabai -m window --focus prev
+
+# swap window
+cmd + alt - right : yabai -m window --swap east
+cmd + alt - left : yabai -m window --swap west
+cmd + alt - up : yabai -m window --swap north
+cmd + alt - down : yabai -m window --swap south
+
+# move window
+cmd + alt + shift - right : yabai -m window --warp east
+cmd + alt + shift - left : yabai -m window --warp west
+cmd + alt + shift - up : yabai -m window --warp north
+cmd + alt + shift - down : yabai -m window --warp south
+
+# focus space
+#ctrl + cmd - down : yabai -m space --focus next || yabai -m space --focus 1; \
+#       ~/.config/ubersicht/scripts/yabai-refresh
+#ctrl + cmd - up : yabai -m space --focus prev || yabai -m space --focus 6; \
+#       ~/.config/ubersicht/scripts/yabai-refresh
+
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+touch ~/.config/ubersicht/widgets/yabai.jsx
+
+#!/usr/bin/env osascript
+
+#tell application id "tracesOf.Uebersicht" to refresh widget id "yabai-jsx"
