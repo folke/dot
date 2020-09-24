@@ -40,21 +40,19 @@ yabai -m rule --add app="^Spotify$" space=6
 yabai -m rule --add app="^Steam$" space=6
 yabai -m rule --add app="^(System Preferences|Alfred|Activity Monitor)" manage=off
 yabai -m rule --add app="^(Blizzard|Battle|Wow)" space=6
+yabai -m rule --add title="^scratchpad$" manage=off grid=4:4:1:1:2:2
 
 # signals
 #yabai -m signal --add event=space_changed \
 #  action="set SHELL=/bin/sh && open -g \"bitbar://refreshPlugin?name=yabai.*?.py\""
 
-yabai -m signal --add event=space_changed \
-  action="~/.config/ubersicht/scripts/yabai-refresh"
-yabai -m signal --add event=window_created \
-  action="~/.config/ubersicht/scripts/yabai-refresh"
-yabai -m signal --add event=window_destroyed \
-  action="~/.config/ubersicht/scripts/yabai-refresh"
+#yabai -m signal --add event=space_changed \
+#  action="~/.config/ubersicht/scripts/yabai-refresh"
+#yabai -m signal --add event=window_created \
+#  action="~/.config/ubersicht/scripts/yabai-refresh"
+#yabai -m signal --add event=window_destroyed \
+#  action="~/.config/ubersicht/scripts/yabai-refresh"
 # yabai -m signal --add event=window_focused \
 #   action="open -g hammerspoon://yabaiFocus"
-
-# restore position of floating windows when they are manually unfloated
-# ~/Scripts/yabai_restore.sh
 
 echo "yabai configuration loaded.."

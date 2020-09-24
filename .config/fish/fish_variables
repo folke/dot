@@ -44,6 +44,7 @@ SETUVAR _fish_abbr_vi:nvim
 SETUVAR _fish_abbr_vim:nvim
 SETUVAR _fish_abbr_weather:curl\x20\x2ds\x20wttr\x2ein/Ghent\x20\x7c\x20grep\x20\x2dv\x20Follow
 SETUVAR _fish_abbr_ytop:btm
+SETUVAR base16_fish_theme:material\x2dpalenight
 SETUVAR fish_color_autosuggestion:BD93F9
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:F8F8F2
