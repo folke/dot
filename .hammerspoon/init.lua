@@ -6,6 +6,7 @@ hs.window.animationDuration = 0
 -- require("test")
 require("spaces")
 require("border")
+local quake = require("quake")
 
 local hyper = require("hyper")
 hyper.bindApp({}, "b", "Brave Browser")
@@ -16,48 +17,25 @@ hyper.bindApp({"cmd"}, "b", function()
 end)
 hyper.bindApp({}, "c", "Visual Studio Code - Insiders")
 hyper.bindApp({}, "f", "Finder")
-hyper.bindApp({}, "w", function() hs.alert("foo") end)
 
--- hs.hotkey.bind({"cmd"}, "F18", "Scratchpad", function()
---     local app = hs.application.get("kitty")
+hs.hotkey.bind({"cmd"}, "escape", "Scratchpad", quake.toggle)
+hyper.bindApp({}, "return", quake.toggle)
 
---     if app then
---         if not app:mainWindow() then
---             app:selectMenuItem({"kitty", "New OS window"})
---         elseif app:isFrontmost() then
---             app:hide()
---         else
---             app:activate()
---         end
---     else
---         hs.application.launchOrFocus("kitty")
---         app = hs.application.get("kitty")
---     end
-
---     app:mainWindow():moveToUnit '[100,50,0,0]'
---     -- app:mainWindow():setShadows(false)
--- end)
-
--- hs.hotkey.bind({"cmd"}, "q", "Quit", function()
---     hs.eventtap.keyStroke({'cmd'}, "w")
---     hs.alert("Exited")
--- end)
+tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
+    -- print(hs.inspect(event))
+    local isCmd = event:getFlags():containExactly({"cmd"})
+    local isQ = event:getKeyCode() == hs.keycodes.map["q"]
+    if isCmd and isQ then
+        local win = hs.window.focusedWindow()
+        if win and win:application():name() == "kitty" then
+            hs.alert("Use alt+cmd+q instead!")
+            return true
+        end
+    end
+end)
+tap:start()
 
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall:andUse("ReloadConfiguration", {start = true})
 
--- spoon.SpoonInstall:andUse("HSKeybindings", {
---     fn = function(s)
---         local shown = false
---         hs.hotkey.bind({"cmd", "alt", "ctrl"}, "h", "Help", function()
---             if shown then
---                 s:hide()
---                 shown = false
---             else
---                 s:show()
---                 shown = true
---             end
---         end)
---     end
--- })
 hs.alert.show("Hammerspoon Loaded!")

@@ -1,37 +1,36 @@
 local wb = hs.canvas.windowBehaviors
-local desktop = require("desktop")
+local spaces = require("hs._asm.undocumented.spaces")
+
 hs.window.filter.forceRefreshOnSpaceChange = true
 
-local module = {windows = hs.window.filter.new(nil), widget = hs.canvas.new {}}
+local module = {widget = hs.canvas.new {}}
+
+local desktop = require("desktop")
+module.focused = require("focused")
 
 module.widget:level(hs.canvas.windowLevels.floating)
 module.widget:clickActivating(false)
 module.widget:_accessibilitySubrole("AXUnknown")
 module.widget:behavior({wb.default, wb.transient})
-module.windows:setCurrentSpace(true)
 
-function update()
+module.update = function()
     module.widget:hide()
 
-    local current = desktop.activeSpace()
-    local win = hs.window.focusedWindow()
+    local win = module.focused.focused
+    if win == nil or not win:application() or not win:application():isRunning() or
+        not win:isVisible() then return end
+    local current = spaces.activeSpace()
     local found = false
     for _, space in ipairs(win:spaces()) do
         if space == current then found = true end
     end
     if not found then win = nil end
 
-    if win == nil or win:subrole() ~= "AXSystemDialog" then end
-    if win ~= nil then
-        print(win:title() .. " : " .. win:role() .. " : " .. win:subrole())
-    end
     if win ~= nil and win:subrole() == "AXStandardWindow" and win:isVisible() then
         local top_left = win:topLeft()
         local size = win:size()
 
         module.widget:frame(hs.screen.mainScreen():fullFrame())
-        -- 
-        -- module.widget:frame(win:frame())
 
         local radius = 10
         local border = 4
@@ -78,36 +77,12 @@ function update()
     end
 end
 
-local delay = 0.2
-local movedDelayed = nil
+module.focused.onChange(module.update)
 
-local triggerUpdate = function(win, app, event)
-    if movedDelayed then
-        movedDelayed:setNextTrigger(delay)
-    else
-        movedDelayed = hs.timer.doAfter(delay, function()
-            movedDelayed = nil
-            update()
-        end)
-    end
-end
+local watcher = hs.spaces.watcher.new(module.update)
+watcher:start()
+desktop.onChange(module.update)
 
-module.windows:subscribe(hs.window.filter.windowFocused, update)
-module.windows:subscribe(hs.window.filter.windowUnfocused, update)
-module.windows:subscribe(hs.window.filter.windowCreated, triggerUpdate)
-module.windows:subscribe(hs.window.filter.windowMoved, triggerUpdate)
-module.windows:subscribe(hs.window.filter.windowHidden, triggerUpdate)
-module.windows:subscribe(hs.window.filter.windowDestroyed, triggerUpdate)
-module.windows:subscribe(hs.window.filter.windowUnminimized, triggerUpdate)
-module.windows:subscribe(hs.window.filter.windowMinimized, triggerUpdate)
-
-desktop.onChange(function() triggerUpdate() end)
-
--- hs.urlevent.bind("yabaiFocus", function(eventName, params)
---     module.widget:hide()
---     triggerUpdate()
--- end)
-
-triggerUpdate()
+module.update()
 
 return module
