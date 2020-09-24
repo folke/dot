@@ -1,29 +1,26 @@
 local wb = hs.canvas.windowBehaviors
 local desktop = require("desktop")
+local spacer = require("spacer")
 
-local module = {windows = hs.window.filter.new(nil), widget = hs.canvas.new {}}
+-- hs.canvas.useCustomAccessibilitySubrole(false)
+local module = {widget = hs.canvas.new {}}
 
+-- module.windows:setCurrentSpace(false)
 module.widget:behavior({wb.canJoinAllSpaces, wb.stationary})
 module.widget:clickActivating(false)
--- module.widget:bringToFront(false)
 module.widget:level(hs.canvas.windowLevels.dock)
 module.widget:_accessibilitySubrole("AXUnknown")
 
 module.update = function()
-    local counts = {}
-    local layout = desktop.layout()
-    for i, spaceId in ipairs(layout) do counts[spaceId] = 0 end
-    for i, win in ipairs(module.windows:getWindows()) do
-        for s, spaceId in ipairs(win:spaces()) do
-            if counts[spaceId] == nil then counts[spaceId] = 0 end
-            counts[spaceId] = counts[spaceId] + 1
-        end
+    if hs.window.focusedWindow() and hs.window.focusedWindow():isFullscreen() then
+        module.widget:hide()
+        return
     end
+    local layout = desktop.layout()
 
     local spaceW = 51
     local spaceH = 40
     local radius = 12
-    local current = desktop.activeSpace()
     hs.canvas.disableScreenUpdates()
     module.widget:frame({x = 5, y = 45, w = spaceW, h = spaceH * #layout})
     module.widget:replaceElements({
@@ -45,10 +42,10 @@ module.update = function()
     local currentY = 0
     for i, spaceId in ipairs(layout) do
         local alpha = 0
-        if counts[spaceId] > 0 then alpha = 1 end
+        if spacer.counts[spaceId] > 0 then alpha = 1 end
 
         backgroundA = 0
-        if spaceId == current then backgroundA = 0.3 end
+        if i == desktop.active then backgroundA = 0.3 end
         module.widget:appendElements({
             id = i,
             action = "fill",
@@ -80,45 +77,10 @@ end
 
 module.update()
 
-desktop.onChange(function() module.update() end)
+desktop.onChange(module.update)
+spacer.onChange(module.update)
 
-local delay = 0.1
-module.triggerSpaceChange = function()
-    if module._trigger then
-        module._trigger:setNextTrigger(delay)
-    else
-        module._trigger = hs.timer.doAfter(delay, function()
-            module._trigger = nil
-            module.spaceChange()
-        end)
-    end
-end
-
-module.spaceChange = function()
-    local d = string.format("%d", desktop.active)
-    local spaces = require("hs._asm.undocumented.spaces")
-    if spaces.activeSpace() ~= desktop.activeSpace() then
-        print("spaceChange: " .. d)
-        -- spaces.changeToSpace(desktop.activeSpace(), false)
-        hs.eventtap.keyStroke({'ctrl'}, d)
-    end
-end
-
-hs.hotkey.bind({"cmd", "ctrl"}, "down", "Next Space", function()
-    desktop.next()
-    module.triggerSpaceChange()
-end)
-
-hs.hotkey.bind({"cmd", "ctrl"}, "up", "Previous Space", function()
-    desktop.previous()
-    module.triggerSpaceChange()
-end)
-
-module.widget:mouseCallback(function(_, _, id)
-    print("set: " .. id)
-    desktop.set(id)
-    module.triggerSpaceChange()
-end)
+module.widget:mouseCallback(function(_, _, id) desktop.changeTo(id) end)
 
 return module
 
