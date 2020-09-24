@@ -13,7 +13,7 @@
   # layer
 #colorscheme = "nord"
 #colorscheme = "onedark"
-  colorscheme = "dracula"
+  colorscheme = "palenight"
   colorscheme_bg = "dark"
   # Disable guicolors in basic mode, many terminal do not support 24bit
   # true colors
