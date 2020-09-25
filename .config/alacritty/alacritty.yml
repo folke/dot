@@ -142,8 +142,8 @@ font:
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
-  #offset:
-  #  x: 0
+  offset:
+    x: 0
   #  y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
@@ -346,7 +346,7 @@ draw_bold_text_with_bright_colors: true
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #

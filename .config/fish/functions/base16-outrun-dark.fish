@@ -1,100 +1,132 @@
-# base16-fish-shell (https://github.com/FabioAntunes/base16-fish-shell)
-# Inspired by base16-shell (https://github.com/chriskempson/base16-shell)
+# base16-fish (https://github.com/tomyun/base16-fish)
+# based on base16-shell (https://github.com/chriskempson/base16-shell)
 # Outrun Dark scheme by Hugo Delahousse (http://github.com/hugodelahousse/)
 
-function base16-outrun-dark -d "base16 Outrun Dark theme"
-    set options (fish_opt --short=t --long=test)
-    argparse $options -- $argv
-    set padded_seq_values (seq -w 0 21)
+function base16-outrun-dark -d "Outrun Dark"
+  set color00 00/00/2A # Base 00 - Black
+  set color01 FF/42/42 # Base 08 - Red
+  set color02 59/F1/76 # Base 0B - Green
+  set color03 F3/E8/77 # Base 0A - Yellow
+  set color04 66/B0/FF # Base 0D - Blue
+  set color05 F1/05/96 # Base 0E - Magenta
+  set color06 0E/F0/F0 # Base 0C - Cyan
+  set color07 D0/D0/FA # Base 05 - White
+  set color08 50/50/7A # Base 03 - Bright Black
+  set color09 $color01 # Base 08 - Bright Red
+  set color10 $color02 # Base 0B - Bright Green
+  set color11 $color03 # Base 0A - Bright Yellow
+  set color12 $color04 # Base 0D - Bright Blue
+  set color13 $color05 # Base 0E - Bright Magenta
+  set color14 $color06 # Base 0C - Bright Cyan
+  set color15 F5/F5/FF # Base 07 - Bright White
+  set color16 FC/8D/28 # Base 09
+  set color17 F0/03/EF # Base 0F
+  set color18 20/20/4A # Base 01
+  set color19 30/30/5A # Base 02
+  set color20 B0/B0/DA # Base 04
+  set color21 E0/E0/FF # Base 06
+  set colorfg $color07 # Base 05 - White
+  set colorbg $color00 # Base 00 - Black
 
-    # colors
-    set color00 "00/00/2a" # Base 00 - Black
-    set color01 "ff/42/42" # Base 08 - Red
-    set color02 "59/f1/76" # Base 0B - Green
-    set color03 "f3/e8/77" # Base 0A - Yellow
-    set color04 "66/b0/ff" # Base 0D - Blue
-    set color05 "f1/05/96" # Base 0E - Magenta
-    set color06 "0e/f0/f0" # Base 0C - Cyan
-    set color07 "d0/d0/fa" # Base 05 - White
-    set color08 "50/50/7a" # Base 03 - Bright Black
-    set color09 $color01 # Base 08 - Bright Red
-    set color10 $color02 # Base 0B - Bright Green
-    set color11 $color03 # Base 0A - Bright Yellow
-    set color12 $color04 # Base 0D - Bright Blue
-    set color13 $color05 # Base 0E - Bright Magenta
-    set color14 $color06 # Base 0C - Bright Cyan
-    set color15 "f5/f5/ff" # Base 07 - Bright White
-    set color16 "fc/8d/28" # Base 09
-    set color17 "f0/03/ef" # Base 0F
-    set color18 "20/20/4a" # Base 01
-    set color19 "30/30/5a" # Base 02
-    set color20 "b0/b0/da" # Base 04
-    set color21 "e0/e0/ff" # Base 06
-    set color_foreground "d0/d0/fa" # Base 05
-    set color_background "00/00/2a" # Base 00
+  if test -n "$TMUX"
+    # Tell tmux to pass the escape sequences through
+    # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+    function put_template; printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $argv; end;
+    function put_template_var; printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' $argv; end;
+    function put_template_custom; printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' $argv; end;
+  else if string match 'screen*' $TERM # [ "${TERM%%[-.]*}" = "screen" ]
+    # GNU screen (screen, screen-256color, screen-256color-bce)
+    function put_template; printf '\033P\033]4;%d;rgb:%s\007\033\\' $argv; end;
+    function put_template_var; printf '\033P\033]%d;rgb:%s\007\033\\' $argv; end;
+    function put_template_custom; printf '\033P\033]%s%s\007\033\\' $argv; end;
+  else if string match 'linux*' $TERM # [ "${TERM%%-*}" = "linux" ]
+    function put_template; test $1 -lt 16 && printf "\e]P%x%s" $1 (echo $2 | sed 's/\///g'); end;
+    function put_template_var; true; end;
+    function put_template_custom; true; end;
+  else
+    function put_template; printf '\033]4;%d;rgb:%s\033\\' $argv; end;
+    function put_template_var; printf '\033]%d;rgb:%s\033\\' $argv; end;
+    function put_template_custom; printf '\033]%s%s\033\\' $argv; end;
+  end
 
-    # 16 color space
-    __put_template 0  $color00
-    __put_template 1  $color01
-    __put_template 2  $color02
-    __put_template 3  $color03
-    __put_template 4  $color04
-    __put_template 5  $color05
-    __put_template 6  $color06
-    __put_template 7  $color07
-    __put_template 8  $color08
-    __put_template 9  $color09
-    __put_template 10 $color10
-    __put_template 11 $color11
-    __put_template 12 $color12
-    __put_template 13 $color13
-    __put_template 14 $color14
-    __put_template 15 $color15
+  # 16 color space
+  put_template 0  $color00
+  put_template 1  $color01
+  put_template 2  $color02
+  put_template 3  $color03
+  put_template 4  $color04
+  put_template 5  $color05
+  put_template 6  $color06
+  put_template 7  $color07
+  put_template 8  $color08
+  put_template 9  $color09
+  put_template 10 $color10
+  put_template 11 $color11
+  put_template 12 $color12
+  put_template 13 $color13
+  put_template 14 $color14
+  put_template 15 $color15
 
-    # 256 color space
-    __put_template 16 $color16
-    __put_template 17 $color17
-    __put_template 18 $color18
-    __put_template 19 $color19
-    __put_template 20 $color20
-    __put_template 21 $color21
+  # 256 color space
+  put_template 16 $color16
+  put_template 17 $color17
+  put_template 18 $color18
+  put_template 19 $color19
+  put_template 20 $color20
+  put_template 21 $color21
 
-    # foreground / background / cursor color
-    if test -n "$ITERM_SESSION_ID"
-      # iTerm2 proprietary escape codes
-      __put_template_custom Pg d0d0fa # foreground
-      __put_template_custom Ph 00002a # background
-      __put_template_custom Pi d0d0fa # bold color
-      __put_template_custom Pj 30305a # selection color
-      __put_template_custom Pk d0d0fa # selected text color
-      __put_template_custom Pl d0d0fa # cursor
-      __put_template_custom Pm 00002a # cursor text
-
-    else
-      __put_template_var 10 $color_foreground
-      if test "$BASE16_SHELL_SET_BACKGROUND" != false
-        __put_template_var 11 $color_background
-        if string match -q -- '*rxvt*' $TERM
-          __put_template_var 708 $color_background # internal border (rxvt)
-        end
+  # foreground / background / cursor color
+  if test -n "$ITERM_SESSION_ID"
+    # iTerm2 proprietary escape codes
+    put_template_custom Pg D0D0FA # foreground
+    put_template_custom Ph 00002A # background
+    put_template_custom Pi D0D0FA # bold color
+    put_template_custom Pj 30305A # selection color
+    put_template_custom Pk D0D0FA # selected text color
+    put_template_custom Pl D0D0FA # cursor
+    put_template_custom Pm 00002A # cursor text
+  else
+    put_template_var 10 $colorfg
+    if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]
+      put_template_var 11 $colorbg
+      if string match 'rxvt*' $TERM # [ "${TERM%%-*}" = "rxvt" ]
+        put_template_var 708 $colorbg # internal border (rxvt)
       end
-      __put_template_custom 12 ";7" # cursor (reverse video)
     end
+    put_template_custom 12 ";7" # cursor (reverse video)
+  end
 
-    set -gx fish_color_autosuggestion "50507a" brblack
-    set -gx fish_pager_color_description "fc8d28" yellow
+  # set syntax highlighting colors
+  set -U fish_color_autosuggestion 30305A
+  set -U fish_color_cancel -r
+  set -U fish_color_command green #white
+  set -U fish_color_comment 30305A
+  set -U fish_color_cwd green
+  set -U fish_color_cwd_root red
+  set -U fish_color_end brblack #blue
+  set -U fish_color_error red
+  set -U fish_color_escape yellow #green
+  set -U fish_color_history_current --bold
+  set -U fish_color_host normal
+  set -U fish_color_match --background=brblue
+  set -U fish_color_normal normal
+  set -U fish_color_operator blue #green
+  set -U fish_color_param B0B0DA
+  set -U fish_color_quote yellow #brblack
+  set -U fish_color_redirection cyan
+  set -U fish_color_search_match bryellow --background=30305A
+  set -U fish_color_selection white --bold --background=30305A
+  set -U fish_color_status red
+  set -U fish_color_user brgreen
+  set -U fish_color_valid_path --underline
+  set -U fish_pager_color_completion normal
+  set -U fish_pager_color_description yellow --dim
+  set -U fish_pager_color_prefix white --bold #--underline
+  set -U fish_pager_color_progress brwhite --background=cyan
 
-    __base16_fish_shell_set_background "00" "00" "2a"
-    __base16_fish_shell_create_vimrc_background outrun-dark
-    set -U base16_fish_theme outrun-dark
+  # remember current theme
+  set -U base16_theme outrun-dark
 
-    if test -n "$_flag_t"
-        set base16_colors
-        for seq_value in $padded_seq_values
-            set base16_colors $base16_colors $seq_value
-        end
-        set base16_colors $base16_colors
-
-        __base16_fish_shell_color_test $base16_colors
-    end
+  # clean up
+  functions -e put_template put_template_var put_template_custom
 end

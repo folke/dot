@@ -10,9 +10,11 @@ set -x MANPAGER "nvim -u NORC +Man!"
 set -x PATH $PATH ~/go/bin
 set -x PATH $PATH ~/bin
 set -x PATH $PATH ~/.cargo/bin
+set -x PATH $PATH ~/.emacs.d/bin
 set -x PATH $PATH ~/.local/bin
 set -x PATH $PATH ~/.config/folke/bin
 set -x PATH $PATH ~/.config/scripts/bin
+set -x PATH $PATH ~/Library/Python/3.8/bin
 set -x PATH /usr/local/sbin $PATH
 
 # Tmux
@@ -126,7 +128,7 @@ set -g fish_emoji_width 2
 
 # Dracula Theme
 if test -e ~/.config/fish/functions/dracula.fish
-  builtin source ~/.config/fish/functions/dracula.fish
+  #builtin source ~/.config/fish/functions/dracula.fish
 end
 
 test -r "~/.dir_colors" && eval (dircolors ~/.dir_colors)
@@ -141,11 +143,8 @@ function fish_greeting
     color-test
 end
 
-function yabai_restart
-  killall yabai
-  killall Dock
-  pgrep yabai
-  #brew services yabai restart
+function yabai_fix
+  pgrep yabai | tail -n +2 | head -n1 | xargs kill
 end
 
 # tabtab source for packages
