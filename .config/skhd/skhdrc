@@ -2,16 +2,16 @@
 cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty -1 -d ~ &> /dev/null
 
 # window state & layout
-cmd + alt - f : yabai -m window --toggle zoom-fullscreen && yabai -m space --toggle padding
+cmd + alt - f : yabai -m window --toggle zoom-fullscreen
 cmd + alt - t : yabai -m window --toggle float
 cmd + alt - r : yabai -m window --toggle split
 cmd + alt - b : yabai -m space --balance
 
 # focus window
-cmd - right : yabai -m window --focus east
-cmd - left : yabai -m window --focus west
-cmd - up : yabai -m window --focus north
-cmd - down : yabai -m window --focus south
+#cmd - right : yabai -m window --focus east
+#cmd - left : yabai -m window --focus west
+#cmd - up : yabai -m window --focus north
+#cmd - down : yabai -m window --focus south
 ctrl + cmd - right : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.y, .frame.x, .id) | map(select(.visible == 1 and .subrole != \"AXUnknown\")) | reverse | nth(index(map(select(.focused == 1))) - 1).id")"
 ctrl + cmd - left : yabai -m window --focus "$(yabai -m query --windows | jq -re "sort_by(.display, .frame.y, .frame.x, .id) | map(select(.visible == 1 and .subrole != \"AXUnknown\")) | nth(index(map(select(.focused == 1))) - 1).id")"
 
@@ -34,8 +34,8 @@ ctrl + alt - left : yabai -m window --resize right:-10:0; yabai -m window --resi
 ctrl + alt - right : yabai -m window --resize right:10:0; yabai -m window --resize left:-10:0
 
 # move space
-shift + cmd - up : yabai -m window --space prev && skhd -k "ctrl + cmd - up"
-shift + cmd - down : yabai -m window --space next && skhd -k "ctrl + cmd - down"
+#shift + cmd - up : yabai -m window --space prev && skhd -k "ctrl + cmd - up"
+#shift + cmd - down : yabai -m window --space next && skhd -k "ctrl + cmd - down"
 
 
 # focus space
