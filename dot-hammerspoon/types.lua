@@ -93,3 +93,5 @@ hs.window.layout = require "hs.window.layout"
 hs.window.tiling = require "hs.window.tiling"
 hs.window.switcher = require "hs.window.switcher"
 hs.window.highlight = require "hs.window.highlight"
+
+return hs

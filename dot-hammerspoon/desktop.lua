@@ -18,7 +18,8 @@ module.set = function(active, force)
     end
 end
 
-module.activeSpace = function() return module.layout()[module.active] end
+module.spaceId = function(desktop) return module.layout()[desktop] end
+module.activeSpace = function() return module.spaceId(module.active) end
 
 module._update = function(force)
     local active = spaces.activeSpace()

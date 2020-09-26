@@ -22,7 +22,7 @@ module.update = function()
     local spaceH = 40
     local radius = 12
     hs.canvas.disableScreenUpdates()
-    module.widget:frame({x = 5, y = 45, w = spaceW, h = spaceH * #layout})
+    module.widget:frame({x = 5, y = 35, w = spaceW, h = spaceH * #layout})
     module.widget:replaceElements({
         action = "strokeAndFill",
         -- padding = 0,
