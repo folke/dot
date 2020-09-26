@@ -1,5 +1,3 @@
-.dot
-Library/
-Spoons
-_asm
-
+dot-hammerspoon/hs/_asm
+dot-hammerspoon/Spoons
+.DS_Store

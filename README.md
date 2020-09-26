@@ -1,3 +1,12 @@
+# Managing Dot Files with Stow
+
+```bash
+stow . -v -d ~/projects/dot/ -t ~/ --ignore ".config|.DS_Store" --dotfiles
+stow . -v -d ~/projects/dot/.config -t ~/.config/ --ignore ".DS_Store" --dotfiles
+```
+
+
+
 # Managing Dot Files with Git
 
 Create a `.dotfiles` folder, which we'll use to track your dotfiles
