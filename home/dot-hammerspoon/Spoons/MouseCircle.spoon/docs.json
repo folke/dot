@@ -1,0 +1,96 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "MouseCircle:bindHotkeys(mapping)",
+        "desc": "Binds hotkeys for MouseCircle",
+        "doc": "Binds hotkeys for MouseCircle\n\nParameters:\n * mapping - A table containing hotkey modifier/key details for the following items:\n  * show - This will cause the mouse circle to be drawn",
+        "name": "bindHotkeys",
+        "parameters": [
+          " * mapping - A table containing hotkey modifier/key details for the following items:",
+          "  * show - This will cause the mouse circle to be drawn"
+        ],
+        "signature": "MouseCircle:bindHotkeys(mapping)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "MouseCircle:show()",
+        "desc": "Draws a circle around the mouse",
+        "doc": "Draws a circle around the mouse\n\nParameters:\n * None\n\nReturns:\n * None",
+        "name": "show",
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "MouseCircle:show()",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "Variable": [
+      {
+        "def": "MouseCircle.color",
+        "desc": "An `hs.drawing.color` table defining the colour of the circle. Defaults to red.",
+        "doc": "An `hs.drawing.color` table defining the colour of the circle. Defaults to red.",
+        "name": "color",
+        "signature": "MouseCircle.color",
+        "stripped_doc": "",
+        "type": "Variable"
+      }
+    ],
+    "desc": "Draws a circle around the mouse pointer when a hotkey is pressed",
+    "doc": "Draws a circle around the mouse pointer when a hotkey is pressed\n\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/MouseCircle.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/MouseCircle.spoon.zip)",
+    "items": [
+      {
+        "def": "MouseCircle:bindHotkeys(mapping)",
+        "desc": "Binds hotkeys for MouseCircle",
+        "doc": "Binds hotkeys for MouseCircle\n\nParameters:\n * mapping - A table containing hotkey modifier/key details for the following items:\n  * show - This will cause the mouse circle to be drawn",
+        "name": "bindHotkeys",
+        "parameters": [
+          " * mapping - A table containing hotkey modifier/key details for the following items:",
+          "  * show - This will cause the mouse circle to be drawn"
+        ],
+        "signature": "MouseCircle:bindHotkeys(mapping)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "MouseCircle.color",
+        "desc": "An `hs.drawing.color` table defining the colour of the circle. Defaults to red.",
+        "doc": "An `hs.drawing.color` table defining the colour of the circle. Defaults to red.",
+        "name": "color",
+        "signature": "MouseCircle.color",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "MouseCircle:show()",
+        "desc": "Draws a circle around the mouse",
+        "doc": "Draws a circle around the mouse\n\nParameters:\n * None\n\nReturns:\n * None",
+        "name": "show",
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "MouseCircle:show()",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "name": "MouseCircle",
+    "stripped_doc": "\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/MouseCircle.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/MouseCircle.spoon.zip)",
+    "submodules": [],
+    "type": "Module"
+  }
+]

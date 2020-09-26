@@ -1,0 +1,478 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "SpoonInstall:andUse(name, arg)",
+        "desc": "Declaratively install, load and configure a Spoon",
+        "doc": "Declaratively install, load and configure a Spoon\n\nParameters:\n * name - the name of the Spoon to install (without the `.spoon` extension). If the Spoon is already installed, it will be loaded using `hs.loadSpoon()`. If it is not installed, it will be installed using `SpoonInstall:asyncInstallSpoonFromRepo()` and then loaded.\n * arg - if provided, can be used to specify the configuration of the Spoon. The following keys are recognized (all are optional):\n   * repo - repository from where the Spoon should be installed if not present in the system, as defined in `SpoonInstall.repos`. Defaults to `\"default\"`.\n   * config - a table containing variables to be stored in the Spoon object to configure it. For example, `config = { answer = 42 }` will result in `spoon.<LoadedSpoon>.answer` being set to 42.\n   * hotkeys - a table containing hotkey bindings. If provided, will be passed as-is to the Spoon's `bindHotkeys()` method. The special string `\"default\"` can be given to use the Spoons `defaultHotkeys` variable, if it exists.\n   * fn - a function which will be called with the freshly-loaded Spoon object as its first argument.\n   * loglevel - if the Spoon has a variable called `logger`, its `setLogLevel()` method will be called with this value.\n   * start - if `true`, call the Spoon's `start()` method after configuring everything else.\n   * disable - if `true`, do nothing. Easier than commenting it out when you want to temporarily disable a spoon.\n\nReturns:\n * None",
+        "name": "andUse",
+        "parameters": [
+          " * name - the name of the Spoon to install (without the `.spoon` extension). If the Spoon is already installed, it will be loaded using `hs.loadSpoon()`. If it is not installed, it will be installed using `SpoonInstall:asyncInstallSpoonFromRepo()` and then loaded.",
+          " * arg - if provided, can be used to specify the configuration of the Spoon. The following keys are recognized (all are optional):",
+          "   * repo - repository from where the Spoon should be installed if not present in the system, as defined in `SpoonInstall.repos`. Defaults to `\"default\"`.",
+          "   * config - a table containing variables to be stored in the Spoon object to configure it. For example, `config = { answer = 42 }` will result in `spoon.<LoadedSpoon>.answer` being set to 42.",
+          "   * hotkeys - a table containing hotkey bindings. If provided, will be passed as-is to the Spoon's `bindHotkeys()` method. The special string `\"default\"` can be given to use the Spoons `defaultHotkeys` variable, if it exists.",
+          "   * fn - a function which will be called with the freshly-loaded Spoon object as its first argument.",
+          "   * loglevel - if the Spoon has a variable called `logger`, its `setLogLevel()` method will be called with this value.",
+          "   * start - if `true`, call the Spoon's `start()` method after configuring everything else.",
+          "   * disable - if `true`, do nothing. Easier than commenting it out when you want to temporarily disable a spoon."
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "SpoonInstall:andUse(name, arg)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncInstallSpoonFromRepo(name, repo, callback)",
+        "desc": "Asynchronously install a Spoon from a registered repository",
+        "doc": "Asynchronously install a Spoon from a registered repository\n\nParameters:\n * name - Name of the Spoon to install.\n * repo - Name of the repository to use. Defaults to `\"default\"`\n * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:\n   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file\n   * success - boolean indicating whether the installation was successful\n\nReturns:\n * `true` if the installation was correctly initiated (i.e. the repo and spoon name were correct), `false` otherwise.",
+        "name": "asyncInstallSpoonFromRepo",
+        "parameters": [
+          " * name - Name of the Spoon to install.",
+          " * repo - Name of the repository to use. Defaults to `\"default\"`",
+          " * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:",
+          "   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file",
+          "   * success - boolean indicating whether the installation was successful"
+        ],
+        "returns": [
+          " * `true` if the installation was correctly initiated (i.e. the repo and spoon name were correct), `false` otherwise."
+        ],
+        "signature": "SpoonInstall:asyncInstallSpoonFromRepo(name, repo, callback)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncInstallSpoonFromZipURL(url, callback)",
+        "desc": "Asynchronously download a Spoon zip file and install it.",
+        "doc": "Asynchronously download a Spoon zip file and install it.\n\nParameters:\n * url - URL of the zip file to install.\n * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:\n   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file\n   * success - boolean indicating whether the installation was successful\n\nReturns:\n * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise",
+        "name": "asyncInstallSpoonFromZipURL",
+        "parameters": [
+          " * url - URL of the zip file to install.",
+          " * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:",
+          "   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file",
+          "   * success - boolean indicating whether the installation was successful"
+        ],
+        "returns": [
+          " * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise"
+        ],
+        "signature": "SpoonInstall:asyncInstallSpoonFromZipURL(url, callback)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncUpdateAllRepos()",
+        "desc": "Asynchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`",
+        "doc": "Asynchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`\n\nParameters:\n * None\n\nReturns:\n * None\n\nNotes:\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "asyncUpdateAllRepos",
+        "notes": [
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "SpoonInstall:asyncUpdateAllRepos()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncUpdateRepo(repo, callback)",
+        "desc": "Asynchronously fetch the information about the contents of a Spoon repository",
+        "doc": "Asynchronously fetch the information about the contents of a Spoon repository\n\nParameters:\n * repo - name of the repository to update. Defaults to `\"default\"`.\n * callback - if given, a function to be called after the update finishes (also if it fails). The function will receive the following arguments:\n   * repo - name of the repository\n   * success - boolean indicating whether the update succeeded\n\nReturns:\n * `true` if the update was correctly initiated (i.e. the repo name is valid), `nil` otherwise\n\nNotes:\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "asyncUpdateRepo",
+        "notes": [
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * repo - name of the repository to update. Defaults to `\"default\"`.",
+          " * callback - if given, a function to be called after the update finishes (also if it fails). The function will receive the following arguments:",
+          "   * repo - name of the repository",
+          "   * success - boolean indicating whether the update succeeded"
+        ],
+        "returns": [
+          " * `true` if the update was correctly initiated (i.e. the repo name is valid), `nil` otherwise"
+        ],
+        "signature": "SpoonInstall:asyncUpdateRepo(repo, callback)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:installSpoonFromRepo(name, repo)",
+        "desc": "Synchronously install a Spoon from a registered repository",
+        "doc": "Synchronously install a Spoon from a registered repository\n\nParameters:\n * name = Name of the Spoon to install.\n * repo - Name of the repository to use. Defaults to `\"default\"`\n\nReturns:\n * `true` if the installation was successful, `nil` otherwise.",
+        "name": "installSpoonFromRepo",
+        "parameters": [
+          " * name = Name of the Spoon to install.",
+          " * repo - Name of the repository to use. Defaults to `\"default\"`"
+        ],
+        "returns": [
+          " * `true` if the installation was successful, `nil` otherwise."
+        ],
+        "signature": "SpoonInstall:installSpoonFromRepo(name, repo)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:installSpoonFromZipURL(url)",
+        "desc": "Synchronously download a Spoon zip file and install it.",
+        "doc": "Synchronously download a Spoon zip file and install it.\n\nParameters:\n * url - URL of the zip file to install.\n\nReturns:\n * `true` if the installation was successful, `nil` otherwise",
+        "name": "installSpoonFromZipURL",
+        "parameters": [
+          " * url - URL of the zip file to install."
+        ],
+        "returns": [
+          " * `true` if the installation was successful, `nil` otherwise"
+        ],
+        "signature": "SpoonInstall:installSpoonFromZipURL(url)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:repolist()",
+        "desc": "Return a sorted list of registered Spoon repositories",
+        "doc": "Return a sorted list of registered Spoon repositories\n\nParameters:\n * None\n\nReturns:\n * Table containing a list of strings with the repository identifiers",
+        "name": "repolist",
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * Table containing a list of strings with the repository identifiers"
+        ],
+        "signature": "SpoonInstall:repolist()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:search(pat)",
+        "desc": "Search repositories for a pattern",
+        "doc": "Search repositories for a pattern\n\nParameters:\n * pat - Lua pattern that will be matched against the name and description of each spoon in the registered repositories. All text is converted to lowercase before searching it, so you can use all-lowercase in your pattern.\n\nReturns:\n * Table containing a list of matching entries. Each entry is a table with the following keys:\n   * name - Spoon name\n   * desc - description of the spoon\n   * repo - identifier in the repository where the match was found",
+        "name": "search",
+        "parameters": [
+          " * pat - Lua pattern that will be matched against the name and description of each spoon in the registered repositories. All text is converted to lowercase before searching it, so you can use all-lowercase in your pattern."
+        ],
+        "returns": [
+          " * Table containing a list of matching entries. Each entry is a table with the following keys:",
+          "   * name - Spoon name",
+          "   * desc - description of the spoon",
+          "   * repo - identifier in the repository where the match was found"
+        ],
+        "signature": "SpoonInstall:search(pat)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:updateAllRepos()",
+        "desc": "Synchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`",
+        "doc": "Synchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`\n\nParameters:\n * None\n\nReturns:\n * None\n\nNotes:\n * This is a synchronous call, which means Hammerspoon will be blocked until it finishes.\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "updateAllRepos",
+        "notes": [
+          " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes.",
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "SpoonInstall:updateAllRepos()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:updateRepo(repo)",
+        "desc": "Synchronously fetch the information about the contents of a Spoon repository",
+        "doc": "Synchronously fetch the information about the contents of a Spoon repository\n\nParameters:\n * repo - name of the repository to update. Defaults to `\"default\"`.\n\nReturns:\n * `true` if the update was successful, `nil` otherwise\n\nNotes:\n * This is a synchronous call, which means Hammerspoon will be blocked until it finishes. For use in your configuration files, it's advisable to use `SpoonInstall.asyncUpdateRepo()` instead.\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "updateRepo",
+        "notes": [
+          " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes. For use in your configuration files, it's advisable to use `SpoonInstall.asyncUpdateRepo()` instead.",
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * repo - name of the repository to update. Defaults to `\"default\"`."
+        ],
+        "returns": [
+          " * `true` if the update was successful, `nil` otherwise"
+        ],
+        "signature": "SpoonInstall:updateRepo(repo)",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "Variable": [
+      {
+        "def": "SpoonInstall.logger",
+        "desc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "doc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "name": "logger",
+        "signature": "SpoonInstall.logger",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "SpoonInstall.repos",
+        "desc": "Table containing the list of available Spoon repositories. The key",
+        "doc": "Table containing the list of available Spoon repositories. The key\nof each entry is an identifier for the repository, and its value\nis a table with the following entries:\n * desc - Human-readable description for the repository\n * branch - Active git branch for the Spoon files\n * url - Base URL for the repository. For now the repository is assumed to be hosted in GitHub, and the URL should be the main base URL of the repository. Repository metadata needs to be stored under `docs/docs.json`, and the Spoon zip files need to be stored under `Spoons/`.\n\nDefault value:\n```\n{\n   default = {\n      url = \"https://github.com/Hammerspoon/Spoons\",\n      desc = \"Main Hammerspoon Spoon repository\",\n      branch = \"master\",\n   }\n}\n```",
+        "name": "repos",
+        "signature": "SpoonInstall.repos",
+        "stripped_doc": "of each entry is an identifier for the repository, and its value\nis a table with the following entries:\n * desc - Human-readable description for the repository\n * branch - Active git branch for the Spoon files\n * url - Base URL for the repository. For now the repository is assumed to be hosted in GitHub, and the URL should be the main base URL of the repository. Repository metadata needs to be stored under `docs/docs.json`, and the Spoon zip files need to be stored under `Spoons/`.\nDefault value:\n```\n{\n   default = {\n      url = \"https://github.com/Hammerspoon/Spoons\",\n      desc = \"Main Hammerspoon Spoon repository\",\n      branch = \"master\",\n   }\n}\n```",
+        "type": "Variable"
+      },
+      {
+        "def": "SpoonInstall.use_syncinstall",
+        "desc": "If `true`, `andUse()` will update repos and install packages synchronously. Defaults to `false`.",
+        "doc": "If `true`, `andUse()` will update repos and install packages synchronously. Defaults to `false`.\n\nKeep in mind that if you set this to `true`, Hammerspoon will\nblock until all missing Spoons are installed, but the notifications\nwill happen at a more \"human readable\" rate.",
+        "name": "use_syncinstall",
+        "signature": "SpoonInstall.use_syncinstall",
+        "stripped_doc": "Keep in mind that if you set this to `true`, Hammerspoon will\nblock until all missing Spoons are installed, but the notifications\nwill happen at a more \"human readable\" rate.",
+        "type": "Variable"
+      }
+    ],
+    "desc": "Install and manage Spoons and Spoon repositories",
+    "doc": "Install and manage Spoons and Spoon repositories\n\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/SpoonInstall.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/SpoonInstall.spoon.zip)",
+    "items": [
+      {
+        "def": "SpoonInstall:andUse(name, arg)",
+        "desc": "Declaratively install, load and configure a Spoon",
+        "doc": "Declaratively install, load and configure a Spoon\n\nParameters:\n * name - the name of the Spoon to install (without the `.spoon` extension). If the Spoon is already installed, it will be loaded using `hs.loadSpoon()`. If it is not installed, it will be installed using `SpoonInstall:asyncInstallSpoonFromRepo()` and then loaded.\n * arg - if provided, can be used to specify the configuration of the Spoon. The following keys are recognized (all are optional):\n   * repo - repository from where the Spoon should be installed if not present in the system, as defined in `SpoonInstall.repos`. Defaults to `\"default\"`.\n   * config - a table containing variables to be stored in the Spoon object to configure it. For example, `config = { answer = 42 }` will result in `spoon.<LoadedSpoon>.answer` being set to 42.\n   * hotkeys - a table containing hotkey bindings. If provided, will be passed as-is to the Spoon's `bindHotkeys()` method. The special string `\"default\"` can be given to use the Spoons `defaultHotkeys` variable, if it exists.\n   * fn - a function which will be called with the freshly-loaded Spoon object as its first argument.\n   * loglevel - if the Spoon has a variable called `logger`, its `setLogLevel()` method will be called with this value.\n   * start - if `true`, call the Spoon's `start()` method after configuring everything else.\n   * disable - if `true`, do nothing. Easier than commenting it out when you want to temporarily disable a spoon.\n\nReturns:\n * None",
+        "name": "andUse",
+        "parameters": [
+          " * name - the name of the Spoon to install (without the `.spoon` extension). If the Spoon is already installed, it will be loaded using `hs.loadSpoon()`. If it is not installed, it will be installed using `SpoonInstall:asyncInstallSpoonFromRepo()` and then loaded.",
+          " * arg - if provided, can be used to specify the configuration of the Spoon. The following keys are recognized (all are optional):",
+          "   * repo - repository from where the Spoon should be installed if not present in the system, as defined in `SpoonInstall.repos`. Defaults to `\"default\"`.",
+          "   * config - a table containing variables to be stored in the Spoon object to configure it. For example, `config = { answer = 42 }` will result in `spoon.<LoadedSpoon>.answer` being set to 42.",
+          "   * hotkeys - a table containing hotkey bindings. If provided, will be passed as-is to the Spoon's `bindHotkeys()` method. The special string `\"default\"` can be given to use the Spoons `defaultHotkeys` variable, if it exists.",
+          "   * fn - a function which will be called with the freshly-loaded Spoon object as its first argument.",
+          "   * loglevel - if the Spoon has a variable called `logger`, its `setLogLevel()` method will be called with this value.",
+          "   * start - if `true`, call the Spoon's `start()` method after configuring everything else.",
+          "   * disable - if `true`, do nothing. Easier than commenting it out when you want to temporarily disable a spoon."
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "SpoonInstall:andUse(name, arg)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncInstallSpoonFromRepo(name, repo, callback)",
+        "desc": "Asynchronously install a Spoon from a registered repository",
+        "doc": "Asynchronously install a Spoon from a registered repository\n\nParameters:\n * name - Name of the Spoon to install.\n * repo - Name of the repository to use. Defaults to `\"default\"`\n * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:\n   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file\n   * success - boolean indicating whether the installation was successful\n\nReturns:\n * `true` if the installation was correctly initiated (i.e. the repo and spoon name were correct), `false` otherwise.",
+        "name": "asyncInstallSpoonFromRepo",
+        "parameters": [
+          " * name - Name of the Spoon to install.",
+          " * repo - Name of the repository to use. Defaults to `\"default\"`",
+          " * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:",
+          "   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file",
+          "   * success - boolean indicating whether the installation was successful"
+        ],
+        "returns": [
+          " * `true` if the installation was correctly initiated (i.e. the repo and spoon name were correct), `false` otherwise."
+        ],
+        "signature": "SpoonInstall:asyncInstallSpoonFromRepo(name, repo, callback)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncInstallSpoonFromZipURL(url, callback)",
+        "desc": "Asynchronously download a Spoon zip file and install it.",
+        "doc": "Asynchronously download a Spoon zip file and install it.\n\nParameters:\n * url - URL of the zip file to install.\n * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:\n   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file\n   * success - boolean indicating whether the installation was successful\n\nReturns:\n * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise",
+        "name": "asyncInstallSpoonFromZipURL",
+        "parameters": [
+          " * url - URL of the zip file to install.",
+          " * callback - if given, a function to call after the installation finishes (also if it fails). The function receives the following arguments:",
+          "   * urlparts - Result of calling `hs.http.urlParts` on the URL of the Spoon zip file",
+          "   * success - boolean indicating whether the installation was successful"
+        ],
+        "returns": [
+          " * `true` if the installation was correctly initiated (i.e. the URL is valid), `false` otherwise"
+        ],
+        "signature": "SpoonInstall:asyncInstallSpoonFromZipURL(url, callback)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncUpdateAllRepos()",
+        "desc": "Asynchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`",
+        "doc": "Asynchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`\n\nParameters:\n * None\n\nReturns:\n * None\n\nNotes:\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "asyncUpdateAllRepos",
+        "notes": [
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "SpoonInstall:asyncUpdateAllRepos()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:asyncUpdateRepo(repo, callback)",
+        "desc": "Asynchronously fetch the information about the contents of a Spoon repository",
+        "doc": "Asynchronously fetch the information about the contents of a Spoon repository\n\nParameters:\n * repo - name of the repository to update. Defaults to `\"default\"`.\n * callback - if given, a function to be called after the update finishes (also if it fails). The function will receive the following arguments:\n   * repo - name of the repository\n   * success - boolean indicating whether the update succeeded\n\nReturns:\n * `true` if the update was correctly initiated (i.e. the repo name is valid), `nil` otherwise\n\nNotes:\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "asyncUpdateRepo",
+        "notes": [
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * repo - name of the repository to update. Defaults to `\"default\"`.",
+          " * callback - if given, a function to be called after the update finishes (also if it fails). The function will receive the following arguments:",
+          "   * repo - name of the repository",
+          "   * success - boolean indicating whether the update succeeded"
+        ],
+        "returns": [
+          " * `true` if the update was correctly initiated (i.e. the repo name is valid), `nil` otherwise"
+        ],
+        "signature": "SpoonInstall:asyncUpdateRepo(repo, callback)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:installSpoonFromRepo(name, repo)",
+        "desc": "Synchronously install a Spoon from a registered repository",
+        "doc": "Synchronously install a Spoon from a registered repository\n\nParameters:\n * name = Name of the Spoon to install.\n * repo - Name of the repository to use. Defaults to `\"default\"`\n\nReturns:\n * `true` if the installation was successful, `nil` otherwise.",
+        "name": "installSpoonFromRepo",
+        "parameters": [
+          " * name = Name of the Spoon to install.",
+          " * repo - Name of the repository to use. Defaults to `\"default\"`"
+        ],
+        "returns": [
+          " * `true` if the installation was successful, `nil` otherwise."
+        ],
+        "signature": "SpoonInstall:installSpoonFromRepo(name, repo)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:installSpoonFromZipURL(url)",
+        "desc": "Synchronously download a Spoon zip file and install it.",
+        "doc": "Synchronously download a Spoon zip file and install it.\n\nParameters:\n * url - URL of the zip file to install.\n\nReturns:\n * `true` if the installation was successful, `nil` otherwise",
+        "name": "installSpoonFromZipURL",
+        "parameters": [
+          " * url - URL of the zip file to install."
+        ],
+        "returns": [
+          " * `true` if the installation was successful, `nil` otherwise"
+        ],
+        "signature": "SpoonInstall:installSpoonFromZipURL(url)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall.logger",
+        "desc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "doc": "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "name": "logger",
+        "signature": "SpoonInstall.logger",
+        "stripped_doc": "",
+        "type": "Variable"
+      },
+      {
+        "def": "SpoonInstall:repolist()",
+        "desc": "Return a sorted list of registered Spoon repositories",
+        "doc": "Return a sorted list of registered Spoon repositories\n\nParameters:\n * None\n\nReturns:\n * Table containing a list of strings with the repository identifiers",
+        "name": "repolist",
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * Table containing a list of strings with the repository identifiers"
+        ],
+        "signature": "SpoonInstall:repolist()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall.repos",
+        "desc": "Table containing the list of available Spoon repositories. The key",
+        "doc": "Table containing the list of available Spoon repositories. The key\nof each entry is an identifier for the repository, and its value\nis a table with the following entries:\n * desc - Human-readable description for the repository\n * branch - Active git branch for the Spoon files\n * url - Base URL for the repository. For now the repository is assumed to be hosted in GitHub, and the URL should be the main base URL of the repository. Repository metadata needs to be stored under `docs/docs.json`, and the Spoon zip files need to be stored under `Spoons/`.\n\nDefault value:\n```\n{\n   default = {\n      url = \"https://github.com/Hammerspoon/Spoons\",\n      desc = \"Main Hammerspoon Spoon repository\",\n      branch = \"master\",\n   }\n}\n```",
+        "name": "repos",
+        "signature": "SpoonInstall.repos",
+        "stripped_doc": "of each entry is an identifier for the repository, and its value\nis a table with the following entries:\n * desc - Human-readable description for the repository\n * branch - Active git branch for the Spoon files\n * url - Base URL for the repository. For now the repository is assumed to be hosted in GitHub, and the URL should be the main base URL of the repository. Repository metadata needs to be stored under `docs/docs.json`, and the Spoon zip files need to be stored under `Spoons/`.\nDefault value:\n```\n{\n   default = {\n      url = \"https://github.com/Hammerspoon/Spoons\",\n      desc = \"Main Hammerspoon Spoon repository\",\n      branch = \"master\",\n   }\n}\n```",
+        "type": "Variable"
+      },
+      {
+        "def": "SpoonInstall:search(pat)",
+        "desc": "Search repositories for a pattern",
+        "doc": "Search repositories for a pattern\n\nParameters:\n * pat - Lua pattern that will be matched against the name and description of each spoon in the registered repositories. All text is converted to lowercase before searching it, so you can use all-lowercase in your pattern.\n\nReturns:\n * Table containing a list of matching entries. Each entry is a table with the following keys:\n   * name - Spoon name\n   * desc - description of the spoon\n   * repo - identifier in the repository where the match was found",
+        "name": "search",
+        "parameters": [
+          " * pat - Lua pattern that will be matched against the name and description of each spoon in the registered repositories. All text is converted to lowercase before searching it, so you can use all-lowercase in your pattern."
+        ],
+        "returns": [
+          " * Table containing a list of matching entries. Each entry is a table with the following keys:",
+          "   * name - Spoon name",
+          "   * desc - description of the spoon",
+          "   * repo - identifier in the repository where the match was found"
+        ],
+        "signature": "SpoonInstall:search(pat)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:updateAllRepos()",
+        "desc": "Synchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`",
+        "doc": "Synchronously fetch the information about the contents of all Spoon repositories registered in `SpoonInstall.repos`\n\nParameters:\n * None\n\nReturns:\n * None\n\nNotes:\n * This is a synchronous call, which means Hammerspoon will be blocked until it finishes.\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "updateAllRepos",
+        "notes": [
+          " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes.",
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "SpoonInstall:updateAllRepos()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall:updateRepo(repo)",
+        "desc": "Synchronously fetch the information about the contents of a Spoon repository",
+        "doc": "Synchronously fetch the information about the contents of a Spoon repository\n\nParameters:\n * repo - name of the repository to update. Defaults to `\"default\"`.\n\nReturns:\n * `true` if the update was successful, `nil` otherwise\n\nNotes:\n * This is a synchronous call, which means Hammerspoon will be blocked until it finishes. For use in your configuration files, it's advisable to use `SpoonInstall.asyncUpdateRepo()` instead.\n * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions.",
+        "name": "updateRepo",
+        "notes": [
+          " * This is a synchronous call, which means Hammerspoon will be blocked until it finishes. For use in your configuration files, it's advisable to use `SpoonInstall.asyncUpdateRepo()` instead.",
+          " * For now, the repository data is not persisted, so you need to update it after every restart if you want to use any of the install functions."
+        ],
+        "parameters": [
+          " * repo - name of the repository to update. Defaults to `\"default\"`."
+        ],
+        "returns": [
+          " * `true` if the update was successful, `nil` otherwise"
+        ],
+        "signature": "SpoonInstall:updateRepo(repo)",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "SpoonInstall.use_syncinstall",
+        "desc": "If `true`, `andUse()` will update repos and install packages synchronously. Defaults to `false`.",
+        "doc": "If `true`, `andUse()` will update repos and install packages synchronously. Defaults to `false`.\n\nKeep in mind that if you set this to `true`, Hammerspoon will\nblock until all missing Spoons are installed, but the notifications\nwill happen at a more \"human readable\" rate.",
+        "name": "use_syncinstall",
+        "signature": "SpoonInstall.use_syncinstall",
+        "stripped_doc": "Keep in mind that if you set this to `true`, Hammerspoon will\nblock until all missing Spoons are installed, but the notifications\nwill happen at a more \"human readable\" rate.",
+        "type": "Variable"
+      }
+    ],
+    "name": "SpoonInstall",
+    "stripped_doc": "\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/SpoonInstall.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/SpoonInstall.spoon.zip)",
+    "submodules": [],
+    "type": "Module"
+  }
+]

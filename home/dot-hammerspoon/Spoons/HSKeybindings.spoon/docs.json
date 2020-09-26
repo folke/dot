@@ -1,0 +1,57 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "HSKeybindings:hide()",
+        "desc": "Hide the cheatsheet webview",
+        "doc": "Hide the cheatsheet webview\n",
+        "name": "hide",
+        "signature": "HSKeybindings:hide()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "HSKeybindings:show()",
+        "desc": "Show current application's keybindings in a webview",
+        "doc": "Show current application's keybindings in a webview\n",
+        "name": "show",
+        "signature": "HSKeybindings:show()",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "Variable": [],
+    "desc": "Display Keybindings registered with bindHotkeys() and Spoons ",
+    "doc": "Display Keybindings registered with bindHotkeys() and Spoons \n\nSpoons need to set the mapping in obj\n\nOriginally based on KSheet.spoon by ashfinal <ashfinal@gmail.com>\n\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HSKeybindings.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HSKeybindings.spoon.zip)",
+    "items": [
+      {
+        "def": "HSKeybindings:hide()",
+        "desc": "Hide the cheatsheet webview",
+        "doc": "Hide the cheatsheet webview\n",
+        "name": "hide",
+        "signature": "HSKeybindings:hide()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "HSKeybindings:show()",
+        "desc": "Show current application's keybindings in a webview",
+        "doc": "Show current application's keybindings in a webview\n",
+        "name": "show",
+        "signature": "HSKeybindings:show()",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "name": "HSKeybindings",
+    "stripped_doc": "\nSpoons need to set the mapping in obj\n\nOriginally based on KSheet.spoon by ashfinal <ashfinal@gmail.com>\n\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HSKeybindings.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HSKeybindings.spoon.zip)",
+    "submodules": [],
+    "type": "Module"
+  }
+]
