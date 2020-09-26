@@ -75,6 +75,9 @@ function update -d "Update homebrew, fish, pnpm"
     and brew upgrade
     and brew cleanup
 
+    and echo "[update] Doom Emacs"
+    and doom upgrade
+
     and echo "[update] nodejs"
     and pnpm update -g
 
@@ -128,7 +131,7 @@ set -g fish_emoji_width 2
 
 # Dracula Theme
 if test -e ~/.config/fish/functions/dracula.fish
-  #builtin source ~/.config/fish/functions/dracula.fish
+    #builtin source ~/.config/fish/functions/dracula.fish
 end
 
 test -r "~/.dir_colors" && eval (dircolors ~/.dir_colors)
@@ -144,12 +147,12 @@ function fish_greeting
 end
 
 function yabai_fix
-  pgrep yabai | tail -n +2 | head -n1 | xargs kill
+    pgrep yabai | tail -n +2 | head -n1 | xargs kill
 end
 
 # tabtab source for packages
 # uninstall by removing these lines
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and source ~/.config/tabtab/fish/__tabtab.fish; or true
 
 starship init fish | source
 
