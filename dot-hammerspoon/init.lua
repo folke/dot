@@ -4,6 +4,7 @@ hs.hotkey
 hs.window.animationDuration = 0
 
 -- require("test")
+running = require("running")
 require("spaces")
 require("border")
 require("wm")
@@ -41,29 +42,6 @@ spoon.SpoonInstall:andUse("ReloadConfiguration", {start = true})
 spoon.SpoonInstall:andUse("RoundedCorners",
                           {start = true, config = {radius = 8}})
 
-local getWindows = function()
-    return hs.fnutils.map(hs.window.filter.new():getWindows(), function(win)
-        if win ~= hs.window.focusedWindow() then
-            return {
-                text = win:title(),
-                subText = win:application():title(),
-                image = hs.image
-                    .imageFromAppBundle(win:application():bundleID()),
-                win = win
-            }
-        end
-    end)
-end
-
-local chooser = hs.chooser.new(function(choice)
-    print(hs.inspect(choice))
-    if choice ~= nil then choice.win:focus() end
-end)
-
--- alternatively, call .nextWindow() or .previousWindow() directly (same as hs.window.switcher.new():next())
-hs.hotkey.bind('alt', 'tab', 'Next window', function()
-    chooser:placeholderText("Switch to Window"):searchSubText(true):choices(
-        getWindows()):show()
-end)
+hs.hotkey.bind('alt', 'tab', 'Switch Window', function() running.switcher() end)
 
 hs.alert.show("Hammerspoon Loaded!")

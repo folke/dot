@@ -1,6 +1,5 @@
 local wb = hs.canvas.windowBehaviors
 local desktop = require("desktop")
-local spacer = require("spacer")
 
 -- hs.canvas.useCustomAccessibilitySubrole(false)
 local module = {widget = hs.canvas.new {}}
@@ -40,9 +39,14 @@ module.update = function()
 
     local spaceY = spaceH / 2
     local currentY = 0
+
+    local windowsPerSpace = running.getWindowsPerSpace()
     for i, spaceId in ipairs(layout) do
         local alpha = 0
-        if spacer.counts[spaceId] > 0 then alpha = 1 end
+
+        if windowsPerSpace[spaceId] ~= nil then
+            for _, _ in pairs(windowsPerSpace[spaceId]) do alpha = 1 end
+        end
 
         backgroundA = 0
         if i == desktop.active then backgroundA = 0.3 end
@@ -78,7 +82,6 @@ end
 module.update()
 
 desktop.onChange(module.update)
-spacer.onChange(module.update)
 
 module.widget:mouseCallback(function(_, _, id) desktop.changeTo(id) end)
 
