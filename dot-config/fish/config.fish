@@ -45,7 +45,6 @@ abbr g 'git'
 abbr gl 'git l --color | devmoji --log --color | less -rXF'
 abbr push "git push"
 abbr pull "git pull"
-alias dot 'hub --git-dir=$HOME/.dot --work-tree=$HOME'
 alias tn "npx --no-install ts-node --transpile-only"
 abbr tt "tn src/tt.ts"
 abbr code "code-insiders"
