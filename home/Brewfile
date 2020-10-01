@@ -1,0 +1,169 @@
+tap "clementtsang/bottom"
+tap "cmacrae/formulae"
+tap "d12frosted/emacs-plus"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "koekeishiya/formulae"
+tap "railwaycat/emacsmacport"
+tap "schniz/tap"
+# Search tool like grep, but optimized for programmers
+brew "ack"
+# Download with resuming and segmented downloading
+brew "aria2"
+# Spell checker with better logic than ispell
+brew "aspell"
+# Bourne-Again SHell, a UNIX command interpreter
+brew "bash"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
+# Command-line interface for SQLite
+brew "sqlite"
+# Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
+brew "clang-format"
+# Cross-platform make
+brew "cmake"
+# GNU File, Shell, and Text utilities
+brew "coreutils"
+# Reimplementation of ctags(1)
+brew "ctags"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Load/unload environment variables based on $PWD
+brew "direnv"
+# Maintain consistent coding style between multiple editors
+brew "editorconfig"
+# Modern replacement for 'ls'
+brew "exa"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
+# GNU debugger
+brew "gdb"
+# GitHub command-line tool
+brew "gh"
+# Distributed revision control system
+brew "git"
+# Syntax-highlighting pager for git and diff output
+brew "git-delta"
+# Generic library support script
+brew "libtool"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
+# GNU implementation of the famous stream editor
+brew "gnu-sed"
+# GNU version of the tar archiving utility
+brew "gnu-tar"
+# Graph visualization software from AT&T and Bell Labs
+brew "graphviz"
+# Colorize logfiles and command output
+brew "grc"
+# GNU grep, egrep and fgrep
+brew "grep"
+# Improved top (interactive process viewer)
+brew "htop"
+# User-friendly cURL replacement (command-line HTTP client)
+brew "httpie"
+# Add GitHub support to git on the command-line
+brew "hub"
+# Synchronize a maildir with an IMAP server
+brew "isync"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Style and grammar checker
+brew "languagetool"
+# Postgres C API library
+brew "libpq"
+# Powerful, lightweight programming language
+brew "lua"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Keep your Mac's application settings in sync
+brew "mackup"
+# Utility for directing compilation
+brew "make"
+# Markdown parser and compiler built for speed
+brew "marked"
+# Tool for searching e-mail messages stored in the maildir-format
+brew "mu"
+# Interactive cheatsheet tool for the command-line
+brew "navi"
+# Fast, highly customisable system info script
+brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Outputs current CPU temperature for OSX
+brew "osx-cpu-temp"
+# Password manager
+brew "pass"
+# Pretty system information tool written in POSIX sh
+brew "pfetch"
+# Display the PID number for a given process name
+brew "pidof"
+# Execute binaries from Python packages in isolated environments
+brew "pipx"
+# Object-relational database system
+brew "postgresql"
+# File browser
+brew "ranger"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
+# Utility that provides fast incremental file transfer
+brew "rsync"
+# Steel Bank Common Lisp system
+brew "sbcl"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
+# Cross-shell prompt for astronauts
+brew "starship"
+# Organize software neatly under a single directory tree (e.g. /usr/local)
+brew "stow"
+# Code-search similar to ack
+brew "the_silver_searcher"
+# Programatically correct mistyped console commands
+brew "thefuck"
+# Simplified and community-driven man pages
+brew "tldr"
+# Internet file retriever
+brew "wget"
+# New cd command that helps you navigate faster by learning your habits
+brew "z.lua"
+# A cross-platform graphical process/system monitor with a customizable interface and a multitude of features.
+brew "clementtsang/bottom/bottom"
+# A minimal status bar for macOS.
+brew "cmacrae/formulae/spacebar"
+brew "d12frosted/emacs-plus/emacs-plus@27", args: ["with-xwidgets"]
+# Simple hotkey-daemon for macOS.
+brew "koekeishiya/formulae/skhd"
+# A tiling window manager for macOS based on binary space partitioning.
+brew "koekeishiya/formulae/yabai", args: ["HEAD"]
+# Fast and simple Node.js version manager
+brew "schniz/tap/fnm"
+cask "1password-beta"
+cask "adoptopenjdk"
+cask "alacritty"
+cask "alfred"
+cask "avibrazil-rdm"
+cask "expressvpn"
+cask "font-fantasque-sans-mono-nerd-font"
+cask "font-fira-code-nerd-font"
+cask "font-input"
+cask "font-source-sans-pro"
+cask "github"
+cask "hammerspoon"
+cask "iterm2"
+cask "kitty"
+cask "spotify"
+cask "steam"
+cask "twitch"
+cask "ubersicht"
+cask "visual-studio-code-insiders"
+cask "vlc"
