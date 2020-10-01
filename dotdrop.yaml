@@ -1,0 +1,39 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: .
+  keepdot: false
+  link_dotfile_default: link
+  link_on_import: link
+  longkey: false
+  upignore:
+    - "*"
+  cmpignore:
+    - ".DS_Store"
+dotfiles:
+  home:
+    dst: ~/
+    src: home
+    link: link_children
+    cmpignore:
+      - "*"
+  config:
+    dst: ~/.config/
+    src: config
+    link: link_children
+  hammerspoon:
+    dst: ~/.hammerspoon/
+    src: hammerspoon
+    link: link
+  org:
+    dst: ~/org/
+    src: org
+    link: link
+profiles:
+  Flaptop:
+    dotfiles:
+      - home
+      - config
+      - hammerspoon
+      - org
