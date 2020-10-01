@@ -1,161 +1,96 @@
-# Bat Configuration
-set -x BAT_THEME "Dracula"
-# set -x MANROFFOPT "-c"
-# set -x MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
-#set -x MANPAGER "most" # use bat to format man pages
-set -x MANPAGER "nvim -u NORC +Man!"
 
 # Path
-# set -x PATH $PATH /usr/local/opt/ruby/bin /usr/local/lib/ruby/gems/2.6.0/bin
-set -x PATH $PATH ~/go/bin
-set -x PATH $PATH ~/bin
-set -x PATH $PATH ~/.cargo/bin
-set -x PATH $PATH ~/.emacs.d/bin
-set -x PATH $PATH ~/.local/bin
-set -x PATH $PATH ~/.config/folke/bin
-set -x PATH $PATH ~/.config/scripts/bin
-set -x PATH $PATH ~/Library/Python/3.8/bin
-set -x PATH /usr/local/sbin $PATH
+set -p PATH ~/go/bin
+set -p PATH ~/bin
+set -p PATH ~/.cargo/bin
+set -p PATH ~/.emacs.d/bin
+set -p PATH ~/.local/bin
+set -p PATH ~/.config/folke/bin
+set -p PATH ~/.config/scripts/bin
+set -p PATH ~/Library/Python/3.8/bin
+set -p PATH /usr/local/opt/sqlite/bin
+set -p PATH /usr/local/sbin
+set -p PATH ~/.local/bin/pnpm $PATH
 
-# Tmux
-abbr ta 'tmux attach -t'
-abbr tad 'tmux attach -d -t'
-abbr ts 'tmux new-session -s'
-abbr tl 'tmux list-sessions'
-abbr tksv 'tmux kill-server'
-abbr tkss 'tmux kill-session -t'
-abbr mux 'tmuxinator'
-abbr suod sudo
 
-# Changing Directories
-alias ls="gls --group-directories-first --color=always"
-alias grep 'grep --color'
-alias la 'exa --all --icons --group-directories-first'
-alias ll 'exa --all --icons --group-directories-first --long'
-abbr l 'll'
+if status --is-interactive
+    # Bat Configuration
+    set -x BAT_THEME "Dracula"
+    # set -x MANROFFOPT "-c"
+    # set -x MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
+    #set -x MANPAGER "most" # use bat to format man pages
+    set -x MANPAGER "nvim -u NORC +Man!"
 
-# Editor
-abbr vim 'nvim'
-abbr vi 'nvim'
-set -x EDITOR nvim
+    # Tmux
+    abbr -g ta 'tmux attach -t'
+    abbr -g tad 'tmux attach -d -t'
+    abbr -g ts 'tmux new-session -s'
+    abbr -g tl 'tmux list-sessions'
+    abbr -g tksv 'tmux kill-server'
+    abbr -g tkss 'tmux kill-session -t'
+    abbr -g mux 'tmuxinator'
+    abbr -g suod sudo
 
-# Dev
-abbr git 'hub'
-abbr g 'git'
-abbr gl 'git l --color | devmoji --log --color | less -rXF'
-abbr push "git push"
-abbr pull "git pull"
-alias tn "npx --no-install ts-node --transpile-only"
-abbr tt "tn src/tt.ts"
-abbr code "code-insiders"
-abbr todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
-abbr ntop "ultra --monitor"
-abbr ytop "btm"
-abbr gotop "btm"
+    # Changing Directories
+    alias ls="gls --group-directories-first --color=always"
+    alias grep 'grep --color'
+    alias la 'exa --all --icons --group-directories-first'
+    alias ll 'exa --all --icons --group-directories-first --long'
+    abbr -g l 'll'
 
-abbr helpme "bat ~/HELP.md"
-abbr weather "curl -s wttr.in/Ghent | grep -v Follow"
+    # Editor
+    abbr -g vim 'nvim'
+    abbr -g vi 'nvim'
+    set -x EDITOR nvim
 
-# Github Completions
-# gh completion -s fish | source
+    # Dev
+    abbr -g git 'hub'
+    abbr -g g 'git'
+    abbr -g gl 'git l --color | devmoji --log --color | less -rXF'
+    abbr -g push "git push"
+    abbr -g pull "git pull"
+    alias tn "npx --no-install ts-node --transpile-only"
+    abbr -g tt "tn src/tt.ts"
+    abbr -g code "code-insiders"
+    alias todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
+    abbr -g ntop "ultra --monitor"
+    abbr -g ytop "btm"
+    abbr -g gotop "btm"
 
-# Fedora
-#abbr dnfs "sudo dnf search"
-#abbr dnfi "sudo dnf install"
-#abbr dnfu "sudo dnf update --refresh"
+    abbr -g helpme "bat ~/HELP.md"
+    abbr -g weather "curl -s wttr.in/Ghent | grep -v Follow"
 
-# Navi
-navi widget fish | source
+    # Fedora
+    #abbr -g dnfs "sudo dnf search"
+    #abbr -g dnfi "sudo dnf install"
+    #abbr -g dnfu "sudo dnf update --refresh"
 
-# Update
-function update -d "Update homebrew, fish, pnpm"
-    echo "[update] Homebrew"
-    brew update
-    and brew upgrade
-    and brew cleanup
+    abbr -g "show-cursor" "tput cnorm"
+    abbr -g "hide-cursor" "tput civis"
 
-    and echo "[update] Doom Emacs"
-    and doom upgrade
+    set -g fish_emoji_width 2
 
-    and echo "[update] nodejs"
-    and pnpm update -g
+    test -r "~/.dir_colors" && eval (dircolors ~/.dir_colors)
 
-    and echo "[update] tldr"
-    and tldr -u
-
-    and echo "[update] fish"
-    and fisher self-update
-    and fisher
-    and fish_update_completions
-end
-
-abbr system "neofetch --source ~/Pictures/Cyberpunk/connected-wallpaper-1920x1080.jpg"
-
-function corona
-    tput civis
-    while true
-        set stats (curl "https://corona-stats.online/Belgium?source=2" --silent | head -n 7)
-        clear
-        for line in $stats
-            echo $line
-        end
-        tput cuu1
-        sleep 30
+    function fish_greeting
+        color-test
     end
-end
 
-function dot.untracked
-    dot ls-files -t --other --exclude-standard $argv[1]
-end
-
-
-function dot.all
-    dot status -s -unormal
-end
-
-function dot.status
-    dot status -s -uno ~
-    for d in ~/.config/*
-        if dot ls-files --error-unmatch $d &>/dev/null
-            dot.untracked $d
-        end
+    function yabai_fix
+        pgrep yabai | tail -n +2 | head -n1 | xargs kill
     end
-    dot.untracked ~/.SpaceVim.d/
+
+    set -x HOMEBREW_NO_AUTO_UPDATE 1
+    set -x DOTDROP_AUTOUPDATE no
+    alias dotdrop "$PYBIN/dotdrop -c ~/projects/dot/dotdrop.yaml"
+    alias dotgit "hub -C ~/projects/dot/"
+
+    # tabtab source for packages
+    # uninstall by removing these lines
+    [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and source ~/.config/tabtab/fish/__tabtab.fish; or true
+
+    # Navi
+    navi widget fish | source
+    fnm env --multi | source
+    starship init fish | source
 end
-
-abbr show-cursor "tput cnorm"
-abbr hide-cursor "tput civis"
-
-set -g fish_emoji_width 2
-
-# Dracula Theme
-if test -e ~/.config/fish/functions/dracula.fish
-    #builtin source ~/.config/fish/functions/dracula.fish
-end
-
-test -r "~/.dir_colors" && eval (dircolors ~/.dir_colors)
-
-function color-test
-    set scripts square crunch alpha spectrum unowns.py ghosts monster
-    set script "$HOME/projects/color-scripts/color-scripts/"(random choice $scripts)
-    $script
-end
-
-function fish_greeting
-    color-test
-end
-
-function yabai_fix
-    pgrep yabai | tail -n +2 | head -n1 | xargs kill
-end
-
-# tabtab source for packages
-# uninstall by removing these lines
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and source ~/.config/tabtab/fish/__tabtab.fish; or true
-
-starship init fish | source
-
-# fnm
-set PATH $PATH ~/.fnm
-fnm env --multi | source
-set PATH ~/.local/bin/pnpm $PATH

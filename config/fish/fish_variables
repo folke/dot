@@ -6,6 +6,8 @@ SETUVAR FZF_LEGACY_KEYBINDINGS:1
 SETUVAR FZF_PREVIEW_DIR_CMD:ls
 SETUVAR FZF_PREVIEW_FILE_CMD:head\x20\x2dn\x2010
 SETUVAR FZF_TMUX_HEIGHT:40\x25
+SETUVAR NVM_DIR:/Users/folke/\x2envm
+SETUVAR VIRTUAL_ENV_DISABLE_PROMPT:1
 SETUVAR --export ZLUA_LUAEXE:/usr/local/bin/lua
 SETUVAR --export ZLUA_SCRIPT:/Users/folke/\x2elocal/share/fisher/github\x2ecom/skywind3000/z\x2elua/z\x2elua
 SETUVAR --export _ZL_DATA:/Users/folke/\x2elocal/share/zlua/zlua\x2etxt
@@ -13,38 +15,6 @@ SETUVAR _ZL_DATA_DIR:/Users/folke/\x2elocal/share/zlua
 SETUVAR __fish_initialized:3100
 SETUVAR __tf_func:function\x20__tf_alias\x20\x2dd\x20\x22Correct\x20your\x20previous\x20console\x20command\x22\x3b\x20\x20set\x20\x2dl\x20fucked_up_command\x20\x24history\x5b1\x5d\x3b\x20\x20env\x20TF_ALIAS\x3d__tf_alias\x20PYTHONIOENCODING\x3dutf\x2d8\x20thefuck\x20\x24fucked_up_command\x20\x7c\x20read\x20\x2dl\x20unfucked_command\x3b\x20\x20if\x20\x5b\x20\x22\x24unfucked_command\x22\x20\x21\x3d\x20\x22\x22\x20\x5d\x3b\x20\x20\x20\x20eval\x20\x24unfucked_command\x3b\x20\x20\x20\x20builtin\x20history\x20delete\x20\x2d\x2dexact\x20\x2d\x2dcase\x2dsensitive\x20\x2d\x2d\x20\x24fucked_up_command\x3b\x20\x20\x20\x20builtin\x20history\x20merge\x20\x5e\x20/dev/null\x3b\x20\x20end\x3bend\x3b
 SETUVAR __tf_vers:The\x20Fuck\x203\x2e15\x20using\x20Python\x203\x2e8\x2e3
-SETUVAR _fish_abbr_code:code\x2dinsiders
-SETUVAR _fish_abbr_coredump_2D_last:coredumpctl\x20gdb\x20\x28coredumpctl\x20list\x20\x7c\x20tail\x20\x2d1\x20\x7c\x20awk\x20\x27\x7bprint\x20\x245\x7d\x27\x29
-SETUVAR _fish_abbr_dnfi:sudo\x20dnf\x20install
-SETUVAR _fish_abbr_dnfs:sudo\x20dnf\x20search
-SETUVAR _fish_abbr_dnfu:sudo\x20dnf\x20update\x20\x2d\x2drefresh
-SETUVAR _fish_abbr_g:git
-SETUVAR _fish_abbr_git:hub
-SETUVAR _fish_abbr_gl:git\x20l\x20\x2d\x2dcolor\x20\x7c\x20devmoji\x20\x2d\x2dlog\x20\x2d\x2dcolor\x20\x7c\x20less\x20\x2drXF
-SETUVAR _fish_abbr_gotop:btm
-SETUVAR _fish_abbr_helpme:bat\x20\x7e/HELP\x2emd
-SETUVAR _fish_abbr_hide_2D_cursor:tput\x20civis
-SETUVAR _fish_abbr_l:ll
-SETUVAR _fish_abbr_mux:tmuxinator
-SETUVAR _fish_abbr_ntop:ultra\x20\x2d\x2dmonitor
-SETUVAR _fish_abbr_pull:git\x20pull
-SETUVAR _fish_abbr_push:git\x20push
-SETUVAR _fish_abbr_show_2D_cursor:tput\x20cnorm
-SETUVAR _fish_abbr_suod:sudo
-SETUVAR _fish_abbr_system:neofetch\x20\x2d\x2dsource\x20\x7e/Pictures/Cyberpunk/connected\x2dwallpaper\x2d1920x1080\x2ejpg
-SETUVAR _fish_abbr_ta:tmux\x20attach\x20\x2dt
-SETUVAR _fish_abbr_tad:tmux\x20attach\x20\x2dd\x20\x2dt
-SETUVAR _fish_abbr_tkss:tmux\x20kill\x2dsession\x20\x2dt
-SETUVAR _fish_abbr_tksv:tmux\x20kill\x2dserver
-SETUVAR _fish_abbr_tl:tmux\x20list\x2dsessions
-SETUVAR _fish_abbr_todo:ag\x20\x2d\x2dcolor\x2dline\x2dnumber\x20\x271\x3b36\x27\x20\x2d\x2dcolor\x2dpath\x20\x271\x3b36\x27\x20\x2d\x2dprint\x2dlong\x2dlines\x20\x2d\x2dsilent\x20\x27\x28\x28//\x7c\x23\x7c\x3c\x21\x2d\x2d\x7c\x3b\x7c/\x5c\x2a\x7c\x5e\x29\x5cs\x2a\x28TODO\x7cFIXME\x7cFIX\x7cBUG\x7cUGLY\x7cHACK\x7cNOTE\x7cIDEA\x7cREVIEW\x7cDEBUG\x7cOPTIMIZE\x29\x7c\x5e\x5cs\x2a\x2d\x20\x5c\x5b\x20\x5c\x5d\x29\x27
-SETUVAR _fish_abbr_ts:tmux\x20new\x2dsession\x20\x2ds
-SETUVAR _fish_abbr_tt:tn\x20src/tt\x2ets
-SETUVAR _fish_abbr_vi:nvim
-SETUVAR _fish_abbr_vim:nvim
-SETUVAR _fish_abbr_weather:curl\x20\x2ds\x20wttr\x2ein/Ghent\x20\x7c\x20grep\x20\x2dv\x20Follow
-SETUVAR _fish_abbr_ytop:btm
-SETUVAR base16_fish_theme:material\x2dpalenight
 SETUVAR base16_theme:material\x2dpalenight
 SETUVAR fish_color_autosuggestion:32374D
 SETUVAR fish_color_cancel:\x2dr
@@ -57,6 +27,7 @@ SETUVAR fish_color_error:red
 SETUVAR fish_color_escape:yellow
 SETUVAR fish_color_history_current:\x2d\x2dbold
 SETUVAR fish_color_host:normal
+SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_match:\x2d\x2dbackground\x3dbrblue
 SETUVAR fish_color_normal:normal
 SETUVAR fish_color_operator:blue
@@ -68,7 +39,7 @@ SETUVAR fish_color_selection:white\x1e\x2d\x2dbold\x1e\x2d\x2dbackground\x3d3237
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell
+SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:yellow\x1e\x2d\x2ddim
