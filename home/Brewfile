@@ -70,6 +70,8 @@ brew "htop"
 brew "httpie"
 # Add GitHub support to git on the command-line
 brew "hub"
+# Command-line benchmarking tool
+brew "hyperfine"
 # Synchronize a maildir with an IMAP server
 brew "isync"
 # Lightweight and flexible command-line JSON processor
@@ -88,6 +90,8 @@ brew "mackup"
 brew "make"
 # Markdown parser and compiler built for speed
 brew "marked"
+# Powerful paging program
+brew "most"
 # Tool for searching e-mail messages stored in the maildir-format
 brew "mu"
 # Interactive cheatsheet tool for the command-line
@@ -154,6 +158,7 @@ cask "alfred"
 cask "avibrazil-rdm"
 cask "expressvpn"
 cask "font-fantasque-sans-mono-nerd-font"
+cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-input"
 cask "font-source-sans-pro"
