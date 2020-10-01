@@ -2,6 +2,7 @@ local appw = hs.application.watcher
 local module = {apps = {}, observers = {}, windows = {}}
 
 local spaces = require("hs._asm.undocumented.spaces")
+local desktop = require("desktop")
 
 module.appEvents = {
     [appw.activated] = "activated",
@@ -36,13 +37,26 @@ module.getWindowsPerSpace = function()
     return ret
 end
 
-module.getWindows = function()
+module.getWindows = function(currentSpaceOnly)
+    local mySpace = desktop.activeSpace()
     local ret = {}
     for _, windows in pairs(module.windows) do
         for _, ax in pairs(windows) do
             if ax:isValid() then
                 local win = ax:asHSWindow()
-                ret[win:id()] = win
+                local keep = false
+                if currentSpaceOnly then
+                    for _, space in pairs(win:spaces()) do
+                        if space == mySpace then
+                            keep = true
+                        end
+                    end
+                else
+                    keep = true
+                end
+                if keep then
+                    table.insert(ret, win)
+                end
             end
         end
     end

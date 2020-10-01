@@ -1,6 +1,7 @@
 local dirs = {East = "right", North = "up", West = "left", South = "down"}
 local spaces = require("hs._asm.undocumented.spaces")
 local desktop = require("desktop")
+local running = require("running")
 
 for dir, key in pairs(dirs) do
     hs.hotkey.bind(
@@ -8,7 +9,7 @@ for dir, key in pairs(dirs) do
         key,
         "Focus " .. dir,
         function()
-            hs.window["focusWindow" .. dir]()
+            hs.window.frontmostWindow()["focusWindow" .. dir](hs.window.frontmostWindow(), running.getWindows(true))
         end
     )
 end
