@@ -82,7 +82,7 @@ if status --is-interactive
 
     set -x HOMEBREW_NO_AUTO_UPDATE 1
     set -x DOTDROP_AUTOUPDATE no
-    alias dotdrop "$PYBIN/dotdrop -c ~/projects/dot/dotdrop.yaml"
+    alias dotdrop "command dotdrop -c ~/projects/dot/dotdrop.yaml"
     alias dotgit "hub -C ~/projects/dot/"
 
     # tabtab source for packages
