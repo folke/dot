@@ -1,12 +1,12 @@
 local wb = hs.canvas.windowBehaviors
 local spaces = require("hs._asm.undocumented.spaces")
+local running = require("running")
 
 hs.window.filter.forceRefreshOnSpaceChange = true
 
 local module = {widget = hs.canvas.new {}}
 
 local desktop = require("desktop")
-module.focused = require("focused")
 
 module.widget:level(hs.canvas.windowLevels.floating)
 module.widget:clickActivating(false)
@@ -16,7 +16,7 @@ module.widget:behavior({wb.default, wb.transient})
 module.update = function()
     module.widget:hide()
 
-    local win = module.focused.focused
+    local win = hs.window.focusedWindow()
     if win == nil or not win:application() or not win:application():isRunning() or
         not win:isVisible() then return end
     local current = spaces.activeSpace()
@@ -78,7 +78,7 @@ module.update = function()
     end
 end
 
-module.focused.onChange(module.update)
+running.onChange(function(app, win, event) module.update() end)
 
 local watcher = hs.spaces.watcher.new(module.update)
 watcher:start()

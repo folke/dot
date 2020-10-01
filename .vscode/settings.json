@@ -1,17 +1,5 @@
 {
   "Lua.workspace.library": {
-    "/Applications/Hammerspoon.app/Contents/Resources/extensions/": [
-      "hs/_coresetup"
-    ]
-    // "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/": true,
-    // "/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/window/": true
-  },
-  "Lua.workspace.preloadFileSize": 2048,
-  "Lua.diagnostics.disable": [
-    "lowercase-global"
-  ],
-  "Lua.diagnostics.globals": [
-    "targetUUID"
-  ]
-  // "Lua.diagnostics.globals": ["hs"]
+    "/Users/folke/projects/hammerspoon/build/stubs": true
+  }
 }

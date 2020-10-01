@@ -48,7 +48,7 @@ module.update = function()
             for _, _ in pairs(windowsPerSpace[spaceId]) do alpha = 1 end
         end
 
-        backgroundA = 0
+        local backgroundA = 0
         if i == desktop.active then backgroundA = 0.3 end
         module.widget:appendElements({
             id = i,
@@ -82,6 +82,11 @@ end
 module.update()
 
 desktop.onChange(module.update)
+running.onChange(function(app, win, event)
+    if event == running.events.closed or event == running.events.created then
+        module.update()
+    end
+end)
 
 module.widget:mouseCallback(function(_, _, id) desktop.changeTo(id) end)
 

@@ -1,9 +1,0 @@
-#!/bin/bash
-
-ME="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-
-# stow . -v -d "$ME/" -t ~/ --ignore '^(dot-config|.DS_Store|sync)$' --dotfiles -n
-# stow . -v -d "$ME/dot-config" -t ~/.config/ --ignore '^(.DS_Store)$' --dotfiles -n
-
-stow . -v -d "$ME/home" -t ~/ --ignore '^(.DS_Store)$' --dotfiles
-stow . -v -d "$ME/config" -t ~/.config/ --ignore '^(.DS_Store)$' --dotfiles
