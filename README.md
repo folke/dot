@@ -1,59 +1,34 @@
-# Managing Dot Files with Stow
-
-```bash
-stow . -v -d ~/projects/dot/ -t ~/ --ignore ".config|.DS_Store" --dotfiles
-stow . -v -d ~/projects/dot/.config -t ~/.config/ --ignore ".DS_Store" --dotfiles
-```
-
-
-
-# Managing Dot Files with Git
-
-Create a `.dotfiles` folder, which we'll use to track your dotfiles
-
-```bash
-git init --bare $HOME/.dot
-```
-
-Create a `dot` alias that uses `.dot` as the git repository and your `$HOME` as the working directory.
-Make sure to add it to your `.bashrc` or `.zshrc`
-
-```bash
-alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
-```
-
-You can now use `dot` to manage any file in your home directory.
-
-## Restoring Dot Files
-
-Add `.dot` to `.gitignore` to prevent weird recursion issues.
-
-```bash
-echo ".dot" >> .gitignore
-```
-
-Clone your dotfiles in a bare git repository.
+# Managing dotfiles with [dotdrop](https://github.com/deadc0de6/dotdrop)
 
 ```shell
-git clone --bare git@github.com:folke/dot.git $HOME/.dot
+# Install all dotfiles
+$ dotdrop install
+
+# Check for unmanaged stuff
+$ dotdrop compare
+
+# Start managing some file in `~`
+$ mv .somefile ~/projects/dot/home
+
+# Start managing a directory in `~/.config`
+$ mv ~/.config/foo ~/projects/dot/config/
+
 ```
 
-Define the alias
+# Restoring dotfiles
 
-```bash
-alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
-```
+```shell
+# Install dotdrop
+$ pip3 install --user dotdrop
 
-Checkout your dotfiles!
+# Clone dotfiles
+$ cd ~/projects
+$ git clone git@github.com:folke/dot.git
 
-```bash
-dot checkout
-```
+# Install dotfiles
+$ dotdrop -c ~/projects/dot/dotdrop.yaml
 
-If you get errors about existing files, back them up first and retry
-
-```bash
-mkdir -p .dot-backup && \
-dot checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .dot-backup/{}
+# Install Homebrew packages
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+$ brew bundle
 ```
