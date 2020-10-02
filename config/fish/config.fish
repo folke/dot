@@ -56,6 +56,9 @@ if status --is-interactive
     abbr -g ntop "ultra --monitor"
     abbr -g ytop "btm"
     abbr -g gotop "btm"
+    abbr -g fda "fd -IH"
+    abbr -g aga "ag -u"
+    abbr -g rga "rg -uu"
 
     abbr -g helpme "bat ~/HELP.md"
     abbr -g weather "curl -s wttr.in/Ghent | grep -v Follow"
