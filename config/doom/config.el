@@ -23,6 +23,30 @@
       auto-save-default t                         ; Nobody likes to loose work, I certainly don't
       truncate-string-ellipsis "…")               ; Unicode ellispis are nicer than "...", and also save /precious/ space
 
+
+;; (cond (IS-MAC
+;;        (setq mac-command-modifier     'meta
+;;              mac-option-modifier      'super
+;;              ns-command-modifier      'meta
+;;              ns-option-modifier       'super
+;;              ns-right-option-modifier 'none)))
+
+
+(map! (:when (featurep! :editor multiple-cursors)
+        ;; evil-multiedit
+        :v  "R"     #'evil-multiedit-match-all
+        :n  "s-d"   #'evil-multiedit-match-symbol-and-next
+        :n  "s-D"   #'evil-multiedit-match-symbol-and-prev
+        :v  "s-d"   #'evil-multiedit-match-and-next
+        :v  "s-D"   #'evil-multiedit-match-and-prev
+        :nv "C-s-d" #'evil-multiedit-restore
+        (:after evil-multiedit
+          (:map evil-multiedit-state-map
+            "s-d"    #'evil-multiedit-match-and-next
+            "s-D"    #'evil-multiedit-match-and-prev
+            "RET"    #'evil-multiedit-toggle-or-restrict-region
+            [return] #'evil-multiedit-toggle-or-restrict-region))))
+
 (after! which-key
   (setq
     which-key-idle-delay 0.3
@@ -96,8 +120,23 @@
   (+ivy/switch-buffer))
 
 ;; Syntax checking and linting
+(after! popup
+  (set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.2 :select t))
+(after! window-select
+  (custom-set-faces!
+  '(aw-leading-char-face
+    :foreground "white" :background "red"
+    :weight bold :height 2.5 :box (:line-width 10 :color "red")))
+  )
+
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(mode-enabled save new-line idle-change)))
+
+(after! (flycheck lsp-mode)
+  (add-hook 'lsp-after-initialize-hook (lambda
+                                       ()
+                                       (flycheck-add-next-checker 'lsp '(warning . javascript-eslint))))
+    )
 
 (after! centaur-tabs
   (centaur-tabs-group-by-projectile-project))
@@ -179,3 +218,7 @@
   ;:config
   ;;(explain-pause-mode)
   ;)
+
+(setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
+(after! (elfeed centaur-tabs)
+  (add-hook 'elfeed-search-mode-hook 'centaur-tabs-local-mode))
