@@ -1,0 +1,157 @@
+ TODO test
++ TODO fon
++ [ ] migrate `config.el` to `config.org`
+* Doom Literate Config!
+** Basic Stuff
+
+#+BEGIN_SRC elisp
+(setq user-full-name "Folke Lemaitre"
+      user-mail-address "folke.lemaitre@gmail.com"
+      command-line-default-directory "~/"         ; set default directory to home
+      default-directory "~/"
+      ns-use-proxy-icon nil                       ; empty title
+      frame-title-format '"\n"                    ; use a new-line to make sure rezising info is on the next line
+      undo-limit 80000000                         ; Raise undo-limit to 80Mb
+      evil-want-fine-undo t                       ; By default while in insert all changes are one big blob. Be more granular
+      auto-save-default t                         ; Nobody likes to loose work, I certainly don't
+      truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
+      display-line-numbers-type 'relative
+      which-key-idle-delay 0.3                    ; Show key binding help quicker
+      which-key-idle-secondary-delay 0)
+#+END_SRC
+
+*** Window Management
+#+BEGIN_SRC elisp
+;; prefer right and bottom split
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; show buffer popup when splitting
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-buffer))
+#+END_SRC
+
+** Syntax Checking
+#+BEGIN_SRC elisp
+;; Syntax checking and linting
+(after! popup
+  (set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.2 :select t))
+(after! window-select
+  (custom-set-faces!
+    '(aw-leading-char-face
+      :foreground "white" :background "red"
+      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
+
+(after! flycheck
+  (setq flycheck-check-syntax-automatically '(mode-enabled save new-line idle-change)))
+
+(after! (flycheck lsp-mode)
+  (add-hook 'lsp-after-initialize-hook (lambda()
+                                         (flycheck-add-next-checker 'lsp '(warning . javascript-eslint)))))
+(after! lsp-mode
+  (setq lsp-lua-diagnostics-globals ["hs" "spoon"]))
+#+END_SRC
+
+** UI
+#+BEGIN_SRC elisp
+;; There's a weird bug where fringe-modes < 8 dont show the fringes
+(after! git-gutter
+  (fringe-mode 8)
+  (after! git-gutter-fringe
+    (fringe-mode 8))
+  (setq +vc-gutter-diff-unsaved-buffer t))
+
+
+(after! centaur-tabs
+  (centaur-tabs-group-by-projectile-project))
+(after! (elfeed centaur-tabs)
+  (add-hook 'elfeed-search-mode-hook 'centaur-tabs-local-mode))
+
+(setq projectile-project-search-path '("~/projects"))
+(setq +ivy-buffer-preview 1)
+
+(setq +treemacs-git-mode 'extended)
+(setq doom-themes-treemacs-theme "doom-colors")
+(after! treemacs
+  (treemacs-follow-mode t))
+#+END_SRC
+
+*** Theme
+Doom exposes five (optional) variables for controlling fonts in Doom. Here
+are the three important ones:
+
++ `doom-font'
++ `doom-variable-pitch-font'
++ `doom-big-font' -- used for `doom-big-font-mode'; use this for
+  presentations or streaming.
+
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+font string. You generally only need these two:
+(setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+      doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
+#+BEGIN_SRC elisp
+(setq doom-font (font-spec :family "Fira Code" :size 12))
+(setq doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 13))
+;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
+
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+;;(setq doom-theme 'doom-moonlight)
+
+#+END_SRC
+
+*** Doom Modeline
+#+BEGIN_SRC elisp
+(unless (equal "Battery status not available"
+               (battery))
+  (display-battery-mode 1))                       ; On laptops it's nice to know how much power you have
+
+(setq doom-modeline-persp-name t)                 ; show workspace
+(setq doom-modeline-env-version t)
+(setq doom-modeline-major-mode-icon t)
+(defun doom-modeline-conditional-buffer-encoding ()
+  "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
+  (setq-local doom-modeline-buffer-encoding
+              (unless (or (eq buffer-file-coding-system 'utf-8-unix)
+                          (eq buffer-file-coding-system 'utf-8)))))
+
+(add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
+#+END_SRC
+
+** Docs
+#+BEGIN_SRC elisp
+(set-docsets! 'python-mode "Python 3")
+(set-docsets! 'lua-mode "Lua")
+(set-docsets! 'emacs-lisp-mode "Emacs Lisp")
+#+END_SRC
+
+** Apps
+#+BEGIN_SRC elisp
+;; Gmail
+(set-email-account! "Gmail"
+                    '((mu4e-sent-folder       . "/Sent")
+                      (mu4e-drafts-folder     . "/Drafts")
+                      (mu4e-trash-folder      . "/Trash")
+                      (mu4e-refile-folder     . "/All")
+                      (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
+                      (mu4e-compose-signature . "---\nFolke"))
+                    t)
+
+(add-hook! 'elfeed-search-mode-hook 'elfeed-update) ; Update Elfeed when launched
+
+(setq vterm-shell "/usr/local/bin/fish")
+
+(setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
+(setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
+
+#+END_SRC
+*** Org Mode
+#+BEGIN_SRC elisp
+(setq org-directory "~/org/"
+  org-roam-directory "~/org/notes/"
+  org-roam-tag-sources '(prop last-directory)
+  +org-roam-open-buffer-on-find-file t)
+#+END_SRC
