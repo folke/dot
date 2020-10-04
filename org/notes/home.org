@@ -1,0 +1,88 @@
+* Home
+  :PROPERTIES:
+  :CUSTOM_ID: home
+  :END:
+
+** Life
+   :PROPERTIES:
+   :CUSTOM_ID: life
+   :END:
+
+--------------
+
+[[file:home/exercise.org][Exercise]]
+
+[[file:home/meditation.org][Meditation]]
+
+[[file:home/travel.org][Travel]]
+
+** Sport
+   :PROPERTIES:
+   :CUSTOM_ID: sport
+   :END:
+
+--------------
+
+[[file:home/exercise/sport/running.org][Running]]
+
+[[file:home/exercise/sport/yoga.org][Yoga]]
+
+[[file:home/exercise/sport/strength.org][Strength]]
+
+[[file:home/exercise/sport/surfing.org][Surfing]]
+
+** Dev
+   :PROPERTIES:
+   :CUSTOM_ID: dev
+   :END:
+
+--------------
+
+[[file:dev/hacking.org][Hacking]]
+
+[[file:dev/cryptography.org][Cryptography]]
+
+** Entertainment
+   :PROPERTIES:
+   :CUSTOM_ID: entertainment
+   :END:
+
+--------------
+
+[[file:home/watch.org][Watch]]
+
+[[file:home/video games.org][Video Games]]
+
+Board Games
+
+Roleplaying Games
+
+Cardistry / Magic
+
+** Stuff
+   :PROPERTIES:
+   :CUSTOM_ID: stuff
+   :END:
+
+--------------
+
+** Learn
+   :PROPERTIES:
+   :CUSTOM_ID: learn
+   :END:
+
+--------------
+
+[[file:home/reading.org][Reading]]
+
+[[file:home/chess.org][Chess]]
+
+Piano
+
+Guitar
+
+Ukulele
+
+[[file:home/tasks.org][Tasks]]
+
+[[https://dev.to/][The DEV Community]]

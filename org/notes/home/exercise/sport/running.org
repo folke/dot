@@ -1,0 +1,24 @@
+* Running
+  :PROPERTIES:
+  :CUSTOM_ID: running
+  :END:
+
+Friday: Yes Monday: Yes Saturday: Yes Sunday: No Thursday: No Tuesday:
+No Wednesday: Yes
+
+* Upcoming Races
+  :PROPERTIES:
+  :CUSTOM_ID: upcoming-races
+  :END:
+
+[[file:running/bear trail.org][Bear Trail]]
+
+[[https://www.bearsports.nl/events/bear-trail/][Bear Trail & Grizzly
+100 - Bearsports]]
+
+* Training
+  :PROPERTIES:
+  :CUSTOM_ID: training
+  :END:
+
+[[https://docs.google.com/spreadsheets/d/1ny05-8rmbcjxr_to66ylouw7yora-tcrzjo1qtim5vs/edit?usp=drivesdk][Training]]

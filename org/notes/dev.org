@@ -1,0 +1,51 @@
+* Dev
+  :PROPERTIES:
+  :CUSTOM_ID: dev
+  :END:
+
+** Projects
+   :PROPERTIES:
+   :CUSTOM_ID: projects
+   :END:
+
+--------------
+
+[[file:dev/splora.org][Splora]]
+
+[[file:dev/social rebel.org][Social Rebel]]
+
+[[file:dev/dot.org][Dot]]
+
+** Learn
+   :PROPERTIES:
+   :CUSTOM_ID: learn
+   :END:
+
+--------------
+
+[[file:dev/cryptography.org][Cryptography]]
+
+[[file:dev/hacking.org][Hacking]]
+
+[[file:dev/linux on mac.org][Linux On Mac]]
+
+[[file:dev/cicada 3301.org][Cicada 3301]]
+
+** Startup Ideas
+   :PROPERTIES:
+   :CUSTOM_ID: startup-ideas
+   :END:
+
+--------------
+
+- Funding for nature. Concessions
+- Score divided world according to sustainable development goals.
+  Protected nature, war zones, poverty, ...
+- AR people recognition. Shops, business, friends, dating
+- Protect the Amazon: map it and track funding + quality index
+- Adventure map
+- Parasite that makes you allergic to meat
+- Wildlife stichting app
+
+vscode marketplace token:
+fyx2zgy7qsrkce3rf354qjzjzt4a46zvfm6sjq5l5qeghgobjoya

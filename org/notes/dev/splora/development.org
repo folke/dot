@@ -1,0 +1,34 @@
+* Development
+  :PROPERTIES:
+  :CUSTOM_ID: development
+  :END:
+
+- Git:
+
+  - Github
+  - yorkie commit hooks
+  - CommitLint
+  - Devmoji
+
+- Docker
+- CI: Travis, Jenkins or Github Actions
+- frameworks:
+
+  - web: vue with bulma
+  - server: next.js
+  - passport.js for auth
+  - hygen for scaffolding
+  - scripts: commander or yargs or cac
+
+- Testing: Jest with chai and sinon
+- Coverage: c8 or istanbul: jest ---coverage, coveralls
+- Formatting: prettier
+- Dependency Management: Renovate
+- Lint: eslint, markdownlint
+- Package Manager: yarn
+- Language: Typescript
+- Profiling: 0x, clinic.js
+- Performance Monitoring: Elastic APM
+- release: standard-version, conventional-changelog, semantic-release
+- build: tsc, babel, rollup or webpack
+- process monitor [[https://pm2.keymetrics.io/]]

@@ -1,0 +1,6 @@
+* Futureworld
+  :PROPERTIES:
+  :CUSTOM_ID: futureworld
+  :END:
+
+Genre: Scifi

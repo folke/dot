@@ -1,0 +1,32 @@
+* Sell Subaru
+  :PROPERTIES:
+  :CUSTOM_ID: sell-subaru
+  :END:
+
+Created: Oct 18, 2019 8:27 PM Priority: !!! High 🔥 Status: Done Tags:
+finance
+
+* Todo
+  :PROPERTIES:
+  :CUSTOM_ID: todo
+  :END:
+
+- ☒ bring two car keys
+
+- ☒ bring title
+
+- ☒ bring DMV paper
+
+- ☐ fix car battery
+
+- ☐ remove license plate
+
+- SSN# 895-60-5332
+
+- VIN# 4S4BSACC0F3212401
+
+- License plate Y4719820
+
+- Mileage: 38,435
+
+[[https://www.carvana.com/sellyourcar/hub/offer/456351?s=true][]]

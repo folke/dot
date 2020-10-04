@@ -1,0 +1,16 @@
+| Name              | Genre | Score | Status   | Type      |
+|-------------------+-------+-------+----------+-----------|
+| Sense8            | Scifi | 8.3   | On Hold  | TV Series |
+| Doctor Who        | Scifi | 8.6   | On Hold  | TV Series |
+| Farscape          | Scifi | 8.3   | On Hold  | TV Series |
+| The Expanse       | Scifi | 8.4   | Watched  | TV Series |
+| Devs              |       |       | Watched  |           |
+| Westworld         |       |       | Watching |           |
+| Dark              |       |       | On Hold  |           |
+| GR5               |       |       | Watched  |           |
+| Chernobyl         |       |       | Watching |           |
+| Reizen Waes       |       |       | Watching |           |
+| Starship Troopers | Scifi |       | To Watch | Movie     |
+| Picard            |       |       | To Watch |           |
+| Death note        |       |       | To Watch |           |
+| Futureworld       | Scifi |       |          |           |

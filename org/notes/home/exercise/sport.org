@@ -1,0 +1,9 @@
+| Name          | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday |
+|---------------+--------+---------+-----------+----------+--------+----------+--------|
+| Running       | Yes    | No      | Yes       | No       | Yes    | Yes      | No     |
+| Yoga          | No     | No      | No        | Yes      | No     | No       | No     |
+| Strength      | No     | Yes     | No        | Yes      | No     | No       | Yes    |
+| Rock Climbing | No     | No      | No        | No       | No     | Yes      | No     |
+| Swimming      | No     | No      | No        | No       | No     | No       | No     |
+| Surfing       | No     | No      | No        | No       | No     | No       | No     |
+|               | No     | No      | No        | No       | No     | No       | No     |

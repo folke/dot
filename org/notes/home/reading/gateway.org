@@ -1,0 +1,4 @@
+* Gateway
+  :PROPERTIES:
+  :CUSTOM_ID: gateway
+  :END:

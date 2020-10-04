@@ -1,0 +1,11 @@
+* Travel
+  :PROPERTIES:
+  :CUSTOM_ID: travel
+  :END:
+
+[[file:travel/trips.org][Trips]]
+
+* Trip Ideas
+  :PROPERTIES:
+  :CUSTOM_ID: trip-ideas
+  :END:

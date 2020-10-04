@@ -1,0 +1,58 @@
+* Dot
+  :PROPERTIES:
+  :CUSTOM_ID: dot
+  :END:
+
+[[https://github.com/folke/dot][]]
+
+* Managing Dot Files with Git
+  :PROPERTIES:
+  :CUSTOM_ID: managing-dot-files-with-git
+  :END:
+
+Create a =dot= alias that uses =.dot= as the git repository and your
+=$HOME= as the working directory. Make sure to add it to your =.bashrc=
+or =.zshrc=
+
+#+BEGIN_SRC sh
+  alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
+#+END_SRC
+
+You can now use =dot= to manage any file in your home directory.
+
+** Restoring Dot Files
+   :PROPERTIES:
+   :CUSTOM_ID: restoring-dot-files
+   :END:
+
+Add =.dot= to =.gitignore= to prevent weird recursion issues.
+
+#+BEGIN_SRC sh
+  echo ".dot" >> .gitignore
+#+END_SRC
+
+Clone your dotfiles in a bare git repository.
+
+#+BEGIN_SRC sh
+  git clone --bare git@github.com:folke/dot.git $HOME/.dot
+#+END_SRC
+
+Define the alias
+
+#+BEGIN_SRC sh
+  alias dot='git --git-dir=$HOME/.dot --work-tree=$HOME'
+#+END_SRC
+
+Checkout your dotfiles!
+
+#+BEGIN_SRC sh
+  dot checkout
+#+END_SRC
+
+If you get errors about existing files, back them up first and retry
+
+#+BEGIN_SRC sh
+  mkdir -p .dot-backup && \\
+  dot checkout 2>&1 | egrep "\\s+\\." | awk {'print $1'} | \\
+  xargs -I{} mv {} .dot-backup/{}
+#+END_SRC

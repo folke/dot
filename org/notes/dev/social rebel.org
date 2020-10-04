@@ -1,0 +1,507 @@
+* Social Rebel
+  :PROPERTIES:
+  :CUSTOM_ID: social-rebel
+  :END:
+
+* Events
+  :PROPERTIES:
+  :CUSTOM_ID: events
+  :END:
+
+- Sep 17, 2017: Social Good Summit
+
+* Ideas
+  :PROPERTIES:
+  :CUSTOM_ID: ideas
+  :END:
+
+- fact checking platform
+
+  - Google chrome plugin that annotates articles with facts
+  - Mobile app that annotates articles
+
+- measure carbon emissions app
+- employee welness programs
+- donation fund managing platform
+
+  - change your mix of donations
+  - know how your portfolio looks like according to the SDGs
+
+* Startups
+  :PROPERTIES:
+  :CUSTOM_ID: startups
+  :END:
+
+- [[http://hustle.life/]]
+
+  - platform to easily reach out over sms to your supporters
+
+- [[https://www.aclu.org/]]
+- [[https://www.change.org/]]
+- [[http://front.moveon.org/]]
+- [[https://rally.org/]]
+- [[https://www.countable.us/][https://www.countable.us]]
+- [[https://www.one.org/us/]]
+- [[http://now.org/]]
+- [[https://greenwre.greenpeace.org/usa/en/events/resistance-101]]
+- [[https://ssd.eff.org/]]
+- [[https://actionnetwork.org/toolset]]
+- [[http://actionsprout.com/]]
+- [[http://carbotax.org/]]
+- [[https://www.causes.com/]]
+- [[https://www.brigade.com/home]]
+- [[https://www.causes.com/]]
+- [[https://greenwire.greenpeace.org/usa/en/home]]
+
+* Sustainable Development Goals
+  :PROPERTIES:
+  :CUSTOM_ID: sustainable-development-goals
+  :END:
+
+- [[http://17goals.org/]]
+- [[http://www.un.org/sustainabledevelopment/takeaction/]]
+- [[http://unstats.un.org/sdgs/report/2016/]]
+- [[http://unstats.un.org/sdgs/]]
+- [[http://unstats.un.org/sdgs/metadata/]]
+- [[http://www.sustainia.me/solutions]]
+- [[http://sdg.iisd.org/news/]]
+- [[https://www.reddit.com/r/myownveganwiki/wiki/environment#wiki_rainforest][https://www.reddit.com/r/MyOwnVeganWiki/wiki/environment#wiki_rainforest]]
+- [[http://unstats.un.org/sdgs/indicators/indicators-list/]]
+- [[https://sustainabledevelopment.un.org/sdgs]]
+
+  - has detailed pdfs with descriptions
+
+- how can business help?
+  [[https://www.unglobalcompact.org/sdgs/17-global-goals]]
+- [[http://www.project-everyone.org/]]
+- [[https://github.com/sdg-interfaceontology/sdgio][https://github.com/SDG-InterfaceOntology/sdgio]]
+- [[http://www.un.org/sustainabledevelopment/news/communications-material/]]
+- [[https://github.com/sdg-data/sdgs][https://github.com/SDG-data/SDGs]]
+- [[https://en.wikipedia.org/wiki/sustainable_development_goals][https://en.wikipedia.org/wiki/Sustainable_Development_Goals]]
+- [[https://github.com/datapopalliance/sdgs][https://github.com/datapopalliance/SDGs]]
+- [[http://www.globalgoals.org/resource-centre/the-basics/]]
+- [[https://trello.com/b/nkzyxtsa/the-sustainable-development-goals-17-goals-to-transform-our-world][https://trello.com/b/NKZYxTsa/the-sustainable-development-goals-17-goals-to-transform-our-world]]
+- [[http://www.undp.org/content/undp/en/home/sustainable-development-goals/goal-13-climate-action.html]]
+- [[http://www.sdgfund.org/goal-13-climate-action]]
+- 
+
+#+BEGIN_QUOTE
+  http://earthcharter.org/discover/the-earth-charter/
+#+END_QUOTE
+
+#+CAPTION: Social%20Rebel%20d51c23915f1c452080e8967c9b52b0d6/document_image_rId44.png
+[[file:Social%20Rebel%20d51c23915f1c452080e8967c9b52b0d6/document_image_rId44.png]]
+
+- Taxonomies
+
+  - Google (One Today)
+
+    - Animals
+    - Education
+    - Environment
+    - Health
+    - Poverty
+
+  - One.org
+
+    - Infectious Diseases
+    - Agriculture
+    - Transparency
+    - Energy
+    - Development Assistance
+    - Maternal & Child Health
+    - Water & Sanitation
+    - Debt Cancellation
+    - Education
+    - Trade & Investment
+
+  - Global Citizen
+
+    - Girls & Women
+    - Health
+    - Education
+    - Finance & Innovation
+    - Food & Hunger
+    - Water & Sanitation
+    - Environment
+    - Citizenship
+
+  - 
+
+* Other Sites
+  :PROPERTIES:
+  :CUSTOM_ID: other-sites
+  :END:
+
+- [[https://www.pexels.com/]]
+- [[https://unsplash.com/collections]]
+- [[http://berkeley.impacthub.net/coworking/]]
+- [[http://www.crowdtangle.com/customers]]
+
+* Activism Tools
+  :PROPERTIES:
+  :CUSTOM_ID: activism-tools
+  :END:
+
+- [[https://cryptpad.fr/]]
+- [[https://freenetproject.org/download.html#autostart]]
+- [[https://pad.riseup.net/]]
+- [[https://www.privacytools.io/][https://www.privacytools.io]]
+- [[http://poplus.org/]]
+- [[https://github.com/hackaye/activism-framework]]
+- [[https://github.com/drewrwilson/toolsforactivism]]
+- 
+
+** Structure
+   :PROPERTIES:
+   :CUSTOM_ID: structure
+   :END:
+
+- goals
+
+  - targets
+
+    - indicators
+
+- facts: linked to one or more SDGs
+- topics: linked to one or more SDGs
+- actions / solutions
+- causes
+- orgs
+- supporters
+
+* Action Platform
+  :PROPERTIES:
+  :CUSTOM_ID: action-platform
+  :END:
+
+#+BEGIN_QUOTE
+  An example of this might be the #NoBanNoWall movement is the
+  overarching organization, but there's then a NYC, Boston, etc chapter
+  below
+#+END_QUOTE
+
+- Take Action
+
+  - call
+  - sign petition
+  - fund raising / donate
+  - share on social
+  - do something
+  - go to event
+
+- Feed Reader
+
+  - Feedly
+  - SuperFeedr
+  - [[https://github.com/danmactough/node-feedparser]]
+  - Reddit API
+  - [[https://www.resistancemanual.org/resistance_manual_home][https://www.resistancemanual.org/Resistance_Manual_Home]]
+
+- Communication
+
+  - sms
+  - signal
+  - slack
+  - telegram
+
+- Social Media
+
+  - Twitter
+  - Facebook
+  - Instagram
+
+- Gamification
+
+* News Categories
+  :PROPERTIES:
+  :CUSTOM_ID: news-categories
+  :END:
+
+- [[https://en.wikinews.org/wiki/wikinews:archives/all][https://en.wikinews.org/wiki/Wikinews:Archives/All]]
+- [[https://iptc.org/standards/media-topics/]]
+- [[https://iptc.org/standards/newscodes/]]
+- [[https://iptc.org/news/wikidata/]]
+- [[https://www.wikidata.org/entity/q125928][https://www.wikidata.org/entity/Q125928]]
+- [[https://github.com/tensorflow/models/tree/master/textsum]]
+- [[https://developers.google.com/knowledge-graph/]]
+- [[http://wiki.dbpedia.org/]]
+- [[https://medium.com/virtuoso-blog/on-the-mutually-beneficial-nature-of-dbpedia-and-wikidata-5fb2b9f22ada#.pn7qsmhsh]]
+
+* People
+  :PROPERTIES:
+  :CUSTOM_ID: people
+  :END:
+
+- [[https://github.com/unitedstates/congress-legislators]] → US data
+  repository of politicians
+- [[http://everypolitician.org/]] → global data repository of
+  politicians
+- [[https://congressforms.eff.org/]]
+- [[https://act.eff.org/]]
+- [[https://democracy.io/#/compose]]
+
+* Corp Site
+  :PROPERTIES:
+  :CUSTOM_ID: corp-site
+  :END:
+
+- [[https://www.logojoy.com/]]
+- [[https://www.highresolution.design/]]
+
+* Activism
+  :PROPERTIES:
+  :CUSTOM_ID: activism
+  :END:
+
+- [[https://www.indivisibleguide.com/download-the-guide]]
+- [[http://whatdoidoabouttrump.com/action-pods/#tools]]
+- [[http://www.theworldisaterribleplace.com/ohcrap/things-to-do-now-the-tldr-checklist/]]
+- [[https://www.resistancemanual.org/resistance_manual_home][https://www.resistancemanual.org/Resistance_Manual_Home]]
+- [[https://docs.google.com/document/d/1lnvixgb5p9bm47v-szum-cjbnubybzgyobdi8smrq-g/edit][https://docs.google.com/document/d/1lnVIxGb5P9Bm47v-SzUm-CjBnUBYBZgyObdi8smRq-g/edit]]
+- [[https://www.resistancemanual.org/tools_of_resistance#organizing_tools][https://www.resistancemanual.org/Tools_of_Resistance#Organizing_Tools]]
+- [[https://resistancetoolkit.herokuapp.com/]]
+- [[http://www.uniteguide.org/download?submission=137114028]]
+- [[https://www.climaterealityproject.org/]]
+- [[https://www.internetsociety.org/who-we-are]]
+
+* Marketing
+  :PROPERTIES:
+  :CUSTOM_ID: marketing
+  :END:
+
+- [[http://www.nptechforgood.com/2016/11/08/10-social-media-strategies-that-increase-engagement-and-inspire-donors/]]
+- [[https://digitalsocial.eu/]]
+- [[https://capssi.eu/caps-projects/]]
+- [[http://neweconomyforum.org/]]
+
+* Funding
+  :PROPERTIES:
+  :CUSTOM_ID: funding
+  :END:
+
+- [[https://www.ycombinator.com/rfs/#democracy]]
+- [[http://www.ycombinator.com/nonprofits/]]
+- [[http://effective-altruism.com/ea/pn/an_overview_of_y_combinators_nonprofit_program/]]
+- [[https://projects.propublica.org/nonprofits/organizations/61553389]]
+- [[https://blog.ycombinator.com/rfs-news-jobs-and-democracy/]]
+- [[http://www.newmediaventures.org/6th-innovation-fund-open-call/]]
+- [[http://blog.ycombinator.com/yc-w17-launch-claire-peer5-waystocap-symple-rankscience-and-kudi/]]
+
+* Art Posters
+  :PROPERTIES:
+  :CUSTOM_ID: art-posters
+  :END:
+
+- [[http://theamplifierfoundation.org/]]
+- [[https://www.goodtroublemag.com/]]
+
+* Feedly
+  :PROPERTIES:
+  :CUSTOM_ID: feedly
+  :END:
+
+- user-id: eec86ee5-1a3b-480e-b7bc-04526a34326b
+- access token:
+  AzBderW7KAsMMUq-R6NjkX7F8MKGlBBThgiMMw__ZYt4BZj-AwfCw_Nq8zpimFxLvvZJSWQfH1ZTuo1hDIimqbAkmvwI_412AHeN4MfDWM1CCwSuzCg64ITOnPxuGI4bfbuRYAosiMC2Fy0p7Y_bPMxpJZfXH82KXp5I5xECPOU4UMhcNDcApShiPSuqb-HDXSlh4TaLsjAWGTHxl1dLxlT9:feedlydev
+
+#+BEGIN_QUOTE
+#+END_QUOTE
+
+#+CAPTION: Social%20Rebel%20d51c23915f1c452080e8967c9b52b0d6/document_image_rId98.png
+[[file:Social%20Rebel%20d51c23915f1c452080e8967c9b52b0d6/document_image_rId98.png]]
+
+* Random Notes
+  :PROPERTIES:
+  :CUSTOM_ID: random-notes
+  :END:
+
+- Environmental awareness platform
+
+  - Content around Global Goals
+  - Leverage Social Networks to spread awareness
+  - Measure social impact on social networks
+  - Moderated petitions (change.org etc)
+  - Build your profile of what matters (based on GG)
+  - Gamification: sharing, reading, viewing videos, learning, ...
+  - Courses
+  - Recruitment platform for non-profits
+  - List local actions/events
+  - Map global conferences around GG
+  - Meetup groups, ...
+  - Create awareness about certain "bad" companies through negative
+    advertising:
+
+    - Search on "k-cup": get links to why k-cup is bad for the
+      environment
+
+* Platform
+  :PROPERTIES:
+  :CUSTOM_ID: platform
+  :END:
+
+* Environment Stuff
+  :PROPERTIES:
+  :CUSTOM_ID: environment-stuff
+  :END:
+
+- Climate change and impact on the environment:
+  [[http://www.cowspiracy.com/]]
+- Health reasons: [[http://www.forksoverknives.com/]] (they also have a
+  good cooking recipe app)
+- Related to vegan: [[http://thischangeseverything.org/]]
+- Get Vegucated: [[http://www.getvegucated.com/]]
+- Earthlings:
+  [[https://www.youtube.com/watch?v=pb_zmiyy_oq][https://www.youtube.com/watch?v=PB_ZMiYy_OQ]]
+- Erin Janus also makes great videos on veganism
+- DAIRY IS F**KING SCARY! The industry explained in 5 minutes:
+  [[https://www.youtube.com/watch?v=ucn7sggocni&feature=share][https://www.youtube.com/watch?v=UcN7SGGoCNI&feature=share]]
+- What's Wrong With Eggs? The Truth About The Egg Industry:
+  [[https://www.youtube.com/watch?v=utpkdp3t7r4&feature=share][https://www.youtube.com/watch?v=utPkDP3T7R4&feature=share]]
+
+#+BEGIN_QUOTE
+  2016 report by united nations environment programme
+#+END_QUOTE
+
+* Why Vegan?
+  :PROPERTIES:
+  :CUSTOM_ID: why-vegan
+  :END:
+
+- The meat industry is the leading cause in:
+
+  - Global Warming
+  - Deforestation
+  - Water Depletion
+  - Species Extinction
+  - Ocean Deadzones
+  - Anti-biotic resistance
+
+* Random
+  :PROPERTIES:
+  :CUSTOM_ID: random
+  :END:
+
+#+BEGIN_QUOTE
+  https://en.reset.org/knowledge/digital-and-online-activismhttp://mashable.com/2011/08/15/online-activism/#ch8jLUEGUgq1connecting
+  people with a common goal of change.digital activism should serve six
+  key functions: shaping public opinion; planning an action; sharing a
+  call to action; taking action digitally; transfer of resources.The
+  history of change.org
+  https://ssir.org/articles/entry/from_petitions_to_decisions
+#+END_QUOTE
+
+* Competition
+  :PROPERTIES:
+  :CUSTOM_ID: competition
+  :END:
+
+- Change.org
+
+  - revenue: around $15 million in 2012
+  - business model:
+
+    - sponsored petitions
+
+      - pay per completed petition
+      - company receives email address
+      - after petition payed, link to donate now
+
+- Care2
+  [[https://www.thepetitionsite.com/][https://www.thepetitionsite.com]]
+- [[http://front.moveon.org/]]
+- 
+
+* Web Development
+  :PROPERTIES:
+  :CUSTOM_ID: web-development
+  :END:
+
+- [[http://slushjs.github.io/#/]]
+- [[https://webpack.js.org/]]
+- [[http://graphql.org/]]
+- [[https://babeljs.io/]]
+- [[http://survivejs.com/webpack/webpack-compared/]]
+- Build Stuff
+
+  - [[https://flowtype.org/]]
+
+- UI Design
+
+  - [[https://getuikit.com/]]
+  - [[http://semantic-ui.com/]]
+  - [[http://materializecss.com/]]
+  - [[https://getmdl.io/]]
+  - [[http://foundation.zurb.com/]]
+  - [[http://getbootstrap.com/]]
+
+- Mobile
+
+  - [[https://cordova.apache.org/]]
+
+- Backend
+
+  - [[http://expressjs.com/]]
+  - [[https://lumen.laravel.com/]]
+
+- Node.js Libs
+
+  - [[http://passportjs.org/]]
+
+- Yeoman
+
+  - [[https://github.com/kriasoft/nodejs-api-starter#readme]]
+  - [[https://github.com/diegohaz/rest]]
+  - [[https://github.com/fountainjs/generator-fountain-vue#readme]]
+
+- JS Libs
+
+  - lodash
+  - marked
+
+- Website
+
+  - [[https://pagekit.com/]]
+
+- Database
+
+  - MySQL / MariaDB / Percona
+  - NoSQL: MongoDB, ElasticSearch
+  - [[https://deepstream.io/]]
+
+- Mockups
+
+  - [[https://www.invisionapp.com/now]]
+
+- older?
+
+  - [[https://www.polymer-project.org/1.0/]]
+  - [[https://bower.io/]]
+  - [[http://yeoman.io/]]
+  - [[http://browserify.org/]]
+  - [[http://brunch.io/]]
+  - Grunt
+  - Gulp
+
+* Social Rebel Platform
+  :PROPERTIES:
+  :CUSTOM_ID: social-rebel-platform
+  :END:
+
+* Components
+  :PROPERTIES:
+  :CUSTOM_ID: components
+  :END:
+
+- News
+
+  - uses signals like: Reddit, Facebook, Twitter, Hackernews, ...
+  - IPTC taxonomy for tags
+  - broader SDGs for topics
+  - train classifiers using wikidata / wikinews
+
+- Politicians
+- Petitions
+
+  - Send petition to people on social
+  - Raise awareness by sharing a story / fact on social

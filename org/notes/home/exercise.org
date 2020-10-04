@@ -1,0 +1,6 @@
+* Exercise
+  :PROPERTIES:
+  :CUSTOM_ID: exercise
+  :END:
+
+[[file:exercise/sport.org][Sport]]

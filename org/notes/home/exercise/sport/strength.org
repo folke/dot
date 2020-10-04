@@ -1,0 +1,32 @@
+* Strength
+  :PROPERTIES:
+  :CUSTOM_ID: strength
+  :END:
+
+Friday: No Monday: No Saturday: No Sunday: Yes Thursday: Yes Tuesday:
+Yes Wednesday: No
+
+- halterstang: 7.75kg
+- [[https://strengthlevel.com/strength-standards/shoulder-press/kg]]
+- Recommended Routine
+- Folke's Routine
+
+  - First Pair (3x5-8)
+
+    - Pull-up (negative)
+    - Anti-Extension (planks; straight hanging leg raises)
+
+  - My Pair
+
+    - Barbells
+    - v sits with rotations (or side plank crunches)
+
+  - Second Pair (3x5-8)
+
+    - Dips
+    - Anti-Rotation (Copenhagen Plank: raised side plank)
+
+  - Third Pair (3x5-8)
+
+    - Rows (horizontal)
+    - Pushup (diamond)

@@ -1,0 +1,20 @@
+| Title                                 | Author            | Series                      | Pages | Score | Tags   | Status  |
+|---------------------------------------+-------------------+-----------------------------+-------+-------+--------+---------|
+| The Forever War                       | Joe Haldeman      | Forever War                 | 292   | 4.15  |        | Read    |
+| The Collapsing Empire                 | John Scalzi       | Interdependency             | 336   | 4.1   |        | Read    |
+| Dune                                  | Frank Herbert     | Dune                        | 604   | 4.23  |        | Read    |
+| The Player of Games                   | Iain M. Banks     | Culture                     | 417   | 4.27  |        | Next Up |
+| The Fall of Hyperion                  | Dan Simmons       | Hyperion Cantos             | 518   | 4.2   |        | Next Up |
+| Recursion                             | Blake Crouch      |                             | 336   | 4.18  |        | Next Up |
+| The Ghost Brigades                    | John Scalzi       | Old Man's War               | 347   | 4.1   |        | Next Up |
+| The Three-Body Problem                | Liu Cixin         | Remembrance of Earth's Past | 400   | 4.06  |        | Next Up |
+| Ancillary Justice                     | Ann Leckie        | Imperial Radch              | 397   | 3.98  |        | Next Up |
+| Network Effect                        | Martha Wells      | Murderbot Diaries           | 352   | 4.61  |        | Backlog |
+| Judas Unchained                       | Peter F. Hamilton | Commonwealth Saga           | 848   | 4.31  |        | Backlog |
+| The Frontiers Saga: Episodes 1-3      | Ryk Brown         | Frontiers Saga              | 657   | 4.26  |        | Backlog |
+| The Long Way to a Small, Angry Planet | Becky Chambers    | Wayfarers                   | 518   | 4.17  |        | Backlog |
+| Daemon                                | Daniel Suarez     | Daemon                      | 430   | 4.16  | ai     | Backlog |
+| Beyond the Blue Event Horizon         | Frederik Pohl     | Heechee Saga                | 336   | 3.95  | aliens | Backlog |
+| Revelation Space                      |                   |                             |       |       |        |         |
+| Gateway                               |                   |                             |       |       |        |         |
+| Speaker for the dead                  |                   |                             |       |       |        |         |

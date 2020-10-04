@@ -1,0 +1,6 @@
+* Todos
+  :PROPERTIES:
+  :CUSTOM_ID: todos
+  :END:
+
+[[file:todos/tasks.org][Tasks]]

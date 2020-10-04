@@ -1,0 +1,9 @@
+| Name                                        | Created              | Due          | Priority   | Status    | Tags           |
+|---------------------------------------------+----------------------+--------------+------------+-----------+----------------|
+| BE Taxes 2018                               | Oct 18, 2019 8:21 PM |              | !!! High 🔥 | Done      | finance        |
+| US Taxes 2018                               | Oct 18, 2019 8:21 PM |              | !!! High 🔥 | Next Week | finance        |
+| Move Domains from GoDaddy to Google domains | Oct 18, 2019 8:21 PM |              | ! Low      |           |                |
+| Sell Subaru                                 | Oct 18, 2019 8:27 PM |              | !!! High 🔥 | Done      | finance        |
+| Hospitalisatieverzekering KBC               | Oct 18, 2019 8:29 PM |              | !! Medium  | This Week | administration |
+| Tattoo Removal                              | Oct 18, 2019 8:30 PM | Oct 22, 2019 | !! Medium  | Next Week | health         |
+| New Task                                    | Oct 18, 2019 9:03 PM |              | !! Medium  |           |                |

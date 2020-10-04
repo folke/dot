@@ -1,0 +1,84 @@
+* Map Service
+  :PROPERTIES:
+  :CUSTOM_ID: map-service
+  :END:
+
+* Database Setup
+  :PROPERTIES:
+  :CUSTOM_ID: database-setup
+  :END:
+
+#+BEGIN_SRC sh
+  git clone [https://github.com/openmaptiles/openmaptiles](https://github.com/openmaptiles/openmaptiles)
+#+END_SRC
+
+Before doing anything, edit =docker-compose.yaml= and change the docker
+image for postgres to =sophox/postgis= to ensure we can use the PostGIS
+[[https://postgis.net/docs/st_asmvt.html][ST_AsMVT]] function to
+generate vector tiles dynamically.
+
+Now start up the database container.
+
+#+BEGIN_SRC sh
+  docker-compose up -d postgres
+#+END_SRC
+
+* Import Data
+  :PROPERTIES:
+  :CUSTOM_ID: import-data
+  :END:
+
+Import external data from
+[[http://osmdata.openstreetmap.de/][OpenStreetMapData]],
+[[http://www.naturalearthdata.com/][Natural Earth]] and
+[[https://github.com/lukasmartinelli/osm-lakelines][OpenStreetMap Lake
+Labels]].
+
+#+BEGIN_SRC sh
+  docker-compose run import-water
+  docker-compose run import-natural-earth
+  docker-compose run import-lakelines
+  docker-compose run import-osmborder
+#+END_SRC
+
+[[http://download.geofabrik.de/][Download OpenStreetMap data extracts]]
+and store the PBF file in the =./data= directory.
+
+#+BEGIN_SRC sh
+  cd data
+  wget <http://download.geofabrik.de/europe/albania-latest.osm.pbf>
+#+END_SRC
+
+[[https://github.com/openmaptiles/import-osm][Import OpenStreetMap
+data]] with the mapping rules from =build/mapping.yaml= (which has been
+created by =make=).
+
+#+BEGIN_SRC sh
+  docker-compose run import-osm
+#+END_SRC
+
+* Run Postile
+  :PROPERTIES:
+  :CUSTOM_ID: run-postile
+  :END:
+
+#+BEGIN_SRC sh
+  ~/Library/Python/3.7/bin/postile --cors --tm2 build/openmaptiles.tm2source/data.yml --pghost localhost --pgdatabase openmaptiles --pguser openmaptiles --pgpassword openmaptiles --pgport 32775 --style style.json --fonts fonts/
+#+END_SRC
+
+Now you can use
+[[http://localhost:8080/%7bz%7d/%7bx%7d/%7by%7d.pbf][=http://localhost:8080/{z}/{x}/{y}.pbf=]]
+as a source in Maputnik or any other map renderer
+
+* Run Openmaptiles Postserve
+  :PROPERTIES:
+  :CUSTOM_ID: run-openmaptiles-postserve
+  :END:
+
+#+BEGIN_SRC sh
+  docker run -it --rm -v "${PWD}:/tileset" -p 8090:8090 --net=openmaptiles_postgres_conn openmaptiles/openmaptiles-tools postserve -h postgres openmaptiles.yaml
+#+END_SRC
+
+Now you can use
+[[http://localhost:8080/%7bz%7d/%7bx%7d/%7by%7d.pbf][=http://localhost:8090/tiles/{z}/{x}/{y}.pbf=]]
+as a source in Maputnik or any other map renderer

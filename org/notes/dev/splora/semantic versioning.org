@@ -1,0 +1,10 @@
+* Semantic Versioning
+  :PROPERTIES:
+  :CUSTOM_ID: semantic-versioning
+  :END:
+
+- standard-version
+- semantic-release
+- lerna ---version
+- ultra ---cwd
+- ultra ---workspaces

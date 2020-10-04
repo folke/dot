@@ -1,0 +1,22 @@
+* Hacking
+  :PROPERTIES:
+  :CUSTOM_ID: hacking
+  :END:
+
+** Wargames
+   :PROPERTIES:
+   :CUSTOM_ID: wargames
+   :END:
+
+[[https://overthewire.org/wargames/][Wargames]]
+
+[[https://crackmes.one/][Crackmes]]
+
+[[http://reversing.kr/index.php][Reversing.Kr]]
+
+** Tools
+   :PROPERTIES:
+   :CUSTOM_ID: tools
+   :END:
+
+[[https://www.radare.org/n/][radare]]
