@@ -1,8 +1,5 @@
 * The Three-Body Problem
-  :PROPERTIES:
-  :CUSTOM_ID: the-three-body-problem
-  :END:
-
+  
 Author: Liu Cixin Pages: 400 Score: 4.06 Series: Remembrance of Earth's
 Past Status: Next Up
 

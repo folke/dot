@@ -1,8 +1,5 @@
 * Westworld
-  :PROPERTIES:
-  :CUSTOM_ID: westworld
-  :END:
-
+  
 Status: Watching
 
 Season 2

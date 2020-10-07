@@ -1,13 +1,7 @@
 * Cryptography
-  :PROPERTIES:
-  :CUSTOM_ID: cryptography
-  :END:
-
+  
 ** Challenges
-   :PROPERTIES:
-   :CUSTOM_ID: challenges
-   :END:
-
+   
 [[https://id0-rsa.pub/][]]
 
 [[https://cryptopals.com/][The Cryptopals Crypto Challenges]]

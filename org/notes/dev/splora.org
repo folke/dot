@@ -62,10 +62,7 @@ Paths
       - overview of routes, etc
 
 * WikiData
-  :PROPERTIES:
-  :CUSTOM_ID: wikidata
-  :END:
-
+  
 - API Docs:
   [[https://www.mediawiki.org/wiki/api:query][https://www.mediawiki.org/wiki/API:Query]]
 - Fetch wikidata json:
@@ -95,10 +92,7 @@ Paths
   [[https://commons.wikimedia.org/w/index.php?title=special:redirect/file&wpvalue=][https://commons.wikimedia.org/w/index.php?title=Special:Redirect/file&wpvalue=]]
 
 * Competition
-  :PROPERTIES:
-  :CUSTOM_ID: competition
-  :END:
-
+  
 Find and create trails:
 
 - WikiLoc
@@ -111,10 +105,7 @@ Find and create trails:
 - Fatmap
 
 * Data Sources
-  :PROPERTIES:
-  :CUSTOM_ID: data-sources
-  :END:
-
+  
 [[https://tripomatic-assets.s3.amazonaws.com/persistent/app-content/attributions.html][Attributions]]
 
 - [[https://www.naturalearthdata.com/]]
@@ -124,29 +115,20 @@ Find and create trails:
 - [[https://github.com/simonepri/geo-maps]]
 
 * interesting
-  :PROPERTIES:
-  :CUSTOM_ID: interesting
-  :END:
-
+  
 [[https://frontendchecklist.io/]]
 
 [[https://github.com/leeoniya/uplot][https://github.com/leeoniya/uPlot]]
 
 * Geo Coding
-  :PROPERTIES:
-  :CUSTOM_ID: geo-coding
-  :END:
-
+  
 - [[https://getlon.lat/]]
 - [[https://locationiq.com/]]
 - Free Geocoder!!!
   [[https://developers.arcgis.com/rest/geocode/api-reference/geocoding-suggest.htm]]
 
 ** POIs
-   :PROPERTIES:
-   :CUSTOM_ID: pois
-   :END:
-
+   
 - OpenStreetMap: maps, pois
 - Wikipedia: articles on POIs
 - Wikivoyage: travel guide
@@ -168,19 +150,13 @@ Find and create trails:
   - osmbc symbol rendering
 
 ** Mapping
-   :PROPERTIES:
-   :CUSTOM_ID: mapping
-   :END:
-
+   
 - [[https://openmaptiles.org/]]
 - [[https://open-elevation.com/][https://open-elevation.com]]
 - [[https://download.geofabrik.de/]] OSM data extracts
 
 ** Navigation
-   :PROPERTIES:
-   :CUSTOM_ID: navigation
-   :END:
-
+   
 - [[http://project-osrm.org/]]
 
   - super fast
@@ -221,19 +197,13 @@ Find and create trails:
   - they have randomaized routes based on a distance
 
 ** Interesting
-   :PROPERTIES:
-   :CUSTOM_ID: interesting-1
-   :END:
-
+   
 [[https://taginfo.openstreetmap.org/]]
 
 [[https://wiki.openstreetmap.org/wiki/ideas_for_a_new_hiking_map][https://wiki.openstreetmap.org/wiki/Ideas_for_a_new_Hiking_Map]]
 
 ** Map Providers
-   :PROPERTIES:
-   :CUSTOM_ID: map-providers
-   :END:
-
+   
 - [[https://leaflet-extras.github.io/leaflet-providers/preview/]]
 - [[https://esri.github.io/esri-leaflet/]]
 - [[https://github.com/nst-guide/osm-liberty-topo]]
@@ -242,19 +212,13 @@ Find and create trails:
 - Wikimedia
 
 ** Tile Servers
-   :PROPERTIES:
-   :CUSTOM_ID: tile-servers
-   :END:
-
+   
 - [[https://wiki.openstreetmap.org/wiki/tile_servers][https://wiki.openstreetmap.org/wiki/Tile_servers]]
 - ESRI Osm Basemap
   [[https://www.arcgis.com/home/item.html?id=fae788aa91e54244b161b59725dcbb2a]]
 
 ** Interesting Maps
-   :PROPERTIES:
-   :CUSTOM_ID: interesting-maps
-   :END:
-
+   
 - [[https://hikebikemap.org/]]
 - [[https://hiking.waymarkedtrails.org/]]
 - [[https://www.opencyclemap.org/]]
@@ -262,19 +226,13 @@ Find and create trails:
 - [[http://www.openfietsmap.nl/]]
 
 ** Mapping Hiking Routes
-   :PROPERTIES:
-   :CUSTOM_ID: mapping-hiking-routes
-   :END:
-
+   
 - [[https://wiki.openstreetmap.org/wiki/hiking_maps][https://wiki.openstreetmap.org/wiki/Hiking_Maps]]
 - [[https://wiki.openstreetmap.org/wiki/hiking][https://wiki.openstreetmap.org/wiki/Hiking]]
 - [[https://wiki.openstreetmap.org/wiki/walking_routes][https://wiki.openstreetmap.org/wiki/Walking_Routes]]
 
 ** Commercial
-   :PROPERTIES:
-   :CUSTOM_ID: commercial
-   :END:
-
+   
 - booking.com: hotels
 - [[https://getyourguide.com/][https://getyourguide.com]]: activities
 - rental cars
@@ -291,10 +249,7 @@ Find and create trails:
   - moon
 
 ** Carbon Offsetting
-   :PROPERTIES:
-   :CUSTOM_ID: carbon-offsetting
-   :END:
-
+   
 - [[https://medium.com/coding-with-flutter/flutter-building-a-flight-co2-calculator-part-1-899c2a86e00b]]
 - [[https://openflights.org/data.html]]
 - [[https://ctxglobal.com/]]
@@ -304,36 +259,24 @@ Find and create trails:
 - [[http://www.co2zoo.com/]]
 
 ** Curated Lists
-   :PROPERTIES:
-   :CUSTOM_ID: curated-lists
-   :END:
-
+   
 - theculturetrip
 - atlasobscura
 - lonelyplanet
 
 ** POI Taxonomies
-   :PROPERTIES:
-   :CUSTOM_ID: poi-taxonomies
-   :END:
-
+   
 #+BEGIN_QUOTE
   https://github.com/pelias/pelias/wiki/Taxonomy-v1
 #+END_QUOTE
 
 ** Sustainable Travel
-   :PROPERTIES:
-   :CUSTOM_ID: sustainable-travel
-   :END:
-
+   
 - [[https://greenglobaltravel.com/green-travel-tips-ultimate-guide-sustainable-travel/]]
 - [[https://tourismdashboard.org/explore-the-data/]]
 
 ** Wikidata
-   :PROPERTIES:
-   :CUSTOM_ID: wikidata-1
-   :END:
-
+   
 Getting Started | DBpedia
 [[https://wiki.dbpedia.org/develop/getting-started]]
 
@@ -394,10 +337,7 @@ Wikidata:Tools/For programmers - Wikidata
 [[https://www.wikidata.org/wiki/wikidata:tools/for_programmers][https://www.wikidata.org/wiki/Wikidata:Tools/For_programmers]]
 
 * Openstreetmaps Database
-  :PROPERTIES:
-  :CUSTOM_ID: openstreetmaps-database
-  :END:
-
+  
 [[https://switch2osm.org/loading-osm-data/][Loading OSM data]]
 
 [[https://github.com/osmcode/node-osmium/blob/master/doc/tutorial.org][osmcode/node-osmium]]

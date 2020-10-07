@@ -1,6 +1,3 @@
 * Move Domains from GoDaddy to Google domains
-  :PROPERTIES:
-  :CUSTOM_ID: move-domains-from-godaddy-to-google-domains
-  :END:
-
+  
 Created: Oct 18, 2019 8:21 PM Priority: ! Low

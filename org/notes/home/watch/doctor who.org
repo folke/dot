@@ -1,8 +1,5 @@
 * Doctor Who
-  :PROPERTIES:
-  :CUSTOM_ID: doctor-who
-  :END:
-
+  
 Genre: Scifi Score: 8.6 Status: On Hold Type: TV Series
 
 [[https://www.amazon.com/The-Eleventh-Hour/dp/B003G94BZC/ref=sr_1_1?keywords=doctor+who+season+5&qid=1573572163&s=instant-video&sr=1-1][]]

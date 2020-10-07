@@ -1,6 +1,3 @@
 * Recursion
-  :PROPERTIES:
-  :CUSTOM_ID: recursion
-  :END:
-
+  
 Author: Blake Crouch Pages: 336 Score: 4.18 Status: Next Up

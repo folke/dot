@@ -1,20 +1,11 @@
 * Social Rebel
-  :PROPERTIES:
-  :CUSTOM_ID: social-rebel
-  :END:
-
+  
 * Events
-  :PROPERTIES:
-  :CUSTOM_ID: events
-  :END:
-
+  
 - Sep 17, 2017: Social Good Summit
 
 * Ideas
-  :PROPERTIES:
-  :CUSTOM_ID: ideas
-  :END:
-
+  
 - fact checking platform
 
   - Google chrome plugin that annotates articles with facts
@@ -28,10 +19,7 @@
   - know how your portfolio looks like according to the SDGs
 
 * Startups
-  :PROPERTIES:
-  :CUSTOM_ID: startups
-  :END:
-
+  
 - [[http://hustle.life/]]
 
   - platform to easily reach out over sms to your supporters
@@ -54,10 +42,7 @@
 - [[https://greenwire.greenpeace.org/usa/en/home]]
 
 * Sustainable Development Goals
-  :PROPERTIES:
-  :CUSTOM_ID: sustainable-development-goals
-  :END:
-
+  
 - [[http://17goals.org/]]
 - [[http://www.un.org/sustainabledevelopment/takeaction/]]
 - [[http://unstats.un.org/sdgs/report/2016/]]
@@ -129,20 +114,14 @@
   - 
 
 * Other Sites
-  :PROPERTIES:
-  :CUSTOM_ID: other-sites
-  :END:
-
+  
 - [[https://www.pexels.com/]]
 - [[https://unsplash.com/collections]]
 - [[http://berkeley.impacthub.net/coworking/]]
 - [[http://www.crowdtangle.com/customers]]
 
 * Activism Tools
-  :PROPERTIES:
-  :CUSTOM_ID: activism-tools
-  :END:
-
+  
 - [[https://cryptpad.fr/]]
 - [[https://freenetproject.org/download.html#autostart]]
 - [[https://pad.riseup.net/]]
@@ -153,10 +132,7 @@
 - 
 
 ** Structure
-   :PROPERTIES:
-   :CUSTOM_ID: structure
-   :END:
-
+   
 - goals
 
   - targets
@@ -171,10 +147,7 @@
 - supporters
 
 * Action Platform
-  :PROPERTIES:
-  :CUSTOM_ID: action-platform
-  :END:
-
+  
 #+BEGIN_QUOTE
   An example of this might be the #NoBanNoWall movement is the
   overarching organization, but there's then a NYC, Boston, etc chapter
@@ -214,10 +187,7 @@
 - Gamification
 
 * News Categories
-  :PROPERTIES:
-  :CUSTOM_ID: news-categories
-  :END:
-
+  
 - [[https://en.wikinews.org/wiki/wikinews:archives/all][https://en.wikinews.org/wiki/Wikinews:Archives/All]]
 - [[https://iptc.org/standards/media-topics/]]
 - [[https://iptc.org/standards/newscodes/]]
@@ -229,10 +199,7 @@
 - [[https://medium.com/virtuoso-blog/on-the-mutually-beneficial-nature-of-dbpedia-and-wikidata-5fb2b9f22ada#.pn7qsmhsh]]
 
 * People
-  :PROPERTIES:
-  :CUSTOM_ID: people
-  :END:
-
+  
 - [[https://github.com/unitedstates/congress-legislators]] → US data
   repository of politicians
 - [[http://everypolitician.org/]] → global data repository of
@@ -242,18 +209,12 @@
 - [[https://democracy.io/#/compose]]
 
 * Corp Site
-  :PROPERTIES:
-  :CUSTOM_ID: corp-site
-  :END:
-
+  
 - [[https://www.logojoy.com/]]
 - [[https://www.highresolution.design/]]
 
 * Activism
-  :PROPERTIES:
-  :CUSTOM_ID: activism
-  :END:
-
+  
 - [[https://www.indivisibleguide.com/download-the-guide]]
 - [[http://whatdoidoabouttrump.com/action-pods/#tools]]
 - [[http://www.theworldisaterribleplace.com/ohcrap/things-to-do-now-the-tldr-checklist/]]
@@ -266,20 +227,14 @@
 - [[https://www.internetsociety.org/who-we-are]]
 
 * Marketing
-  :PROPERTIES:
-  :CUSTOM_ID: marketing
-  :END:
-
+  
 - [[http://www.nptechforgood.com/2016/11/08/10-social-media-strategies-that-increase-engagement-and-inspire-donors/]]
 - [[https://digitalsocial.eu/]]
 - [[https://capssi.eu/caps-projects/]]
 - [[http://neweconomyforum.org/]]
 
 * Funding
-  :PROPERTIES:
-  :CUSTOM_ID: funding
-  :END:
-
+  
 - [[https://www.ycombinator.com/rfs/#democracy]]
 - [[http://www.ycombinator.com/nonprofits/]]
 - [[http://effective-altruism.com/ea/pn/an_overview_of_y_combinators_nonprofit_program/]]
@@ -289,18 +244,12 @@
 - [[http://blog.ycombinator.com/yc-w17-launch-claire-peer5-waystocap-symple-rankscience-and-kudi/]]
 
 * Art Posters
-  :PROPERTIES:
-  :CUSTOM_ID: art-posters
-  :END:
-
+  
 - [[http://theamplifierfoundation.org/]]
 - [[https://www.goodtroublemag.com/]]
 
 * Feedly
-  :PROPERTIES:
-  :CUSTOM_ID: feedly
-  :END:
-
+  
 - user-id: eec86ee5-1a3b-480e-b7bc-04526a34326b
 - access token:
   AzBderW7KAsMMUq-R6NjkX7F8MKGlBBThgiMMw__ZYt4BZj-AwfCw_Nq8zpimFxLvvZJSWQfH1ZTuo1hDIimqbAkmvwI_412AHeN4MfDWM1CCwSuzCg64ITOnPxuGI4bfbuRYAosiMC2Fy0p7Y_bPMxpJZfXH82KXp5I5xECPOU4UMhcNDcApShiPSuqb-HDXSlh4TaLsjAWGTHxl1dLxlT9:feedlydev
@@ -312,10 +261,7 @@
 [[file:Social%20Rebel%20d51c23915f1c452080e8967c9b52b0d6/document_image_rId98.png]]
 
 * Random Notes
-  :PROPERTIES:
-  :CUSTOM_ID: random-notes
-  :END:
-
+  
 - Environmental awareness platform
 
   - Content around Global Goals
@@ -336,15 +282,9 @@
       environment
 
 * Platform
-  :PROPERTIES:
-  :CUSTOM_ID: platform
-  :END:
-
+  
 * Environment Stuff
-  :PROPERTIES:
-  :CUSTOM_ID: environment-stuff
-  :END:
-
+  
 - Climate change and impact on the environment:
   [[http://www.cowspiracy.com/]]
 - Health reasons: [[http://www.forksoverknives.com/]] (they also have a
@@ -364,10 +304,7 @@
 #+END_QUOTE
 
 * Why Vegan?
-  :PROPERTIES:
-  :CUSTOM_ID: why-vegan
-  :END:
-
+  
 - The meat industry is the leading cause in:
 
   - Global Warming
@@ -378,10 +315,7 @@
   - Anti-biotic resistance
 
 * Random
-  :PROPERTIES:
-  :CUSTOM_ID: random
-  :END:
-
+  
 #+BEGIN_QUOTE
   https://en.reset.org/knowledge/digital-and-online-activismhttp://mashable.com/2011/08/15/online-activism/#ch8jLUEGUgq1connecting
   people with a common goal of change.digital activism should serve six
@@ -392,10 +326,7 @@
 #+END_QUOTE
 
 * Competition
-  :PROPERTIES:
-  :CUSTOM_ID: competition
-  :END:
-
+  
 - Change.org
 
   - revenue: around $15 million in 2012
@@ -413,10 +344,7 @@
 - 
 
 * Web Development
-  :PROPERTIES:
-  :CUSTOM_ID: web-development
-  :END:
-
+  
 - [[http://slushjs.github.io/#/]]
 - [[https://webpack.js.org/]]
 - [[http://graphql.org/]]
@@ -484,15 +412,9 @@
   - Gulp
 
 * Social Rebel Platform
-  :PROPERTIES:
-  :CUSTOM_ID: social-rebel-platform
-  :END:
-
+  
 * Components
-  :PROPERTIES:
-  :CUSTOM_ID: components
-  :END:
-
+  
 - News
 
   - uses signals like: Reddit, Facebook, Twitter, Hackernews, ...

@@ -1,25 +1,16 @@
 * Europe Trip
-  :PROPERTIES:
-  :CUSTOM_ID: europe-trip
-  :END:
-
+  
 Date: Mar 21, 2018 → Mar 31, 2018 People: Sasha & Bill Places: Spain,
 Portugal, and Italy Status: Booked
 
 ** Things to do
-   :PROPERTIES:
-   :CUSTOM_ID: things-to-do
-   :END:
-
+   
 - ...
 - ...
 - ...
 
 ** Notes
-   :PROPERTIES:
-   :CUSTOM_ID: notes
-   :END:
-
+   
 - ...
 - ...
 - ...

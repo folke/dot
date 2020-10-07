@@ -1,20 +1,11 @@
 * Mapbox Vector Tyles
-  :PROPERTIES:
-  :CUSTOM_ID: mapbox-vector-tyles
-  :END:
-
+  
 ** Resources
-   :PROPERTIES:
-   :CUSTOM_ID: resources
-   :END:
-
+   
 [[https://github.com/mapbox/awesome-vector-tiles][mapbox/awesome-vector-tiles]]
 
 ** MVT Styling
-   :PROPERTIES:
-   :CUSTOM_ID: mvt-styling
-   :END:
-
+   
 [[https://sputnik-maps.github.io/mvt-styler/][MVT Styler]]
 
 [[https://github.com/go-spatial/fresco][go-spatial/fresco]]
@@ -22,10 +13,7 @@
 [[https://maputnik.github.io/][Maputnik]]
 
 ** MVT Servers
-   :PROPERTIES:
-   :CUSTOM_ID: mvt-servers
-   :END:
-
+   
 [[https://github.com/tobinbradley/dirt-simple-postgis-http-api][tobinbradley/dirt-simple-postgis-http-api]]
 
 [[https://github.com/urbica/martin][urbica/martin]]
@@ -37,17 +25,11 @@
 [[https://github.com/faradayio/tilesplash][faradayio/tilesplash]]
 
 ** Debugging
-   :PROPERTIES:
-   :CUSTOM_ID: debugging
-   :END:
-
+   
 [[https://github.com/lukasmartinelli/mapbox-gl-inspect][lukasmartinelli/mapbox-gl-inspect]]
 
 ** Articles
-   :PROPERTIES:
-   :CUSTOM_ID: articles
-   :END:
-
+   
 [[https://info.crunchydata.com/blog/dynamic-vector-tiles-from-postgis][Serving
 Dynamic Vector Tiles from PostGIS]]
 

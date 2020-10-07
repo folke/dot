@@ -1,16 +1,10 @@
 * Bear Trail
-  :PROPERTIES:
-  :CUSTOM_ID: bear-trail
-  :END:
-
+  
 [[https://www.bearsports.nl/events/bear-trail/][Bear Trail & Grizzly
 100 - Bearsports]]
 
 * Todo
-  :PROPERTIES:
-  :CUSTOM_ID: todo
-  :END:
-
+  
 - Pack
 
   - ☒ Pharmacy
@@ -49,20 +43,14 @@
   - ☒ Set Ultra Mode on Watch
 
 * Bevoorrading
-  :PROPERTIES:
-  :CUSTOM_ID: bevoorrading
-  :END:
-
+  
 - 10
 - 25 (15)
 - 43 (18)
 - 58 (15)
 
 ** Camper
-   :PROPERTIES:
-   :CUSTOM_ID: camper
-   :END:
-
+   
 [[https://goo.gl/maps/5innhurxstlvtbxu9][https://goo.gl/maps/5innhurxSTLvtbxU9]]
 
 [[https://goo.gl/maps/nrqrtdkvznqueykb6][https://goo.gl/maps/NrqrtdkvznQueyKB6]]

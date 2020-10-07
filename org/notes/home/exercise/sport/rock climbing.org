@@ -1,7 +1,4 @@
 * Rock Climbing
-  :PROPERTIES:
-  :CUSTOM_ID: rock-climbing
-  :END:
-
+  
 Friday: No Monday: No Saturday: Yes Sunday: No Thursday: No Tuesday: No
 Wednesday: No

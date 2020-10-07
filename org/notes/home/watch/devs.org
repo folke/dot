@@ -1,6 +1,3 @@
 * Devs
-  :PROPERTIES:
-  :CUSTOM_ID: devs
-  :END:
-
+  
 Status: Watched

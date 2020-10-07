@@ -1,16 +1,10 @@
 * Sell Subaru
-  :PROPERTIES:
-  :CUSTOM_ID: sell-subaru
-  :END:
-
+  
 Created: Oct 18, 2019 8:27 PM Priority: !!! High 🔥 Status: Done Tags:
 finance
 
 * Todo
-  :PROPERTIES:
-  :CUSTOM_ID: todo
-  :END:
-
+  
 - ☒ bring two car keys
 
 - ☒ bring title

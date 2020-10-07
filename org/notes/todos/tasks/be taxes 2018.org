@@ -1,7 +1,4 @@
 * BE Taxes 2018
-  :PROPERTIES:
-  :CUSTOM_ID: be-taxes-2018
-  :END:
-
+  
 Created: Oct 18, 2019 8:21 PM Priority: !!! High 🔥 Status: Done Tags:
 finance

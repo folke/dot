@@ -1,7 +1,4 @@
 * Yoga
-  :PROPERTIES:
-  :CUSTOM_ID: yoga
-  :END:
-
+  
 Friday: No Monday: No Saturday: No Sunday: No Thursday: Yes Tuesday: No
 Wednesday: No

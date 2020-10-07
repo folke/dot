@@ -1,8 +1,5 @@
 * Development
-  :PROPERTIES:
-  :CUSTOM_ID: development
-  :END:
-
+  
 - Git:
 
   - Github

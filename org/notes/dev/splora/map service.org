@@ -1,13 +1,7 @@
 * Map Service
-  :PROPERTIES:
-  :CUSTOM_ID: map-service
-  :END:
-
+  
 * Database Setup
-  :PROPERTIES:
-  :CUSTOM_ID: database-setup
-  :END:
-
+  
 #+BEGIN_SRC sh
   git clone [https://github.com/openmaptiles/openmaptiles](https://github.com/openmaptiles/openmaptiles)
 #+END_SRC
@@ -24,10 +18,7 @@ Now start up the database container.
 #+END_SRC
 
 * Import Data
-  :PROPERTIES:
-  :CUSTOM_ID: import-data
-  :END:
-
+  
 Import external data from
 [[http://osmdata.openstreetmap.de/][OpenStreetMapData]],
 [[http://www.naturalearthdata.com/][Natural Earth]] and
@@ -58,10 +49,7 @@ created by =make=).
 #+END_SRC
 
 * Run Postile
-  :PROPERTIES:
-  :CUSTOM_ID: run-postile
-  :END:
-
+  
 #+BEGIN_SRC sh
   ~/Library/Python/3.7/bin/postile --cors --tm2 build/openmaptiles.tm2source/data.yml --pghost localhost --pgdatabase openmaptiles --pguser openmaptiles --pgpassword openmaptiles --pgport 32775 --style style.json --fonts fonts/
 #+END_SRC
@@ -71,10 +59,7 @@ Now you can use
 as a source in Maputnik or any other map renderer
 
 * Run Openmaptiles Postserve
-  :PROPERTIES:
-  :CUSTOM_ID: run-openmaptiles-postserve
-  :END:
-
+  
 #+BEGIN_SRC sh
   docker run -it --rm -v "${PWD}:/tileset" -p 8090:8090 --net=openmaptiles_postgres_conn openmaptiles/openmaptiles-tools postserve -h postgres openmaptiles.yaml
 #+END_SRC

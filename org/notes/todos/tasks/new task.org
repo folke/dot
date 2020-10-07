@@ -1,6 +1,3 @@
 * New Task
-  :PROPERTIES:
-  :CUSTOM_ID: new-task
-  :END:
-
+  
 Created: Oct 18, 2019 9:03 PM Priority: !! Medium

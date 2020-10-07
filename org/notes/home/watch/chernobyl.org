@@ -1,6 +1,3 @@
 * Chernobyl
-  :PROPERTIES:
-  :CUSTOM_ID: chernobyl
-  :END:
-
+  
 Status: Watching

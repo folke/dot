@@ -1,6 +1,3 @@
 * Wikimedia Search
-  :PROPERTIES:
-  :CUSTOM_ID: wikimedia-search
-  :END:
-
+  
 [[https://www.wikidata.org/w/api.php?action=wbgetentities&ids=q1%7cq42&props=sitelinks&languages=en%7cde%7cfr&sitefilter=enwiki%7cnlwiki%7cfrwiki][https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q1|Q42&props=sitelinks&languages=en|de|fr&sitefilter=enwiki|nlwiki|frwiki]]

@@ -1,8 +1,5 @@
 * Cicada 3301
-  :PROPERTIES:
-  :CUSTOM_ID: cicada-3301
-  :END:
-
+  
 [[https://uncovering-cicada.fandom.com/wiki/uncovering_cicada_wiki][Uncovering
 Cicada Wiki]]
 

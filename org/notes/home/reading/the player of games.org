@@ -1,8 +1,5 @@
 * The Player of Games
-  :PROPERTIES:
-  :CUSTOM_ID: the-player-of-games
-  :END:
-
+  
 Author: Iain M. Banks Pages: 417 Score: 4.27 Series: Culture Status:
 Next Up
 

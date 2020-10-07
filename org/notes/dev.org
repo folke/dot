@@ -1,13 +1,7 @@
 * Dev
-  :PROPERTIES:
-  :CUSTOM_ID: dev
-  :END:
-
+  
 ** Projects
-   :PROPERTIES:
-   :CUSTOM_ID: projects
-   :END:
-
+   
 --------------
 
 [[file:dev/splora.org][Splora]]
@@ -17,10 +11,7 @@
 [[file:dev/dot.org][Dot]]
 
 ** Learn
-   :PROPERTIES:
-   :CUSTOM_ID: learn
-   :END:
-
+   
 --------------
 
 [[file:dev/cryptography.org][Cryptography]]
@@ -32,10 +23,7 @@
 [[file:dev/cicada 3301.org][Cicada 3301]]
 
 ** Startup Ideas
-   :PROPERTIES:
-   :CUSTOM_ID: startup-ideas
-   :END:
-
+   
 --------------
 
 - Funding for nature. Concessions

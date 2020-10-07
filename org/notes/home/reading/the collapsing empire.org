@@ -1,7 +1,4 @@
 * The Collapsing Empire
-  :PROPERTIES:
-  :CUSTOM_ID: the-collapsing-empire
-  :END:
-
+  
 Author: John Scalzi Pages: 336 Score: 4.1 Series: Interdependency
 Status: Read

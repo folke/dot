@@ -1,8 +1,5 @@
 * The Fall of Hyperion
-  :PROPERTIES:
-  :CUSTOM_ID: the-fall-of-hyperion
-  :END:
-
+  
 Author: Dan Simmons Pages: 518 Score: 4.2 Series: Hyperion Cantos
 Status: Next Up
 

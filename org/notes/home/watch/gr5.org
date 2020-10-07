@@ -1,6 +1,3 @@
 * GR5
-  :PROPERTIES:
-  :CUSTOM_ID: gr5
-  :END:
-
+  
 Status: Watched

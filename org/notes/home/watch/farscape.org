@@ -1,6 +1,3 @@
 * Farscape
-  :PROPERTIES:
-  :CUSTOM_ID: farscape
-  :END:
-
+  
 Genre: Scifi Score: 8.3 Status: On Hold Type: TV Series

@@ -1,15 +1,9 @@
 * Dot
-  :PROPERTIES:
-  :CUSTOM_ID: dot
-  :END:
-
+  
 [[https://github.com/folke/dot][]]
 
 * Managing Dot Files with Git
-  :PROPERTIES:
-  :CUSTOM_ID: managing-dot-files-with-git
-  :END:
-
+  
 Create a =dot= alias that uses =.dot= as the git repository and your
 =$HOME= as the working directory. Make sure to add it to your =.bashrc=
 or =.zshrc=
@@ -21,10 +15,7 @@ or =.zshrc=
 You can now use =dot= to manage any file in your home directory.
 
 ** Restoring Dot Files
-   :PROPERTIES:
-   :CUSTOM_ID: restoring-dot-files
-   :END:
-
+   
 Add =.dot= to =.gitignore= to prevent weird recursion issues.
 
 #+BEGIN_SRC sh

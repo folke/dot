@@ -1,13 +1,7 @@
 * Linux On Mac
-  :PROPERTIES:
-  :CUSTOM_ID: linux-on-mac
-  :END:
-
+  
 ** Interesting Links
-   :PROPERTIES:
-   :CUSTOM_ID: interesting-links
-   :END:
-
+   
 [[https://github.com/mikeeq/mbp-fedora][mikeeq/mbp-fedora]]
 
 [[https://gist.github.com/trpb/437f663b545d23cc8a2073253c774be3][Guide:
@@ -19,10 +13,7 @@ finder]]
 [[https://github.com/Dunedan/mbp-2016-linux/issues/71][]]
 
 ** Tiling Window Manager
-   :PROPERTIES:
-   :CUSTOM_ID: tiling-window-manager
-   :END:
-
+   
 - Awesome
 - Sway (i3 for Wayland)
 - Bspwm

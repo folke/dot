@@ -1,8 +1,5 @@
 * The Ghost Brigades
-  :PROPERTIES:
-  :CUSTOM_ID: the-ghost-brigades
-  :END:
-
+  
 Author: John Scalzi Pages: 347 Score: 4.1 Series: Old Man's War Status:
 Next Up
 

@@ -1,7 +1,4 @@
 * Network Effect
-  :PROPERTIES:
-  :CUSTOM_ID: network-effect
-  :END:
-
+  
 Author: Martha Wells Pages: 352 Score: 4.61 Series: Murderbot Diaries
 Status: Backlog

@@ -1,8 +1,5 @@
 * Strength
-  :PROPERTIES:
-  :CUSTOM_ID: strength
-  :END:
-
+  
 Friday: No Monday: No Saturday: No Sunday: Yes Thursday: Yes Tuesday:
 Yes Wednesday: No
 

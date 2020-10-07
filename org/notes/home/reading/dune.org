@@ -1,8 +1,5 @@
 * Dune
-  :PROPERTIES:
-  :CUSTOM_ID: dune
-  :END:
-
+  
 Author: Frank Herbert Pages: 604 Score: 4.23 Series: Dune Status: Read
 
 Set in the far future amidst a sprawling feudal interstellar empire
