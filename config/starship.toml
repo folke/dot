@@ -3,6 +3,13 @@
 #symbol = "➜"     # The "symbol" segment is being set to "➜"
 use_symbol_for_status = true  # Show "✖" when the command failed
 
+[custom.shell]
+command = "echo $STARSHIP_SHELL"  # shows output of command
+when = """ test "$STARSHIP_SHELL" != "fish" """
+style = "dimmed blue"
+format = "[$output]($style)"
+shell =["dash"]
+
 
 # [git_status]
 
