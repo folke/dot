@@ -1,5 +1,6 @@
 
 # Path
+set -x GOPATH ~/go
 set -p PATH ~/go/bin
 set -p PATH ~/bin
 set -p PATH ~/.cargo/bin
@@ -10,7 +11,9 @@ set -p PATH ~/.config/scripts/bin
 set -p PATH ~/Library/Python/3.8/bin
 set -p PATH /usr/local/opt/sqlite/bin
 set -p PATH /usr/local/sbin
+set -p PATH ~/.gem/ruby/2.6.0/bin
 set -p PATH ~/.local/bin/pnpm $PATH
+set -p PATH $GOPATH
 
 
 if status --is-interactive
