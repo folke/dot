@@ -1,12 +1,19 @@
-* Splora
-+ [[file:splora/development.org][Development]]
-+ [[file:splora/map service.org][Map Service]]
-+ [[file:splora/mapbox vector tyles.org][Mapbox Vector Tyles]]
-+ [[file:splora/wikimedia search.org][Wikimedia Search]]
+#+TITLE: Splora
+#+OPTIONS: toc:2
 
-** TODOS
-*** TODO fix imposm import (fix indices)
-*** TODO foobar
+* Splora
++ [[https://github.com/folke/splora][Development]]
++ [[file:splora/mapbox vector tyles.org][Mapbox Vector Tyles]]
+
+** TODOS [4/5]
+*** DONE fix imposm import (fix indices)
+*** DONE try to import the alps
+*** DONE make alps import faster
+*** TODO move mapbox to provide / inject
+*** DONE implement non-docker imposm3 [3/3]
+- [X] load .env
+- [X] fix forwarded postgresql docker port
+- [X] create script to properly run imposm3
 
 ** Graphql
 

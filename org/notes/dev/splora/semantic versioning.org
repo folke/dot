@@ -1,7 +1,0 @@
-* Semantic Versioning
-  
-- standard-version
-- semantic-release
-- lerna ---version
-- ultra ---cwd
-- ultra ---workspaces
