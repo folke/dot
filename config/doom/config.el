@@ -85,7 +85,7 @@
 (after! doom-modeline
   (setq doom-modeline-env-version t
         doom-modeline-github t
-        doom-modeline-github-interval (* 30 60)
+        doom-modeline-github-interval (* 10 60)
         doom-modeline-major-mode-icon t)
   (add-hook 'doom-modeline-before-github-fetch-notification-hook #'auth-source-pass-enable))
 (defun doom-modeline-conditional-buffer-encoding ()
@@ -117,5 +117,5 @@
 
 (setq org-directory "~/org/"
   org-roam-directory "~/org/notes/"
-  org-roam-tag-sources '(prop last-directory)
+  org-roam-tag-sources '(prop all-directories)
   +org-roam-open-buffer-on-find-file t)

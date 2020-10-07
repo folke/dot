@@ -125,7 +125,7 @@ font string. You generally only need these two:
 (after! doom-modeline
   (setq doom-modeline-env-version t
         doom-modeline-github t
-        doom-modeline-github-interval (* 30 60)
+        doom-modeline-github-interval (* 10 60)
         doom-modeline-major-mode-icon t)
   (add-hook 'doom-modeline-before-github-fetch-notification-hook #'auth-source-pass-enable))
 (defun doom-modeline-conditional-buffer-encoding ()
@@ -162,10 +162,11 @@ font string. You generally only need these two:
 (setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
 
 #+END_SRC
+
 *** Org Mode
 #+BEGIN_SRC elisp
 (setq org-directory "~/org/"
   org-roam-directory "~/org/notes/"
-  org-roam-tag-sources '(prop last-directory)
+  org-roam-tag-sources '(prop all-directories)
   +org-roam-open-buffer-on-find-file t)
 #+END_SRC
