@@ -10,7 +10,15 @@
       truncate-string-ellipsis "…"                ; Unicode ellispis are nicer than "...", and also save /precious/ space
       display-line-numbers-type 'relative
       which-key-idle-delay 0.3                    ; Show key binding help quicker
-      which-key-idle-secondary-delay 0)
+      which-key-idle-secondary-delay 0
+      shell-file-name "/usr/local/bin/bash"       ; Use Bash as default shell for running term which is faster
+      vterm-shell "/usr/local/bin/fish")          ; Use Fish in vterm
+
+(after! projectile
+  (setq projectile-project-root-files-bottom-up '("package.json" ".projectile" ".project" ".git")
+        projectile-project-search-path '("~/projects" "~/projects/splora/libs" "~/projects/splora/apps" "~/projects/splora/tools")))
+
+(setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
 ;; prefer right and bottom split
 (setq evil-vsplit-window-right t
@@ -52,7 +60,6 @@
 (after! (elfeed centaur-tabs)
   (add-hook 'elfeed-search-mode-hook 'centaur-tabs-local-mode))
 
-(setq projectile-project-search-path '("~/projects"))
 (setq +ivy-buffer-preview 1)
 
 (setq +treemacs-git-mode 'extended)
@@ -68,14 +75,19 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 ;;(setq doom-theme 'doom-moonlight)
+(setq doom-theme 'doom-palenight)
 
 (unless (equal "Battery status not available"
                (battery))
   (display-battery-mode 1))                       ; On laptops it's nice to know how much power you have
 
 (setq doom-modeline-persp-name t)                 ; show workspace
-(setq doom-modeline-env-version t)
-(setq doom-modeline-major-mode-icon t)
+(after! doom-modeline
+  (setq doom-modeline-env-version t
+        doom-modeline-github t
+        doom-modeline-github-interval (* 30 60)
+        doom-modeline-major-mode-icon t)
+  (add-hook 'doom-modeline-before-github-fetch-notification-hook #'auth-source-pass-enable))
 (defun doom-modeline-conditional-buffer-encoding ()
   "We expect the encoding to be LF UTF-8, so only show the modeline when this is not the case"
   (setq-local doom-modeline-buffer-encoding
@@ -99,8 +111,6 @@
                     t)
 
 (add-hook! 'elfeed-search-mode-hook 'elfeed-update) ; Update Elfeed when launched
-
-(setq vterm-shell "/usr/local/bin/fish")
 
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 (setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)

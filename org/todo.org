@@ -2,7 +2,7 @@
 ** [ ] Somthing else
 
 [[id:0979d545-c9de-4e1e-ba16-0dc757e1f6e0][Splora]]
-** [ ] [#A] do something
+** [ ] [#B] do something
 
 [[id:21e7ffa8-3e44-4d51-9002-9e511a031a7d][Splora]]
 ** TODO do something

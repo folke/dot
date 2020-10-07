@@ -1,3 +1,4 @@
+tap "amar1729/formulae"
 tap "clementtsang/bottom"
 tap "cmacrae/formulae"
 tap "d12frosted/emacs-plus"
@@ -16,6 +17,8 @@ brew "ack"
 brew "aria2"
 # Spell checker with better logic than ispell
 brew "aspell"
+# Tool for generating GNU Standards-compliant Makefiles
+brew "automake"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
@@ -52,12 +55,18 @@ brew "git"
 brew "git-delta"
 # Generic library support script
 brew "libtool"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
+# Powerful, lightweight programming language
+brew "lua"
+# Command-driven, interactive function plotting
+brew "gnuplot"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Colorize logfiles and command output
@@ -80,8 +89,6 @@ brew "jq"
 brew "languagetool"
 # Postgres C API library
 brew "libpq"
-# Powerful, lightweight programming language
-brew "lua"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Keep your Mac's application settings in sync
@@ -102,8 +109,12 @@ brew "neofetch"
 brew "neovim"
 # Small build system for use with gyp or CMake
 brew "ninja"
+# Libosmium-based command-line tool for processing OpenStreetMap data
+brew "osmium-tool"
 # Outputs current CPU temperature for OSX
 brew "osx-cpu-temp"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Password manager
 brew "pass"
 # Pretty system information tool written in POSIX sh
@@ -112,6 +123,8 @@ brew "pfetch"
 brew "pidof"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Object-relational database system
 brew "postgresql"
 # File browser
@@ -140,6 +153,8 @@ brew "tldr"
 brew "wget"
 # New cd command that helps you navigate faster by learning your habits
 brew "z.lua"
+# This is a host application for browserpass browser extension providing it access to your password store.
+brew "amar1729/formulae/browserpass"
 # A cross-platform graphical process/system monitor with a customizable interface and a multitude of features.
 brew "clementtsang/bottom/bottom"
 # A minimal status bar for macOS.
@@ -166,7 +181,10 @@ cask "github"
 cask "hammerspoon"
 cask "iterm2"
 cask "kitty"
+cask "mactex"
+cask "qutebrowser"
 cask "spotify"
+cask "spotmenu"
 cask "steam"
 cask "twitch"
 cask "ubersicht"
