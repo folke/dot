@@ -1,23 +1,14 @@
 * Splora
-  :PROPERTIES:
-  :CUSTOM_ID: splora
-  :ID:       0979d545-c9de-4e1e-ba16-0dc757e1f6e0
-  :END:
++ [[file:splora/development.org][Development]]
++ [[file:splora/map service.org][Map Service]]
++ [[file:splora/mapbox vector tyles.org][Mapbox Vector Tyles]]
++ [[file:splora/wikimedia search.org][Wikimedia Search]]
 
-[[file:splora/development.org][Development]]
-
-[[file:splora/map service.org][Map Service]]
-
-[[file:splora/semantic versioning.org][Semantic Versioning]]
-
-[[file:splora/mapbox vector tyles.org][Mapbox Vector Tyles]]
-
-[[file:splora/wikimedia search.org][Wikimedia Search]]
+** TODOS
+*** TODO fix imposm import (fix indices)
+*** TODO foobar
 
 ** Graphql
-   :PROPERTIES:
-   :CUSTOM_ID: graphql
-   :END:
 
 Paths
 
@@ -29,9 +20,6 @@ Paths
   [[https://en.wikivoyage.org/api/rest_v1/page/mobile-html/ghent][https://en.wikivoyage.org/api/rest_v1/page/mobile-html/Ghent]]
 
 * Web App
-  :PROPERTIES:
-  :CUSTOM_ID: web-app
-  :END:
 
 - Layers
 
