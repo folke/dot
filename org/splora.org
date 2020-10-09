@@ -3,7 +3,7 @@
 
 * Splora
 + [[https://github.com/folke/splora][Development]]
-+ [[file:splora/mapbox vector tyles.org][Mapbox Vector Tyles]]
++ [[file:notes/dev/splora/mapbox vector tyles.org][Mapbox Vector Tyles]]
 
 ** TODOS [4/5]
 *** DONE fix imposm import (fix indices)
