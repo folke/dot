@@ -21,6 +21,14 @@ hyper.bindApp(
 hyper.bindApp({}, "c", "Visual Studio Code - Insiders")
 hyper.bindApp({}, "f", "Finder")
 hyper.bindApp({}, "e", "Emacs")
+hyper.bindApp(
+    {"cmd"},
+    "e",
+    function()
+        print("/Users/folke/.emacs.d/bin/org-capture")
+        print(hs.execute("/Users/folke/.emacs.d/bin/org-capture > /dev/null 2>&1 &", true))
+    end
+)
 
 hs.hotkey.bind({"cmd"}, "escape", "Scratchpad", quake.toggle)
 hyper.bindApp({}, "return", quake.toggle)
