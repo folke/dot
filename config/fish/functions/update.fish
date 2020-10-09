@@ -1,9 +1,11 @@
 # Defined in /Users/folke/.config/fish/config.fish @ line 71
 function update --description 'Update homebrew, fish, pnpm'
     echo "[update] Homebrew"
-    and brew update -v
+    and brew update
     and brew upgrade
-    and brew cleanup
+
+    echo "[update] cleaning brew cache"
+    and rm -rfv (brew --cache) # brew cleanup -s doesn't remove everythin
     and brew bundle dump --describe --force
 
     echo "[update] Doom Emacs"
