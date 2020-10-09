@@ -15,3 +15,4 @@
 - `ag` better grep
 - `tldr` summarized man pages
 - `httpie` wget alternative
+- `up` interactively test tools like grep, awk etc

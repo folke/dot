@@ -2,6 +2,7 @@ tap "amar1729/formulae"
 tap "clementtsang/bottom"
 tap "cmacrae/formulae"
 tap "d12frosted/emacs-plus"
+tap "eugenmayer/dockersync"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
@@ -25,6 +26,8 @@ brew "bash"
 brew "bat"
 # Command-line interface for SQLite
 brew "sqlite"
+# Create and view interactive cheat sheets for *nix commands
+brew "cheat"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
@@ -33,6 +36,8 @@ brew "cmake"
 brew "coreutils"
 # Reimplementation of ctags(1)
 brew "ctags"
+# Top-like interface for container metrics
+brew "ctop"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Load/unload environment variables based on $PWD
@@ -45,8 +50,12 @@ brew "exa"
 brew "fd"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# Monitor a directory for changes and run a shell command
+brew "fswatch"
 # GNU debugger
 brew "gdb"
+# Geometry Engine
+brew "geos"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -67,6 +76,8 @@ brew "gnu-tar"
 brew "lua"
 # Command-driven, interactive function plotting
 brew "gnuplot"
+# Open source programming language to build simple/reliable/efficient software
+brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Colorize logfiles and command output
@@ -87,6 +98,8 @@ brew "isync"
 brew "jq"
 # Style and grammar checker
 brew "languagetool"
+# Key-value storage library with ordered mapping
+brew "leveldb"
 # Postgres C API library
 brew "libpq"
 # Package manager for the Lua programming language
@@ -103,6 +116,8 @@ brew "most"
 brew "mu"
 # Interactive cheatsheet tool for the command-line
 brew "navi"
+# NCurses Disk Usage
+brew "ncdu"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -149,6 +164,8 @@ brew "the_silver_searcher"
 brew "thefuck"
 # Simplified and community-driven man pages
 brew "tldr"
+# File synchronization tool for OSX
+brew "unison"
 # Internet file retriever
 brew "wget"
 # New cd command that helps you navigate faster by learning your habits
@@ -180,6 +197,7 @@ cask "font-source-sans-pro"
 cask "github"
 cask "hammerspoon"
 cask "iterm2"
+cask "kitematic"
 cask "kitty"
 cask "mactex"
 cask "qutebrowser"
