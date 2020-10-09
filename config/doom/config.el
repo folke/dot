@@ -67,7 +67,7 @@
 (after! treemacs
   (treemacs-follow-mode t))
 
-(setq doom-font (font-spec :family "Fira Code" :size 12))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12))
 (setq doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 13))
 ;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
 
@@ -116,6 +116,21 @@
 (setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
 
 (setq org-directory "~/org/"
-  org-roam-directory "~/org/notes/"
-  org-roam-tag-sources '(prop all-directories)
-  +org-roam-open-buffer-on-find-file t)
+      org-ellipsis "  " ; nerd fonts chevron character
+      org-journal-file-type 'weekly
+      +org-capture-notes-file "inbox.org"
+      deft-directory "~/org"
+      deft-recursive t)
+
+(after! org-roam
+  (setq org-roam-directory "~/org"
+        org-roam-tag-sources '(prop all-directories)
+        +org-roam-open-buffer-on-find-file t
+        ;; Create new roam notes under ~/org/notes
+        org-roam-capture-ref-templates
+        '(("d" "default" plain (function org-roam-capture--get-point)
+           "%?"
+           :file-name "notes/${slug}"
+           :head "#+title: ${title}\n"
+           :unnarrowed t
+           :immediate-finish t))))
