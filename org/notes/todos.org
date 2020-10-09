@@ -1,3 +1,0 @@
-* Todos
-  
-[[file:todos/tasks.org][Tasks]]

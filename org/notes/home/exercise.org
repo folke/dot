@@ -1,3 +1,0 @@
-* Exercise
-  
-[[file:exercise/sport.org][Sport]]

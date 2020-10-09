@@ -1,4 +1,0 @@
-* Chess
-  
-#+CAPTION: Chess%20e16df6b106b14bc093cd25d06611d4b2/Untitled.png
-[[file:Chess%20e16df6b106b14bc093cd25d06611d4b2/Untitled.png]]

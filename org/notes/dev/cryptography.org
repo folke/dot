@@ -1,7 +1,0 @@
-* Cryptography
-  
-** Challenges
-   
-[[https://id0-rsa.pub/][]]
-
-[[https://cryptopals.com/][The Cryptopals Crypto Challenges]]

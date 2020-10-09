@@ -1,4 +1,0 @@
-* Speaker for the dead
-  :PROPERTIES:
-  :CUSTOM_ID: speaker-for-the-dead
-  :END:

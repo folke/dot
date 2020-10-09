@@ -1,8 +1,0 @@
-* Travel
-  
-[[file:travel/trips.org][Trips]]
-
-* Trip Ideas
-  :PROPERTIES:
-  :CUSTOM_ID: trip-ideas
-  :END:

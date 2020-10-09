@@ -1,4 +1,0 @@
-* Daemon
-  
-Author: Daniel Suarez Pages: 430 Score: 4.16 Series: Daemon Status:
-Backlog Tags: ai

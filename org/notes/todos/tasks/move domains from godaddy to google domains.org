@@ -1,3 +1,0 @@
-* Move Domains from GoDaddy to Google domains
-  
-Created: Oct 18, 2019 8:21 PM Priority: ! Low
