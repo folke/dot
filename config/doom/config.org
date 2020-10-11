@@ -175,22 +175,28 @@ font string. You generally only need these two:
 
 *** Org Mode
 #+BEGIN_SRC elisp
-(setq org-directory "~/org/"
+(setq org-directory "~/projects/org/"
       org-ellipsis "  " ; nerd fonts chevron character
       org-journal-file-type 'weekly
+      org-tags-column -80
+      org-log-done 'time
       +org-capture-notes-file "inbox.org"
-      deft-directory "~/org"
+      deft-directory "~/projects/org"
       deft-recursive t)
 
+(after! org
+  (setq org-tags-column -80))
+
+
 (after! org-roam
-  (setq org-roam-directory "~/org"
+  (setq org-roam-directory "~/projects/org/notes"
         org-roam-tag-sources '(prop all-directories)
         +org-roam-open-buffer-on-find-file t
         ;; Create new roam notes under ~/org/notes
         org-roam-capture-ref-templates
         '(("d" "default" plain (function org-roam-capture--get-point)
            "%?"
-           :file-name "notes/${slug}"
+           :file-name "${slug}"
            :head "#+title: ${title}\n"
            :unnarrowed t
            :immediate-finish t))))
