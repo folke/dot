@@ -113,8 +113,10 @@ font string. You generally only need these two:
       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 #+BEGIN_SRC elisp
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12))
-(setq doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
+      doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 14)
+      mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
+)
 ;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
