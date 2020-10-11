@@ -132,11 +132,11 @@
 (after! org
   (setq org-tags-column -80)
   ;; bigger headings and title
-  (custom-set-faces!
-    '(outline-1 :weight extra-bold :height 1.1)
-    '(outline-2 :weight bold :height 1.1))
-  (custom-set-faces!
-    '(org-document-title :height 1.1))
+  ;; (custom-set-faces!
+  ;;   '(outline-1 :weight extra-bold :height 1.1)
+  ;;   '(outline-2 :weight bold :height 1.1))
+  ;; (custom-set-faces!
+  ;;   '(org-document-title :height 1.1))
   (appendq! +ligatures-extra-symbols
             `(:checkbox      ""
               :pending       ""
