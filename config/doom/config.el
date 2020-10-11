@@ -130,7 +130,30 @@
       deft-recursive t)
 
 (after! org
-  (setq org-tags-column -80))
+  (setq org-tags-column -80)
+  ;; bigger headings and title
+  (custom-set-faces!
+    '(outline-1 :weight extra-bold :height 1.1)
+    '(outline-2 :weight bold :height 1.1)
+    '(outline-3 :weight bold :height 1)
+    '(outline-4 :weight semi-bold :height 1)
+    '(outline-5 :weight semi-bold :height 1)
+    '(outline-6 :weight semi-bold :height 1)
+    '(outline-8 :weight semi-bold)
+    '(outline-9 :weight semi-bold))
+  (custom-set-faces!
+    '(org-document-title :height 1.1))
+  (appendq! +ligatures-extra-symbols
+            `(:checkbox      ""
+              :pending       ""
+              :checkedbox    ""
+              :list_property "∷"))
+  (set-ligatures! 'org-mode
+    :merge t
+    :checkbox      "[ ]"
+    :pending       "[-]"
+    :checkedbox    "[X]"
+    :list_property "::"))
 
 
 (after! org-roam
