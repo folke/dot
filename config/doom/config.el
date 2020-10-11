@@ -154,6 +154,10 @@
     :list_property "::"))
 
 
+(setq org-agenda-category-icon-alist
+      `(("inbox" ,(list (all-the-icons-faicon "inbox")) nil nil :ascent center)
+        ("todo" ,(list (all-the-icons-faicon "calendar-check-o")) nil nil :ascent center)))
+
 (after! org-roam
   (setq org-roam-directory "~/projects/org/notes"
         org-roam-tag-sources '(prop all-directories)
