@@ -72,7 +72,7 @@
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
       doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 14)
-      mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
+      ;mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
 )
 ;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
 
@@ -134,13 +134,7 @@
   ;; bigger headings and title
   (custom-set-faces!
     '(outline-1 :weight extra-bold :height 1.1)
-    '(outline-2 :weight bold :height 1.1)
-    '(outline-3 :weight bold :height 1)
-    '(outline-4 :weight semi-bold :height 1)
-    '(outline-5 :weight semi-bold :height 1)
-    '(outline-6 :weight semi-bold :height 1)
-    '(outline-8 :weight semi-bold)
-    '(outline-9 :weight semi-bold))
+    '(outline-2 :weight bold :height 1.1))
   (custom-set-faces!
     '(org-document-title :height 1.1))
   (appendq! +ligatures-extra-symbols
