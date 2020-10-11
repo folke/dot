@@ -43,9 +43,12 @@
 
 (after! (flycheck lsp-mode)
   (add-hook 'lsp-after-initialize-hook (lambda()
-                                         (flycheck-add-next-checker 'lsp '(warning . javascript-eslint)))))
+                                        (flycheck-add-next-checker 'lsp '(warning . javascript-eslint)))))
 (after! lsp-mode
   (setq lsp-lua-diagnostics-globals ["hs" "spoon"]))
+
+(setq swiper-use-visual-line nil
+      swiper-use-visual-line-p (lambda (a) nil))
 
 ;; There's a weird bug where fringe-modes < 8 dont show the fringes
 (after! git-gutter
@@ -67,8 +70,10 @@
 (after! treemacs
   (treemacs-follow-mode t))
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12))
-(setq doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
+      doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 14)
+      mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
+)
 ;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -115,22 +120,28 @@
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 (setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
 
-(setq org-directory "~/org/"
+(setq org-directory "~/projects/org/"
       org-ellipsis "  " ; nerd fonts chevron character
       org-journal-file-type 'weekly
+      org-tags-column -80
+      org-log-done 'time
       +org-capture-notes-file "inbox.org"
-      deft-directory "~/org"
+      deft-directory "~/projects/org"
       deft-recursive t)
 
+(after! org
+  (setq org-tags-column -80))
+
+
 (after! org-roam
-  (setq org-roam-directory "~/org"
+  (setq org-roam-directory "~/projects/org/notes"
         org-roam-tag-sources '(prop all-directories)
         +org-roam-open-buffer-on-find-file t
         ;; Create new roam notes under ~/org/notes
         org-roam-capture-ref-templates
         '(("d" "default" plain (function org-roam-capture--get-point)
            "%?"
-           :file-name "notes/${slug}"
+           :file-name "${slug}"
            :head "#+title: ${title}\n"
            :unnarrowed t
            :immediate-finish t))))
