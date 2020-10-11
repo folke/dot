@@ -26,10 +26,6 @@ dotfiles:
     dst: ~/.hammerspoon/
     src: hammerspoon
     link: link
-  org:
-    dst: ~/org/
-    src: org
-    link: link
 profiles:
   Flaptop:
     dotfiles:
