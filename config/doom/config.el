@@ -70,8 +70,8 @@
 (after! treemacs
   (treemacs-follow-mode t))
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
-      doom-variable-pitch-font (font-spec :family "Source Sans Variable" :size 14)
+(setq doom-font (font-spec :family "Fira Code" :size 12)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 12)
       ;mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
 )
 ;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
