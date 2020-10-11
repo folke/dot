@@ -61,10 +61,20 @@
 
 (after! (flycheck lsp-mode)
   (add-hook 'lsp-after-initialize-hook (lambda()
-                                         (flycheck-add-next-checker 'lsp '(warning . javascript-eslint)))))
+                                        (flycheck-add-next-checker 'lsp '(warning . javascript-eslint)))))
 (after! lsp-mode
   (setq lsp-lua-diagnostics-globals ["hs" "spoon"]))
 #+END_SRC
+
+*** Spelling Checker
+
+** Search
+For some reason, Swiper is really slow to open. The code below magically makes it instant
+#+BEGIN_SRC elisp
+(setq swiper-use-visual-line nil
+      swiper-use-visual-line-p (lambda (a) nil))
+#+END_SRC
+
 ** UI
 #+BEGIN_SRC elisp
 ;; There's a weird bug where fringe-modes < 8 dont show the fringes
