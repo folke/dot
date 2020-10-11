@@ -148,6 +148,13 @@ font string. You generally only need these two:
 
 (add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
 #+END_SRC
+*** Zen Mode
+**** TODO fix fullscreen when entering zen mode
+#+BEGIN_SRC elisp
+(setq writeroom-fullscreen-effect t)
+(after! writeroom-mode
+  (setq writeroom-fullscreen-effect t))
+#+END_SRC
 
 ** Docs
 #+BEGIN_SRC elisp

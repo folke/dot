@@ -101,6 +101,10 @@
 
 (add-hook 'after-change-major-mode-hook #'doom-modeline-conditional-buffer-encoding)
 
+(setq writeroom-fullscreen-effect t)
+(after! writeroom-mode
+  (setq writeroom-fullscreen-effect t))
+
 (set-docsets! 'python-mode "Python 3")
 (set-docsets! 'lua-mode "Lua")
 (set-docsets! 'emacs-lisp-mode "Emacs Lisp")
