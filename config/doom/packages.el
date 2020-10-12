@@ -8,6 +8,7 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
+(package! org-super-agenda)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
@@ -15,8 +16,8 @@
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
 
-(package! explain-pause-mode
-  :recipe (:host github :repo "lastquestion/explain-pause-mode"))
+;; (package! explain-pause-mode
+;;   :recipe (:host github :repo "lastquestion/explain-pause-mode"))
 
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
