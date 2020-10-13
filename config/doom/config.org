@@ -163,19 +163,114 @@ font string. You generally only need these two:
 ** Apps
 *** Email
 #+BEGIN_SRC elisp
-;; Gmail
-(set-email-account! "Gmail"
-                    '((mu4e-sent-folder       . "/Sent")
-                      (mu4e-drafts-folder     . "/Drafts")
-                      (mu4e-trash-folder      . "/Trash")
-                      (mu4e-refile-folder     . "/All")
-                      (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
-                      (mu4e-compose-signature . "---\nFolke"))
-                    t)
+(after! notmuch
+  ;; change default notmuch func to open primary inbox
+  (defun +notmuch ()
+    "Activate (or switch to) `notmuch' in its workspace."
+    (interactive)
+    (unless (featurep! :ui workspaces)
+      (user-error ":ui workspaces is required, but disabled"))
+    (condition-case-unless-debug e
+        (progn
+          (+workspace-switch "*email*" t)
+          (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
+                                     (doom-visible-windows))))
+              (select-window (get-buffer-window buf))
+            (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
+          (+workspace/display))
+      ('error
+       (+notmuch/quit)
+       (signal (car e) (cdr e)))))
+
+  (map! :leader :desc "Open Notmuch" "o m" '+notmuch)
+
+  (after! centaur-tabs
+    (add-hook 'notmuch-search-hook 'centaur-tabs-local-mode))
+
+
+  ;; Popup rules
+  (set-popup-rule! "^\\*notmuch.*search.*" :ignore t)
+  (set-popup-rule! "^ \\*notmuch update.*" :select nil :quit t)
+  (set-popup-rule! "^\\*notmuch-thread.*" :side 'bottom :size 0.6 :select t)
+
+  ;; Show Images
+  (setq notmuch-show-text/html-blocked-images nil)
+
+  ;; dont use buffernames with thread subjects
+  (defun notmuch-show--proper-buffer-name (args)
+    (when (= (length args) 5)
+      (setq args (butlast args)))
+    args)
+  (advice-add 'notmuch-show :filter-args 'notmuch-show--proper-buffer-name)
+  ;; ;; Intercept notmuch popup
+  ;; (defun +notmuch-show-popup()
+  ;;   (let ((buffer (current-buffer)))
+  ;;     (rename-buffer "*notmuch-show-message*" t)
+  ;;     (if (+popup-window-p)
+  ;;         (+popup/close))
+  ;;     (display-buffer buffer)))
+  ;; (add-hook! 'notmuch-show-hook '+notmuch-show-popup)
+
+  ;; prefer html over text
+  (setq notmuch-multipart/alternative-discouraged '("text/plain" "text/html"))
+
+  (setq notmuch-saved-searches
+        '((:name "  Inbox"      :query "tag:inbox and tag:personal and not tag:trash"  :key "i")
+          (:name "  Social"     :query "tag:social"              :key "cs")
+          (:name "  Updates"    :query "tag:updates"             :key "cu")
+          (:name "  Promotions" :query "tag:promotions"          :key "cp")
+          (:name "  All Mail"   :query ""                        :key "a")
+          (:name "  Starred"    :query "tag:flagged"             :key "*")
+          (:name "  Sent"       :query "tag:sent"                :key "s")
+          (:name "  Drafts"     :query "tag:draft"               :key "d"))))
+
+(after! mu4e
+  ;; Load thread folding
+  (load (expand-file-name "modules/mu4e-thread-folding.el" doom-private-dir))
+                                        ;(add-hook 'mu4e-headers-found-hook 'mu4e-headers-fold-all)
+  (map! :localleader
+        :map mu4e-headers-mode-map
+        :desc "toggle thread folding" "t" #'mu4e-headers-toggle-thread-folding
+        :desc "fold all threads" "T" #'mu4e-headers-fold-all)
+  ;; Gmail
+  (set-email-account! "Gmail"
+                      '((mu4e-sent-folder       . "/gmail/Sent")
+                        (mu4e-drafts-folder     . "/gmail/Drafts")
+                        (mu4e-trash-folder      . "/gmail/Trash")
+                        (mu4e-refile-folder     . "/gmail/All")
+                        (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
+                        (mu4e-compose-signature . "---\nFolke"))
+                      t)
+  (setq mu4e-headers-include-related t)
+  (add-to-list 'mu4e-bookmarks
+               '( :name  "Inbox"
+                  :query "maildir:/gmail/Inbox maildir:/gmail/Primary"
+                  :key   ?i))
+  (setq mu4e-headers-visible-flags '(unread draft flagged passed replied trashed encrypted))
+  (setq mu4e-use-fancy-chars t
+        mu4e-headers-thread-duplicate-prefix '("" . "")
+        mu4e-headers-thread-last-child-prefix '(" " . " ")
+        mu4e-headers-thread-child-prefix '(" " . " ")
+        mu4e-headers-thread-connection-prefix '(" " . " ")
+        mu4e-headers-thread-orphan-prefix '(" " . " ")
+        mu4e-headers-draft-mark '("D" . " ")
+        mu4e-headers-flagged-mark '("F" . " ")
+        mu4e-headers-new-mark '("N" . "")
+        mu4e-headers-passed-mark '("P" . " ")
+        mu4e-headers-replied-mark '("R" . " ")
+        mu4e-headers-seen-mark '("S" . "")
+        mu4e-headers-trashed-mark '("T" . " ")
+        mu4e-headers-attach-mark '("a" . "")
+        mu4e-headers-encrypted-mark '("x" . " ")
+        mu4e-headers-signed-mark '("s" . " ")
+        mu4e-headers-unread-mark '("u" . "• ")))
+
+
 #+END_SRC
 *** Elfeed
 #+BEGIN_SRC elisp
 (after! elfeed
+  (set-popup-rule! "^\\*elfeed-entry\\*" :side 'bottom :size 0.6 :select t :slot -1 :vslot -10)
   (add-hook! 'elfeed-search-mode-hook 'elfeed-update)) ; Update Elfeed when launched
 #+END_SRC
 
