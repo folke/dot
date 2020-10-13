@@ -96,8 +96,6 @@ For some reason, Swiper is really slow to open. The code below magically makes i
 (setq doom-themes-treemacs-theme "doom-colors")
 (after! treemacs
   (treemacs-follow-mode t))
-
-(setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
 #+END_SRC
 
 *** Theme
@@ -194,9 +192,33 @@ font string. You generally only need these two:
         (client-secret (funcall (plist-get (nth 0 (auth-source-search :max 1 :host "gmail.com" :user "folke^gcal-secret")) :secret))))
     (setq org-gcal-client-id client-id
           org-gcal-client-secret client-secret
-          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")))))
+          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")
+                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/family-calendar.org")))))
 
 #+END_SRC
+*** Browser
+
+#+BEGIN_SRC elisp
+
+(defvar +fl--browse-url-xwidget-last-session-buffer nil)
+
+(defun +fl/browse-url-xwidget (url &optional new-session)
+  (let ((orig-last-session-buffer
+         (if (boundp 'xwidget-webkit-last-session-buffer)
+             xwidget-webkit-last-session-buffer
+           nil)))
+    (setq xwidget-webkit-last-session-buffer +fl--browse-url-xwidget-last-session-buffer)
+    (save-window-excursion
+      (xwidget-webkit-browse-url url new-session))
+    (with-popup-rules! '(("^\\*xwidget" :vslot -10 :size 0.6 :select t :slot -1))
+      (pop-to-buffer xwidget-webkit-last-session-buffer))
+    (setq +fl--browse-url-xwidget-last-session-buffer xwidget-webkit-last-session-buffer
+          xwidget-webkit-last-session-buffer orig-last-session-buffer)))
+
+(setq browse-url-browser-function '+fl/browse-url-xwidget)
+
+#+END_SRC
+
 ** Org Mode
 #+BEGIN_SRC elisp
 (setq org-directory "~/projects/org/"
