@@ -227,6 +227,7 @@ font string. You generally only need these two:
       org-journal-file-type 'weekly
       org-use-property-inheritance t
       org-log-done 'time
+      org-log-repeat 'time
       +org-capture-notes-file "inbox.org"
       deft-directory "~/projects/org"
       deft-recursive t)
@@ -294,13 +295,14 @@ font string. You generally only need these two:
 **** Category Icons
 #+BEGIN_SRC elisp
 (setq org-agenda-category-icon-alist `(
-        ("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
-        ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
-        ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
-        ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
-        ("personal" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
-        ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
-        ("todo" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-blue)) nil nil :ascent center)))
+                                       ("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
+                                       ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
+                                       ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
+                                       ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
+                                       ("personal" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
+                                       ("birthdays" ,(list (all-the-icons-faicon "birthday-cake" :face 'all-the-icons-red)) nil nil :ascent center)
+                                       ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
+                                       ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
 #+END_SRC
 
 **** Pretty Agenda
@@ -322,10 +324,10 @@ font string. You generally only need these two:
 **** Sorting Strategy
 #+BEGIN_SRC elisp
 (setq org-agenda-sorting-strategy '(
-    (agenda habit-down time-up priority-down category-keep)
-    (todo   priority-down todo-state-down category-keep)
-    (tags   priority-down category-keep)
-    (search category-keep)))
+                                    (agenda habit-down time-up priority-down category-keep)
+                                    (todo   priority-down todo-state-down category-keep)
+                                    (tags   priority-down category-keep)
+                                    (search category-keep)))
 #+END_SRC
 **** Date/Time Format
 #+BEGIN_SRC elisp
@@ -358,6 +360,8 @@ font string. You generally only need these two:
          ((todo "NEXT|SOON" ((org-agenda-overriding-header "\n ⚡ Today")
                              (org-agenda-remove-tags t)))
           (agenda "" ((org-agenda-skip-scheduled-if-done t)
+                      (org-agenda-start-day "0d")
+                      (org-agenda-span 3)
                       (org-agenda-skip-timestamp-if-done t)
                       (org-agenda-skip-deadline-if-done t)
                       (org-agenda-overriding-header "\n ⚡ Agenda")
@@ -368,12 +372,13 @@ font string. You generally only need these two:
                                   (org-agenda-prefix-format "\t%-1i %-28b")
                                   (org-agenda-remove-tags t)
                                   (org-super-agenda-groups
-                                   '(;; Each group has an implicit boolean OR operator between its selectors.
-                                     (:name "⚡ Next"  ; Optionally specify section name
-                                      :todo "NEXT")  ; Items that have this TODO keyword
-                                     (:name "⚡ Soon"  ; Optionally specify section name
-                                      :todo "SOON")  ; Items that have this TODO keyword
-                                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)  ; Set order of this section
-                                     ));; match any of these groups, with the default order position of 103
+                                   '((:name "⚡ Inbox"
+                                      :category "inbox")
+                                     (:name "⚡ Next"
+                                      :todo "NEXT")
+                                     (:name "⚡ Soon"
+                                      :todo "SOON")
+                                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)
+                                     ))
                                   ))))))
 #+END_SRC
