@@ -9,6 +9,7 @@ set -p PATH ~/.local/bin
 set -p PATH ~/.config/folke/bin
 set -p PATH ~/.config/scripts/bin
 set -p PATH ~/Library/Python/3.8/bin
+set -p PATH ~/Library/Python/3.9/bin
 set -p PATH /usr/local/opt/sqlite/bin
 set -p PATH /usr/local/sbin
 set -p PATH ~/.gem/ruby/2.6.0/bin
