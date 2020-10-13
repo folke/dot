@@ -70,18 +70,13 @@
 (after! treemacs
   (treemacs-follow-mode t))
 
-(setq browse-url-browser-function '+lookup-xwidget-webkit-open-url-fn)
-
-(setq doom-font (font-spec :family "Fira Code" :size 12)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 12)
-      ;mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
-)
-;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 12))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;;(setq doom-theme 'doom-moonlight)
+(setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
 
 (unless (equal "Battery status not available"
@@ -111,17 +106,110 @@
 (set-docsets! 'emacs-lisp-mode "Emacs Lisp")
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 
-;; Gmail
-(set-email-account! "Gmail"
-                    '((mu4e-sent-folder       . "/Sent")
-                      (mu4e-drafts-folder     . "/Drafts")
-                      (mu4e-trash-folder      . "/Trash")
-                      (mu4e-refile-folder     . "/All")
-                      (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
-                      (mu4e-compose-signature . "---\nFolke"))
-                    t)
+(after! notmuch
+  ;; change default notmuch func to open primary inbox
+  (defun +notmuch ()
+    "Activate (or switch to) `notmuch' in its workspace."
+    (interactive)
+    (unless (featurep! :ui workspaces)
+      (user-error ":ui workspaces is required, but disabled"))
+    (condition-case-unless-debug e
+        (progn
+          (+workspace-switch "*email*" t)
+          (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
+                                     (doom-visible-windows))))
+              (select-window (get-buffer-window buf))
+            (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
+          (+workspace/display))
+      ('error
+       (+notmuch/quit)
+       (signal (car e) (cdr e)))))
+
+  (map! :leader :desc "Open Notmuch" "o m" '+notmuch)
+
+  (after! centaur-tabs
+    (add-hook 'notmuch-search-hook 'centaur-tabs-local-mode))
+
+
+  ;; Popup rules
+  (set-popup-rule! "^\\*notmuch.*search.*" :ignore t)
+  (set-popup-rule! "^ \\*notmuch update.*" :select nil :quit t)
+  (set-popup-rule! "^\\*notmuch-thread.*" :side 'bottom :size 0.6 :select t)
+
+  ;; Show Images
+  (setq notmuch-show-text/html-blocked-images nil)
+
+  ;; dont use buffernames with thread subjects
+  (defun notmuch-show--proper-buffer-name (args)
+    (when (= (length args) 5)
+      (setq args (butlast args)))
+    args)
+  (advice-add 'notmuch-show :filter-args 'notmuch-show--proper-buffer-name)
+  ;; ;; Intercept notmuch popup
+  ;; (defun +notmuch-show-popup()
+  ;;   (let ((buffer (current-buffer)))
+  ;;     (rename-buffer "*notmuch-show-message*" t)
+  ;;     (if (+popup-window-p)
+  ;;         (+popup/close))
+  ;;     (display-buffer buffer)))
+  ;; (add-hook! 'notmuch-show-hook '+notmuch-show-popup)
+
+  ;; prefer html over text
+  (setq notmuch-multipart/alternative-discouraged '("text/plain" "text/html"))
+
+  (setq notmuch-saved-searches
+        '((:name "  Inbox"      :query "tag:inbox and tag:personal and not tag:trash"  :key "i")
+          (:name "  Social"     :query "tag:social"              :key "cs")
+          (:name "  Updates"    :query "tag:updates"             :key "cu")
+          (:name "  Promotions" :query "tag:promotions"          :key "cp")
+          (:name "  All Mail"   :query ""                        :key "a")
+          (:name "  Starred"    :query "tag:flagged"             :key "*")
+          (:name "  Sent"       :query "tag:sent"                :key "s")
+          (:name "  Drafts"     :query "tag:draft"               :key "d"))))
+
+(after! mu4e
+  ;; Load thread folding
+  (load (expand-file-name "modules/mu4e-thread-folding.el" doom-private-dir))
+                                        ;(add-hook 'mu4e-headers-found-hook 'mu4e-headers-fold-all)
+  (map! :localleader
+        :map mu4e-headers-mode-map
+        :desc "toggle thread folding" "t" #'mu4e-headers-toggle-thread-folding
+        :desc "fold all threads" "T" #'mu4e-headers-fold-all)
+  ;; Gmail
+  (set-email-account! "Gmail"
+                      '((mu4e-sent-folder       . "/gmail/Sent")
+                        (mu4e-drafts-folder     . "/gmail/Drafts")
+                        (mu4e-trash-folder      . "/gmail/Trash")
+                        (mu4e-refile-folder     . "/gmail/All")
+                        (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
+                        (mu4e-compose-signature . "---\nFolke"))
+                      t)
+  (setq mu4e-headers-include-related t)
+  (add-to-list 'mu4e-bookmarks
+               '( :name  "Inbox"
+                  :query "maildir:/gmail/Inbox maildir:/gmail/Primary"
+                  :key   ?i))
+  (setq mu4e-headers-visible-flags '(unread draft flagged passed replied trashed encrypted))
+  (setq mu4e-use-fancy-chars t
+        mu4e-headers-thread-duplicate-prefix '("" . "")
+        mu4e-headers-thread-last-child-prefix '(" " . " ")
+        mu4e-headers-thread-child-prefix '(" " . " ")
+        mu4e-headers-thread-connection-prefix '(" " . " ")
+        mu4e-headers-thread-orphan-prefix '(" " . " ")
+        mu4e-headers-draft-mark '("D" . " ")
+        mu4e-headers-flagged-mark '("F" . " ")
+        mu4e-headers-new-mark '("N" . "")
+        mu4e-headers-passed-mark '("P" . " ")
+        mu4e-headers-replied-mark '("R" . " ")
+        mu4e-headers-seen-mark '("S" . "")
+        mu4e-headers-trashed-mark '("T" . " ")
+        mu4e-headers-attach-mark '("a" . "")
+        mu4e-headers-encrypted-mark '("x" . " ")
+        mu4e-headers-signed-mark '("s" . " ")
+        mu4e-headers-unread-mark '("u" . "• ")))
 
 (after! elfeed
+  (set-popup-rule! "^\\*elfeed-entry\\*" :side 'bottom :size 0.6 :select t :slot -1 :vslot -10)
   (add-hook! 'elfeed-search-mode-hook 'elfeed-update)) ; Update Elfeed when launched
 
 (after! org-gcal
@@ -132,7 +220,25 @@
         (client-secret (funcall (plist-get (nth 0 (auth-source-search :max 1 :host "gmail.com" :user "folke^gcal-secret")) :secret))))
     (setq org-gcal-client-id client-id
           org-gcal-client-secret client-secret
-          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")))))
+          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")
+                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/family-calendar.org")))))
+
+(defvar +fl--browse-url-xwidget-last-session-buffer nil)
+
+(defun +fl/browse-url-xwidget (url &optional new-session)
+  (let ((orig-last-session-buffer
+         (if (boundp 'xwidget-webkit-last-session-buffer)
+             xwidget-webkit-last-session-buffer
+           nil)))
+    (setq xwidget-webkit-last-session-buffer +fl--browse-url-xwidget-last-session-buffer)
+    (save-window-excursion
+      (xwidget-webkit-browse-url url new-session))
+    (with-popup-rules! '(("^\\*xwidget" :vslot -10 :size 0.6 :select t :slot -1))
+      (pop-to-buffer xwidget-webkit-last-session-buffer))
+    (setq +fl--browse-url-xwidget-last-session-buffer xwidget-webkit-last-session-buffer
+          xwidget-webkit-last-session-buffer orig-last-session-buffer)))
+
+(setq browse-url-browser-function '+fl/browse-url-xwidget)
 
 (setq org-directory "~/projects/org/"
       org-ellipsis "  " ; nerd fonts chevron character
@@ -140,6 +246,7 @@
       org-journal-file-type 'weekly
       org-use-property-inheritance t
       org-log-done 'time
+      org-log-repeat 'time
       +org-capture-notes-file "inbox.org"
       deft-directory "~/projects/org"
       deft-recursive t)
@@ -196,13 +303,14 @@
     :list_property "::"))
 
 (setq org-agenda-category-icon-alist `(
-        ("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
-        ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
-        ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
-        ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
-        ("personal" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
-        ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
-        ("todo" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-blue)) nil nil :ascent center)))
+                                       ("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
+                                       ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
+                                       ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
+                                       ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
+                                       ("personal" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
+                                       ("birthdays" ,(list (all-the-icons-faicon "birthday-cake" :face 'all-the-icons-red)) nil nil :ascent center)
+                                       ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
+                                       ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
 
 (after! org-agenda
   (setq org-agenda-prefix-format '(
@@ -218,10 +326,10 @@
                       :foreground (face-attribute 'org-level-1 :foreground nil t)))
 
 (setq org-agenda-sorting-strategy '(
-    (agenda habit-down time-up priority-down category-keep)
-    (todo   priority-down todo-state-down category-keep)
-    (tags   priority-down category-keep)
-    (search category-keep)))
+                                    (agenda habit-down time-up priority-down category-keep)
+                                    (todo   priority-down todo-state-down category-keep)
+                                    (tags   priority-down category-keep)
+                                    (search category-keep)))
 
 (setq org-agenda-format-date 'my-org-agenda-format-date-aligned)
 (defun my-org-agenda-format-date-aligned (date)
@@ -246,6 +354,8 @@
          ((todo "NEXT|SOON" ((org-agenda-overriding-header "\n ⚡ Today")
                              (org-agenda-remove-tags t)))
           (agenda "" ((org-agenda-skip-scheduled-if-done t)
+                      (org-agenda-start-day "0d")
+                      (org-agenda-span 3)
                       (org-agenda-skip-timestamp-if-done t)
                       (org-agenda-skip-deadline-if-done t)
                       (org-agenda-overriding-header "\n ⚡ Agenda")
@@ -256,11 +366,12 @@
                                   (org-agenda-prefix-format "\t%-1i %-28b")
                                   (org-agenda-remove-tags t)
                                   (org-super-agenda-groups
-                                   '(;; Each group has an implicit boolean OR operator between its selectors.
-                                     (:name "⚡ Next"  ; Optionally specify section name
-                                      :todo "NEXT")  ; Items that have this TODO keyword
-                                     (:name "⚡ Soon"  ; Optionally specify section name
-                                      :todo "SOON")  ; Items that have this TODO keyword
-                                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)  ; Set order of this section
-                                     ));; match any of these groups, with the default order position of 103
+                                   '((:name "⚡ Inbox"
+                                      :category "inbox")
+                                     (:name "⚡ Next"
+                                      :todo "NEXT")
+                                     (:name "⚡ Soon"
+                                      :todo "SOON")
+                                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)
+                                     ))
                                   ))))))
