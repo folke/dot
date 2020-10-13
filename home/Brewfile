@@ -90,6 +90,8 @@ brew "htop"
 brew "httpie"
 # Add GitHub support to git on the command-line
 brew "hub"
+# Spell checker and morphological analyzer
+brew "hunspell"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Synchronize a maildir with an IMAP server
@@ -124,6 +126,8 @@ brew "neofetch"
 brew "neovim"
 # Small build system for use with gyp or CMake
 brew "ninja"
+# Thread-based email index, search, and tagging
+brew "notmuch"
 # Libosmium-based command-line tool for processing OpenStreetMap data
 brew "osmium-tool"
 # Outputs current CPU temperature for OSX
@@ -136,6 +140,8 @@ brew "pass"
 brew "pfetch"
 # Display the PID number for a given process name
 brew "pidof"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # PDF rendering library (based on the xpdf-3.0 code base)
@@ -158,6 +164,8 @@ brew "shellcheck"
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
 brew "stow"
+# Open source continuous file synchronization application
+brew "syncthing", restart_service: true
 # Code-search similar to ack
 brew "the_silver_searcher"
 # Programatically correct mistyped console commands
@@ -166,6 +174,8 @@ brew "thefuck"
 brew "tldr"
 # File synchronization tool for OSX
 brew "unison"
+# Tool for writing command-line pipes with instant live preview
+brew "up"
 # Internet file retriever
 brew "wget"
 # New cd command that helps you navigate faster by learning your habits
@@ -176,7 +186,7 @@ brew "amar1729/formulae/browserpass"
 brew "clementtsang/bottom/bottom"
 # A minimal status bar for macOS.
 brew "cmacrae/formulae/spacebar"
-brew "d12frosted/emacs-plus/emacs-plus@27", args: ["with-xwidgets"]
+brew "d12frosted/emacs-plus/emacs-plus@27", args: ["with-no-frame-refocus", "with-xwidgets"]
 # Simple hotkey-daemon for macOS.
 brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
@@ -189,12 +199,16 @@ cask "alacritty"
 cask "alfred"
 cask "avibrazil-rdm"
 cask "expressvpn"
+cask "font-comfortaa"
 cask "font-fantasque-sans-mono-nerd-font"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
+cask "font-fira-sans"
 cask "font-input"
+cask "font-overpass"
 cask "font-source-sans-pro"
 cask "github"
+cask "google-backup-and-sync"
 cask "hammerspoon"
 cask "iterm2"
 cask "kitematic"

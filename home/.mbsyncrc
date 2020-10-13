@@ -22,8 +22,8 @@ Account gmail
 
 # LOCAL STORAGE (CREATE DIRECTORIES with mkdir -p Maildir/gmail)
 MaildirStore gmail-local
-Path ~/.mail/
-Inbox ~/.mail/INBOX
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
 
 # CONNECTIONS SPECIFY LINKS BETWEEN REMOTE AND LOCAL FOLDERS
 #
@@ -42,6 +42,13 @@ Expunge Both
 SyncState *
 MaxMessages 1000
 ExpireUnread yes
+
+Channel gmail-primary
+Master :gmail-remote:"Primary"
+Slave :gmail-local:"Primary"
+Create Slave
+Expunge Both
+SyncState *
 
 Channel gmail-sent
 Master :gmail-remote:"[Gmail]/Sent Mail"
@@ -92,4 +99,5 @@ Channel gmail-sent
 Channel gmail-trash
 Channel gmail-drafts
 Channel gmail-all
+Channel gmail-primary
 Channel gmail-starred
