@@ -113,16 +113,13 @@ font string. You generally only need these two:
       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 #+BEGIN_SRC elisp
-(setq doom-font (font-spec :family "Fira Code" :size 12)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 12)
-      ;mixed-pitch-set-height t ; need to set this, otherwise the :size parameter is ignored for the pitch font
-)
-;;(setq doom-variable-pitch-font (font-spec :family "Input Sans" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 12))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;;(setq doom-theme 'doom-moonlight)
+(setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
 
 #+END_SRC
