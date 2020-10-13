@@ -461,7 +461,6 @@ font string. You generally only need these two:
                       (org-agenda-remove-tags t)
                       (org-agenda-time)))
           (todo "TODO|WAIT|HOLD" ((org-agenda-overriding-header "")
-                                  (org-agenda-prefix-format "\t%-1i %-28b")
                                   (org-agenda-remove-tags t)
                                   (org-super-agenda-groups
                                    '((:name "⚡ Inbox"
