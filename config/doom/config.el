@@ -20,6 +20,13 @@
 
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
+(defun +fl/auth-pass-get (host user)
+  (require 'auth-source-pass)
+  (auth-source-pass-enable)
+  (funcall (plist-get
+            (nth 0 (auth-source-search :max 1 :host host :user user))
+            :secret)))
+
 (after! popup
   (set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.2 :select t))
 
@@ -170,11 +177,8 @@
   (add-hook! 'elfeed-search-mode-hook 'elfeed-update)) ; Update Elfeed when launched
 
 (after! org-gcal
-  (require 'auth-source-pass)
-  (auth-source-pass-enable)
-  (let ((foo "foooo") (bar "barr")) (message foo))
-  (let ((client-id (funcall (plist-get (nth 0 (auth-source-search :max 1 :host "gmail.com" :user "folke^gcal-id")) :secret)))
-        (client-secret (funcall (plist-get (nth 0 (auth-source-search :max 1 :host "gmail.com" :user "folke^gcal-secret")) :secret))))
+  (let ((client-id (+fl/auth-pass-get "gmail.com" "folke^gcal-id"))
+        (client-secret (+fl/auth-pass-get "gmail.com" "folke^gcal-secret")))
     (setq org-gcal-client-id client-id
           org-gcal-client-secret client-secret
           org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")
