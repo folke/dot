@@ -33,28 +33,10 @@
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 #+END_SRC
 
-*** Window Management
-#+BEGIN_SRC elisp
-;; prefer right and bottom split
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
-
-;; show buffer popup when splitting
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-#+END_SRC
-
 ** Syntax Checking
 #+BEGIN_SRC elisp
-;; Syntax checking and linting
 (after! popup
   (set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.2 :select t))
-(after! window-select
-  (custom-set-faces!
-    '(aw-leading-char-face
-      :foreground "white" :background "red"
-      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
 
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(mode-enabled save new-line idle-change)))
@@ -85,10 +67,8 @@ For some reason, Swiper is really slow to open. The code below magically makes i
   (setq +vc-gutter-diff-unsaved-buffer t))
 
 
-(after! centaur-tabs
-  (centaur-tabs-group-by-projectile-project))
-(after! (elfeed centaur-tabs)
-  (add-hook 'elfeed-search-mode-hook 'centaur-tabs-local-mode))
+(after! ibuffer
+  (set-popup-rule! "^\\*Ibuffer\\*$" :side 'bottom :size 0.4 :select t :ignore nil))
 
 (setq +ivy-buffer-preview 1)
 
@@ -123,6 +103,21 @@ font string. You generally only need these two:
 ;;(setq doom-theme 'doom-palenight)
 
 #+END_SRC
+*** Tabs
+#+BEGIN_SRC elisp
+
+(after! centaur-tabs
+  (centaur-tabs-group-by-projectile-project)
+
+  (+popup-window-p) ; needed to prevent recursive auto-loading of popup
+
+  ;; Automatically turn off tabs in popups
+  (defun +fl/hide-tabs-in-popup ()
+    (if (+popup-window-p)
+        (centaur-tabs-local-mode)
+      (centaur-tabs-local-mode 0)))
+  (add-hook! 'buffer-list-update-hook '+fl/hide-tabs-in-popup))
+#+END_SRC
 
 *** Doom Modeline
 #+BEGIN_SRC elisp
@@ -152,6 +147,24 @@ font string. You generally only need these two:
   (setq writeroom-fullscreen-effect t))
 #+END_SRC
 
+*** Window Management
+#+BEGIN_SRC elisp
+;; prefer right and bottom split
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; show buffer popup when splitting
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-buffer))
+
+(after! window-select
+  (custom-set-faces!
+    '(aw-leading-char-face
+      :foreground "white" :background "red"
+      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
+#+END_SRC
+
 ** Docs
 #+BEGIN_SRC elisp
 (set-docsets! 'python-mode "Python 3")
@@ -163,31 +176,27 @@ font string. You generally only need these two:
 ** Apps
 *** Email
 #+BEGIN_SRC elisp
+;; change default notmuch func to open primary inbox
+(defun +notmuch ()
+  "Activate (or switch to) `notmuch' in its workspace."
+  (interactive)
+  (unless (featurep! :ui workspaces)
+    (user-error ":ui workspaces is required, but disabled"))
+  (condition-case-unless-debug e
+      (progn
+        (+workspace-switch "*email*" t)
+        (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
+                                   (doom-visible-windows))))
+            (select-window (get-buffer-window buf))
+          (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
+        (+workspace/display))
+    ('error
+     (+notmuch/quit)
+     (signal (car e) (cdr e)))))
+
+(map! :leader :desc "Open Notmuch" "o m" '+notmuch)
+
 (after! notmuch
-  ;; change default notmuch func to open primary inbox
-  (defun +notmuch ()
-    "Activate (or switch to) `notmuch' in its workspace."
-    (interactive)
-    (unless (featurep! :ui workspaces)
-      (user-error ":ui workspaces is required, but disabled"))
-    (condition-case-unless-debug e
-        (progn
-          (+workspace-switch "*email*" t)
-          (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
-                                     (doom-visible-windows))))
-              (select-window (get-buffer-window buf))
-            (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
-          (+workspace/display))
-      ('error
-       (+notmuch/quit)
-       (signal (car e) (cdr e)))))
-
-  (map! :leader :desc "Open Notmuch" "o m" '+notmuch)
-
-  (after! centaur-tabs
-    (add-hook 'notmuch-search-hook 'centaur-tabs-local-mode))
-
-
   ;; Popup rules
   (set-popup-rule! "^\\*notmuch.*search.*" :ignore t)
   (set-popup-rule! "^ \\*notmuch update.*" :select nil :quit t)
