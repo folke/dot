@@ -202,14 +202,6 @@ font string. You generally only need these two:
       (setq args (butlast args)))
     args)
   (advice-add 'notmuch-show :filter-args 'notmuch-show--proper-buffer-name)
-  ;; ;; Intercept notmuch popup
-  ;; (defun +notmuch-show-popup()
-  ;;   (let ((buffer (current-buffer)))
-  ;;     (rename-buffer "*notmuch-show-message*" t)
-  ;;     (if (+popup-window-p)
-  ;;         (+popup/close))
-  ;;     (display-buffer buffer)))
-  ;; (add-hook! 'notmuch-show-hook '+notmuch-show-popup)
 
   ;; prefer html over text
   (setq notmuch-multipart/alternative-discouraged '("text/plain" "text/html"))
@@ -343,25 +335,27 @@ font string. You generally only need these two:
 *** Agenda
 **** Category Icons
 #+BEGIN_SRC elisp
-(setq org-agenda-category-icon-alist `(
-                                       ("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
-                                       ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
-                                       ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
-                                       ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
-                                       ("personal" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
-                                       ("birthdays" ,(list (all-the-icons-faicon "birthday-cake" :face 'all-the-icons-red)) nil nil :ascent center)
-                                       ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
-                                       ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
+(setq org-agenda-category-icon-alist
+      `(("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
+        ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
+        ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
+        ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
+        ("habits" ,(list (all-the-icons-faicon "undo" :face 'all-the-icons-pink)) nil nil :ascent center)
+        ("life" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
+        ("birthdays" ,(list (all-the-icons-faicon "birthday-cake" :face 'all-the-icons-red)) nil nil :ascent center)
+        ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
+        ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
 #+END_SRC
 
 **** Pretty Agenda
 #+BEGIN_SRC elisp
 (after! org-agenda
-  (setq org-agenda-prefix-format '(
-                                   (agenda . "\t\t\t%-2i %-12t % s")
-                                   (todo . "\t%-2i %-30b ")
-                                   (tags . " %i %-12:c")
-                                   (search         . " %i %-12:c"))
+  (set-popup-rule! "^\\*Org Agenda\\*$" :side 'bottom :size 0.4 :select t)
+  (setq org-agenda-prefix-format
+        '((agenda . "\t\t\t%-2i %-12t % s")
+          (todo . "\t%-2i %-30b ")
+          (tags . " %i %-12:c")
+          (search         . " %i %-12:c"))
         org-agenda-block-separator nil
         org-agenda-time-grid (quote ((today daily require-timed remove-match) (0900 2100) " ╴╴╴╴╴" "──────────────────────"))
         org-agenda-current-time-string " now ────────────────")
@@ -372,11 +366,11 @@ font string. You generally only need these two:
 
 **** Sorting Strategy
 #+BEGIN_SRC elisp
-(setq org-agenda-sorting-strategy '(
-                                    (agenda habit-down time-up priority-down category-keep)
-                                    (todo   priority-down todo-state-down category-keep)
-                                    (tags   priority-down category-keep)
-                                    (search category-keep)))
+(setq org-agenda-sorting-strategy
+      '((agenda habit-down time-up priority-down category-keep)
+        (todo   priority-down todo-state-down category-keep)
+        (tags   priority-down category-keep)
+        (search category-keep)))
 #+END_SRC
 **** Date/Time Format
 #+BEGIN_SRC elisp
