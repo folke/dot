@@ -228,9 +228,9 @@
     (custom-declare-face '+org-todo-onhold  '((t (:inherit (bold warning org-todo)))) ""))
   (setq org-todo-keywords
         '((sequence
-           "TODO(t)"  ; A task that needs doing & is ready to do
-           "SOON(s)"  ; A project, which usually contains other tasks
            "NEXT(n)"  ; A task that is in progress
+           "SOON(s)"  ; A project, which usually contains other tasks
+           "TODO(t)"  ; A task that needs doing & is ready to do
            "WAIT(w)"  ; Something external is holding up this task
            "HOLD(h)"  ; This task is paused/on hold because of me
            "|"
@@ -296,7 +296,7 @@
 
 (setq org-agenda-sorting-strategy
       '((agenda habit-down time-up priority-down category-keep)
-        (todo   priority-down todo-state-down category-keep)
+        (todo   todo-state-down priority-down category-keep)
         (tags   priority-down category-keep)
         (search category-keep)))
 
