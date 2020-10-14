@@ -223,49 +223,6 @@ font string. You generally only need these two:
           (:name "  Starred"    :query "tag:flagged"             :key "*")
           (:name "  Sent"       :query "tag:sent"                :key "s")
           (:name "  Drafts"     :query "tag:draft"               :key "d"))))
-
-(after! mu4e
-  ;; Load thread folding
-  (load (expand-file-name "modules/mu4e-thread-folding.el" doom-private-dir))
-                                        ;(add-hook 'mu4e-headers-found-hook 'mu4e-headers-fold-all)
-  (map! :localleader
-        :map mu4e-headers-mode-map
-        :desc "toggle thread folding" "t" #'mu4e-headers-toggle-thread-folding
-        :desc "fold all threads" "T" #'mu4e-headers-fold-all)
-  ;; Gmail
-  (set-email-account! "Gmail"
-                      '((mu4e-sent-folder       . "/gmail/Sent")
-                        (mu4e-drafts-folder     . "/gmail/Drafts")
-                        (mu4e-trash-folder      . "/gmail/Trash")
-                        (mu4e-refile-folder     . "/gmail/All")
-                        (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
-                        (mu4e-compose-signature . "---\nFolke"))
-                      t)
-  (setq mu4e-headers-include-related t)
-  (add-to-list 'mu4e-bookmarks
-               '( :name  "Inbox"
-                  :query "maildir:/gmail/Inbox maildir:/gmail/Primary"
-                  :key   ?i))
-  (setq mu4e-headers-visible-flags '(unread draft flagged passed replied trashed encrypted))
-  (setq mu4e-use-fancy-chars t
-        mu4e-headers-thread-duplicate-prefix '("" . "")
-        mu4e-headers-thread-last-child-prefix '(" " . " ")
-        mu4e-headers-thread-child-prefix '(" " . " ")
-        mu4e-headers-thread-connection-prefix '(" " . " ")
-        mu4e-headers-thread-orphan-prefix '(" " . " ")
-        mu4e-headers-draft-mark '("D" . " ")
-        mu4e-headers-flagged-mark '("F" . " ")
-        mu4e-headers-new-mark '("N" . "")
-        mu4e-headers-passed-mark '("P" . " ")
-        mu4e-headers-replied-mark '("R" . " ")
-        mu4e-headers-seen-mark '("S" . "")
-        mu4e-headers-trashed-mark '("T" . " ")
-        mu4e-headers-attach-mark '("a" . "")
-        mu4e-headers-encrypted-mark '("x" . " ")
-        mu4e-headers-signed-mark '("s" . " ")
-        mu4e-headers-unread-mark '("u" . "• ")))
-
-
 #+END_SRC
 *** Elfeed
 #+BEGIN_SRC elisp
