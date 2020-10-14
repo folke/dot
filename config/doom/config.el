@@ -201,6 +201,12 @@
 
 (setq browse-url-browser-function '+fl/browse-url-xwidget)
 
+(after! wakatime-mode
+  (setq wakatime-cli-path "/Users/folke/Library/Python/3.8/bin/wakatime"
+        wakatime-python-bin "/usr/local/bin/python3"))
+(use-package! wakatime-mode
+  :hook (after-init . global-wakatime-mode))
+
 (setq org-directory "~/projects/org/"
       org-ellipsis "  " ; nerd fonts chevron character
       org-agenda-breadcrumbs-separator "  "

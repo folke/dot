@@ -273,6 +273,14 @@ font string. You generally only need these two:
 (setq browse-url-browser-function '+fl/browse-url-xwidget)
 
 #+END_SRC
+*** Wakatime
+#+BEGIN_SRC elisp
+(after! wakatime-mode
+  (setq wakatime-cli-path "/Users/folke/Library/Python/3.8/bin/wakatime"
+        wakatime-python-bin "/usr/local/bin/python3"))
+(use-package! wakatime-mode
+  :hook (after-init . global-wakatime-mode))
+#+END_SRC
 
 ** Org Mode
 #+BEGIN_SRC elisp
