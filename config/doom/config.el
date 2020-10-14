@@ -20,23 +20,8 @@
 
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
-;; prefer right and bottom split
-(setq evil-vsplit-window-right t
-      evil-split-window-below t)
-
-;; show buffer popup when splitting
-(defadvice! prompt-for-buffer (&rest _)
-  :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-
-;; Syntax checking and linting
 (after! popup
   (set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.2 :select t))
-(after! window-select
-  (custom-set-faces!
-    '(aw-leading-char-face
-      :foreground "white" :background "red"
-      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
 
 (after! flycheck
   (setq flycheck-check-syntax-automatically '(mode-enabled save new-line idle-change)))
@@ -58,10 +43,8 @@
   (setq +vc-gutter-diff-unsaved-buffer t))
 
 
-(after! centaur-tabs
-  (centaur-tabs-group-by-projectile-project))
-(after! (elfeed centaur-tabs)
-  (add-hook 'elfeed-search-mode-hook 'centaur-tabs-local-mode))
+(after! ibuffer
+  (set-popup-rule! "^\\*Ibuffer\\*$" :side 'bottom :size 0.4 :select t :ignore nil))
 
 (setq +ivy-buffer-preview 1)
 
@@ -78,6 +61,18 @@
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
+
+(after! centaur-tabs
+  (centaur-tabs-group-by-projectile-project)
+
+  (+popup-window-p) ; needed to prevent recursive auto-loading of popup
+
+  ;; Automatically turn off tabs in popups
+  (defun +fl/hide-tabs-in-popup ()
+    (if (+popup-window-p)
+        (centaur-tabs-local-mode)
+      (centaur-tabs-local-mode 0)))
+  (add-hook! 'buffer-list-update-hook '+fl/hide-tabs-in-popup))
 
 (unless (equal "Battery status not available"
                (battery))
@@ -101,36 +96,47 @@
 (after! writeroom-mode
   (setq writeroom-fullscreen-effect t))
 
+;; prefer right and bottom split
+(setq evil-vsplit-window-right t
+      evil-split-window-below t)
+
+;; show buffer popup when splitting
+(defadvice! prompt-for-buffer (&rest _)
+  :after '(evil-window-split evil-window-vsplit)
+  (+ivy/switch-buffer))
+
+(after! window-select
+  (custom-set-faces!
+    '(aw-leading-char-face
+      :foreground "white" :background "red"
+      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
+
 (set-docsets! 'python-mode "Python 3")
 (set-docsets! 'lua-mode "Lua")
 (set-docsets! 'emacs-lisp-mode "Emacs Lisp")
 (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn)
 
+;; change default notmuch func to open primary inbox
+(defun +notmuch ()
+  "Activate (or switch to) `notmuch' in its workspace."
+  (interactive)
+  (unless (featurep! :ui workspaces)
+    (user-error ":ui workspaces is required, but disabled"))
+  (condition-case-unless-debug e
+      (progn
+        (+workspace-switch "*email*" t)
+        (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
+                                   (doom-visible-windows))))
+            (select-window (get-buffer-window buf))
+          (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
+        (+workspace/display))
+    ('error
+     (+notmuch/quit)
+     (signal (car e) (cdr e)))))
+
+(map! :leader :desc "Open Notmuch" "o m" '+notmuch)
+
 (after! notmuch
-  ;; change default notmuch func to open primary inbox
-  (defun +notmuch ()
-    "Activate (or switch to) `notmuch' in its workspace."
-    (interactive)
-    (unless (featurep! :ui workspaces)
-      (user-error ":ui workspaces is required, but disabled"))
-    (condition-case-unless-debug e
-        (progn
-          (+workspace-switch "*email*" t)
-          (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
-                                     (doom-visible-windows))))
-              (select-window (get-buffer-window buf))
-            (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
-          (+workspace/display))
-      ('error
-       (+notmuch/quit)
-       (signal (car e) (cdr e)))))
-
-  (map! :leader :desc "Open Notmuch" "o m" '+notmuch)
-
-  (after! centaur-tabs
-    (add-hook 'notmuch-search-hook 'centaur-tabs-local-mode))
-
-
   ;; Popup rules
   (set-popup-rule! "^\\*notmuch.*search.*" :ignore t)
   (set-popup-rule! "^ \\*notmuch update.*" :select nil :quit t)
@@ -145,14 +151,6 @@
       (setq args (butlast args)))
     args)
   (advice-add 'notmuch-show :filter-args 'notmuch-show--proper-buffer-name)
-  ;; ;; Intercept notmuch popup
-  ;; (defun +notmuch-show-popup()
-  ;;   (let ((buffer (current-buffer)))
-  ;;     (rename-buffer "*notmuch-show-message*" t)
-  ;;     (if (+popup-window-p)
-  ;;         (+popup/close))
-  ;;     (display-buffer buffer)))
-  ;; (add-hook! 'notmuch-show-hook '+notmuch-show-popup)
 
   ;; prefer html over text
   (setq notmuch-multipart/alternative-discouraged '("text/plain" "text/html"))
@@ -166,47 +164,6 @@
           (:name "  Starred"    :query "tag:flagged"             :key "*")
           (:name "  Sent"       :query "tag:sent"                :key "s")
           (:name "  Drafts"     :query "tag:draft"               :key "d"))))
-
-(after! mu4e
-  ;; Load thread folding
-  (load (expand-file-name "modules/mu4e-thread-folding.el" doom-private-dir))
-                                        ;(add-hook 'mu4e-headers-found-hook 'mu4e-headers-fold-all)
-  (map! :localleader
-        :map mu4e-headers-mode-map
-        :desc "toggle thread folding" "t" #'mu4e-headers-toggle-thread-folding
-        :desc "fold all threads" "T" #'mu4e-headers-fold-all)
-  ;; Gmail
-  (set-email-account! "Gmail"
-                      '((mu4e-sent-folder       . "/gmail/Sent")
-                        (mu4e-drafts-folder     . "/gmail/Drafts")
-                        (mu4e-trash-folder      . "/gmail/Trash")
-                        (mu4e-refile-folder     . "/gmail/All")
-                        (smtpmail-smtp-user     . "folke.lemaitre@gmail.com")
-                        (mu4e-compose-signature . "---\nFolke"))
-                      t)
-  (setq mu4e-headers-include-related t)
-  (add-to-list 'mu4e-bookmarks
-               '( :name  "Inbox"
-                  :query "maildir:/gmail/Inbox maildir:/gmail/Primary"
-                  :key   ?i))
-  (setq mu4e-headers-visible-flags '(unread draft flagged passed replied trashed encrypted))
-  (setq mu4e-use-fancy-chars t
-        mu4e-headers-thread-duplicate-prefix '("" . "")
-        mu4e-headers-thread-last-child-prefix '(" " . " ")
-        mu4e-headers-thread-child-prefix '(" " . " ")
-        mu4e-headers-thread-connection-prefix '(" " . " ")
-        mu4e-headers-thread-orphan-prefix '(" " . " ")
-        mu4e-headers-draft-mark '("D" . " ")
-        mu4e-headers-flagged-mark '("F" . " ")
-        mu4e-headers-new-mark '("N" . "")
-        mu4e-headers-passed-mark '("P" . " ")
-        mu4e-headers-replied-mark '("R" . " ")
-        mu4e-headers-seen-mark '("S" . "")
-        mu4e-headers-trashed-mark '("T" . " ")
-        mu4e-headers-attach-mark '("a" . "")
-        mu4e-headers-encrypted-mark '("x" . " ")
-        mu4e-headers-signed-mark '("s" . " ")
-        mu4e-headers-unread-mark '("u" . "• ")))
 
 (after! elfeed
   (set-popup-rule! "^\\*elfeed-entry\\*" :side 'bottom :size 0.6 :select t :slot -1 :vslot -10)
@@ -302,22 +259,24 @@
     :checkedbox    "[X]"
     :list_property "::"))
 
-(setq org-agenda-category-icon-alist `(
-                                       ("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
-                                       ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
-                                       ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
-                                       ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
-                                       ("personal" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
-                                       ("birthdays" ,(list (all-the-icons-faicon "birthday-cake" :face 'all-the-icons-red)) nil nil :ascent center)
-                                       ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
-                                       ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
+(setq org-agenda-category-icon-alist
+      `(("inbox" ,(list (all-the-icons-faicon "inbox" :face 'all-the-icons-blue :v-adjust -0.1)) nil nil :ascent center)
+        ("dev" ,(list (all-the-icons-faicon "code" :face 'all-the-icons-blue :height 0.8 :v-adjust 0)) nil nil :ascent center)
+        ("splora" ,(list (all-the-icons-material "terrain" :face 'all-the-icons-blue :height 0.8)) nil nil :ascent center)
+        ("home" ,(list (all-the-icons-faicon "home" :face 'all-the-icons-blue)) nil nil :ascent center)
+        ("habits" ,(list (all-the-icons-faicon "undo" :face 'all-the-icons-pink)) nil nil :ascent center)
+        ("life" ,(list (all-the-icons-faicon "asterisk" :face 'all-the-icons-blue)) nil nil :ascent center)
+        ("birthdays" ,(list (all-the-icons-faicon "birthday-cake" :face 'all-the-icons-red)) nil nil :ascent center)
+        ("calendar" ,(list (all-the-icons-faicon "google" :face 'all-the-icons-blue)) nil nil :ascent center)
+        ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
 
 (after! org-agenda
-  (setq org-agenda-prefix-format '(
-                                   (agenda . "\t\t\t%-2i %-12t % s")
-                                   (todo . "\t%-2i %-30b ")
-                                   (tags . " %i %-12:c")
-                                   (search         . " %i %-12:c"))
+  (set-popup-rule! "^\\*Org Agenda\\*$" :side 'bottom :size 0.4 :select t)
+  (setq org-agenda-prefix-format
+        '((agenda . "\t\t\t%-2i %-12t % s")
+          (todo . "\t%-2i %-30b ")
+          (tags . " %i %-12:c")
+          (search         . " %i %-12:c"))
         org-agenda-block-separator nil
         org-agenda-time-grid (quote ((today daily require-timed remove-match) (0900 2100) " ╴╴╴╴╴" "──────────────────────"))
         org-agenda-current-time-string " now ────────────────")
@@ -325,11 +284,11 @@
                       :height 1.2
                       :foreground (face-attribute 'org-level-1 :foreground nil t)))
 
-(setq org-agenda-sorting-strategy '(
-                                    (agenda habit-down time-up priority-down category-keep)
-                                    (todo   priority-down todo-state-down category-keep)
-                                    (tags   priority-down category-keep)
-                                    (search category-keep)))
+(setq org-agenda-sorting-strategy
+      '((agenda habit-down time-up priority-down category-keep)
+        (todo   priority-down todo-state-down category-keep)
+        (tags   priority-down category-keep)
+        (search category-keep)))
 
 (setq org-agenda-format-date 'my-org-agenda-format-date-aligned)
 (defun my-org-agenda-format-date-aligned (date)
@@ -374,3 +333,8 @@
                                      (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)
                                      ))
                                   ))))))
+
+(after! org-agenda
+  (setq org-habit-show-all-today t
+        org-habit-today-glyph ?⚡
+        org-habit-completed-glyph ?+ ))

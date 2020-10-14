@@ -433,3 +433,10 @@ font string. You generally only need these two:
                                      ))
                                   ))))))
 #+END_SRC
+**** Org Habits
+#+BEGIN_SRC elisp
+(after! org-agenda
+  (setq org-habit-show-all-today t
+        org-habit-today-glyph ?⚡
+        org-habit-completed-glyph ?+ ))
+#+END_SRC
