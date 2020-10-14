@@ -310,29 +310,30 @@
 
 (setq org-agenda-custom-commands
       '(("o" "Overview"
-         ((todo "NEXT|SOON" ((org-agenda-overriding-header "\n ⚡ Today")
-                             (org-agenda-remove-tags t)))
-          (agenda "" ((org-agenda-skip-scheduled-if-done t)
-                      (org-agenda-start-day "0d")
-                      (org-agenda-span 3)
-                      (org-agenda-skip-timestamp-if-done t)
-                      (org-agenda-skip-deadline-if-done t)
-                      (org-agenda-overriding-header "\n ⚡ Agenda")
-                      (org-agenda-repeating-timestamp-show-all nil)
-                      (org-agenda-remove-tags t)
-                      (org-agenda-time)))
-          (todo "TODO|WAIT|HOLD" ((org-agenda-overriding-header "")
-                                  (org-agenda-remove-tags t)
-                                  (org-super-agenda-groups
-                                   '((:name "⚡ Inbox"
-                                      :category "inbox")
-                                     (:name "⚡ Next"
-                                      :todo "NEXT")
-                                     (:name "⚡ Soon"
-                                      :todo "SOON")
-                                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)
-                                     ))
-                                  ))))))
+         ((todo "NEXT|SOON"
+                ((org-agenda-overriding-header "\n ⚡ Today")
+                 (org-agenda-remove-tags t)))
+          (agenda ""
+                  ((org-agenda-skip-scheduled-if-done t)
+                   (org-agenda-start-day "0d")
+                   (org-agenda-span 3)
+                   (org-agenda-skip-timestamp-if-done t)
+                   (org-agenda-skip-deadline-if-done t)
+                   (org-agenda-overriding-header "\n ⚡ Agenda")
+                   (org-agenda-repeating-timestamp-show-all nil)
+                   (org-agenda-remove-tags t)
+                   (org-agenda-time)))
+          (todo "TODO|WAIT|HOLD"
+                ((org-agenda-overriding-header "")
+                 (org-agenda-remove-tags t)
+                 (org-super-agenda-groups
+                  '((:name "⚡ Inbox"
+                     :category "inbox")
+                    (:name "⚡ Next"
+                     :todo "NEXT")
+                    (:name "⚡ Soon"
+                     :todo "SOON")
+                    (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)))))))))
 
 (after! org-agenda
   (setq org-habit-show-all-today t
