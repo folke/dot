@@ -1,3 +1,4 @@
 Spoons
 .DS_Store
 org-roam.db
+/config/doom/*.html
