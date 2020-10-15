@@ -20,6 +20,19 @@
 
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
+(after! forge
+  ;; Add more columns to the issue list
+  (setq forge-topic-list-columns
+        '(("#" 5 forge-topic-list-sort-by-number (:right-align t) number nil)
+          ("State" 10 t nil state nil)
+          ("Title" 65 t nil title  nil)
+          ("Labels" 30 t nil labels nil)
+          ("Updated" 20 t nil updated nil)))
+
+  ;; Show at most 100 open issue and when toggling visibility, the last 10 closed issues
+  (setq forge-topic-list-limit '(100 . -10)
+        forge-owned-accounts '(("folke"))))
+
 (defun +fl/auth-pass-get (host user)
   (require 'auth-source-pass)
   (auth-source-pass-enable)
