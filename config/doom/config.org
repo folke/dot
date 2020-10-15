@@ -390,9 +390,9 @@ font string. You generally only need these two:
 #+BEGIN_SRC elisp
 (setq org-agenda-sorting-strategy
       '((agenda habit-down time-up priority-down category-keep)
-        (todo   todo-state-down priority-down category-keep)
-        (tags   priority-down category-keep)
-        (search category-keep)))
+        (todo   todo-state-up priority-down category-keep)
+        (tags   todo-state-up priority-down category-keep)
+        (search todo-state-up priority-down category-keep)))
 #+END_SRC
 **** Date/Time Format
 #+BEGIN_SRC elisp
