@@ -296,9 +296,9 @@
 
 (setq org-agenda-sorting-strategy
       '((agenda habit-down time-up priority-down category-keep)
-        (todo   todo-state-down priority-down category-keep)
-        (tags   priority-down category-keep)
-        (search category-keep)))
+        (todo   todo-state-up priority-down category-keep)
+        (tags   todo-state-up priority-down category-keep)
+        (search todo-state-up priority-down category-keep)))
 
 (setq org-agenda-format-date 'my-org-agenda-format-date-aligned)
 (defun my-org-agenda-format-date-aligned (date)
@@ -317,6 +317,11 @@
 (after! org-super-agenda
   (setq org-super-agenda-unmatched-name "⚡ Backlog")
   (org-super-agenda-mode))
+
+;; Super Agenda seems to jump to the last line, let's fix this!
+(defun +fl/agenda-jump-to-start ()
+  (goto-char (point-min)))
+(add-hook 'org-agenda-finalize-hook '+fl/agenda-jump-to-start 90)
 
 (setq org-agenda-custom-commands
       '(("o" "Overview"

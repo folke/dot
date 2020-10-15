@@ -1,3 +1,6 @@
+#+TITLE: Doom Literate Config
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
 * Doom Literate Config!
 ** Basic Stuff
 
@@ -28,7 +31,6 @@
 #+END_SRC
 
 *** Version Control
-
 #+BEGIN_SRC elisp
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 #+END_SRC
