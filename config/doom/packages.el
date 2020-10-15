@@ -24,6 +24,10 @@
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
 
+(straight-use-package '(ox-html :type built-in))
+(package! ox-tailwind
+  :recipe (:host github :repo "vascoferreira25/ox-tailwind"))
+
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
 ;; `:files' in the `:recipe':
