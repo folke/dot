@@ -378,12 +378,6 @@ lg:overflow-x-auto xl:px-32"
         <script>mermaid.initialize({startOnLoad:true});</script>"))
 #+END_SRC
 
-#+RESULTS:
-:
-:         <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.22.0/prism.min.js"></script>
-:         <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.8.2/mermaid.min.js"></script>
-:         <script>mermaid.initialize({startOnLoad:true});</script>
-
 *** Org Roam
 #+BEGIN_SRC elisp
 (after! org-roam
@@ -480,7 +474,8 @@ lg:overflow-x-auto xl:px-32"
   :after org-agenda)
 
 (after! org-super-agenda
-  (setq org-super-agenda-unmatched-name "⚡ Backlog")
+  (setq org-super-agenda-unmatched-name "⚡ Backlog"
+        org-super-agenda-unmatched-order 50)
   (org-super-agenda-mode))
 
 ;; Super Agenda seems to jump to the last line, let's fix this!
@@ -501,6 +496,7 @@ lg:overflow-x-auto xl:px-32"
                    (org-agenda-start-day "0d")
                    (org-agenda-span 3)
                    (org-agenda-skip-timestamp-if-done t)
+                   (org-habit-show-all-today t)
                    (org-agenda-skip-deadline-if-done t)
                    (org-agenda-overriding-header "\n ⚡ Agenda")
                    (org-agenda-repeating-timestamp-show-all nil)
@@ -510,7 +506,8 @@ lg:overflow-x-auto xl:px-32"
                 ((org-agenda-overriding-header "")
                  (org-agenda-remove-tags t)
                  (org-super-agenda-groups
-                  '((:name "⚡ Inbox"
+                  '((:category "habits" :name "⚡ Habits" :order 60)
+                    (:name "⚡ Inbox"
                      :category "inbox")
                     (:name "⚡ Next"
                      :todo "NEXT")
