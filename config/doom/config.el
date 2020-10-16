@@ -116,6 +116,7 @@
 (after! writeroom-mode
   (setq writeroom-fullscreen-effect t))
 
+(setq +workspaces-on-switch-project-behavior t)
 ;; prefer right and bottom split
 (setq evil-vsplit-window-right t
       evil-split-window-below t)

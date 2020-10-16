@@ -173,6 +173,7 @@ font string. You generally only need these two:
 
 *** Window Management
 #+BEGIN_SRC elisp
+(setq +workspaces-on-switch-project-behavior t)
 ;; prefer right and bottom split
 (setq evil-vsplit-window-right t
       evil-split-window-below t)
