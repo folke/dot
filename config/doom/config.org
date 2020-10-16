@@ -122,10 +122,11 @@ font string. You generally only need these two:
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-moonlight)
+;;(setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
 
 #+END_SRC
+
 *** Tabs
 #+BEGIN_SRC elisp
 
@@ -445,6 +446,8 @@ lg:overflow-x-auto xl:px-32"
                       :height 1.2
                       :foreground (face-attribute 'org-level-1 :foreground nil t)))
 #+END_SRC
+
+#+RESULTS:
 
 **** Sorting Strategy
 #+BEGIN_SRC elisp
