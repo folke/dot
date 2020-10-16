@@ -305,10 +305,14 @@ font string. You generally only need these two:
 ** Org Mode
 #+BEGIN_SRC elisp
 (setq org-directory "~/projects/org/"
-      org-ellipsis "  " ; nerd fonts chevron character
+      org-ellipsis "  "                ; nerd fonts chevron character
       org-journal-file-type 'weekly
       org-use-property-inheritance t
       org-log-done 'time
+      org-enforce-todo-dependencies t
+      org-enforce-todo-checkbox-dependencies t
+      org-log-into-drawer t
+      org-log-state-notes-into-drawer t
       org-log-repeat 'time
       org-todo-repeat-to-state "TODO"
       +org-capture-notes-file "inbox.org"
@@ -331,11 +335,11 @@ font string. You generally only need these two:
            "NEXT(n)"  ; A task that is in progress
            "SOON(s)"  ; A project, which usually contains other tasks
            "TODO(t)"  ; A task that needs doing & is ready to do
-           "WAIT(w)"  ; Something external is holding up this task
-           "HOLD(h)"  ; This task is paused/on hold because of me
+           "WAIT(w@/!)"  ; Something external is holding up this task
+           "HOLD(h/!)"  ; This task is paused/on hold because of me
            "|"
-           "DONE(d)"  ; Task successfully completed
-           "KILL(k)")) ; Task was cancelled, aborted or is no longer applicable
+           "DONE(d!)"  ; Task successfully completed
+           "KILL(k@!)")) ; Task was cancelled, aborted or is no longer applicable
         org-todo-keyword-faces
         '(("NEXT" . +org-todo-next)
           ("WAIT" . +org-todo-onhold)
