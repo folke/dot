@@ -26,9 +26,14 @@ dotfiles:
     dst: ~/.hammerspoon/
     src: hammerspoon
     link: link
+  gmaileer:
+    dst: ~/.mail/account.gmail/.gmailieer.json
+    src: other/.gmailieer.json
+    link: link
 profiles:
   Flaptop:
     dotfiles:
       - home
       - config
       - hammerspoon
+      - gmaileer
