@@ -74,6 +74,7 @@ if status --is-interactive
 
     abbr -g "show-cursor" "tput cnorm"
     abbr -g "hide-cursor" "tput civis"
+    abbr -g "aria2c-daemon" "aria2c -D"
 
     set -g fish_emoji_width 2
 
