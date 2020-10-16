@@ -35,14 +35,7 @@ dotfiles:
     src: other/.gmailieer.json
     link: link
 profiles:
-  Flaptop:
-    dotfiles:
-      - home
-      - aria2
-      - config
-      - hammerspoon
-      - gmaileer
-  Flaptop.local:
+  flaptop:
     dotfiles:
       - home
       - aria2
