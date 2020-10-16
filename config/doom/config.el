@@ -131,6 +131,12 @@
       :foreground "white" :background "red"
       :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
 
+;; (map! :prefix [f18]
+;;       "h" #'evil-window-left
+;;       "j" #'evil-window-down
+;;       "k" #'evil-window-up
+;;       "l" #'evil-window-right)
+
 (set-docsets! 'python-mode "Python 3")
 (set-docsets! 'lua-mode "Lua")
 (set-docsets! 'emacs-lisp-mode "Emacs Lisp")
@@ -194,8 +200,8 @@
         (client-secret (+fl/auth-pass-get "gmail.com" "folke^gcal-secret")))
     (setq org-gcal-client-id client-id
           org-gcal-client-secret client-secret
-          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")
-                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/family-calendar.org")))))
+          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/gcal/personal.org")
+                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/gcal/family.org")))))
 
 (defvar +fl--browse-url-xwidget-last-session-buffer nil)
 
@@ -222,11 +228,11 @@
 
 (setq org-directory "~/projects/org/"
       org-ellipsis "  " ; nerd fonts chevron character
-      org-agenda-breadcrumbs-separator "  "
       org-journal-file-type 'weekly
       org-use-property-inheritance t
       org-log-done 'time
       org-log-repeat 'time
+      org-todo-repeat-to-state "TODO"
       +org-capture-notes-file "inbox.org"
       deft-directory "~/projects/org"
       deft-recursive t)
@@ -330,6 +336,11 @@ lg:overflow-x-auto xl:px-32"
           (tags . " %i %-12:c")
           (search         . " %i %-12:c"))
         org-agenda-block-separator nil
+        org-agenda-span 7
+        org-agenda-start-on-weekday 1
+        org-agenda-start-day nil
+        org-agenda-breadcrumbs-separator "  "
+        org-agenda-files  (list org-directory (concat org-directory "gcal/"))
         org-agenda-time-grid (quote ((today daily require-timed remove-match) (0900 2100) " ╴╴╴╴╴" "──────────────────────"))
         org-agenda-current-time-string " now ────────────────")
   (set-face-attribute 'org-agenda-structure nil
@@ -393,6 +404,6 @@ lg:overflow-x-auto xl:px-32"
                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)))))))))
 
 (after! org-agenda
-  (setq org-habit-show-all-today t
+  (setq org-habit-show-all-today nil
         org-habit-today-glyph ?⚡
         org-habit-completed-glyph ?+ ))

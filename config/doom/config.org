@@ -186,6 +186,12 @@ font string. You generally only need these two:
     '(aw-leading-char-face
       :foreground "white" :background "red"
       :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
+
+;; (map! :prefix [f18]
+;;       "h" #'evil-window-left
+;;       "j" #'evil-window-down
+;;       "k" #'evil-window-up
+;;       "l" #'evil-window-right)
 #+END_SRC
 
 ** Docs
@@ -262,8 +268,8 @@ font string. You generally only need these two:
         (client-secret (+fl/auth-pass-get "gmail.com" "folke^gcal-secret")))
     (setq org-gcal-client-id client-id
           org-gcal-client-secret client-secret
-          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/calendar.org")
-                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/family-calendar.org")))))
+          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/gcal/personal.org")
+                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/gcal/family.org")))))
 #+END_SRC
 *** Browser
 
