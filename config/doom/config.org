@@ -218,7 +218,7 @@ font string. You generally only need these two:
         (if-let* ((buf (cl-find-if (lambda (it) (string-match-p "^\\*notmuch" (buffer-name (window-buffer it))))
                                    (doom-visible-windows))))
             (select-window (get-buffer-window buf))
-          (notmuch-search "tag:inbox and tag:personal and not tag:trash"))
+          (notmuch-search "(tag:inbox (tag:personal or tag:flagged) not tag:trash"))
         (+workspace/display))
     ('error
      (+notmuch/quit)
@@ -246,7 +246,7 @@ font string. You generally only need these two:
   (setq notmuch-multipart/alternative-discouraged '("text/plain" "text/html"))
 
   (setq notmuch-saved-searches
-        '((:name "  Inbox"      :query "tag:inbox and tag:personal and not tag:trash"  :key "i")
+        '((:name "  Inbox"      :query "(tag:inbox (tag:personal or tag:flagged) not tag:trash" :key "i")
           (:name "  Social"     :query "tag:social"              :key "cs")
           (:name "  Updates"    :query "tag:updates"             :key "cu")
           (:name "  Promotions" :query "tag:promotions"          :key "cp")
@@ -321,7 +321,8 @@ font string. You generally only need these two:
       deft-recursive t)
 
 (after! org
-  (setq org-tags-column -80))
+  (setq org-tags-column -80
+        org-agenda-sticky nil))
 #+END_SRC
 
 *** Todo Keywords
