@@ -427,7 +427,7 @@ lg:overflow-x-auto xl:px-32"
 **** Pretty Agenda
 #+BEGIN_SRC elisp
 (after! org-agenda
-  (set-popup-rule! "^\\*Org Agenda\\*$" :side 'bottom :size 0.4 :select t)
+  (set-popup-rule! "^\\*Org Agenda\\*$" :side 'bottom :size 0.4 :select t :quit t)
   (setq org-agenda-prefix-format
         '((agenda . "\t\t\t%-2i %-12t % s")
           (todo . "\t%-2i %-30b ")

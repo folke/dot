@@ -227,10 +227,14 @@
   :hook (after-init . global-wakatime-mode))
 
 (setq org-directory "~/projects/org/"
-      org-ellipsis "  " ; nerd fonts chevron character
+      org-ellipsis "  "                ; nerd fonts chevron character
       org-journal-file-type 'weekly
       org-use-property-inheritance t
       org-log-done 'time
+      org-enforce-todo-dependencies t
+      org-enforce-todo-checkbox-dependencies t
+      org-log-into-drawer t
+      org-log-state-notes-into-drawer t
       org-log-repeat 'time
       org-todo-repeat-to-state "TODO"
       +org-capture-notes-file "inbox.org"
@@ -250,11 +254,11 @@
            "NEXT(n)"  ; A task that is in progress
            "SOON(s)"  ; A project, which usually contains other tasks
            "TODO(t)"  ; A task that needs doing & is ready to do
-           "WAIT(w)"  ; Something external is holding up this task
-           "HOLD(h)"  ; This task is paused/on hold because of me
+           "WAIT(w@/!)"  ; Something external is holding up this task
+           "HOLD(h/!)"  ; This task is paused/on hold because of me
            "|"
-           "DONE(d)"  ; Task successfully completed
-           "KILL(k)")) ; Task was cancelled, aborted or is no longer applicable
+           "DONE(d!)"  ; Task successfully completed
+           "KILL(k@!)")) ; Task was cancelled, aborted or is no longer applicable
         org-todo-keyword-faces
         '(("NEXT" . +org-todo-next)
           ("WAIT" . +org-todo-onhold)
@@ -329,7 +333,7 @@ lg:overflow-x-auto xl:px-32"
         ("holidays" ,(list (all-the-icons-faicon "calendar-check-o" :face 'all-the-icons-green)) nil nil :ascent center)))
 
 (after! org-agenda
-  (set-popup-rule! "^\\*Org Agenda\\*$" :side 'bottom :size 0.4 :select t)
+  (set-popup-rule! "^\\*Org Agenda\\*$" :side 'bottom :size 0.4 :select t :quit t)
   (setq org-agenda-prefix-format
         '((agenda . "\t\t\t%-2i %-12t % s")
           (todo . "\t%-2i %-30b ")
@@ -368,7 +372,8 @@ lg:overflow-x-auto xl:px-32"
   :after org-agenda)
 
 (after! org-super-agenda
-  (setq org-super-agenda-unmatched-name "⚡ Backlog")
+  (setq org-super-agenda-unmatched-name "⚡ Backlog"
+        org-super-agenda-unmatched-order 50)
   (org-super-agenda-mode))
 
 ;; Super Agenda seems to jump to the last line, let's fix this!
@@ -386,6 +391,7 @@ lg:overflow-x-auto xl:px-32"
                    (org-agenda-start-day "0d")
                    (org-agenda-span 3)
                    (org-agenda-skip-timestamp-if-done t)
+                   (org-habit-show-all-today t)
                    (org-agenda-skip-deadline-if-done t)
                    (org-agenda-overriding-header "\n ⚡ Agenda")
                    (org-agenda-repeating-timestamp-show-all nil)
@@ -395,7 +401,8 @@ lg:overflow-x-auto xl:px-32"
                 ((org-agenda-overriding-header "")
                  (org-agenda-remove-tags t)
                  (org-super-agenda-groups
-                  '((:name "⚡ Inbox"
+                  '((:category "habits" :name "⚡ Habits" :order 60)
+                    (:name "⚡ Inbox"
                      :category "inbox")
                     (:name "⚡ Next"
                      :todo "NEXT")
