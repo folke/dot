@@ -38,7 +38,7 @@ yabai -m config --space 6 layout float
 yabai -m rule --add app="^Notes$" space=4
 yabai -m rule --add app="^Spotify$" space=6
 yabai -m rule --add app="^Steam$" space=6
-yabai -m rule --add app="^(System Preferences|Alfred|Activity Monitor)" manage=off
+yabai -m rule --add app="^(Docker|System Preferences|Alfred|Activity Monitor)" manage=off
 yabai -m rule --add app="^(Blizzard|Battle|Wow)" space=6
 yabai -m rule --add title="^scratchpad$" manage=off grid=4:4:1:1:2:2
 
