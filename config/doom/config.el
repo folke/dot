@@ -67,7 +67,9 @@
   (set-popup-rule! "^\\*Ibuffer\\*$" :side 'bottom :size 0.4 :select t :ignore nil))
 
 (setq +ivy-buffer-preview 1)
-
+(after! ivy-posframe
+  (setf (alist-get t ivy-posframe-display-functions-alist)
+        #'ivy-posframe-display-at-frame-top-center))
 (setq +treemacs-git-mode 'extended)
 (setq doom-themes-treemacs-theme "doom-colors")
 (after! treemacs
@@ -81,6 +83,7 @@
 ;; `load-theme' function. This is the default:
 ;;(setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
+(setq doom-theme 'doom-dracula)
 
 (after! centaur-tabs
   (centaur-tabs-group-by-projectile-project)
