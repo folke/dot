@@ -6,7 +6,7 @@ function update --description 'Update homebrew, fish, pnpm'
 
     echo "[update] cleaning brew cache"
     and rm -rfv (brew --cache) # brew cleanup -s doesn't remove everythin
-    and brew bundle dump --describe --force
+    and brew bundle dump --describe --force --global
 
     echo "[update] Doom Emacs"
     and doom upgrade

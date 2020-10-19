@@ -12,6 +12,7 @@ tap "homebrew/services"
 tap "koekeishiya/formulae"
 tap "railwaycat/emacsmacport"
 tap "schniz/tap"
+tap "xwmx/taps"
 # Search tool like grep, but optimized for programmers
 brew "ack"
 # Download with resuming and segmented downloading
@@ -160,6 +161,8 @@ brew "rsync"
 brew "sbcl"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
+# Autoformat shell script source code
+brew "shfmt"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -170,6 +173,8 @@ brew "syncthing", restart_service: true
 brew "the_silver_searcher"
 # Programatically correct mistyped console commands
 brew "thefuck"
+# Text interface for Git repositories
+brew "tig"
 # Simplified and community-driven man pages
 brew "tldr"
 # File synchronization tool for OSX
@@ -198,6 +203,7 @@ cask "adoptopenjdk"
 cask "alacritty"
 cask "alfred"
 cask "avibrazil-rdm"
+cask "docker-edge"
 cask "expressvpn"
 cask "font-comfortaa"
 cask "font-fantasque-sans-mono-nerd-font"
