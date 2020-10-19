@@ -498,12 +498,15 @@ lg:overflow-x-auto xl:px-32"
 **** Super Agenda
 #+BEGIN_SRC elisp
 (use-package! org-super-agenda
-  :after org-agenda)
-
-(after! org-super-agenda
+  :hook (org-agenda-mode . org-super-agenda-mode)
+  :config
   (setq org-super-agenda-unmatched-name "⚡ Backlog"
-        org-super-agenda-unmatched-order 50)
-  (org-super-agenda-mode))
+        org-super-agenda-unmatched-order 50))
+
+;; (after! org-super-agenda
+;;   (setq org-super-agenda-unmatched-name "⚡ Backlog"
+;;         org-super-agenda-unmatched-order 50)
+;;   (org-super-agenda-mode))
 
 ;; Super Agenda seems to jump to the last line, let's fix this!
 (defun +fl/agenda-jump-to-start ()
