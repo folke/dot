@@ -137,8 +137,30 @@ font string. You generally only need these two:
 ;; `load-theme' function. This is the default:
 ;;(setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
-(setq doom-theme 'doom-dracula)
+;;(setq doom-theme 'doom-dracula)
 
+#+END_SRC
+*** Fancy Splash Screen
+#+BEGIN_SRC elisp
+(defvar +fl/splashcii-query ""
+  "The query to search on asciiur.com")
+
+(defun +fl/splashcii ()
+  (split-string (with-output-to-string
+                  (call-process "splashcii" nil standard-output nil +fl/splashcii-query))
+                "\n" t))
+
+(defun +fl/doom-banner ()
+  (let ((point (point)))
+    (mapc (lambda (line)
+            (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
+                                'face 'doom-dashboard-banner) " ")
+            (insert "\n"))
+          (+fl/splashcii))
+    (insert (make-string (or (cdr +doom-dashboard-banner-padding) 0) ?\n))))
+
+(setcar (nthcdr 0 +doom-dashboard-functions) #'+fl/doom-banner)
+(setq +fl/splashcii-query "halloween")
 #+END_SRC
 
 *** Tabs
