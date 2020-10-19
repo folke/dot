@@ -290,12 +290,10 @@ font string. You generally only need these two:
 *** Google Calendar
 #+BEGIN_SRC elisp
 (after! org-gcal
-  (let ((client-id (+fl/auth-pass-get "gmail.com" "folke^gcal-id"))
-        (client-secret (+fl/auth-pass-get "gmail.com" "folke^gcal-secret")))
-    (setq org-gcal-client-id client-id
-          org-gcal-client-secret client-secret
-          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/gcal/personal.org")
-                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/gcal/family.org")))))
+  (setq org-gcal-client-id (+pass-get-secret "folke^gcal-id@gmail.com")
+        org-gcal-client-secret (+pass-get-secret "folke^gcal-secret@gmail.com")
+        org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/gcal/personal.org")
+                                    ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/gcal/family.org"))))
 #+END_SRC
 *** Browser
 
