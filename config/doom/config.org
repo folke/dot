@@ -4,9 +4,11 @@
 ** Basic Stuff
 
 #+BEGIN_SRC elisp
+;;; config.el -*- lexical-binding: t; -*-
 (setq user-full-name "Folke Lemaitre"
       user-mail-address "folke.lemaitre@gmail.com"
       command-line-default-directory "~/"         ; set default directory to home
+      +doom-dashboard-pwd-policy "~/"
       default-directory "~/"
       ns-use-proxy-icon nil                       ; empty title
       frame-title-format '"\n"                    ; use a new-line to make sure rezising info is on the next line
