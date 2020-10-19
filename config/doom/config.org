@@ -217,19 +217,7 @@ font string. You generally only need these two:
 ;; show buffer popup when splitting
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-
-(after! window-select
-  (custom-set-faces!
-    '(aw-leading-char-face
-      :foreground "white" :background "red"
-      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
-
-;; (map! :prefix [f18]
-;;       "h" #'evil-window-left
-;;       "j" #'evil-window-down
-;;       "k" #'evil-window-up
-;;       "l" #'evil-window-right)
+  (projectile-find-file))
 #+END_SRC
 
 ** Docs
