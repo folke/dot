@@ -102,14 +102,16 @@ For some reason, Swiper is really slow to open. The code below magically makes i
 (after! ibuffer
   (set-popup-rule! "^\\*Ibuffer\\*$" :side 'bottom :size 0.4 :select t :ignore nil))
 
-(setq +ivy-buffer-preview 1)
+(setq +ivy-buffer-preview t)
 (after! ivy-posframe
   (setf (alist-get t ivy-posframe-display-functions-alist)
         #'ivy-posframe-display-at-frame-top-center))
-(setq +treemacs-git-mode 'extended)
 (setq doom-themes-treemacs-theme "doom-colors")
 (after! treemacs
+  (setq +treemacs-git-mode 'extended)
   (treemacs-follow-mode t))
+(after! rainbow-mode
+  (setq rainbow-html-colors-major-mode-list '(html-mode css-mode php-mode nxml-mode xml-mode typescript-mode javascript-mode)))
 #+END_SRC
 
 *** Theme
