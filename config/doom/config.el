@@ -1,6 +1,8 @@
+;;; config.el -*- lexical-binding: t; -*-
 (setq user-full-name "Folke Lemaitre"
       user-mail-address "folke.lemaitre@gmail.com"
       command-line-default-directory "~/"         ; set default directory to home
+      +doom-dashboard-pwd-policy "~/"
       default-directory "~/"
       ns-use-proxy-icon nil                       ; empty title
       frame-title-format '"\n"                    ; use a new-line to make sure rezising info is on the next line
@@ -16,7 +18,11 @@
 
 (after! projectile
   (setq projectile-project-root-files-bottom-up '("package.json" ".projectile" ".project" ".git")
-        projectile-project-search-path '("~/projects" "~/projects/splora/libs" "~/projects/splora/apps" "~/projects/splora/tools")))
+        projectile-ignored-projects '("~/.emacs.d/")
+        projectile-project-search-path '("~/projects" "~/projects/splora/libs" "~/projects/splora/apps" "~/projects/splora/tools"))
+  (defun projectile-ignored-project-function (filepath)
+  "Return t if FILEPATH is within any of `projectile-ignored-projects'"
+  (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects))))
 
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
@@ -33,12 +39,14 @@
   (setq forge-topic-list-limit '(100 . -10)
         forge-owned-accounts '(("folke"))))
 
-(defun +fl/auth-pass-get (host user)
-  (require 'auth-source-pass)
-  (auth-source-pass-enable)
-  (funcall (plist-get
-            (nth 0 (auth-source-search :max 1 :host host :user user))
-            :secret)))
+(defun +fl/counsel-recentf-candidates (candidates)
+  (seq-filter (lambda (f) (not
+                      (or (string-match "^/private" f)
+                          (string-match "^~/.emacs.d" f)
+                          (string-match "^/Applications" f)))
+                ) candidates))
+
+(advice-add 'counsel-recentf-candidates :filter-return #'+fl/counsel-recentf-candidates)
 
 (after! popup
   (set-popup-rule! "^\\*Flycheck errors\\*$" :side 'bottom :size 0.2 :select t))
@@ -66,14 +74,16 @@
 (after! ibuffer
   (set-popup-rule! "^\\*Ibuffer\\*$" :side 'bottom :size 0.4 :select t :ignore nil))
 
-(setq +ivy-buffer-preview 1)
+(setq +ivy-buffer-preview t)
 (after! ivy-posframe
   (setf (alist-get t ivy-posframe-display-functions-alist)
         #'ivy-posframe-display-at-frame-top-center))
-(setq +treemacs-git-mode 'extended)
 (setq doom-themes-treemacs-theme "doom-colors")
 (after! treemacs
+  (setq +treemacs-git-mode 'extended)
   (treemacs-follow-mode t))
+(after! rainbow-mode
+  (setq rainbow-html-colors-major-mode-list '(html-mode css-mode php-mode nxml-mode xml-mode typescript-mode javascript-mode)))
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
       doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 12))
@@ -83,7 +93,27 @@
 ;; `load-theme' function. This is the default:
 ;;(setq doom-theme 'doom-moonlight)
 ;;(setq doom-theme 'doom-palenight)
-(setq doom-theme 'doom-dracula)
+;;(setq doom-theme 'doom-dracula)
+
+(defvar +fl/splashcii-query ""
+  "The query to search on asciiur.com")
+
+(defun +fl/splashcii ()
+  (split-string (with-output-to-string
+                  (call-process "splashcii" nil standard-output nil +fl/splashcii-query))
+                "\n" t))
+
+(defun +fl/doom-banner ()
+  (let ((point (point)))
+    (mapc (lambda (line)
+            (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
+                                'face 'doom-dashboard-banner) " ")
+            (insert "\n"))
+          (+fl/splashcii))
+    (insert (make-string (or (cdr +doom-dashboard-banner-padding) 0) ?\n))))
+
+(setcar (nthcdr 0 +doom-dashboard-functions) #'+fl/doom-banner)
+(setq +fl/splashcii-query "halloween")
 
 (after! centaur-tabs
   (centaur-tabs-group-by-projectile-project)
@@ -127,19 +157,7 @@
 ;; show buffer popup when splitting
 (defadvice! prompt-for-buffer (&rest _)
   :after '(evil-window-split evil-window-vsplit)
-  (+ivy/switch-buffer))
-
-(after! window-select
-  (custom-set-faces!
-    '(aw-leading-char-face
-      :foreground "white" :background "red"
-      :weight bold :height 2.5 :box (:line-width 10 :color "red"))))
-
-;; (map! :prefix [f18]
-;;       "h" #'evil-window-left
-;;       "j" #'evil-window-down
-;;       "k" #'evil-window-up
-;;       "l" #'evil-window-right)
+  (projectile-find-file))
 
 (set-docsets! 'python-mode "Python 3")
 (set-docsets! 'lua-mode "Lua")
@@ -200,12 +218,10 @@
   (add-hook! 'elfeed-search-mode-hook 'elfeed-update)) ; Update Elfeed when launched
 
 (after! org-gcal
-  (let ((client-id (+fl/auth-pass-get "gmail.com" "folke^gcal-id"))
-        (client-secret (+fl/auth-pass-get "gmail.com" "folke^gcal-secret")))
-    (setq org-gcal-client-id client-id
-          org-gcal-client-secret client-secret
-          org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/gcal/personal.org")
-                                      ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/gcal/family.org")))))
+  (setq org-gcal-client-id (+pass-get-secret "folke^gcal-id@gmail.com")
+        org-gcal-client-secret (+pass-get-secret "folke^gcal-secret@gmail.com")
+        org-gcal-fetch-file-alist '(("folke.lemaitre@gmail.com" .  "~/org/gcal/personal.org")
+                                    ("013uicuadeh4t1culpvrnna5hs@group.calendar.google.com" . "~/org/gcal/family.org"))))
 
 (defvar +fl--browse-url-xwidget-last-session-buffer nil)
 
@@ -224,11 +240,11 @@
 
 (setq browse-url-browser-function '+fl/browse-url-xwidget)
 
-(after! wakatime-mode
+(use-package! wakatime-mode
+  :hook (after-init . global-wakatime-mode)
+  :config
   (setq wakatime-cli-path "/Users/folke/Library/Python/3.8/bin/wakatime"
         wakatime-python-bin "/usr/local/bin/python3"))
-(use-package! wakatime-mode
-  :hook (after-init . global-wakatime-mode))
 
 (setq org-directory "~/projects/org/"
       org-ellipsis "  "                ; nerd fonts chevron character
@@ -374,12 +390,15 @@ lg:overflow-x-auto xl:px-32"
             dayname day monthname year)))
 
 (use-package! org-super-agenda
-  :after org-agenda)
-
-(after! org-super-agenda
+  :hook (org-agenda-mode . org-super-agenda-mode)
+  :config
   (setq org-super-agenda-unmatched-name "⚡ Backlog"
-        org-super-agenda-unmatched-order 50)
-  (org-super-agenda-mode))
+        org-super-agenda-unmatched-order 50))
+
+;; (after! org-super-agenda
+;;   (setq org-super-agenda-unmatched-name "⚡ Backlog"
+;;         org-super-agenda-unmatched-order 50)
+;;   (org-super-agenda-mode))
 
 ;; Super Agenda seems to jump to the last line, let's fix this!
 (defun +fl/agenda-jump-to-start ()

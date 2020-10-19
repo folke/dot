@@ -9,7 +9,6 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 (package! org-super-agenda)
-(package! chocolate-theme)
 (package! wakatime-mode)
 
 ;; To install a package directly from a remote git repo, you must specify a
@@ -17,9 +16,6 @@
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
-
-;; (package! explain-pause-mode
-;;   :recipe (:host github :repo "lastquestion/explain-pause-mode"))
 
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
@@ -56,7 +52,7 @@
 
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...
-(unpin! lsp-mode lsp-ui)
+(unpin! lsp-mode lsp-ui centaur-tabs treemacs)
 ;; ...or multiple packages
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
