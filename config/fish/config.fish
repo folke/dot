@@ -1,6 +1,9 @@
 
 # Path
 set -x GOPATH ~/go
+set -x EMACS_PATH /Applications/Emacs.app/Contents/MacOS/
+set -x EMACS $EMACS_PATH/Emacs  
+set -p PATH $EMACS_PATH/bin
 set -p PATH ~/go/bin
 set -p PATH ~/bin
 set -p PATH ~/.cargo/bin
@@ -15,6 +18,10 @@ set -p PATH /usr/local/sbin
 set -p PATH ~/.gem/ruby/2.6.0/bin
 set -p PATH ~/.local/bin/pnpm $PATH
 set -p PATH $GOPATH
+fnm env --multi | source
+set -p PATH ~/.local/bin/pnpm $PATH # make sure to prepend pnpm bin path to override fnm
+
+alias emacs $EMACS
 
 
 if status --is-interactive
@@ -99,6 +106,5 @@ if status --is-interactive
 
     # Navi
     navi widget fish | source
-    fnm env --multi | source
     starship init fish | source
 end
