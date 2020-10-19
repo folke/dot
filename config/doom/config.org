@@ -52,16 +52,19 @@
   (setq forge-topic-list-limit '(100 . -10)
         forge-owned-accounts '(("folke"))))
 #+END_SRC
-
-*** Auth Pass Helpers
+*** Recent Files
+Exclude some files from the Ivy recent files list.
 #+BEGIN_SRC elisp
-(defun +fl/auth-pass-get (host user)
-  (require 'auth-source-pass)
-  (auth-source-pass-enable)
-  (funcall (plist-get
-            (nth 0 (auth-source-search :max 1 :host host :user user))
-            :secret)))
+(defun +fl/counsel-recentf-candidates (candidates)
+  (seq-filter (lambda (f) (not
+                      (or (string-match "^/private" f)
+                          (string-match "^~/.emacs.d" f)
+                          (string-match "^/Applications" f)))
+                ) candidates))
+
+(advice-add 'counsel-recentf-candidates :filter-return #'+fl/counsel-recentf-candidates)
 #+END_SRC
+
 ** Syntax Checking
 #+BEGIN_SRC elisp
 (after! popup
