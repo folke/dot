@@ -26,10 +26,6 @@ dotfiles:
     dst: ~/.hammerspoon/
     src: hammerspoon
     link: link
-  aria2:
-    dst: ~/.aria2/
-    src: other/aria2
-    link: link
   gmaileer:
     dst: ~/.mail/account.gmail/.gmailieer.json
     src: other/.gmailieer.json
@@ -38,7 +34,6 @@ profiles:
   flaptop:
     dotfiles:
       - home
-      - aria2
       - config
       - hammerspoon
       - gmaileer
