@@ -89,7 +89,7 @@
        ;;ansible
        ;;debugger                      ; FIXME stepping through code, to help you add bugs
        direnv
-       ;;(docker +lsp)
+       (docker +lsp)
        ;;editorconfig                  ; let someone else argue about tabs vs spaces
        ;;ein                           ; tame Jupyter notebooks with emacs
        (eval +overlay)                 ; run code, run (also, repls)
@@ -168,7 +168,7 @@
        ;;rust                          ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala                         ; java, but good
        ;;scheme                        ; a fully conniving family of lisps
-       (sh +fish)                      ; she sells {ba,z,fi}sh shells on the C xor
+       (sh +fish +bash)                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity                      ; do you need a blockchain? No.
        ;;swift                         ; who asked for emoji variables?

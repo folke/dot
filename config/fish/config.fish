@@ -74,6 +74,9 @@ if status --is-interactive
     abbr -g helpme "bat ~/HELP.md"
     abbr -g weather "curl -s wttr.in/Ghent | grep -v Follow"
 
+    # Docker
+    set -x COMPOSE_DOCKER_CLI_BUILD 1
+
     # Fedora
     #abbr -g dnfs "sudo dnf search"
     #abbr -g dnfi "sudo dnf install"
