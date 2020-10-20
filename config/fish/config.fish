@@ -2,7 +2,7 @@
 # Path
 set -x GOPATH ~/go
 set -x EMACS_PATH /Applications/Emacs.app/Contents/MacOS/
-set -x EMACS $EMACS_PATH/Emacs  
+set -x EMACS $EMACS_PATH/Emacs
 set -p PATH $EMACS_PATH/bin
 set -p PATH ~/go/bin
 set -p PATH ~/bin
@@ -92,6 +92,10 @@ if status --is-interactive
 
     function fish_greeting
         color-test
+    end
+
+    function __fish_pwd
+        pwd | sed "s|^$HOME|~|"
     end
 
     function yabai_fix
