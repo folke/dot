@@ -77,6 +77,9 @@ if status --is-interactive
     # Docker
     set -x COMPOSE_DOCKER_CLI_BUILD 1
 
+    # Override color, since it's too much like the background for palenight
+    set -U fish_color_autosuggestion 4A5271
+
     # Fedora
     #abbr -g dnfs "sudo dnf search"
     #abbr -g dnfi "sudo dnf install"
