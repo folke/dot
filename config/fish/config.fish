@@ -1,99 +1,97 @@
-# Emacs
-set -l emacs_path /Applications/Emacs.app/Contents/MacOS
-set -x EMACS $emacs_path/Emacs
-set -p PATH $emacs_path/bin ~/.emacs.d/bin
-alias emacs $EMACS
+set -l fish_config_mtime (stat -f %m ~/.config/fish/config.fish)
 
-set -x GOPATH ~/go
-set -p PATH $GOPATH $GOPATH/bin
+if test "$fish_config_last" != "$fish_config_mtime"
 
-set -p PATH ~/.cargo/bin
-set -p PATH ~/.local/bin
-set -p PATH ~/Library/Python/3.{8,9}/bin
-set -p PATH /usr/local/opt/sqlite/bin
-set -p PATH /usr/local/sbin
-set -p PATH ~/.gem/ruby/2.6.0/bin
-set -p PATH ~/.local/bin/pnpm
-fnm env --shell=fish --use-on-cd | source
-set -p PATH ~/.local/bin/pnpm # make sure to prepend pnpm bin path to override fnm
+    set -Ux fish_user_paths
+    # Emacs
+    set -l emacs_path /Applications/Emacs.app/Contents/MacOS
+    set -Ux EMACS $emacs_path/Emacs
+    set -p fish_user_paths $emacs_path/bin ~/.emacs.d/bin
+    alias -s emacs $EMACS
 
-if status --is-interactive
+    set -Ux GOPATH ~/go
+    set -p fish_user_paths $GOPATH $GOPATH/bin
+
+    set -p fish_user_paths ~/.cargo/bin
+    set -p fish_user_paths ~/.local/bin
+    set -p fish_user_paths ~/Library/Python/3.{8,9}/bin
+    set -p fish_user_paths /usr/local/opt/sqlite/bin
+    set -p fish_user_paths /usr/local/sbin
+    set -p fish_user_paths ~/.gem/ruby/2.6.0/bin
+    set -p fish_user_paths ~/.local/bin/pnpm
+    set -p fish_user_paths ~/.local/bin/pnpm # make sure to prepend pnpm bin path to override fnm
+
     # Bat Configuration
-    set -x BAT_THEME "Dracula"
-    # set -x MANROFFOPT "-c"
-    # set -x MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
-    #set -x MANPAGER "most" # use bat to format man pages
-    set -x MANPAGER "nvim -u NORC +Man!"
+    set -Ux BAT_THEME "Dracula"
+    # set -Ux MANROFFOPT "-c"
+    # set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
+    #set -Ux MANPAGER "most" # use bat to format man pages
+    set -Ux MANPAGER "nvim -u NORC +Man!"
 
     # Tmux
-    abbr -g ta 'tmux attach -t'
-    abbr -g tad 'tmux attach -d -t'
-    abbr -g ts 'tmux new-session -s'
-    abbr -g tl 'tmux list-sessions'
-    abbr -g tksv 'tmux kill-server'
-    abbr -g tkss 'tmux kill-session -t'
-    abbr -g mux 'tmuxinator'
-    abbr -g suod sudo
+    abbr ta 'tmux attach -t'
+    abbr tad 'tmux attach -d -t'
+    abbr ts 'tmux new-session -s'
+    abbr tl 'tmux list-sessions'
+    abbr tksv 'tmux kill-server'
+    abbr tkss 'tmux kill-session -t'
+    abbr mux 'tmuxinator'
+    abbr suod sudo
 
     # Changing Directories
-    alias ls="exa --icons --group-directories-first"
-    alias la 'exa --icons --group-directories-first --all'
-    alias ll 'exa --icons --group-directories-first --all --long'
-    abbr -g l 'll'
+    alias -s ls="exa --icons --group-directories-first"
+    alias -s la 'exa --icons --group-directories-first --all'
+    alias -s ll 'exa --icons --group-directories-first --all --long'
+    abbr l 'll'
 
     # Editor
-    abbr -g vim 'nvim'
-    abbr -g vi 'nvim'
-    set -x EDITOR nvim
+    abbr vim 'nvim'
+    abbr vi 'nvim'
+    set -Ux EDITOR nvim
 
     # Dev
-    abbr -g git 'hub'
-    abbr -g g 'git'
-    abbr -g gl 'git l --color | devmoji --log --color | less -rXF'
-    abbr -g push "git push"
-    abbr -g pull "git pull"
-    alias tn "npx --no-install ts-node --transpile-only"
-    abbr -g tt "tn src/tt.ts"
-    abbr -g code "code-insiders"
-    alias todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
-    abbr -g ntop "ultra --monitor"
-    abbr -g ytop "btm"
-    abbr -g gotop "btm"
-    abbr -g fda "fd -IH"
-    abbr -g rga "rg -uu"
-    abbr -g grep "rg"
+    abbr git 'hub'
+    abbr g 'git'
+    abbr gl 'git l --color | devmoji --log --color | less -rXF'
+    abbr st "git st"
+    abbr push "git push"
+    abbr pull "git pull"
+    alias -s tn "npx --no-install ts-node --transpile-only"
+    abbr tt "tn src/tt.ts"
+    abbr code "code-insiders"
+    alias -s todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
+    abbr ntop "ultra --monitor"
+    abbr ytop "btm"
+    abbr gotop "btm"
+    abbr fda "fd -IH"
+    abbr rga "rg -uu"
+    abbr grep "rg"
 
-    abbr -g helpme "bat ~/HELP.md"
-    abbr -g weather "curl -s wttr.in/Ghent | grep -v Follow"
+    abbr helpme "bat ~/HELP.md"
+    abbr weather "curl -s wttr.in/Ghent | grep -v Follow"
 
     # Docker
-    set -x COMPOSE_DOCKER_CLI_BUILD 1
+    set -Ux COMPOSE_DOCKER_CLI_BUILD 1
 
     # Fedora
-    #abbr -g dnfs "sudo dnf search"
-    #abbr -g dnfi "sudo dnf install"
-    #abbr -g dnfu "sudo dnf update --refresh"
+    #abbr dnfs "sudo dnf search"
+    #abbr dnfi "sudo dnf install"
+    #abbr dnfu "sudo dnf update --refresh"
 
-    abbr -g "show-cursor" "tput cnorm"
-    abbr -g "hide-cursor" "tput civis"
-    abbr -g "aria2c-daemon" "aria2c -D"
+    abbr "show-cursor" "tput cnorm"
+    abbr "hide-cursor" "tput civis"
+    abbr "aria2c-daemon" "aria2c -D"
 
-    set -g fish_emoji_width 2
+    set -Ux fish_emoji_width 2
 
-    function fish_greeting
-        color-test
-    end
+    alias -s fish_greeting color-test
 
-    function __fish_pwd
-        pwd | sed "s|^$HOME|~|"
-    end
+    alias -s __fish_pwd prompt_pwd
 
-    function yabai_fix
-        pgrep yabai | tail -n +2 | head -n1 | xargs kill
-    end
+    set -Ux HOMEBREW_NO_AUTO_UPDATE 1
+    set -Ux DOTDROP_AUTOUPDATE no
+    alias -s dotdrop "command dotdrop -c ~/projects/dot/dotdrop.yaml"
+    alias -s dotgit "hub -C ~/projects/dot/"
 
-    set -x HOMEBREW_NO_AUTO_UPDATE 1
-    set -x DOTDROP_AUTOUPDATE no
-    alias dotdrop "command dotdrop -c ~/projects/dot/dotdrop.yaml"
-    alias dotgit "hub -C ~/projects/dot/"
+    set -Ux fish_config_last $fish_config_mtime
 end

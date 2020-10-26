@@ -1,11 +1,48 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export BAT_THEME:Dracula
+SETUVAR --export COMPOSE_DOCKER_CLI_BUILD:1
+SETUVAR --export DOTDROP_AUTOUPDATE:no
+SETUVAR --export EDITOR:nvim
+SETUVAR --export EMACS:/Applications/Emacs\x2eapp/Contents/MacOS/Emacs
+SETUVAR --export --path GOPATH:/Users/folke/go
+SETUVAR --export HOMEBREW_NO_AUTO_UPDATE:1
+SETUVAR --export MANPAGER:nvim\x20\x2du\x20NORC\x20\x2bMan\x21
 SETUVAR __fish_initialized:3100
+SETUVAR _fish_abbr_aria2c_2D_daemon:aria2c\x20\x2dD
+SETUVAR _fish_abbr_code:code\x2dinsiders
+SETUVAR _fish_abbr_fda:fd\x20\x2dIH
+SETUVAR _fish_abbr_g:git
+SETUVAR _fish_abbr_git:hub
+SETUVAR _fish_abbr_gl:git\x20l\x20\x2d\x2dcolor\x20\x7c\x20devmoji\x20\x2d\x2dlog\x20\x2d\x2dcolor\x20\x7c\x20less\x20\x2drXF
+SETUVAR _fish_abbr_gotop:btm
+SETUVAR _fish_abbr_grep:rg
+SETUVAR _fish_abbr_helpme:bat\x20\x7e/HELP\x2emd
+SETUVAR _fish_abbr_hide_2D_cursor:tput\x20civis
+SETUVAR _fish_abbr_l:ll
+SETUVAR _fish_abbr_mux:tmuxinator
+SETUVAR _fish_abbr_ntop:ultra\x20\x2d\x2dmonitor
+SETUVAR _fish_abbr_pull:git\x20pull
+SETUVAR _fish_abbr_push:git\x20push
+SETUVAR _fish_abbr_rga:rg\x20\x2duu
+SETUVAR _fish_abbr_show_2D_cursor:tput\x20cnorm
+SETUVAR _fish_abbr_st:git\x20st
+SETUVAR _fish_abbr_suod:sudo
+SETUVAR _fish_abbr_ta:tmux\x20attach\x20\x2dt
+SETUVAR _fish_abbr_tad:tmux\x20attach\x20\x2dd\x20\x2dt
+SETUVAR _fish_abbr_tkss:tmux\x20kill\x2dsession\x20\x2dt
+SETUVAR _fish_abbr_tksv:tmux\x20kill\x2dserver
+SETUVAR _fish_abbr_tl:tmux\x20list\x2dsessions
+SETUVAR _fish_abbr_ts:tmux\x20new\x2dsession\x20\x2ds
+SETUVAR _fish_abbr_tt:tn\x20src/tt\x2ets
+SETUVAR _fish_abbr_vi:nvim
+SETUVAR _fish_abbr_vim:nvim
+SETUVAR _fish_abbr_weather:curl\x20\x2ds\x20wttr\x2ein/Ghent\x20\x7c\x20grep\x20\x2dv\x20Follow
+SETUVAR _fish_abbr_ytop:btm
 SETUVAR _fish_abbr_za:zoxide\x20add
 SETUVAR _fish_abbr_zq:zoxide\x20query
 SETUVAR _fish_abbr_zqi:zoxide\x20query\x20\x2di
 SETUVAR _fish_abbr_zr:zoxide\x20remove
-SETUVAR fish_color_autosuggestion:4A5271
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_cwd:green
 SETUVAR fish_color_cwd_root:red
@@ -15,6 +52,8 @@ SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR --export fish_config_last:1603754985
+SETUVAR --export fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR pisces_pairs:\x28\x2c\x29\x1e\x5b\x2c\x5d\x1e\x7b\x2c\x7d\x1e\x22\x2c\x22\x1e\x27\x2c\x27
+SETUVAR --export fish_user_paths:/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2egem/ruby/2\x2e6\x2e0/bin\x1e/usr/local/sbin\x1e/usr/local/opt/sqlite/bin\x1e/Users/folke/Library/Python/3\x2e8/bin\x1e/Users/folke/Library/Python/3\x2e9/bin\x1e/Users/folke/\x2elocal/bin\x1e/Users/folke/\x2ecargo/bin\x1e/Users/folke/go\x1e/Users/folke/go/bin\x1e/Applications/Emacs\x2eapp/Contents/MacOS/bin\x1e/Users/folke/\x2eemacs\x2ed/bin
