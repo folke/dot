@@ -1,28 +1,21 @@
+# Emacs
+set -l emacs_path /Applications/Emacs.app/Contents/MacOS
+set -x EMACS $emacs_path/Emacs
+set -p PATH $emacs_path/bin ~/.emacs.d/bin
+alias emacs $EMACS
 
-# Path
 set -x GOPATH ~/go
-set -x EMACS_PATH /Applications/Emacs.app/Contents/MacOS/
-set -x EMACS $EMACS_PATH/Emacs
-set -p PATH $EMACS_PATH/bin
-set -p PATH ~/go/bin
-set -p PATH ~/bin
+set -p PATH $GOPATH $GOPATH/bin
+
 set -p PATH ~/.cargo/bin
-set -p PATH ~/.emacs.d/bin
 set -p PATH ~/.local/bin
-set -p PATH ~/.config/folke/bin
-set -p PATH ~/.config/scripts/bin
-set -p PATH ~/Library/Python/3.8/bin
-set -p PATH ~/Library/Python/3.9/bin
+set -p PATH ~/Library/Python/3.{8,9}/bin
 set -p PATH /usr/local/opt/sqlite/bin
 set -p PATH /usr/local/sbin
 set -p PATH ~/.gem/ruby/2.6.0/bin
-set -p PATH ~/.local/bin/pnpm $PATH
-set -p PATH $GOPATH
-fnm env --multi | source
-set -p PATH ~/.local/bin/pnpm $PATH # make sure to prepend pnpm bin path to override fnm
-
-alias emacs $EMACS
-
+set -p PATH ~/.local/bin/pnpm
+fnm env --shell=fish --use-on-cd | source
+set -p PATH ~/.local/bin/pnpm # make sure to prepend pnpm bin path to override fnm
 
 if status --is-interactive
     # Bat Configuration
@@ -43,10 +36,9 @@ if status --is-interactive
     abbr -g suod sudo
 
     # Changing Directories
-    alias ls="gls --group-directories-first --color=always"
-    alias grep 'grep --color'
-    alias la 'exa --all --icons --group-directories-first'
-    alias ll 'exa --all --icons --group-directories-first --long'
+    alias ls="exa --icons --group-directories-first"
+    alias la 'exa --icons --group-directories-first --all'
+    alias ll 'exa --icons --group-directories-first --all --long'
     abbr -g l 'll'
 
     # Editor
@@ -68,17 +60,14 @@ if status --is-interactive
     abbr -g ytop "btm"
     abbr -g gotop "btm"
     abbr -g fda "fd -IH"
-    abbr -g aga "ag -u"
     abbr -g rga "rg -uu"
+    abbr -g grep "rg"
 
     abbr -g helpme "bat ~/HELP.md"
     abbr -g weather "curl -s wttr.in/Ghent | grep -v Follow"
 
     # Docker
     set -x COMPOSE_DOCKER_CLI_BUILD 1
-
-    # Override color, since it's too much like the background for palenight
-    set -U fish_color_autosuggestion 4A5271
 
     # Fedora
     #abbr -g dnfs "sudo dnf search"
@@ -90,8 +79,6 @@ if status --is-interactive
     abbr -g "aria2c-daemon" "aria2c -D"
 
     set -g fish_emoji_width 2
-
-    test -r "~/.dir_colors" && eval (dircolors ~/.dir_colors)
 
     function fish_greeting
         color-test
@@ -109,12 +96,4 @@ if status --is-interactive
     set -x DOTDROP_AUTOUPDATE no
     alias dotdrop "command dotdrop -c ~/projects/dot/dotdrop.yaml"
     alias dotgit "hub -C ~/projects/dot/"
-
-    # tabtab source for packages
-    # uninstall by removing these lines
-    [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and source ~/.config/tabtab/fish/__tabtab.fish; or true
-
-    # Navi
-    navi widget fish | source
-    starship init fish | source
 end

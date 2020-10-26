@@ -26,4 +26,7 @@ function update --description 'Update homebrew, fish, pnpm'
     and fisher self-update
     and fisher
     and fish_update_completions
+    and zoxide init fish >~/.config/fish/functions/z.fish
+    and starship init fish --print-full-init >~/.config/fish/functions/fish_prompt.fish
+
 end
