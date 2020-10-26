@@ -12,7 +12,7 @@ email = folke.lemaitre@gmail.com
 ui = true
 
 [core]
-pager = delta --dark --theme TwoDark
+pager = delta
 
 [alias]
 st = status -sb
@@ -26,3 +26,6 @@ l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(
 	ff = only
 [github]
 	user = folke
+[delta]
+	side-by-side = false
+	line-numbers = true
