@@ -21,8 +21,8 @@
         projectile-ignored-projects '("~/.emacs.d/")
         projectile-project-search-path '("~/projects" "~/projects/splora/libs" "~/projects/splora/apps" "~/projects/splora/tools"))
   (defun projectile-ignored-project-function (filepath)
-  "Return t if FILEPATH is within any of `projectile-ignored-projects'"
-  (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects))))
+    "Return t if FILEPATH is within any of `projectile-ignored-projects'"
+    (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects))))
 
 (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     "))
 
@@ -91,9 +91,11 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-moonlight)
+;; (setq doom-theme 'doom-moonlight)
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic))
 ;;(setq doom-theme 'doom-palenight)
-;;(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dracula)
 
 (defvar +fl/splashcii-query ""
   "The query to search on asciiur.com")
@@ -251,6 +253,7 @@
       org-journal-file-type 'weekly
       org-use-property-inheritance t
       org-log-done 'time
+      org-hide-emphasis-markers t
       org-enforce-todo-dependencies t
       org-enforce-todo-checkbox-dependencies t
       org-log-into-drawer t
