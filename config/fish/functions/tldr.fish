@@ -6,7 +6,7 @@ function tldr --wraps='tldr'
     set -l nl 0
     command tldr -m $argv \
         | sed 's/^`/cccommand/; s/`$//; s/{{//g; s/}}//g; s/^>/#/ ;s/^-/> -/' \
-        | bat -l md --style "plain" --pager never -f -r 2: | \
+        | bat -l md --style "plain" --pager never -f | \
         while read -l line
         if test $line = ""
             set nl 1
