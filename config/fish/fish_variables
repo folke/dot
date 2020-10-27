@@ -8,6 +8,7 @@ SETUVAR --export EMACS:/Applications/Emacs\x2eapp/Contents/MacOS/Emacs
 SETUVAR --export --path GOPATH:/Users/folke/go
 SETUVAR --export HOMEBREW_NO_AUTO_UPDATE:1
 SETUVAR --export MANPAGER:nvim\x20\x2du\x20NORC\x20\x2bMan\x21
+SETUVAR --export VISUAL:nvim
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_aria2c_2D_daemon:aria2c\x20\x2dD
 SETUVAR _fish_abbr_code:code\x2dinsiders
@@ -52,8 +53,8 @@ SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR --export fish_config_last:1603754985
+SETUVAR --export fish_config_changed:1603782818
 SETUVAR --export fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR --export fish_user_paths:/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2egem/ruby/2\x2e6\x2e0/bin\x1e/usr/local/sbin\x1e/usr/local/opt/sqlite/bin\x1e/Users/folke/Library/Python/3\x2e8/bin\x1e/Users/folke/Library/Python/3\x2e9/bin\x1e/Users/folke/\x2elocal/bin\x1e/Users/folke/\x2ecargo/bin\x1e/Users/folke/go\x1e/Users/folke/go/bin\x1e/Applications/Emacs\x2eapp/Contents/MacOS/bin\x1e/Users/folke/\x2eemacs\x2ed/bin
+SETUVAR --export fish_user_paths:/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2egem/ruby/2\x2e6\x2e0/bin\x1e/usr/local/sbin\x1e/usr/local/opt/sqlite/bin\x1e/Users/folke/Library/Python/3\x2e8/bin\x1e/Users/folke/Library/Python/3\x2e9/bin\x1e/Users/folke/\x2elocal/bin\x1e/Users/folke/\x2ecargo/bin\x1e/Users/folke/go\x1e/Users/folke/go/bin\x1e/Applications/Emacs\x2eapp/Contents/MacOS/bin\x1e/Users/folke/\x2eemacs\x2ed/bin
