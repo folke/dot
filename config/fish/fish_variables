@@ -53,7 +53,7 @@ SETUVAR fish_color_host_remote:yellow
 SETUVAR fish_color_status:red
 SETUVAR fish_color_user:brgreen
 SETUVAR fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_config_changed:1603792282
+SETUVAR fish_config_changed:1603794018
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings

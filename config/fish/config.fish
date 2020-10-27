@@ -40,6 +40,7 @@ set -Ux MANPAGER "nvim -u NORC +Man!"
 #set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 #set -Ux MANPAGER "most" # use bat to format man pages
 
+
 # Tmux
 abbr ta 'tmux attach -t'
 abbr tad 'tmux attach -d -t'
@@ -88,3 +89,5 @@ abbr "hide-cursor" "tput civis"
 abbr "aria2c-daemon" "aria2c -D"
 alias -s dotdrop "command dotdrop -c ~/projects/dot/dotdrop.yaml"
 alias -s dotgit "hub -C ~/projects/dot/"
+alias -s apropos "MANPATH=$HOME/.cache/fish command apropos"
+alias -s whatis "MANPATH=$HOME/.cache/fish command whatis"
