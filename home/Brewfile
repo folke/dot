@@ -55,6 +55,8 @@ brew "fd"
 brew "fish"
 # Monitor a directory for changes and run a shell command
 brew "fswatch"
+# Command-line fuzzy finder written in Go
+brew "fzf"
 # GNU compiler collection
 brew "gcc"
 # GNU debugger
