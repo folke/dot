@@ -1,6 +1,7 @@
 tap "amar1729/formulae"
 tap "clementtsang/bottom"
 tap "cmacrae/formulae"
+tap "cowsay-org/cowsay"
 tap "d12frosted/emacs-plus"
 tap "eugenmayer/dockersync"
 tap "homebrew/bundle"
@@ -13,6 +14,7 @@ tap "koekeishiya/formulae"
 tap "railwaycat/emacsmacport"
 tap "schniz/tap"
 tap "xwmx/taps"
+tap "zegervdv/zathura"
 # Search tool like grep, but optimized for programmers
 brew "ack"
 # Download with resuming and segmented downloading
@@ -27,8 +29,6 @@ brew "bash"
 brew "bat"
 # Command-line interface for SQLite
 brew "sqlite"
-# Create and view interactive cheat sheets for *nix commands
-brew "cheat"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
@@ -47,16 +47,18 @@ brew "direnv"
 brew "editorconfig"
 # Modern replacement for 'ls'
 brew "exa"
+# XML 1.0 parser
+brew "expat"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Monitor a directory for changes and run a shell command
 brew "fswatch"
+# GNU compiler collection
+brew "gcc"
 # GNU debugger
 brew "gdb"
-# Geometry Engine
-brew "geos"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -91,34 +93,30 @@ brew "htop"
 brew "httpie"
 # Add GitHub support to git on the command-line
 brew "hub"
-# Spell checker and morphological analyzer
-brew "hunspell"
 # Command-line benchmarking tool
 brew "hyperfine"
-# Synchronize a maildir with an IMAP server
-brew "isync"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Style and grammar checker
 brew "languagetool"
 # Key-value storage library with ordered mapping
 brew "leveldb"
+# JIT library for the GNU compiler collection
+brew "libgccjit"
+# Conversion library
+brew "libiconv"
 # Postgres C API library
 brew "libpq"
-# Package manager for the Lua programming language
-brew "luarocks"
-# Keep your Mac's application settings in sync
-brew "mackup"
+# C virtualization API
+brew "libvirt", restart_service: true
+# Swiss Army knife of email handling
+brew "mailutils"
 # Utility for directing compilation
 brew "make"
 # Markdown parser and compiler built for speed
 brew "marked"
 # Powerful paging program
 brew "most"
-# Tool for searching e-mail messages stored in the maildir-format
-brew "mu"
-# Interactive cheatsheet tool for the command-line
-brew "navi"
 # NCurses Disk Usage
 brew "ncdu"
 # Fast, highly customisable system info script
@@ -131,8 +129,6 @@ brew "ninja"
 brew "notmuch"
 # Libosmium-based command-line tool for processing OpenStreetMap data
 brew "osmium-tool"
-# Outputs current CPU temperature for OSX
-brew "osx-cpu-temp"
 # Swiss-army knife of markup format conversion
 brew "pandoc"
 # Password manager
@@ -149,6 +145,10 @@ brew "pipx"
 brew "poppler"
 # Object-relational database system
 brew "postgresql"
+# Modern replacement for ps written by Rust
+brew "procs"
+# Emulator for x86 and PowerPC
+brew "qemu"
 # File browser
 brew "ranger"
 # Search tool like grep and The Silver Searcher
@@ -165,46 +165,37 @@ brew "shellcheck"
 brew "shfmt"
 # Cross-shell prompt for astronauts
 brew "starship"
-# Organize software neatly under a single directory tree (e.g. /usr/local)
-brew "stow"
 # Open source continuous file synchronization application
 brew "syncthing", restart_service: true
-# Code-search similar to ack
-brew "the_silver_searcher"
-# Programatically correct mistyped console commands
-brew "thefuck"
+# Very fast implementation of tldr in Rust
+brew "tealdeer"
+# User interface to the TELNET protocol
+brew "telnet"
 # Text interface for Git repositories
 brew "tig"
-# Simplified and community-driven man pages
-brew "tldr"
-# File synchronization tool for OSX
-brew "unison"
-# Tool for writing command-line pipes with instant live preview
-brew "up"
+# Program that allows you to count code, quickly
+brew "tokei"
 # Internet file retriever
 brew "wget"
-# New cd command that helps you navigate faster by learning your habits
-brew "z.lua"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # This is a host application for browserpass browser extension providing it access to your password store.
 brew "amar1729/formulae/browserpass"
 # A cross-platform graphical process/system monitor with a customizable interface and a multitude of features.
 brew "clementtsang/bottom/bottom"
-# A minimal status bar for macOS.
-brew "cmacrae/formulae/spacebar"
-brew "d12frosted/emacs-plus/emacs-plus@27", args: ["with-no-frame-refocus", "with-xwidgets"]
 # Simple hotkey-daemon for macOS.
 brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
 brew "koekeishiya/formulae/yabai", args: ["HEAD"]
 # Fast and simple Node.js version manager
 brew "schniz/tap/fnm"
-cask "1password-beta"
 cask "adoptopenjdk"
 cask "alacritty"
 cask "alfred"
 cask "avibrazil-rdm"
+cask "bitwarden"
 cask "docker-edge"
-cask "expressvpn"
+cask "emby-server"
 cask "font-comfortaa"
 cask "font-fantasque-sans-mono-nerd-font"
 cask "font-fira-code"
@@ -217,14 +208,12 @@ cask "github"
 cask "google-backup-and-sync"
 cask "hammerspoon"
 cask "iterm2"
-cask "kitematic"
 cask "kitty"
 cask "mactex"
+cask "mullvadvpn-beta"
 cask "qutebrowser"
 cask "spotify"
-cask "spotmenu"
 cask "steam"
 cask "twitch"
-cask "ubersicht"
 cask "visual-studio-code-insiders"
 cask "vlc"

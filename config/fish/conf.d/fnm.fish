@@ -11,11 +11,3 @@ function _fnm_autoload_hook --on-variable PWD --description 'Change Node version
         fnm use
     end
 end
-
-function fnm_update
-    set -l last (fnm ls-remote | tail -1)
-    fnm install $last
-    fnm alias $last latest
-    fnm alias $last default
-    fnm use default
-end
