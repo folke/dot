@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-eval "$(starship init bash)"
+source <(starship init bash --print-full-init)

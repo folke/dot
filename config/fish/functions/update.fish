@@ -12,6 +12,7 @@ function update --description 'Update homebrew, fish, pnpm'
     and doom upgrade
 
     and echo "[update] nodejs"
+    and fnm_update
     and pnpm update -g
 
     and echo "[update] python"
