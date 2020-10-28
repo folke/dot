@@ -3,6 +3,7 @@ tap "clementtsang/bottom"
 tap "cmacrae/formulae"
 tap "cowsay-org/cowsay"
 tap "d12frosted/emacs-plus"
+tap "eth-p/software"
 tap "eugenmayer/dockersync"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -23,10 +24,14 @@ brew "aria2"
 brew "aspell"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Terminal bandwidth utilization tool
+brew "bandwhich"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# New way to see and navigate directory trees
+brew "broot"
 # Command-line interface for SQLite
 brew "sqlite"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
@@ -43,6 +48,8 @@ brew "ctop"
 brew "curl"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# More intuitive version of du in rust
+brew "dust"
 # Maintain consistent coding style between multiple editors
 brew "editorconfig"
 # Modern replacement for 'ls'
@@ -101,6 +108,8 @@ brew "hyperfine"
 brew "jq"
 # Style and grammar checker
 brew "languagetool"
+# Pager program similar to more
+brew "less"
 # Key-value storage library with ordered mapping
 brew "leveldb"
 # JIT library for the GNU compiler collection
@@ -117,6 +126,8 @@ brew "mailutils"
 brew "make"
 # Markdown parser and compiler built for speed
 brew "marked"
+# Show markdown documents on text terminals
+brew "mdcat"
 # Powerful paging program
 brew "most"
 # NCurses Disk Usage
@@ -185,6 +196,8 @@ brew "zoxide"
 brew "amar1729/formulae/browserpass"
 # A cross-platform graphical process/system monitor with a customizable interface and a multitude of features.
 brew "clementtsang/bottom/bottom"
+# Bash scripts that integrate bat with various command-line tools
+brew "eth-p/software/bat-extras"
 # Simple hotkey-daemon for macOS.
 brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
@@ -196,8 +209,10 @@ cask "alacritty"
 cask "alfred"
 cask "avibrazil-rdm"
 cask "bitwarden"
+cask "discord"
 cask "docker-edge"
 cask "emby-server"
+cask "firefox-developer-edition"
 cask "font-comfortaa"
 cask "font-fantasque-sans-mono-nerd-font"
 cask "font-fira-code"
