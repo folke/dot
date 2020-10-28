@@ -1,3 +1,5 @@
+bind \cr 'fzf_history'
+
 # Load universal config when it's changed
 set -l fish_config_mtime (stat -f %m $__fish_config_dir/config.fish)
 if test "$fish_config_changed" = "$fish_config_mtime"
