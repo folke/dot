@@ -12,6 +12,7 @@ SETUVAR --export VISUAL:nvim
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_aria2c_2D_daemon:aria2c\x20\x2dD
 SETUVAR _fish_abbr_code:code\x2dinsiders
+SETUVAR _fish_abbr_cp:cp\x20\x2driv
 SETUVAR _fish_abbr_fda:fd\x20\x2dIH
 SETUVAR _fish_abbr_g:hub
 SETUVAR _fish_abbr_git:hub
@@ -21,7 +22,10 @@ SETUVAR _fish_abbr_grep:rg
 SETUVAR _fish_abbr_helpme:bat\x20\x7e/HELP\x2emd
 SETUVAR _fish_abbr_hide_2D_cursor:tput\x20civis
 SETUVAR _fish_abbr_l:ll
+SETUVAR _fish_abbr_mkdir:mkdir\x20\x2dvp
 SETUVAR _fish_abbr_mux:tmuxinator
+SETUVAR _fish_abbr_mv:mv\x20\x2div
+SETUVAR _fish_abbr_ncdu:ncdu\x20\x2d\x2dcolor\x20dark
 SETUVAR _fish_abbr_ntop:ultra\x20\x2d\x2dmonitor
 SETUVAR _fish_abbr_pull:hub\x20pull
 SETUVAR _fish_abbr_push:hub\x20push
@@ -53,7 +57,7 @@ SETUVAR --export fish_color_host_remote:yellow
 SETUVAR --export fish_color_status:red
 SETUVAR --export fish_color_user:brgreen
 SETUVAR --export fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_config_changed:1603794018
+SETUVAR fish_config_changed:1603871534
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings

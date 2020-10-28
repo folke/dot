@@ -6,7 +6,7 @@ else
     set -U fish_config_changed $fish_config_mtime
 end
 
-# Configure Path
+# Path
 set -Ux fish_user_paths
 set -p fish_user_paths ~/.cargo/bin
 set -p fish_user_paths ~/.local/bin
@@ -31,6 +31,8 @@ set -Ux GOPATH ~/go
 set -p fish_user_paths $GOPATH $GOPATH/bin
 
 # Variables
+set -Ux EDITOR nvim
+set -Ux VISUAL nvim
 set -Ux BAT_THEME "Dracula"
 set -Ux COMPOSE_DOCKER_CLI_BUILD 1
 set -Ux HOMEBREW_NO_AUTO_UPDATE 1
@@ -50,17 +52,19 @@ abbr tksv 'tmux kill-server'
 abbr tkss 'tmux kill-session -t'
 abbr mux 'tmuxinator'
 
-# Changing Directories
+# Files & Directories
+abbr mv "mv -iv"
+abbr cp "cp -riv"
+abbr mkdir "mkdir -vp"
 alias -s ls="exa --icons --group-directories-first"
 alias -s la 'exa --icons --group-directories-first --all'
 alias -s ll 'exa --icons --group-directories-first --all --long'
 abbr l 'll'
+abbr ncdu "ncdu --color dark"
 
 # Editor
 abbr vim 'nvim'
 abbr vi 'nvim'
-set -Ux EDITOR nvim
-set -Ux VISUAL nvim
 
 # Dev
 abbr git 'hub'
