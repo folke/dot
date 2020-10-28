@@ -2,7 +2,7 @@
 
 function tldr --wraps='tldr'
     # make sure env has colors
-    set | rg "^fish_color" | sed "s/^/set -x /" | source
+    set | rg "^fish_color" | sed "s/^/set -lx /" | source
     set -l nl 0
     command tldr -m $argv \
         | sed 's/^`/cccommand/; s/`$//; s/{{//g; s/}}//g; s/^>/#/ ;s/^-/> -/' \

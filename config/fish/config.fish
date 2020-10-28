@@ -30,15 +30,16 @@ alias -s emacs $EMACS
 set -Ux GOPATH ~/go
 set -p fish_user_paths $GOPATH $GOPATH/bin
 
-# Variables
+# Exports
 set -Ux EDITOR nvim
 set -Ux VISUAL nvim
+set -Ux LESS "-rF"
 set -Ux BAT_THEME "Dracula"
 set -Ux COMPOSE_DOCKER_CLI_BUILD 1
 set -Ux HOMEBREW_NO_AUTO_UPDATE 1
 set -Ux DOTDROP_AUTOUPDATE no
 set -Ux MANPAGER "nvim -u NORC +Man!"
-#set -Ux MANROFFOPT "-c"
+set -Ux MANROFFOPT "-c"
 #set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 #set -Ux MANPAGER "most" # use bat to format man pages
 
@@ -56,9 +57,9 @@ abbr mux 'tmuxinator'
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
-alias -s ls="exa --icons --group-directories-first"
-alias -s la 'exa --icons --group-directories-first --all'
-alias -s ll 'exa --icons --group-directories-first --all --long'
+alias -s ls="exa --color=always --icons --group-directories-first"
+alias -s la 'exa --color=always --icons --group-directories-first --all'
+alias -s ll 'exa --color=always --icons --group-directories-first --all --long'
 abbr l 'll'
 abbr ncdu "ncdu --color dark"
 
