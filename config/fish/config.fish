@@ -1,4 +1,5 @@
 bind \cr 'fzf_history'
+bind \ch 'fzf_tldr'
 
 # Load universal config when it's changed
 set -l fish_config_mtime (stat -f %m $__fish_config_dir/config.fish)
