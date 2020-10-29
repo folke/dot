@@ -130,7 +130,7 @@ font string. You generally only need these two:
 
 #+BEGIN_SRC elisp
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 12))
+      doom-variable-pitch-font (font-spec :family "DejaVuSansMono Nerd Font" :size 12))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -349,6 +349,9 @@ font string. You generally only need these two:
 (after! org
   (setq org-tags-column -80
         org-agenda-sticky nil))
+
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+(advice-add 'org-gcal-fetch :after 'org-save-all-org-buffers)
 #+END_SRC
 
 *** Todo Keywords

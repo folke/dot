@@ -86,7 +86,7 @@
   (setq rainbow-html-colors-major-mode-list '(html-mode css-mode php-mode nxml-mode xml-mode typescript-mode javascript-mode)))
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 12)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 12))
+      doom-variable-pitch-font (font-spec :family "DejaVuSansMono Nerd Font" :size 12))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -267,6 +267,9 @@
 (after! org
   (setq org-tags-column -80
         org-agenda-sticky nil))
+
+(advice-add 'org-refile :after 'org-save-all-org-buffers)
+(advice-add 'org-gcal-fetch :after 'org-save-all-org-buffers)
 
 (after! org
   (with-no-warnings
