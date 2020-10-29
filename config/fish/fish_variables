@@ -5,6 +5,7 @@ SETUVAR --export COMPOSE_DOCKER_CLI_BUILD:1
 SETUVAR --export DOTDROP_AUTOUPDATE:no
 SETUVAR --export EDITOR:nvim
 SETUVAR --export EMACS:/Applications/Emacs\x2eapp/Contents/MacOS/Emacs
+SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcycle\x20\x2d\x2dlayout\x3dreverse\x20\x2d\x2dborder\x20\x2d\x2dheight\x2090\x25\x20\x2d\x2dpreview\x2dwindow\x3dwrap\x20\x20\x20\x20\x20\x2d\x2dcolor\x20hl\x3a84\x2cfg\x2b\x3a255\x2cbg\x2b\x3a236\x2chl\x2b\x3a215\x20\x20\x20\x20\x20\x2d\x2dcolor\x20info\x3a141\x2cprompt\x3a84\x2cspinner\x3a212\x2cpointer\x3a212\x2cmarker\x3a212
 SETUVAR --export --path GOPATH:/Users/folke/go
 SETUVAR --export HOMEBREW_NO_AUTO_UPDATE:1
 SETUVAR --export LESS:\x2drF
@@ -59,7 +60,7 @@ SETUVAR --export fish_color_host_remote:yellow
 SETUVAR --export fish_color_status:red
 SETUVAR --export fish_color_user:brgreen
 SETUVAR --export fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_config_changed:1603969455
+SETUVAR fish_config_changed:1603972578
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings

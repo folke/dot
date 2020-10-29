@@ -45,6 +45,9 @@ set -Ux MANPAGER "nvim -u NORC +Man!"
 set -Ux MANROFFOPT "-c"
 #set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 #set -Ux MANPAGER "most" # use bat to format man pages
+set -Ux FZF_DEFAULT_OPTS "--cycle --layout=reverse --border --height 90% --preview-window=wrap \
+    --color hl:84,fg+:255,bg+:236,hl+:215 \
+    --color info:141,prompt:84,spinner:212,pointer:212,marker:212"
 
 
 # Tmux
