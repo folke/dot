@@ -1,4 +1,4 @@
-function fzf_tldr --description "Search tldr using fzf"
+function __fzf_tldr --description "Search tldr using fzf"
     fd --print0 --extension md . ~/.tldrc/tldr-master/pages/{common,osx} \
         | gsed -z 's/.*\///; s/\.md$//' \
         | fzf --read0 --query=(commandline) --preview 'tldr {}' --preview-window right:75% \

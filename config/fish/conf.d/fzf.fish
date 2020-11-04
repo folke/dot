@@ -1,30 +1,25 @@
-# Set up the default, mnemonic key bindings unless the user has chosen to customize them
-if not set --query fzf_fish_custom_keybindings
-    # \cf is Ctrl+f
-    bind \cf '__fzf_search_current_dir'
-    bind \cr '__fzf_search_history'
-    bind \cv '__fzf_search_shell_variables'
-    # The following two key binding use Alt as an additional modifier key to avoid conflicts
-    bind \e\cl '__fzf_search_git_log'
-    bind \e\cs '__fzf_search_git_status'
+bind \cr '__fzf_history'
+bind \ch '__fzf_tldr'
+bind \ct '__fzf_files'
 
-    # set up the same key bindings for insert mode if using fish_vi_key_bindings
-    if test "$fish_key_bindings" = 'fish_vi_key_bindings'
-        bind --mode insert \cf '__fzf_search_current_dir'
-        bind --mode insert \cr '__fzf_search_history'
-        bind --mode insert \cv '__fzf_search_shell_variables'
-        bind --mode insert \e\cl '__fzf_search_git_log'
-        bind --mode insert \e\cs '__fzf_search_git_status'
-    end
-end
+set -l color00 '#292D3E'
+set -l color01 '#444267'
+set -l color02 '#32374D'
+set -l color03 '#676E95'
+set -l color04 '#8796B0'
+set -l color05 '#959DCB'
+set -l color06 '#959DCB'
+set -l color07 '#FFFFFF'
+set -l color08 '#F07178'
+set -l color09 '#F78C6C'
+set -l color0A '#FFCB6B'
+set -l color0B '#C3E88D'
+set -l color0C '#89DDFF'
+set -l color0D '#82AAFF'
+set -l color0E '#C792EA'
+set -l color0F '#FF5370'
 
-# If FZF_DEFAULT_OPTS is not set, then set some sane defaults. This also affects fzf outside of this plugin.
-# See https://github.com/junegunn/fzf#environment-variables
-if not set --query FZF_DEFAULT_OPTS
-    # cycle allows jumping between the top and bottom most results, making scrolling easier
-    # reverse layout lists results from top to bottom, which is more familiar as it mimicks the layout of git log, history, and env
-    # border makes clear where the fzf window ends
-    # height 90% leaves space to see the command line and some terminal scrollback, maintaining context of work
-    # preview-window wrap wraps long lines in the preview window, making reading easier
-    set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height 90% --preview-window=wrap'
-end
+set -x FZF_DEFAULT_OPTS "--cycle --layout=reverse --border --height 90% --preview-window=right:70% \
+    --color=bg+:$color01,bg:$color00,spinner:$color0C,hl:$color0D \
+    --color=fg:$color04,header:$color0D,info:$color0A,pointer:$color0C \
+    --color=marker:$color0C,fg+:$color06,prompt:$color0A,hl+:$color0D"
