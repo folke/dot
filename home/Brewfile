@@ -18,6 +18,8 @@ tap "xwmx/taps"
 tap "zegervdv/zathura"
 # Search tool like grep, but optimized for programmers
 brew "ack"
+# Dungeon exploration game
+brew "angband"
 # Download with resuming and segmented downloading
 brew "aria2"
 # Spell checker with better logic than ispell
@@ -60,6 +62,8 @@ brew "expat"
 brew "fd"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
+# Fast and simple Node.js version manager
+brew "fnm"
 # Monitor a directory for changes and run a shell command
 brew "fswatch"
 # Command-line fuzzy finder written in Go
@@ -90,12 +94,16 @@ brew "lua"
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Version Control Visualization Tool
+brew "gource"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Colorize logfiles and command output
 brew "grc"
 # GNU grep, egrep and fgrep
 brew "grep"
+# Command-line hex viewer
+brew "hexyl"
 # Improved top (interactive process viewer)
 brew "htop"
 # User-friendly cURL replacement (command-line HTTP client)
@@ -130,6 +138,8 @@ brew "marked"
 brew "mdcat"
 # Powerful paging program
 brew "most"
+# Interactive cheatsheet tool for the command-line
+brew "navi"
 # NCurses Disk Usage
 brew "ncdu"
 # Fast, highly customisable system info script
@@ -176,6 +186,8 @@ brew "sbcl"
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
+# Terminal interface for StackOverflow
+brew "so"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Open source continuous file synchronization application
@@ -202,8 +214,6 @@ brew "eth-p/software/bat-extras"
 brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
 brew "koekeishiya/formulae/yabai", args: ["HEAD"]
-# Fast and simple Node.js version manager
-brew "schniz/tap/fnm"
 cask "adoptopenjdk"
 cask "alacritty"
 cask "alfred"
@@ -214,6 +224,7 @@ cask "docker-edge"
 cask "emby-server"
 cask "firefox-developer-edition"
 cask "font-comfortaa"
+cask "font-dejavu-sans-mono-nerd-font"
 cask "font-fantasque-sans-mono-nerd-font"
 cask "font-fira-code"
 cask "font-fira-code-nerd-font"
@@ -226,6 +237,7 @@ cask "google-backup-and-sync"
 cask "hammerspoon"
 cask "iterm2"
 cask "kitty"
+cask "little-snitch"
 cask "mactex"
 cask "mullvadvpn-beta"
 cask "qutebrowser"

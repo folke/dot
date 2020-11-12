@@ -115,7 +115,7 @@
     (insert (make-string (or (cdr +doom-dashboard-banner-padding) 0) ?\n))))
 
 (setcar (nthcdr 0 +doom-dashboard-functions) #'+fl/doom-banner)
-(setq +fl/splashcii-query "halloween")
+(setq +fl/splashcii-query "christmas")
 
 (after! centaur-tabs
   (centaur-tabs-group-by-projectile-project)
@@ -275,6 +275,7 @@
   (with-no-warnings
     (custom-declare-face '+org-todo-soon  '((t (:inherit (bold org-drawer org-todo)))) "")
     (custom-declare-face '+org-todo-next  '((t (:inherit (bold font-lock-keyword-face org-todo)))) "")
+    (custom-declare-face '+org-todo-done  '((t (:inherit (bold org-headline-done org-done)))) "")
     (custom-declare-face '+org-todo-onhold  '((t (:inherit (bold warning org-todo)))) ""))
   (setq org-todo-keywords
         '((sequence
@@ -290,6 +291,8 @@
         '(("NEXT" . +org-todo-next)
           ("WAIT" . +org-todo-onhold)
           ("HOLD" . +org-todo-onhold)
+          ("DONE" . +org-todo-done)
+          ("KILL" . +org-todo-done)
           ("SOON" . +org-todo-soon))))
 
 (use-package! ox-tailwind
