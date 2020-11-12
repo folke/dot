@@ -25,7 +25,7 @@
        (company +childframe)           ; the ultimate code completion backend
        ;;helm                          ; the *other* search engine for love and life
        ;;ido                           ; the other *other* search engine...
-       (ivy +icons +fuzzy +prescient)  ; a search engine for love and life
+       (ivy +icons +fuzzy +prescient +childframe)  ; a search engine for love and life
 
        :ui
        deft                            ; notational velocity for Emacs
@@ -56,7 +56,7 @@
        :editor
        (evil +everywhere)              ; come to the dark side, we have cookies
        file-templates                  ; auto-snippets for empty files
-       ;;fold                          ; (nigh) universal code folding
+       fold                            ; (nigh) universal code folding
        (format +onsave)                ; automated prettiness
        ;;god                           ; run Emacs commands without modifier keys
        lispy                           ; vim for lisp, for people who don't like vim
