@@ -1,7 +1,7 @@
 function __fzf_tldr --description "Search tldr using fzf"
     fd --print0 --extension md . ~/.tldrc/tldr-master/pages/{common,osx} \
         | gsed -z 's/.*\///; s/\.md$//' \
-        | fzf --read0 --query=(commandline) --preview 'tldr {}' --preview-window right:75% \
+        | fzf --read0 --query=(commandline) --preview 'fish -c "tldr {}"' --preview-window right:75% \
         | read -lz cmd
 
     if test $status -eq 0
