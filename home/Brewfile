@@ -112,6 +112,8 @@ brew "httpie"
 brew "hub"
 # Command-line benchmarking tool
 brew "hyperfine"
+# C library for encoding, decoding, and manipulating JSON
+brew "jansson"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Style and grammar checker
@@ -126,8 +128,12 @@ brew "libgccjit"
 brew "libiconv"
 # Postgres C API library
 brew "libpq"
+# Library to render SVG files using Cairo
+brew "librsvg"
 # C virtualization API
 brew "libvirt", restart_service: true
+# GNOME XML library
+brew "libxml2"
 # Swiss Army knife of email handling
 brew "mailutils"
 # Utility for directing compilation
@@ -196,6 +202,8 @@ brew "syncthing", restart_service: true
 brew "tealdeer"
 # User interface to the TELNET protocol
 brew "telnet"
+# Official documentation format of the GNU project
+brew "texinfo"
 # Text interface for Git repositories
 brew "tig"
 # Program that allows you to count code, quickly
@@ -213,7 +221,7 @@ brew "eth-p/software/bat-extras"
 # Simple hotkey-daemon for macOS.
 brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
-brew "koekeishiya/formulae/yabai", args: ["HEAD"]
+brew "koekeishiya/formulae/yabai"
 cask "adoptopenjdk"
 cask "alacritty"
 cask "alfred"
@@ -239,6 +247,7 @@ cask "iterm2"
 cask "kitty"
 cask "little-snitch"
 cask "mactex"
+cask "microsoft-teams"
 cask "mullvadvpn-beta"
 cask "qutebrowser"
 cask "spotify"

@@ -18,7 +18,7 @@ function fisher -a cmd -d "fish plugin manager"
             echo "       -h or --help     print this help message"
         case ls list
             string match --entire --regex -- "$argv[2]" $_fisher_plugins
-        case install update remove rm
+        case install update remove
             isatty || read -laz stdin && set -a argv $stdin
             set -l install_plugins
             set -l update_plugins
@@ -42,10 +42,10 @@ function fisher -a cmd -d "fish plugin manager"
             if set -q argv[2]
                 for plugin in $new_plugins
                     if contains -- "$plugin" $old_plugins
-                        if test "$cmd" = install || test "$cmd" = update
-                            set -a update_plugins $plugin
-                        else
+                        if test "$cmd" = remove
                             set -a remove_plugins $plugin
+                        else
+                            set -a update_plugins $plugin
                         end
                     else if test "$cmd" != install
                         echo "fisher: plugin not installed: \"$plugin\"" >&2 && return 1
@@ -135,13 +135,19 @@ function fisher -a cmd -d "fish plugin manager"
                 end
             end
 
+            if set -q update_plugins[1] || set -q install_plugins[1]
+                command mkdir -p $fisher_path/{functions,conf.d,completions}
+            end
+
             for plugin in $update_plugins $install_plugins
                 set -l source $source_plugins[(contains --index -- "$plugin" $fetch_plugins)]
                 set -l files $source/{functions,conf.d,completions}/*
                 set -l plugin_files_var _fisher_(string escape --style=var $plugin)_files
                 set -q files[1] && set -U $plugin_files_var (string replace $source $fisher_path $files)
 
-                command cp -Rf $source/{functions,conf.d,completions} $fisher_path
+                for file in (string replace -- $source "" $files)
+                    command cp -Rf $source/$file $fisher_path/$file
+                end
 
                 contains -- $plugin $_fisher_plugins || set -Ua _fisher_plugins $plugin
                 contains -- $plugin $install_plugins && set -l event "install" || set -l event "update"

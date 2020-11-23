@@ -91,30 +91,26 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-;; (setq doom-theme 'doom-moonlight)
+(setq doom-theme 'doom-moonlight)
 (custom-set-faces!
   '(font-lock-comment-face :slant italic))
 ;;(setq doom-theme 'doom-palenight)
-(setq doom-theme 'doom-dracula)
+;; (setq doom-theme 'doom-dracula)
 
 (defvar +fl/splashcii-query ""
   "The query to search on asciiur.com")
 
-(defun +fl/splashcii ()
-  (split-string (with-output-to-string
-                  (call-process "splashcii" nil standard-output nil +fl/splashcii-query))
-                "\n" t))
+(defun +fl/splashcii-banner ()
+  (mapc (lambda (line)
+          (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
+                              'face 'doom-dashboard-banner) " ")
+          (insert "\n"))
+        (split-string (with-output-to-string
+                        (call-process "splashcii" nil standard-output nil +fl/splashcii-query))
+                      "\n" t)))
 
-(defun +fl/doom-banner ()
-  (let ((point (point)))
-    (mapc (lambda (line)
-            (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
-                                'face 'doom-dashboard-banner) " ")
-            (insert "\n"))
-          (+fl/splashcii))
-    (insert (make-string (or (cdr +doom-dashboard-banner-padding) 0) ?\n))))
+(setq +doom-dashboard-ascii-banner-fn #'+fl/splashcii-banner)
 
-(setcar (nthcdr 0 +doom-dashboard-functions) #'+fl/doom-banner)
 (setq +fl/splashcii-query "christmas")
 
 (after! centaur-tabs
@@ -279,21 +275,21 @@
     (custom-declare-face '+org-todo-onhold  '((t (:inherit (bold warning org-todo)))) ""))
   (setq org-todo-keywords
         '((sequence
-           "NEXT(n)"  ; A task that is in progress
-           "SOON(s)"  ; A project, which usually contains other tasks
-           "TODO(t)"  ; A task that needs doing & is ready to do
-           "WAIT(w@/!)"  ; Something external is holding up this task
-           "HOLD(h/!)"  ; This task is paused/on hold because of me
+           "NEXT(n)"     ; A task that is in progress
+           "WEEK(w)"     ; A task for this week
+           "MONTH(m)"    ; A task for this month
+           "TODO(t)"     ; A task that needs doing & is ready to do
+           "HOLD(h@/!)"  ; This task is paused/on hold because of me
            "|"
-           "DONE(d!)"  ; Task successfully completed
+           "DONE(d!)"    ; Task successfully completed
            "KILL(k@!)")) ; Task was cancelled, aborted or is no longer applicable
         org-todo-keyword-faces
         '(("NEXT" . +org-todo-next)
-          ("WAIT" . +org-todo-onhold)
+          ("WEEK" . +org-todo-soon)
+          ("MONTH" . +org-todo-soon)
           ("HOLD" . +org-todo-onhold)
           ("DONE" . +org-todo-done)
-          ("KILL" . +org-todo-done)
-          ("SOON" . +org-todo-soon))))
+          ("KILL" . +org-todo-done))))
 
 (use-package! ox-tailwind
   :after ox)
@@ -416,7 +412,7 @@ lg:overflow-x-auto xl:px-32"
 
 (setq org-agenda-custom-commands
       '(("o" "Overview"
-         ((todo "NEXT|SOON"
+         ((todo "NEXT|WEEK"
                 ((org-agenda-overriding-header "\n ⚡ Today")
                  (org-agenda-remove-tags t)))
           (agenda ""
@@ -439,8 +435,10 @@ lg:overflow-x-auto xl:px-32"
                      :category "inbox")
                     (:name "⚡ Next"
                      :todo "NEXT")
-                    (:name "⚡ Soon"
-                     :todo "SOON")
+                    (:name "⚡ Week"
+                     :todo "WEEK")
+                    (:name "⚡ Month"
+                     :todo "MONTH")
                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)))))))))
 
 (after! org-agenda
