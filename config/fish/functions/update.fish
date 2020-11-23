@@ -22,6 +22,9 @@ function update --description 'Update homebrew, fish, pnpm'
     and echo "[update] tldr"
     and tldr -u
 
+    and echo "[update] tmux"
+    and tmux_update
+
     and echo "[update] fish"
     and fisher update
     and fish_update_completions

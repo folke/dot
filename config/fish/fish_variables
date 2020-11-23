@@ -37,11 +37,15 @@ SETUVAR _fish_abbr_rga:rg\x20\x2duu
 SETUVAR _fish_abbr_show_2D_cursor:tput\x20cnorm
 SETUVAR _fish_abbr_st:hub\x20st
 SETUVAR _fish_abbr_suod:sudo
+SETUVAR _fish_abbr_t:tmux
 SETUVAR _fish_abbr_ta:tmux\x20attach\x20\x2dt
 SETUVAR _fish_abbr_tad:tmux\x20attach\x20\x2dd\x20\x2dt
+SETUVAR _fish_abbr_tc:tmux\x20attach
+SETUVAR _fish_abbr_tk:tmux\x20kill\x2dsession\x20\x2dt
 SETUVAR _fish_abbr_tkss:tmux\x20kill\x2dsession\x20\x2dt
 SETUVAR _fish_abbr_tksv:tmux\x20kill\x2dserver
-SETUVAR _fish_abbr_tl:tmux\x20list\x2dsessions
+SETUVAR _fish_abbr_tl:tmux\x20ls
+SETUVAR _fish_abbr_tn:tmux\x20new\x20\x2ds
 SETUVAR _fish_abbr_ts:tmux\x20new\x2dsession\x20\x2ds
 SETUVAR _fish_abbr_tt:tn\x20src/tt\x2ets
 SETUVAR _fish_abbr_vi:nvim
@@ -60,7 +64,7 @@ SETUVAR --export fish_color_host_remote:yellow
 SETUVAR --export fish_color_status:red
 SETUVAR --export fish_color_user:brgreen
 SETUVAR --export fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_config_changed:1605181958
+SETUVAR fish_config_changed:1605777232
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings

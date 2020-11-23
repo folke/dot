@@ -45,12 +45,13 @@ set -Ux MANROFFOPT "-c"
 
 
 # Tmux
+abbr t tmux
+abbr tc 'tmux attach'
 abbr ta 'tmux attach -t'
 abbr tad 'tmux attach -d -t'
-abbr ts 'tmux new-session -s'
-abbr tl 'tmux list-sessions'
-abbr tksv 'tmux kill-server'
-abbr tkss 'tmux kill-session -t'
+abbr tn 'tmux new -s'
+abbr tl 'tmux ls'
+abbr tk 'tmux kill-session -t'
 abbr mux 'tmuxinator'
 
 # Files & Directories
