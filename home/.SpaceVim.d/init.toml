@@ -31,6 +31,11 @@
   # Enable vim compatible mode, avoid changing origin vim key bindings
   vimcompatible = false
   autocomplete_method = "coc"
+  project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/', 'node_modules/']
+  project_rooter_outermost = false
+  enable_projects_cache = true
+  projects_cache_num = 20
+  enable_vimfiler_gitstatus = true
 
 [[layers]] 
   name = 'lsp'
@@ -53,6 +58,9 @@
 
 [[layers]]
   name = "colorscheme"
+
+[[layers]]
+  name = "denite"
 
 [[custom_plugins]]
   name = "dracula/vim"
