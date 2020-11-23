@@ -360,21 +360,21 @@ font string. You generally only need these two:
     (custom-declare-face '+org-todo-onhold  '((t (:inherit (bold warning org-todo)))) ""))
   (setq org-todo-keywords
         '((sequence
-           "NEXT(n)"  ; A task that is in progress
-           "SOON(s)"  ; A project, which usually contains other tasks
-           "TODO(t)"  ; A task that needs doing & is ready to do
-           "WAIT(w@/!)"  ; Something external is holding up this task
-           "HOLD(h/!)"  ; This task is paused/on hold because of me
+           "NEXT(n)"     ; A task that is in progress
+           "WEEK(w)"     ; A task for this week
+           "MONTH(m)"    ; A task for this month
+           "TODO(t)"     ; A task that needs doing & is ready to do
+           "HOLD(h@/!)"  ; This task is paused/on hold because of me
            "|"
-           "DONE(d!)"  ; Task successfully completed
+           "DONE(d!)"    ; Task successfully completed
            "KILL(k@!)")) ; Task was cancelled, aborted or is no longer applicable
         org-todo-keyword-faces
         '(("NEXT" . +org-todo-next)
-          ("WAIT" . +org-todo-onhold)
+          ("WEEK" . +org-todo-soon)
+          ("MONTH" . +org-todo-soon)
           ("HOLD" . +org-todo-onhold)
           ("DONE" . +org-todo-done)
-          ("KILL" . +org-todo-done)
-          ("SOON" . +org-todo-soon))))
+          ("KILL" . +org-todo-done))))
 #+end_src
 *** Export
 #+BEGIN_SRC elisp
@@ -523,7 +523,7 @@ lg:overflow-x-auto xl:px-32"
 #+BEGIN_SRC elisp
 (setq org-agenda-custom-commands
       '(("o" "Overview"
-         ((todo "NEXT|SOON"
+         ((todo "NEXT|WEEK"
                 ((org-agenda-overriding-header "\n ⚡ Today")
                  (org-agenda-remove-tags t)))
           (agenda ""
@@ -546,8 +546,10 @@ lg:overflow-x-auto xl:px-32"
                      :category "inbox")
                     (:name "⚡ Next"
                      :todo "NEXT")
-                    (:name "⚡ Soon"
-                     :todo "SOON")
+                    (:name "⚡ Week"
+                     :todo "WEEK")
+                    (:name "⚡ Month"
+                     :todo "MONTH")
                     (:todo ("WAIT" "HOLD") :name "⚡ On Hold" :order 11)))))))))
 #+END_SRC
 **** Org Habits
