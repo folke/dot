@@ -83,9 +83,11 @@ module._updateAppWindows = function(app, ax)
     if module.windows[app:pid()] == nil then
         module.windows[app:pid()] = {}
     end
-    for _, child in ipairs(ax.AXChildren) do
-        if child:matchesCriteria("AXWindow") then
-            module._addAppWindow(app, child)
+    if ax.AXChildren then
+        for _, child in ipairs(ax.AXChildren) do
+            if child:matchesCriteria("AXWindow") then
+                module._addAppWindow(app, child)
+            end
         end
     end
 
@@ -143,17 +145,17 @@ module._watchApp = function(app)
         -- w:addWatcher(ax, "AXUIElementDestroyed")
         w:callback(
             function(_, axel, notif, notifData)
-                print(hs.inspect(notif))
                 if notif == "AXUIElementDestroyed" then
                     if not app:focusedWindow() then
                         module._updateAppWindows(app, ax)
                     end
                     return
                 end
-
+                
                 if not axel:matchesCriteria("AXWindow") then
                     return
                 end
+                print(hs.inspect(notif))
                 local win = axel:asHSWindow()
                 -- check for all focus changes, or only for the condition below?
                 -- and app:kind() > 0
