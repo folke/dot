@@ -20,6 +20,12 @@
 (package! org-ql
   :recipe (:host github :repo "alphapapa/org-ql"))
 
+;; (straight-use-package
+;;  '(webkit :type git :host github :repo "akirakyle/emacs-webkit"
+;;           :branch "main"
+;;           :files (:defaults "*.js" "*.css")
+;;           :build ("make")))
+
 (straight-use-package '(ox-html :type built-in))
 (package! ox-tailwind
   :recipe (:host github :repo "vascoferreira25/ox-tailwind"))
