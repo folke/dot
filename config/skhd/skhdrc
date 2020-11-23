@@ -2,7 +2,8 @@
 cmd - return : /Applications/Kitty.app/Contents/MacOS/kitty -1 -d ~ &> /dev/null
 
 # window state & layout
-cmd + alt - f : yabai -m window --toggle zoom-fullscreen
+#cmd + alt - f : yabai -m window --toggle zoom-fullscreen
+#alt - z : yabai -m window --toggle zoom-fullscreen
 cmd + alt - t : yabai -m window --toggle float
 cmd + alt - r : yabai -m window --toggle split
 cmd + alt - b : yabai -m space --balance

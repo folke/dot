@@ -5,6 +5,7 @@ running = require("running")
 require("spaces")
 require("border")
 require("wm")
+monocle = require("monocle")
 local quake = require("quake")
 
 local hyper = require("hyper")
@@ -29,6 +30,14 @@ hyper.bindApp(
         print(hs.execute("/Users/folke/.emacs.d/bin/org-capture > /dev/null 2>&1 &", true))
     end
 )
+
+hs.hotkey.bind({"alt"}, "z", "Zoom", function(event)
+    print(hs.inspect(event))
+    local win = hs.window.focusedWindow()
+    if win then
+        monocle.toggle(win)
+    end
+end)
 
 hs.hotkey.bind({"cmd"}, "escape", "Scratchpad", quake.toggle)
 hyper.bindApp({}, "return", quake.toggle)
