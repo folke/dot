@@ -20,6 +20,7 @@
       which-key-idle-delay 0.3                    ; Show key binding help quicker
       which-key-idle-secondary-delay 0
       shell-file-name "/usr/local/bin/bash"       ; Use Bash as default shell for running term which is faster
+      vterm-always-compile-module t               ; Compile the vterm-module when needed without asking
       vterm-shell "/usr/local/bin/fish")          ; Use Fish in vterm
 #+END_SRC
 
