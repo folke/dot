@@ -1,4 +1,5 @@
 tap "amar1729/formulae"
+tap "astroidmail/astroid"
 tap "clementtsang/bottom"
 tap "cmacrae/formulae"
 tap "cowsay-org/cowsay"
@@ -24,6 +25,10 @@ brew "angband"
 brew "aria2"
 # Spell checker with better logic than ispell
 brew "aspell"
+# Command-line interface for SQLite
+brew "sqlite"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.9"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Terminal bandwidth utilization tool
@@ -34,8 +39,6 @@ brew "bash"
 brew "bat"
 # New way to see and navigate directory trees
 brew "broot"
-# Command-line interface for SQLite
-brew "sqlite"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
@@ -46,8 +49,12 @@ brew "coreutils"
 brew "ctags"
 # Top-like interface for container metrics
 brew "ctop"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Secure runtime for JavaScript and TypeScript
+brew "deno"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # More intuitive version of du in rust
@@ -78,6 +85,8 @@ brew "gh"
 brew "git"
 # Syntax-highlighting pager for git and diff output
 brew "git-delta"
+# Blazing fast terminal-ui for git written in rust
+brew "gitui"
 # Generic library support script
 brew "libtool"
 # Manage compile and link flags for libraries
@@ -96,12 +105,16 @@ brew "gnuplot"
 brew "go"
 # Version Control Visualization Tool
 brew "gource"
+# Library to render SVG files using Cairo
+brew "librsvg"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Colorize logfiles and command output
 brew "grc"
 # GNU grep, egrep and fgrep
 brew "grep"
+# Toolkit for creating graphical user interfaces
+brew "gtk+3"
 # Command-line hex viewer
 brew "hexyl"
 # Improved top (interactive process viewer)
@@ -112,6 +125,8 @@ brew "httpie"
 brew "hub"
 # Command-line benchmarking tool
 brew "hyperfine"
+# GNOME XML library
+brew "libxml2"
 # C library for encoding, decoding, and manipulating JSON
 brew "jansson"
 # Lightweight and flexible command-line JSON processor
@@ -128,12 +143,8 @@ brew "libgccjit"
 brew "libiconv"
 # Postgres C API library
 brew "libpq"
-# Library to render SVG files using Cairo
-brew "librsvg"
 # C virtualization API
 brew "libvirt", restart_service: true
-# GNOME XML library
-brew "libxml2"
 # Swiss Army knife of email handling
 brew "mailutils"
 # Utility for directing compilation
@@ -182,8 +193,6 @@ brew "qemu"
 brew "ranger"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
-# Zstandard is a real-time compression algorithm
-brew "zstd"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Steel Bank Common Lisp system
@@ -192,6 +201,8 @@ brew "sbcl"
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
+# Fuzzy Finder in rust!
+brew "sk"
 # Terminal interface for StackOverflow
 brew "so"
 # Cross-shell prompt for astronauts
@@ -206,6 +217,8 @@ brew "telnet"
 brew "texinfo"
 # Text interface for Git repositories
 brew "tig"
+# Manage complex tmux sessions easily
+brew "tmuxinator"
 # Program that allows you to count code, quickly
 brew "tokei"
 # Internet file retriever
@@ -223,13 +236,22 @@ brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
 brew "koekeishiya/formulae/yabai"
 cask "adoptopenjdk"
+# GPU-accelerated terminal emulator
 cask "alacritty"
+# Application launcher and productivity software
 cask "alfred"
+# Utility to set a Retina display to custom resolutions
 cask "avibrazil-rdm"
+# Desktop password and login vault
 cask "bitwarden"
+# Voice and text chat software
 cask "discord"
+# App to build and share containerized applications and microservices
 cask "docker-edge"
 cask "emby-server"
+# VPN client for secure internet access and private browsing
+cask "expressvpn"
+# Web browser
 cask "firefox-developer-edition"
 cask "font-comfortaa"
 cask "font-dejavu-sans-mono-nerd-font"
@@ -239,19 +261,35 @@ cask "font-fira-code-nerd-font"
 cask "font-fira-sans"
 cask "font-input"
 cask "font-overpass"
+# Fonts designed for user interfaces
 cask "font-source-sans-pro"
+# Desktop client for GitHub repositories
 cask "github"
 cask "google-backup-and-sync"
+# Desktop automation application
 cask "hammerspoon"
+# Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# GPU-based terminal emulator
 cask "kitty"
+# Host-based application firewall
 cask "little-snitch"
+# Full TeX Live distribution with GUI applications
 cask "mactex"
 cask "microsoft-teams"
 cask "mullvadvpn-beta"
+# Keyboard-driven, vim-like browser based on PyQt5
 cask "qutebrowser"
+# Team communication and collaboration software
+cask "slack"
+# Music streaming service
 cask "spotify"
+# Video game digital distribution service
 cask "steam"
 cask "twitch"
+# Integrated development environment
 cask "visual-studio-code-insiders"
+# Multimedia player
 cask "vlc"
+# Video communication and virtual meeting platform
+cask "zoom"

@@ -2,3 +2,5 @@ Spoons
 .DS_Store
 org-roam.db
 /config/doom/*.html
+secrets.fish
+home/.aria2/aria2.session
