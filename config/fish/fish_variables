@@ -15,7 +15,6 @@ SETUVAR --export --path PATH:/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2
 SETUVAR --export VISUAL:nvim
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_aria2c_2D_daemon:aria2c\x20\x2dD
-SETUVAR _fish_abbr_code:code\x2dinsiders
 SETUVAR _fish_abbr_cp:cp\x20\x2driv
 SETUVAR _fish_abbr_fda:fd\x20\x2dIH
 SETUVAR _fish_abbr_g:hub
@@ -45,8 +44,7 @@ SETUVAR _fish_abbr_tk:tmux\x20kill\x2dsession\x20\x2dt
 SETUVAR _fish_abbr_tkss:tmux\x20kill\x2dsession\x20\x2dt
 SETUVAR _fish_abbr_tksv:tmux\x20kill\x2dserver
 SETUVAR _fish_abbr_tl:tmux\x20ls
-SETUVAR _fish_abbr_tn:tmux\x20new\x20\x2ds
-SETUVAR _fish_abbr_ts:tmux\x20new\x2dsession\x20\x2ds
+SETUVAR _fish_abbr_ts:tmux\x20new\x20\x2ds
 SETUVAR _fish_abbr_tt:tn\x20src/tt\x2ets
 SETUVAR _fish_abbr_vi:nvim
 SETUVAR _fish_abbr_vim:nvim
@@ -55,16 +53,30 @@ SETUVAR _fish_abbr_ytop:btm
 SETUVAR _fisher_dracula_2F_fish_files:/Users/folke/\x2econfig/fish/conf\x2ed/dracula\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/folke/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/folke/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_plugins:dracula/fish\x1ejorgebucaran/fisher
+SETUVAR --export fish_color_autosuggestion:6272a4
 SETUVAR --export fish_color_cancel:\x2dr
+SETUVAR --export fish_color_command:8be9fd
+SETUVAR --export fish_color_comment:6272a4
 SETUVAR --export fish_color_cwd:green
 SETUVAR --export fish_color_cwd_root:red
+SETUVAR --export fish_color_end:ffb86c
+SETUVAR --export fish_color_error:ff5555
+SETUVAR --export fish_color_escape:ff79c6
 SETUVAR --export fish_color_history_current:\x2d\x2dbold
 SETUVAR --export fish_color_host:normal
 SETUVAR --export fish_color_host_remote:yellow
+SETUVAR --export fish_color_match:\x2d\x2dbackground\x3d44475a
+SETUVAR --export fish_color_normal:f8f8f2
+SETUVAR --export fish_color_operator:50fa7b
+SETUVAR --export fish_color_param:bd93f9
+SETUVAR --export fish_color_quote:f1fa8c
+SETUVAR --export fish_color_redirection:f8f8f2
+SETUVAR --export fish_color_search_match:\x2d\x2dbackground\x3d44475a
+SETUVAR --export fish_color_selection:\x2d\x2dbackground\x3d44475a
 SETUVAR --export fish_color_status:red
 SETUVAR --export fish_color_user:brgreen
 SETUVAR --export fish_color_valid_path:\x2d\x2dunderline
-SETUVAR fish_config_changed:1605777232
+SETUVAR fish_config_changed:1610792735
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings

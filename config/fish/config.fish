@@ -1,5 +1,7 @@
 # Load universal config when it's changed
 set -l fish_config_mtime (stat -f %m $__fish_config_dir/config.fish)
+source $__fish_config_dir/secrets.fish
+
 if test "$fish_config_changed" = "$fish_config_mtime"
     exit
 else
@@ -49,7 +51,7 @@ abbr t tmux
 abbr tc 'tmux attach'
 abbr ta 'tmux attach -t'
 abbr tad 'tmux attach -d -t'
-abbr tn 'tmux new -s'
+abbr ts 'tmux new -s'
 abbr tl 'tmux ls'
 abbr tk 'tmux kill-session -t'
 abbr mux 'tmuxinator'
@@ -77,7 +79,6 @@ abbr push "hub push"
 abbr pull "hub pull"
 alias -s tn "npx --no-install ts-node --transpile-only"
 abbr tt "tn src/tt.ts"
-abbr code "code-insiders"
 alias -s todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
 
 # Other
