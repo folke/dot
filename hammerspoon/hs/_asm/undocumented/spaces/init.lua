@@ -3,10 +3,21 @@
 --- These functions utilize private API's within the OS X internals, and are known to have unpredictable behavior under Mavericks and Yosemite when "Displays have separate Spaces" is checked under the Mission Control system preferences.
 ---
 
+local USERDATA_TAG = "hs._asm.undocumented.spaces"
 -- some of the commands can really get you in a bit of a fix, so this file will be mostly wrappers and
 -- predefined, common actions.
-local internal = require("hs._asm.undocumented.spaces.internal")
-local module = {}
+local internal = require(USERDATA_TAG..".internal")
+local module   = {}
+
+local basePath = package.searchpath(USERDATA_TAG, package.path)
+if basePath then
+    basePath = basePath:match("^(.+)/init.lua$")
+    if require"hs.fs".attributes(basePath .. "/docs.json") then
+        require"hs.doc".registerJSONFile(basePath .. "/docs.json")
+    end
+end
+
+-- local log = require("hs.logger").new(USERDATA_TAG, require"hs.settings".get(USERDATA_TAG .. ".logLevel") or "warning")
 
 local screen      = require("hs.screen")
 local window      = require("hs.window")
