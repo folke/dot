@@ -13,13 +13,13 @@ set -l pink ff79c6
 # Syntax Highlighting Colors
 set -g fish_color_normal $foreground
 set -g fish_color_command $cyan
+set -g fish_color_keyword $pink
 set -g fish_color_quote $yellow
 set -g fish_color_redirection $foreground
 set -g fish_color_end $orange
 set -g fish_color_error $red
 set -g fish_color_param $purple
 set -g fish_color_comment $comment
-set -g fish_color_match --background=$selection
 set -g fish_color_selection --background=$selection
 set -g fish_color_search_match --background=$selection
 set -g fish_color_operator $green

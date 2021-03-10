@@ -18,4 +18,4 @@ function fish_mode_prompt; end
 export STARSHIP_SHELL="fish"
 
 # Set up the session key that will be used to store logs
-export STARSHIP_SESSION_KEY=("/usr/local/bin/starship" session)
+export STARSHIP_SESSION_KEY=(random 10000000000000 9999999999999999)

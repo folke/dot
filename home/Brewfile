@@ -39,6 +39,8 @@ brew "bash"
 brew "bat"
 # New way to see and navigate directory trees
 brew "broot"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
@@ -79,6 +81,8 @@ brew "fzf"
 brew "gcc"
 # GNU debugger
 brew "gdb"
+# Geometry Engine
+brew "geos"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -89,8 +93,6 @@ brew "git-delta"
 brew "gitui"
 # Generic library support script
 brew "libtool"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # GNU implementation of the famous stream editor
@@ -221,6 +223,8 @@ brew "tig"
 brew "tmuxinator"
 # Program that allows you to count code, quickly
 brew "tokei"
+# Compress/expand executable files
+brew "upx"
 # Internet file retriever
 brew "wget"
 # Shell extension to navigate your filesystem faster
@@ -291,5 +295,7 @@ cask "twitch"
 cask "visual-studio-code-insiders"
 # Multimedia player
 cask "vlc"
+# Tool to run web apps like desktop apps
+cask "webcatalog"
 # Video communication and virtual meeting platform
 cask "zoom"
