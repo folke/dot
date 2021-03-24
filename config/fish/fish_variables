@@ -65,6 +65,7 @@ SETUVAR --export fish_color_escape:ff79c6
 SETUVAR --export fish_color_history_current:\x2d\x2dbold
 SETUVAR --export fish_color_host:normal
 SETUVAR --export fish_color_host_remote:yellow
+SETUVAR --export fish_color_keyword:ff79c6
 SETUVAR --export fish_color_match:\x2d\x2dbackground\x3d44475a
 SETUVAR --export fish_color_normal:f8f8f2
 SETUVAR --export fish_color_operator:50fa7b

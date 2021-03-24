@@ -282,6 +282,8 @@ cask "little-snitch"
 cask "mactex"
 cask "microsoft-teams"
 cask "mullvadvpn-beta"
+# App to write, plan, collaborate, and get organized
+cask "notion"
 # Keyboard-driven, vim-like browser based on PyQt5
 cask "qutebrowser"
 # Team communication and collaboration software

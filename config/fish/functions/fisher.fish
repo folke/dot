@@ -1,6 +1,6 @@
 function fisher --argument-names cmd --description "A plugin manager for Fish"
     set --query fisher_path || set --local fisher_path $__fish_config_dir
-    set --local fisher_version 4.2.0
+    set --local fisher_version 4.3.0
     set --local fish_plugins $__fish_config_dir/fish_plugins
 
     switch "$cmd"
@@ -86,7 +86,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
 
                         echo Fetching (set_color --underline)\$url(set_color normal)
 
-                        if curl --silent \$url | tar --extract --gzip --directory \$temp --file - 2>/dev/null
+                        if curl --silent \$url | tar -xzC \$temp -f - 2>/dev/null
                             command cp -Rf \$temp/*/* $source
                         else
                             echo fisher: Invalid plugin name or host unavailable: \\\"$plugin\\\" >&2
@@ -95,10 +95,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
                         command rm -rf \$temp
                     end
 
-                    set files $source/* && string match --quiet --regex -- .+\.fish\\\$ \$files || exit
-
-                    echo \"fisher: Plugin not supported: \\\"$plugin\\\"\" >&2
-                    echo (set_color --bold red)\"Support for .fish files outside a functions directory is deprecated\" (set_color --underline)https://github.com/jorgebucaran/fisher/issues/651(set_color normal) >&2
+                    set files $source/* && string match --quiet --regex -- .+\.fish\\\$ \$files
                 " &
 
                 set --append pid_list (jobs --last --pid)
