@@ -1,4 +1,4 @@
-local module = {state = {}}
+local module = { state = {} }
 
 ---@param win hs.window
 module.toggle = function(win)
