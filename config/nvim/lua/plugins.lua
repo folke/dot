@@ -3,7 +3,11 @@ return require("packer").startup(function(use)
   use({ "wbthomason/packer.nvim", opt = true })
 
   -- LSP
-  use({ "neovim/nvim-lspconfig", config = function() require("config.lsp") end })
+  use({
+    "neovim/nvim-lspconfig",
+    config = function() require("config.lsp") end,
+    requires = { "kabouzeid/nvim-lspinstall" }
+  })
   use({ "hrsh7th/nvim-compe", config = function() require("config.compe") end })
 
   -- Theme: color schemes

@@ -284,6 +284,7 @@ cask "little-snitch"
 # Full TeX Live distribution with GUI applications
 cask "mactex"
 cask "microsoft-teams"
+cask "minecraft"
 cask "mullvadvpn-beta"
 # App to write, plan, collaborate, and get organized
 cask "notion"
@@ -298,7 +299,7 @@ cask "steam"
 cask "twitch"
 # GUI for the Neovim text editor
 cask "vimr"
-# Integrated development environment
+# Code editor
 cask "visual-studio-code-insiders"
 # Multimedia player
 cask "vlc"

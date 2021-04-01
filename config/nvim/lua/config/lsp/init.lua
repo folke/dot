@@ -5,7 +5,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
   -- Mappings.
-  local opts = {noremap = true, silent = true}
+  local opts = { noremap = true, silent = true }
   map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   map("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
@@ -13,7 +13,8 @@ local on_attach = function(client, bufnr)
   map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   map("n", "<space>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
   map("n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
+  map("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+      opts)
   map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
   map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
@@ -44,11 +45,26 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- Use a loop to conveniently both setup defined servers
--- and map buffer local keybindings when the language server attaches
--- local lsp_status = require("lsp-status")
--- local defaults = { on_attach = on_attach, capabilities = lsp_status.capabilities }
-local defaults = {on_attach = on_attach}
+local defaults = { on_attach = on_attach }
 
-local servers = {tsserver = {}, efm = require("config.efm")}
-for server, config in pairs(servers) do lspconfig[server].setup(vim.tbl_deep_extend("force", defaults, config)) end
+local servers = {
+  bash = {},
+  typescript = {},
+  css = {},
+  html = {},
+  lua = require("config.lsp.lua"),
+  efm = require("config.lsp.efm"),
+  tailwindcss = {},
+  json = {}
+}
+
+local installer = require("lspinstall")
+installer.setup()
+
+local installed = {}
+for _, server in pairs(installer.installed_servers()) do installed[server] = true end
+
+for server, config in pairs(servers) do
+  if not installed[server] then error("LSP server missing \"" .. server .. "\"") end
+  lspconfig[server].setup(vim.tbl_deep_extend("force", defaults, config))
+end

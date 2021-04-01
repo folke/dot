@@ -51,7 +51,7 @@ _G.packer_plugins = {
     path = "/Users/folke/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
   ["indent-blankline.nvim"] = {
-    config = { "require('config.blankline')" },
+    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.blankline\frequire\0" },
     loaded = true,
     path = "/Users/folke/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim"
   },
@@ -70,14 +70,18 @@ _G.packer_plugins = {
     path = "/Users/folke/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
-    config = { "require('config.compe')" },
+    config = { "\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17config.compe\frequire\0" },
     loaded = true,
     path = "/Users/folke/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lspconfig"] = {
-    config = { "require('config.lsp')" },
+    config = { "\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15config.lsp\frequire\0" },
     loaded = true,
     path = "/Users/folke/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lspinstall"] = {
+    loaded = true,
+    path = "/Users/folke/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -137,26 +141,26 @@ _G.packer_plugins = {
   }
 }
 
+-- Config for: nvim-bufferline.lua
+try_loadstring("\27LJ\2\n{\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\2\27always_show_bufferline\1\20show_close_icon\1\nsetup\15bufferline\frequire\0", "config", "nvim-bufferline.lua")
+-- Config for: dashboard-nvim
+require('config.dashboard')
+-- Config for: gitsigns.nvim
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
+-- Config for: lualine.nvim
+require('config.lualine')
+-- Config for: indent-blankline.nvim
+try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.blankline\frequire\0", "config", "indent-blankline.nvim")
+-- Config for: nvim-lspconfig
+try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15config.lsp\frequire\0", "config", "nvim-lspconfig")
 -- Config for: vim-which-key
 require('config.keys')
 -- Config for: nvim-ts-rainbow
 try_loadstring("\27LJ\2\ng\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\frainbow\1\0\0\1\0\1\venable\2\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-ts-rainbow")
 -- Config for: nvim-treesitter
 require('config.treesitter')
--- Config for: nvim-lspconfig
-require('config.lsp')
--- Config for: gitsigns.nvim
-try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0", "config", "gitsigns.nvim")
--- Config for: indent-blankline.nvim
-require('config.blankline')
--- Config for: nvim-bufferline.lua
-try_loadstring("\27LJ\2\n{\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\2\27always_show_bufferline\1\20show_close_icon\1\nsetup\15bufferline\frequire\0", "config", "nvim-bufferline.lua")
--- Config for: lualine.nvim
-require('config.lualine')
--- Config for: dashboard-nvim
-require('config.dashboard')
 -- Config for: nvim-compe
-require('config.compe')
+try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17config.compe\frequire\0", "config", "nvim-compe")
 END
 
 catch
