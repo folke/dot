@@ -1,0 +1,7 @@
+column_limit: 120
+indent_width: 2
+use_tab: false
+chop_down_parameter: true
+chop_down_table: true
+single_quote_to_double_quote: true
+spaces_inside_table_braces: true
