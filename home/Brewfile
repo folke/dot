@@ -1,4 +1,5 @@
 tap "amar1729/formulae"
+tap "apenngrace/vulkan"
 tap "astroidmail/astroid"
 tap "clementtsang/bottom"
 tap "cmacrae/formulae"
@@ -63,6 +64,8 @@ brew "direnv"
 brew "dust"
 # Maintain consistent coding style between multiple editors
 brew "editorconfig"
+# General purpose Language Server
+brew "efm-langserver"
 # Modern replacement for 'ls'
 brew "exa"
 # XML 1.0 parser
@@ -164,7 +167,7 @@ brew "ncdu"
 # Fast, highly customisable system info script
 brew "neofetch"
 # Ambitious Vim-fork focused on extensibility and agility
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 # Small build system for use with gyp or CMake
 brew "ninja"
 # Thread-based email index, search, and tagging
@@ -293,10 +296,13 @@ cask "spotify"
 # Video game digital distribution service
 cask "steam"
 cask "twitch"
+# GUI for the Neovim text editor
+cask "vimr"
 # Integrated development environment
 cask "visual-studio-code-insiders"
 # Multimedia player
 cask "vlc"
+cask "vulkan-sdk"
 # Tool to run web apps like desktop apps
 cask "webcatalog"
 # Video communication and virtual meeting platform
