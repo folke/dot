@@ -13,9 +13,11 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "jason0x43/neovim-nightly"
 tap "koekeishiya/formulae"
 tap "railwaycat/emacsmacport"
 tap "schniz/tap"
+tap "wtfutil/wtfutil"
 tap "xwmx/taps"
 tap "zegervdv/zathura"
 # Search tool like grep, but optimized for programmers
@@ -96,6 +98,8 @@ brew "git-delta"
 brew "gitui"
 # Generic library support script
 brew "libtool"
+# Render markdown on the CLI
+brew "glow"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # GNU implementation of the famous stream editor
@@ -138,6 +142,8 @@ brew "jansson"
 brew "jq"
 # Style and grammar checker
 brew "languagetool"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Pager program similar to more
 brew "less"
 # Key-value storage library with ordered mapping
@@ -166,8 +172,6 @@ brew "navi"
 brew "ncdu"
 # Fast, highly customisable system info script
 brew "neofetch"
-# Ambitious Vim-fork focused on extensibility and agility
-brew "neovim", args: ["HEAD"]
 # Small build system for use with gyp or CMake
 brew "ninja"
 # Thread-based email index, search, and tagging
@@ -226,10 +230,14 @@ brew "tig"
 brew "tmuxinator"
 # Program that allows you to count code, quickly
 brew "tokei"
+# Digital clock in ncurses
+brew "tty-clock"
 # Compress/expand executable files
 brew "upx"
 # Internet file retriever
 brew "wget"
+# Personal information dashboard for your terminal
+brew "wtfutil"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # This is a host application for browserpass browser extension providing it access to your password store.
@@ -267,6 +275,7 @@ cask "font-fira-code"
 cask "font-fira-code-nerd-font"
 cask "font-fira-sans"
 cask "font-input"
+cask "font-jetbrains-mono-nerd-font"
 cask "font-overpass"
 # Fonts designed for user interfaces
 cask "font-source-sans-pro"
@@ -281,11 +290,10 @@ cask "iterm2"
 cask "kitty"
 # Host-based application firewall
 cask "little-snitch"
-# Full TeX Live distribution with GUI applications
-cask "mactex"
 cask "microsoft-teams"
 cask "minecraft"
 cask "mullvadvpn-beta"
+cask "neovim-nightly"
 # App to write, plan, collaborate, and get organized
 cask "notion"
 # Keyboard-driven, vim-like browser based on PyQt5
@@ -297,6 +305,8 @@ cask "spotify"
 # Video game digital distribution service
 cask "steam"
 cask "twitch"
+# Run commands and display their output on the desktop
+cask "ubersicht"
 # GUI for the Neovim text editor
 cask "vimr"
 # Code editor

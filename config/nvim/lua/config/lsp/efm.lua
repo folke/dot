@@ -6,10 +6,10 @@ local prettier = {
 }
 
 local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = { "%f:%l:%c: %m" }
+  lintFormats = { "%f(%l,%c): %tarning %m", "%f(%l,%c): %rror %m" }
 }
 
 local shellcheck = {
@@ -17,6 +17,8 @@ local shellcheck = {
   lintStdin = true,
   lintFormats = { "%f=%l:%c: %trror: %m", "%f=%l:%c: %tarning: %m", "%f=%l:%c: %tote: %m" }
 }
+
+local fish = { formatCommand = "fish_indent", formatStdin = true }
 
 return {
   init_options = { documentFormatting = true },
@@ -36,7 +38,8 @@ return {
       scss = { prettier },
       css = { prettier },
       markdown = { prettier },
-      sh = { shellcheck }
+      sh = { shellcheck },
+      fish = { fish }
     }
   }
 }

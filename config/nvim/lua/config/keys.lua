@@ -1,9 +1,9 @@
-vim.api.nvim_set_keymap("n", "<Leader>", [[:<c-u>WhichKey '<Space>'<CR>]],
-                        { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<Leader>", [[:silent <c-u> :silent WhichKeyVisual '<Space>'<CR>]],
-                        { noremap = true, silent = true })
+local wk = require("whichkey_setup")
 
-vim.g.which_key_map = {
+vim.g.which_key_centered = 0
+vim.o.timeoutlen = 500
+
+local leader = {
   ["w"] = {
     name = "+windows",
     ["w"] = { "<C-W>w", "other-window" },
@@ -24,17 +24,18 @@ vim.g.which_key_map = {
     ["v"] = { "<C-W>v", "split-window-below" },
     ["?"] = { "Windows", "fzf-window" }
   },
+  ["`"] = "Toggle Terminal",
   ["f"] = {
     name = "+find",
-    ["t"] = { ":NvimTreeToggle", "NvimTree" },
-    ["f"] = { ":Telescope find_files", "Find File" },
-    ["r"] = { ":Telescope oldfiles", "Open Recent File" },
-    ["g"] = { ":Telescope live_grep", "Grep" }
+    ["t"] = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
+    ["f"] = { "<cmd>Telescope find_files<cr>", "Find File" },
+    ["r"] = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    ["g"] = { "<cmd>Telescope live_grep<cr>", "Grep" }
   },
-  [" "] = { ":Telescope find_files", "Find File" },
-  [","] = { ":Telescope buffers", "Switch Buffer" },
-  ["/"] = { ":Telescope live_grep", "Search" }
+  [" "] = "Find File",
+  [","] = { "<cmd>Telescope buffers<cr>", "Switch Buffer" },
+  ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
+  qq = { "<cmd>:qa<cr>", "Quit" }
 }
-vim.call("which_key#register", "<Space>", "g:which_key_map")
 
--- vim.api.nvim_set_keymap('n', '<Leader>w', [[<C-w>]], {noremap = true})
+wk.register_keymap("leader", leader)

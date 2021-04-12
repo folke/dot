@@ -18,6 +18,10 @@ dotfiles:
     link: link_children
     cmpignore:
       - "*"
+  lazygit:
+    dst: ~/Library/Application Support/lazygit/config.yml
+    src: config/lazygit/config.yml
+    link: link
   config:
     dst: ~/.config/
     src: config
@@ -35,5 +39,6 @@ profiles:
     dotfiles:
       - home
       - config
+      - lazygit
       - hammerspoon
       - gmaileer

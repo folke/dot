@@ -1,6 +1,6 @@
 require("lualine").setup({
   options = {
-    theme = "nord",
+    theme = "oceanicnext",
     -- section_separators = { "", "" },
     -- component_separators = { "", "" },
     section_separators = { "", "" },
@@ -18,10 +18,16 @@ require("lualine").setup({
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filename" },
-    lualine_x = { "location" },
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },
   extensions = { "fzf" }
 })
+
+-- Show minimal border for inactive windows
+vim.cmd "highlight! lualine_a_inactive gui=underline guibg=NONE"
+vim.cmd "highlight! lualine_b_inactive gui=underline guibg=NONE"
+vim.cmd "highlight! lualine_c_inactive gui=underline guibg=NONE"
+

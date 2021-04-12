@@ -1,0 +1,180 @@
+gui:
+  scrollHeight: 2
+  scrollPastBottom: true
+  mouseEvents: true
+  skipUnstageLineWarning: false
+  skipStashWarning: true
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexible
+  theme:
+    lightTheme: false
+    activeBorderColor:
+    - green
+    - bold
+    inactiveBorderColor:
+    - white
+    optionsTextColor:
+    - blue
+    selectedLineBgColor:
+    - reverse
+    selectedRangeBgColor:
+    - blue
+  commitLength:
+    show: true
+  skipNoStagedFilesWarning: false
+git:
+  paging:
+    colorArg: always
+    pager: ""
+    useConfig: false
+  merging:
+    manualCommit: false
+    args: ""
+  pull:
+    mode: merge
+  skipHookPrefix: WIP
+  autoFetch: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative
+    --pretty=medium {{branchName}} --
+  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate
+    --date=relative  --pretty=medium
+  overrideGpg: false
+  disableForcePushing: false
+  commitPrefixes: {}
+update:
+  method: prompt
+  days: 14
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+reporting: undetermined
+splashUpdatesIndex: 0
+confirmOnQuit: false
+quitOnTopLevelReturn: true
+keybinding:
+  universal:
+    quit: q
+    quit-alt1: <c-c>
+    return: <esc>
+    quitWithoutChangingDirectory: Q
+    togglePanel: <tab>
+    prevItem: <up>
+    nextItem: <down>
+    prevItem-alt: k
+    nextItem-alt: j
+    prevPage: ','
+    nextPage: .
+    gotoTop: <
+    gotoBottom: '>'
+    prevBlock: <left>
+    nextBlock: <right>
+    prevBlock-alt: h
+    nextBlock-alt: l
+    nextMatch: "n"
+    prevMatch: "N"
+    startSearch: /
+    optionMenu: x
+    optionMenu-alt1: '?'
+    select: <space>
+    goInto: <enter>
+    confirm: <enter>
+    confirm-alt1: "y"
+    remove: d
+    new: "n"
+    edit: e
+    openFile: o
+    scrollUpMain: <pgup>
+    scrollDownMain: <pgdown>
+    scrollUpMain-alt1: K
+    scrollDownMain-alt1: J
+    scrollUpMain-alt2: <c-u>
+    scrollDownMain-alt2: <c-d>
+    executeCustomCommand: ':'
+    createRebaseOptionsMenu: m
+    pushFiles: P
+    pullFiles: p
+    refresh: R
+    createPatchOptionsMenu: <c-p>
+    nextTab: ']'
+    prevTab: '['
+    nextScreenMode: +
+    prevScreenMode: _
+    undo: z
+    redo: <c-z>
+    filteringMenu: <c-s>
+    diffingMenu: W
+    diffingMenu-alt: <c-e>
+    copyToClipboard: <c-o>
+    submitEditorText: <enter>
+    appendNewline: <tab>
+  status:
+    checkForUpdate: u
+    recentRepos: <enter>
+    allBranchesLogGraph: a
+  files:
+    commitChanges: c
+    commitChangesWithoutHook: w
+    amendLastCommit: A
+    commitChangesWithEditor: C
+    ignoreFile: i
+    refreshFiles: r
+    stashAllChanges: s
+    viewStashOptions: S
+    toggleStagedAll: a
+    viewResetOptions: D
+    fetch: f
+  branches:
+    createPullRequest: o
+    copyPullRequestURL: <c-y>
+    checkoutBranchByName: c
+    forceCheckoutBranch: F
+    rebaseBranch: r
+    renameBranch: R
+    mergeIntoCurrentBranch: M
+    viewGitFlowOptions: i
+    fastForward: f
+    pushTag: P
+    setUpstream: u
+    fetchRemote: f
+  commits:
+    squashDown: s
+    renameCommit: r
+    renameCommitWithEditor: R
+    viewResetOptions: g
+    markCommitAsFixup: f
+    createFixupCommit: F
+    squashAboveCommits: S
+    moveDownCommit: <c-j>
+    moveUpCommit: <c-k>
+    amendToCommit: A
+    pickCommit: p
+    revertCommit: t
+    cherryPickCopy: c
+    cherryPickCopyRange: C
+    pasteCommits: v
+    tagCommit: T
+    checkoutCommit: <space>
+    resetCherryPick: <c-R>
+    copyCommitMessageToClipboard: <c-y>
+  stash:
+    popStash: g
+  commitFiles:
+    checkoutCommitFile: c
+  main:
+    toggleDragSelect: v
+    toggleDragSelect-alt: V
+    toggleSelectHunk: a
+    pickBothHunks: b
+  submodules:
+    init: i
+    update: u
+    bulkMenu: b
+os:
+  openCommand: open {{filename}}
+  openLinkCommand: open {{link}}
+disableStartupPopups: false
+customCommands: []
+services: {}
+notARepository: prompt
+

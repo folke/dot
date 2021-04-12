@@ -42,17 +42,31 @@ yabai -m rule --add app="^(Docker|System Preferences|Alfred|Activity Monitor|Ins
 yabai -m rule --add app="^(Blizzard|Battle|Wow)" space=6
 yabai -m rule --add title="^scratchpad$" manage=off grid=4:4:1:1:2:2
 
-# signals
-#yabai -m signal --add event=space_changed \
-#  action="set SHELL=/bin/sh && open -g \"bitbar://refreshPlugin?name=yabai.*?.py\""
+# # Refresh spaces widget on space change
+# yabai -m signal --add event=space_changed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
+# # Refresh spaces widget on display focus change
+# yabai -m signal --add event=display_changed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
+# # Refresh spaces widget on window resize
+# yabai -m signal --add event=window_resized action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
+# # Refresh process widget on space change
+# yabai -m signal --add event=space_changed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-process-jsx\"'"
 
-#yabai -m signal --add event=space_changed \
-#  action="~/.config/ubersicht/scripts/yabai-refresh"
-#yabai -m signal --add event=window_created \
-#  action="~/.config/ubersicht/scripts/yabai-refresh"
-#yabai -m signal --add event=window_destroyed \
-#  action="~/.config/ubersicht/scripts/yabai-refresh"
-# yabai -m signal --add event=window_focused \
-#   action="open -g hammerspoon://yabaiFocus"
+# # Refresh process widget on when focused application changes
+# yabai -m signal --add event=window_focused action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-process-jsx\"'"
+# # Refresh spaces widget on when focused application changes
+# yabai -m signal --add event=window_focused action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
+
+# # Refresh process widget on when focused application changes
+# yabai -m signal --add event=application_front_switched action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-process-jsx\"'"
+# # Refresh spaces widget on when focused application changes
+# yabai -m signal --add event=application_front_switched action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
+
+# # Refresh process widget on when an application window is closed
+# yabai -m signal --add event=window_destroyed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-process-jsx\"'"
+# # Refresh spaces widget on when an application window is closed
+# yabai -m signal --add event=window_destroyed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-spaces-jsx\"'"
+
+# # Refresh process widget when current window title changes
+# yabai -m signal --add event=window_title_changed action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-process-jsx\"'"
 
 echo "yabai configuration loaded.."
