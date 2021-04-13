@@ -1,8 +1,12 @@
 local actions = require("telescope.actions")
 
-require("telescope").setup {
+local telescope = require("telescope")
+
+telescope.load_extension("frecency")
+telescope.load_extension("z")
+telescope.setup {
   defaults = {
-    mappings = { i = { ["<esc>"] = actions.close } }
+    mappings = { i = { ["<esc>"] = actions.close } },
     -- vimgrep_arguments = {
     --   'rg',
     --   '--color=never',
@@ -13,8 +17,8 @@ require("telescope").setup {
     --   '--smart-case'
     -- },
     -- prompt_position = "bottom",
-    -- prompt_prefix = "> ",
-    -- selection_caret = "> ",
+    prompt_prefix = " ",
+    selection_caret = " "
     -- entry_prefix = "  ",
     -- initial_mode = "insert",
     -- selection_strategy = "reset",
@@ -59,8 +63,6 @@ M.project_files = function()
   if not ok then require"telescope.builtin".find_files(opts) end
 end
 
-vim.api.nvim_set_keymap("n", "<Leader><Space>",
-                        "<CMD>lua require'config.telescope'.project_files()<CR>",
-                        { noremap = true, silent = true })
+require("util").nmap("<Leader><Space>", "<CMD>lua require'config.telescope'.project_files()<CR>")
 
 return M

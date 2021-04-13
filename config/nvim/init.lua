@@ -1,3 +1,4 @@
+require "util"
 require "options"
 require "bootstrap"
 require "plugins"

@@ -1,4 +1,3 @@
-local remap = vim.api.nvim_set_keymap
 local npairs = require("nvim-autopairs")
 
 npairs.setup()
@@ -21,4 +20,4 @@ MUtils.completion_confirm = function()
   end
 end
 
-remap("i", "<CR>", "v:lua.MUtils.completion_confirm()", { expr = true, noremap = true })
+require("util").imap("<CR>", "v:lua.MUtils.completion_confirm()", { expr = true })

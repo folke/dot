@@ -8,6 +8,7 @@ return require("packer").startup(function(use)
     config = function() require("config.lsp") end,
     requires = {
       "kabouzeid/nvim-lspinstall",
+      "jose-elias-alvarez/nvim-lsp-ts-utils",
       { "glepnir/lspsaga.nvim", config = function() require("config.lsp.saga") end },
       { "onsails/lspkind-nvim", config = function() require("lspkind").init() end }
     }
@@ -21,6 +22,11 @@ return require("packer").startup(function(use)
       { "windwp/nvim-autopairs", config = function() require("config.autopairs") end }
     }
   })
+  use {
+    "liuchengxu/vista.vim",
+    cmd = { "Vista" },
+    config = function() vim.g.vista_default_executive = "nvim_lsp" end
+  }
 
   use {
     "b3nj5m1n/kommentary",
@@ -32,16 +38,17 @@ return require("packer").startup(function(use)
   use({ "tjdevries/colorbuddy.nvim" })
   use({
     "wadackel/vim-dogrun",
+    -- "bluz71/vim-nightfly-guicolors",
     "marko-cerovac/material.nvim",
     "sainnhe/edge",
+    "embark-theme/vim",
     -- "norcalli/nvim-base16.lua",
     "RRethy/nvim-base16",
-    "glepnir/zephyr-nvim",
-    -- "bluz71/vim-nightfly-guicolors",
+    "glepnir/zephyr-nvim"
     -- "sainnhe/sonokai",
-    "Th3Whit3Wolf/onebuddy",
+    -- "Th3Whit3Wolf/onebuddy",
     -- "christianchiarulli/nvcode-color-schemes.vim",
-    "Th3Whit3Wolf/one-nvim"
+    -- "Th3Whit3Wolf/one-nvim"
   })
 
   -- Theme: icons
@@ -56,10 +63,14 @@ return require("packer").startup(function(use)
     config = [[require('config.treesitter')]]
   })
 
-  use({ "kyazdani42/nvim-tree.lua", config = function() require("config.tree") end })
+  use({
+    "kyazdani42/nvim-tree.lua",
+    cmd = { "NvimTreeToggle" },
+    config = function() require("config.tree") end
+  })
 
   use {
-    "AckslD/nvim-whichkey-setup.lua",
+    "folke/nvim-whichkey-setup.lua",
     requires = { "liuchengxu/vim-which-key" },
     config = [[require('config.keys')]]
   }
@@ -68,7 +79,18 @@ return require("packer").startup(function(use)
   use({
     "nvim-telescope/telescope.nvim",
     config = function() require("config.telescope") end,
-    requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" }
+    cmd = { "Telescope" },
+    keys = { "<leader><space>" },
+    requires = {
+      { "nvim-lua/popup.nvim", opt = true },
+      { "nvim-lua/plenary.nvim", opt = true },
+      { "nvim-telescope/telescope-z.nvim", opt = true },
+      {
+        "nvim-telescope/telescope-frecency.nvim",
+        opt = true,
+        requires = { "tami5/sql.nvim", opt = true }
+      }
+    }
   })
 
   -- Indent Guides and rainbow brackets
@@ -87,11 +109,7 @@ return require("packer").startup(function(use)
   use({
     "akinsho/nvim-bufferline.lua",
     requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("bufferline").setup({
-        options = { show_close_icon = false, always_show_bufferline = false }
-      })
-    end
+    config = function() require("config.bufferline") end
   })
 
   -- Terminal
@@ -105,7 +123,7 @@ return require("packer").startup(function(use)
   use({
     "lewis6991/gitsigns.nvim",
     requires = { "nvim-lua/plenary.nvim" },
-    config = function() require("gitsigns").setup() end
+    config = function() require("config.gitsigns") end
   })
   use {
     "kdheepak/lazygit.nvim",
@@ -139,4 +157,29 @@ return require("packer").startup(function(use)
 
   -- Training Wheels for text objects :-)
   use "tjdevries/train.nvim"
+
+  -- use { "wfxr/minimap.vim", config = function() require("config.minimap") end }
+
+  use {
+    "phaazon/hop.nvim",
+    as = "hop",
+    config = function()
+      require("util").nmap("gh", ":HopWord<CR>")
+      -- you can configure Hop the way you like here; see :h hop-config
+      require"hop".setup {}
+    end
+  }
+
+  -- Automatically save sessions
+  -- use {
+  --   "rmagatti/auto-session",
+  --   config = function() vim.g.auto_session_pre_save_cmds = { "tabdo NvimTreeClose" } end
+  -- }
+
+  use {
+    "dhruvasagar/vim-prosession",
+    requires = { "tpope/vim-obsession" },
+    config = function() require("config.session") end
+  }
+
 end)

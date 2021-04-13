@@ -1,4 +1,6 @@
 local lspconfig = require("lspconfig")
+local wk = require("whichkey_setup")
+local util = require("util")
 
 -- Format On Save
 _G.formatting = function()
@@ -15,39 +17,84 @@ vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
   end
 end
 
+-- Automatically update diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+  function(...)
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+                 { underline = true, update_in_insert = false })(...)
+    pcall(vim.lsp.diagnostic.set_loclist, { open_loclist = false })
+  end
+
 local on_attach = function(client, bufnr)
-  local function map(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
   -- Mappings.
-  local opts = { noremap = true, silent = true }
-  map("n", "gd", "<Cmd>lua require'lspsaga.provider'.preview_definition()<CR>", opts)
-  map("n", "gD", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  -- map("n", "gi", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  map("n", "K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-  map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  map("n", "gs", "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", opts)
+  local opts = { noremap = true, silent = true, bufnr = bufnr }
 
-  map("n", "<Leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-  map("n", "<Leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-  map("n", "<Leader>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-      opts)
+  local keymap = {
+    c = {
+      name = "+code",
+      r = { "<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename" },
+      a = { "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Action" },
+      d = { "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", "Line Diagnostics" },
+      l = {
+        name = "+lsp",
+        i = { "<cmd>LspInfo<cr>", "Lsp Info" },
+        a = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Folder" },
+        r = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Folder" },
+        l = {
+          "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+          "List Folders"
+        }
+      }
+    },
+    x = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "List Errors" }
+  }
 
-  map("n", "<Leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  map("n", "<Leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  map("n", "<Leader>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", opts)
-  map("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  map("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  map("n", "<Leader>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
+  -- TypeScript specific stuff
+  if client.name == "typescript" then
+    require("nvim-lsp-ts-utils").setup {
+      disable_commands = false,
+      enable_import_on_completion = false,
+      import_on_completion_timeout = 5000
+    }
+    keymap.c.o = { "<cmd>:TSLspOrganize<CR>", "Organize Imports" }
+    keymap.c.R = { "<cmd>:TSLspRenameFile<CR>", "Rename File" }
+  end
+
+  local keymap_visual = {
+    c = {
+      name = "+code",
+      a = { ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Action" }
+    }
+  }
+
+  local keymap_goto = {
+    name = "+goto",
+    r = { "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", "References" },
+    d = { "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", "Peek Definition" },
+    D = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+    s = { "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", "Signature Help" },
+    i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
+    I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
+    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" }
+  }
+
+  util.nmap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+  util.nmap("<CR>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+  util.nmap("[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
+  util.nmap("]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    map("n", "<Leader>cf", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    keymap.c.f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" }
   elseif client.resolved_capabilities.document_range_formatting then
-    map("n", "<Leader>cf", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    keymap_visual.c.f = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format Range" }
   end
+
+  wk.register_keymap("leader", keymap, { noremap = true, silent = true, bufnr = bufnr })
+  wk.register_keymap("visual", keymap_visual, { noremap = true, silent = true, bufnr = bufnr })
+  wk.register_keymap("g", keymap_goto, { noremap = true, silent = true, bufnr = bufnr })
 
   -- format on save
   if client.resolved_capabilities.document_formatting then

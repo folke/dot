@@ -15,9 +15,14 @@ require("lspsaga").init_lsp_saga({
   -- finder_definition_icon = '  ',
   -- finder_reference_icon = '  ',
   -- max_preview_lines = 10, -- preview lines of lsp_finder and definition preview
-  -- finder_action_keys = {
-  --   open = 'o', vsplit = 's',split = 'i',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
-  -- },
+  finder_action_keys = {
+    open = "e",
+    vsplit = "v",
+    split = "s",
+    quit = "q",
+    scroll_down = "<C-f>",
+    scroll_up = "<C-b>" -- quit can be a table
+  },
   code_action_keys = { quit = "<ESC>", exec = "<CR>" }
   -- rename_action_keys = {
   --   quit = '<C-c>',exec = '<CR>'  -- quit can be a table

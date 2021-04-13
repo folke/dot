@@ -4,3 +4,4 @@ org-roam.db
 /config/doom/*.html
 secrets.fish
 home/.aria2/aria2.session
+config/nvim/sessions

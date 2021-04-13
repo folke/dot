@@ -13,13 +13,15 @@ vim.g.edge_enable_italic = 1
 vim.g.edge_disable_italic_comment = 0
 vim.g.edge_transparent_background = 0
 
+vim.g.embark_terminal_italics = 1
+
 vim.g.nvcode_termcolors = 256
 
 -- require("config.diagnostics")
 
 -- require("colorbuddy").colorscheme("onebuddy")
 
-vim.cmd("colorscheme material") -- Put your favorite colorscheme here
+-- vim.cmd("colorscheme material") -- Put your favorite colorscheme here
 
 -- vim.cmd [[
 --   highlight! link LspDiagnosticsDefaultError LspDiagnosticsError
@@ -30,7 +32,7 @@ vim.cmd("colorscheme material") -- Put your favorite colorscheme here
 
 -- vim.cmd("highlight Normal guibg=none") -- make background transparent
 
--- require"base16-colorscheme".setup "material-palenight"
+require"base16-colorscheme".setup "material-palenight"
 
 -- vim.cmd([[hi LineNr guibg=NONE]])
 -- vim.cmd([[hi SignColumn guibg=NONE]])
