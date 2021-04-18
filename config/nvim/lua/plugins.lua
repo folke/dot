@@ -59,14 +59,12 @@ return require("packer").startup(function(use)
   })
 
   -- Theme: color schemes
-  -- use({ "tjdevries/colorbuddy.nvim" })
-  use "rktjmp/lush.nvim"
   use({
-    -- { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
+    { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
     -- "wadackel/vim-dogrun",
     -- { "npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim" },
     -- "bluz71/vim-nightfly-guicolors",
-    -- { "marko-cerovac/material.nvim", requires = { "tjdevries/colorbuddy.nvim" } },
+    { "marko-cerovac/material.nvim", requires = { "tjdevries/colorbuddy.nvim" } },
     -- "sainnhe/edge",
     -- { "embark-theme/vim", as = "embark" },
     -- "norcalli/nvim-base16.lua",
