@@ -1,3 +1,4 @@
+-- require "profiler"
 require "util"
 require "options"
 require "bootstrap"

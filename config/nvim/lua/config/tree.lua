@@ -7,3 +7,5 @@ vim.g.nvim_tree_auto_ignore_ft = { "dashboard", "startify" }
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_disable_netrw = 0
+
+require"nvim-tree".on_enter()

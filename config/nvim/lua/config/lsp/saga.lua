@@ -28,8 +28,7 @@ require("lspsaga").init_lsp_saga({
   --   quit = '<C-c>',exec = '<CR>'  -- quit can be a table
   -- },
   -- definition_preview_icon = '  '
-  -- 1: thin border | 2: rounded border | 3: thick border | 4: ascii border
-  -- border_style = 1
+  -- border_style = "single" -- "single" "double" "round" "plus"
   -- rename_prompt_prefix = '➤',
   -- if you don't use nvim-lspconfig you must pass your server name and
   -- the related filetypes into this table
@@ -37,3 +36,7 @@ require("lspsaga").init_lsp_saga({
   -- server_filetype_map = {}
 
 })
+
+-- require("util").inoremap("(", "(<cmd>:Lspsaga signature_help<CR>")
+-- require("util").inoremap("(", "foo")
+vim.cmd [[autocmd User CompeConfirmDone :Lspsaga signature_help]]

@@ -49,6 +49,10 @@ tap:start()
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
 spoon.SpoonInstall:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
+spoon.SpoonInstall:andUse("AClock", {
+  config = { showDuration = 2 },
+  fn = function(clock) hyper:bind({}, "t", function() clock:toggleShow() end) end
+})
 
 hs.hotkey.bind("alt", "tab", "Switch Windo", function() running.switcher() end)
 

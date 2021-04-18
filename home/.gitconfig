@@ -29,3 +29,5 @@ l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(
 [delta]
 	side-by-side = false
 	line-numbers = true
+[init]
+	defaultBranch = main

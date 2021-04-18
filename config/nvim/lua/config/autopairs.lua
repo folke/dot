@@ -6,18 +6,19 @@ npairs.setup()
 _G.MUtils = {}
 
 vim.g.completion_confirm_key = ""
-MUtils.completion_confirm = function()
+
+MUtils.completion_confirm = function(keys)
   if vim.fn.pumvisible() ~= 0 then
-    if vim.fn.complete_info()["selected"] ~= -1 then
-      vim.fn["compe#confirm"]()
-      return npairs.esc("<c-y>")
-    else
-      vim.defer_fn(function() vim.fn["compe#confirm"]("<cr>") end, 20)
-      return npairs.esc("<c-n>")
-    end
+    return vim.fn["compe#confirm"]({ keys = keys, select = true })
   else
-    return npairs.check_break_line_char()
+    if keys == "<cr>" then
+      return npairs.check_break_line_char()
+    else
+      return npairs.esc(keys)
+    end
   end
 end
 
-require("util").imap("<CR>", "v:lua.MUtils.completion_confirm()", { expr = true })
+require("util").inoremap("<CR>", [[v:lua.MUtils.completion_confirm("<cr>")]], { expr = true })
+require("util").inoremap("<Tab>", [[v:lua.MUtils.completion_confirm("<tab>")]], { expr = true })
+

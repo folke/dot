@@ -20,18 +20,20 @@ local shellcheck = {
 
 local fish = { formatCommand = "fish_indent", formatStdin = true }
 
+local eslintPrettier = { prettier, eslint }
+
 return {
   init_options = { documentFormatting = true },
   settings = {
     rootMarkers = { "package.json", ".git" },
     languages = {
       lua = { luafmt },
-      typescript = { prettier, eslint },
-      javascript = { prettier, eslint },
-      typescriptreact = { prettier, eslint },
-      javascriptreact = { prettier, eslint },
-      ["typescript.tsx"] = { prettier, eslint },
-      ["javascript.tsx"] = { prettier, eslint },
+      typescript = eslintPrettier,
+      javascript = eslintPrettier,
+      typescriptreact = eslintPrettier,
+      javascriptreact = eslintPrettier,
+      ["typescript.tsx"] = eslintPrettier,
+      ["javascript.tsx"] = eslintPrettier,
       yaml = { prettier },
       json = { prettier },
       html = { prettier },

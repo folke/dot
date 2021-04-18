@@ -2,7 +2,7 @@ vim.g.material_style = "palenight"
 vim.g.material_italic_comments = 1
 vim.g.material_italic_keywords = 1
 vim.g.material_italic_functions = 1
-vim.g.material_lsp_underline = 0
+vim.g.material_lsp_underline = 1
 
 vim.g.sonokai_style = "atlantis"
 vim.g.sonokai_enable_italic = 1
@@ -17,23 +17,14 @@ vim.g.embark_terminal_italics = 1
 
 vim.g.nvcode_termcolors = 256
 
--- require("config.diagnostics")
+vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_enable_italic = 1
 
--- require("colorbuddy").colorscheme("onebuddy")
-
--- vim.cmd("colorscheme material") -- Put your favorite colorscheme here
-
--- vim.cmd [[
---   highlight! link LspDiagnosticsDefaultError LspDiagnosticsError
---   highlight! link LspDiagnosticsDefaultWarning LspDiagnosticsWarning
---   highlight! link LspDiagnosticsUnderlineError LspDiagnosticsError
---   highlight LspDiagnosticsUnderlineError gui=undercurl
--- ]]
-
+vim.g.nightflyTransparent = 0
 -- vim.cmd("highlight Normal guibg=none") -- make background transparent
-
-require"base16-colorscheme".setup "material-palenight"
-
 -- vim.cmd([[hi LineNr guibg=NONE]])
 -- vim.cmd([[hi SignColumn guibg=NONE]])
 
+-- vim.o.background = "dark"
+-- vim.g.colors_name = "tokyonight"
+vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here

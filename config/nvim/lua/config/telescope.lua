@@ -2,11 +2,13 @@ local actions = require("telescope.actions")
 
 local telescope = require("telescope")
 
-telescope.load_extension("frecency")
+-- telescope.load_extension("frecency")
 telescope.load_extension("z")
+-- telescope.load_extension("project")
+
 telescope.setup {
   defaults = {
-    mappings = { i = { ["<esc>"] = actions.close } },
+    -- mappings = { i = { ["<esc>"] = actions.close } },
     -- vimgrep_arguments = {
     --   'rg',
     --   '--color=never',
@@ -18,7 +20,7 @@ telescope.setup {
     -- },
     -- prompt_position = "bottom",
     prompt_prefix = " ",
-    selection_caret = " "
+    selection_caret = " ",
     -- entry_prefix = "  ",
     -- initial_mode = "insert",
     -- selection_strategy = "reset",
@@ -32,17 +34,21 @@ telescope.setup {
     --     mirror = false,
     --   },
     -- },
-    -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    -- file_sorter = require"telescope.sorters".get_fzy_file
     -- file_ignore_patterns = {},
     -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     -- shorten_path = true,
-    -- winblend = 0,
-    -- width = 0.75,
+    winblend = 10,
+    width = 0.7
     -- preview_cutoff = 120,
     -- results_height = 1,
     -- results_width = 0.8,
     -- border = {},
     -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+    -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+    -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+    -- preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
     -- color_devicons = true,
     -- use_less = true,
     -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
@@ -63,6 +69,12 @@ M.project_files = function()
   if not ok then require"telescope.builtin".find_files(opts) end
 end
 
-require("util").nmap("<Leader><Space>", "<CMD>lua require'config.telescope'.project_files()<CR>")
+local util = require("util")
+
+util.nnoremap("<Leader><Space>", "<CMD>lua require'config.telescope'.project_files()<CR>")
+util.nnoremap("<leader>fz",
+              [[<cmd>lua require'telescope'.extensions.z.list{ cmd = { vim.o.shell, "-c", "zoxide query -ls" }}<CR>]])
+
+util.nnoremap("<leader>pp", ":lua require'telescope'.extensions.project.project{}<CR>")
 
 return M

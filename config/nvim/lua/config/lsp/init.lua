@@ -20,8 +20,15 @@ end
 -- Automatically update diagnostics
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
   function(...)
-    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-                 { underline = true, update_in_insert = false })(...)
+    vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        prefix = "●"
+        -- severity_limit = "Warning" 
+      }
+    })(...)
     pcall(vim.lsp.diagnostic.set_loclist, { open_loclist = false })
   end
 
@@ -53,10 +60,15 @@ local on_attach = function(client, bufnr)
 
   -- TypeScript specific stuff
   if client.name == "typescript" then
-    require("nvim-lsp-ts-utils").setup {
+    local ts = require("nvim-lsp-ts-utils")
+    vim.lsp.handlers["textDocument/codeAction"] = ts.code_action_handler
+    ts.setup {
       disable_commands = false,
       enable_import_on_completion = false,
-      import_on_completion_timeout = 5000
+      import_on_completion_timeout = 5000,
+      eslint_bin = "eslint_d", -- use eslint_d if possible!
+      eslint_fix_current = false,
+      eslint_enable_disable_comments = true
     }
     keymap.c.o = { "<cmd>:TSLspOrganize<CR>", "Organize Imports" }
     keymap.c.R = { "<cmd>:TSLspRenameFile<CR>", "Rename File" }
@@ -75,15 +87,15 @@ local on_attach = function(client, bufnr)
     d = { "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", "Peek Definition" },
     D = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     s = { "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", "Signature Help" },
-    i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
-    I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
+    I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
+    -- I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
     t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" }
   }
 
-  util.nmap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-  util.nmap("<CR>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-  util.nmap("[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
-  util.nmap("]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
+  util.nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+  util.nnoremap("<CR>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
+  util.nnoremap("[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
+  util.nnoremap("]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
@@ -107,12 +119,10 @@ local on_attach = function(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=Grey30
-      hi LspReferenceText cterm=bold ctermbg=red guibg=Grey30
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=Grey30
       augroup lsp_document_highlight
         autocmd! * <buffer>
         autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorHoldI <buffer> lua require('lspsaga.signaturehelp').signature_help()
         autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
       augroup END
     ]], false)
@@ -148,5 +158,6 @@ for _, server in pairs(installer.installed_servers()) do installed[server] = tru
 
 for server, config in pairs(servers) do
   if not installed[server] then error("LSP server missing \"" .. server .. "\"") end
-  lspconfig[server].setup(vim.tbl_deep_extend("force", defaults, config))
+  config = vim.tbl_deep_extend("force", defaults, config)
+  lspconfig[server].setup(config)
 end
