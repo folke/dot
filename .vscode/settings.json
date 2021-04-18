@@ -1,8 +1,8 @@
 {
   "Lua.workspace.library": [
     "/Users/folke/projects/hammerspoon/build/stubs",
-    "/usr/local/Cellar/neovim/HEAD-1186f7d_2/share/nvim/runtime/lua/",
-    "/usr/local/Cellar/neovim/HEAD-1186f7d_2/share/nvim/runtime/lua/vim/lsp"
+    "/usr/local/Caskroom/neovim-nightly/latest/nvim-osx64/share/nvim/runtime/lua/",
+    "/usr/local/Caskroom/neovim-nightly/latest/nvim-osx64/share/nvim/runtime/lua/vim/lsp"
   ],
   "Lua.diagnostics.globals": [
     "vim"
