@@ -9,8 +9,8 @@ require("lualine").setup({
   },
   sections = {
     lualine_a = { "mode" },
-    lualine_b = { "branch", { "diagnostics", sources = { "nvim_lsp" } } },
-    lualine_c = { "filename" },
+    lualine_b = { "branch" },
+    lualine_c = { { "diagnostics", sources = { "nvim_lsp" } }, "filename" },
     lualine_x = { "filetype" },
     lualine_y = { "progress" },
     lualine_z = { "location" }
@@ -22,13 +22,6 @@ require("lualine").setup({
     lualine_x = {},
     lualine_y = {},
     lualine_z = {}
-  }
+  },
+  extensions = { "nvim-tree" }
 })
-
--- Show minimal border for inactive windows
-vim.api.nvim_exec([[
-    highlight! lualine_a_inactive gui=underline guibg=NONE guisp=#0d0f17
-    highlight! lualine_b_inactive gui=underline guibg=NONE guisp=#0d0f17
-    highlight! lualine_c_inactive gui=underline guibg=NONE guisp=#0d0f17
-]], false)
-
