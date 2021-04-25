@@ -31,3 +31,11 @@ l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(
 	line-numbers = true
 [init]
 	defaultBranch = main
+[diff]
+	tool = vimdiff3
+[difftool "vimdiff3"]
+	path = nvim
+[merge]
+	tool = vimdiff3
+[mergetool "vimdiff3"]
+	path = nvim
