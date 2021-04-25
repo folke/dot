@@ -74,6 +74,7 @@ abbr v nvim
 # Dev
 abbr git hub
 abbr g hub
+abbr lg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
 abbr st "hub st"
 abbr push "hub push"

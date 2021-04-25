@@ -174,7 +174,13 @@ os:
   openCommand: open {{filename}}
   openLinkCommand: open {{link}}
 disableStartupPopups: false
-customCommands: []
+customCommands:
+  - key: 'b'
+    command: 'hub browse'
+    context: 'files'
+  - key: 'b'
+    command: 'hub browse -- "commit/{{.SelectedLocalCommit.Sha}}"'
+    context: 'commits'
 services: {}
 notARepository: prompt
 
