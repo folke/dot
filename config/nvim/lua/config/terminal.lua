@@ -1,5 +1,6 @@
 require"toggleterm".setup {
   size = 20,
+  hide_numbers = true,
   open_mapping = [[<M-`>]],
   shade_filetypes = {},
   shade_terminals = false,
@@ -10,7 +11,7 @@ require"toggleterm".setup {
 }
 
 -- Hide number column for
-vim.cmd [[au TermOpen * setlocal nonumber norelativenumber]]
+-- vim.cmd [[au TermOpen * setlocal nonumber norelativenumber]]
 
 -- Esc twice to get to normal mode
 vim.cmd [[tnoremap <esc><esc> <C-\><C-N>]]
