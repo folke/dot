@@ -15,6 +15,7 @@ vim.o.shiftwidth = indent -- Size of an indent
 vim.o.smartindent = true -- Insert indents automatically
 vim.o.undofile = true
 vim.o.undolevels = 10000
+vim.o.showmode = false -- dont show mode since we have a statusline
 vim.o.pumheight = 10 -- Maximum number of entries in a popup
 vim.o.pumblend = 10 -- Popup blend
 vim.o.tabstop = indent -- Number of spaces tabs count for
