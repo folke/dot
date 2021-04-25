@@ -4,7 +4,9 @@ local util = require("util")
 vim.g.which_key_centered = 0
 vim.g.which_key_fallback_to_native_key = 1
 vim.g.which_key_timeout = 50
-vim.o.timeoutlen = 300
+vim.g.which_key_use_floating_win = 1
+vim.g.which_key_disable_default_offset = 1
+vim.o.timeoutlen = 500
 
 -- Resize window
 util.nnoremap("<S-Up>", ":resize +2<CR>")
@@ -19,10 +21,8 @@ util.nmap("<Up>", "<C-w>k")
 util.nmap("<Right>", "<C-w>l")
 
 -- better window movement
-util.nmap("<C-h>", "<C-w>h")
-util.nmap("<C-j>", "<C-w>j")
-util.nmap("<C-k>", "<C-w>k")
-util.nmap("<C-l>", "<C-w>l")
+util.nmap("<C-j>", "<C-d>")
+util.nmap("<C-k>", "<C-u>")
 
 -- Move Lines
 util.nnoremap("<A-j>", ":m .+1<CR>==")
@@ -32,10 +32,13 @@ util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
 util.vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
 util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
+-- Clear search with <esc>
+util.map("", "<esc>", ":noh<cr>")
+
 local leader = {
   ["w"] = {
     name = "+windows",
-    ["w"] = { "<C-W>w", "other-window" },
+    ["w"] = { "<C-W>p", "other-window" },
     ["d"] = { "<C-W>c", "delete-window" },
     ["-"] = { "<C-W>s", "split-window-below" },
     ["|"] = { "<C-W>v", "split-window-right" },
@@ -60,14 +63,14 @@ local leader = {
     ["["] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
     ["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
-    ["d"] = { "<cmd>:bdelete<CR>", "Delete Buffer" },
+    ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
     ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" }
   },
   g = {
     name = "+git",
-    l = { "<cmd>LazyGit<CR>", "LazyGit" },
-    g = { "<Cmd>Telescope git_commits<CR>", "commits" },
-    c = { "<Cmd>Telescope git_bcommits<CR>", "bcommits" },
+    g = { "<cmd>Neogit<CR>", "NeoGit" },
+    l = { [[<cmd>lua require"util".float_terminal("lazygit")<CR>]], "LazyGit" },
+    c = { "<Cmd>Telescope git_commits<CR>", "commits" },
     b = { "<Cmd>Telescope git_branches<CR>", "branches" },
     s = { "<Cmd>Telescope git_status<CR>", "status" },
     h = { name = "+hunk" }
@@ -141,6 +144,14 @@ local leader = {
     s = { [[<cmd>lua require("config.session").load()<cr>]], "Restore Session" },
     l = { [[<cmd>lua require("config.session").load({last=true})<cr>]], "Restore Last Session" },
     d = { [[<cmd>lua require("config.session").stop()<cr>]], "Stop Current Session" }
+  },
+  x = {
+    name = "+errors",
+    x = { "<cmd>LspTroubleToggle<cr>", "Trouble" },
+    w = { "<cmd>LspTroubleWorkspaceToggle<cr>", "Workspace Trouble" },
+    d = { "<cmd>LspTroubleDocumentToggle<cr>", "Document Trouble" },
+    l = { "<cmd>lopen<cr>", "Open Location List" },
+    q = { "<cmd>copen<cr>", "Open Quickfix List" }
   }
 }
 
@@ -158,6 +169,7 @@ wk.register_keymap("g", {
 }, { noremap = true, silent = true })
 
 -- close the locationlist or quickfix window with <esc> or q
-vim.cmd [[autocmd FileType qf nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR>]]
-vim.cmd [[autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>]]
+-- vim.cmd [[autocmd FileType qf nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR>]]
+-- vim.cmd [[autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>]]
+vim.cmd [[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]]
 

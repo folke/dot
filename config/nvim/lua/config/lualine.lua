@@ -1,4 +1,6 @@
-require("lualine").setup({
+local function clock() return " " .. os.date("%H:%M") end
+
+local config = {
   options = {
     theme = "tokyonight",
     section_separators = { "", "" },
@@ -13,7 +15,7 @@ require("lualine").setup({
     lualine_c = { { "diagnostics", sources = { "nvim_lsp" } }, "filename" },
     lualine_x = { "filetype" },
     lualine_y = { "progress" },
-    lualine_z = { "location" }
+    lualine_z = { clock }
   },
   inactive_sections = {
     lualine_a = {},
@@ -24,4 +26,24 @@ require("lualine").setup({
     lualine_z = {}
   },
   extensions = { "nvim-tree" }
-})
+}
+
+-- try to load matching lualine theme
+
+local M = {}
+
+function M.load()
+  local name = vim.g.colors_name
+  local ok, _ = pcall(require, "lualine.themes." .. name)
+  if ok then config.options.theme = name end
+  require("lualine").setup(config)
+end
+
+M.load()
+
+-- vim.api.nvim_exec([[
+--   autocmd ColorScheme * lua require("config.lualine").load();
+-- ]], false)
+
+return M
+

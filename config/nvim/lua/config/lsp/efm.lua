@@ -1,3 +1,5 @@
+local M = {}
+
 local luafmt = { formatCommand = "lua-format", formatStdin = true }
 
 local prettier = {
@@ -9,7 +11,7 @@ local eslint = {
   lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
   lintIgnoreExitCode = true,
   lintStdin = true,
-  lintFormats = { "%f(%l,%c): %tarning %m", "%f(%l,%c): %rror %m" }
+  lintFormats = { "%f(%l,%c): %tarning %m", "%f(%l,%c): %trror %m" }
 }
 
 local shellcheck = {
@@ -22,13 +24,13 @@ local fish = { formatCommand = "fish_indent", formatStdin = true }
 
 local eslintPrettier = { prettier, eslint }
 
-return {
+M.config = {
   init_options = { documentFormatting = true },
   settings = {
     rootMarkers = { "package.json", ".git" },
     languages = {
       lua = { luafmt },
-      typescript = eslintPrettier,
+      typescript = { prettier },
       javascript = eslintPrettier,
       typescriptreact = eslintPrettier,
       javascriptreact = eslintPrettier,
@@ -45,3 +47,11 @@ return {
     }
   }
 }
+
+M.formatted_languages = {}
+
+for lang, tools in pairs(M.config.settings.languages) do
+  for _, tool in pairs(tools) do if tool.formatCommand then M.formatted_languages[lang] = true end end
+end
+
+return M
