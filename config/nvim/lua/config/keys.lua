@@ -34,6 +34,20 @@ util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Clear search with <esc>
 util.map("", "<esc>", ":noh<cr>")
+util.vnoremap("gw", "*N")
+
+-- makes * and # work on visual mode too.
+vim.api.nvim_exec([[
+  function! g:VSetSearch(cmdtype)
+    let temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+    let @s = temp
+  endfunction
+
+  xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+  xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+]], false)
 
 local leader = {
   ["w"] = {
@@ -152,7 +166,8 @@ local leader = {
     d = { "<cmd>LspTroubleDocumentToggle<cr>", "Document Trouble" },
     l = { "<cmd>lopen<cr>", "Open Location List" },
     q = { "<cmd>copen<cr>", "Open Quickfix List" }
-  }
+  },
+  z = { [[<cmd>lua require("util").zen_mode()<cr>]], "Zen Mode" }
 }
 
 for i = 0, 10 do leader[tostring(i)] = "which_key_ignore" end
