@@ -1,12 +1,9 @@
-local wk = require("whichkey_setup")
+local wk = require("which-key")
 local util = require("util")
 
-vim.g.which_key_centered = 0
-vim.g.which_key_fallback_to_native_key = 1
-vim.g.which_key_timeout = 50
-vim.g.which_key_use_floating_win = 1
-vim.g.which_key_disable_default_offset = 1
-vim.o.timeoutlen = 500
+vim.o.timeoutlen = 300
+
+wk.setup()
 
 -- Resize window
 util.nnoremap("<S-Up>", ":resize +2<CR>")
@@ -34,7 +31,8 @@ util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Clear search with <esc>
 util.map("", "<esc>", ":noh<cr>")
-util.vnoremap("gw", "*N")
+util.nnoremap("gw", "*N")
+util.xnoremap("gw", "*N")
 
 -- makes * and # work on visual mode too.
 vim.api.nvim_exec([[
@@ -172,19 +170,10 @@ local leader = {
 
 for i = 0, 10 do leader[tostring(i)] = "which_key_ignore" end
 
-wk.register_keymap("leader", leader)
+wk.register(leader, { prefix = "<leader>" })
 
-wk.register_keymap("g", {
-  name = "+goto",
-  h = "Hop Word",
-  x = "Open",
-  -- ignore whichkey for comments
-  c = "which_key_ignore",
-  ["cc"] = "which_key_ignore"
-}, { noremap = true, silent = true })
+wk.register({ g = { name = "+goto", h = "Hop Word" } })
 
--- close the locationlist or quickfix window with <esc> or q
--- vim.cmd [[autocmd FileType qf nnoremap <buffer><silent> <esc> :cclose<bar>lclose<CR>]]
--- vim.cmd [[autocmd FileType qf nnoremap <buffer><silent> q :cclose<bar>lclose<CR>]]
+-- windows to close with "q"
 vim.cmd [[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]]
 

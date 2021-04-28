@@ -1,11 +1,11 @@
-local wk = require("whichkey_setup")
+local wk = require("which-key")
 local util = require("util")
 
 local M = {}
 
 function M.setup(client, bufnr)
   -- Mappings.
-  local opts = { noremap = true, silent = true, bufnr = bufnr }
+  local opts = { noremap = true, silent = true, buffer = bufnr }
 
   local keymap = {
     c = {
@@ -65,9 +65,9 @@ function M.setup(client, bufnr)
     keymap_visual.c.f = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Format Range" }
   end
 
-  wk.register_keymap("leader", keymap, { noremap = true, silent = true, bufnr = bufnr })
-  wk.register_keymap("visual", keymap_visual, { noremap = true, silent = true, bufnr = bufnr })
-  wk.register_keymap("g", keymap_goto, { noremap = true, silent = true, bufnr = bufnr })
+  wk.register(keymap, { buffer = bufnr, prefix = "<leader>" })
+  wk.register(keymap_visual, { buffer = bufnr, prefix = "<leader>", mode = "v" })
+  wk.register(keymap_goto, { buffer = bufnr, prefix = "g" })
 end
 
 return M
