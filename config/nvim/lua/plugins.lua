@@ -68,13 +68,13 @@ return require("packer").startup({
 
     -- Theme: color schemes
     use({
-      { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
+      -- { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
       "wadackel/vim-dogrun",
       -- { "npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim" },
       "bluz71/vim-nightfly-guicolors",
-      { "marko-cerovac/material.nvim", requires = { "tjdevries/colorbuddy.nvim" } },
+      { "marko-cerovac/material.nvim" },
       -- "sainnhe/edge",
-      -- { "embark-theme/vim", as = "embark" },
+      { "embark-theme/vim", as = "embark" },
       -- "norcalli/nvim-base16.lua",
       -- "RRethy/nvim-base16",
       -- "novakne/kosmikoa.nvim",
@@ -83,7 +83,7 @@ return require("packer").startup({
       "sainnhe/sonokai",
       "morhetz/gruvbox",
       "arcticicestudio/nord-vim",
-      "drewtempelmeyer/palenight.vim",
+      -- "drewtempelmeyer/palenight.vim",
       -- "Th3Whit3Wolf/onebuddy",
       -- "christianchiarulli/nvcode-color-schemes.vim",
       -- "Th3Whit3Wolf/one-nvim"
@@ -116,12 +116,6 @@ return require("packer").startup({
     })
 
     use "dag/vim-fish"
-
-    use {
-      "AckslD/nvim-whichkey-setup.lua",
-      requires = { "liuchengxu/vim-which-key" },
-      config = [[require('config.keys')]]
-    }
 
     -- Fuzzy finder
     use({
@@ -232,16 +226,7 @@ return require("packer").startup({
       cmd = "MarkdownPreview"
     }
 
-    use {
-      "tversteeg/registers.nvim",
-      keys = "\"",
-      config = function() require("config.registers") end
-    }
-
-    -- use { "SidOfc/mkdx", config = function() require("config.markdown") end }
-
-    -- Training Wheels for text objects :-)
-    use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
+    -- use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
 
     -- use { "wfxr/minimap.vim", config = function() require("config.minimap") end }
 
@@ -269,11 +254,12 @@ return require("packer").startup({
 
     use { "mbbill/undotree", cmd = "UndotreeToggle" }
 
-    use { "mg979/vim-visual-multi", keys = "<C-n>" }
+    -- use { "mg979/vim-visual-multi", keys = "<C-n>" }
 
-    use { "mjlbach/babelfish.nvim", module = "babelfish" }
+    -- use { "mjlbach/babelfish.nvim", module = "babelfish" }
 
     use { "~/projects/lsp-colors.nvim" }
+    use { "~/projects/which-key.nvim", config = function() require("config.keys") end }
   end,
   config = config
 })
