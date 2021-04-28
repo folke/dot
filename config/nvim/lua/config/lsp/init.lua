@@ -22,7 +22,7 @@ local servers = {
   html = {},
   lua = require("config.lsp.lua"),
   efm = require("config.lsp.efm").config,
-  tailwindcss = {},
+  -- tailwindcss = {},
   json = {}
 }
 
