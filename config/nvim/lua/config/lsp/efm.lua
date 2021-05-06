@@ -20,6 +20,12 @@ local shellcheck = {
   lintFormats = { "%f=%l:%c: %trror: %m", "%f=%l:%c: %tarning: %m", "%f=%l:%c: %tote: %m" }
 }
 
+local markdownlint = {
+  lintCommand = "markdownlint -s",
+  lintStdin = true,
+  lintFormats = { "%f:%l %m", "%f:%l:%c %m", "%f: %l: %m" }
+}
+
 local fish = { formatCommand = "fish_indent", formatStdin = true }
 
 local eslintPrettier = { prettier, eslint }
@@ -41,7 +47,7 @@ M.config = {
       html = { prettier },
       scss = { prettier },
       css = { prettier },
-      markdown = { prettier },
+      markdown = { prettier, markdownlint },
       sh = { shellcheck },
       fish = { fish }
     }
