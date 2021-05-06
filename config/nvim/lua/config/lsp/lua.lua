@@ -1,3 +1,23 @@
+local library = {}
+
+local path = vim.split(package.path, ";")
+
+local function add(package)
+  package = type(package) == "string" and { package } or package
+  for _, p in pairs(package) do
+    library[p] = true
+    table.insert(path, p .. "/?.lua")
+    table.insert(path, p .. "/?/init.lua")
+  end
+end
+
+add(vim.fn.expand("$VIMRUNTIME/lua"))
+add(vim.fn.expand("~/.config/nvim/lua", false, true))
+add(vim.fn.expand("~/.local/share/nvim/site/pack/packer/opt/*/lua", false, true))
+add(vim.fn.expand("~/.local/share/nvim/site/pack/packer/start/*/lua", false, true))
+
+-- dump(library)
+-- dump(path)
 return {
   settings = {
     Lua = {
@@ -5,17 +25,7 @@ return {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = "LuaJIT",
         -- Setup your lua path
-
-        path = {
-          vim.split(package.path, ";"),
-          "?.lua",
-          "?/init.lua",
-          vim.fn.expand "~/.luarocks/share/lua/5.3/?.lua",
-          vim.fn.expand "~/.luarocks/share/lua/5.3/?/init.lua",
-          "/usr/share/5.3/?.lua",
-          "/usr/share/lua/5.3/?/init.lua"
-        }
-
+        path = path
       },
       completion = { callSnippet = "Both" },
       diagnostics = {
@@ -24,10 +34,7 @@ return {
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true
-          -- [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-        },
+        library = library,
         maxPreload = 2000,
         preloadFileSize = 50000
       },
