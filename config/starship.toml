@@ -1,7 +1,7 @@
 # Replace the "❯" symbol in the prompt with "➜"
 [character]      # The name of the module we are configuring is "character"
 #symbol = "➜"     # The "symbol" segment is being set to "➜"
-use_symbol_for_status = true  # Show "✖" when the command failed
+# use_symbol_for_status = true  # Show "✖" when the command failed
 
 [custom.shell]
 command = "echo $STARSHIP_SHELL"  # shows output of command
@@ -27,7 +27,7 @@ symbol = " "
 [dart]
 symbol = " "
 
-[docker]
+[docker_context]
 symbol = " "
 
 [elixir]
@@ -41,9 +41,6 @@ symbol = " "
 
 [golang]
 symbol = " "
-
-[haskell]
-symbol = " "
 
 [hg_branch]
 symbol = " "

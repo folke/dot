@@ -17,6 +17,7 @@ tap "jason0x43/neovim-nightly"
 tap "koekeishiya/formulae"
 tap "railwaycat/emacsmacport"
 tap "schniz/tap"
+tap "wfxr/code-minimap"
 tap "wtfutil/wtfutil"
 tap "xwmx/taps"
 tap "zegervdv/zathura"
@@ -26,6 +27,8 @@ brew "ack"
 brew "angband"
 # Download with resuming and segmented downloading
 brew "aria2"
+# Print a list of paths as a tree of paths 🌳
+brew "as-tree"
 # Spell checker with better logic than ispell
 brew "aspell"
 # Command-line interface for SQLite
@@ -62,6 +65,8 @@ brew "curl"
 brew "deno"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Pluggable and configurable code formatting platform written in Rust
+brew "dprint"
 # More intuitive version of du in rust
 brew "dust"
 # Maintain consistent coding style between multiple editors
@@ -82,6 +87,8 @@ brew "fnm"
 brew "fswatch"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Fast, simple fuzzy text selector with an advanced scoring algorithm
+brew "fzy"
 # GNU compiler collection
 brew "gcc"
 # GNU debugger
@@ -132,6 +139,8 @@ brew "htop"
 brew "httpie"
 # Add GitHub support to git on the command-line
 brew "hub"
+# Spell checker and morphological analyzer
+brew "hunspell"
 # Command-line benchmarking tool
 brew "hyperfine"
 # GNOME XML library
@@ -142,6 +151,8 @@ brew "jansson"
 brew "jq"
 # Style and grammar checker
 brew "languagetool"
+# Lazier way to manage everything docker
+brew "lazydocker"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Pager program similar to more
@@ -216,6 +227,8 @@ brew "sk"
 brew "so"
 # Cross-shell prompt for astronauts
 brew "starship"
+# Version control system designed to be a better CVS
+brew "subversion"
 # Open source continuous file synchronization application
 brew "syncthing", restart_service: true
 # Very fast implementation of tldr in Rust
@@ -240,7 +253,7 @@ brew "wget"
 brew "wtfutil"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
-# This is a host application for browserpass browser extension providing it access to your password store.
+# Host application for browser extension providing access to your password store
 brew "amar1729/formulae/browserpass"
 # A cross-platform graphical process/system monitor with a customizable interface and a multitude of features.
 brew "clementtsang/bottom/bottom"
@@ -250,6 +263,8 @@ brew "eth-p/software/bat-extras"
 brew "koekeishiya/formulae/skhd"
 # A tiling window manager for macOS based on binary space partitioning.
 brew "koekeishiya/formulae/yabai"
+# A high performance code minimap generator written in rust
+brew "wfxr/code-minimap/code-minimap"
 cask "adoptopenjdk"
 # GPU-accelerated terminal emulator
 cask "alacritty"
@@ -277,8 +292,8 @@ cask "font-fira-sans"
 cask "font-input"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-overpass"
-# Fonts designed for user interfaces
 cask "font-source-sans-pro"
+cask "font-victor-mono-nerd-font"
 # Desktop client for GitHub repositories
 cask "github"
 cask "google-backup-and-sync"
@@ -292,6 +307,7 @@ cask "kitty"
 cask "little-snitch"
 cask "microsoft-teams"
 cask "minecraft"
+# VPN client
 cask "mullvadvpn-beta"
 cask "neovim-nightly"
 # App to write, plan, collaborate, and get organized
