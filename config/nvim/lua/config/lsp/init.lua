@@ -23,7 +23,8 @@ local servers = {
   lua = require("config.lsp.lua"),
   efm = require("config.lsp.efm").config,
   -- tailwindcss = {},
-  json = {}
+  json = {},
+  vim = {}
 }
 
 local installer = require("lspinstall")
