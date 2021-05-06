@@ -1,6 +1,5 @@
-# Load universal config when it's changed
+#u Load universal config when it's changed
 set -l fish_config_mtime (stat -f %m $__fish_config_dir/config.fish)
-source $__fish_config_dir/secrets.fish
 
 if test "$fish_config_changed" = "$fish_config_mtime"
     exit

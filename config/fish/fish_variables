@@ -68,7 +68,7 @@ SETUVAR --export fish_color_quote:e0af68
 SETUVAR --export fish_color_redirection:c0caf5
 SETUVAR --export fish_color_search_match:\x2d\x2dbackground\x3d364A82
 SETUVAR --export fish_color_selection:\x2d\x2dbackground\x3d364A82
-SETUVAR fish_config_changed:1619191178
+SETUVAR fish_config_changed:1619764742
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings
