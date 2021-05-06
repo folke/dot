@@ -19,11 +19,13 @@ M.nmap = function(key, cmd, opts) return map("n", key, cmd, opts) end
 M.vmap = function(key, cmd, opts) return map("v", key, cmd, opts) end
 M.xmap = function(key, cmd, opts) return map("x", key, cmd, opts) end
 M.imap = function(key, cmd, opts) return map("i", key, cmd, opts) end
+M.omap = function(key, cmd, opts) return map("o", key, cmd, opts) end
 
 M.nnoremap = function(key, cmd, opts) return map("n", key, cmd, opts, { noremap = true }) end
 M.vnoremap = function(key, cmd, opts) return map("v", key, cmd, opts, { noremap = true }) end
 M.xnoremap = function(key, cmd, opts) return map("x", key, cmd, opts, { noremap = true }) end
 M.inoremap = function(key, cmd, opts) return map("i", key, cmd, opts, { noremap = true }) end
+M.onoremap = function(key, cmd, opts) return map("o", key, cmd, opts, { noremap = true }) end
 
 function M.float_terminal(cmd)
   local buf = vim.api.nvim_create_buf(false, true)
