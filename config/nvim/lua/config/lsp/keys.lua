@@ -44,9 +44,10 @@ function M.setup(client, bufnr)
 
   local keymap_goto = {
     name = "+goto",
-    r = { "<cmd>lua require'lspsaga.provider'.lsp_finder()<CR>", "References" },
-    d = { "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", "Peek Definition" },
-    D = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+    r = { "<cmd>Telescope lsp_references<cr>", "References" },
+    R = { "<cmd>LspTrouble lsp_references<cr>", "Trouble References" },
+    D = { "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", "Peek Definition" },
+    d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     s = { "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", "Signature Help" },
     I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
     -- I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
