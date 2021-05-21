@@ -39,3 +39,5 @@ l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(
 	tool = vimdiff3
 [mergetool "vimdiff3"]
 	path = nvim
+[commit]
+	gpgsign = true
