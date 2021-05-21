@@ -1,3 +1,5 @@
+local util = require("util")
+
 vim.o.completeopt = "menuone,noselect"
 
 require("compe").setup({
@@ -19,12 +21,24 @@ require("compe").setup({
     buffer = true,
     calc = true,
     nvim_lsp = true,
-    nvim_lua = true,
+    nvim_lua = false,
     vsnip = true,
-    treesitter = false
-  }
+    treesitter = false,
+    emoji = true,
+    spell = true,
+  },
 })
 
-vim.api.nvim_set_keymap("i", "<C-Space>", "compe#complete()", { silent = true, expr = true })
--- vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", { silent = true, expr = true })
-vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", { silent = true, expr = true })
+util.inoremap("<C-Space>", "compe#complete()", { expr = true })
+util.inoremap("<C-e>", "compe#close('<C-e>')", { expr = true })
+
+local function complete()
+  if vim.fn.pumvisible() == 1 then
+    return vim.fn["compe#confirm"]({ keys = "<cr>", select = true })
+  else
+    return require("nvim-autopairs").autopairs_cr()
+  end
+end
+
+util.imap("<CR>", complete, { expr = true })
+vim.cmd([[autocmd User CompeConfirmDone lua vim.lsp.buf.signature_help()]])

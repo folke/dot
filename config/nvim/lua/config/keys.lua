@@ -3,7 +3,9 @@ local util = require("util")
 
 vim.o.timeoutlen = 300
 
-wk.setup()
+local presets = require("which-key.plugins.presets")
+presets.objects["a("] = nil
+wk.setup({ show_help = false, triggers = "auto", plugins = { spelling = true } })
 
 -- Resize window
 util.nnoremap("<S-Up>", ":resize +2<CR>")
@@ -17,25 +19,43 @@ util.nmap("<Down>", "<C-w>j")
 util.nmap("<Up>", "<C-w>k")
 util.nmap("<Right>", "<C-w>l")
 
--- better window movement
-util.nmap("<C-j>", "<C-d>")
-util.nmap("<C-k>", "<C-u>")
+util.nmap("<a-h>", "<C-w>h")
+util.nmap("<a-j>", "<C-w>j")
+util.nmap("<a-k>", "<C-w>k")
+util.nmap("<a-l>", "<C-w>l")
 
 -- Move Lines
-util.nnoremap("<A-j>", ":m .+1<CR>==")
-util.nnoremap("<A-k>", ":m .-2<CR>==")
-util.inoremap("<A-j>", "<Esc>:m .+1<CR>==gi")
-util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
-util.vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
-util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
+util.nnoremap("<C-j>", ":m .+1<CR>==")
+util.vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
+util.inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
+util.nnoremap("<C-k>", ":m .-2<CR>==")
+util.vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
+util.inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
 
 -- Clear search with <esc>
 util.map("", "<esc>", ":noh<cr>")
 util.nnoremap("gw", "*N")
 util.xnoremap("gw", "*N")
 
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+util.nnoremap("n", "'Nn'[v:searchforward]", { expr = true })
+util.xnoremap("n", "'Nn'[v:searchforward]", { expr = true })
+util.onoremap("n", "'Nn'[v:searchforward]", { expr = true })
+util.nnoremap("N", "'nN'[v:searchforward]", { expr = true })
+util.xnoremap("N", "'nN'[v:searchforward]", { expr = true })
+util.onoremap("N", "'nN'[v:searchforward]", { expr = true })
+
+-- telescope <ctrl-r> in command line
+vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
+
+-- markdown
+util.nnoremap("=t", "<cmd>TableFormat<cr>")
+vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
+vim.cmd([[autocmd FileType markdown setlocal spell]])
+
 -- makes * and # work on visual mode too.
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   function! g:VSetSearch(cmdtype)
     let temp = @s
     norm! gv"sy
@@ -45,7 +65,9 @@ vim.api.nvim_exec([[
 
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-]], false)
+]],
+  false
+)
 
 local leader = {
   ["w"] = {
@@ -65,7 +87,7 @@ local leader = {
     ["K"] = { ":resize -5", "expand-window-up" },
     ["="] = { "<C-W>=", "balance-window" },
     ["s"] = { "<C-W>s", "split-window-below" },
-    ["v"] = { "<C-W>v", "split-window-right" }
+    ["v"] = { "<C-W>v", "split-window-right" },
   },
   c = { v = { "<cmd>Vista!!<CR>", "Vista" } },
   b = {
@@ -76,16 +98,19 @@ local leader = {
     ["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["d"] = { "<cmd>:bd<CR>", "Delete Buffer" },
-    ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" }
+    ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   },
   g = {
     name = "+git",
     g = { "<cmd>Neogit<CR>", "NeoGit" },
-    l = { [[<cmd>lua require"util".float_terminal("lazygit")<CR>]], "LazyGit" },
+    l = { function()
+      require("util").float_terminal("lazygit")
+    end, "LazyGit" },
     c = { "<Cmd>Telescope git_commits<CR>", "commits" },
     b = { "<Cmd>Telescope git_branches<CR>", "branches" },
     s = { "<Cmd>Telescope git_status<CR>", "status" },
-    h = { name = "+hunk" }
+    d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
+    h = { name = "+hunk" },
   },
   ["h"] = {
     name = "+help",
@@ -104,17 +129,18 @@ local leader = {
       p = { "<cmd>PackerSync<cr>", "Sync" },
       s = { "<cmd>PackerStatus<cr>", "Status" },
       i = { "<cmd>PackerInstall<cr>", "Install" },
-      c = { "<cmd>PackerCompile<cr>", "Compile" }
-    }
+      c = { "<cmd>PackerCompile<cr>", "Compile" },
+    },
   },
   u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
     name = "+search",
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+    b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Goto Symbol" },
     h = { "<cmd>Telescope command_history<cr>", "Command History" },
     m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
-    r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" }
+    r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
   },
   f = {
     name = "+file",
@@ -122,58 +148,81 @@ local leader = {
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
-    z = "Zoxide"
+    z = "Zoxide",
+    d = "Dot Files",
   },
   o = {
     name = "+open",
     p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
-    g = { "<cmd>Glow<cr>", "Markdown Glow" }
+    g = { "<cmd>Glow<cr>", "Markdown Glow" },
   },
   p = {
     name = "+project",
     p = "Open Project",
-    b = { ":Telescope file_browser cwd=~/projects<CR>", "Browse ~/projects" }
+    b = { ":Telescope file_browser cwd=~/projects<CR>", "Browse ~/projects" },
   },
   t = {
-    name = "+tabs",
-    t = { "<cmd>tabnew<CR>", "New Tab" },
+    name = "toggle",
+    f = {
+      require("config.lsp.formatting").toggle,
+      "Format on Save",
+    },
+    s = { function()
+      util.toggle("spell")
+    end, "Spelling" },
+    w = { function()
+      util.toggle("wrap")
+    end, "Word Wrap" },
+    n = { function()
+      util.toggle("relativenumber", true)
+      util.toggle("number")
+    end, "Line Numbers" },
+  },
+  ["<tab>"] = {
+    name = "workspace",
+    ["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },
+
     n = { "<cmd>tabnext<CR>", "Next" },
+    d = { "<cmd>tabclose<CR>", "Close" },
     p = { "<cmd>tabprevious<CR>", "Previous" },
     ["]"] = { "<cmd>tabnext<CR>", "Next" },
     ["["] = { "<cmd>tabprevious<CR>", "Previous" },
     f = { "<cmd>tabfirst<CR>", "First" },
-    l = { "<cmd>tablast<CR>", "Last" }
+    l = { "<cmd>tablast<CR>", "Last" },
   },
   ["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
   [" "] = "Find File",
   ["."] = { ":Telescope file_browser<CR>", "Browse Files" },
   [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
+  [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
   q = {
     name = "+quit/session",
     q = { "<cmd>:qa<cr>", "Quit" },
     ["!"] = { "<cmd>:qa!<cr>", "Quit without saving" },
     s = { [[<cmd>lua require("config.session").load()<cr>]], "Restore Session" },
     l = { [[<cmd>lua require("config.session").load({last=true})<cr>]], "Restore Last Session" },
-    d = { [[<cmd>lua require("config.session").stop()<cr>]], "Stop Current Session" }
+    d = { [[<cmd>lua require("config.session").stop()<cr>]], "Stop Current Session" },
   },
   x = {
     name = "+errors",
-    x = { "<cmd>LspTroubleToggle<cr>", "Trouble" },
-    w = { "<cmd>LspTroubleWorkspaceToggle<cr>", "Workspace Trouble" },
-    d = { "<cmd>LspTroubleDocumentToggle<cr>", "Document Trouble" },
+    x = { "<cmd>TroubleToggle<cr>", "Trouble" },
+    w = { "<cmd>TroubleWorkspaceToggle<cr>", "Workspace Trouble" },
+    d = { "<cmd>TroubleDocumentToggle<cr>", "Document Trouble" },
     l = { "<cmd>lopen<cr>", "Open Location List" },
-    q = { "<cmd>copen<cr>", "Open Quickfix List" }
+    q = { "<cmd>copen<cr>", "Open Quickfix List" },
   },
-  z = { [[<cmd>lua require("util").zen_mode()<cr>]], "Zen Mode" }
+  Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode" },
+  z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
 }
 
-for i = 0, 10 do leader[tostring(i)] = "which_key_ignore" end
+for i = 0, 10 do
+  leader[tostring(i)] = "which_key_ignore"
+end
 
 wk.register(leader, { prefix = "<leader>" })
 
-wk.register({ g = { name = "+goto", h = "Hop Word" } })
+wk.register({ g = { name = "+goto", h = "Hop Word" }, s = "Hop Word1" })
 
 -- windows to close with "q"
-vim.cmd [[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]]
-
+vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])

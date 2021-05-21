@@ -16,9 +16,9 @@ require("lspsaga").init_lsp_saga({
     split = "s",
     quit = "q",
     scroll_down = "<C-f>",
-    scroll_up = "<C-b>" -- quit can be a table
+    scroll_up = "<C-b>", -- quit can be a table
   },
-  code_action_keys = { quit = "<ESC>", exec = "<CR>" }
+  code_action_keys = { quit = "<ESC>", exec = "<CR>" },
   -- rename_action_keys = {
   --   quit = '<C-c>',exec = '<CR>'  -- quit can be a table
   -- },
@@ -29,9 +29,4 @@ require("lspsaga").init_lsp_saga({
   -- the related filetypes into this table
   -- like server_filetype_map = {metals = {'sbt', 'scala'}}
   -- server_filetype_map = {}
-
 })
-
--- require("util").inoremap("(", "(<cmd>:Lspsaga signature_help<CR>")
--- require("util").inoremap("(", "foo")
-vim.cmd [[autocmd User CompeConfirmDone :Lspsaga signature_help]]

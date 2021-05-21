@@ -22,7 +22,9 @@ module.appWatcher:start()
 
 module.toggle = function()
   local app = nil
-  if module.pid then app = hs.application.get(module.pid) end
+  if module.pid then
+    app = hs.application.get(module.pid)
+  end
   if app and app:isRunning() then
     if not app:mainWindow() then
       print("kitty: new")
@@ -38,8 +40,7 @@ module.toggle = function()
   else
     print("kitty: launch")
 
-    os.execute(
-      "/usr/local/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &")
+    os.execute("/usr/local/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &")
   end
 end
 

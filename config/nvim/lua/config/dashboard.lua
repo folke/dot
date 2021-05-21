@@ -13,7 +13,7 @@ vim.g.dashboard_custom_header = {
   " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
   " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
   " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-  " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝"
+  " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 }
 
 vim.g.dashboard_custom_shortcut = {
@@ -23,5 +23,5 @@ vim.g.dashboard_custom_shortcut = {
   ["new_file"] = "SPC f n",
   ["change_colorscheme"] = "SPC h c",
   ["find_word"] = "SPC f g",
-  ["book_marks"] = "SPC f b"
+  ["book_marks"] = "SPC f b",
 }

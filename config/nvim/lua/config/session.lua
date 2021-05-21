@@ -12,7 +12,9 @@ local function getSessionName()
   return cwd:gsub("/", "%%")
 end
 
-local function getSessionFile() return sessionsDir .. getSessionName() .. ".vim" end
+local function getSessionFile()
+  return sessionsDir .. getSessionName() .. ".vim"
+end
 
 local function getLastSessionFile()
   local last = io.popen("/bin/ls -t " .. sessionsDir .. "| head -n1")
@@ -33,20 +35,28 @@ M.start = function()
   vim.cmd("Obsession " .. e(sessionFile))
 end
 
-M.stop = function() vim.cmd("Obsession!") end
+M.stop = function()
+  vim.cmd("Obsession!")
+end
 
 M.load = function(opt)
   if type(opt) == "string" then
     return loadSession(opt)
   elseif type(opt) == "table" then
-    if opt.file then return loadSession(opt.file) end
-    if opt.last then return loadSession(getLastSessionFile()) end
+    if opt.file then
+      return loadSession(opt.file)
+    end
+    if opt.last then
+      return loadSession(getLastSessionFile())
+    end
   end
   return loadSession(getSessionFile())
 end
 
-M.list = function() return vim.fn.glob(sessionsDir .. "*.vim", true, true) end
+M.list = function()
+  return vim.fn.glob(sessionsDir .. "*.vim", true, true)
+end
 
-vim.cmd [[au BufReadPre * ++once lua require('config.session').start()]]
+vim.cmd([[au BufReadPre * ++once lua require('config.session').start()]])
 
 return M

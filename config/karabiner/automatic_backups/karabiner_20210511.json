@@ -443,6 +443,16 @@
             "simple_modifications": [
                 {
                     "from": {
+                        "key_code": "non_us_backslash"
+                    },
+                    "to": [
+                        {
+                            "key_code": "escape"
+                        }
+                    ]
+                },
+                {
+                    "from": {
                         "key_code": "right_option"
                     },
                     "to": [

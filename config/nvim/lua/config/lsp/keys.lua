@@ -20,14 +20,14 @@ function M.setup(client, bufnr)
         r = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Folder" },
         l = {
           "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-          "List Folders"
-        }
-      }
+          "List Folders",
+        },
+      },
     },
     x = {
       s = { "<cmd>Telescope lsp_document_diagnostics<cr>", "Search Document Diagnostics" },
-      w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" }
-    }
+      w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
+    },
   }
 
   if client.name == "typescript" then
@@ -38,26 +38,25 @@ function M.setup(client, bufnr)
   local keymap_visual = {
     c = {
       name = "+code",
-      a = { ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Action" }
-    }
+      a = { ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Action" },
+    },
   }
 
   local keymap_goto = {
     name = "+goto",
     r = { "<cmd>Telescope lsp_references<cr>", "References" },
-    R = { "<cmd>LspTrouble lsp_references<cr>", "Trouble References" },
+    R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
     D = { "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", "Peek Definition" },
     d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
-    s = { "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>", "Signature Help" },
+    s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
     I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
     -- I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
-    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" }
+    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
   }
 
-  util.nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-  util.nnoremap("<CR>", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>", opts)
-  util.nnoremap("[d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>", opts)
-  util.nnoremap("]d", "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>", opts)
+  util.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  util.nnoremap("[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  util.nnoremap("]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then

@@ -1,4 +1,4 @@
-vim.g.indent_blankline_buftype_exclude = { "terminal" }
+vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
 vim.g.indent_blankline_filetype_exclude = {
   "help",
   "startify",
@@ -6,7 +6,7 @@ vim.g.indent_blankline_filetype_exclude = {
   "packer",
   "neogitstatus",
   "NvimTree",
-  "LspTrouble"
+  "Trouble",
 }
 vim.g.indent_blankline_char = "│"
 vim.g.indent_blankline_use_treesitter = true
@@ -32,7 +32,7 @@ vim.g.indent_blankline_context_patterns = {
   "try_statement",
   "catch_clause",
   "import_statement",
-  "operation_type"
+  "operation_type",
 }
 -- HACK: work-around for https://github.com/lukas-reineke/indent-blankline.nvim/issues/59
 vim.wo.colorcolumn = "99999"

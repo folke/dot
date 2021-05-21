@@ -3,6 +3,6 @@ require("neogit").setup({
     -- { CLOSED, OPENED }
     section = { "", "" },
     item = { "", "" },
-    hunk = { "", "" }
-  }
+    hunk = { "", "" },
+  },
 })

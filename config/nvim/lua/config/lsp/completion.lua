@@ -1,14 +1,13 @@
 local M = {}
 
-function M.setup(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
+function M.setup(client, buffer)
+  vim.api.nvim_buf_set_option(buffer, "omnifunc", "v:lua.vim.lsp.omnifunc")
   -- fix function completion on all lsp servers
   if not client.request_orig then
     client.request_orig = client.request
     client.request = function(method, params, handler, bufnr)
       if method == "textDocument/completion" then
-        local intercept = function(err, method, result, client_id, bufnr)
+        local intercept = function(err, _method, result, client_id, _bufnr)
           local response = result or {}
           local items = response.items or response
           for _, item in ipairs(items) do

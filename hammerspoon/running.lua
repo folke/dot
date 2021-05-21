@@ -11,7 +11,7 @@ module.appEvents = {
   [appw.launched] = "launched",
   [appw.launching] = "launching",
   [appw.terminated] = "terminated",
-  [appw.unhidden] = "unhidden"
+  [appw.unhidden] = "unhidden",
 }
 
 module.events = { focused = "focused", framed = "framed", closed = "closed", created = "created" }
@@ -23,7 +23,9 @@ module.getWindowsPerSpace = function()
       if ax:isValid() then
         local win = ax:asHSWindow()
         for _, space in pairs(win:spaces()) do
-          if ret[space] == nil then ret[space] = {} end
+          if ret[space] == nil then
+            ret[space] = {}
+          end
           ret[space][win:id()] = win
         end
       end
@@ -41,11 +43,17 @@ module.getWindows = function(currentSpaceOnly)
         local win = ax:asHSWindow()
         local keep = false
         if currentSpaceOnly then
-          for _, space in pairs(win:spaces()) do if space == mySpace then keep = true end end
+          for _, space in pairs(win:spaces()) do
+            if space == mySpace then
+              keep = true
+            end
+          end
         else
           keep = true
         end
-        if keep then table.insert(ret, win) end
+        if keep then
+          table.insert(ret, win)
+        end
       end
     end
   end
@@ -55,7 +63,9 @@ end
 module._addAppWindow = function(app, ax)
   if ax ~= nil and ax.AXSubrole == "AXStandardWindow" then
     local pid = app:pid()
-    if module.windows[pid] == nil then module.windows[pid] = {} end
+    if module.windows[pid] == nil then
+      module.windows[pid] = {}
+    end
     local win = ax:asHSWindow()
     if not module.windows[pid][win:id()] then
       module.windows[pid][win:id()] = ax
@@ -65,10 +75,14 @@ module._addAppWindow = function(app, ax)
 end
 
 module._updateAppWindows = function(app, ax)
-  if module.windows[app:pid()] == nil then module.windows[app:pid()] = {} end
+  if module.windows[app:pid()] == nil then
+    module.windows[app:pid()] = {}
+  end
   if ax.AXChildren then
     for _, child in ipairs(ax.AXChildren) do
-      if child:matchesCriteria("AXWindow") then module._addAppWindow(app, child) end
+      if child:matchesCriteria("AXWindow") then
+        module._addAppWindow(app, child)
+      end
     end
   end
 
@@ -85,7 +99,9 @@ end
 
 module.triggerChange = function(app, win, event)
   local winTitle = ""
-  if win then winTitle = win:title() end
+  if win then
+    winTitle = win:title()
+  end
   print(">> " .. event .. ":" .. app:name() .. " -- " .. winTitle)
   for _, fn in ipairs(module._listeners) do
     fn(app, win, event)
@@ -97,11 +113,15 @@ module._listeners = {}
 module.onChange = function(fn)
   table.insert(module._listeners, fn)
   local win = hs.window.focusedWindow()
-  if win ~= nil then fn(win:application(), win, module.events.focused) end
+  if win ~= nil then
+    fn(win:application(), win, module.events.focused)
+  end
 end
 
 module._watchApp = function(app)
-  if module.apps[app:pid()] ~= nil then return end
+  if module.apps[app:pid()] ~= nil then
+    return
+  end
   local ax = hs.axuielement.applicationElement(app)
   -- when the app just launched, we might have to wait for
   -- the next event to setup the observers
@@ -118,13 +138,17 @@ module._watchApp = function(app)
     w:addWatcher(ax, "AXUIElementDestroyed")
 
     -- w:addWatcher(ax, "AXUIElementDestroyed")
-    w:callback(function(_, axel, notif, notifData)
+    w:callback(function(_, axel, notif, _notifData)
       if notif == "AXUIElementDestroyed" then
-        if not app:focusedWindow() then module._updateAppWindows(app, ax) end
+        if not app:focusedWindow() then
+          module._updateAppWindows(app, ax)
+        end
         return
       end
 
-      if not axel:matchesCriteria("AXWindow") then return end
+      if not axel:matchesCriteria("AXWindow") then
+        return
+      end
       print(hs.inspect(notif))
       local win = axel:asHSWindow()
       -- check for all focus changes, or only for the condition below?
@@ -150,33 +174,41 @@ module._updateSpaces = function()
 end
 
 module._updateRunning = function()
-  for _, app in ipairs(hs.application.runningApplications()) do module._watchApp(app) end
+  for _, app in ipairs(hs.application.runningApplications()) do
+    module._watchApp(app)
+  end
 end
 
 module.switcher = function()
   if module._chooser == nil then
     module._chooser = hs.chooser.new(function(choice)
-      if choice ~= nil then choice.win:focus() end
+      if choice ~= nil then
+        choice.win:focus()
+      end
     end):bgDark(true):placeholderText("Switch to Window"):searchSubText(true)
   elseif module._chooser:isVisible() then
     module._chooser:hide()
     return
   end
-  local windows = hs.fnutils.map(running.getWindows(), function(win)
+  local windows = hs.fnutils.map(module.getWindows(), function(win)
     return {
       text = win:title(),
       subText = win:application():title(),
       image = hs.image.imageFromAppBundle(win:application():bundleID()),
-      win = win
+      win = win,
     }
   end)
   module._chooser:choices(windows):show()
 end
 
 module._appWatcher = appw.new(function(appName, event, app)
-  if appName == nil then appName = "" end
+  if appName == nil then
+    appName = ""
+  end
 
-  if event == appw.launching then return end
+  if event == appw.launching then
+    return
+  end
 
   if event == appw.terminated then
     module.apps[app:pid()] = nil
@@ -187,11 +219,15 @@ module._appWatcher = appw.new(function(appName, event, app)
     return
   end
 
-  if module.apps[app:pid()] == nil then module._watchApp(app) end
+  if module.apps[app:pid()] == nil then
+    module._watchApp(app)
+  end
 
   if event == appw.activated or event == appw.launched then
     local win = app:focusedWindow()
-    if win ~= nil then module.triggerChange(app, win, module.events.focused) end
+    if win ~= nil then
+      module.triggerChange(app, win, module.events.focused)
+    end
   end
 end)
 

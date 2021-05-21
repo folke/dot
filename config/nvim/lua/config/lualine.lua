@@ -1,4 +1,6 @@
-local function clock() return " " .. os.date("%H:%M") end
+local function clock()
+  return " " .. os.date("%H:%M")
+end
 
 local config = {
   options = {
@@ -7,7 +9,7 @@ local config = {
     component_separators = { "", "" },
     -- section_separators = { "", "" },
     -- component_separators = { "", "" },
-    icons_enabled = true
+    icons_enabled = true,
   },
   sections = {
     lualine_a = { "mode" },
@@ -15,7 +17,7 @@ local config = {
     lualine_c = { { "diagnostics", sources = { "nvim_lsp" } }, "filename" },
     lualine_x = { "filetype" },
     lualine_y = { "progress" },
-    lualine_z = { clock }
+    lualine_z = { clock },
   },
   inactive_sections = {
     lualine_a = {},
@@ -23,9 +25,9 @@ local config = {
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = {},
   },
-  extensions = { "nvim-tree" }
+  extensions = { "nvim-tree" },
 }
 
 -- try to load matching lualine theme
@@ -33,9 +35,11 @@ local config = {
 local M = {}
 
 function M.load()
-  local name = vim.g.colors_name
+  local name = vim.g.colors_name or ""
   local ok, _ = pcall(require, "lualine.themes." .. name)
-  if ok then config.options.theme = name end
+  if ok then
+    config.options.theme = name
+  end
   require("lualine").setup(config)
 end
 
@@ -46,4 +50,3 @@ M.load()
 -- ]], false)
 
 return M
-

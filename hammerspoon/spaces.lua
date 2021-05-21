@@ -1,8 +1,9 @@
 local wb = hs.canvas.windowBehaviors
 local desktop = require("desktop")
+local running = require("running")
 
 -- hs.canvas.useCustomAccessibilitySubrole(false)
-local module = { widget = hs.canvas.new {} }
+local module = { widget = hs.canvas.new({}) }
 
 -- module.windows:setCurrentSpace(false)
 module.widget:behavior({ wb.canJoinAllSpaces, wb.stationary })
@@ -32,11 +33,11 @@ module.update = function()
     fillColor = { alpha = 0.2, red = 1, green = 1, blue = 1 },
     strokeColor = { alpha = 0.3, red = 1, green = 1, blue = 1 },
     strokeWidth = 1,
-    withShadow = true
+    withShadow = true,
   }, {
     action = "clip",
     type = "rectangle",
-    roundedRectRadii = { xRadius = radius, yRadius = radius }
+    roundedRectRadii = { xRadius = radius, yRadius = radius },
   })
 
   local spaceY = spaceH / 2
@@ -47,11 +48,15 @@ module.update = function()
     local alpha = 0
 
     if windowsPerSpace[spaceId] ~= nil then
-      for _, _ in pairs(windowsPerSpace[spaceId]) do alpha = 1 end
+      for _, _ in pairs(windowsPerSpace[spaceId]) do
+        alpha = 1
+      end
     end
 
     local backgroundA = 0
-    if i == desktop.active then backgroundA = 0.3 end
+    if i == desktop.active then
+      backgroundA = 0.3
+    end
     module.widget:appendElements({
       id = i,
       action = "fill",
@@ -59,7 +64,7 @@ module.update = function()
       frame = { x = 0, y = currentY, w = spaceW, h = spaceH },
       fillColor = { alpha = backgroundA, red = 1, green = 1, blue = 1 },
       trackMouseUp = true,
-      withShadow = false
+      withShadow = false,
     })
 
     module.widget:appendElements({
@@ -70,7 +75,7 @@ module.update = function()
       fillColor = { alpha = alpha, red = 1, green = 1, blue = 1 },
       strokeColor = { alpha = 1, red = 1, green = 1, blue = 1 },
       strokeWidth = 2,
-      withShadow = false
+      withShadow = false,
     })
 
     spaceY = spaceY + spaceH
@@ -84,11 +89,14 @@ end
 module.update()
 
 desktop.onChange(module.update)
-running.onChange(function(app, win, event)
-  if event == running.events.closed or event == running.events.created then module.update() end
+running.onChange(function(_app, _win, event)
+  if event == running.events.closed or event == running.events.created then
+    module.update()
+  end
 end)
 
-module.widget:mouseCallback(function(_, _, id) desktop.changeTo(id) end)
+module.widget:mouseCallback(function(_, _, id)
+  desktop.changeTo(id)
+end)
 
 return module
-

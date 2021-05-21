@@ -65,6 +65,8 @@ brew "curl"
 brew "deno"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Generate documentation for several programming languages
+brew "doxygen"
 # Pluggable and configurable code formatting platform written in Rust
 brew "dprint"
 # More intuitive version of du in rust
@@ -265,6 +267,7 @@ brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 # A high performance code minimap generator written in rust
 brew "wfxr/code-minimap/code-minimap"
+# JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
 # GPU-accelerated terminal emulator
 cask "alacritty"

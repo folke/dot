@@ -21,7 +21,8 @@ ts_configs.setup({
     "yaml",
     "tsx",
     "vue",
-    "graphql"
+    "graphql",
+    "svelte",
   },
   highlight = { enable = true, use_languagetree = true },
   indent = { enable = false },
@@ -32,13 +33,13 @@ ts_configs.setup({
       init_selection = "gnn",
       node_incremental = "grn",
       scope_incremental = "grc",
-      node_decremental = "grm"
-    }
+      node_decremental = "grm",
+    },
   },
   query_linter = {
     enable = true,
     use_virtual_text = true,
-    lint_events = { "BufWrite", "CursorHold" }
+    lint_events = { "BufWrite", "CursorHold" },
   },
   playground = {
     enable = true,
@@ -55,9 +56,29 @@ ts_configs.setup({
       unfocus_language = "F",
       update = "R",
       goto_node = "<cr>",
-      show_help = "?"
-    }
-  }
+      show_help = "?",
+    },
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
+      goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
+      goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
+      goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
+    },
+  },
 })
 
 -- Add Markdown
@@ -65,6 +86,6 @@ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.markdown = {
   install_info = {
     url = "https://github.com/ikatyang/tree-sitter-markdown",
-    files = { "src/parser.c", "src/scanner.cc" }
-  }
+    files = { "src/parser.c", "src/scanner.cc" },
+  },
 }

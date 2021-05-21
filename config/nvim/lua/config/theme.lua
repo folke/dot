@@ -31,7 +31,7 @@ vim.g.tokyonight_sidebars = {
   "packer",
   "spectre_panel",
   "NeogitStatus",
-  "help"
+  "help",
 }
 vim.g.tokyonight_cterm_colors = false
 vim.g.tokyonight_terminal_colors = true
@@ -44,6 +44,6 @@ vim.g.tokyonight_hide_inactive_statusline = true
 vim.g.tokyonight_dark_sidebar = true
 vim.g.tokyonight_dark_float = true
 vim.g.tokyonight_colors = {}
+-- vim.g.tokyonight_colors = { border = "orange" }
 
 vim.cmd("colorscheme tokyonight") -- Put your favorite colorscheme here
-

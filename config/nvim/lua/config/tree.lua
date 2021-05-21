@@ -9,4 +9,6 @@ vim.g.nvim_tree_git_hl = 1
 vim.g.nvim_tree_disable_netrw = 0
 vim.g.nvim_tree_lsp_diagnostics = 1
 
-require"nvim-tree.events".on_nvim_tree_ready(function() vim.cmd("NvimTreeRefresh") end)
+require("nvim-tree.events").on_nvim_tree_ready(function()
+  vim.cmd("NvimTreeRefresh")
+end)

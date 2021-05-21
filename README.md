@@ -1,4 +1,11 @@
-# Managing dotfiles with [dotdrop](https://github.com/deadc0de6/dotdrop)
+# Dot Files
+
+## Todo
+
+- [ ] Todo highlight plugin
+- [ ] zen mode plugin
+
+## Managing dotfiles with [dotdrop](https://github.com/deadc0de6/dotdrop)
 
 ```shell
 # Install all dotfiles
@@ -15,7 +22,7 @@ $ mv ~/.config/foo ~/projects/dot/config/
 
 ```
 
-# Restoring dotfiles
+## Restoring dotfiles
 
 ```shell
 # Install dotdrop
@@ -31,4 +38,8 @@ $ dotdrop -c ~/projects/dot/dotdrop.yaml
 # Install Homebrew packages
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 $ brew bundle
+```
+
+```python
+foo = 1
 ```

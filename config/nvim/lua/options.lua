@@ -7,9 +7,8 @@ vim.bo.smartindent = true -- Insert indents automatically
 vim.bo.undofile = true ]]
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 vim.g.node_host_prog = "/Users/folke/.pnpm-global/4/node_modules/neovim/bin/cli.js"
-
 vim.o.autowrite = true -- enable auto write
 vim.o.clipboard = "unnamedplus" -- sync with system clipboard
 vim.o.conceallevel = 2 -- Hide * markup for bold and italic
@@ -47,26 +46,35 @@ vim.o.termguicolors = true -- True color support
 vim.o.undofile = true
 vim.o.undolevels = 10000
 vim.o.updatetime = 200 -- save swap file and trigger CursorHold
-vim.o.wildmode = "list:longest" -- Command-line completion mode
+vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 vim.o.wrap = false -- Disable line wrap
 
+cmd("set sessionoptions-=folds")
 -- Check if we need to reload the file when it changed
-cmd "au FocusGained * :checktime"
+cmd("au FocusGained * :checktime")
 
 -- syntax
 cmd("syntax enable")
 cmd("filetype plugin indent on")
 
 -- show cursor line only in active window
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
   autocmd InsertLeave,WinEnter * set cursorline
   autocmd InsertEnter,WinLeave * set nocursorline
-]], false)
+]],
+  false
+)
 
 -- go to last loc when opening a buffer
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+  [[
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-]], false)
+]],
+  false
+)
 
 -- Highlight on yank
 cmd("au TextYankPost * lua vim.highlight.on_yank {}")
+
+require("config.markdown")

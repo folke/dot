@@ -1,11 +1,12 @@
 hs.window.animationDuration = 0
 
 -- require("test")
-running = require("running")
+local running = require("running")
 require("spaces")
 require("border")
 require("wm")
-monocle = require("monocle")
+
+local monocle = require("monocle")
 local quake = require("quake")
 
 local hyper = require("hyper")
@@ -26,13 +27,15 @@ end)
 hs.hotkey.bind({ "alt" }, "z", "Zoom", function(event)
   print(hs.inspect(event))
   local win = hs.window.focusedWindow()
-  if win then monocle.toggle(win) end
+  if win then
+    monocle.toggle(win)
+  end
 end)
 
 hs.hotkey.bind({ "cmd" }, "escape", "Scratchpad", quake.toggle)
 hyper.bindApp({}, "return", quake.toggle)
 
-tap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
+local tap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
   -- print(hs.inspect(event))
   local isCmd = event:getFlags():containExactly({ "cmd" })
   local isQ = event:getKeyCode() == hs.keycodes.map["q"]
@@ -51,9 +54,15 @@ spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
 spoon.SpoonInstall:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 spoon.SpoonInstall:andUse("AClock", {
   config = { showDuration = 2 },
-  fn = function(clock) hyper:bind({}, "t", function() clock:toggleShow() end) end
+  fn = function(clock)
+    hyper:bind({}, "t", function()
+      clock:toggleShow()
+    end)
+  end,
 })
 
-hs.hotkey.bind("alt", "tab", "Switch Windo", function() running.switcher() end)
+hs.hotkey.bind("alt", "tab", "Switch Windo", function()
+  running.switcher()
+end)
 
 hs.alert.show("Hammerspoon Loaded!")
