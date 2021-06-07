@@ -82,6 +82,13 @@ alias -s tn "npx --no-install ts-node --transpile-only"
 abbr tt "tn src/tt.ts"
 alias -s todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
 
+# Nix
+abbr ni "nix-env -f '<nixpkgs>' -iA"
+abbr nq "nix-env -q"
+abbr nqa "nix-env -qa"
+abbr nd "nix-env -e"
+abbr nu "nix-env -u"
+
 # Other
 abbr ntop "ultra --monitor"
 abbr ytop btm

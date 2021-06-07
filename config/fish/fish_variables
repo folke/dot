@@ -30,7 +30,12 @@ SETUVAR _fish_abbr_mkdir:mkdir\x20\x2dvp
 SETUVAR _fish_abbr_mux:tmuxinator
 SETUVAR _fish_abbr_mv:mv\x20\x2div
 SETUVAR _fish_abbr_ncdu:ncdu\x20\x2d\x2dcolor\x20dark
+SETUVAR _fish_abbr_nd:nix\x2denv\x20\x2de
+SETUVAR _fish_abbr_ni:nix\x2denv\x20\x2df\x20\x27\x3cnixpkgs\x3e\x27\x20\x2diA
+SETUVAR _fish_abbr_nq:nix\x2denv\x20\x2dq
+SETUVAR _fish_abbr_nqa:nix\x2denv\x20\x2dqa
 SETUVAR _fish_abbr_ntop:ultra\x20\x2d\x2dmonitor
+SETUVAR _fish_abbr_nu:nix\x2denv\x20\x2du
 SETUVAR _fish_abbr_pull:hub\x20pull
 SETUVAR _fish_abbr_push:hub\x20push
 SETUVAR _fish_abbr_rga:rg\x20\x2duu
@@ -54,7 +59,8 @@ SETUVAR _fish_abbr_weather:curl\x20\x2ds\x20wttr\x2ein/Ghent\x20\x7c\x20grep\x20
 SETUVAR _fish_abbr_ytop:btm
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/folke/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/folke/\x2econfig/fish/completions/fisher\x2efish
 SETUVAR _fisher_jorgebucaran_2F_replay_2E_fish_files:/Users/folke/\x2econfig/fish/functions/replay\x2efish\x1e/Users/folke/\x2econfig/fish/completions/replay\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/replay\x2efish
+SETUVAR _fisher_lilyball_2F_nix_2D_env_2E_fish_files:/Users/folke/\x2econfig/fish/conf\x2ed/nix\x2denv\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/replay\x2efish\x1elilyball/nix\x2denv\x2efish
 SETUVAR --export fish_color_autosuggestion:565f89
 SETUVAR --export fish_color_command:7dcfff
 SETUVAR --export fish_color_comment:565f89
@@ -69,7 +75,7 @@ SETUVAR --export fish_color_quote:e0af68
 SETUVAR --export fish_color_redirection:c0caf5
 SETUVAR --export fish_color_search_match:\x2d\x2dbackground\x3d364A82
 SETUVAR --export fish_color_selection:\x2d\x2dbackground\x3d364A82
-SETUVAR fish_config_changed:1623024117
+SETUVAR fish_config_changed:1623048070
 SETUVAR fish_emoji_width:2
 SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings
