@@ -10,9 +10,9 @@ function M.setup(client, bufnr)
   local keymap = {
     c = {
       name = "+code",
-      r = { "<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename" },
-      a = { "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Action" },
-      d = { "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>", "Line Diagnostics" },
+      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+      a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+      d = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "Line Diagnostics" },
       l = {
         name = "+lsp",
         i = { "<cmd>LspInfo<cr>", "Lsp Info" },
@@ -38,7 +38,7 @@ function M.setup(client, bufnr)
   local keymap_visual = {
     c = {
       name = "+code",
-      a = { ":<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>", "Code Action" },
+      a = { ":<C-U>lua vim.lsp.buf.range_code_action()<CR>", "Code Action" },
     },
   }
 
@@ -46,8 +46,9 @@ function M.setup(client, bufnr)
     name = "+goto",
     r = { "<cmd>Telescope lsp_references<cr>", "References" },
     R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-    D = { "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>", "Peek Definition" },
     d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+    dv = { "<Cmd>vsplit | lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+    ds = { "<Cmd>split | lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
     I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
     -- I = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },

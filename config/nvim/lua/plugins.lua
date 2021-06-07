@@ -25,16 +25,6 @@ return require("packer").startup({
         {
           "glepnir/lspsaga.nvim",
           event = "BufReadPre",
-          config = function()
-            require("config.lsp.saga")
-          end,
-        },
-        {
-          "onsails/lspkind-nvim",
-          event = "InsertEnter",
-          config = function()
-            require("lspkind").init()
-          end,
         },
       },
     })
@@ -60,11 +50,8 @@ return require("packer").startup({
     })
 
     use({
-      "liuchengxu/vista.vim",
-      cmd = { "Vista" },
-      config = function()
-        vim.g.vista_default_executive = "nvim_lsp"
-      end,
+      "simrat39/symbols-outline.nvim",
+      cmd = { "SymbolsOutline" },
     })
 
     use({
@@ -258,22 +245,16 @@ return require("packer").startup({
 
     use({ "npxbr/glow.nvim", cmd = "Glow" })
 
-    -- use {
-    --   "vim-pandoc/vim-pandoc",
-    --   requires = "vim-pandoc/vim-pandoc-syntax",
-    --   config = function() require("config.markdown") end
-    -- }
-
-    -- use({
-    --   "plasticboy/vim-markdown",
-    --   -- "gabrielelana/vim-markdown",
-    --   -- opt = true,
-    --   requires = "godlygeek/tabular",
-    --   -- ft = "markdownn",
-    --   config = function()
-    --     require("config.markdown")
-    --   end,
-    -- })
+    use({
+      "plasticboy/vim-markdown",
+      -- "gabrielelana/vim-markdown",
+      -- opt = true,
+      requires = "godlygeek/tabular",
+      -- ft = "markdownn",
+      config = function()
+        require("config.markdown")
+      end,
+    })
     use({
       "iamcco/markdown-preview.nvim",
       run = function()
@@ -361,13 +342,8 @@ return require("packer").startup({
 
     use("DanilaMihailov/vim-tips-wiki")
     use("tpope/vim-unimpaired")
-    use("kdav5758/TrueZen.nvim")
-    use({ "junegunn/fzf", run = function()
-      vim.fn["fzf#install"]()
-    end })
-    use("junegunn/fzf.vim")
-
     use("nanotee/luv-vimdocs")
+    use("LnL7/vim-nix")
   end,
   config = config,
 })

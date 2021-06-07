@@ -7,30 +7,29 @@ local presets = require("which-key.plugins.presets")
 presets.objects["a("] = nil
 wk.setup({ show_help = false, triggers = "auto", plugins = { spelling = true } })
 
--- Resize window
-util.nnoremap("<S-Up>", ":resize +2<CR>")
-util.nnoremap("<S-Down>", ":resize -2<CR>")
-util.nnoremap("<S-Left>", ":vertical resize -2<CR>")
-util.nnoremap("<S-Right>", ":vertical resize +2<CR>")
+-- Move to window using the <ctrl> movement keys
+util.nmap("<left>", "<C-w>h")
+util.nmap("<down>", "<C-w>j")
+util.nmap("<up>", "<C-w>k")
+util.nmap("<right>", "<C-w>l")
 
--- Move to window using the movement keys
-util.nmap("<Left>", "<C-w>h")
-util.nmap("<Down>", "<C-w>j")
-util.nmap("<Up>", "<C-w>k")
-util.nmap("<Right>", "<C-w>l")
-
-util.nmap("<a-h>", "<C-w>h")
-util.nmap("<a-j>", "<C-w>j")
-util.nmap("<a-k>", "<C-w>k")
-util.nmap("<a-l>", "<C-w>l")
+-- Resize window using <ctrl> arrow keys
+util.nnoremap("<C-Up>", ":resize +2<CR>")
+util.nnoremap("<C-Down>", ":resize -2<CR>")
+util.nnoremap("<C-Left>", ":vertical resize -2<CR>")
+util.nnoremap("<C-Right>", ":vertical resize +2<CR>")
 
 -- Move Lines
-util.nnoremap("<C-j>", ":m .+1<CR>==")
-util.vnoremap("<C-j>", ":m '>+1<CR>gv=gv")
-util.inoremap("<C-j>", "<Esc>:m .+1<CR>==gi")
-util.nnoremap("<C-k>", ":m .-2<CR>==")
-util.vnoremap("<C-k>", ":m '<-2<CR>gv=gv")
-util.inoremap("<C-k>", "<Esc>:m .-2<CR>==gi")
+util.nnoremap("<A-j>", ":m .+1<CR>==")
+util.vnoremap("<A-j>", ":m '>+1<CR>gv=gv")
+util.inoremap("<A-j>", "<Esc>:m .+1<CR>==gi")
+util.nnoremap("<A-k>", ":m .-2<CR>==")
+util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
+util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
+
+-- Switch buffers with tab
+util.nnoremap("<tab>", ":bnext<cr>")
+util.nnoremap("<S-tab>", ":bprevious<cr>")
 
 -- Clear search with <esc>
 util.map("", "<esc>", ":noh<cr>")
@@ -52,6 +51,10 @@ vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
 util.nnoremap("=t", "<cmd>TableFormat<cr>")
 vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
 vim.cmd([[autocmd FileType markdown setlocal spell]])
+
+-- better indenting
+util.vnoremap("<", "<gv")
+util.vnoremap(">", ">gv")
 
 -- makes * and # work on visual mode too.
 vim.api.nvim_exec(
@@ -89,7 +92,7 @@ local leader = {
     ["s"] = { "<C-W>s", "split-window-below" },
     ["v"] = { "<C-W>v", "split-window-right" },
   },
-  c = { v = { "<cmd>Vista!!<CR>", "Vista" } },
+  c = { v = { "<cmd>Vista!!<CR>", "Vista" }, o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" } },
   b = {
     name = "+buffer",
     ["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
@@ -226,3 +229,4 @@ wk.register({ g = { name = "+goto", h = "Hop Word" }, s = "Hop Word1" })
 
 -- windows to close with "q"
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
+vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])

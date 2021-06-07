@@ -10,7 +10,6 @@ local fences = {
   "shell=sh",
   "python",
   "sh",
-  "bash=sh",
   "console=sh",
 }
 vim.g.markdown_fenced_languages = fences

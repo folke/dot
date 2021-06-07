@@ -13,6 +13,7 @@ ts_configs.setup({
     "jsonc",
     "latex",
     "lua",
+    "nix",
     "python",
     "regex",
     "rust",
@@ -30,10 +31,10 @@ ts_configs.setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
+      init_selection = "<C-n>",
+      node_incremental = "<C-n>",
+      scope_incremental = "<C-s>",
+      node_decremental = "<C-r>",
     },
   },
   query_linter = {
@@ -77,6 +78,12 @@ ts_configs.setup({
       goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
       goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
       goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
+    },
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["gD"] = "@function.outer",
+      },
     },
   },
 })
