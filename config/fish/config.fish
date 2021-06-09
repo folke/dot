@@ -92,6 +92,7 @@ abbr nd "nix-env -e"
 abbr nu "nix-env -u"
 
 # Other
+abbr df "grc /bin/df -h"
 abbr ntop "ultra --monitor"
 abbr ytop btm
 abbr gotop btm
