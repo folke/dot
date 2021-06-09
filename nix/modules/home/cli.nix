@@ -10,6 +10,11 @@ let
     fontconfig
     less
     rsync
+    # git: use system git with keychain integration
+  ];
+
+  linuxPackages = with pkgs; [
+    git
   ];
 in
 {
@@ -33,7 +38,6 @@ in
     fzy
     gh
     go
-    git
     grc
     glow
     gnupg
@@ -70,13 +74,10 @@ in
     weechat
     wezterm
     zoxide
-  ] ++ (if isDarwin then darwinPackages else []);
+  ] ++ (if isDarwin then darwinPackages else linuxPackages);
 
   programs.emacs = {
     enable = true;
-    # package = if pkgs.stdenv.isDarwin then pkgs.nixos-unstable.emacsGcc else pkgs.nixos-unstable.emacsPgtkGcc;
     package = if pkgs.stdenv.isDarwin then pkgs.emacsGcc else pkgs.emacsPgtkGcc;
-    # (emacsPackagesFor emacsMacport).emacsWithPackages(ps: [ ps.seq ])
-    # extraPackages = (epkgs: [ epkgs.vterm ] );
   };
 }
