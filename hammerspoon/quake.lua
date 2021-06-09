@@ -8,7 +8,7 @@ module.appWatcher = appw.new(function(appName, event, app)
     print("+++ QuakeMode: exit")
   end
 
-  if appName == "kitty" then
+  if appName:find("kitty") then
     local win = app:focusedWindow()
     if win and win:title() == "scratchpad" then
       if event == appw.activated or event == appw.launched then
@@ -40,7 +40,7 @@ module.toggle = function()
   else
     print("kitty: launch")
 
-    os.execute("/usr/local/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &")
+    os.execute("/etc/profiles/per-user/folke/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &")
   end
 end
 
