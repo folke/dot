@@ -18,7 +18,7 @@
   outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
     let
       username = "folke";
-      yabai = import ./modules/darwin/yabai.nix;
+      yabai = import ./darwin/yabai.nix;
       nixpkgsConfig = with inputs; {
         config = { allowUnfree = true; };
         overlays = [
@@ -29,7 +29,7 @@
       };
       homeMamagerCommon = with inputs; {
         imports = [
-          ./modules/home
+          ./home
         ];
       };
     in
@@ -37,7 +37,7 @@
         darwinConfigurations = {
           macos = darwin.lib.darwinSystem {
             modules = [
-              ./modules/darwin
+              ./darwin
               darwin.darwinModules.simple
               home-manager.darwinModules.home-manager
               {

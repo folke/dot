@@ -1,6 +1,6 @@
 { pkgs, config, home-manager, ... }:
 let
-  util = (import ../util.nix) { config = config; };
+  util = (import ./util.nix) { config = config; };
   isDarwin = pkgs.stdenv.isDarwin;
 
   extraHome = if pkgs.stdenv.isDarwin then {

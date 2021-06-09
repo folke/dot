@@ -5,3 +5,8 @@ org-roam.db
 secrets.fish
 home/.aria2/aria2.session
 config/nvim/sessions
+foo.*
+result
+home/.aria2/aria2.session
+packer_compiled.vim
+fish_variables
