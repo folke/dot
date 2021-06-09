@@ -10,12 +10,12 @@ return {
     },
     {
       italic = true,
-      font = wt.font("VictorMono Nerd Font", { weight = "Light Oblique" }),
+      font = wt.font("VictorMono Nerd Font", { weight = "DemiLight" }),
     },
     {
       italic = true,
       intensity = "Bold",
-      font = wt.font("VictorMono Nerd Font", { weight = "Bold Oblique" }),
+      font = wt.font("VictorMono Nerd Font", { weight = "DemiBold" }),
     },
   },
   color_scheme_dirs = { "/Users/folke/projects/tokyonight.nvim/extras" },
