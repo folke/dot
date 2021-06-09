@@ -5,13 +5,13 @@ function __fzf_history --description "Search command history using fzf. Replace 
     history --null -n1000 \
         | string replace -ar "\x0" ";__delim__;" \
         | fish_indent_ansi -i \
-        | gsed "s/__delim__/\\x0/g" \
+        | sed "s/__delim__/\\x0/g" \
         | fzf --tiebreak=index --read0 --ansi --query=(commandline) \
         | read -lz cmd
 
     if test $status -eq 0
         # trim any surrounding white space
-        commandline --replace (echo $cmd | gsed -zr "s/^\s+|\s+\$//g")
+        commandline --replace (echo $cmd | sed -zr "s/^\s+|\s+\$//g")
     end
 
     commandline --function repaint

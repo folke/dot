@@ -4,14 +4,11 @@ SETUVAR --export BAT_THEME:Dracula
 SETUVAR --export COMPOSE_DOCKER_CLI_BUILD:1
 SETUVAR --export DOTDROP_AUTOUPDATE:no
 SETUVAR --export EDITOR:nvim
-SETUVAR --export EMACS:/Applications/Emacs\x2eapp/Contents/MacOS/Emacs
-SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcycle\x20\x2d\x2dlayout\x3dreverse\x20\x2d\x2dborder\x20\x2d\x2dheight\x2090\x25\x20\x2d\x2dpreview\x2dwindow\x3dright\x3a70\x25\x20\x20\x20\x20\x20\x2d\x2dcolor\x3dbg\x2b\x3a\x23444267\x2cbg\x3a\x23292D3E\x2cspinner\x3a\x2389DDFF\x2chl\x3a\x2382AAFF\x20\x20\x20\x20\x20\x2d\x2dcolor\x3dfg\x3a\x238796B0\x2cheader\x3a\x2382AAFF\x2cinfo\x3a\x23FFCB6B\x2cpointer\x3a\x2389DDFF\x20\x20\x20\x20\x20\x2d\x2dcolor\x3dmarker\x3a\x2389DDFF\x2cfg\x2b\x3a\x23959DCB\x2cprompt\x3a\x23FFCB6B\x2chl\x2b\x3a\x2382AAFF
 SETUVAR --export --path GOPATH:/Users/folke/go
 SETUVAR --export HOMEBREW_NO_AUTO_UPDATE:1
 SETUVAR --export LESS:\x2drF
 SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21
 SETUVAR --export MANROFFOPT:\x2dc
-SETUVAR --export --path PATH:/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2egem/ruby/2\x2e6\x2e0/bin\x1e/usr/local/sbin\x1e/usr/local/opt/sqlite/bin\x1e/Users/folke/Library/Python/3\x2e8/bin\x1e/Users/folke/Library/Python/3\x2e9/bin\x1e/Users/folke/\x2elocal/bin\x1e/Users/folke/\x2ecargo/bin\x1e/Users/folke/\x2efnm/aliases/default/bin\x1e/Users/folke/go\x1e/Users/folke/go/bin\x1e/Applications/Emacs\x2eapp/Contents/MacOS/bin\x1e/Users/folke/\x2eemacs\x2ed/bin\x1e/var/folders/nw/ww1_ysgd7dsccyl067_csv880000gn/T/fnm_multishell_12593_1604753177023/bin\x1e/Users/folke/\x2efnm/aliases/default/bin\x1e/usr/local/bin\x1e/usr/bin\x1e/bin\x1e/usr/sbin\x1e/sbin\x1e/Library/Apple/usr/bin\x1e/Library/TeX/texbin
 SETUVAR --export VISUAL:nvim
 SETUVAR __fish_initialized:3100
 SETUVAR _fish_abbr_aria2c_2D_daemon:aria2c\x20\x2dD
@@ -47,8 +44,6 @@ SETUVAR _fish_abbr_ta:tmux\x20attach\x20\x2dt
 SETUVAR _fish_abbr_tad:tmux\x20attach\x20\x2dd\x20\x2dt
 SETUVAR _fish_abbr_tc:tmux\x20attach
 SETUVAR _fish_abbr_tk:tmux\x20kill\x2dsession\x20\x2dt
-SETUVAR _fish_abbr_tkss:tmux\x20kill\x2dsession\x20\x2dt
-SETUVAR _fish_abbr_tksv:tmux\x20kill\x2dserver
 SETUVAR _fish_abbr_tl:tmux\x20ls
 SETUVAR _fish_abbr_ts:tmux\x20new\x20\x2ds
 SETUVAR _fish_abbr_tt:tn\x20src/tt\x2ets
@@ -57,16 +52,18 @@ SETUVAR _fish_abbr_vi:nvim
 SETUVAR _fish_abbr_vim:nvim
 SETUVAR _fish_abbr_weather:curl\x20\x2ds\x20wttr\x2ein/Ghent\x20\x7c\x20grep\x20\x2dv\x20Follow
 SETUVAR _fish_abbr_ytop:btm
-SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/folke/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/folke/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_jorgebucaran_2F_replay_2E_fish_files:/Users/folke/\x2econfig/fish/functions/replay\x2efish\x1e/Users/folke/\x2econfig/fish/completions/replay\x2efish
-SETUVAR _fisher_lilyball_2F_nix_2D_env_2E_fish_files:/Users/folke/\x2econfig/fish/conf\x2ed/nix\x2denv\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/replay\x2efish\x1elilyball/nix\x2denv\x2efish
 SETUVAR --export fish_color_autosuggestion:565f89
+SETUVAR --export fish_color_cancel:\x2dr
 SETUVAR --export fish_color_command:7dcfff
 SETUVAR --export fish_color_comment:565f89
+SETUVAR --export fish_color_cwd:green
+SETUVAR --export fish_color_cwd_root:red
 SETUVAR --export fish_color_end:ff9e64
 SETUVAR --export fish_color_error:f7768e
 SETUVAR --export fish_color_escape:bb9af7
+SETUVAR --export fish_color_history_current:\x2d\x2dbold
+SETUVAR --export fish_color_host:normal
+SETUVAR --export fish_color_host_remote:yellow
 SETUVAR --export fish_color_keyword:bb9af7
 SETUVAR --export fish_color_normal:c0caf5
 SETUVAR --export fish_color_operator:9ece6a
@@ -75,8 +72,10 @@ SETUVAR --export fish_color_quote:e0af68
 SETUVAR --export fish_color_redirection:c0caf5
 SETUVAR --export fish_color_search_match:\x2d\x2dbackground\x3d364A82
 SETUVAR --export fish_color_selection:\x2d\x2dbackground\x3d364A82
-SETUVAR fish_config_changed:1623048070
+SETUVAR --export fish_color_status:red
+SETUVAR --export fish_color_user:brgreen
+SETUVAR --export fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_config_changed:1623230519
 SETUVAR fish_emoji_width:2
-SETUVAR fish_greeting:Welcome\x20to\x20fish\x2c\x20the\x20friendly\x20interactive\x20shell\x0aType\x20\x60help\x60\x20for\x20instructions\x20on\x20how\x20to\x20use\x20fish
 SETUVAR fish_key_bindings:fish_default_key_bindings
-SETUVAR --export fish_user_paths:/Users/folke/go\x1e/Users/folke/go/bin\x1e/Applications/Emacs\x2eapp/Contents/MacOS/bin\x1e/Users/folke/\x2eemacs\x2ed/bin\x1e/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2egem/ruby/2\x2e6\x2e0/bin\x1e/usr/local/sbin\x1e/usr/local/opt/sqlite/bin\x1e/Users/folke/Library/Python/3\x2e8/bin\x1e/Users/folke/Library/Python/3\x2e9/bin\x1e/Users/folke/\x2elocal/bin\x1e/Users/folke/\x2ecargo/bin
+SETUVAR --export fish_user_paths:/Users/folke/\x2enix\x2dprofile/bin\x1e/etc/profiles/per\x2duser/folke/bin\x1e/run/current\x2dsystem/sw/bin\x1e/Users/folke/go\x1e/Users/folke/go/bin\x1e/Users/folke/\x2eemacs\x2ed/bin\x1e/Users/folke/\x2elocal/bin/pnpm\x1e/Users/folke/\x2egem/ruby/2\x2e6\x2e0/bin\x1e/usr/local/sbin\x1e/Users/folke/Library/Python/3\x2e8/bin\x1e/Users/folke/Library/Python/3\x2e9/bin\x1e/Users/folke/\x2elocal/bin\x1e/Users/folke/\x2ecargo/bin
