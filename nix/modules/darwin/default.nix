@@ -48,7 +48,7 @@ in
         mkdir -p ~/Applications/Nix\ Apps
         for app in $(find ${config.system.build.applications}/Applications -maxdepth 1 -type l); do
           src="$(/usr/bin/stat -f%Y "$app")"
-          cp -ra "$src" ~/Applications/Nix\ Apps
+          cp -raL "$src" ~/Applications/Nix\ Apps
         done
       ''
     );
