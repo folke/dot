@@ -6,7 +6,7 @@ return {
         [[augroup lsp_document_highlight
             autocmd! * <buffer>
             " autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-            autocmd CursorHoldI <buffer> lua vim.lsp.buf.signature_help()
+            autocmd CursorHoldI <buffer> silent! lua vim.lsp.buf.signature_help()
             " autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
           augroup END]],
         false

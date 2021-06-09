@@ -41,4 +41,4 @@ local function complete()
 end
 
 util.imap("<CR>", complete, { expr = true })
-vim.cmd([[autocmd User CompeConfirmDone lua vim.lsp.buf.signature_help()]])
+vim.cmd([[autocmd User CompeConfirmDone silent! lua vim.lsp.buf.signature_help()]])
