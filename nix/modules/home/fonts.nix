@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     (
       nerdfonts.override {
-        enableWindowsFonts = true;
         fonts = [
           "FiraCode"
           "DejaVuSansMono"
