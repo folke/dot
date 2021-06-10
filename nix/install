@@ -19,14 +19,25 @@ function info {
   echo -e "\n${blue}[install]${reset} $1"
 }
 
+function error {
+  echo -e "\n${red}[install]${reset} $1"
+  exit 1
+}
+
+if [ "$#" -ne 1 ]; then
+  error "usage: ./install SYSTEM\nsystem can be: linux, macos"
+fi
+
+system=$1
+
 info "updating channels"
-#nix-channel --update
+nix-channel --update
 
 info "updating nix${reset}"
-#nix flake update
+nix flake update
 
 info "building"
-nix build .\#macos
+nix build .\#$system
 
 info "switch"
-./result/sw/bin/darwin-rebuild switch --flake .\#macos
+./result/sw/bin/darwin-rebuild switch --flake .\#$system
