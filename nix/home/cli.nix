@@ -28,6 +28,7 @@ in
     bat
     bandwhich
     bottom
+    broot
     ctop
     delta
     du-dust
