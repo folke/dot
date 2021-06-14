@@ -55,29 +55,26 @@ local function on_attach(client, bufnr)
     require("config.lsp.ts-utils").setup(client)
   end
 end
+
 local servers = {
-  python = {},
-  bash = {},
-  typescript = {},
-  css = {},
-  php = {},
-  html = {},
-  cpp = {},
+  pyright = {},
+  bashls = {},
+  tsserver = {},
+  cssls = { cmd = { "css-languageserver", "--stdio" } },
   rnix = {},
-  lua = require("lua-dev").setup({ library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } } }),
+  jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
+  html = { cmd = { "html-languageserver", "--stdio" } },
+  clangd = {},
+  sumneko_lua = require("lua-dev").setup({
+    library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } },
+    lspconfig = { cmd = { "lua-language-server" } },
+  }),
   efm = require("config.lsp.efm").config,
+  vimls = {},
   -- tailwindcss = {},
-  json = {},
-  vim = {},
 }
 
-local installer = require("lspinstall")
-installer.setup()
-
-local installed = {}
-for _, server in pairs(installer.installed_servers()) do
-  installed[server] = true
-end
+require("nvim-lsp-json").setup()
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -86,12 +83,12 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 for server, config in pairs(servers) do
-  print(server)
-  if not installed[server] then
-    vim.notify('LSP server missing "' .. server .. '"')
-  end
   lspconfig[server].setup(vim.tbl_deep_extend("force", {
     on_attach = on_attach,
     capabilities = capabilities,
   }, config))
+  local cfg = lspconfig[server]
+  if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
+    vim.notify(server .. ": cmd not found: " .. vim.inspect(cfg.cmd))
+  end
 end
