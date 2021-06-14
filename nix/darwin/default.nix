@@ -31,6 +31,8 @@ in
     '';
   };
 
+  nixpkgs.config.allowUnsupportedSystem = false;
+
   # add user packages to Applications
   system.build.applications = pkgs.lib.mkForce (
     pkgs.buildEnv {

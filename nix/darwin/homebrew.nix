@@ -21,6 +21,7 @@
       "fnm"
       "mas"
       "nextdns"
+      "efm-langserver"
     ];
 
     casks = [

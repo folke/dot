@@ -18,13 +18,12 @@
   outputs = { self, nixpkgs, darwin, home-manager, ... }@inputs:
     let
       username = "folke";
-      yabai = import ./darwin/yabai.nix;
       nixpkgsConfig = with inputs; {
         config = { allowUnfree = true; };
         overlays = [
-          yabai.overlay
           inputs.neovim-nightly-overlay.overlay
           inputs.emacs-overlay.overlay
+          (import ./home/overlays.nix)
         ];
       };
       homeMamagerCommon = with inputs; {
