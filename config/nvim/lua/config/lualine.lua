@@ -9,7 +9,7 @@ local function lsp_progress()
   end
   local status = {}
   for _, msg in pairs(messages) do
-    table.insert(status, msg.percentage .. "%% " .. msg.title)
+    table.insert(status, (msg.percentage or 0) .. "%% " .. (msg.title or ""))
   end
   local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
   local ms = vim.loop.hrtime() / 1000000
