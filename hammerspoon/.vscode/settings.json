@@ -1,6 +1,3 @@
 {
   "Lua.diagnostics.globals": ["hs"]
-  // "Lua.workspace.library": {
-  //   "/Users/folke/projects/hammerspoon/build/stubs": true
-  // }
 }
