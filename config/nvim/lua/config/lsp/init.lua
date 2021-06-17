@@ -39,7 +39,7 @@ if vim.lsp.setup then
     },
   })
 else
-  require("config.lsp.saga")
+  -- require("config.lsp.saga")
   require("config.lsp.diagnostics")
   require("config.lsp.kind").setup()
 end
@@ -56,6 +56,15 @@ local function on_attach(client, bufnr)
   end
 end
 
+local lua_cmd = {
+  "/Users/folke/projects/lua-language-server/bin/macOS/lua-language-server",
+  "-E",
+  "-e",
+  "LANG=en",
+  "/Users/folke/projects/lua-language-server/main.lua",
+}
+lua_cmd = { "lua-language-server" }
+
 local servers = {
   pyright = {},
   bashls = {},
@@ -66,8 +75,8 @@ local servers = {
   html = { cmd = { "html-languageserver", "--stdio" } },
   clangd = {},
   sumneko_lua = require("lua-dev").setup({
-    library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } },
-    lspconfig = { cmd = { "lua-language-server" } },
+    -- library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } },
+    lspconfig = { cmd = lua_cmd },
   }),
   efm = require("config.lsp.efm").config,
   vimls = {},

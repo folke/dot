@@ -15,17 +15,13 @@ return require("packer").startup({
       "neovim/nvim-lspconfig",
       opt = true,
       event = "BufReadPre",
-      wants = "nvim-lspinstall",
+      wants = {"nvim-lsp.json"},
       config = function()
         require("config.lsp")
       end,
       requires = {
-        "kabouzeid/nvim-lspinstall",
+        "~/projects/nvim-lsp.json",
         { "jose-elias-alvarez/nvim-lsp-ts-utils", branch = "develop" },
-        {
-          "glepnir/lspsaga.nvim",
-          event = "BufReadPre",
-        },
       },
     })
 
@@ -231,6 +227,7 @@ return require("packer").startup({
     -- Statusline
     use({
       "hoob3rt/lualine.nvim",
+      event = "VimEnter",
       config = [[require('config.lualine')]],
       requires = { "kyazdani42/nvim-web-devicons", opt = true },
     })
@@ -248,9 +245,9 @@ return require("packer").startup({
     use({
       "plasticboy/vim-markdown",
       -- "gabrielelana/vim-markdown",
-      -- opt = true,
+      opt = true,
       requires = "godlygeek/tabular",
-      -- ft = "markdownn",
+      ft = "markdownn",
       config = function()
         require("config.markdown")
       end,
@@ -296,7 +293,7 @@ return require("packer").startup({
       require("config.session")
     end })
 
-    use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
+    use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
 
     use({ "mbbill/undotree", cmd = "UndotreeToggle" })
 
@@ -307,6 +304,7 @@ return require("packer").startup({
     use({ "~/projects/lsp-colors.nvim" })
     use({
       "~/projects/zen-mode.nvim",
+      keys = "<space>-z",
       config = function()
         require("zen-mode").setup({ plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } } })
       end,
@@ -319,7 +317,7 @@ return require("packer").startup({
         require("config.todo")
       end,
     })
-    use({ "~/projects/which-key.nvim", config = function()
+    use({ "~/projects/which-key.nvim", event = "VimEnter", config = function()
       require("config.keys")
     end })
     use({
