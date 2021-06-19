@@ -8,7 +8,7 @@ module.appWatcher = appw.new(function(appName, event, app)
     print("+++ QuakeMode: exit")
   end
 
-  if appName:find("kitty") then
+  if appName and appName:find("kitty") then
     local win = app:focusedWindow()
     if win and win:title() == "scratchpad" then
       if event == appw.activated or event == appw.launched then

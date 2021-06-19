@@ -41,7 +41,7 @@ local tap = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, function(event)
   local isQ = event:getKeyCode() == hs.keycodes.map["q"]
   if isCmd and isQ then
     local win = hs.window.focusedWindow()
-    if win and win:application():name() == "kitty" then
+    if win and win:application():name():find("kitty") then
       hs.alert("Use alt+cmd+q instead!")
       return true
     end
