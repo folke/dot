@@ -15,6 +15,17 @@ in
       fish
     ];
 
+  programs.bash = {
+    enable = true;
+    enableCompletion = true;
+  };
+
+  programs.fish = {
+    enable = true;
+    useBabelfish = true;
+    babelfishPackage = pkgs.babelfish;
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = false;
   nix = {
