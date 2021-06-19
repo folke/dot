@@ -55,6 +55,7 @@ in
     lua
     manix
     mdcat
+    nix-index
     nnn
     ncdu
     nixUnstable
