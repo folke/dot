@@ -45,7 +45,7 @@ else
 end
 
 local function on_attach(client, bufnr)
-  require("config.lsp.formatting").setup(client)
+  require("config.lsp.formatting").setup(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
   require("config.lsp.completion").setup(client, bufnr)
   require("config.lsp.highlighting").setup(client)
@@ -83,13 +83,14 @@ local servers = {
   -- tailwindcss = {},
 }
 
-require("nvim-lsp-json").setup()
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
 }
+
+require("null-ls").setup({ on_attach = on_attach, capabilities = capabilities })
+require("nvim-lsp-json").setup()
 
 for server, config in pairs(servers) do
   lspconfig[server].setup(vim.tbl_deep_extend("force", {
