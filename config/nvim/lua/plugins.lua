@@ -15,13 +15,14 @@ return require("packer").startup({
       "neovim/nvim-lspconfig",
       opt = true,
       event = "BufReadPre",
-      wants = {"nvim-lsp.json"},
+      wants = { "nvim-lsp.json", "null-ls.nvim" },
       config = function()
         require("config.lsp")
       end,
       requires = {
         "~/projects/nvim-lsp.json",
-        { "jose-elias-alvarez/nvim-lsp-ts-utils", branch = "develop" },
+        "jose-elias-alvarez/nvim-lsp-ts-utils",
+        "jose-elias-alvarez/null-ls.nvim",
       },
     })
 
@@ -34,14 +35,20 @@ return require("packer").startup({
       end,
       wants = { "vim-vsnip", "vim-vsnip-integ", "friendly-snippets" },
       requires = {
-        { "hrsh7th/vim-vsnip", config = function()
-          require("config.snippets")
-        end },
+        {
+          "hrsh7th/vim-vsnip",
+          config = function()
+            require("config.snippets")
+          end,
+        },
         "hrsh7th/vim-vsnip-integ",
         "rafamadriz/friendly-snippets",
-        { "windwp/nvim-autopairs", config = function()
-          require("config.autopairs")
-        end },
+        {
+          "windwp/nvim-autopairs",
+          config = function()
+            require("config.autopairs")
+          end,
+        },
       },
     })
 
@@ -197,12 +204,18 @@ return require("packer").startup({
     })
 
     -- Smooth Scrolling
-    use({ "karb94/neoscroll.nvim", config = function()
-      require("config.scroll")
-    end })
-    use({ "edluffy/specs.nvim", config = function()
-      require("config.specs")
-    end })
+    use({
+      "karb94/neoscroll.nvim",
+      config = function()
+        require("config.scroll")
+      end,
+    })
+    use({
+      "edluffy/specs.nvim",
+      config = function()
+        require("config.specs")
+      end,
+    })
     -- use { "Xuyuanp/scrollbar.nvim", config = function() require("config.scrollbar") end }
 
     -- Git Gutter
@@ -220,9 +233,13 @@ return require("packer").startup({
     --   cmd = "LazyGit",
     --   config = function() vim.g.lazygit_floating_window_use_plenary = 0 end
     -- }
-    use({ "TimUntersberger/neogit", cmd = "Neogit", config = function()
-      require("config.neogit")
-    end })
+    use({
+      "TimUntersberger/neogit",
+      cmd = "Neogit",
+      config = function()
+        require("config.neogit")
+      end,
+    })
 
     -- Statusline
     use({
@@ -289,9 +306,12 @@ return require("packer").startup({
       end,
     })
 
-    use({ "tpope/vim-obsession", setup = function()
-      require("config.session")
-    end })
+    use({
+      "tpope/vim-obsession",
+      setup = function()
+        require("config.session")
+      end,
+    })
 
     use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
 
@@ -304,9 +324,11 @@ return require("packer").startup({
     use({ "~/projects/lsp-colors.nvim" })
     use({
       "~/projects/zen-mode.nvim",
-      keys = "<space>-z",
+      cmd = "ZenMode",
       config = function()
-        require("zen-mode").setup({ plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } } })
+        require("zen-mode").setup({
+          plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } },
+        })
       end,
     })
     use({ "~/projects/twilight.nvim" })
@@ -317,9 +339,13 @@ return require("packer").startup({
         require("config.todo")
       end,
     })
-    use({ "~/projects/which-key.nvim", event = "VimEnter", config = function()
-      require("config.keys")
-    end })
+    use({
+      "~/projects/which-key.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.keys")
+      end,
+    })
     use({
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },

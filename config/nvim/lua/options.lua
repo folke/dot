@@ -58,21 +58,15 @@ cmd("syntax enable")
 cmd("filetype plugin indent on")
 
 -- show cursor line only in active window
-vim.api.nvim_exec(
-  [[
+cmd([[
   autocmd InsertLeave,WinEnter * set cursorline
   autocmd InsertEnter,WinLeave * set nocursorline
-]],
-  false
-)
+]])
 
 -- go to last loc when opening a buffer
-vim.api.nvim_exec(
-  [[
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-]],
-  false
-)
+cmd([[
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
+]])
 
 -- Highlight on yank
 cmd("au TextYankPost * lua vim.highlight.on_yank {}")
