@@ -2,6 +2,7 @@ local module = { pid = nil }
 local appw = hs.application.watcher
 local spaces = require("hs._asm.undocumented.spaces")
 
+---@param app hs.application
 module.appWatcher = appw.new(function(appName, event, app)
   if event == appw.terminated and module.pid == app:pid() then
     module.pid = nil
@@ -40,7 +41,9 @@ module.toggle = function()
   else
     print("kitty: launch")
 
-    os.execute("/etc/profiles/per-user/folke/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &")
+    os.execute(
+      "/etc/profiles/per-user/folke/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &"
+    )
   end
 end
 

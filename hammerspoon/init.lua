@@ -1,6 +1,5 @@
 hs.window.animationDuration = 0
 
--- require("test")
 local running = require("running")
 require("spaces")
 require("border")
@@ -50,7 +49,8 @@ end)
 tap:start()
 
 hs.loadSpoon("SpoonInstall")
-spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
+hs.loadSpoon("EmmyLua")
+--spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
 spoon.SpoonInstall:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 spoon.SpoonInstall:andUse("AClock", {
   config = { showDuration = 2 },
