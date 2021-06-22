@@ -1,6 +1,7 @@
 local module = { pid = nil }
 local appw = hs.application.watcher
 local spaces = require("hs._asm.undocumented.spaces")
+local running = require("running")
 
 ---@param app hs.application
 module.appWatcher = appw.new(function(appName, event, app)
@@ -22,21 +23,32 @@ end)
 module.appWatcher:start()
 
 module.toggle = function()
-  local app = nil
-  if module.pid then
+  local app, win
+
+  for _, w in pairs(running:getWindows()) do
+    if w:title() == "scratchpad" then
+      win = w
+      app = w:application()
+      module.pid = app:pid()
+      break
+    end
+  end
+
+  if not app and module.pid then
     app = hs.application.get(module.pid)
   end
+
   if app and app:isRunning() then
-    if not app:mainWindow() then
-      print("kitty: new")
-      app:selectMenuItem({ "kitty", "New OS window" })
-    elseif app:isFrontmost() then
+    if app:isFrontmost() then
       print("kitty: hide")
       app:hide()
     else
-      print("kitty: activate")
-      app:focusedWindow():spacesMoveTo(spaces.activeSpace())
-      app:activate()
+      print("kitty: focus")
+      win = win or app:mainWindow()
+      if win then
+        win:spacesMoveTo(spaces.activeSpace())
+        win:focus()
+      end
     end
   else
     print("kitty: launch")
