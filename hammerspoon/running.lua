@@ -34,6 +34,7 @@ module.getWindowsPerSpace = function()
   return ret
 end
 
+---@return hs.window[]
 module.getWindows = function(currentSpaceOnly)
   local mySpace = desktop.activeSpace()
   local ret = {}
@@ -118,52 +119,58 @@ module.onChange = function(fn)
   end
 end
 
-module._watchApp = function(app)
-  if module.apps[app:pid()] ~= nil then
-    return
-  end
-  local ax = hs.axuielement.applicationElement(app)
-  -- when the app just launched, we might have to wait for
-  -- the next event to setup the observers
-  if ax:isValid() then
-    print("## watching: " .. app:name())
-    module.apps[app:pid()] = app
-    module._updateAppWindows(app, ax)
-    local w = hs.axuielement.observer.new(app:pid())
-    w:addWatcher(ax, "AXFocusedWindowChanged")
-    w:addWatcher(ax, "AXMainWindowChanged")
-    w:addWatcher(ax, "AXWindow")
-    w:addWatcher(ax, "AXResized")
-    w:addWatcher(ax, "AXMoved")
-    w:addWatcher(ax, "AXUIElementDestroyed")
+module._watchApp =
+  ---@param app hs.application
+  function(app)
+    if module.apps[app:pid()] ~= nil then
+      return
+    end
+    local ax = hs.axuielement.applicationElement(app)
+    -- when the app just launched, we might have to wait for
+    -- the next event to setup the observers
+    if ax:isValid() then
+      print("## watching: " .. app:name())
+      module.apps[app:pid()] = app
+      module._updateAppWindows(app, ax)
+      ---@type hs.axuielement.observer
+      local w = hs.axuielement.observer.new(app:pid())
+      local addWatcher = function(notif)
+        w:addWatcher(ax, notif)
+      end
+      pcall(addWatcher, "AXFocusedWindowChanged")
+      pcall(addWatcher, "AXMainWindowChanged")
+      pcall(addWatcher, "AXWindow")
+      pcall(addWatcher, "AXResized")
+      pcall(addWatcher, "AXMoved")
+      pcall(addWatcher, "AXUIElementDestroyed")
 
-    -- w:addWatcher(ax, "AXUIElementDestroyed")
-    w:callback(function(_, axel, notif, _notifData)
-      if notif == "AXUIElementDestroyed" then
-        if not app:focusedWindow() then
-          module._updateAppWindows(app, ax)
+      -- w:addWatcher(ax, "AXUIElementDestroyed")
+      w:callback(function(_, axel, notif, _notifData)
+        if notif == "AXUIElementDestroyed" then
+          if not app:focusedWindow() then
+            module._updateAppWindows(app, ax)
+          end
+          return
         end
-        return
-      end
 
-      if not axel:matchesCriteria("AXWindow") then
-        return
-      end
-      print(hs.inspect(notif))
-      local win = axel:asHSWindow()
-      -- check for all focus changes, or only for the condition below?
-      -- and app:kind() > 0
-      if notif == "AXFocusedWindowChanged" then
-        module._updateAppWindows(app, ax)
-        module.triggerChange(app, win, module.events.focused)
-      elseif notif == "AXResized" or notif == "AXMoved" then
-        module.triggerChange(app, win, module.events.framed)
-      end
-    end)
-    w:start()
-    module.observers[app:pid()] = w
+        if not axel:matchesCriteria("AXWindow") then
+          return
+        end
+        print(hs.inspect(notif))
+        local win = axel:asHSWindow()
+        -- check for all focus changes, or only for the condition below?
+        -- and app:kind() > 0
+        if notif == "AXFocusedWindowChanged" then
+          module._updateAppWindows(app, ax)
+          module.triggerChange(app, win, module.events.focused)
+        elseif notif == "AXResized" or notif == "AXMoved" then
+          module.triggerChange(app, win, module.events.framed)
+        end
+      end)
+      w:start()
+      module.observers[app:pid()] = w
+    end
   end
-end
 
 module._updateSpaces = function()
   for _, space in pairs(spaces.layout()[spaces.mainScreenUUID()]) do
@@ -191,12 +198,15 @@ module.switcher = function()
     return
   end
   local windows = hs.fnutils.map(module.getWindows(), function(win)
-    return {
+    local ret = {
       text = win:title(),
       subText = win:application():title(),
-      image = hs.image.imageFromAppBundle(win:application():bundleID()),
       win = win,
     }
+    if win:application():bundleID() then
+      ret.image = hs.image.imageFromAppBundle(win:application():bundleID())
+    end
+    return ret
   end)
   module._chooser:choices(windows):show()
 end

@@ -12,7 +12,7 @@ module.widget:level(hs.canvas.windowLevels.dock)
 module.widget:_accessibilitySubrole("AXUnknown")
 
 module.update = function()
-  if hs.window.focusedWindow() and hs.window.focusedWindow():isFullscreen() then
+  if hs.window.focusedWindow() and hs.window.focusedWindow():isFullScreen() then
     module.widget:hide()
     return
   end

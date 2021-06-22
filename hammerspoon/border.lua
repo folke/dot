@@ -31,7 +31,7 @@ module.update = function()
     win = nil
   end
 
-  if win ~= nil and win:subrole() == "AXStandardWindow" and win:isVisible() and not win:isFullscreen() then
+  if win ~= nil and win:subrole() == "AXStandardWindow" and win:isVisible() and not win:isFullScreen() then
     local top_left = win:topLeft()
     local size = win:size()
 

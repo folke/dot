@@ -50,7 +50,7 @@ tap:start()
 
 hs.loadSpoon("SpoonInstall")
 hs.loadSpoon("EmmyLua")
---spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
+spoon.SpoonInstall:andUse("ReloadConfiguration", { start = true })
 spoon.SpoonInstall:andUse("RoundedCorners", { start = true, config = { radius = 8 } })
 spoon.SpoonInstall:andUse("AClock", {
   config = { showDuration = 2 },
