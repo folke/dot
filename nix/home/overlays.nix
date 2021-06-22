@@ -1,11 +1,11 @@
 self: super: {
   sumneko-lua-language-server = super.sumneko-lua-language-server.overrideAttrs (
     o: rec {
-      version = "1.21.3";
+      version = "2.0.1";
 
       src = builtins.fetchurl {
         url = "https://github.com/sumneko/vscode-lua/releases/download/v${version}/lua-${version}.vsix";
-        sha256 = "0fljs20bdmrk9abgxzp4dxdvirhgksh2asisfn0rlgiwmjzwb295";
+        sha256 = "0kp01qh4fna4qynjvjqhk1jmkkx7cl2pf73cplysr6dj44s5mks9";
       };
 
       unpackPhase = ''
