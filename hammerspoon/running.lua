@@ -14,7 +14,7 @@ module.appEvents = {
   [appw.unhidden] = "unhidden",
 }
 
-module.events = { focused = "focused", framed = "framed", closed = "closed", created = "created" }
+module.events = { focused = "focused", framed = "framed", closed = "closed", created = "created", hidden = "hidden" }
 
 module.getWindowsPerSpace = function()
   local ret = {}
@@ -238,6 +238,10 @@ module._appWatcher = appw.new(function(appName, event, app)
     if win ~= nil then
       module.triggerChange(app, win, module.events.focused)
     end
+  end
+
+  if event == appw.hidden then
+    module.triggerChange(app, app:mainWindow(), module.events.hidden)
   end
 end)
 
