@@ -6,6 +6,7 @@ in
   imports = [
     ./wm.nix
     ./homebrew.nix
+    ./defaults.nix
   ];
 
   environment.shells = with pkgs; [ bashInteractive fish zsh dash ];
