@@ -1,62 +1,38 @@
-local module = { pid = nil }
-local appw = hs.application.watcher
+local M = { pid = nil }
 local spaces = require("hs._asm.undocumented.spaces")
-local running = require("running")
 
----@param app hs.application
-module.appWatcher = appw.new(function(appName, event, app)
-  if event == appw.terminated and module.pid == app:pid() then
-    module.pid = nil
-    print("+++ QuakeMode: exit")
-  end
-
-  if appName and appName:find("kitty") then
-    local win = app:focusedWindow()
-    if win and win:title() == "scratchpad" then
-      if event == appw.activated or event == appw.launched then
-        module.pid = app:pid()
-        print("+++ QuakeMode: " .. module.pid)
-      end
+function M.getKittyApp()
+  if M.pid then
+    local app = hs.application.get(M.pid)
+    if app and app:isRunning() then
+      return app
     end
   end
-end)
-module.appWatcher:start()
+  local f = io.popen("pgrep -af scratchpad")
+  local ret = f:read("*a")
+  f:close()
+  M.pid = tonumber(ret)
+  return M.pid and hs.application.get(M.pid)
+end
 
-module.toggle = function()
-  local app, win
-
-  for _, w in pairs(running:getWindows()) do
-    if w:title() == "scratchpad" then
-      win = w
-      app = w:application()
-      module.pid = app:pid()
-      break
-    end
-  end
-
-  if not app and module.pid then
-    app = hs.application.get(module.pid)
-  end
-
-  if app and app:isRunning() then
+M.toggle = function()
+  local app = M.getKittyApp()
+  if app then
     if app:isFrontmost() then
       print("kitty: hide")
       app:hide()
     else
       print("kitty: focus")
-      win = win or app:mainWindow()
-      if win then
-        win:spacesMoveTo(spaces.activeSpace())
-        win:focus()
-      end
+      local win = app:mainWindow()
+      spaces.moveWindowToSpace(win:id(), spaces.activeSpace())
+      win:focus()
     end
   else
     print("kitty: launch")
-
     os.execute(
       "/etc/profiles/per-user/folke/bin/kitty -d ~ --title scratchpad -1 --instance-group scratchpad -o background_opacity=0.95 -o macos_hide_from_tasks=yes -o macos_quit_when_last_window_closed=yes &"
     )
   end
 end
 
-return module
+return M
