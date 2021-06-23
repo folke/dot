@@ -217,6 +217,7 @@ local leader = {
   },
   Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode" },
   z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
+  T = { [[<Plug>PlenaryTestFile]], "Plenary Test" },
 }
 
 for i = 0, 10 do

@@ -114,7 +114,10 @@ return require("packer").startup({
     -- Dashboard
     use({ "glepnir/dashboard-nvim", config = [[require('config.dashboard')]] })
 
-    use({ "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" })
+    use({ "norcalli/nvim-terminal.lua", config = function()
+      require("terminal").setup()
+    end })
+    use({ "~/projects/plenary.nvim", "nvim-lua/popup.nvim" })
 
     use({
       "windwp/nvim-spectre",
@@ -261,10 +264,9 @@ return require("packer").startup({
 
     use({
       "plasticboy/vim-markdown",
-      -- "gabrielelana/vim-markdown",
       opt = true,
       requires = "godlygeek/tabular",
-      ft = "markdownn",
+      ft = "markdown",
       config = function()
         require("config.markdown")
       end,

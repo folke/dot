@@ -4,14 +4,21 @@ _G.dump = function(...)
 end
 
 -- selene: allow(global_usage)
-_G.profile = function(cmd)
-  local start = vim.loop.hrtime()
+_G.profile = function(cmd, times)
+  times = times or 100
+  local args = {}
   if type(cmd) == "string" then
-    vim.cmd(cmd)
-  else
-    cmd()
+    args = { cmd }
+    cmd = vim.cmd
   end
-  print(((vim.loop.hrtime() - start) / 1000000) .. "ms")
+  local start = vim.loop.hrtime()
+  for _ = 1, times, 1 do
+    local ok = pcall(cmd, unpack(args))
+    if not ok then
+      error("Command failed: " .. tostring(ok) .. " " .. vim.inspect({ cmd = cmd, args = args }))
+    end
+  end
+  print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
 end
 
 local M = {}
