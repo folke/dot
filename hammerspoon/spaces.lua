@@ -1,6 +1,7 @@
 local wb = hs.canvas.windowBehaviors
 local desktop = require("desktop")
 local running = require("running")
+local config = require("config")
 
 -- hs.canvas.useCustomAccessibilitySubrole(false)
 local module = { widget = hs.canvas.new({}) }
@@ -20,7 +21,7 @@ module.update = function()
 
   local spaceW = 51
   local spaceH = 40
-  local spaceOffsetY = 35
+  local spaceOffsetY = 9 + config.topbar
   local radius = 12
   -- hs.canvas.disableScreenUpdates()
 

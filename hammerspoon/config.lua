@@ -1,5 +1,5 @@
 local options = {
-  topbar = 26,
+  topbar = 0,
   monocle = {
     margin = { 5, 10 },
   },
