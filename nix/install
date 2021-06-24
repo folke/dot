@@ -31,10 +31,10 @@ fi
 system=$1
 
 info "updating channels"
-#nix-channel --update
+nix-channel --update
 
 info "updating nix${reset}"
-#nix flake update
+nix flake update
 
 info "building"
 nix build .\#$system
