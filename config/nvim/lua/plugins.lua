@@ -27,21 +27,21 @@ return require("packer").startup({
     })
 
     use({
-      "hrsh7th/nvim-compe",
+      "~/projects/nvim-compe",
       event = "InsertEnter",
       opt = true,
       config = function()
         require("config.compe")
       end,
-      wants = { "vim-vsnip", "vim-vsnip-integ", "friendly-snippets" },
+      wants = { "LuaSnip" },
       requires = {
         {
-          "hrsh7th/vim-vsnip",
+          "L3MON4D3/LuaSnip",
+          wants = "friendly-snippets",
           config = function()
             require("config.snippets")
           end,
         },
-        "hrsh7th/vim-vsnip-integ",
         "rafamadriz/friendly-snippets",
         {
           "windwp/nvim-autopairs",

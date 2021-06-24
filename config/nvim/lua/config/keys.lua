@@ -5,7 +5,7 @@ vim.o.timeoutlen = 300
 
 local presets = require("which-key.plugins.presets")
 presets.objects["a("] = nil
-wk.setup({ show_help = false, triggers = "auto", plugins = { spelling = true } })
+wk.setup({ show_help = false, triggers = "auto", plugins = { spelling = true }, key_labels = { ["<leader>"] = "SPC" } })
 
 -- Move to window using the <ctrl> movement keys
 util.nmap("<left>", "<C-w>h")
