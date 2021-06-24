@@ -321,7 +321,7 @@ return require("packer").startup({
 
     -- use { "mg979/vim-visual-multi", keys = "<C-n>" }
 
-    -- use { "mjlbach/babelfish.nvim", module = "babelfish" }
+    use({ "mjlbach/babelfish.nvim", module = "babelfish" })
 
     use({ "~/projects/lsp-colors.nvim" })
     use({

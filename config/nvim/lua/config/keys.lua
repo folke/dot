@@ -218,6 +218,9 @@ local leader = {
   Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode" },
   z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
   T = { [[<Plug>PlenaryTestFile]], "Plenary Test" },
+  D = { function()
+    util.docs()
+  end, "Create Docs from README.md" },
 }
 
 for i = 0, 10 do

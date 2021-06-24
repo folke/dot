@@ -154,4 +154,16 @@ function M.float_terminal(cmd)
   vim.cmd([[startinsert]])
 end
 
+function M.docs()
+  local name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+  local docgen = require("babelfish")
+  vim.fn.mkdir("./doc", "p")
+  local metadata = {
+    input_file = "./README.md",
+    output_file = "doc/" .. name .. ".txt",
+    project_name = name,
+  }
+  docgen.generate_readme(metadata)
+end
+
 return M

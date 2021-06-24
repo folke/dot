@@ -14,6 +14,7 @@ ts_configs.setup({
     "latex",
     "lua",
     "nix",
+    "markdown",
     "python",
     "regex",
     "rust",
