@@ -19,6 +19,7 @@ in
     nodePackages.vim-language-server
     sumneko-lua-language-server
     rnix-lsp
+    stylua
   ];
 
   home.file = builtins.listToAttrs (
