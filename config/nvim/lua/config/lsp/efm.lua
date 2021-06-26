@@ -4,14 +4,19 @@ local M = {}
 
 local stylua = { formatCommand = "stylua -", formatStdin = true }
 local selene = {
-  lintCommand = "selene --display-style quiet -",
+  lintComman = "selene --display-style quiet -",
   lintIgnoreExitCode = true,
   lintStdin = true,
   lintFormats = { "%f:%l:%c: %tarning%m", "%f:%l:%c: %tarning%m" },
 }
 
-local prettier = {
+local prettierLocal = {
   formatCommand = "./node_modules/.bin/prettier --stdin --stdin-filepath ${INPUT}",
+  formatStdin = true,
+}
+
+local prettierGlobal = {
+  formatCommand = "prettier --stdin --stdin-filepath ${INPUT}",
   formatStdin = true,
 }
 
@@ -36,27 +41,27 @@ local markdownlint = {
 
 local fish = { formatCommand = "fish_indent", formatStdin = true }
 
-local eslintPrettier = { prettier, eslint }
+local eslintPrettier = { prettierLocal, eslint }
 
 M.config = {
   init_options = { documentFormatting = true },
   settings = {
     rootMarkers = { "package.json", ".git" },
     languages = {
-      lua = { stylua, selene },
-      typescript = { prettier },
-      javascript = eslintPrettier,
-      typescriptreact = eslintPrettier,
-      javascriptreact = eslintPrettier,
-      ["typescript.tsx"] = eslintPrettier,
-      ["javascript.tsx"] = eslintPrettier,
-      yaml = { prettier },
-      json = { prettier },
-      html = { prettier },
-      scss = { prettier },
-      css = { prettier },
-      markdown = { prettier, markdownlint },
-      sh = { shellcheck },
+      -- lua = { selene },
+      -- typescript = { prettierLocal },
+      -- javascript = eslintPrettier,
+      -- typescriptreact = eslintPrettier,
+      -- javascriptreact = eslintPrettier,
+      -- ["typescript.tsx"] = eslintPrettier,
+      -- ["javascript.tsx"] = eslintPrettier,
+      -- yaml = { prettierLocal },
+      -- json = { prettierGlobal },
+      -- html = { prettierLocal },
+      -- scss = { prettierLocal },
+      -- css = { prettierLocal },
+      -- markdown = { prettierLocal, markdownlint },
+      -- sh = { shellcheck },
       fish = { fish },
     },
   },
@@ -68,6 +73,7 @@ for ft, _ in pairs(M.config.settings.languages) do
 end
 
 M.formatted_languages = {}
+vim.fn.abs(123)
 
 for lang, tools in pairs(M.config.settings.languages) do
   for _, tool in pairs(tools) do

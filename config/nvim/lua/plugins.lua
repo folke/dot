@@ -22,7 +22,7 @@ return require("packer").startup({
       requires = {
         "~/projects/nvim-lsp.json",
         "jose-elias-alvarez/nvim-lsp-ts-utils",
-        "jose-elias-alvarez/null-ls.nvim",
+        "~/projects/null-ls.nvim",
       },
     })
 
@@ -71,7 +71,7 @@ return require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
-      requires = { "~/projects/playground", "nvim-treesitter/nvim-treesitter-textobjects" },
+      requires = { "nvim-treesitter/playground", "nvim-treesitter/nvim-treesitter-textobjects" },
       config = [[require('config.treesitter')]],
     })
 
@@ -114,10 +114,13 @@ return require("packer").startup({
     -- Dashboard
     use({ "glepnir/dashboard-nvim", config = [[require('config.dashboard')]] })
 
-    use({ "norcalli/nvim-terminal.lua", config = function()
-      require("terminal").setup()
-    end })
-    use({ "~/projects/plenary.nvim", "nvim-lua/popup.nvim" })
+    use({
+      "norcalli/nvim-terminal.lua",
+      config = function()
+        require("terminal").setup()
+      end,
+    })
+    use({ "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" })
 
     use({
       "windwp/nvim-spectre",

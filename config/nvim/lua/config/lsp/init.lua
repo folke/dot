@@ -67,6 +67,7 @@ lua_cmd = { "lua-language-server" }
 
 local servers = {
   pyright = {},
+  -- pyls = {},
   bashls = {},
   tsserver = {},
   cssls = { cmd = { "css-languageserver", "--stdio" } },
@@ -74,6 +75,9 @@ local servers = {
   jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
   html = { cmd = { "html-languageserver", "--stdio" } },
   clangd = {},
+  intelephense = {},
+  -- texlab = {},
+  ["null-ls"] = {},
   sumneko_lua = require("lua-dev").setup({
     -- library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } },
     lspconfig = { cmd = lua_cmd },
@@ -89,8 +93,8 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
 }
 
-require("null-ls").setup({ on_attach = on_attach, capabilities = capabilities })
 require("nvim-lsp-json").setup()
+require("config.lsp.null-ls").setup()
 
 for server, config in pairs(servers) do
   lspconfig[server].setup(vim.tbl_deep_extend("force", {
