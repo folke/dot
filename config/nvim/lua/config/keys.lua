@@ -110,9 +110,12 @@ local leader = {
   g = {
     name = "+git",
     g = { "<cmd>Neogit<CR>", "NeoGit" },
-    l = { function()
-      require("util").float_terminal("lazygit")
-    end, "LazyGit" },
+    l = {
+      function()
+        require("util").float_terminal("lazygit")
+      end,
+      "LazyGit",
+    },
     c = { "<Cmd>Telescope git_commits<CR>", "commits" },
     b = { "<Cmd>Telescope git_branches<CR>", "branches" },
     s = { "<Cmd>Telescope git_status<CR>", "status" },
@@ -174,16 +177,25 @@ local leader = {
       require("config.lsp.formatting").toggle,
       "Format on Save",
     },
-    s = { function()
-      util.toggle("spell")
-    end, "Spelling" },
-    w = { function()
-      util.toggle("wrap")
-    end, "Word Wrap" },
-    n = { function()
-      util.toggle("relativenumber", true)
-      util.toggle("number")
-    end, "Line Numbers" },
+    s = {
+      function()
+        util.toggle("spell")
+      end,
+      "Spelling",
+    },
+    w = {
+      function()
+        util.toggle("wrap")
+      end,
+      "Word Wrap",
+    },
+    n = {
+      function()
+        util.toggle("relativenumber", true)
+        util.toggle("number")
+      end,
+      "Line Numbers",
+    },
   },
   ["<tab>"] = {
     name = "workspace",
@@ -207,9 +219,9 @@ local leader = {
     name = "+quit/session",
     q = { "<cmd>:qa<cr>", "Quit" },
     ["!"] = { "<cmd>:qa!<cr>", "Quit without saving" },
-    s = { [[<cmd>lua require("config.session").load()<cr>]], "Restore Session" },
-    l = { [[<cmd>lua require("config.session").load({last=true})<cr>]], "Restore Last Session" },
-    d = { [[<cmd>lua require("config.session").stop()<cr>]], "Stop Current Session" },
+    s = { [[<cmd>lua require("session").load()<cr>]], "Restore Session" },
+    l = { [[<cmd>lua require("session").load({last=true})<cr>]], "Restore Last Session" },
+    d = { [[<cmd>lua require("session").stop()<cr>]], "Stop Current Session" },
   },
   x = {
     name = "+errors",
@@ -222,9 +234,12 @@ local leader = {
   Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode" },
   z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
   T = { [[<Plug>PlenaryTestFile]], "Plenary Test" },
-  D = { function()
-    util.docs()
-  end, "Create Docs from README.md" },
+  D = {
+    function()
+      util.docs()
+    end,
+    "Create Docs from README.md",
+  },
 }
 
 for i = 0, 10 do

@@ -3,7 +3,7 @@ local nls = require("null-ls")
 local M = {}
 
 function M.setup()
-  nls.setup_lspconfig({
+  nls.config({
     sources = {
       nls.builtins.formatting.prettierd,
       nls.builtins.formatting.stylua,
