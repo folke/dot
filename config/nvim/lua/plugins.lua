@@ -119,7 +119,10 @@ return packer.startup({
       run = ":TSUpdate",
       opt = true,
       event = "BufRead",
-      requires = { "nvim-treesitter/playground", "nvim-treesitter/nvim-treesitter-textobjects" },
+      requires = {
+        { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
+        "nvim-treesitter/nvim-treesitter-textobjects",
+      },
       config = [[require('config.treesitter')]],
     })
 
@@ -154,6 +157,7 @@ return packer.startup({
     -- Theme: icons
     use({
       "kyazdani42/nvim-web-devicons",
+      module = "nvim-web-devicons",
       config = function()
         require("nvim-web-devicons").setup({ default = true })
       end,
@@ -231,7 +235,7 @@ return packer.startup({
     use({
       "akinsho/nvim-bufferline.lua",
       event = "BufReadPre",
-      requires = "kyazdani42/nvim-web-devicons",
+      wants = "nvim-web-devicons",
       config = function()
         require("config.bufferline")
       end,
@@ -291,7 +295,7 @@ return packer.startup({
       "hoob3rt/lualine.nvim",
       event = "VimEnter",
       config = [[require('config.lualine')]],
-      requires = { "kyazdani42/nvim-web-devicons", opt = true },
+      wants = "nvim-web-devicons",
     })
 
     use({
@@ -339,7 +343,7 @@ return packer.startup({
     use({
       "folke/trouble.nvim",
       event = "BufReadPre",
-      requires = "kyazdani42/nvim-web-devicons",
+      wants = "nvim-web-devicons",
       cmd = { "TroubleToggle", "Trouble" },
       config = function()
         require("trouble").setup({ auto_open = false })
