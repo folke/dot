@@ -31,6 +31,10 @@ util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
 util.nnoremap("<tab>", ":bnext<cr>")
 util.nnoremap("<S-tab>", ":bprevious<cr>")
 
+-- Easier pasting
+util.nnoremap("[p", ":pu!<cr>")
+util.nnoremap("]p", ":pu<cr>")
+
 -- Clear search with <esc>
 util.map("", "<esc>", ":noh<cr>")
 util.nnoremap("gw", "*N")
