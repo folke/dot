@@ -11,12 +11,16 @@
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay?rev=2aff1c00dc619b5b8af3dee95461b41f3a6fd7f0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay = {
       type = "github";
       owner = "mjlbach";
       repo = "emacs-overlay";
       ref = "feature/flakes";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
