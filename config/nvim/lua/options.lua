@@ -48,8 +48,19 @@ vim.opt.undolevels = 10000
 vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = false -- Disable line wrap
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
-cmd("set sessionoptions-=folds")
+-- don't load the plugins below
+vim.g.loaded_gzip = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_matchparen = 1
+
 -- Check if we need to reload the file when it changed
 cmd("au FocusGained * :checktime")
 
