@@ -53,8 +53,6 @@ vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
 
 -- markdown
 util.nnoremap("=t", "<cmd>TableFormat<cr>")
-vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
-vim.cmd([[autocmd FileType markdown setlocal spell]])
 
 -- better indenting
 util.vnoremap("<", "<gv")
@@ -249,7 +247,3 @@ end
 wk.register(leader, { prefix = "<leader>" })
 
 wk.register({ g = { name = "+goto", h = "Hop Word" }, s = "Hop Word1" })
-
--- windows to close with "q"
-vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
-vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])

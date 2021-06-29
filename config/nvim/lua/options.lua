@@ -61,12 +61,35 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_matchparen = 1
 
+-- Use proper syntax highlighting in code blocks
+local fences = {
+  "lua",
+  -- "vim",
+  "json",
+  "typescript",
+  "javascript",
+  "js=javascript",
+  "ts=typescript",
+  "shell=sh",
+  "python",
+  "sh",
+  "console=sh",
+}
+vim.g.markdown_fenced_languages = fences
+
+-- plasticboy/vim-markdown
+vim.g.vim_markdown_folding_level = 10
+vim.g.vim_markdown_fenced_languages = fences
+vim.g.vim_markdown_folding_style_pythonic = 1
+vim.g.vim_markdown_conceal_code_blocks = 0
+vim.g.vim_markdown_frontmatter = 1
+vim.g.vim_markdown_strikethrough = 1
+
+vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
+vim.cmd([[autocmd FileType markdown setlocal spell]])
+
 -- Check if we need to reload the file when it changed
 cmd("au FocusGained * :checktime")
-
--- syntax
-cmd("syntax enable")
-cmd("filetype plugin indent on")
 
 -- show cursor line only in active window
 cmd([[
@@ -82,4 +105,10 @@ cmd([[
 -- Highlight on yank
 cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
-require("config.markdown")
+-- ftdetect
+cmd([[autocmd BufRead,BufNewFile *.fish setfiletype fish]])
+cmd([[autocmd BufRead,BufNewFile *.nix setfiletype nix]])
+
+-- windows to close with "q"
+vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
+vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
