@@ -88,7 +88,7 @@ local util = require("util")
 
 util.nnoremap("<Leader><Space>", M.project_files)
 util.nnoremap("<Leader>fd", function()
-  require("telescope.builtin").git_files({ cwd = "~/projects/dot" })
+  require("telescope.builtin").git_files({ cwd = "~/dot" })
 end)
 
 util.nnoremap("<leader>fz", function()

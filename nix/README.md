@@ -15,12 +15,9 @@ $ sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store
 $ nix-env -f '<nixpkgs>' -iA nixUnstable
 
 # Clone dotfiles
-$ mkdir -p ~/projects
-$ cd ~/projects
 $ git clone git@github.com:folke/dot.git
 
 # Install dotfiles
-$ cd ~/projects/dot/nix
+$ cd ~/dot/nix
 $ ./install macos
 ```
-

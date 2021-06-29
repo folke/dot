@@ -10,3 +10,4 @@ result
 home/.aria2/aria2.session
 packer_compiled.vim
 fish_variables
+*.session

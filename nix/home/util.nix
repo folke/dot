@@ -1,7 +1,7 @@
 { config, ... }:
 
 rec {
-  dot = path: "${config.home.homeDirectory}/projects/dot/${path}";
+  dot = path: "${config.home.homeDirectory}/dot/${path}";
 
   link-all = from: to:
     let
