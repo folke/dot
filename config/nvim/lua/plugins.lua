@@ -153,7 +153,7 @@ return packer.startup({
       -- "Th3Whit3Wolf/one-nvim"
 
       "folke/tokyonight.nvim",
-      event = "VimEnter",
+      -- event = "VimEnter",
       config = function()
         require("config.theme")
       end,
@@ -410,6 +410,7 @@ return packer.startup({
     use({
       "RRethy/vim-illuminate",
       event = "CursorHold",
+      module = "illuminate",
       config = function()
         vim.g.Illuminate_delay = 1000
       end,
