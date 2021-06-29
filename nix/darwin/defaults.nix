@@ -1,8 +1,8 @@
 { config, lib, ... }:
 with lib;{
   system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
-  system.defaults.NSGlobalDomain.InitialKeyRepeat = 10;
-  system.defaults.NSGlobalDomain.KeyRepeat = 1;
+  system.defaults.NSGlobalDomain.InitialKeyRepeat = 20;
+  system.defaults.NSGlobalDomain.KeyRepeat = 2;
   system.defaults.dock.autohide = false;
   system.defaults.dock.autohide-delay = "0.0";
   system.defaults.dock.autohide-time-modifier = "0.4";
