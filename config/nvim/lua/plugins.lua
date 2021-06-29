@@ -1,3 +1,5 @@
+local packer = require("packer")
+
 local config = {
   profile = {
     enable = true,
@@ -5,8 +7,51 @@ local config = {
   },
 }
 
-return require("packer").startup({
+local locals = { folke = true, ["nvim-compe"] = true, ["null-ls.nvim"] = true }
+
+local function get_name(pkg)
+  local parts = vim.split(pkg, "/")
+  return parts[#parts], parts[1]
+end
+
+local function has_local(name)
+  return vim.loop.fs_stat(vim.fn.expand("~/projects/" .. name)) ~= nil
+end
+
+local function process(spec)
+  if type(spec) == "string" then
+    local name, owner = get_name(spec)
+    local local_pkg = "~/projects/" .. name
+
+    if locals[name] or locals[owner] then
+      return local_pkg
+    end
+    -- if has_local(name) then
+    --   dump(spec)
+    -- end
+    return spec
+  else
+    for i, s in ipairs(spec) do
+      spec[i] = process(s)
+    end
+  end
+  if spec.requires then
+    spec.requires = process(spec.requires)
+  end
+  return spec
+end
+
+local function wrap(use)
+  return function(spec)
+    spec = process(spec)
+    use(spec)
+  end
+end
+
+return packer.startup({
   function(use)
+    use = wrap(use)
+
     -- Packer can manage itself as an optional plugin
     use({ "wbthomason/packer.nvim", opt = true })
 
@@ -15,19 +60,20 @@ return require("packer").startup({
       "neovim/nvim-lspconfig",
       opt = true,
       event = "BufReadPre",
-      wants = { "nvim-lsp.json", "null-ls.nvim" },
+      wants = { "nvim-lsp.json", "nvim-lsp-ts-utils", "null-ls.nvim", "lua-dev.nvim" },
       config = function()
         require("config.lsp")
       end,
       requires = {
-        "~/projects/nvim-lsp.json",
+        "folke/nvim-lsp.json",
         "jose-elias-alvarez/nvim-lsp-ts-utils",
-        "~/projects/null-ls.nvim",
+        "jose-elias-alvarez/null-ls.nvim",
+        "folke/lua-dev.nvim",
       },
     })
 
     use({
-      "~/projects/nvim-compe",
+      "hrsh7th/nvim-compe",
       event = "InsertEnter",
       opt = true,
       config = function()
@@ -71,6 +117,8 @@ return require("packer").startup({
     use({
       "nvim-treesitter/nvim-treesitter",
       run = ":TSUpdate",
+      opt = true,
+      event = "BufRead",
       requires = { "nvim-treesitter/playground", "nvim-treesitter/nvim-treesitter-textobjects" },
       config = [[require('config.treesitter')]],
     })
@@ -78,14 +126,14 @@ return require("packer").startup({
     -- Theme: color schemes
     -- use("tjdevries/colorbuddy.vim")
     use({
-      "shaunsingh/nord.nvim",
-      "shaunsingh/moonlight.nvim",
+      -- "shaunsingh/nord.nvim",
+      -- "shaunsingh/moonlight.nvim",
       -- { "olimorris/onedark.nvim", requires = "rktjmp/lush.nvim" },
-      "joshdick/onedark.vim",
+      -- "joshdick/onedark.vim",
       -- "wadackel/vim-dogrun",
       -- { "npxbr/gruvbox.nvim", requires = "rktjmp/lush.nvim" },
       -- "bluz71/vim-nightfly-guicolors",
-      { "marko-cerovac/material.nvim" },
+      -- { "marko-cerovac/material.nvim" },
       -- "sainnhe/edge",
       -- { "embark-theme/vim", as = "embark" },
       -- "norcalli/nvim-base16.lua",
@@ -93,14 +141,14 @@ return require("packer").startup({
       -- "novakne/kosmikoa.nvim",
       -- "glepnir/zephyr-nvim",
       -- "ghifarit53/tokyonight-vim"
-      "sainnhe/sonokai",
-      "morhetz/gruvbox",
+      -- "sainnhe/sonokai",
+      -- "morhetz/gruvbox",
       -- "arcticicestudio/nord-vim",
       -- "drewtempelmeyer/palenight.vim",
       -- "Th3Whit3Wolf/onebuddy",
       -- "christianchiarulli/nvcode-color-schemes.vim",
       -- "Th3Whit3Wolf/one-nvim"
-      "~/projects/tokyonight.nvim",
+      "folke/tokyonight.nvim",
     })
 
     -- Theme: icons
@@ -116,6 +164,7 @@ return require("packer").startup({
 
     use({
       "norcalli/nvim-terminal.lua",
+      ft = "terminal",
       config = function()
         require("terminal").setup()
       end,
@@ -138,7 +187,7 @@ return require("packer").startup({
       end,
     })
 
-    use("dag/vim-fish")
+    use({ "dag/vim-fish", ft = "fish" })
 
     -- Fuzzy finder
     use({
@@ -203,7 +252,6 @@ return require("packer").startup({
     use({
       "akinsho/nvim-toggleterm.lua",
       keys = "<M-`>",
-      module = "folke.util",
       config = function()
         require("config.terminal")
       end,
@@ -212,12 +260,14 @@ return require("packer").startup({
     -- Smooth Scrolling
     use({
       "karb94/neoscroll.nvim",
+      keys = { "<C-u>", "<C-d>", "gg", "G" },
       config = function()
         require("config.scroll")
       end,
     })
     use({
       "edluffy/specs.nvim",
+      after = "neoscroll.nvim",
       config = function()
         require("config.specs")
       end,
@@ -302,7 +352,7 @@ return require("packer").startup({
     })
 
     use({
-      "~/projects/trouble.nvim",
+      "folke/trouble.nvim",
       event = "BufReadPre",
       requires = "kyazdani42/nvim-web-devicons",
       cmd = { "TroubleToggle", "Trouble" },
@@ -312,9 +362,11 @@ return require("packer").startup({
     })
 
     use({
-      "tpope/vim-obsession",
-      setup = function()
-        require("config.session")
+      "folke/session.nvim",
+      event = "BufReadPre",
+      module = "session",
+      config = function()
+        require("session").start()
       end,
     })
 
@@ -326,26 +378,28 @@ return require("packer").startup({
 
     use({ "mjlbach/babelfish.nvim", module = "babelfish" })
 
-    use({ "~/projects/lsp-colors.nvim" })
+    -- use({ "folke/lsp-colors.nvim" })
+    -- use({ "folke/lua-profiler.nvim" })
     use({
-      "~/projects/zen-mode.nvim",
+      "folke/zen-mode.nvim",
       cmd = "ZenMode",
+      opt = true,
+      requires = { "folke/twilight.nvim" },
       config = function()
         require("zen-mode").setup({
           plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } },
         })
       end,
     })
-    use({ "~/projects/twilight.nvim" })
-    use({ "~/projects/lua-dev.nvim" })
     use({
-      "~/projects/todo-comments.nvim",
+      "folke/todo-comments.nvim",
+      cmd = { "TodoTrouble", "TodoTelescope" },
       config = function()
         require("config.todo")
       end,
     })
     use({
-      "~/projects/which-key.nvim",
+      "folke/which-key.nvim",
       event = "VimEnter",
       config = function()
         require("config.keys")
@@ -367,12 +421,11 @@ return require("packer").startup({
       end,
     })
 
-    use("wellle/targets.vim")
+    -- use({ "wellle/targets.vim" })
 
-    use("DanilaMihailov/vim-tips-wiki")
-    use("tpope/vim-unimpaired")
+    -- use("DanilaMihailov/vim-tips-wiki")
     use("nanotee/luv-vimdocs")
-    use("LnL7/vim-nix")
+    use({ "LnL7/vim-nix", ft = "nix" })
   end,
   config = config,
 })
