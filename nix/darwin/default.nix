@@ -30,7 +30,7 @@ in
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = false;
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixUnstable;
     trustedUsers = [ "@admin" ];
     gc.automatic = true;
     gc.user = "folke";

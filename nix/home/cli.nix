@@ -37,6 +37,7 @@ in
     exa
     fd
     direnv
+    nix-direnv
     fzf
     fzy
     gh
@@ -79,6 +80,12 @@ in
     wezterm
     zoxide
   ] ++ (if isDarwin then darwinPackages else linuxPackages);
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv = {
+    enable = true;
+    enableFlakes = true;
+  };
 
   programs.emacs = {
     enable = true;
