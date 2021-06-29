@@ -3,7 +3,7 @@ local packer = require("packer")
 local config = {
   profile = {
     enable = true,
-    threshold = 1, -- the amount in ms that a plugins load time must be over for it to be included in the profile
+    threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
   },
 }
 
@@ -187,8 +187,6 @@ return packer.startup({
       end,
     })
 
-    use({ "dag/vim-fish", ft = "fish" })
-
     -- Fuzzy finder
     use({
       "nvim-telescope/telescope.nvim",
@@ -228,15 +226,6 @@ return packer.startup({
         require("config.blankline")
       end,
     })
-
-    -- nvim-ts-rainbow is way too slow
-    -- use({
-    --   "p00f/nvim-ts-rainbow",
-    --   event = "BufReadPre",
-    --   config = function()
-    --     require("nvim-treesitter.configs").setup({ rainbow = { enable = true } })
-    --   end
-    -- })
 
     -- Tabs
     use({
@@ -320,16 +309,12 @@ return packer.startup({
       opt = true,
       requires = "godlygeek/tabular",
       ft = "markdown",
-      config = function()
-        require("config.markdown")
-      end,
     })
     use({
       "iamcco/markdown-preview.nvim",
       run = function()
         vim.fn["mkdp#util#install"]()
       end,
-      ft = { "markdown" },
       cmd = "MarkdownPreview",
     })
 
@@ -374,12 +359,8 @@ return packer.startup({
 
     use({ "mbbill/undotree", cmd = "UndotreeToggle" })
 
-    -- use { "mg979/vim-visual-multi", keys = "<C-n>" }
-
     use({ "mjlbach/babelfish.nvim", module = "babelfish" })
 
-    -- use({ "folke/lsp-colors.nvim" })
-    -- use({ "folke/lua-profiler.nvim" })
     use({
       "folke/zen-mode.nvim",
       cmd = "ZenMode",
@@ -391,6 +372,7 @@ return packer.startup({
         })
       end,
     })
+
     use({
       "folke/todo-comments.nvim",
       cmd = { "TodoTrouble", "TodoTelescope" },
@@ -398,6 +380,7 @@ return packer.startup({
         require("config.todo")
       end,
     })
+
     use({
       "folke/which-key.nvim",
       event = "VimEnter",
@@ -405,6 +388,7 @@ return packer.startup({
         require("config.keys")
       end,
     })
+
     use({
       "sindrets/diffview.nvim",
       cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
@@ -415,7 +399,7 @@ return packer.startup({
 
     use({
       "RRethy/vim-illuminate",
-      event = "BufReadPre",
+      event = "CursorHold",
       config = function()
         vim.g.Illuminate_delay = 1000
       end,
@@ -425,7 +409,6 @@ return packer.startup({
 
     -- use("DanilaMihailov/vim-tips-wiki")
     use("nanotee/luv-vimdocs")
-    use({ "LnL7/vim-nix", ft = "nix" })
   end,
   config = config,
 })

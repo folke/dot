@@ -6,25 +6,26 @@ ts_configs.setup({
     "comment",
     "cpp",
     "css",
+    "fish",
     "go",
+    "graphql",
     "html",
     "javascript",
-    "json",
     "jsonc",
     "latex",
     "lua",
     "nix",
-    -- "markdown",
     "python",
     "regex",
     "rust",
-    "toml",
-    "typescript",
-    "yaml",
-    "tsx",
-    "vue",
-    "graphql",
     "svelte",
+    "toml",
+    "tsx",
+    "typescript",
+    "vue",
+    "yaml",
+    -- "json",
+    -- "markdown",
   },
   highlight = { enable = true, use_languagetree = true },
   indent = { enable = false },
@@ -92,6 +93,7 @@ ts_configs.setup({
 
 -- Add Markdown
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+parser_config.jsonc.used_by = "json"
 parser_config.markdown = {
   install_info = {
     url = "https://github.com/ikatyang/tree-sitter-markdown",
