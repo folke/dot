@@ -70,4 +70,10 @@ in
   users.nix.configureBuildUsers = false;
 
   system.stateVersion = 4;
+
+  launchd.user.agents.aria2 = {
+    serviceConfig.ProgramArguments = [ "${pkgs.aria2}/bin/aria2c" ];
+    serviceConfig.KeepAlive = true;
+    serviceConfig.RunAtLoad = true;
+  };
 }
