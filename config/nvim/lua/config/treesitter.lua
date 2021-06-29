@@ -14,7 +14,7 @@ ts_configs.setup({
     "latex",
     "lua",
     "nix",
-    "markdown",
+    -- "markdown",
     "python",
     "regex",
     "rust",
@@ -64,6 +64,7 @@ ts_configs.setup({
   textobjects = {
     select = {
       enable = true,
+      lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
