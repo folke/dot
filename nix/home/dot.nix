@@ -17,7 +17,12 @@ in
   xdg.configFile = util.link-all "config" ".";
 
   home.file =
-    (util.link-all "home" ".") // {
+    /* (util.link-all "home" ".") // { */
+    {
+      ".bashrc".text = "source <(starship init bash --print-full-init)";
+      ".zshrc".text = "source <(starship init zsh --print-full-init)";
+      ".hushlogin".text = "";
+      ".gitconfig".source = util.link "config/.gitconfig";
       "dot".source = util.link "";
     } // extraHome // {
       ".npmrc".text = ''
@@ -29,5 +34,15 @@ in
   home.sessionVariables = {
     TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
     SHELL = "${pkgs.fish}/bin/fish";
+  };
+
+  programs.bash = {
+    enable = true;
+    initExtra = "source <(starship init bash --print-full-init)";
+  };
+
+  programs.zsh = {
+    enable = true;
+    initExtra = "source <(starship init zsh --print-full-init)";
   };
 }

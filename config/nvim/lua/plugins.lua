@@ -151,7 +151,12 @@ return packer.startup({
       -- "Th3Whit3Wolf/onebuddy",
       -- "christianchiarulli/nvcode-color-schemes.vim",
       -- "Th3Whit3Wolf/one-nvim"
+
       "folke/tokyonight.nvim",
+      event = "VimEnter",
+      config = function()
+        require("config.theme")
+      end,
     })
 
     -- Theme: icons
@@ -173,7 +178,8 @@ return packer.startup({
         require("terminal").setup()
       end,
     })
-    use({ "nvim-lua/plenary.nvim", "nvim-lua/popup.nvim" })
+    use({ "nvim-lua/plenary.nvim", module = "plenary" })
+    use({ "nvim-lua/popup.nvim", module = "popup" })
 
     use({
       "windwp/nvim-spectre",
@@ -413,6 +419,10 @@ return packer.startup({
 
     -- use("DanilaMihailov/vim-tips-wiki")
     use("nanotee/luv-vimdocs")
+    use({
+      "andymass/vim-matchup",
+      event = "CursorMoved",
+    })
   end,
   config = config,
 })
