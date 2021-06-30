@@ -46,9 +46,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "gitignore.nix": "gitignore.nix",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs",
         "pre-commit-hooks.nix": "pre-commit-hooks.nix",
         "xelb": "xelb"
       },
@@ -219,11 +217,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1624993363,
-        "narHash": "sha256-1oiyM/jcYPB2D7vY1jVAQk5Mgy++qP6I08Y+VoUgIro=",
+        "lastModified": 1625016439,
+        "narHash": "sha256-zHf7iCU9nYd6/7xwYx5gwDzXdXcJ9RUagdy0IgX39sQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "3f6cb409cadf38e71d73f43af52ce27b6ee70214",
+        "rev": "9ad0024d4d292c628d4c9a50c2347f23418d7000",
         "type": "github"
       },
       "original": {
@@ -279,11 +277,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1624668028,
-        "narHash": "sha256-FUxvXMBPQ5jrGhS47jwBFZQte0yDkMCBI5M24mJi5X0=",
+        "lastModified": 1623324058,
+        "narHash": "sha256-Jm9GUTXdjXz56gWDKy++EpFfjrBaxqXlLvTLfgEi8lo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e85975942742a3728226ac22a3415f2355bfc897",
+        "rev": "432fc2d9a67f92e05438dff5fdc2b39d33f77997",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1624977608,
+        "narHash": "sha256-i/QZI5qM4eYw2wWGd/OjruBx53FqUPq+sdAWmyIQ0ws=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "db6e089456cdddcd7e2c1d8dac37a505c797e8fa",
         "type": "github"
       },
       "original": {
@@ -315,7 +329,7 @@
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "xelb": {

@@ -22,6 +22,7 @@ in
     lua
     nodejs
     nodePackages.pnpm
+    nodePackages.yarn
   ] ++ (if isDarwin then darwinPackages else linuxPackages);
 
 }

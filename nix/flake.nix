@@ -20,7 +20,7 @@
       owner = "mjlbach";
       repo = "emacs-overlay";
       ref = "feature/flakes";
-      inputs.nixpkgs.follows = "nixpkgs";
+      /* inputs.nixpkgs.follows = "nixpkgs"; */
     };
   };
 
