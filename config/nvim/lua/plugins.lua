@@ -7,7 +7,11 @@ local config = {
   },
 }
 
-local locals = { folke = true, ["nvim-compe"] = true, ["null-ls.nvim"] = true }
+local locals = {
+  folke = true,
+  ["nvim-compe"] = true,
+  ["null-ls.nvim"] = true,
+}
 
 local function get_name(pkg)
   local parts = vim.split(pkg, "/")
@@ -23,7 +27,7 @@ local function process(spec)
     local name, owner = get_name(spec)
     local local_pkg = "~/projects/" .. name
 
-    if locals[name] or locals[owner] then
+    if locals[name] or locals[owner] or locals[owner .. "/" .. name] then
       return local_pkg
     end
     -- if has_local(name) then
@@ -119,6 +123,7 @@ return packer.startup({
       run = ":TSUpdate",
       opt = true,
       event = "BufRead",
+      module = "nvim-treesitter.fold",
       requires = {
         { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -424,6 +429,7 @@ return packer.startup({
       "andymass/vim-matchup",
       event = "CursorMoved",
     })
+    use({ "camspiers/snap", rocks = { "fzy" }, module = "snap" })
   end,
   config = config,
 })
