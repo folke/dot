@@ -67,16 +67,15 @@ lua_cmd = { "lua-language-server" }
 
 local servers = {
   pyright = {},
-  -- pyls = {},
   bashls = {},
+  dockerls = {},
   tsserver = {},
   cssls = { cmd = { "css-languageserver", "--stdio" } },
   rnix = {},
   jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
   html = { cmd = { "html-languageserver", "--stdio" } },
   clangd = {},
-  intelephense = {},
-  -- texlab = {},
+  -- intelephense = {},
   ["null-ls"] = {},
   sumneko_lua = require("lua-dev").setup({
     -- library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } },
