@@ -19,10 +19,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    python39
-    python39Packages.pip
-    python39Packages.pipx
-    adoptopenjdk-bin
     alacritty
     aria2
     as-tree
@@ -40,22 +36,18 @@ in
     nix-direnv
     fzf
     fzy
-    gh
-    go
     grc
     glow
     gnupg
     gnused
     htop
     httpie
-    hub
     hyperfine
     jq
     kitty
     languagetool
     lazydocker
     lazygit
-    lua
     manix
     mdcat
     nix-index
