@@ -5,11 +5,19 @@ local config = {
     enable = true,
     threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
   },
+  display = {
+    open_fn = function()
+      return require("packer.util").float({ border = "single" })
+    end,
+  },
 }
+
+-- HACK: see https://github.com/wbthomason/packer.nvim/issues/180
+vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
 local locals = {
   folke = true,
-  ["nvim-compe"] = true,
+  -- ["nvim-compe"] = true,
   ["null-ls.nvim"] = true,
 }
 
@@ -380,6 +388,7 @@ return packer.startup({
       "folke/zen-mode.nvim",
       cmd = "ZenMode",
       opt = true,
+      wants = "twilight.nvim",
       requires = { "folke/twilight.nvim" },
       config = function()
         require("zen-mode").setup({
@@ -391,6 +400,7 @@ return packer.startup({
     use({
       "folke/todo-comments.nvim",
       cmd = { "TodoTrouble", "TodoTelescope" },
+      event = "BufReadPost",
       config = function()
         require("config.todo")
       end,
