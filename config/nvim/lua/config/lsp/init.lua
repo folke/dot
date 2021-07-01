@@ -99,6 +99,9 @@ for server, config in pairs(servers) do
   lspconfig[server].setup(vim.tbl_deep_extend("force", {
     on_attach = on_attach,
     capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
   }, config))
   local cfg = lspconfig[server]
   if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
