@@ -440,6 +440,7 @@ return packer.startup({
       event = "CursorMoved",
     })
     use({ "camspiers/snap", rocks = { "fzy" }, module = "snap" })
+    use "kmonad/kmonad-vim"
   end,
   config = config,
 })
