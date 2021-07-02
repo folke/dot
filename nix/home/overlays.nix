@@ -31,7 +31,7 @@ self: super: {
           --metapath='~/.cache/sumneko_lua/meta'"
       '';
 
-      meta.platforms = super.lib.platforms.darwin;
+      meta.platforms = super.lib.platforms.all;
     }
   );
   yabai = super.yabai.overrideAttrs (
