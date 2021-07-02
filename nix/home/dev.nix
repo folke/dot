@@ -7,7 +7,7 @@ let
   ];
 
   linuxPackages = with pkgs; [
-    git
+    #git
   ];
 in
 {

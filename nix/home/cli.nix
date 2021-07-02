@@ -8,13 +8,17 @@ let
     curl
     wget
     fontconfig
+    kitty
     less
     rsync
     # git: use system git with keychain integration
   ];
 
+  kmonad = (import ./kmonad.nix) pkgs;
+
   linuxPackages = with pkgs; [
-    git
+#   git
+  kmonad
   ];
 in
 {
@@ -44,7 +48,6 @@ in
     httpie
     hyperfine
     jq
-    kitty
     languagetool
     lazydocker
     lazygit

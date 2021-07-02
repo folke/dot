@@ -35,7 +35,7 @@
           (import ./home/overlays.nix)
         ];
       };
-      homeMamagerCommon = with inputs; {
+      homeManagerCommon = with inputs; {
         imports = [
           ./home
         ];
@@ -57,11 +57,21 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.backupFileExtension = "orig";
-                home-manager.users.${username} = homeMamagerCommon;
+                home-manager.users.${username} = homeManagerCommon;
               }
             ];
           };
         };
+homeConfigurations = {
+      linux = inputs.home-manager.lib.homeManagerConfiguration { 
+      	system = "x86_64-linux"; 
+	homeDirectory = "/home/${username}";
+	username = username;
+	configuration = homeManagerCommon // {
+                nixpkgs = nixpkgsConfig;};
+      };
+    };
         macos = self.darwinConfigurations.macos.system;
+        linux = self.homeConfigurations.linux.activationPackage;
       };
 }
