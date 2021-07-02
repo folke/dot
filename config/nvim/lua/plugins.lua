@@ -370,11 +370,11 @@ return packer.startup({
     })
 
     use({
-      "folke/session.nvim",
+      "folke/persistence.nvim",
       event = "BufReadPre",
-      module = "session",
+      module = "persistence",
       config = function()
-        require("session").start()
+        require("persistence").start()
       end,
     })
 
