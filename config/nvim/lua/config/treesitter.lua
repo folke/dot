@@ -1,3 +1,10 @@
+local gcc = vim.fn.getenv("NIX_GCC")
+
+if gcc and gcc ~= vim.NIL then
+  dump(gcc)
+  require 'nvim-treesitter.install'.compilers = { gcc }
+end
+
 local ts_configs = require("nvim-treesitter.configs")
 ts_configs.setup({
   ensure_installed = {

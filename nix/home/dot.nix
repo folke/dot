@@ -34,6 +34,7 @@ in
   home.sessionVariables = {
     TERMINFO_DIRS = "${pkgs.kitty.terminfo.outPath}/share/terminfo";
     SHELL = "${pkgs.fish}/bin/fish";
+    NIX_GCC = "${pkgs.gcc}/bin/gcc";
   };
 
   programs.bash = {
