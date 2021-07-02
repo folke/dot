@@ -38,7 +38,7 @@ telescope.setup({
     -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     -- shorten_path = true,
     winblend = 10,
-    width = 0.7,
+    -- width = 0.7,
     -- preview_cutoff = 120,
     -- results_height = 1,
     -- results_width = 0.8,
