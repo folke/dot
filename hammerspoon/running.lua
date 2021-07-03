@@ -68,7 +68,7 @@ module._addAppWindow = function(app, ax)
       module.windows[pid] = {}
     end
     local win = ax:asHSWindow()
-    if not module.windows[pid][win:id()] then
+    if win and not module.windows[pid][win:id()] then
       module.windows[pid][win:id()] = ax
       module.triggerChange(app, win, module.events.created)
     end
