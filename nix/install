@@ -40,4 +40,9 @@ info "building"
 nix build .\#$system
 
 info "switch"
-./result/sw/bin/darwin-rebuild switch --flake .\#$system
+
+if [ "$system" = "linux" ]; then
+  ./result/activate
+else
+  ./result/sw/bin/darwin-rebuild switch --flake .\#$system
+fi
