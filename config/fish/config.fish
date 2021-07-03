@@ -1,9 +1,10 @@
 #u Load universal config when it's changed
 
+set -l fish_config_mtime
 if test -d /Applications
-set -l fish_config_mtime (/usr/bin/stat -f %m $__fish_config_dir/config.fish)
+    set fish_config_mtime (/usr/bin/stat -f %m $__fish_config_dir/config.fish)
 else
-set -l fish_config_mtime (/usr/bin/stat -c %Y $__fish_config_dir/config.fish)
+    set fish_config_mtime (/usr/bin/stat -c %Y $__fish_config_dir/config.fish)
 end
 
 set -gx EDITOR nvim
