@@ -9,5 +9,8 @@ foo.*
 result
 home/.aria2/aria2.session
 packer_compiled.vim
+packer_compiled.lua
 fish_variables
 *.session
+state.yml
+
