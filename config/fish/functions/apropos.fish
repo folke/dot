@@ -1,3 +1,3 @@
-function apropos --description 'alias apropos MANPATH=/Users/folke/.cache/fish command apropos'
-  MANPATH=/Users/folke/.cache/fish command apropos $argv; 
+function apropos --description 'alias apropos MANPATH=/home/folke/.cache/fish command apropos'
+  MANPATH=/home/folke/.cache/fish command apropos $argv; 
 end
