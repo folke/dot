@@ -1,0 +1,6 @@
+device_name = "Apple Inc. Apple Internal Keyboard / Trackpad"
+
+[[dual_role]]
+input = "KEY_CAPSLOCK"
+hold = ["KEY_LEFTCTRL"]
+tap = ["KEY_ESC"]

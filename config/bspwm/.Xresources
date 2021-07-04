@@ -1,0 +1,14 @@
+/* Xft.dpi: 120 */
+
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+Xcursor.theme: xcursor-neutral
+Xcursor.size: 32
+
+URxvt.font: xft:FiraCode Nerd Font Mono:style=Regular:size=10
+URxvt.boldFont: xft:FiraCode Nerd Font Mono:style=Bold:size=10
