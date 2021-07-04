@@ -18,6 +18,7 @@ let
 
   linuxPackages = with pkgs; [
 #   git
+  fish
   kmonad
   ];
 in
