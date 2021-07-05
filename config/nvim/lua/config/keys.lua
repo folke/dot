@@ -49,7 +49,7 @@ util.xnoremap("N", "'nN'[v:searchforward]", { expr = true })
 util.onoremap("N", "'nN'[v:searchforward]", { expr = true })
 
 -- telescope <ctrl-r> in command line
-vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
+-- vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
 
 -- markdown
 util.nnoremap("=t", "<cmd>TableFormat<cr>")
