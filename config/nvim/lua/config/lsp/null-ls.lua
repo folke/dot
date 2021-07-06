@@ -4,6 +4,8 @@ local M = {}
 
 function M.setup()
   nls.config({
+    debounce = 150,
+    save_after_format = false,
     sources = {
       nls.builtins.formatting.prettierd,
       nls.builtins.formatting.stylua,
