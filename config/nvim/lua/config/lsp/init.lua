@@ -93,7 +93,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
   properties = { "documentation", "detail", "additionalTextEdits" },
 }
 
-require("nvim-lsp-json").setup()
+require("workspace").setup()
 require("config.lsp.null-ls").setup()
 
 for server, config in pairs(servers) do
