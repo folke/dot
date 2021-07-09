@@ -20,7 +20,6 @@ end
 function M.format()
   if M.autoformat then
     vim.lsp.buf.formatting_sync()
-    vim.lsp.diagnostic.display(nil, vim.api.nvim_get_current_buf())
   end
 end
 
