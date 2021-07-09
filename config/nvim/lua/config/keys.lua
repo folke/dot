@@ -14,10 +14,10 @@ util.nmap("<up>", "<C-w>k")
 util.nmap("<right>", "<C-w>l")
 
 -- Resize window using <ctrl> arrow keys
-util.nnoremap("<C-Up>", ":resize +2<CR>")
-util.nnoremap("<C-Down>", ":resize -2<CR>")
-util.nnoremap("<C-Left>", ":vertical resize -2<CR>")
-util.nnoremap("<C-Right>", ":vertical resize +2<CR>")
+util.nnoremap("<S-Up>", ":resize +2<CR>")
+util.nnoremap("<S-Down>", ":resize -2<CR>")
+util.nnoremap("<S-Left>", ":vertical resize -2<CR>")
+util.nnoremap("<S-Right>", ":vertical resize +2<CR>")
 
 -- Move Lines
 util.nnoremap("<A-j>", ":m .+1<CR>==")
@@ -28,8 +28,8 @@ util.vnoremap("<A-k>", ":m '<-2<CR>gv=gv")
 util.inoremap("<A-k>", "<Esc>:m .-2<CR>==gi")
 
 -- Switch buffers with tab
-util.nnoremap("<tab>", ":bnext<cr>")
-util.nnoremap("<S-tab>", ":bprevious<cr>")
+util.nnoremap("<C-Left>", ":bprevious<cr>")
+util.nnoremap("<C-Right>", ":bnext<cr>")
 
 -- Easier pasting
 util.nnoremap("[p", ":pu!<cr>")
