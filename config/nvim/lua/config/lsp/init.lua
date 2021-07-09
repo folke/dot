@@ -76,6 +76,7 @@ local servers = {
   jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
   html = { cmd = { "html-languageserver", "--stdio" } },
   clangd = {},
+  -- gopls = {},
   -- intelephense = {},
   ["null-ls"] = {},
   sumneko_lua = require("lua-dev").setup({

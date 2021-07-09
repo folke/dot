@@ -48,7 +48,7 @@ M.config = {
   settings = {
     rootMarkers = { "package.json", ".git" },
     languages = {
-      -- lua = { selene },
+      -- lua = { selene, stylua },
       -- typescript = { prettierLocal },
       -- javascript = eslintPrettier,
       -- typescriptreact = eslintPrettier,
@@ -73,7 +73,6 @@ for ft, _ in pairs(M.config.settings.languages) do
 end
 
 M.formatted_languages = {}
-vim.fn.abs(123)
 
 for lang, tools in pairs(M.config.settings.languages) do
   for _, tool in pairs(tools) do
