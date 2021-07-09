@@ -304,13 +304,21 @@ local function plugins(use)
 
   use({
     "phaazon/hop.nvim",
-    keys = { "gh", "s" },
+    keys = { "gh" },
     cmd = { "HopWord", "HopChar1" },
     config = function()
       require("util").nmap("gh", "<cmd>HopWord<CR>")
       -- require("util").nmap("s", "<cmd>HopChar1<CR>")
       -- you can configure Hop the way you like here; see :h hop-config
       require("hop").setup({})
+    end,
+  })
+
+  use({
+    "ggandor/lightspeed.nvim",
+    event = "BufReadPost",
+    config = function()
+      require("config.lightspeed")
     end,
   })
 
