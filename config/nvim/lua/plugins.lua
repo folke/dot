@@ -14,7 +14,7 @@ local config = {
   -- this is NOT packer functionality!
   local_plugins = {
     folke = true,
-    ["nvim-compe"] = true,
+    ["nvim-compe"] = false,
     ["null-ls.nvim"] = true,
     -- ["nvim-treesitter"] = true,
   },
@@ -293,7 +293,8 @@ local function plugins(use)
     run = function()
       vim.fn["mkdp#util#install"]()
     end,
-    cmd = "MarkdownPreview",
+    ft = "markdown",
+    cmd = { "MarkdownPreview" },
   })
 
   -- use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
@@ -334,10 +335,10 @@ local function plugins(use)
 
   use({
     "folke/persistence.nvim",
-    event = "BufReadPre",
+    event = "VimEnter",
     module = "persistence",
     config = function()
-      require("persistence").start()
+      require("persistence").setup()
     end,
   })
 
