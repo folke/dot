@@ -15,4 +15,6 @@
       }
     )
   ];
+
+  fonts.fontconfig.enable = true;
 }
