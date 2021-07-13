@@ -8,7 +8,7 @@ LOGS=~/.cache/bspwm/logs
 
 exec >$LOGS/bspwm.log 2>&1
 
-xrdb ~/.config/bspwm/.Xresources
+# xrdb ~/.config/bspwm/.Xresources
 xsetroot -cursor_name left_ptr
 
 deamonize() {
