@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$(playerctl status -a 2>/dev/null | grep Playing)" = "Playing" ]; then
+  echo 
+else
+  echo 
+fi
