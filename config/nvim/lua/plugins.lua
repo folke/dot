@@ -16,6 +16,7 @@ local config = {
     folke = true,
     ["nvim-compe"] = false,
     ["null-ls.nvim"] = true,
+    ["nvim-lspconfig"] = true,
     -- ["nvim-treesitter"] = true,
   },
 }
@@ -23,7 +24,7 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", opt = true })
-
+  use({ "folke/workspace.nvim" })
   -- LSP
   use({
     "neovim/nvim-lspconfig",
@@ -174,6 +175,7 @@ local function plugins(use)
       require("config.telescope")
     end,
     cmd = { "Telescope" },
+    module = "telescope",
     keys = { "<leader><space>", "<leader>fz", "<leader>pp" },
     wants = {
       "plenary.nvim",
