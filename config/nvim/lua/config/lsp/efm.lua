@@ -4,7 +4,7 @@ local M = {}
 
 local stylua = { formatCommand = "stylua -", formatStdin = true }
 local selene = {
-  lintComman = "selene --display-style quiet -",
+  lintCommand = "selene --display-style quiet -",
   lintIgnoreExitCode = true,
   lintStdin = true,
   lintFormats = { "%f:%l:%c: %tarning%m", "%f:%l:%c: %tarning%m" },
