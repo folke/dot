@@ -145,7 +145,14 @@ local leader = {
     name = "+search",
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
     b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Buffer" },
-    s = { "<cmd>Telescope lsp_document_symbols<cr>", "Goto Symbol" },
+    s = {
+      function()
+        require("telescope.builtin").lsp_document_symbols({
+          symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
+        })
+      end,
+      "Goto Symbol",
+    },
     h = { "<cmd>Telescope command_history<cr>", "Command History" },
     m = { "<cmd>Telescope marks<cr>", "Jump to Mark" },
     r = { "<cmd>lua require('spectre').open()<CR>", "Replace (Spectre)" },
@@ -226,6 +233,8 @@ local leader = {
     x = { "<cmd>TroubleToggle<cr>", "Trouble" },
     w = { "<cmd>TroubleWorkspaceToggle<cr>", "Workspace Trouble" },
     d = { "<cmd>TroubleDocumentToggle<cr>", "Document Trouble" },
+    t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
+    T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
     l = { "<cmd>lopen<cr>", "Open Location List" },
     q = { "<cmd>copen<cr>", "Open Quickfix List" },
   },
