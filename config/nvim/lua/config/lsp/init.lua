@@ -79,10 +79,9 @@ local servers = {
   -- gopls = {},
   -- intelephense = {},
   ["null-ls"] = {},
-  sumneko_lua = require("lua-dev").setup({
-    -- library = { plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" } },
-    lspconfig = { cmd = lua_cmd },
-  }),
+  sumneko_lua = {
+    cmd = lua_cmd,
+  },
   efm = require("config.lsp.efm").config,
   vimls = {},
   -- tailwindcss = {},
@@ -95,6 +94,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 
 require("workspace").setup()
+require("lua-dev").setup()
 require("config.lsp.null-ls").setup()
 
 for server, config in pairs(servers) do
