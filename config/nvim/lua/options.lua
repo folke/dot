@@ -49,6 +49,7 @@ vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+vim.o.shortmess = "IToOlxfitn"
 
 -- don't load the plugins below
 vim.g.loaded_gzip = 1

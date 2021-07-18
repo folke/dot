@@ -13,6 +13,7 @@ function M.setup()
       nls.builtins.diagnostics.shellcheck,
       nls.builtins.diagnostics.markdownlint,
       nls.builtins.diagnostics.selene,
+      nls.builtins.code_actions.gitsigns,
     },
   })
 end
