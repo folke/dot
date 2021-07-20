@@ -15,8 +15,8 @@ local config = {
   local_plugins = {
     folke = true,
     ["nvim-compe"] = false,
-    ["null-ls.nvim"] = true,
-    ["nvim-lspconfig"] = true,
+    ["null-ls.nvim"] = false,
+    ["nvim-lspconfig"] = false,
     -- ["nvim-treesitter"] = true,
   },
 }
@@ -92,6 +92,7 @@ local function plugins(use)
     requires = {
       { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "RRethy/nvim-treesitter-textsubjects",
     },
     config = [[require('config.treesitter')]],
   })
@@ -337,7 +338,7 @@ local function plugins(use)
 
   use({
     "folke/persistence.nvim",
-    event = "VimEnter",
+    event = "BufReadPre",
     module = "persistence",
     config = function()
       require("persistence").setup()
