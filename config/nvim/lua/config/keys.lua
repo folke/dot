@@ -48,6 +48,11 @@ util.nnoremap("N", "'nN'[v:searchforward]", { expr = true })
 util.xnoremap("N", "'nN'[v:searchforward]", { expr = true })
 util.onoremap("N", "'nN'[v:searchforward]", { expr = true })
 
+-- Add undo break-points
+util.inoremap(",", ",<c-g>u")
+util.inoremap(".", ".<c-g>u")
+util.inoremap(";", ";<c-g>u")
+
 -- telescope <ctrl-r> in command line
 -- vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
 
