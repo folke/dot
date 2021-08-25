@@ -17,9 +17,9 @@ let
   kmonad = (import ./kmonad.nix) pkgs;
 
   linuxPackages = with pkgs; [
-#   git
-  fish
-  kmonad
+    #   git
+    fish
+    kmonad
   ];
 in
 {
@@ -35,6 +35,7 @@ in
     ctop
     delta
     du-dust
+    duf
     exa
     fd
     direnv

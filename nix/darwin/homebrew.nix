@@ -15,6 +15,7 @@
       "homebrew/cask"
       "homebrew/cask-versions"
       "nextdns/homebrew-tap"
+      "homebrew/cask-drivers"
     ];
 
     brews = [
@@ -26,7 +27,9 @@
 
     casks = [
       "alfred"
+      "android-file-transfer"
       "avibrazil-rdm"
+      "garmin-basecamp"
       "bitwarden"
       "discord"
       "docker-edge"
