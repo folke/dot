@@ -74,7 +74,7 @@ in
     tmuxinator
     tokei
     weechat
-    wezterm
+    #wezterm
     zoxide
   ] ++ (if isDarwin then darwinPackages else linuxPackages);
 
