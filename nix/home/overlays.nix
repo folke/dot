@@ -1,16 +1,17 @@
 self: super: {
   sumneko-lua-language-server = super.sumneko-lua-language-server.overrideAttrs (
     o: rec {
-      version = "2.2.3";
+      version = "2.3.6";
 
       src = builtins.fetchurl {
         url = "https://github.com/sumneko/vscode-lua/releases/download/v${version}/lua-${version}.vsix";
-        sha256 = "16rpi6p7rslpdfi37ndy5g9qmvh22qljfk9w15kdrr668hfwp7nm";
+        sha256 = "1v9gkcqw25jq20drd1r73lh6ciq188nh85acc5yngjkagkzpaka9";
       };
 
       unpackPhase = ''
         ${super.pkgs.unzip}/bin/unzip $src
       '';
+      postPatch = "";
 
       platform = if super.stdenv.isDarwin then "macOS" else "Linux";
 
