@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if [ -n "$1" ]; then
+  brightnessctl --device "acpi_video0" set "$1"
+fi
+
+function strep() {
+  for i in $(seq 1 $2); do
+    ret=$ret$1
+  done
+  echo $ret
+}
+
+msgid="999991"
+
+current=$(brightnessctl --device "acpi_video0" get)
+icon=
+[ "$current" -lt 30 ] && icon=-low
+[ "$current" -gt 70 ] && icon=-full
+width=12
+fw=$(echo "$current / 100 * $width" | bc --mathlib)
+fw=$(printf "%.0f\n" "$fw")
+ew=$(($width - $fw))
+bar=$(strep "⬤" $fw)
+bar=$bar$(strep "◯" $ew)
+dunstify "$current%  $bar" -a brightness -u low -r $msgid -i notification-display-brightness$icon -t 1000

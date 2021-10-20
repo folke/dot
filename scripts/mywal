@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# set -e
+
+# base16-paraiso.json
+
+XDG_CURRENT_DESKTOP=
+if [ "$#" -eq 0 ]; then
+  wallpaper=${1:-Pictures/Cyberpunk/}
+  shift
+  wal -n -e -i $wallpaper --backend colorz $@
+else
+  wal -n -e --backend colorz $@
+fi
+
+
+echo "[mywal] setting wallpaper"
+nitrogen --save --set-scaled $(cat ~/.cache/wal/wal) &
+
+echo "[mywal] generating polybar colors"
+~/.config/polybar/scripts/colors.py > ~/.config/polybar/colors.ini
+
+echo "[mywal] restarting polybar"
+echo cmd:restart >/tmp/polybar_mqueue.$(pidof polybar)
+
+echo "[mywal] restarting dunst"
+pgrep dunst && killall dunst 2>&1 > /dev/null
+dunst 2>&1 > /dev/null &
+
+echo "[mywal] update bspwm colors"
+. "$HOME/.cache/wal/colors.sh"
+bspc config normal_border_color "$color0"
+bspc config active_border_color "$color2"
+bspc config focused_border_color "$color4"
+bspc config presel_feedback_color "$color1"

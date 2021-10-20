@@ -1,0 +1,60 @@
+#!/bin/bash
+set -e
+
+# Config
+# ======
+
+# Where to look for wid files:
+TMPDIR="$XDG_RUNTIME_DIR/drawers.wids/"
+
+# Find and show/hide the window if it exists
+# ==========================================
+
+NAME=$1
+
+if [[ -e $TMPDIR$NAME ]]; then
+     read -r WINDOW < "$TMPDIR$NAME"
+
+    # Window exists? Show/hide it and we're done.
+    if xprop -id $WINDOW 2>/dev/null; then
+        if xdotool search --onlyvisible . | grep -q "$WINDOW"; then
+            xdotool windowminimize "$WINDOW"
+        else
+            bringwindow -R "$WINDOW"
+        fi
+        exit
+    fi
+fi
+
+# No window to show/hide, better create it. Do setup for that.
+# ============================================================
+
+# no xinerama for now
+CFG=($(xdotool getdisplaygeometry))
+WIDTH=${CFG[0]}
+HEIGHT=400
+LEFT=0
+TOP=40
+
+# Create the window
+# =================
+
+kitty &
+# await new window:
+countWins() { 
+    xdotool search --onlyvisible . 2> /dev/null | wc -l 
+}
+
+WIN_CNT="$(countWins)"
+while [[ $(countWins) = "$WIN_CNT" ]]; do sleep 0.1; done
+sleep 0.25
+
+# new window should now be active, make it our window:
+WINDOW="$(xdotool getactivewindow)"
+echo "Window: $WINDOW"
+xdotool set_window --role "drawer" $WINDOW
+wmctrl -i -r $WINDOW -b add,skip_taskbar,above
+mkdir -p "$TMPDIR"
+echo "$WINDOW" > "$TMPDIR$NAME"
+
+xdotool windowmove $WINDOW $LEFT $TOP windowsize $WINDOW $WIDTH $HEIGHT windowfocus $WINDOW windowraise $WINDOW
