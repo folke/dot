@@ -1,6 +1,7 @@
 { pkgs, config, home-manager, ... }:
 
 {
+  fonts.fontconfig.enable = true;
   home.packages = with pkgs; [
     (
       nerdfonts.override {
