@@ -14,6 +14,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local lain = require("lain")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -70,19 +71,19 @@ local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-  awful.layout.suit.floating,
+  -- awful.layout.suit.floating,
   awful.layout.suit.tile,
-  awful.layout.suit.tile.left,
-  awful.layout.suit.tile.bottom,
-  awful.layout.suit.tile.top,
-  awful.layout.suit.fair,
-  awful.layout.suit.fair.horizontal,
-  awful.layout.suit.spiral,
-  awful.layout.suit.spiral.dwindle,
-  awful.layout.suit.max,
-  awful.layout.suit.max.fullscreen,
-  awful.layout.suit.magnifier,
-  awful.layout.suit.corner.nw,
+  -- awful.layout.suit.tile.left,
+  -- awful.layout.suit.tile.bottom,
+  -- awful.layout.suit.tile.top,
+  -- awful.layout.suit.fair,
+  -- awful.layout.suit.fair.horizontal,
+  -- awful.layout.suit.spiral,
+  -- awful.layout.suit.spiral.dwindle,
+  -- awful.layout.suit.max,
+  -- awful.layout.suit.max.fullscreen,
+  -- awful.layout.suit.magnifier,
+  -- awful.layout.suit.corner.nw,
   -- awful.layout.suit.corner.ne,
   -- awful.layout.suit.corner.sw,
   -- awful.layout.suit.corner.se,
@@ -261,9 +262,23 @@ root.buttons(gears.table.join(
   awful.button({}, 5, awful.tag.viewprev)
 ))
 -- }}}
+--
+local quake = lain.util.quake({
+  app = terminal,
+  argname = "--name %s",
+  extra = "-o background_opacity=0.85",
+  vert = "center",
+  horiz = "center",
+  width = 0.7,
+  height = 0.7,
+})
 
 -- {{{ Key bindings
 local globalkeys = gears.table.join(
+  awful.key({ "Mod1" }, "Return", function()
+    quake:toggle()
+    naughty.notify({ text = "foo" })
+  end),
   awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
   awful.key({ modkey, "Control" }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
   awful.key({ modkey, "Control" }, "Up", awful.tag.viewprev, { description = "view previous", group = "tag" }),
@@ -394,18 +409,6 @@ local globalkeys = gears.table.join(
     description = "decrease the number of columns",
     group = "layout",
   }),
-  awful.key({ modkey }, "space", function()
-    awful.layout.inc(1)
-  end, {
-    description = "select next",
-    group = "layout",
-  }),
-  awful.key({ modkey, "Shift" }, "space", function()
-    awful.layout.inc(-1)
-  end, {
-    description = "select previous",
-    group = "layout",
-  }),
 
   awful.key({ modkey, "Control" }, "n", function()
     local c = awful.client.restore()
@@ -438,9 +441,13 @@ local globalkeys = gears.table.join(
     group = "awesome",
   }),
   -- Menubar
-  awful.key({ modkey }, "p", function()
-    menubar.show()
-  end, { description = "show the menubar", group = "launcher" })
+  awful.key({ modkey }, "space", function()
+    awful.spawn("rofi -show")
+    -- menubar.show()
+  end, {
+    description = "show the menubar",
+    group = "launcher",
+  })
 )
 
 local clientkeys = gears.table.join(
@@ -657,46 +664,6 @@ client.connect_signal("manage", function(c)
   end
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-  -- buttons for the titlebar
-  local buttons = gears.table.join(
-    awful.button({}, 1, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.move(c)
-    end),
-    awful.button({}, 3, function()
-      c:emit_signal("request::activate", "titlebar", { raise = true })
-      awful.mouse.client.resize(c)
-    end)
-  )
-
-  awful.titlebar(c):setup({
-    { -- Left
-      awful.titlebar.widget.iconwidget(c),
-      buttons = buttons,
-      layout = wibox.layout.fixed.horizontal,
-    },
-    { -- Middle
-      { -- Title
-        align = "center",
-        widget = awful.titlebar.widget.titlewidget(c),
-      },
-      buttons = buttons,
-      layout = wibox.layout.flex.horizontal,
-    },
-    { -- Right
-      awful.titlebar.widget.floatingbutton(c),
-      awful.titlebar.widget.maximizedbutton(c),
-      awful.titlebar.widget.stickybutton(c),
-      awful.titlebar.widget.ontopbutton(c),
-      awful.titlebar.widget.closebutton(c),
-      layout = wibox.layout.fixed.horizontal(),
-    },
-    layout = wibox.layout.align.horizontal,
-  })
-end)
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
   -- c:emit_signal("request::activate", "mouse_enter", { raise = false })
@@ -713,4 +680,5 @@ end)
 -- }}}
 
 awful.spawn.with_shell("~/projects/picom/build/src/picom")
+awful.spawn.with_shell("xset r rate 200 30")
 -- awful.spawn.with_shell("nitrogren --restore")
