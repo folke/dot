@@ -2,6 +2,8 @@
 
 {
   home.packages = with pkgs; [
+    selene
+    efm-langserver
     clang-tools # clangd
     neovim-nightly
     nodePackages.bash-language-server

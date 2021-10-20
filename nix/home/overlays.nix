@@ -51,4 +51,23 @@ self: super: {
       '';
     }
   );
+  selene = super.stdenv.mkDerivation rec {
+    pname = "selene";
+    version = "0.14.0";
+
+    src = builtins.fetchurl {
+      url = "https://github.com/Kampfkarren/selene/releases/download/${version}/selene-${version}-linux.zip";
+      sha256 = "11938xfkap8sjq0qkn8sj3v48a2vqw65gyvbskqzn0ymlrgrfska";
+    };
+
+    unpackPhase = ''
+      ${super.pkgs.unzip}/bin/unzip $src
+    '';
+
+    installPhase = ''
+      mkdir -p $out/bin
+      chmod a+x ./selene
+      cp ./selene $out/bin/selene
+    '';
+  };
 }
