@@ -48,7 +48,7 @@ end
 local function on_attach(client, bufnr)
   require("config.lsp.formatting").setup(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
-  require("config.lsp.completion").setup(client, bufnr)
+  -- require("config.lsp.completion").setup(client, bufnr)
   require("config.lsp.highlighting").setup(client)
 
   -- TypeScript specific stuff
