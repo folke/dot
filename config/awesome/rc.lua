@@ -51,7 +51,7 @@ end
 -- }}}
 
 awful.screen.set_auto_dpi_enabled(true)
-beautiful.xresources.set_dpi(96)
+-- beautiful.xresources.set_dpi(96)
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/folke/theme.lua")
@@ -683,7 +683,7 @@ client.connect_signal("unfocus", function(c)
 end)
 -- }}}
 
-awful.spawn.with_shell("xrandr -s 2560x1600")
+-- awful.spawn.with_shell("xrandr -s 2560x1600")
 awful.spawn.with_shell("~/projects/picom/build/src/picom")
 awful.spawn.with_shell("xset r rate 200 30")
 -- awful.spawn.with_shell("nitrogren --restore")
