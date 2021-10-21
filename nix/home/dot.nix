@@ -3,15 +3,16 @@ let
   util = (import ./util.nix) { config = config; };
   isDarwin = pkgs.stdenv.isDarwin;
 
-  extraHome = if pkgs.stdenv.isDarwin then {
-    "./Library/Application Support/lazygit/config.yml".source = util.link "config/lazygit/config.yml";
-    ".hammerspoon".source = util.link "hammerspoon";
-    ".gnupg/gpg-agent.conf".text =
-      "pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac";
-  } else {
-    ".gnupg/gpg-agent.conf".text =
-      "pinentry-program ${pkgs.pinentry.gnome3}/bin/pinentry";
-  };
+  extraHome =
+    if pkgs.stdenv.isDarwin then {
+      "./Library/Application Support/lazygit/config.yml".source = util.link "config/lazygit/config.yml";
+      ".hammerspoon".source = util.link "hammerspoon";
+      ".gnupg/gpg-agent.conf".text =
+        "pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac";
+    } else {
+      ".gnupg/gpg-agent.conf".text =
+        "pinentry-program ${pkgs.pinentry.gnome3}/bin/pinentry";
+    };
 in
 {
   xdg.configFile = util.link-all "config" ".";
@@ -23,6 +24,7 @@ in
       ".zshrc".text = "source <(starship init zsh --print-full-init)";
       ".hushlogin".text = "";
       ".gitconfig".source = util.link "config/.gitconfig";
+      ".Xresources".source = util.link "config/.Xresources";
       /* "dot".source = util.link ""; */
     } // extraHome // {
       ".npmrc".text = ''

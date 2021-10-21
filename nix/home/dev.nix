@@ -4,10 +4,12 @@ let
 
   darwinPackages = with pkgs; [
     # git: use system git with keychain integration
+    hub
   ];
 
   linuxPackages = with pkgs; [
     #git
+    #hub: use system hub
   ];
 in
 {
@@ -18,7 +20,7 @@ in
     adoptopenjdk-bin
     gh
     go
-    hub
+    /* hub */
     lua
     nodejs
     nodePackages.pnpm
