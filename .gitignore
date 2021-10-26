@@ -13,4 +13,4 @@ packer_compiled.lua
 fish_variables
 *.session
 state.yml
-
+config/lazygit/*/*.patch
