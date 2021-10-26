@@ -7,7 +7,10 @@ else
     set fish_config_mtime (/usr/bin/stat -c %Y $__fish_config_dir/config.fish)
 end
 
-set -gx EDITOR nvim
+set -gx EDITOR (which nvim)
+set -gx VISUAL $EDITOR
+set -gx SUDO_EDITOR $EDITOR
+
 if test "$fish_config_changed" = "$fish_config_mtime"
     exit
 else
@@ -42,8 +45,6 @@ fish_add_path $GOPATH $GOPATH/bin
 
 fish_add_path -m ~/.nix-profile/bin /etc/profiles/per-user/folke/bin /run/current-system/sw/bin /nix/var/nix/profiles/default/bin
 # Exports
-set -Ux EDITOR nvim
-set -Ux VISUAL nvim
 set -Ux LESS -rF
 set -Ux BAT_THEME Dracula
 set -Ux COMPOSE_DOCKER_CLI_BUILD 1
@@ -51,6 +52,7 @@ set -Ux HOMEBREW_NO_AUTO_UPDATE 1
 set -Ux DOTDROP_AUTOUPDATE no
 set -Ux MANPAGER "nvim +Man!"
 set -Ux MANROFFOPT -c
+set -Ux OPENCV_LOG_LEVEL ERROR
 #set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 #set -Ux MANPAGER "most" # use bat to format man pages
 
@@ -79,6 +81,7 @@ abbr ncdu "ncdu --color dark"
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
+abbr sv sudoedit
 
 # Dev
 abbr git hub
