@@ -1,0 +1,46 @@
+- name: copr bottom
+  become: yes
+  community.general.copr:
+    name: atim/bottom
+
+- name: copr lazydocker
+  become: yes
+  community.general.copr:
+    name: atim/lazydocker
+
+- name: copr lazygit
+  become: yes
+  community.general.copr:
+    name: atim/lazygit
+
+- name: copr bandwhich
+  become: yes
+  community.general.copr:
+    name: atim/bandwhich
+
+- name: copr ctop
+  become: yes
+  community.general.copr:
+    name: fuhrmann/ctop
+
+- name: copr fzy
+  become: yes
+  community.general.copr:
+    name: lehrenfried/fzy
+
+- name: Neovim Nightly
+  become: yes
+  community.general.copr:
+    name: agriffis/neovim-nightly
+
+- name: gh repo
+  become: yes
+  command:
+    cmd: dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+    warn: false
+  args:
+    creates: /etc/yum.repos.d/gh-cli.repo
+
+- name: Tap homebrew/cask-fonts
+  community.general.homebrew_tap:
+    name: homebrew/cask-fonts

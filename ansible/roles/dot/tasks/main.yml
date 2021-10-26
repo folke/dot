@@ -1,0 +1,56 @@
+- name: Create ~/.config
+  file:
+    path: ~/.config
+    state: directory
+
+- name: Find .config files
+  find:
+    paths: ~/dot/config/
+    recurse: no
+    file_type: any
+    hidden: yes
+  register: dot_config
+
+- name: Creating symlinks
+  file:
+    src: "{{item.path}}"
+    dest: "~/.config/{{item.path | basename}}"
+    state: link
+  with_items: "{{ dot_config.files }}"
+
+- name: .bashrc
+  copy:
+    dest: ~/.bashrc
+    content: "source <(starship init bash --print-full-init)"
+
+- name: .zshrc
+  copy:
+    dest: ~/.zshrc
+    content: "source <(starship init zsh --print-full-init)"
+
+- name: .hushlogin
+  copy:
+    dest: ~/.hushlogin
+    content: ""
+
+- name: .gitconfig
+  file:
+    src: ~/.config/.gitconfig
+    dest: ~/.gitconfig
+    state: link
+
+- name: .Xresources
+  file:
+    src: ~/.config/.Xresources
+    dest: ~/.Xresources
+    state: link
+
+- name: .npmrc
+  copy:
+    dest: ~/.npmrc
+    content: "global-dir=${config.home.homeDirectory}/.pnpm-global"
+
+- name: gpg-agent.conf
+  copy:
+    dest: ~/.gnupg/gpg-agent.conf
+    content: "pinentry-program /bin/pinentry"

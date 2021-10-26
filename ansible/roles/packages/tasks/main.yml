@@ -1,0 +1,98 @@
+- import_tasks: repos.yml
+
+- name: install dnf tools
+  become: yes
+  dnf:
+    state: latest
+    update_cache: yes
+    enablerepo: atim/lazygit
+    name:
+      # LinuxBrew Dependencies
+      - "@Development Tools"
+      - procps-ng
+      - curl
+      - file
+      - libxcrypt-compat
+
+      # gui
+      - alacritty
+      - brave-browser-beta
+      - discord
+      - element
+      - gnome-tweaks
+      - kitty
+
+      # cli
+      - aria2
+      - aspell
+      - bat
+      - bandwhich
+      - bottom
+      - ctop
+      - curl
+      - gh
+      - git-delta
+      - exa
+      - fd-find
+      - direnv
+      - fzf
+      - fzy
+      - git
+      # - glow
+      - gnupg
+      - htop
+      - httpie
+      - hub
+      - hyperfine
+      - jq
+      # - languagetool
+      - lazydocker
+      - lazygit
+      - neovim
+      - nnn
+      - nodejs
+      - ncdu
+      - osmium-tool
+      - pass
+      - procs
+      - qemu
+      - ranger
+      - ripgrep
+      - ShellCheck
+      - shfmt
+      - starship
+      - tealdeer
+      - tmux
+      # - tmuxinator
+      - tokei
+      - weechat
+      - wget
+      # - wezterm
+      - zoxide
+
+- name: install brew tools
+  community.general.homebrew:
+    path: /home/linuxbrew/.linuxbrew/bin
+    state: latest
+    name:
+      # cli
+      - as-tree
+      - broot
+      - duf
+      - dust
+      - fnm
+      - grc
+      - markdownlint-cli
+      - mdcat
+      - pfetch
+      - selene
+      - stylua
+
+      # fonts
+      # - font-fira-code-nerd-font
+      # - font-dejavu-sans-mono-nerd-font
+      # - font-jetbrains-mono-nerd-font
+      # - font-fantasque-sans-mono-nerd-font
+      # - font-victor-mono-nerd-font
+      # - font-source-code-pro
+# - name: install pnpm

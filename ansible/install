@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -e
+
+function have {
+  command -v "$1" &> /dev/null
+}
+
+# install ansible
+have ansible || sudo dnf install ansible -y
+
+# install ansible community plugins
+[ -d ~/.ansible/collections/ansible_collections/community ] || \
+  ansible-galaxy collection install community.general
+
+# Install LinuxBrew
+if ! have "brew"; then
+  sudo dnf group install -y 'Development Tools'
+  sudo dnf install -y procps-ng curl file git libxcrypt-compat
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Run Ansible
+ansible-playbook -i ./hosts ./linux.yml --ask-become-pass

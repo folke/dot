@@ -1,0 +1,4 @@
+- name: update font cache
+  command:
+    cmd: fc-cache -v
+    warn: true

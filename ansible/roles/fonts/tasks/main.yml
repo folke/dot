@@ -1,0 +1,9 @@
+- name: Download Nerd Fonts
+  include: download.yml
+  with_items:
+    - FiraCode
+    - DejaVuSansMono
+    - JetBrainsMono
+    - FantasqueSansMono
+    - VictorMono
+    - SourceCodePro
