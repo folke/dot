@@ -272,7 +272,7 @@ local function plugins(use)
 
   -- Statusline
   use({
-    "hoob3rt/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     config = [[require('config.lualine')]],
     wants = "nvim-web-devicons",
