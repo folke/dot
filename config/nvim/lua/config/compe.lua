@@ -31,7 +31,13 @@ cmp.setup({
   documentation = {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
+  experimental = {
+    ghost_text = {
+      hl_group = "LineNr",
+    },
+  },
 })
+
 -- require("compe").setup({
 --   enabled = true,
 --   autocomplete = true,
