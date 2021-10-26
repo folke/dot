@@ -56,6 +56,11 @@ set -Ux OPENCV_LOG_LEVEL ERROR
 #set -Ux MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 #set -Ux MANPAGER "most" # use bat to format man pages
 
+# Dnf
+abbr dnfi 'sudo dnf install'
+abbr dnfs 'sudo dnf search'
+abbr dnfr 'sudo dnf remove'
+abbr dnfu 'sudo dnf upgrade --refresh'
 
 # Tmux
 abbr t tmux
