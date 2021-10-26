@@ -106,15 +106,15 @@ function M.log(msg, hl, name)
 end
 
 function M.warn(msg, name)
-  M.log(msg, "LspDiagnosticsDefaultWarning", name)
+  M.log(msg, "DiagnosticWarn", name)
 end
 
 function M.error(msg, name)
-  M.log(msg, "LspDiagnosticsDefaultError", name)
+  M.log(msg, "DiagnosticError", name)
 end
 
 function M.info(msg, name)
-  M.log(msg, "LspDiagnosticsDefaultInformation", name)
+  M.log(msg, "DiagnosticInfo", name)
 end
 
 function M.toggle(option, silent)
