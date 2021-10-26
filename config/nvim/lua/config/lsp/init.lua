@@ -16,14 +16,7 @@ local function on_attach(client, bufnr)
   end
 end
 
-local lua_cmd = {
-  "/Users/folke/projects/lua-language-server/bin/macOS/lua-language-server",
-  "-E",
-  "-e",
-  "LANG=en",
-  "/Users/folke/projects/lua-language-server/main.lua",
-}
-lua_cmd = { "lua-language-server" }
+local lua_cmd = { "lua-language-server" }
 
 local servers = {
   pyright = {},
@@ -35,8 +28,6 @@ local servers = {
   jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
   html = { cmd = { "html-languageserver", "--stdio" } },
   clangd = {},
-  -- gopls = {},
-  -- intelephense = {},
   ["null-ls"] = {},
   sumneko_lua = {
     cmd = lua_cmd,
