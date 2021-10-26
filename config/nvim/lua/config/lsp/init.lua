@@ -1,6 +1,3 @@
-local util = require("util")
-local lspconfig = require("lspconfig")
-
 require("config.lsp.diagnostics")
 require("config.lsp.kind").setup()
 
@@ -16,22 +13,17 @@ local function on_attach(client, bufnr)
   end
 end
 
-local lua_cmd = { "lua-language-server" }
-
 local servers = {
   pyright = {},
   bashls = {},
   dockerls = {},
   tsserver = {},
-  cssls = { cmd = { "css-languageserver", "--stdio" } },
+  cssls = {},
   rnix = {},
-  jsonls = { cmd = { "vscode-json-languageserver", "--stdio" } },
-  html = { cmd = { "html-languageserver", "--stdio" } },
+  jsonls = {},
+  html = {},
   clangd = {},
-  ["null-ls"] = {},
-  sumneko_lua = {
-    cmd = lua_cmd,
-  },
+  sumneko_lua = {},
   efm = require("config.lsp.efm").config,
   vimls = {},
   -- tailwindcss = {},
@@ -41,18 +33,13 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protoco
 
 require("workspace").setup()
 require("lua-dev").setup()
-require("config.lsp.null-ls").setup()
 
-for server, config in pairs(servers) do
-  lspconfig[server].setup(vim.tbl_deep_extend("force", {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
-  }, config))
-  local cfg = lspconfig[server]
-  if not (cfg and cfg.cmd and vim.fn.executable(cfg.cmd[1]) == 1) then
-    util.error(server .. ": cmd not found: " .. vim.inspect(cfg.cmd))
-  end
-end
+local options = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
+require("config.lsp.null-ls").setup(options)
+require("config.lsp.install").setup(servers, options)

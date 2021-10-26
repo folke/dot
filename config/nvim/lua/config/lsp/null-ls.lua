@@ -1,8 +1,7 @@
-local nls = require("null-ls")
-
 local M = {}
 
-function M.setup()
+function M.setup(options)
+  local nls = require("null-ls")
   nls.config({
     debounce = 150,
     save_after_format = false,
@@ -16,6 +15,7 @@ function M.setup()
       nls.builtins.code_actions.gitsigns,
     },
   })
+  require("lspconfig")["null-ls"].setup(options)
 end
 
 function M.has_formatter(ft)

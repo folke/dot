@@ -29,7 +29,14 @@ local function plugins(use)
     "neovim/nvim-lspconfig",
     opt = true,
     event = "BufReadPre",
-    wants = { "workspace.nvim", "nvim-lsp-ts-utils", "null-ls.nvim", "lua-dev.nvim", "cmp-nvim-lsp" },
+    wants = {
+      "workspace.nvim",
+      "nvim-lsp-ts-utils",
+      "null-ls.nvim",
+      "lua-dev.nvim",
+      "cmp-nvim-lsp",
+      "nvim-lsp-installer",
+    },
     config = function()
       require("config.lsp")
     end,
@@ -38,6 +45,7 @@ local function plugins(use)
       "jose-elias-alvarez/nvim-lsp-ts-utils",
       "jose-elias-alvarez/null-ls.nvim",
       "folke/lua-dev.nvim",
+      "williamboman/nvim-lsp-installer",
     },
   })
 
