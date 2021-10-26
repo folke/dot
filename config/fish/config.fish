@@ -43,7 +43,7 @@ set -Ux GOPATH ~/go
 fish_add_path $GOPATH $GOPATH/bin
 
 
-fish_add_path -m ~/.nix-profile/bin /etc/profiles/per-user/folke/bin /run/current-system/sw/bin /nix/var/nix/profiles/default/bin
+fish_add_path -m /etc/profiles/per-user/folke/bin /run/current-system/sw/bin
 # Exports
 set -Ux LESS -rF
 set -Ux BAT_THEME Dracula
@@ -99,13 +99,6 @@ abbr pull "hub pull"
 alias -s tn "npx --no-install ts-node --transpile-only"
 abbr tt "tn src/tt.ts"
 alias -s todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-lines --silent '((//|#|<!--|;|/\*|^)\s*(TODO|FIXME|FIX|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|DEBUG|OPTIMIZE)|^\s*- \[ \])'"
-
-# Nix
-abbr ni "nix-env -f '<nixpkgs>' -iA"
-abbr nq "nix-env -q"
-abbr nqa "nix-env -qa"
-abbr nd "nix-env -e"
-abbr nu "nix-env -u"
 
 # Other
 abbr df "grc /bin/df -h"

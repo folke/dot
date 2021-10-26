@@ -19,7 +19,6 @@ local servers = {
   dockerls = {},
   tsserver = {},
   cssls = {},
-  rnix = {},
   jsonls = {},
   html = {},
   clangd = {},
