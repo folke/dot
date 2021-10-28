@@ -1,11 +1,19 @@
 - name: Create Brave Apps
   template:
-    src: '~/dot/ansible/roles/web/templates/app.j2'
-    dest: '~/.local/share/applications/brave-{{item.name | lower}}.desktop'
+    src: "~/dot/ansible/roles/web/templates/app.j2"
+    dest: "~/.local/share/applications/brave-{{item.name | lower | regex_replace(' ', '-')}}.desktop"
   loop:
-    - { name: 'gmail', url: 'https://mail.google.com/mail/u/0/#inbox'}
-    - { name: 'whatsapp', url: 'https://web.whatsapp.com/'}
-    - { name: 'keep', url: 'https://keep.google.com/u/0/'}
+    - { name: "Gmail", url: "https://mail.google.com/mail/u/0/#inbox" }
+    - { name: "WhatsApp", url: "https://web.whatsapp.com/" }
+    - {
+        name: "Google Keep",
+        url: "https://keep.google.com/u/0/",
+        icon: "notes",
+      }
+    - {
+        name: "Google Calendar",
+        url: "https://calendar.google.com/calendar/u/0/r",
+      }
 
 - name: Fix Brave Password Store
   become: yes
