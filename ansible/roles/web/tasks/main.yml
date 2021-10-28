@@ -1,0 +1,13 @@
+- name: Create Brave Apps
+  template:
+    src: '~/dot/ansible/roles/web/templates/app.j2'
+    dest: '~/.local/share/applications/brave-{{item.name | lower}}.desktop'
+  loop:
+    - { name: 'gmail', url: 'https://mail.google.com/mail/u/0/#inbox'}
+    - { name: 'whatsapp', url: 'https://web.whatsapp.com/'}
+    - { name: 'keep', url: 'https://keep.google.com/u/0/'}
+
+- name: Fix Brave Password Store
+  become: yes
+  ansible.builtin.shell: |
+    grep password-store /usr/share/applications/brave-browser-beta.desktop || sed -i '/^Exec=/s/$/ --password-store=gnome/' /usr/share/applications/brave-browser-beta.desktop

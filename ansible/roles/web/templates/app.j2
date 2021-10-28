@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name={{item.name | capitalize}}
+Exec=/opt/brave.com/brave-beta/brave-browser-beta --password-store=gnome --profile-directory=Default --app="{{item.url}}"
+Icon={{item.name}}
