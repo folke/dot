@@ -66,6 +66,7 @@ input type:touchpad {
     dwt enabled
     tap enabled
     drag enabled
+    click_method clickfinger
     natural_scroll enabled
 }
 
