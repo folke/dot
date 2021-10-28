@@ -1,6 +1,6 @@
 - name: Download Nerd Fonts
-  include: download.yml
-  with_items:
+  include_tasks: download.yml
+  loop:
     - FiraCode
     - DejaVuSansMono
     - JetBrainsMono

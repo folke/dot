@@ -11,7 +11,7 @@
     remote_src: true
   notify: update font cache
 
-- name: Done {{item}}
+- name: Installed {{item}}
   copy:
     dest: ~/.local/share/fonts/{{item}}/done
     content: ""
