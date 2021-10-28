@@ -3,6 +3,11 @@
   community.general.copr:
     name: atim/bottom
 
+- name: copr sway-extras
+  become: yes
+  community.general.copr:
+    name: alebastr/sway-extras
+
 - name: copr lazydocker
   become: yes
   community.general.copr:
@@ -40,7 +45,3 @@
     warn: false
   args:
     creates: /etc/yum.repos.d/gh-cli.repo
-
-- name: Tap homebrew/cask-fonts
-  community.general.homebrew_tap:
-    name: homebrew/cask-fonts
