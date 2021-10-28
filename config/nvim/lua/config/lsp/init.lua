@@ -23,7 +23,6 @@ local servers = {
   html = {},
   clangd = {},
   sumneko_lua = {},
-  efm = require("config.lsp.efm").config,
   vimls = {},
   eslint = {},
   ansiblels = {},
