@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# disable this to make sure we can resume
-echo 0 >/sys/bus/pci/devices/0000\:01\:00.0/d3cold_allowed
-echo 0 > /sys/module/hid_apple/parameters/iso_layout
-
-#modprobe -r brcmfmac
-#modprobe brcmfmac rambase_addr=0x160000
-#systemctl restart NetworkManager
