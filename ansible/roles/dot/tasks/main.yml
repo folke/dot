@@ -11,12 +11,14 @@
     hidden: yes
   register: dot_config
 
-- name: Creating symlinks
+- name: ~/.config/
   file:
     src: "{{item.path}}"
     dest: "~/.config/{{item.path | basename}}"
     state: link
-  with_items: "{{ dot_config.files }}"
+  loop: "{{ dot_config.files }}"
+  loop_control:
+    label: "~/.config/{{item.path | basename}}"
 
 - name: .bashrc
   copy:
@@ -45,10 +47,6 @@
     dest: ~/.Xresources
     state: link
 
-- name: .npmrc
-  copy:
-    dest: ~/.npmrc
-    content: "global-dir=${config.home.homeDirectory}/.pnpm-global"
 
 - name: gpg-agent.conf
   copy:
