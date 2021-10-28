@@ -1,0 +1,35 @@
+- name: Keyd
+  become: yes
+  copy:
+    dest: /etc/keyd/default.cfg
+    src: ~/dot/ansible/roles/system/files/keyd.cfg
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Enable Keyd Daemon
+  become: yes
+  ansible.builtin.systemd:
+    name: keyd
+    enabled: yes
+    state: started
+
+- name: Touchpad
+  become: yes
+  copy:
+    dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+    src: ~/dot/ansible/roles/system/files/touchpad.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: prefer libinput over synaptics
+  become: yes
+  file:
+    src: /usr/share/X11/xorg.conf.d/40-libinput.conf
+    dest: /etc/X11/xorg.conf.d/40-libinput.conf
+    state: link
+
+- name: Install Sway Autotiling
+  pip:
+    name: autotiling
