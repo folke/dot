@@ -43,6 +43,7 @@ listview {
 }
 
 element {
+  background-color: #24283b;
   padding: 8;
   /* orientation: vertical; */
   text-color: @fg;

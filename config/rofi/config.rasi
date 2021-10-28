@@ -1,7 +1,7 @@
 configuration {
-	modi: "drun,window";
+	modi: "drun";
 /*	width: 50;*/
-	lines: 8;
+	/* lines: 8; */
 /*	columns: 1;*/
 	font: "FiraCode Nerd Font Regular 14";
 /*	bw: 1;*/
@@ -20,7 +20,7 @@ configuration {
 /*	window-command: "wmctrl -i -R {window}";*/
 	/* window-command: "bspc node {window} -g hidden=off -f"; */
 /*	window-match-fields: "all";*/
-icon-theme: "Papirus";
+icon-theme: "Fluent";
 /*	drun-match-fields: "name,generic,exec,categories";*/
 /*	drun-show-actions: false;*/
 /*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/

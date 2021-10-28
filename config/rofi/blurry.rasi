@@ -1,20 +1,18 @@
 configuration {
-	font: "Inter Regular 10";
+	font: "FiraCode Nerd Font Regular 12";
 	show-icons: true;
 	drun-display-format: "{name}";
-	fullscreen: false;
 	threads: 0;
 	matching: "fuzzy";
 	scroll-method: 0;
 	disable-history: false;
-	fullscreen: false;
 	window-thumbnail: true;
 }
 
 * {
 	transparent: #00000000;
-	foreground: #F2F2F2EE;
-	background-selected: #F2F2F245;
+	foreground: #ffffffe6;
+	background-selected: #ffffff33;
 	background-active: #F2F2F230;
 	background-white: #F2F2F211;
 	background-black: #00000066;
@@ -41,7 +39,6 @@ prompt {
 button {
 	action: "ok";
 	str: " ";
-	font: "FantasqueSansMono Nerd Font 11";
 	expand: false;
 	text-color: @foreground;
 	background-color: @transparent;
@@ -50,7 +47,6 @@ button {
 }
 
 entry {
-	font: "Inter Regular 11";
 	background-color: @transparent;
 	text-color: @foreground;
 	expand: true;
@@ -112,11 +108,14 @@ element {
 }
 
 element-icon {
+  background-color: @transparent;
 	size: 36px;
 	border: 0;
 }
 
 element-text {
+  background-color: @transparent;
+	text-color: @foreground;
 	expand: true;
 	horizontal-align: 0;
 	vertical-align: 0.5;
