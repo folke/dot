@@ -1,0 +1,8 @@
+- name: .npmrc
+  copy:
+    dest: ~/.npmrc
+    content: |-
+      global-dir={{ lookup('env', 'HOME') }}/.pnpm-global
+      global-bin-dir={{ lookup('env', 'HOME') }}/.local/bin/pnpm
+
+# 
