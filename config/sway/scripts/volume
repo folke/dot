@@ -1,0 +1,4 @@
+#!/bin/bash
+
+pactl get-sink-mute @DEFAULT_SINK@ | grep -q yes && echo 0 && exit 0
+pactl get-sink-volume @DEFAULT_SINK@ | grep Volume | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'
