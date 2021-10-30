@@ -23,6 +23,12 @@
       - waybar
       - sway
       - wdisplays
+      - nwg-launchers
+      - nwg-panel
+      - slurp
+      - grim
+      - wev
+      - swaylock-effects
 
       # utils
       - clipman
