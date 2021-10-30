@@ -1,42 +1,17 @@
-- name: copr bottom
+- name: copr
   become: yes
   community.general.copr:
-    name: atim/bottom
-
-- name: copr sway-extras
-  become: yes
-  community.general.copr:
-    name: alebastr/sway-extras
-
-- name: copr lazydocker
-  become: yes
-  community.general.copr:
-    name: atim/lazydocker
-
-- name: copr lazygit
-  become: yes
-  community.general.copr:
-    name: atim/lazygit
-
-- name: copr bandwhich
-  become: yes
-  community.general.copr:
-    name: atim/bandwhich
-
-- name: copr ctop
-  become: yes
-  community.general.copr:
-    name: fuhrmann/ctop
-
-- name: copr fzy
-  become: yes
-  community.general.copr:
-    name: lehrenfried/fzy
-
-- name: Neovim Nightly
-  become: yes
-  community.general.copr:
-    name: agriffis/neovim-nightly
+    name: "{{item}}"
+  loop:
+    - agriffis/neovim-nightly
+    - alebastr/sway-extras
+    - atim/bandwhich
+    - atim/bottom
+    - atim/lazydocker
+    - atim/lazygit
+    - fuhrmann/ctop
+    - lehrenfried/fzy
+    - eddsalkield/swaylock-effects
 
 - name: gh repo
   become: yes
