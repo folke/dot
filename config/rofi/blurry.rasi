@@ -11,11 +11,11 @@ configuration {
 
 * {
 	transparent: #00000000;
-	foreground: #ffffffe6;
-	background-selected: #ffffff33;
+	foreground: #000000cc;
+	background-selected: #00000011;
 	background-active: #F2F2F230;
-	background-white: #F2F2F211;
-	background-black: #00000066;
+	background-white: #00000011;
+	background-black: #ffffffee;
 	urgent: #E91E6366;
 	urgent-selected: #E91E6377;
 }
@@ -29,7 +29,9 @@ window {
 	height: 500px;
 	width: 750px;
 	orientation: vertical;
-	border-radius: 12px;
+	border-radius: 8px;
+  border: 1;
+  border-color: #00000033;
 }
 
 prompt {
