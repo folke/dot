@@ -1,0 +1,13 @@
+layer=overlay
+anchor=top-center
+font=Roboto 14
+icons=1
+icon-path=/home/folke/.local/share/icons/Fluent:/usr/share/icons/Adwaita
+default-timeout=5000
+group-by=app-name
+background-color=#FFFFFFee
+text-color=#000000cc
+border-radius=8
+border-color=#00000033
+border-size=1
+progress-color=source #07b5efee
