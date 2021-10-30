@@ -5,7 +5,7 @@
     src: ~/dot/ansible/roles/system/files/keyd.cfg
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: Enable Keyd Daemon
   become: yes
@@ -21,7 +21,7 @@
     src: ~/dot/ansible/roles/system/files/touchpad.conf
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
 
 - name: prefer libinput over synaptics
   become: yes
@@ -33,3 +33,10 @@
 - name: Install Sway Autotiling
   pip:
     name: autotiling
+
+- name: Disable sudo systemctl disable NetworkManager-wait-online.service
+  become: yes
+  ansible.builtin.systemd:
+    name: NetworkManager-wait-online.service
+    state: stopped
+    enabled: no
