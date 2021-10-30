@@ -10,13 +10,15 @@
         "clock"
     ],
     "modules-right": [
+      "idle_inhibitor",
       "memory",
         "cpu",
         "temperature",
-        "tray",
         "pulseaudio",
-        "network",
-        "battery"
+        "tray",
+        /* "network", */
+        "battery",
+        "custom/power"
     ],
     "sway/workspaces": {
         "disable-scroll": true,
@@ -44,12 +46,13 @@
     },
     "clock": {
         "format": "  {:%b %d %H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "tooltip-format": "<b><big>{:%Y %B}</big></b>\n\n<tt>{calendar}</tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
         "format": " {load}",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "gnome-system-monitor"
     },
     "memory": {
         "format": " {}%"
@@ -116,6 +119,10 @@
         },
         "on-click": "pavucontrol"
     },
+    "custom/power": {
+        "format": " ",
+        "on-click": "nwgbar"
+    },
     "custom/media": {
         "format": "{icon} {}",
         "return-type": "json",
@@ -126,5 +133,20 @@
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 24,
+        "icon-theme": "Fluent",
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
     }
 }

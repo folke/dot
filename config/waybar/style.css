@@ -8,17 +8,19 @@
 
 window#waybar {
   background: rgba(255, 255, 255, 0.2);
-  /* background: rgba(0, 0, 0, 0.5); */
-  color: rgba(255, 255, 255, 0.8);
+  /* background: rgba(0, 0, 0, 0.4); */
+  color: rgba(255, 255, 255, 1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 tooltip {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 3px;
-  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.93);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 tooltip label {
-  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 widget label {
