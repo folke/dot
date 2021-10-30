@@ -17,6 +17,9 @@
 
 # http://bhepple.freeshell.org
 
+# ~/.config/sway/scripts/notify sound -h int:value:$1 volume
+# exit 0
+
 PROG=$( basename $0 )
 wob_pipe=~/.cache/$( basename $SWAYSOCK ).wob
 
