@@ -6,6 +6,7 @@
     name:
       # LinuxBrew Dependencies
       - "@Development Tools"
+      - "@Multimedia"
       - procps-ng
       - curl
       - file
@@ -29,6 +30,10 @@
       - grim
       - wev
       - swaylock-effects
+      # Gaming
+      - lutris
+      - steam
+      - wine
 
       # utils
       - clipman
