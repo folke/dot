@@ -14,8 +14,35 @@
         name: "Google Calendar",
         url: "https://calendar.google.com/calendar/u/0/r",
       }
+    - {
+        name: "YouTube Music",
+        url: "https://music.youtube.com",
+        icon: "youtube-music-desktop-app",
+      }
+    - {
+        name: "Messenger",
+        url: "https://www.messenger.com/",
+        icon: "messengerfordesktop",
+      }
 
-- name: Fix Brave Password Store
+- name: Brave Launcher
+  copy:
+    dest: ~/.local/bin/brave-launcher
+    mode: "0755"
+    content: |-
+      #!/bin/sh
+
+      XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+      BRAVE_USER_FLAGS_FILE="$XDG_CONFIG_HOME/brave-flags.conf"
+      if [[ -f $BRAVE_USER_FLAGS_FILE ]]; then
+          USER_FLAGS="$(cat $BRAVE_USER_FLAGS_FILE | sed 's/#.*//')"
+      fi
+
+      /usr/bin/brave-browser-beta $@ $USER_FLAGS
+
+- name: Use Brave Launcher
   become: yes
-  ansible.builtin.shell: |
-    grep password-store /usr/share/applications/brave-browser-beta.desktop || sed -i '/^Exec=/s/$/ --password-store=gnome/' /usr/share/applications/brave-browser-beta.desktop
+  ansible.builtin.replace:
+    path: /usr/share/applications/brave-browser-beta.desktop
+    regexp: "^Exec=/usr/bin/brave-browser-beta"
+    replace: "Exec={{ lookup('env', 'HOME') }}/.local/bin/brave-launcher"
