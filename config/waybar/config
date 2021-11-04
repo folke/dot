@@ -1,22 +1,22 @@
 {
     "height": 30,
+    "spacing": 0,
     "modules-left": [
         "sway/workspaces",
         "sway/mode",
-        "sway/window",
+        "sway/window"
     ],
     "modules-center": [
         "clock"
     ],
     "modules-right": [
-      "idle_inhibitor",
-      "memory",
         "custom/media",
+        "idle_inhibitor",
+        "memory",
         "cpu",
         "temperature",
         "pulseaudio",
         "tray",
-        /* "network", */
         "battery",
         "custom/power"
     ],
@@ -25,9 +25,9 @@
         "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "urgent": " ",
+            "focused": " ",
+            "default": " "
         },
         "persistent_workspaces": {
             "1": [],
@@ -42,7 +42,7 @@
         "format": "<span style=\"italic\">{}</span>"
     },
     "tray": {
-        "spacing": 10
+        "spacing": 0
     },
     "clock": {
         "format": "  {:%b %d %H:%M}",
@@ -58,10 +58,15 @@
         "format": " {}%"
     },
     "temperature": {
+        "thermal-zone": 6,
         "critical-threshold": 80,
         "format": "{icon} {temperatureC}°C",
         "format-icons": [
-            "", "", "", "", ""
+            "",
+            "",
+            "",
+            "",
+            ""
         ]
     },
     "backlight": {
@@ -145,8 +150,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "",
-            "deactivated": ""
+            "activated": " ",
+            "deactivated": " "
         }
     }
 }
