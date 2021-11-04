@@ -80,7 +80,7 @@ exec_always pkill swayidle; swayidle -w \
          timeout 300 "$lock" \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
          before-sleep "$lock"
-bindswitch lid:off exec $lock
+bindswitch lid:on exec $lock
 bindsym $mod+Alt+l exec $lock
 
 # Enable idle inhibitor for fullscreen brave windows
