@@ -246,6 +246,8 @@ exec ~/.local/bin/autotiling
 # Gestures
 exec gebaard -b
 
+# Night Light
+exec_always pgrep gammastep || gammastep-indicator 
 
 #################################################################
 ## Layout Rules
