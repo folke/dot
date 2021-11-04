@@ -4,7 +4,6 @@
         "sway/workspaces",
         "sway/mode",
         "sway/window",
-        "custom/media"
     ],
     "modules-center": [
         "clock"
@@ -12,6 +11,7 @@
     "modules-right": [
       "idle_inhibitor",
       "memory",
+        "custom/media",
         "cpu",
         "temperature",
         "pulseaudio",
@@ -128,11 +128,11 @@
         "return-type": "json",
         "max-length": 40,
         "format-icons": {
-            "spotify": "",
+            "spotify": " ",
             "default": "🎜"
         },
         "escape": true,
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
     },
     "wlr/taskbar": {
         "format": "{icon}",

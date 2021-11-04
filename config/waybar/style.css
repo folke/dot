@@ -23,15 +23,22 @@ tooltip label {
   color: rgba(0, 0, 0, 0.8);
 }
 
-widget label {
+widget label,
+widget image {
   padding: 0 8px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+#window,
+#custom-media {
+  background: rgba(0, 0, 0, 0);
+  padding-right: 20px;
 }
 
 .modules-right,
 .modules-center {
   color: white;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0 8px;
+  /* padding: 0 8px; */
 }
 
 #workspaces {
@@ -41,8 +48,12 @@ widget label {
 }
 
 #workspaces button {
-  padding: 0 5px;
+  padding: 0;
+}
+#workspaces button label {
+  padding: 0 6px 0 12px;
   color: white;
+  font-size: 18px;
 }
 
 #workspaces button.focused {
