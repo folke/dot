@@ -131,6 +131,9 @@ bindsym $mod+Return exec $term
 # Launcher
 bindsym $mod+space exec rofi -show drun
 
+# Emoji
+bindsym $mod+Alt+e exec rofimoji -a copy
+
 # Screenshots
 bindsym Print exec grim - | wl-copy && $notify screenshot "Full Screen Captured"
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy && $notify screenshot "Screenshot Captured"
