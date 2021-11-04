@@ -95,11 +95,12 @@ output eDP-1 mode --custom 2560x1600@60Hz scale 1
 input type:touchpad {
     dwt enabled
     tap enabled
-    drag enabled
+    drag disabled
+    drag_lock disabled
     click_method clickfinger
     natural_scroll enabled
-    pointer_accel 0.2
     accel_profile adaptive
+    pointer_accel 0.5
 }
 
 input type:keyboard {
