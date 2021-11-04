@@ -30,6 +30,8 @@
       - grim
       - wev
       - swaylock-effects
+      - imv
+
       # Gaming
       - lutris
       - steam
@@ -46,6 +48,8 @@
       - bemenu
       - rofi-wayland
       - rofimoji
+      - lm_sensors
+      - gammastep-indicator
 
       # cli
       - aria2

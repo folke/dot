@@ -36,7 +36,7 @@ floating_modifier $mod normal
 #################################################################
 font pango:FiraCode Nerd Font 12
 seat seat0 xcursor_theme WhiteSur-cursors 32
-output * bg ~/Downloads/ice.jpg fill
+output * bg ~/Downloads/beach3.jpg fill
 gaps inner 12
 bar swaybar_command waybar
 
@@ -46,7 +46,7 @@ set $indicator "#ff9e64"
 set $accent "#07b5ef"
 set $white "#ffffff"
 set $dimmed "#ffffff1a"
-set $dimmed_accent "#ffffff4d"
+set $dimmed_accent "#ffffff66"
 client.focused $accent $accent $white $indicator $accent 
 client.unfocused $dimmed "#ffffff33" $white $dimmed $dimmed
 client.focused_inactive $dimmed_accent $dimmed_accent $white $dimmed $dimmed
