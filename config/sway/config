@@ -52,6 +52,16 @@ client.unfocused $dimmed "#ffffff33" $white $dimmed $dimmed
 client.focused_inactive $dimmed_accent $dimmed_accent $white $dimmed $dimmed
 
 
+set $gnome-schema org.gnome.desktop.interface
+
+exec_always {
+    gsettings set $gnome-schema gtk-theme 'WhiteSur-light'
+    gsettings set $gnome-schema icon-theme 'Fluent'
+    gsettings set $gnome-schema cursor-theme 'WhiteSur-cursors'
+    gsettings set $gnome-schema font-name 'Your font name'
+}
+
+
 #################################################################
 ## Clipboard
 #################################################################
