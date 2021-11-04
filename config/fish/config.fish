@@ -87,6 +87,7 @@ abbr vim nvim
 abbr vi nvim
 abbr v nvim
 abbr sv sudoedit
+abbr vudo sudoedit
 
 # Dev
 abbr git hub
