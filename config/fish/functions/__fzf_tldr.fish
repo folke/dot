@@ -1,5 +1,5 @@
 function __fzf_tldr --description "Search tldr using fzf"
-    fd --print0 --extension md . ~/.tldrc/tldr-master/pages/{common,osx} \
+    fd --print0 --extension md . ~/.cache/tealdeer/tldr-master/pages/{linux,common} \
         | sed -z 's/.*\///; s/\.md$//' \
         | fzf --read0 --query=(commandline) --preview 'fish -c "tldr {}"' --preview-window right:75% \
         | read -lz cmd

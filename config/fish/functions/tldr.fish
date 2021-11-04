@@ -5,7 +5,7 @@ function tldr --wraps='tldr'
     set -l nl 0
     command tldr -m $argv \
         | sed -zr "s/^#[^\n]+\n//" \
-        | /usr/bin/sed -r 's/^`/..command../; s/`$//; s/{{//g; s/}}//g; s/^> (.*)$/_\1_/' | mdcat | while read -l line
+        | sed -r 's/^`/..command../; s/`$//; s/\{\{//g; s/}}//g; s/^> (.*)$/_\1_/' | mdcat | while read -l line
         if test $line = ""
             set nl 1
             continue
