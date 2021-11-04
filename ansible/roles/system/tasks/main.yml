@@ -32,7 +32,9 @@
 
 - name: Install Sway Autotiling
   pip:
-    name: autotiling
+    name:
+      - autotiling
+      - flashfocus
 
 - name: Disable sudo systemctl disable NetworkManager-wait-online.service
   become: yes

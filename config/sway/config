@@ -260,6 +260,10 @@ exec gebaard -b
 # Night Light
 exec_always pgrep gammastep || gammastep-indicator 
 
+# Flash Focus
+exec_always --no-startup-id ~/.local/bin/flashfocus
+
+
 #################################################################
 ## Layout Rules
 #################################################################
