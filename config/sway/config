@@ -189,16 +189,16 @@ bindsym $mod+Alt+0 move container to workspace number 10, workspace number 10
 #################################################################
 ## Media Keys
 #################################################################
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $volume | xargs $wob
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $volume | xargs $wob
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume | xargs $wob
-# bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' | xargs $wob
-bindsym XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' | xargs $wob
-bindsym XF86AudioPlay exec playerctl play-pause && sleep .1 && $notify playmusic "$(playerctl status)"
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
-# bindsym XF86Search exec bemenu-run
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $volume | xargs $wob
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $volume | xargs $wob
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume | xargs $wob
+# bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' | xargs $wob
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' | xargs $wob
+bindsym --locked XF86AudioPlay exec playerctl play-pause && sleep .1 && $notify playmusic "$(playerctl status)"
+# bindsym --locked XF86AudioNext exec playerctl next
+# bindsym --locked XF86AudioPrev exec playerctl previous
+# bindsym --locked XF86Search exec bemenu-run
 
 
 #################################################################
