@@ -40,9 +40,13 @@
 
       /usr/bin/brave-browser-beta $@ $USER_FLAGS
 
+- name: Shadow Brave App
+  copy:
+    dest: ~/.local/share/applications/brave-browser-beta.desktop
+    src: /usr/share/applications/brave-browser-beta.desktop
+
 - name: Use Brave Launcher
-  become: yes
   ansible.builtin.replace:
-    path: /usr/share/applications/brave-browser-beta.desktop
+    path: ~/.local/share/applications/brave-browser-beta.desktop
     regexp: "^Exec=/usr/bin/brave-browser-beta"
     replace: "Exec={{ lookup('env', 'HOME') }}/.local/bin/brave-launcher"
