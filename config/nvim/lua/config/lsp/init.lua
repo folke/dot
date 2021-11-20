@@ -14,18 +14,19 @@ local function on_attach(client, bufnr)
 end
 
 local servers = {
-  pyright = {},
-  bashls = {},
-  dockerls = {},
-  tsserver = {},
-  cssls = {},
-  jsonls = {},
-  html = {},
-  clangd = {},
-  sumneko_lua = {},
-  vimls = {},
-  eslint = {},
   ansiblels = {},
+  bashls = {},
+  clangd = {},
+  cssls = {},
+  dockerls = {},
+  eslint = {},
+  html = {},
+  jsonls = {},
+  pyright = {},
+  rust_analyzer = {},
+  sumneko_lua = {},
+  tsserver = {},
+  vimls = {},
   -- tailwindcss = {},
 }
 

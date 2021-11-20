@@ -51,6 +51,11 @@ local function plugins(use)
   })
 
   use({
+    "simrat39/rust-tools.nvim",
+    module = "rust-tools",
+  })
+
+  use({
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     opt = true,

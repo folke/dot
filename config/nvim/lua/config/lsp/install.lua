@@ -20,7 +20,14 @@ function M.setup(servers, options)
   local lspi = require("nvim-lsp-installer")
   lspi.on_server_ready(function(server)
     local opts = vim.tbl_deep_extend("force", options, servers[server.name] or {})
-    server:setup(opts)
+
+    if server.name == "rust_analyzer" then
+      opts = vim.tbl_deep_extend("force", server:get_default_options(), opts)
+      require("config.rust").setup(opts)
+      server:attach_buffers()
+    else
+      server:setup(opts)
+    end
     vim.cmd([[ do User LspAttachBuffers ]])
   end)
 
