@@ -23,7 +23,16 @@ local servers = {
   html = {},
   jsonls = {},
   pyright = {},
-  rust_analyzer = {},
+  rust_analyzer = {
+    settings = {
+      ["rust-analyzer"] = {
+        -- enable clippy on save
+        checkOnSave = {
+          command = "clippy",
+        },
+      },
+    },
+  },
   sumneko_lua = {},
   tsserver = {},
   vimls = {},
