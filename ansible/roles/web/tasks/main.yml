@@ -5,6 +5,7 @@
   loop:
     - { name: "Gmail", url: "https://mail.google.com/mail/u/0/#inbox" }
     - { name: "WhatsApp", url: "https://web.whatsapp.com/" }
+    - { name: "Notion", url: "https://notion.so/" }
     - {
         name: "Google Keep",
         url: "https://keep.google.com/u/0/",

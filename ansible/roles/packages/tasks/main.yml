@@ -69,6 +69,7 @@
       - git
       # - glow
       - gnupg
+      - gnuplot
       - htop
       - httpie
       - hub
