@@ -5,7 +5,12 @@ vim.o.timeoutlen = 300
 
 local presets = require("which-key.plugins.presets")
 presets.objects["a("] = nil
-wk.setup({ show_help = false, triggers = "auto", plugins = { spelling = true }, key_labels = { ["<leader>"] = "SPC" } })
+wk.setup({
+  show_help = false,
+  triggers = "auto",
+  plugins = { spelling = true },
+  key_labels = { ["<leader>"] = "SPC" },
+})
 
 -- Move to window using the <ctrl> movement keys
 util.nmap("<left>", "<C-w>h")
@@ -62,6 +67,13 @@ util.nnoremap("=t", "<cmd>TableFormat<cr>")
 -- better indenting
 util.vnoremap("<", "<gv")
 util.vnoremap(">", ">gv")
+
+util.nnoremap("<space>cu", function()
+  local number = math.random(math.pow(2, 127) + 1, math.pow(2, 128))
+  return "i" .. string.format("%.0f", number)
+end, {
+  expr = true,
+})
 
 -- makes * and # work on visual mode too.
 vim.api.nvim_exec(
