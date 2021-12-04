@@ -24,6 +24,7 @@ ts_configs.setup({
     "typescript",
     "vue",
     "yaml",
+    "wgsl",
     -- "json",
     -- "markdown",
   },
@@ -105,5 +106,12 @@ parser_config.markdown = {
   install_info = {
     url = "https://github.com/ikatyang/tree-sitter-markdown",
     files = { "src/parser.c", "src/scanner.cc" },
+  },
+}
+
+parser_config.wgsl = {
+  install_info = {
+    url = "https://github.com/szebniok/tree-sitter-wgsl",
+    files = { "src/parser.c" },
   },
 }

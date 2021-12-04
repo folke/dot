@@ -109,6 +109,7 @@ cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
 -- ftdetect
 cmd([[autocmd BufRead,BufNewFile *.fish setfiletype fish]])
+cmd([[autocmd BufRead,BufNewFile *.wgsl set filetype=wgsl]])
 
 -- windows to close with "q"
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
