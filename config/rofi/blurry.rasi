@@ -1,14 +1,3 @@
-configuration {
-	font: "FiraCode Nerd Font Regular 12";
-	show-icons: true;
-	drun-display-format: "{name}";
-	threads: 0;
-	matching: "fuzzy";
-	scroll-method: 0;
-	disable-history: false;
-	window-thumbnail: true;
-}
-
 * {
 	transparent: #00000000;
 	foreground: #000000cc;
