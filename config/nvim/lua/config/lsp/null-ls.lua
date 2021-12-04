@@ -14,7 +14,7 @@ function M.setup(options)
       nls.builtins.diagnostics.shellcheck,
       nls.builtins.diagnostics.markdownlint,
       nls.builtins.diagnostics.selene,
-      nls.builtins.code_actions.gitsigns,
+      -- nls.builtins.code_actions.gitsigns,
     },
   })
   require("lspconfig")["null-ls"].setup(options)
