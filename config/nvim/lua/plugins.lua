@@ -55,6 +55,8 @@ local function plugins(use)
     module = "rust-tools",
   })
 
+  use({ "kazhala/close-buffers.nvim", cmd = "BDelete" })
+
   use({
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
