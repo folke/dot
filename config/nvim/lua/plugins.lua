@@ -49,6 +49,15 @@ local function plugins(use)
       "williamboman/nvim-lsp-installer",
     },
   })
+  use({
+    "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter",
+    wants = "nvim-treesitter",
+    module = "nvim-gps",
+    config = function()
+      require("nvim-gps").setup({ separator = "   " })
+    end,
+  })
 
   use({
     "simrat39/rust-tools.nvim",
