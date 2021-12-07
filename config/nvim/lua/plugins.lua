@@ -25,6 +25,7 @@ local function plugins(use)
   use({ "wbthomason/packer.nvim", opt = true })
   use({ "nathom/filetype.nvim" })
   use({ "folke/workspace.nvim" })
+  use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   -- LSP
   use({
     "neovim/nvim-lspconfig",
@@ -88,6 +89,7 @@ local function plugins(use)
       },
       "rafamadriz/friendly-snippets",
       {
+        module = "nvim-autopairs",
         "windwp/nvim-autopairs",
         config = function()
           require("config.autopairs")
@@ -111,6 +113,7 @@ local function plugins(use)
   })
 
   use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
+
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
