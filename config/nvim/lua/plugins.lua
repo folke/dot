@@ -26,6 +26,12 @@ local function plugins(use)
   use({ "nathom/filetype.nvim" })
   use({ "folke/workspace.nvim" })
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
+  use({
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require("notify")
+    end,
+  })
   -- LSP
   use({
     "neovim/nvim-lspconfig",
