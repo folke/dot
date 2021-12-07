@@ -93,16 +93,15 @@ local function plugins(use)
   })
 
   use({
-    "b3nj5m1n/kommentary",
+    "numToStr/Comment.nvim",
     opt = true,
-    wants = "nvim-ts-context-commentstring",
-    keys = { "gc", "gcc" },
+    keys = { "gc", "gcc", "gbc" },
     config = function()
       require("config.comments")
     end,
-    requires = "JoosepAlviste/nvim-ts-context-commentstring",
   })
 
+  use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
