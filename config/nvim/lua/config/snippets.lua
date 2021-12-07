@@ -2,7 +2,7 @@ local util = require("util")
 local luasnip = require("luasnip")
 
 luasnip.config.set_config({
-  history = true,
+  history = false,
   -- Update more often, :h events for more info.
   updateevents = "TextChanged,TextChangedI",
 })
