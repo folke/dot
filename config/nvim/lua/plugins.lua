@@ -423,6 +423,7 @@ local function plugins(use)
   use({
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
+    module = "diffview",
     config = function()
       require("config.diffview")
     end,
