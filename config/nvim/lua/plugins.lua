@@ -375,7 +375,7 @@ local function plugins(use)
     config = function()
       require("trouble").setup({
         auto_open = false,
-        use_lsp_diagnostic_signs = true, -- en
+        use_diagnostic_signs = true, -- en
       })
     end,
   })
