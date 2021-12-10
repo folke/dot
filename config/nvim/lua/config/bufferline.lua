@@ -31,5 +31,3 @@ require("bufferline").setup({
     end,
   },
 })
--- Ask for a user name until API returns a valid user
--- Hamburgefonstiv
