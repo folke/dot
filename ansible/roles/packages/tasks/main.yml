@@ -33,6 +33,10 @@
       - imv
       - neovide
 
+      # Wayland Development
+      - wayland-devel
+      - libxkbcommon-devel
+
       # Gaming
       - lutris
       - steam
