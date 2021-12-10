@@ -23,7 +23,12 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", opt = true })
-  use({ "nathom/filetype.nvim" })
+  use({
+    "nathom/filetype.nvim",
+    config = function()
+      require("config.filetype")
+    end,
+  })
   use({ "folke/workspace.nvim" })
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   use({
