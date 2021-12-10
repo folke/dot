@@ -37,7 +37,7 @@ local config = {
     lualine_a = { "mode" },
     lualine_b = { "branch" },
     lualine_c = {
-      { "diagnostics", sources = { "nvim_lsp" } },
+      { "diagnostics", sources = { "nvim_diagnostic" } },
       "filename",
       { gps.get_location, cond = gps.is_available },
     },
