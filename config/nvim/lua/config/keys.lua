@@ -58,6 +58,11 @@ util.inoremap(",", ",<c-g>u")
 util.inoremap(".", ".<c-g>u")
 util.inoremap(";", ";<c-g>u")
 
+-- save in insert mode
+util.inoremap("<C-s>", "<esc>:w<cr>")
+util.nnoremap("<C-s>", "<esc>:w<cr>")
+util.nnoremap("<C-c>", "<esc>ciw")
+
 -- telescope <ctrl-r> in command line
 -- vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
 
