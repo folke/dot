@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup(options)
   local nls = require("null-ls")
-  nls.config({
+  nls.setup({
     debounce = 150,
     save_after_format = false,
     sources = {
@@ -16,8 +16,8 @@ function M.setup(options)
       nls.builtins.diagnostics.selene,
       -- nls.builtins.code_actions.gitsigns,
     },
+    on_attach = options.on_attach,
   })
-  require("lspconfig")["null-ls"].setup(options)
 end
 
 function M.has_formatter(ft)
