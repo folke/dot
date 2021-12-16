@@ -33,6 +33,7 @@ local function plugins(use)
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   use({
     "rcarriga/nvim-notify",
+    event = "VimEnter",
     config = function()
       vim.notify = require("notify")
     end,
@@ -131,7 +132,7 @@ local function plugins(use)
     opt = true,
     event = "BufRead",
     requires = {
-      { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
+      { "nvim-treesitter/playground", opt = true, cmd = "TSHighlightCapturesUnderCursor" },
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
     },
@@ -311,6 +312,7 @@ local function plugins(use)
   -- Statusline
   use({
     "nvim-lualine/lualine.nvim",
+    requires = { "rlch/github-notifications.nvim" },
     event = "VimEnter",
     config = [[require('config.lualine')]],
     wants = "nvim-web-devicons",
@@ -361,7 +363,7 @@ local function plugins(use)
 
   use({
     "ggandor/lightspeed.nvim",
-    event = "BufReadPost",
+    keys = { "s", "S", "f", "F", "t", "T" },
     config = function()
       require("config.lightspeed")
     end,
@@ -443,16 +445,11 @@ local function plugins(use)
     end,
   })
 
-  -- use({ "wellle/targets.vim" })
-
-  -- use("DanilaMihailov/vim-tips-wiki")
   use("nanotee/luv-vimdocs")
   use({
     "andymass/vim-matchup",
     event = "CursorMoved",
   })
-  use({ "camspiers/snap", rocks = { "fzy" }, module = "snap" })
-  use("kmonad/kmonad-vim")
 end
 
 return packer.setup(config, plugins)

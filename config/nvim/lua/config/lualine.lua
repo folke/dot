@@ -26,8 +26,6 @@ end
 
 -- vim.cmd([[au DiagnosticChanged * let &ro = &ro]])
 
-local gps = require("nvim-gps")
-
 local config = {
   options = {
     theme = "tokyonight",
@@ -42,9 +40,19 @@ local config = {
       { "diagnostics", sources = { "nvim_diagnostic" } },
       { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
       { "filename", path = 1, symbols = { modified = "  ", readonly = "" } },
-      { gps.get_location, cond = gps.is_available, color = { fg = "#ff9e64" } },
+      {
+        function()
+          local gps = require("nvim-gps")
+          return gps.get_location()
+        end,
+        cond = function()
+          local gps = require("nvim-gps")
+          return pcall(require, "nvim-treesitter.parsers") and gps.is_available()
+        end,
+        color = { fg = "#ff9e64" },
+      },
     },
-    lualine_x = { lsp_progress, holidays },
+    lualine_x = { lsp_progress, require("github-notifications").statusline_notification_count, holidays },
     lualine_y = { "location" },
     lualine_z = { clock },
   },

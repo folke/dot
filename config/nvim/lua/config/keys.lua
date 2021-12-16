@@ -192,6 +192,7 @@ local leader = {
     name = "+open",
     p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
     g = { "<cmd>Glow<cr>", "Markdown Glow" },
+    n = { "<cmd>lua require('github-notifications.menu').notifications()<cr>", "GitHub Notifications" },
   },
   p = {
     name = "+project",
