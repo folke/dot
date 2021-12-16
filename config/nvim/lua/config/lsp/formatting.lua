@@ -19,7 +19,7 @@ end
 
 function M.format()
   if M.autoformat then
-    vim.lsp.buf.formatting_sync()
+    vim.lsp.buf.formatting_sync(nil, 2000)
   end
 end
 
