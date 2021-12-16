@@ -11,6 +11,7 @@ function M.setup(client, bufnr)
     c = {
       name = "+code",
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+      c = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename (Change)" },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
       d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
       l = {
