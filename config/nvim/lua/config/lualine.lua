@@ -2,7 +2,11 @@ local function clock()
   return " " .. os.date("%H:%M")
 end
 
-local function lsp_progress(self, is_active)
+local function holidays()
+  return "🎅🎄🌟🎁"
+end
+
+local function lsp_progress(_, is_active)
   if not is_active then
     return
   end
@@ -20,7 +24,7 @@ local function lsp_progress(self, is_active)
   return table.concat(status, " | ") .. " " .. spinners[frame + 1]
 end
 
-vim.cmd([[autocmd User LspProgressUpdate let &ro = &ro]])
+-- vim.cmd([[au DiagnosticChanged * let &ro = &ro]])
 
 local gps = require("nvim-gps")
 
@@ -29,8 +33,6 @@ local config = {
     theme = "tokyonight",
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
-    -- section_separators = { "", "" },
-    -- component_separators = { "", "" },
     icons_enabled = true,
   },
   sections = {
@@ -38,11 +40,12 @@ local config = {
     lualine_b = { "branch" },
     lualine_c = {
       { "diagnostics", sources = { "nvim_diagnostic" } },
-      { "filename", path = 1 },
-      { gps.get_location, cond = gps.is_available },
+      { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+      { "filename", path = 1, symbols = { modified = "  ", readonly = "" } },
+      { gps.get_location, cond = gps.is_available, color = { fg = "#ff9e64" } },
     },
-    lualine_x = { "filetype", lsp_progress },
-    lualine_y = { "progress" },
+    lualine_x = { lsp_progress, holidays },
+    lualine_y = { "location" },
     lualine_z = { clock },
   },
   inactive_sections = {
