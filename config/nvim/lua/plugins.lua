@@ -67,7 +67,7 @@ local function plugins(use)
     wants = "nvim-treesitter",
     module = "nvim-gps",
     config = function()
-      require("nvim-gps").setup({ separator = "   " })
+      require("nvim-gps").setup({ separator = " " })
     end,
   })
 
