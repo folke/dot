@@ -16,6 +16,27 @@ vim.g.dashboard_custom_header = {
   " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 }
 
+local logo = [[
+                                                        *                  
+     *                                                          *          
+                                  *                  *        .--.         
+      \/ \/  \/  \/                                        ./   /=*        
+        \/     \/      *            *                ...  (_____)          
+         \ ^ ^/                                       \ \_((^o^))-.     *  
+         (o)(O)--)--------\.                           \   (   ) \  \._.   
+         |    |  ||================((~~~~~~~~~~~~~~~~~))|   ( )   |     \  
+          \__/             ,|        \. * * * * * * ./  (~~~~~~~~~~~)    \ 
+   *        ||^||\.____./|| |          \___________/     ~||~~~~|~'\____/ *
+            || ||     || || A            ||    ||          ||    |   jurcy 
+     *      <> <>     <> <>          (___||____||_____)   ((~~~~~|   *     
+]]
+local lines = {}
+for line in logo:gmatch("[^\n]+") do
+  table.insert(lines, line)
+end
+
+vim.g.dashboard_custom_header = lines
+
 vim.g.dashboard_custom_shortcut = {
   ["last_session"] = "SPC s l",
   ["find_history"] = "SPC f r",
