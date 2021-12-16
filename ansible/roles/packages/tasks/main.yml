@@ -72,6 +72,7 @@
       - fzf
       - fzy
       - git
+      - git-lfs
       # - glow
       - gnupg
       - gnuplot
