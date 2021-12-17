@@ -449,6 +449,9 @@ local function plugins(use)
   use({
     "andymass/vim-matchup",
     event = "CursorMoved",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
+    end,
   })
 end
 
