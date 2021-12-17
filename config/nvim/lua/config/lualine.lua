@@ -14,17 +14,25 @@ local function lsp_progress(_, is_active)
   if #messages == 0 then
     return ""
   end
+  -- dump(messages)
   local status = {}
   for _, msg in pairs(messages) do
-    table.insert(status, (msg.percentage or 0) .. "%% " .. (msg.title or ""))
+    local title = ""
+    if msg.title then
+      title = msg.title
+    end
+    -- if msg.message then
+    --   title = title .. " " .. msg.message
+    -- end
+    table.insert(status, (msg.percentage or 0) .. "%% " .. title)
   end
   local spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
   local ms = vim.loop.hrtime() / 1000000
   local frame = math.floor(ms / 120) % #spinners
-  return table.concat(status, " | ") .. " " .. spinners[frame + 1]
+  return table.concat(status, "  ") .. " " .. spinners[frame + 1]
 end
 
--- vim.cmd([[au DiagnosticChanged * let &ro = &ro]])
+vim.cmd("au User LspProgressUpdate let &ro = &ro")
 
 local config = {
   options = {
