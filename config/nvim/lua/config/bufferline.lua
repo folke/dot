@@ -29,5 +29,13 @@ require("bufferline").setup({
       end
       return table.concat(s, " ")
     end,
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "NvimTree",
+        highlight = "Directory",
+        text_align = "left",
+      },
+    },
   },
 })
