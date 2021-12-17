@@ -41,6 +41,7 @@
       - lutris
       - steam
       - wine
+      - mangohud
 
       # utils
       - clipman
