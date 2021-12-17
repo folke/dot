@@ -26,6 +26,7 @@ local servers = {
   rust_analyzer = {
     settings = {
       ["rust-analyzer"] = {
+        cargo = { allFeatures = true },
         -- enable clippy on save
         checkOnSave = {
           command = "clippy",
