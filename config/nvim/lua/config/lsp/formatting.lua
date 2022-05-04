@@ -19,7 +19,7 @@ end
 
 function M.format()
   if M.autoformat then
-    vim.lsp.buf.formatting_sync(nil, 2000)
+    vim.lsp.buf.format()
   end
 end
 
@@ -34,9 +34,9 @@ function M.setup(client, buf)
     enable = not (client.name == "null-ls")
   end
 
-  client.resolved_capabilities.document_formatting = enable
+  client.server_capabilities.documentFormatting = enable
   -- format on save
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormatting then
     vim.cmd([[
       augroup LspFormat
         autocmd! * <buffer>
