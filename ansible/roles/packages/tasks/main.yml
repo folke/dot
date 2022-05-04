@@ -17,7 +17,7 @@
       - brave-browser-beta
       - dconf-editor
       - discord
-      - element
+      # - element
       - gnome-tweaks
       - kitty
       - foot
