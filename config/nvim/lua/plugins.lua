@@ -10,6 +10,7 @@ local config = {
       return require("packer.util").float({ border = "single" })
     end,
   },
+  opt_default = true,
   -- list of plugins that should be taken from ~/projects
   -- this is NOT packer functionality!
   local_plugins = {
@@ -22,14 +23,15 @@ local config = {
 
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
-  use({ "wbthomason/packer.nvim", opt = true })
+  use({ "wbthomason/packer.nvim" })
   use({
     "nathom/filetype.nvim",
+    opt = false,
     config = function()
       require("config.filetype")
     end,
   })
-  use({ "folke/workspace.nvim" })
+  use({ "folke/workspace.nvim", module = "workspace" })
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   use({
     "rcarriga/nvim-notify",
@@ -41,21 +43,18 @@ local function plugins(use)
   -- LSP
   use({
     "neovim/nvim-lspconfig",
-    opt = true,
     event = "BufReadPre",
     wants = {
-      "workspace.nvim",
       "nvim-lsp-ts-utils",
       "null-ls.nvim",
       "lua-dev.nvim",
-      "cmp-nvim-lsp",
+      -- "cmp-nvim-lsp",
       "nvim-lsp-installer",
     },
     config = function()
       require("config.lsp")
     end,
     requires = {
-      "folke/workspace.nvim",
       "jose-elias-alvarez/nvim-lsp-ts-utils",
       "jose-elias-alvarez/null-ls.nvim",
       "folke/lua-dev.nvim",
@@ -82,13 +81,12 @@ local function plugins(use)
   use({
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
-    opt = true,
     config = function()
       require("config.compe")
     end,
     wants = { "LuaSnip" },
     requires = {
-      "hrsh7th/cmp-nvim-lsp",
+      { "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" },
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
@@ -117,7 +115,6 @@ local function plugins(use)
 
   use({
     "numToStr/Comment.nvim",
-    opt = true,
     keys = { "gc", "gcc", "gbc" },
     config = function()
       require("config.comments")
@@ -129,10 +126,9 @@ local function plugins(use)
   use({
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
-    opt = true,
     event = "BufRead",
     requires = {
-      { "nvim-treesitter/playground", opt = true, cmd = "TSHighlightCapturesUnderCursor" },
+      { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
     },
@@ -166,6 +162,7 @@ local function plugins(use)
     -- "Th3Whit3Wolf/one-nvim"
 
     "folke/tokyonight.nvim",
+    opt = false,
     -- event = "VimEnter",
     config = function()
       require("config.theme")
@@ -182,7 +179,7 @@ local function plugins(use)
   })
 
   -- Dashboard
-  use({ "glepnir/dashboard-nvim", config = [[require('config.dashboard')]] })
+  use({ "glepnir/dashboard-nvim", opt = false, config = [[require('config.dashboard')]] })
 
   use({
     "norcalli/nvim-terminal.lua",
@@ -196,7 +193,6 @@ local function plugins(use)
 
   use({
     "windwp/nvim-spectre",
-    opt = true,
     module = "spectre",
     wants = { "plenary.nvim", "popup.nvim" },
     requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
@@ -213,7 +209,6 @@ local function plugins(use)
   -- Fuzzy finder
   use({
     "nvim-telescope/telescope.nvim",
-    opt = true,
     config = function()
       require("config.telescope")
     end,
@@ -308,11 +303,10 @@ local function plugins(use)
       require("config.neogit")
     end,
   })
-
+  use({ "rlch/github-notifications.nvim", module = "github-notifications" })
   -- Statusline
   use({
     "nvim-lualine/lualine.nvim",
-    requires = { "rlch/github-notifications.nvim" },
     event = "VimEnter",
     config = [[require('config.lualine')]],
     wants = "nvim-web-devicons",
@@ -330,7 +324,6 @@ local function plugins(use)
 
   use({
     "plasticboy/vim-markdown",
-    opt = true,
     requires = "godlygeek/tabular",
     ft = "markdown",
   })
@@ -397,12 +390,10 @@ local function plugins(use)
 
   use({ "mjlbach/babelfish.nvim", module = "babelfish" })
 
+  use({ "folke/twilight.nvim", module = "twilight" })
   use({
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
-    opt = true,
-    wants = "twilight.nvim",
-    requires = { "folke/twilight.nvim" },
     config = function()
       require("zen-mode").setup({
         plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } },

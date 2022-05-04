@@ -136,6 +136,7 @@ local leader = {
     ["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["d"] = { "<cmd>:BDelete this<CR>", "Delete Buffer" },
+    ["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
     ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   },
   g = {
@@ -181,7 +182,7 @@ local leader = {
     s = {
       function()
         require("telescope.builtin").lsp_document_symbols({
-          symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module" },
+          symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module", "Struct", "Trait" },
         })
       end,
       "Goto Symbol",
@@ -264,9 +265,7 @@ local leader = {
   },
   x = {
     name = "+errors",
-    x = { "<cmd>TroubleToggle<cr>", "Trouble" },
-    w = { "<cmd>TroubleWorkspaceToggle<cr>", "Workspace Trouble" },
-    d = { "<cmd>TroubleDocumentToggle<cr>", "Document Trouble" },
+    x = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble" },
     t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
     T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
     l = { "<cmd>lopen<cr>", "Open Location List" },
