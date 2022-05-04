@@ -40,6 +40,7 @@ local config = {
     section_separators = { left = "", right = "" },
     component_separators = { left = "", right = "" },
     icons_enabled = true,
+    globalstatus = true,
   },
   sections = {
     lualine_a = { "mode" },
@@ -47,7 +48,7 @@ local config = {
     lualine_c = {
       { "diagnostics", sources = { "nvim_diagnostic" } },
       { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-      { "filename", path = 1, symbols = { modified = "  ", readonly = "" } },
+      { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
       {
         function()
           local gps = require("nvim-gps")
