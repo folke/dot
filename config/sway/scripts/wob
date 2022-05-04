@@ -48,6 +48,8 @@ is_running_on_this_screen() {
 
 new_value=$1 # null or a percent; no checking!!
 
+[[ $new_value -gt 100 ]] && new_value=100
+
 [[ -p $wob_pipe ]] || mkfifo $wob_pipe
 
 # wob does not appear in $(swaymsg -t get_msg), so:
