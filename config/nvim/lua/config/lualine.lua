@@ -3,7 +3,8 @@ local function clock()
 end
 
 local function holidays()
-  return "🎅🎄🌟🎁"
+  return "🌴"
+  -- return "🎅🎄🌟🎁"
 end
 
 local function lsp_progress(_, is_active)
