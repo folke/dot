@@ -1,3 +1,10 @@
+require("workspace").setup()
+require("lua-dev").setup()
+
+require("nvim-lsp-installer").setup({
+  automatic_installation = true,
+})
+
 require("config.lsp.diagnostics").setup()
 require("config.lsp.kind").setup()
 
@@ -43,9 +50,6 @@ local servers = {
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require("workspace").setup()
-require("lua-dev").setup()
-
 local options = {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -53,5 +57,11 @@ local options = {
     debounce_text_changes = 150,
   },
 }
+
+for server, opts in pairs(servers) do
+  opts = vim.tbl_deep_extend("force", {}, options, opts or {})
+  require("lspconfig")[server].setup(opts)
+end
+
 require("config.lsp.null-ls").setup(options)
-require("config.lsp.install").setup(servers, options)
+-- require("config.lsp.install").setup(servers, options)

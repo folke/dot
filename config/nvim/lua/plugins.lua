@@ -24,13 +24,6 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
-  use({
-    "nathom/filetype.nvim",
-    opt = false,
-    config = function()
-      require("config.filetype")
-    end,
-  })
   use({ "folke/workspace.nvim", module = "workspace" })
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   use({
@@ -44,27 +37,25 @@ local function plugins(use)
   use({
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    wants = {
-      "nvim-lsp-ts-utils",
-      "null-ls.nvim",
-      "lua-dev.nvim",
-      -- "cmp-nvim-lsp",
-      "nvim-lsp-installer",
-    },
     config = function()
       require("config.lsp")
     end,
     requires = {
-      "jose-elias-alvarez/nvim-lsp-ts-utils",
-      "jose-elias-alvarez/null-ls.nvim",
-      "folke/lua-dev.nvim",
-      "williamboman/nvim-lsp-installer",
+      { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
+      { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
+      { "folke/lua-dev.nvim", module = "lua-dev" },
     },
   })
+
+  use({
+    "williamboman/nvim-lsp-installer",
+    opt = false,
+    -- module = "nvim-lsp-installer",
+  })
+
   use({
     "SmiteshP/nvim-gps",
     requires = "nvim-treesitter/nvim-treesitter",
-    wants = "nvim-treesitter",
     module = "nvim-gps",
     config = function()
       require("nvim-gps").setup({ separator = " " })
@@ -127,6 +118,7 @@ local function plugins(use)
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
     event = "BufRead",
+    module = "nvim-treesitter",
     requires = {
       { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       "nvim-treesitter/nvim-treesitter-textobjects",
@@ -388,7 +380,7 @@ local function plugins(use)
 
   use({ "mbbill/undotree", cmd = "UndotreeToggle" })
 
-  use({ "mjlbach/babelfish.nvim", module = "babelfish" })
+  -- use({ "mjlbach/babelfish.nvim", module = "babelfish" })
 
   use({ "folke/twilight.nvim", module = "twilight" })
   use({

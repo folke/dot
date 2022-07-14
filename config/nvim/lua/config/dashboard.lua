@@ -1,13 +1,6 @@
-vim.g.dashboard_default_executive = "telescope"
--- vim.g.dashboard_preview_command = "splashcii"
-vim.g.dashboard_preview_pipeline = "lolcat"
--- vim.g.dashboard_preview_file = "beach"
--- vim.g.dashboard_preview_file_height = 20
--- vim.g.dashboard_preview_file_width = 80
-vim.g.dashboard_enable_session = 0
-vim.g.dashboard_disable_statusline = 0
+local db = require("dashboard")
 
-vim.g.dashboard_custom_header = {
+local logo = {
   " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
   " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
   " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
@@ -16,7 +9,7 @@ vim.g.dashboard_custom_header = {
   " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 }
 
-local logo = [[
+logo = [[
                                                         *                  
      *                                                          *          
                                   *                  *        .--.         
@@ -60,6 +53,8 @@ local lines = {}
 for line in logo:gmatch("[^\n]+") do
   table.insert(lines, line)
 end
+
+db.custom_header = lines
 
 vim.g.dashboard_custom_header = lines
 
