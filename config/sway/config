@@ -36,7 +36,8 @@ floating_modifier $mod normal
 #################################################################
 font pango:FiraCode Nerd Font 12
 seat seat0 xcursor_theme WhiteSur-cursors 32
-output * bg ~/Downloads/beach3.jpg fill
+# output * bg ~/Downloads/beach3.jpg fill
+output * bg ~/Pictures/jwst5.jpg fill
 gaps inner 12
 bar swaybar_command waybar
 
