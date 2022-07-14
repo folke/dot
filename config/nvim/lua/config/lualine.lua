@@ -3,7 +3,7 @@ local function clock()
 end
 
 local function holidays()
-  return "🌴"
+  return "🌴🌊"
   -- return "🎅🎄🌟🎁"
 end
 
@@ -52,12 +52,12 @@ local config = {
       { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
       {
         function()
-          local gps = require("nvim-gps")
-          return gps.get_location()
+          local navic = require("nvim-navic")
+          return navic.get_location()
         end,
         cond = function()
-          local gps = require("nvim-gps")
-          return pcall(require, "nvim-treesitter.parsers") and gps.is_available()
+          local navic = require("nvim-navic")
+          return navic.is_available()
         end,
         color = { fg = "#ff9e64" },
       },
