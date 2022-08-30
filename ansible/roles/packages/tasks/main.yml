@@ -32,6 +32,7 @@
       - swaylock-effects
       - imv
       - neovide
+      - blueman
 
       # Wayland Development
       - wayland-devel

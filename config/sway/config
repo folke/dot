@@ -255,6 +255,9 @@ bindsym $mod+minus scratchpad show
 # Network Monitor
 exec_always nm-applet --indicator
 
+# Bluetooth Monitor
+exec_always blueman-applet --indicator
+
 # Automatic Tiling
 exec ~/.local/bin/autotiling
 
@@ -273,6 +276,7 @@ exec_always --no-startup-id ~/.local/bin/flashfocus
 #################################################################
 for_window [app_id="nm-connection-editor"] floating enable 
 for_window [app_id="pavucontrol"] floating enable 
+for_window [app_id="blueman-manager"] floating enable 
 
 
 include /etc/sway/config.d/*
