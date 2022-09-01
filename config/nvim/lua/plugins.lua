@@ -77,6 +77,7 @@ local function plugins(use)
       require("config.compe")
     end,
     wants = { "LuaSnip" },
+    -- module = "cmp",
     requires = {
       { "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" },
       "hrsh7th/cmp-buffer",
