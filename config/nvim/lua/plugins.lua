@@ -57,7 +57,6 @@ local function plugins(use)
     module = "mason-lspconfig",
     opt = true,
   })
-
   use({
     "SmiteshP/nvim-navic",
     module = "nvim-navic",
@@ -128,7 +127,7 @@ local function plugins(use)
     module = "nvim-treesitter",
     requires = {
       { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
-      "nvim-treesitter/nvim-treesitter-textobjects",
+      -- "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
     },
     config = [[require('config.treesitter')]],
