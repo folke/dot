@@ -115,6 +115,13 @@ cmd([[
   autocmd InsertEnter,WinLeave * set nocursorline
 ]])
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "json",
+  callback = function()
+    vim.wo.conceallevel = 0
+  end,
+})
+
 -- go to last loc when opening a buffer
 cmd([[
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
