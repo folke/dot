@@ -44,7 +44,14 @@ local function plugins(use)
       { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
       { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
       { "folke/lua-dev.nvim", module = "lua-dev" },
-      { "j-hui/fidget.nvim", module = "fidget" },
+      {
+        "j-hui/fidget.nvim",
+        module = "fidget",
+        config = function()
+          -- HACK: prevent error when exiting Neovim
+          vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
+        end,
+      },
       {
         "smjonas/inc-rename.nvim",
         module = "inc_rename",
@@ -111,6 +118,14 @@ local function plugins(use)
         end,
       },
     },
+  })
+
+  use({
+    "kylechui/nvim-surround",
+    event = "BufReadPre",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
   })
 
   use({
