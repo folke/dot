@@ -10,8 +10,12 @@ function M.setup(client, bufnr)
   local keymap = {
     c = {
       name = "+code",
-      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-      c = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename (Change)" },
+      r = {
+        function()
+          require("inc_rename").rename({ default = vim.fn.expand("<cword>") })
+        end,
+        "Rename",
+      },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
       d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
       l = {
@@ -31,7 +35,7 @@ function M.setup(client, bufnr)
     },
   }
 
-  if client.name == "typescript" then
+  if client.name == "tsserver" then
     keymap.c.o = { "<cmd>:TypescriptOrganizeImports<CR>", "Organize Imports" }
     keymap.c.R = { "<cmd>:TypescriptRenameFile<CR>", "Rename File" }
   end

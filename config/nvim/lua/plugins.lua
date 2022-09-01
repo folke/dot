@@ -45,6 +45,13 @@ local function plugins(use)
       { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
       { "folke/lua-dev.nvim", module = "lua-dev" },
       { "j-hui/fidget.nvim", module = "fidget" },
+      {
+        "smjonas/inc-rename.nvim",
+        module = "inc_rename",
+        config = function()
+          require("inc_rename").setup()
+        end,
+      },
     },
   })
 
