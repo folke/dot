@@ -78,7 +78,7 @@ local function plugins(use)
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     config = function()
-      require("config.compe")
+      require("config.cmp")
     end,
     wants = { "LuaSnip" },
     -- module = "cmp",
