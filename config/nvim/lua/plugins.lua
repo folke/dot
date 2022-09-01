@@ -48,9 +48,14 @@ local function plugins(use)
   })
 
   use({
-    "williamboman/nvim-lsp-installer",
-    opt = false,
-    -- module = "nvim-lsp-installer",
+    "williamboman/mason.nvim",
+    module = "mason",
+    opt = true,
+  })
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    module = "mason-lspconfig",
+    opt = true,
   })
 
   use({

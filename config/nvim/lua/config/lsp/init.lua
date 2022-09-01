@@ -1,10 +1,7 @@
 require("workspace").setup()
 require("lua-dev").setup()
 
-require("nvim-lsp-installer").setup({
-  automatic_installation = true,
-})
-
+require("config.mason").setup()
 require("config.lsp.diagnostics").setup()
 require("config.lsp.kind").setup()
 
