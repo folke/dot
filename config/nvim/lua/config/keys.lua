@@ -127,7 +127,7 @@ local leader = {
     ["s"] = { "<C-W>s", "split-window-below" },
     ["v"] = { "<C-W>v", "split-window-right" },
   },
-  c = { v = { "<cmd>Vista!!<CR>", "Vista" }, o = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" } },
+  c = { v = { "<cmd>Vista!!<CR>", "Vista" }, O = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" } },
   b = {
     name = "+buffer",
     ["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
