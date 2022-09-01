@@ -4,6 +4,7 @@ require("lua-dev").setup()
 require("config.mason").setup()
 require("config.lsp.diagnostics").setup()
 require("config.lsp.kind").setup()
+require("fidget").setup({ text = { spinner = "dots" } })
 
 local function on_attach(client, bufnr)
   require("nvim-navic").attach(client, bufnr)

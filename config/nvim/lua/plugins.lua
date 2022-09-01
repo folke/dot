@@ -44,6 +44,7 @@ local function plugins(use)
       { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
       { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
       { "folke/lua-dev.nvim", module = "lua-dev" },
+      { "j-hui/fidget.nvim", module = "fidget" },
     },
   })
 

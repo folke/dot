@@ -33,7 +33,7 @@ local function lsp_progress(_, is_active)
   return table.concat(status, "  ") .. " " .. spinners[frame + 1]
 end
 
-vim.cmd("au User LspProgressUpdate let &ro = &ro")
+-- vim.cmd("au User LspProgressUpdate let &ro = &ro")
 
 local config = {
   options = {
@@ -62,7 +62,8 @@ local config = {
         color = { fg = "#ff9e64" },
       },
     },
-    lualine_x = { lsp_progress, require("github-notifications").statusline_notification_count, holidays },
+    -- lualine_x = { lsp_progress, require("github-notifications").statusline_notification_count, holidays },
+    lualine_x = { require("github-notifications").statusline_notification_count, holidays },
     lualine_y = { "location" },
     lualine_z = { clock },
   },
