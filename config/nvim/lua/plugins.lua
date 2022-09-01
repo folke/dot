@@ -41,7 +41,7 @@ local function plugins(use)
       require("config.lsp")
     end,
     requires = {
-      { "jose-elias-alvarez/nvim-lsp-ts-utils", module = "nvim-lsp-ts-utils" },
+      { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
       { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
       { "folke/lua-dev.nvim", module = "lua-dev" },
     },

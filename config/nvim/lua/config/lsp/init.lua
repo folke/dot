@@ -12,10 +12,6 @@ local function on_attach(client, bufnr)
   -- require("config.lsp.completion").setup(client, bufnr)
   require("config.lsp.highlighting").setup(client)
 
-  -- TypeScript specific stuff
-  if client.name == "typescript" or client.name == "tsserver" then
-    require("config.lsp.ts-utils").setup(client)
-  end
 end
 
 local servers = {
@@ -24,6 +20,7 @@ local servers = {
   clangd = {},
   cssls = {},
   dockerls = {},
+  tsserver = {},
   eslint = {},
   html = {},
   jsonls = {},
@@ -41,7 +38,6 @@ local servers = {
     },
   },
   sumneko_lua = {},
-  tsserver = {},
   vimls = {},
   -- tailwindcss = {},
 }
@@ -58,7 +54,11 @@ local options = {
 
 for server, opts in pairs(servers) do
   opts = vim.tbl_deep_extend("force", {}, options, opts or {})
-  require("lspconfig")[server].setup(opts)
+  if server == "tsserver" then
+    require("typescript").setup({ server = opts })
+  else
+    require("lspconfig")[server].setup(opts)
+  end
 end
 
 require("config.lsp.null-ls").setup(options)
