@@ -400,9 +400,8 @@ local function plugins(use)
   use({
     "RRethy/vim-illuminate",
     event = "CursorHold",
-    module = "illuminate",
     config = function()
-      vim.g.Illuminate_delay = 1000
+      require("illuminate").configure({ delay = 200 })
     end,
   })
 
