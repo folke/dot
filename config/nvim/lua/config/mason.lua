@@ -5,6 +5,8 @@ M.tools = {
   "stylua",
   "selene",
   "eslint_d",
+  "shellcheck",
+  "shfmt",
 }
 
 function M.check()
