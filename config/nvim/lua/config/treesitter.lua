@@ -44,6 +44,24 @@ local function setup()
         node_decremental = "<C-r>",
       },
     },
+    refactor = {
+      smart_rename = {
+        enable = true,
+        client = {
+          smart_rename = "<leader>cr",
+        },
+      },
+      navigation = {
+        enable = true,
+        keymaps = {
+          goto_definition = "gd",
+          -- list_definitions = "gnD",
+          -- list_definitions_toc = "gO",
+          -- goto_next_usage = "<a-*>",
+          -- goto_previous_usage = "<a-#>",
+        },
+      },
+    },
     query_linter = {
       enable = true,
       use_virtual_text = true,

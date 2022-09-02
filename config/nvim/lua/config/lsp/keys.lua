@@ -30,10 +30,13 @@ function M.setup(client, bufnr)
       },
     },
     x = {
-      s = { "<cmd>Telescope document_diagnostics<cr>", "Search Document Diagnostics" },
-      w = { "<cmd>Telescope workspace_diagnostics<cr>", "Workspace Diagnostics" },
+      d = { "<cmd>Telescope diagnostics<cr>", "Search Diagnostics" },
     },
   }
+
+  if not client.server_capabilities.renameProvider then
+    keymap.c.r = nil
+  end
 
   if client.name == "tsserver" then
     keymap.c.o = { "<cmd>:TypescriptOrganizeImports<CR>", "Organize Imports" }
@@ -65,6 +68,8 @@ function M.setup(client, bufnr)
   util.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   util.nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
   util.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
+  util.nnoremap("[w", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
+  util.nnoremap("]w", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
 
   local trigger_chars = client.server_capabilities.signatureHelpTriggerCharacters
   trigger_chars = { "," }

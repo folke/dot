@@ -152,6 +152,7 @@ local function plugins(use)
       { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       -- "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
+      "nvim-treesitter/nvim-treesitter-refactor",
     },
     config = [[require('config.treesitter')]],
   })
