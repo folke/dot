@@ -1,157 +1,158 @@
 {
-    "height": 30,
-    "spacing": 0,
-    "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/window"
-    ],
-    "modules-center": [
-        "clock"
-    ],
-    "modules-right": [
-        "custom/media",
-        "idle_inhibitor",
-        "memory",
-        "cpu",
-        "temperature",
-        "pulseaudio",
-        "tray",
-        "battery",
-        "custom/power"
-    ],
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{icon}",
-        "format-icons": {
-            "urgent": " ",
-            "focused": " ",
-            "default": " "
-        },
-        "persistent_workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": []
-        }
+  "height": 30,
+  "spacing": 0,
+  "modules-left": [
+    "sway/workspaces",
+    "sway/mode",
+    "sway/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/media",
+    "idle_inhibitor",
+    "memory",
+    "cpu",
+    "temperature",
+    "pulseaudio",
+    "tray",
+    "battery",
+    "custom/power"
+  ],
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "urgent": " ",
+      "focused": " ",
+      "default": " "
     },
-    "sway/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
-    "tray": {
-        "spacing": 0
-    },
-    "clock": {
-        "format": "  {:%b %d %H:%M}",
-        "tooltip-format": "<b><big>{:%Y %B}</big></b>\n\n<tt>{calendar}</tt>",
-        "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": " {load}",
-        "tooltip": false,
-        "on-click": "gnome-system-monitor"
-    },
-    "memory": {
-        "format": " {}%"
-    },
-    "temperature": {
-        "thermal-zone": 6,
-        "critical-threshold": 80,
-        "format": "{icon} {temperatureC}°C",
-        "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
-        ]
-    },
-    "backlight": {
-        "format": "{percent}% {icon}",
-        "format-icons": [
-            "",
-            "",
-            ""
-        ]
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{time} {icon}",
-        "format-icons": [
-            " ",
-            " ",
-            " ",
-            " ",
-            " "
-        ]
-    },
-    "network": {
-        "format-wifi": "直",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "睊",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-bluetooth": "{icon}",
-        "format-bluetooth-muted": "ﱝ {icon}",
-        "format-muted": "ﱝ ",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": [
-                "奄",
-                "奔",
-                "墳"
-            ]
-        },
-        "on-click": "pavucontrol"
-    },
-    "custom/power": {
-        "format": " ",
-        "on-click": "nwgbar"
-    },
-    "custom/media": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "max-length": 40,
-        "format-icons": {
-            "spotify": " ",
-            "default": "🎜"
-        },
-        "escape": true,
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
-    },
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 24,
-        "icon-theme": "Fluent",
-        "tooltip-format": "{title}",
-        "on-click": "activate",
-        "on-click-middle": "close"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        }
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": []
     }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "tray": {
+    "spacing": 0
+  },
+  "clock": {
+    "format": "  {:%b %d %H:%M}",
+    "tooltip-format": "<b><big>{:%Y %B}</big></b>\n\n<tt>{calendar}</tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  },
+  "cpu": {
+    "format": " {load}",
+    "tooltip": false,
+    "on-click": "gnome-system-monitor"
+  },
+  "memory": {
+    "format": " {}%"
+  },
+  "temperature": {
+    "thermal-zone": 6,
+    "critical-threshold": 80,
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  "network": {
+    "format-wifi": "直",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "睊",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-bluetooth": "{icon}",
+    "format-bluetooth-muted": "ﱝ {icon}",
+    "format-muted": "ﱝ ",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "奄",
+        "奔",
+        "墳"
+      ]
+    },
+    "on-click": "pavucontrol",
+    "on-click-right": "blueman-manager"
+  },
+  "custom/power": {
+    "format": " ",
+    "on-click": "nwgbar"
+  },
+  "custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 40,
+    "format-icons": {
+      "spotify": " ",
+      "default": "🎜"
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null"
+  },
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 24,
+    "icon-theme": "Fluent",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close"
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
+    }
+  }
 }
