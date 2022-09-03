@@ -3,7 +3,7 @@
 function tldr --wraps='tldr'
     # make sure env has colors
     set -l nl 0
-    command tldr -m $argv \
+    command tldr -r $argv \
         | sed -zr "s/^#[^\n]+\n//" \
         | sed -r 's/^`/..command../; s/`$//; s/\{\{//g; s/}}//g; s/^> (.*)$/_\1_/' | mdcat | while read -l line
         if test $line = ""
