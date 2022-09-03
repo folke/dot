@@ -35,7 +35,7 @@ local servers = {
       },
     },
   },
-  sumneko_lua = {},
+  sumneko_lua = { single_file_support = false },
   vimls = {},
   -- tailwindcss = {},
 }
