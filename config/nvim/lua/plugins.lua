@@ -168,13 +168,14 @@ local function plugins(use)
     event = "BufRead",
     module = "nvim-treesitter",
     requires = {
-      { "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" },
       -- "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
       "nvim-treesitter/nvim-treesitter-refactor",
     },
     config = [[require('config.treesitter')]],
   })
+
+  use({ "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" })
 
   -- Theme: color schemes
   use({
