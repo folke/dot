@@ -52,13 +52,13 @@ function M.setup(client, bufnr)
 
   local keymap_goto = {
     name = "+goto",
+    d = { "<cmd>Telescope lsp_definitions<cr>", "Goto Definition" },
     r = { "<cmd>Telescope lsp_references<cr>", "References" },
     R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-    d = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
-    D = { "<Cmd>lua vim.lsp.buf.declaration()<CR>", "Goto Declaration" },
+    D = { "<Cmd>Telescope lsp_declarations<CR>", "Goto Declaration" },
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
-    I = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto Implementation" },
-    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Goto Type Definition" },
+    I = { "<cmd>Telescope lsp_implementations<CR>", "Goto Implementation" },
+    t = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
   }
 
   util.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)

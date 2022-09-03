@@ -4,7 +4,15 @@ local trouble = require("trouble.providers.telescope")
 local telescope = require("telescope")
 
 telescope.setup({
-  extensions = { fzy_native = { override_generic_sorter = false, override_file_sorter = true } },
+  extensions = {
+    -- fzf = {
+    --   fuzzy = true, -- false will only do exact matching
+    --   override_generic_sorter = true, -- override the generic sorter
+    --   override_file_sorter = true, -- override the file sorter
+    --   case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+    --   -- the default case_mode is "smart_case"
+    -- },
+  },
   defaults = {
     mappings = { i = { ["<c-t>"] = trouble.open_with_trouble } },
     -- mappings = { i = { ["<esc>"] = actions.close } },
@@ -61,8 +69,10 @@ telescope.setup({
 })
 
 -- telescope.load_extension("frecency")
-telescope.load_extension("fzy_native")
+telescope.load_extension("fzf")
 telescope.load_extension("z")
+telescope.load_extension("file_browser")
+telescope.load_extension("neoclip")
 -- telescope.load_extension("project")
 
 local M = {}

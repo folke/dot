@@ -40,28 +40,27 @@ local function plugins(use)
     config = function()
       require("config.lsp")
     end,
-    requires = {
-      { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
-      { "jose-elias-alvarez/null-ls.nvim", module = "null-ls" },
-      { "folke/lua-dev.nvim", module = "lua-dev" },
-      {
-        "j-hui/fidget.nvim",
-        module = "fidget",
-        config = function()
-          -- HACK: prevent error when exiting Neovim
-          vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
-        end,
-      },
-      {
-        "smjonas/inc-rename.nvim",
-        module = "inc_rename",
-        config = function()
-          require("inc_rename").setup()
-        end,
-      },
-    },
+    requires = {},
   })
 
+  use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
+  use({ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" })
+  use({ "folke/lua-dev.nvim", module = "lua-dev" })
+  use({
+    "j-hui/fidget.nvim",
+    module = "fidget",
+    config = function()
+      -- HACK: prevent error when exiting Neovim
+      vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
+    end,
+  })
+  use({
+    "smjonas/inc-rename.nvim",
+    module = "inc_rename",
+    config = function()
+      require("inc_rename").setup()
+    end,
+  })
   use({
     "williamboman/mason.nvim",
     module = "mason",
@@ -83,6 +82,15 @@ local function plugins(use)
   })
 
   use({
+    "AckslD/nvim-neoclip.lua",
+    event = "TextYankPost",
+    module = { "neoclip", "telescope._extensions.neoclip" },
+    config = function()
+      require("neoclip").setup()
+    end,
+  })
+
+  use({
     "simrat39/rust-tools.nvim",
     module = "rust-tools",
   })
@@ -95,29 +103,31 @@ local function plugins(use)
     config = function()
       require("config.cmp")
     end,
-    wants = { "LuaSnip" },
     -- module = "cmp",
     requires = {
       { "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" },
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
-      {
-        "L3MON4D3/LuaSnip",
-        wants = "friendly-snippets",
-        config = function()
-          require("config.snippets")
-        end,
-      },
-      "rafamadriz/friendly-snippets",
-      {
-        module = "nvim-autopairs",
-        "windwp/nvim-autopairs",
-        config = function()
-          require("config.autopairs")
-        end,
-      },
     },
+  })
+
+  use({
+    "windwp/nvim-autopairs",
+    module = "nvim-autopairs",
+    config = function()
+      require("config.autopairs")
+    end,
+  })
+
+  use({
+    "L3MON4D3/LuaSnip",
+    module = "luasnip",
+    wants = "friendly-snippets",
+    config = function()
+      require("config.snippets")
+    end,
+    requires = "rafamadriz/friendly-snippets",
   })
 
   use({
@@ -196,13 +206,11 @@ local function plugins(use)
     end,
   })
   use({ "nvim-lua/plenary.nvim", module = "plenary" })
-  use({ "nvim-lua/popup.nvim", module = "popup" })
+  -- use({ "nvim-lua/popup.nvim", module = "popup" })
 
   use({
     "windwp/nvim-spectre",
     module = "spectre",
-    wants = { "plenary.nvim", "popup.nvim" },
-    requires = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
   })
 
   use({
@@ -222,23 +230,12 @@ local function plugins(use)
     cmd = { "Telescope" },
     module = "telescope",
     keys = { "<leader><space>", "<leader>fz", "<leader>pp" },
-    wants = {
-      "plenary.nvim",
-      "popup.nvim",
-      "telescope-z.nvim",
-      -- "telescope-frecency.nvim",
-      "telescope-fzy-native.nvim",
-      "telescope-project.nvim",
-      "trouble.nvim",
-      "telescope-symbols.nvim",
-    },
     requires = {
-      "nvim-telescope/telescope-z.nvim",
-      "nvim-telescope/telescope-project.nvim",
-      "nvim-lua/popup.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope-symbols.nvim",
-      "nvim-telescope/telescope-fzy-native.nvim",
+      { "nvim-telescope/telescope-file-browser.nvim", module = "telescope._extensions.file_browser" },
+      { "nvim-telescope/telescope-z.nvim", module = "telescope._extensions.z" },
+      { "nvim-telescope/telescope-project.nvim", module = "telescope._extensions.project" },
+      { "nvim-telescope/telescope-symbols.nvim", module = "telescope._extensions.symbols" },
+      { "nvim-telescope/telescope-fzf-native.nvim", module = "telescope._extensions.fzf", run = "make" },
       -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
     },
   })
@@ -256,7 +253,6 @@ local function plugins(use)
   use({
     "akinsho/nvim-bufferline.lua",
     event = "BufReadPre",
-    wants = "nvim-web-devicons",
     config = function()
       require("config.bufferline")
     end,
@@ -292,17 +288,11 @@ local function plugins(use)
   use({
     "lewis6991/gitsigns.nvim",
     event = "BufReadPre",
-    wants = "plenary.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("config.gitsigns")
     end,
   })
-  -- use {
-  --   "kdheepak/lazygit.nvim",
-  --   cmd = "LazyGit",
-  --   config = function() vim.g.lazygit_floating_window_use_plenary = 0 end
-  -- }
+
   use({
     "TimUntersberger/neogit",
     cmd = "Neogit",
@@ -310,13 +300,13 @@ local function plugins(use)
       require("config.neogit")
     end,
   })
+
   use({ "rlch/github-notifications.nvim", module = "github-notifications" })
   -- Statusline
   use({
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
     config = [[require('config.lualine')]],
-    wants = "nvim-web-devicons",
   })
 
   use({
@@ -372,7 +362,7 @@ local function plugins(use)
   use({
     "folke/trouble.nvim",
     event = "BufReadPre",
-    wants = "nvim-web-devicons",
+    module = "trouble",
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
       require("trouble").setup({
