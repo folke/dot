@@ -141,6 +141,15 @@ local function plugins(use)
     end,
   })
 
+  use({
+    "danymat/neogen",
+    module = "neogen",
+    config = function()
+      require("neogen").setup({ snippet_engine = "luasnip" })
+    end,
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
+
   use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
 
   use({

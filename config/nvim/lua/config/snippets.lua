@@ -1,5 +1,6 @@
 local util = require("util")
 local luasnip = require("luasnip")
+require("neogen")
 
 luasnip.config.setup({
   history = false,
