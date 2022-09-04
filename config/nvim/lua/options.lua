@@ -15,7 +15,7 @@ vim.opt.concealcursor = "n" -- Hide * markup for bold and italic
 vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
--- vim.opt.cmdheight = 0
+-- vim.imopt.cmdheight = 0
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
 -- vim.opt.foldmethod = "expr" -- TreeSitter folding
@@ -130,8 +130,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- go to last loc when opening a buffer
-vim.cmd([[autocmd BufRead * autocmd FileType <buffer> ++once
-      \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
+vim.api.nvim_create_autocmd("BufReadPre", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "<buffer>",
+      once = true,
+      callback = function()
+        vim.cmd(
+          [[if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]]
+        )
+      end,
+    })
+  end,
+})
 
 -- Highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
