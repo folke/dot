@@ -33,11 +33,4 @@ function M.cmp_format()
   end
 end
 
-function M.setup()
-  local kinds = vim.lsp.protocol.CompletionItemKind
-  for i, kind in ipairs(kinds) do
-    kinds[i] = M.icons[kind] or kind
-  end
-end
-
 return M
