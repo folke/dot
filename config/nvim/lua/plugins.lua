@@ -11,6 +11,7 @@ local config = {
     end,
   },
   opt_default = true,
+  auto_reload_compiled = false,
   -- list of plugins that should be taken from ~/projects
   -- this is NOT packer functionality!
   local_plugins = {
