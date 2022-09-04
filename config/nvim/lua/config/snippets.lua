@@ -7,7 +7,6 @@ luasnip.config.setup({
   -- Update more often, :h events for more info.
   updateevents = "TextChanged,TextChangedI",
 })
-require("luasnip.loaders.from_vscode").lazy_load()
 
 --- <tab> to jump to next snippet's placeholder
 local function on_tab()

@@ -115,11 +115,15 @@ local function plugins(use)
   use({
     "L3MON4D3/LuaSnip",
     module = "luasnip",
-    wants = "friendly-snippets",
     config = function()
       require("config.snippets")
     end,
-    requires = "rafamadriz/friendly-snippets",
+    requires = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    },
   })
 
   use({
