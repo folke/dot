@@ -41,7 +41,6 @@ local function plugins(use)
     config = function()
       require("config.lsp")
     end,
-    requires = {},
   })
 
   use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
@@ -80,7 +79,6 @@ local function plugins(use)
   use({
     "SmiteshP/nvim-navic",
     module = "nvim-navic",
-    requires = "neovim/nvim-lspconfig",
     config = function()
       vim.g.navic_silence = true
       require("nvim-navic").setup({ separator = " " })
@@ -100,7 +98,6 @@ local function plugins(use)
     config = function()
       require("config.cmp")
     end,
-    -- module = "cmp",
     requires = {
       { "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" },
       "hrsh7th/cmp-buffer",
@@ -241,7 +238,6 @@ local function plugins(use)
       { "nvim-telescope/telescope-project.nvim", module = "telescope._extensions.project" },
       { "nvim-telescope/telescope-symbols.nvim", module = "telescope._extensions.symbols" },
       { "nvim-telescope/telescope-fzf-native.nvim", module = "telescope._extensions.fzf", run = "make" },
-      -- { "nvim-telescope/telescope-frecency.nvim", requires = "tami5/sql.nvim" }
     },
   })
 
@@ -329,6 +325,7 @@ local function plugins(use)
     requires = "godlygeek/tabular",
     ft = "markdown",
   })
+
   use({
     "iamcco/markdown-preview.nvim",
     run = function()
