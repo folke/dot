@@ -148,7 +148,7 @@ local function plugins(use)
     "numToStr/Comment.nvim",
     keys = { "gc", "gcc", "gbc" },
     config = function()
-      require("config.comments")
+      require("Comment").setup({})
     end,
   })
 
@@ -160,8 +160,6 @@ local function plugins(use)
     end,
     requires = "nvim-treesitter/nvim-treesitter",
   })
-
-  use({ "JoosepAlviste/nvim-ts-context-commentstring", module = "ts_context_commentstring" })
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -283,7 +281,6 @@ local function plugins(use)
       require("config.specs")
     end,
   })
-  -- use { "Xuyuanp/scrollbar.nvim", config = function() require("config.scrollbar") end }
 
   -- Git Gutter
   use({
@@ -334,12 +331,6 @@ local function plugins(use)
     ft = "markdown",
     cmd = { "MarkdownPreview" },
   })
-
-  -- use { "tjdevries/train.nvim", cmd = { "TrainClear", "TrainTextObj", "TrainUpDown", "TrainWord" } }
-
-  -- use({ "wfxr/minimap.vim", config = function()
-  --   require("config.minimap")
-  -- end })
 
   use({
     "phaazon/hop.nvim",
