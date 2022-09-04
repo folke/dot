@@ -3,6 +3,8 @@ local trouble = require("trouble.providers.telescope")
 
 local telescope = require("telescope")
 
+local borderless = true
+
 telescope.setup({
   extensions = {
     -- fzf = {
@@ -14,6 +16,11 @@ telescope.setup({
     -- },
   },
   defaults = {
+    layout_strategy = "horizontal",
+    layout_config = {
+      prompt_position = "top",
+    },
+    sorting_strategy = "ascending",
     mappings = { i = { ["<c-t>"] = trouble.open_with_trouble } },
     -- mappings = { i = { ["<esc>"] = actions.close } },
     -- vimgrep_arguments = {
@@ -45,17 +52,12 @@ telescope.setup({
     -- file_ignore_patterns = {},
     -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     -- shorten_path = true,
-    winblend = 10,
+    winblend = borderless and 0 or 10,
     -- width = 0.7,
     -- preview_cutoff = 120,
     -- results_height = 1,
     -- results_width = 0.8,
-    -- border = {},
-    -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    -- borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-    -- prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-    -- results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-    -- preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+    -- border = false,
     -- color_devicons = true,
     -- use_less = true,
     -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
@@ -101,5 +103,45 @@ util.nnoremap("<leader>fz", function()
 end)
 
 util.nnoremap("<leader>pp", ":lua require'telescope'.extensions.project.project{}<CR>")
+
+function M.borderless()
+  local c = require("tokyonight.colors").setup()
+  local TelescopePrompt = {
+    TelescopeNormal = {
+      bg = c.bg_dark,
+      fg = c.fg_dark,
+    },
+    TelescopeBorder = {
+      bg = c.bg_dark,
+      fg = c.bg_dark,
+    },
+    TelescopePromptNormal = {
+      bg = "#2d3149",
+    },
+    TelescopePromptBorder = {
+      bg = "#2d3149",
+      fg = "#2d3149",
+    },
+    TelescopePromptTitle = {
+      fg = "#2d3149",
+      bg = "#2d3149",
+    },
+    TelescopePreviewTitle = {
+      fg = "#1F2335",
+      bg = "#1F2335",
+    },
+    TelescopeResultsTitle = {
+      fg = "#1F2335",
+      bg = "#1F2335",
+    },
+  }
+  for hl, col in pairs(TelescopePrompt) do
+    vim.api.nvim_set_hl(0, hl, col)
+  end
+end
+
+if borderless then
+  M.borderless()
+end
 
 return M
