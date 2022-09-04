@@ -51,6 +51,11 @@ local function plugins(use)
     "j-hui/fidget.nvim",
     module = "fidget",
     config = function()
+      require("fidget").setup({
+        window = {
+          relative = "editor",
+        },
+      })
       -- HACK: prevent error when exiting Neovim
       vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
     end,
