@@ -260,7 +260,7 @@ local function plugins(use)
   -- Terminal
   use({
     "akinsho/nvim-toggleterm.lua",
-    keys = "<M-`>",
+    keys = "<C-/>",
     config = function()
       require("config.terminal")
     end,
