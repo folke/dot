@@ -255,7 +255,12 @@ local leader = {
   [","] = { "<cmd>Telescope buffers show_all_buffers=true<cr>", "Switch Buffer" },
   ["/"] = { "<cmd>Telescope live_grep<cr>", "Search" },
   [":"] = { "<cmd>Telescope command_history<cr>", "Command History" },
-  ["V"] = { "<cmd>Telescope neoclip<cr>", "Switch to Other Buffer" },
+  ["C"] = {
+    function()
+      util.clipman()
+    end,
+    "Clipman",
+  },
   q = {
     name = "+quit/session",
     q = { "<cmd>:qa<cr>", "Quit" },

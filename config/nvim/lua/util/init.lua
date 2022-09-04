@@ -200,4 +200,45 @@ function M.colors(filter)
   dump(defs)
 end
 
+function M.exists(fname)
+  local stat = vim.loop.fs_stat(fname)
+  return (stat and stat.type) or false
+end
+
+function M.fqn(fname)
+  fname = vim.fn.fnamemodify(fname, ":p")
+  return vim.loop.fs_realpath(fname) or fname
+end
+
+function M.clipman()
+  local file = M.fqn("~/.local/share/clipman.json")
+  if M.exists(file) then
+    local f = io.open(file)
+    if not f then
+      return
+    end
+    local data = f:read("*a")
+    f:close()
+
+    -- allow empty files
+    data = vim.trim(data)
+    if data ~= "" then
+      local ok, json = pcall(vim.fn.json_decode, data)
+      if ok then
+        local items = {}
+        for i = #json, 1, -1 do
+          items[#items + 1] = json[i]
+        end
+        vim.ui.select(items, {
+          prompt = "Clipman",
+        }, function(choice)
+          vim.fn.setreg("*", choice)
+        end)
+      else
+        vim.notify(("failed to load clipman from %s"):format(file), vim.log.levels.ERROR)
+      end
+    end
+  end
+end
+
 return M

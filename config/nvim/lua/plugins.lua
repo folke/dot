@@ -82,15 +82,6 @@ local function plugins(use)
   })
 
   use({
-    "AckslD/nvim-neoclip.lua",
-    event = "TextYankPost",
-    module = { "neoclip", "telescope._extensions.neoclip" },
-    config = function()
-      require("neoclip").setup()
-    end,
-  })
-
-  use({
     "simrat39/rust-tools.nvim",
     module = "rust-tools",
   })

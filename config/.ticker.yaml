@@ -1,0 +1,27 @@
+show-summary: true
+show-tags: true
+show-fundamentals: true
+show-separator: true
+show-holdings: true
+interval: 5
+sort: value
+currency: USD
+currency-summary-only: false
+watchlist:
+  - XM
+  - VTI
+  - BTC-USD
+  - ETH-USD
+  - SPY
+  - ARKK
+  - QQQ
+lots:
+  - symbol: "XM"
+    quantity: 675481.0
+    unit_cost: 5
+  - symbol: "BTC-USD"
+    quantity: 13.0046
+    unit_cost: 1
+  - symbol: "ETH-USD"
+    quantity: 68.5995
+    unit_cost: 1
