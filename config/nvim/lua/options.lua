@@ -1,4 +1,3 @@
-local cmd = vim.cmd
 local indent = 2
 
 --[[ vim.bo.expandtab = true -- Use spaces instead of tabs
@@ -108,10 +107,10 @@ vim.cmd([[autocmd FileType markdown nnoremap gO <cmd>Toc<cr>]])
 vim.cmd([[autocmd FileType markdown setlocal spell]])
 
 -- Check if we need to reload the file when it changed
-cmd("au FocusGained * :checktime")
+vim.cmd("au FocusGained * :checktime")
 
 -- show cursor line only in active window
-cmd([[
+vim.cmd([[
   autocmd InsertLeave,WinEnter * set cursorline
   autocmd InsertEnter,WinLeave * set nocursorline
 ]])
@@ -131,12 +130,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- go to last loc when opening a buffer
-cmd([[
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif
-]])
+vim.cmd([[autocmd BufRead * autocmd FileType <buffer> ++once
+      \ if &ft !~# 'commit\|rebase' && line("'\"") > 1 && line("'\"") <= line("$") | exe 'normal! g`"' | endif]])
 
 -- Highlight on yank
-cmd("au TextYankPost * lua vim.highlight.on_yank {}")
+vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
 -- windows to close with "q"
 vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
