@@ -43,6 +43,7 @@ local function plugins(use)
     end,
   })
 
+  use({ "b0o/SchemaStore.nvim", module = "schemastore" })
   use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
   use({ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" })
   use({ "folke/lua-dev.nvim", module = "lua-dev" })

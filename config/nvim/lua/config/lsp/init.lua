@@ -20,7 +20,14 @@ local servers = {
   tsserver = {},
   eslint = {},
   html = {},
-  jsonls = {},
+  jsonls = {
+    -- settings = {
+    --   json = {
+    --     schemas = require("schemastore").json.schemas(),
+    --     validate = { enable = true },
+    --   },
+    -- },
+  },
   pyright = {},
   rust_analyzer = {
     settings = {
