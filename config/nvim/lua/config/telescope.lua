@@ -91,15 +91,15 @@ end
 
 local util = require("util")
 
-util.nnoremap("<Leader><Space>", M.project_files)
-util.nnoremap("<Leader>fd", function()
+vim.keymap.set("n", "<Leader><Space>", M.project_files)
+vim.keymap.set("n", "<Leader>fd", function()
   require("telescope.builtin").git_files({ cwd = "~/dot" })
 end)
 
-util.nnoremap("<leader>fz", function()
+vim.keymap.set("n", "<leader>fz", function()
   require("telescope").extensions.z.list({ cmd = { vim.o.shell, "-c", "zoxide query -ls" } })
 end)
 
-util.nnoremap("<leader>pp", ":lua require'telescope'.extensions.project.project{}<CR>")
+vim.keymap.set("n", "<leader>pp", ":lua require'telescope'.extensions.project.project{}<CR>")
 
 return M

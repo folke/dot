@@ -61,18 +61,18 @@ function M.setup(client, bufnr)
     t = { "<cmd>Telescope lsp_type_definitions<cr>", "Goto Type Definition" },
   }
 
-  util.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  util.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-  util.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-  util.nnoremap("[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
-  util.nnoremap("]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
-  util.nnoremap("[w", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
-  util.nnoremap("]w", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
+  vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  vim.keymap.set("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  vim.keymap.set("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+  vim.keymap.set("n", "[e", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
+  vim.keymap.set("n", "]e", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", opts)
+  vim.keymap.set("n", "[w", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
+  vim.keymap.set("n", "]w", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
 
   local trigger_chars = client.server_capabilities.signatureHelpTriggerCharacters
   trigger_chars = { "," }
   for _, c in ipairs(trigger_chars) do
-    util.inoremap(c, function()
+    vim.keymap.set("i", c, function()
       vim.defer_fn(function()
         pcall(vim.lsp.buf.signature_help)
       end, 0)

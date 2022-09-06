@@ -23,78 +23,6 @@ end
 
 local M = {}
 
-M.functions = {}
-
-function M.execute(id)
-  local func = M.functions[id]
-  if not func then
-    error("Function doest not exist: " .. id)
-  end
-  return func()
-end
-
-local map = function(mode, key, cmd, opts, defaults)
-  opts = vim.tbl_deep_extend("force", { silent = true }, defaults or {}, opts or {})
-
-  if type(cmd) == "function" then
-    table.insert(M.functions, cmd)
-    if opts.expr then
-      cmd = ([[luaeval('require("util").execute(%d)')]]):format(#M.functions)
-    else
-      cmd = ("<cmd>lua require('util').execute(%d)<cr>"):format(#M.functions)
-    end
-  end
-  if opts.buffer ~= nil then
-    local buffer = opts.buffer
-    opts.buffer = nil
-    return vim.api.nvim_buf_set_keymap(buffer, mode, key, cmd, opts)
-  else
-    return vim.api.nvim_set_keymap(mode, key, cmd, opts)
-  end
-end
-
-function M.map(mode, key, cmd, opt, defaults)
-  return map(mode, key, cmd, opt, defaults)
-end
-
-function M.nmap(key, cmd, opts)
-  return map("n", key, cmd, opts)
-end
-function M.vmap(key, cmd, opts)
-  return map("v", key, cmd, opts)
-end
-function M.xmap(key, cmd, opts)
-  return map("x", key, cmd, opts)
-end
-function M.imap(key, cmd, opts)
-  return map("i", key, cmd, opts)
-end
-function M.omap(key, cmd, opts)
-  return map("o", key, cmd, opts)
-end
-function M.smap(key, cmd, opts)
-  return map("s", key, cmd, opts)
-end
-
-function M.nnoremap(key, cmd, opts)
-  return map("n", key, cmd, opts, { noremap = true })
-end
-function M.vnoremap(key, cmd, opts)
-  return map("v", key, cmd, opts, { noremap = true })
-end
-function M.xnoremap(key, cmd, opts)
-  return map("x", key, cmd, opts, { noremap = true })
-end
-function M.inoremap(key, cmd, opts)
-  return map("i", key, cmd, opts, { noremap = true })
-end
-function M.onoremap(key, cmd, opts)
-  return map("o", key, cmd, opts, { noremap = true })
-end
-function M.snoremap(key, cmd, opts)
-  return map("s", key, cmd, opts, { noremap = true })
-end
-
 function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
@@ -153,51 +81,6 @@ function M.float_terminal(cmd)
   }
   vim.cmd(table.concat(autocmd, " "))
   vim.cmd([[startinsert]])
-end
-
-function M.docs()
-  local name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-  local docgen = require("babelfish")
-  vim.fn.mkdir("./doc", "p")
-  local metadata = {
-    input_file = "./README.md",
-    output_file = "doc/" .. name .. ".txt",
-    project_name = name,
-  }
-  docgen.generate_readme(metadata)
-end
-
-function M.lsp_config()
-  local ret = {}
-  for _, client in pairs(vim.lsp.get_active_clients()) do
-    ret[client.name] = { root_dir = client.config.root_dir, settings = client.config.settings }
-  end
-  dump(ret)
-end
-
-function M.colors(filter)
-  local defs = {}
-  for hl_name, hl in pairs(vim.api.nvim__get_hl_defs(0)) do
-    if hl_name:find(filter) then
-      local def = {}
-      if hl.link then
-        def.link = hl.link
-      end
-      for key, def_key in pairs({ foreground = "fg", background = "bg", special = "sp" }) do
-        if type(hl[key]) == "number" then
-          local hex = string.format("#%06x", hl[key])
-          def[def_key] = hex
-        end
-      end
-      for _, style in pairs({ "bold", "italic", "underline", "undercurl", "reverse" }) do
-        if hl[style] then
-          def.style = (def.style and (def.style .. ",") or "") .. style
-        end
-      end
-      defs[hl_name] = def
-    end
-  end
-  dump(defs)
 end
 
 function M.exists(fname)
