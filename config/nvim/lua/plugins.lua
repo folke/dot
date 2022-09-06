@@ -170,7 +170,7 @@ local function plugins(use)
     event = "BufRead",
     module = "nvim-treesitter",
     requires = {
-      -- "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-textobjects",
       "RRethy/nvim-treesitter-textsubjects",
       "nvim-treesitter/nvim-treesitter-refactor",
     },
