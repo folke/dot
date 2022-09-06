@@ -333,22 +333,19 @@ local function plugins(use)
   })
 
   use({
-    "phaazon/hop.nvim",
-    keys = { "gh" },
-    cmd = { "HopWord", "HopChar1" },
+    "ggandor/leap.nvim",
+    keys = { "s", "S", "gh" },
     config = function()
-      require("util").nmap("gh", "<cmd>HopWord<CR>")
-      -- require("util").nmap("s", "<cmd>HopChar1<CR>")
-      -- you can configure Hop the way you like here; see :h hop-config
-      require("hop").setup({})
-    end,
-  })
-
-  use({
-    "ggandor/lightspeed.nvim",
-    keys = { "s", "S", "f", "F", "t", "T" },
-    config = function()
-      require("config.lightspeed")
+      require("leap").setup({
+        case_sensitive = true,
+      })
+      require("leap").set_default_keymaps()
+      vim.keymap.set("n", "gh", function()
+        vim.notify("hop")
+        require("leap").leap({
+          target_windows = { vim.fn.win_getid() },
+        })
+      end, {})
     end,
   })
 
