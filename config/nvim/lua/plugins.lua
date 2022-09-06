@@ -101,6 +101,8 @@ local function plugins(use)
     requires = {
       { "hrsh7th/cmp-nvim-lsp", module = "cmp_nvim_lsp" },
       "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-cmdline",
+      "dmitmel/cmp-cmdline-history",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
     },
