@@ -224,7 +224,7 @@ function M.clipman()
     data = vim.trim(data)
     if data ~= "" then
       local ok, json = pcall(vim.fn.json_decode, data)
-      if ok then
+      if ok and json then
         local items = {}
         for i = #json, 1, -1 do
           items[#items + 1] = json[i]
@@ -232,7 +232,7 @@ function M.clipman()
         vim.ui.select(items, {
           prompt = "Clipman",
         }, function(choice)
-          vim.fn.setreg("*", choice)
+          vim.fn.setreg("+", choice)
         end)
       else
         vim.notify(("failed to load clipman from %s"):format(file), vim.log.levels.ERROR)
