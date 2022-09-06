@@ -285,6 +285,17 @@ local function plugins(use)
     end,
   })
 
+  use({
+    "michaelb/sniprun",
+    run = "bash ./install.sh",
+    cmd = "SnipRun",
+    keys = { "<leader>r" },
+    module = "sniprun",
+    config = function()
+      require("config.sniprun")
+    end,
+  })
+
   -- Git Gutter
   use({
     "lewis6991/gitsigns.nvim",
