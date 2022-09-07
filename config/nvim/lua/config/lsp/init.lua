@@ -22,12 +22,12 @@ local servers = {
   eslint = {},
   html = {},
   jsonls = {
-    -- settings = {
-    --   json = {
-    --     schemas = require("schemastore").json.schemas(),
-    --     validate = { enable = true },
-    --   },
-    -- },
+    settings = {
+      json = {
+        schemas = require("schemastore").json.schemas(),
+        validate = { enable = true },
+      },
+    },
   },
   pyright = {},
   rust_analyzer = {
