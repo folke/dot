@@ -7,6 +7,7 @@ require("indent_blankline").setup({
     "packer",
     "neogitstatus",
     "NvimTree",
+    "neo-tree",
     "Trouble",
   },
   char = "│",

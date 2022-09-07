@@ -195,7 +195,7 @@ local leader = {
   },
   f = {
     name = "+file",
-    t = { "<cmd>NvimTreeToggle<cr>", "NvimTree" },
+    t = { "<cmd>Neotree toggle<cr>", "NeoTree" },
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },

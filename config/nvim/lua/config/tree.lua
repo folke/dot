@@ -1,8 +1,3 @@
-require("nvim-tree").setup({
-  update_focused_file = {
-    enable = true,
-  },
-  filters = {
-    custom = { ".git", "node_modules", ".cargo" },
-  },
-})
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+require("neo-tree").setup({ filesystem = { follow_current_file = true } })

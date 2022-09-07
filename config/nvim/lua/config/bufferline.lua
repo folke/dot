@@ -31,8 +31,8 @@ require("bufferline").setup({
     end,
     offsets = {
       {
-        filetype = "NvimTree",
-        text = "NvimTree",
+        filetype = "neo-tree",
+        text = "Neo Tree",
         highlight = "Directory",
         text_align = "left",
       },

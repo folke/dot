@@ -156,6 +156,19 @@ local function plugins(use)
   })
 
   use({
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
+    config = function()
+      require("config.tree")
+    end,
+  })
+
+  use({
+    "MunifTanjim/nui.nvim",
+    module = "nui",
+  })
+
+  use({
     "danymat/neogen",
     module = "neogen",
     config = function()
@@ -214,14 +227,6 @@ local function plugins(use)
   use({
     "windwp/nvim-spectre",
     module = "spectre",
-  })
-
-  use({
-    "kyazdani42/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeClose" },
-    config = function()
-      require("config.tree")
-    end,
   })
 
   -- Fuzzy finder
