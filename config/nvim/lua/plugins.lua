@@ -25,7 +25,7 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
-  use({ "folke/workspace.nvim", module = "workspace" })
+  -- use({ "folke/workspace.nvim", module = "workspace" })
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
   use({
     "rcarriga/nvim-notify",
@@ -47,6 +47,11 @@ local function plugins(use)
   use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
   use({ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" })
   use({ "folke/lua-dev.nvim", module = "lua-dev" })
+  use({
+    "folke/lsp-settings.nvim",
+    module = "lsp-settings",
+    cmd = "LspSettings",
+  })
   use({
     "j-hui/fidget.nvim",
     module = "fidget",

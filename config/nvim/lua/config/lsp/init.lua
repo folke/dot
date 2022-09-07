@@ -1,5 +1,6 @@
-require("workspace").setup()
+-- require("workspace").setup()
 require("lua-dev").setup()
+require("lsp-settings").setup()
 
 require("config.mason").setup()
 require("config.lsp.diagnostics").setup()
