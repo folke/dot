@@ -358,19 +358,12 @@ local function plugins(use)
   })
 
   use({
-    "ggandor/leap.nvim",
-    keys = { "s", "S", "gh" },
+    "phaazon/hop.nvim",
+    cmd = "HopWord",
+    module = "hop",
+    keys = { "gh", "f", "F", "t", "T" },
     config = function()
-      require("leap").setup({
-        case_sensitive = true,
-      })
-      require("leap").set_default_keymaps()
-      vim.keymap.set("n", "gh", function()
-        vim.notify("hop")
-        require("leap").leap({
-          target_windows = { vim.fn.win_getid() },
-        })
-      end, {})
+      require("config.jump")
     end,
   })
 
