@@ -1,7 +1,6 @@
 -- require("workspace").setup()
 require("lua-dev").setup()
-require("lsp-settings").setup()
-
+require("settings").setup()
 require("config.mason").setup()
 require("config.lsp.diagnostics").setup()
 require("fidget").setup({ text = { spinner = "dots" } })
@@ -12,6 +11,7 @@ local function on_attach(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
 end
 
+---@type LspConfigSettings
 local servers = {
   ansiblels = {},
   bashls = {},
@@ -34,7 +34,6 @@ local servers = {
     settings = {
       ["rust-analyzer"] = {
         cargo = { allFeatures = true },
-        -- enable clippy on save
         checkOnSave = {
           command = "clippy",
           extraArgs = { "--no-deps" },
@@ -42,12 +41,25 @@ local servers = {
       },
     },
   },
-  sumneko_lua = { single_file_support = false },
+  sumneko_lua = {
+    single_file_support = false,
+    settings = {
+      Lua = {
+        diagnostics = {
+          libraryFiles = "Disable",
+        },
+      },
+    },
+  },
   vimls = {},
   -- tailwindcss = {},
 }
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 local options = {
   on_attach = on_attach,

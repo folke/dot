@@ -48,9 +48,9 @@ local function plugins(use)
   use({ "jose-elias-alvarez/null-ls.nvim", module = "null-ls" })
   use({ "folke/lua-dev.nvim", module = "lua-dev" })
   use({
-    "folke/lsp-settings.nvim",
-    module = "lsp-settings",
-    cmd = "LspSettings",
+    "folke/settings.nvim",
+    module = "settings",
+    cmd = "Settings",
   })
   use({
     "j-hui/fidget.nvim",
