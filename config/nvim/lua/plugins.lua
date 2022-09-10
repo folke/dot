@@ -65,13 +65,7 @@ local function plugins(use)
       vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
     end,
   })
-  use({
-    "smjonas/inc-rename.nvim",
-    module = "inc_rename",
-    config = function()
-      require("inc_rename").setup()
-    end,
-  })
+
   use({
     "williamboman/mason.nvim",
     module = "mason",

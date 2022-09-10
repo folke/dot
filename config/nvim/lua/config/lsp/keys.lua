@@ -11,9 +11,7 @@ function M.setup(client, bufnr)
     c = {
       name = "+code",
       r = {
-        function()
-          require("inc_rename").rename({ default = vim.fn.expand("<cword>") })
-        end,
+        vim.lsp.buf.rename,
         "Rename",
       },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
