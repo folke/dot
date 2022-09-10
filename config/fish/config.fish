@@ -27,6 +27,7 @@ fish_add_path /usr/local/sbin
 fish_add_path ~/.gem/ruby/2.6.0/bin
 fish_add_path ~/.local/bin/pnpm
 fish_add_path /bin
+fish_add_path ~/.local/share/neovim/bin
 
 # Fish
 set -U fish_emoji_width 2
