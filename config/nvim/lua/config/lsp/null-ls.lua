@@ -14,7 +14,10 @@ function M.setup(options)
       -- nls.builtins.diagnostics.shellcheck,
       nls.builtins.formatting.shfmt,
       nls.builtins.diagnostics.markdownlint,
-      nls.builtins.diagnostics.selene,
+      nls.builtins.formatting.deno_fmt.with({
+        filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
+      }),
+      -- nls.builtins.diagnostics.selene,
       -- nls.builtins.code_actions.gitsigns,
     },
     on_attach = options.on_attach,
