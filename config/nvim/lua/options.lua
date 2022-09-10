@@ -5,7 +5,7 @@ vim.g.maplocalleader = ","
 vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
-vim.opt.concealcursor = "n" -- Hide * markup for bold and italic
+vim.opt.concealcursor = "nc" -- Hide * markup for bold and italic
 vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
 vim.opt.cursorline = true -- Enable highlighting of the current line
@@ -35,7 +35,10 @@ vim.opt.sidescrolloff = 8 -- Columns of context
 vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
 vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.smartindent = true -- Insert indents automatically
-vim.opt.spell = true -- Put new windows below current
+
+if vim.fn.has("nvim-0.8") == 1 then
+  vim.opt.spell = true -- Put new windows below current
+end
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.tabstop = indent -- Number of spaces tabs count for
