@@ -343,9 +343,6 @@ local function plugins(use)
   use({ "npxbr/glow.nvim", cmd = "Glow" })
 
   use({
-    "plasticboy/vim-markdown",
-    requires = "godlygeek/tabular",
-    ft = "markdown",
   })
 
   use({
