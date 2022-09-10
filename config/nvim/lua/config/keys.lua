@@ -296,4 +296,4 @@ end
 
 wk.register(leader, { prefix = "<leader>" })
 
-wk.register({ g = { name = "+goto", h = "Hop Word" }, s = "Hop Word1" })
+wk.register({ g = { name = "+goto", h = "Hop Word" } })
