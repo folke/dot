@@ -27,6 +27,7 @@ local function setup()
       "ninja",
       "nix",
       "norg",
+      "org",
       "php",
       "python",
       "regex",

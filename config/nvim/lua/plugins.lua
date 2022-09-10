@@ -97,6 +97,7 @@ local function plugins(use)
   use({
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
+    module = "cmp",
     config = function()
       require("config.cmp")
     end,
@@ -429,6 +430,16 @@ local function plugins(use)
     event = "CursorHold",
     config = function()
       require("illuminate").configure({ delay = 200 })
+    end,
+  })
+
+  use({
+    "nvim-neorg/neorg",
+    module = "neorg",
+    -- tag = "latest",
+    ft = "norg",
+    config = function()
+      require("config.neorg")
     end,
   })
 
