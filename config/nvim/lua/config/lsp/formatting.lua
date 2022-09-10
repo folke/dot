@@ -19,7 +19,11 @@ end
 
 function M.format()
   if M.autoformat then
-    vim.lsp.buf.format()
+    if vim.lsp.buf.format then
+      vim.lsp.buf.format()
+    else
+      vim.lsp.buf.formatting()
+    end
   end
 end
 
