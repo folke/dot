@@ -1,4 +1,4 @@
-vim.o.background = "dark"
+-- vim.o.background = "dark"
 
 local tokyonight = require("tokyonight")
 tokyonight.setup({
