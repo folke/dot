@@ -82,16 +82,12 @@ end, {
   expr = true,
 })
 
-wk.register({
-  ["]"] = {
-    name = "next",
-    r = { '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>', "Next Reference" },
-  },
-  ["["] = {
-    name = "previous",
-    r = { '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>', "Next Reference" },
-  },
-})
+vim.keymap.set("n", "]]", function()
+  require("illuminate").goto_next_reference(false)
+end, { desc = "Next Reference" })
+vim.keymap.set("n", "[[", function()
+  require("illuminate").goto_prev_reference(false)
+end, { desc = "Prev Reference" })
 
 -- makes * and # work on visual mode too.
 vim.api.nvim_exec(

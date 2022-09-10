@@ -25,8 +25,9 @@ local config = {
 local function plugins(use)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
-  -- use({ "folke/workspace.nvim", module = "workspace" })
+
   use({ "stevearc/dressing.nvim", event = "BufReadPre" })
+
   use({
     "rcarriga/nvim-notify",
     event = "VimEnter",
@@ -34,6 +35,7 @@ local function plugins(use)
       vim.notify = require("notify")
     end,
   })
+
   -- LSP
   use({
     "neovim/nvim-lspconfig",
@@ -222,7 +224,6 @@ local function plugins(use)
     end,
   })
   use({ "nvim-lua/plenary.nvim", module = "plenary" })
-  -- use({ "nvim-lua/popup.nvim", module = "popup" })
 
   use({
     "windwp/nvim-spectre",
@@ -334,8 +335,6 @@ local function plugins(use)
     end,
   })
 
-  use({ "npxbr/glow.nvim", cmd = "Glow" })
-
   use({ "kevinhwang91/promise-async", module = "promise" })
   use({
     "kevinhwang91/nvim-ufo",
@@ -387,10 +386,6 @@ local function plugins(use)
   })
 
   use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
-
-  use({ "mbbill/undotree", cmd = "UndotreeToggle" })
-
-  -- use({ "mjlbach/babelfish.nvim", module = "babelfish" })
 
   use({ "folke/twilight.nvim", module = "twilight" })
   use({
