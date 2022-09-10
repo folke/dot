@@ -111,6 +111,7 @@ local function plugins(use)
       "dmitmel/cmp-cmdline-history",
       "hrsh7th/cmp-path",
       "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
   })
 

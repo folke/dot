@@ -69,22 +69,6 @@ function M.setup(client, bufnr)
   vim.keymap.set("n", "[w", "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
   vim.keymap.set("n", "]w", "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>", opts)
 
-  local trigger_chars = client.server_capabilities.signatureHelpTriggerCharacters
-  trigger_chars = { "," }
-  for _, c in ipairs(trigger_chars) do
-    vim.keymap.set("i", c, function()
-      vim.defer_fn(function()
-        pcall(vim.lsp.buf.signature_help)
-      end, 0)
-      return c
-    end, {
-      noremap = true,
-      silent = true,
-      buffer = bufnr,
-      expr = true,
-    })
-  end
-
   -- Set some keybinds conditional on server capabilities
   if client.server_capabilities.documentFormatting then
     keymap.c.f = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "Format Document" }
