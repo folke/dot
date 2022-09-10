@@ -12,10 +12,11 @@ local function p(fn, ...)
 end
 
 -- _G.pcall = p
-require("util")
+local util = require("util")
 require("options")
 
 -- no need to load this immediately, since we have packer_compiled
 vim.defer_fn(function()
+  util.version()
   require("plugins")
 end, 0)
