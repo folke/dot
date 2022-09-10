@@ -51,6 +51,19 @@ vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+vim.opt.fillchars = {
+  --   horiz = "━",
+  --   horizup = "┻",
+  --   horizdown = "┳",
+  --   vert = "┃",
+  --   vertleft = "┫",
+  --   vertright = "┣",
+  --   verthoriz = "╋",im.o.fillchars = [[eob: ,
+  -- fold = " ",
+  foldopen = "",
+  -- foldsep = " ",
+  foldclose = "",
+}
 -- vim.o.shortmess = "IToOlxfitn"
 
 -- don't load the plugins below

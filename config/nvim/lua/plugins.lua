@@ -342,7 +342,13 @@ local function plugins(use)
 
   use({ "npxbr/glow.nvim", cmd = "Glow" })
 
+  use({ "kevinhwang91/promise-async", module = "promise" })
   use({
+    "kevinhwang91/nvim-ufo",
+    event = "BufReadPost",
+    config = function()
+      require("config.folds")
+    end,
   })
 
   use({
