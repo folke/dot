@@ -51,7 +51,7 @@ local function plugins(use)
   use({ "folke/lua-dev.nvim", module = "lua-dev" })
   use({
     "folke/settings.nvim",
-    module = "settings",
+    module = "nvim-settings",
     cmd = "Settings",
   })
   use({

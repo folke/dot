@@ -1,9 +1,9 @@
 -- require("workspace").setup()
 require("lua-dev").setup()
-require("settings").setup()
 require("config.mason").setup()
 require("config.lsp.diagnostics").setup()
 require("fidget").setup({ text = { spinner = "dots" } })
+require("nvim-settings").setup()
 
 local function on_attach(client, bufnr)
   require("nvim-navic").attach(client, bufnr)
@@ -11,7 +11,7 @@ local function on_attach(client, bufnr)
   require("config.lsp.keys").setup(client, bufnr)
 end
 
----@type LspConfigSettings
+---@type lspconfig.options
 local servers = {
   ansiblels = {},
   bashls = {},
@@ -61,6 +61,7 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
+---@type _.lspconfig.options
 local options = {
   on_attach = on_attach,
   capabilities = capabilities,
