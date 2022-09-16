@@ -9,14 +9,14 @@ function M.setup(options)
       -- nls.builtins.formatting.prettierd,
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.fish_indent,
-      nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
+      -- nls.builtins.formatting.fixjson.with({ filetypes = { "jsonc" } }),
       -- nls.builtins.formatting.eslint_d,
       -- nls.builtins.diagnostics.shellcheck,
       nls.builtins.formatting.shfmt,
       nls.builtins.diagnostics.markdownlint,
-      nls.builtins.formatting.deno_fmt.with({
-        filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
-      }),
+      -- nls.builtins.formatting.deno_fmt.with({
+      --   filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
+      -- }),
       -- nls.builtins.diagnostics.selene,
       -- nls.builtins.code_actions.gitsigns,
     },
