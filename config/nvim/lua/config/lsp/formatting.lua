@@ -22,7 +22,7 @@ function M.format()
     if vim.lsp.buf.format then
       vim.lsp.buf.format()
     else
-      vim.lsp.buf.formatting()
+      vim.lsp.buf.formatting_sync()
     end
   end
 end
