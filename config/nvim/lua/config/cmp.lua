@@ -26,6 +26,7 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "path" },
+    { name = "emoji" },
     { name = "neorg" },
     { name = "nvim_lsp_signature_help" },
   }),
