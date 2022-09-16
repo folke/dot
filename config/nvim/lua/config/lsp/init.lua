@@ -24,6 +24,9 @@ local servers = {
   jsonls = {
     settings = {
       json = {
+        format = {
+          enable = true,
+        },
         schemas = require("schemastore").json.schemas(),
         validate = { enable = true },
       },
@@ -42,11 +45,19 @@ local servers = {
     },
   },
   sumneko_lua = {
-    single_file_support = false,
+    single_file_support = true,
     settings = {
       Lua = {
         diagnostics = {
-          libraryFiles = "Disable",
+          unusedLocalExclude = { "_*" },
+        },
+        format = {
+          enable = false,
+          defaultConfig = {
+            indent_style = "space",
+            indent_size = "2",
+            continuation_indent_size = "2",
+          },
         },
       },
     },
