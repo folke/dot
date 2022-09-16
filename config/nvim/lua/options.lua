@@ -39,9 +39,9 @@ vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shi
 vim.opt.smartcase = true -- Don't ignore case with capitals
 vim.opt.smartindent = true -- Insert indents automatically
 
-if vim.fn.has("nvim-0.8") == 1 then
-  vim.opt.spell = true -- Put new windows below current
-end
+-- if vim.fn.has("nvim-0.8") == 1 then
+--   vim.opt.spell = true -- Put new windows below current
+-- end
 vim.opt.splitbelow = true -- Put new windows below current
 vim.opt.splitright = true -- Put new windows right of current
 vim.opt.tabstop = indent -- Number of spaces tabs count for
