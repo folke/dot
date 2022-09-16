@@ -127,7 +127,11 @@ end
 function M.version()
   local v = vim.version()
   if not v.prerelease then
-    vim.notify(("Neovim v%d.%d.%d"):format(v.major, v.minor, v.patch), vim.log.levels.WARN, {title = "Neovim: not running nightly!"})
+    vim.notify(
+      ("Neovim v%d.%d.%d"):format(v.major, v.minor, v.patch),
+      vim.log.levels.WARN,
+      { title = "Neovim: not running nightly!" }
+    )
   end
 end
 
