@@ -357,6 +357,7 @@ local function plugins(use)
   use({
     "kevinhwang91/nvim-ufo",
     event = "BufReadPost",
+    disable = true,
     config = function()
       require("config.folds")
     end,
