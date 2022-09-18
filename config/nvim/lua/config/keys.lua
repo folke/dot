@@ -5,8 +5,6 @@ local util = require("util")
 
 vim.o.timeoutlen = 300
 
-local presets = require("which-key.plugins.presets")
-presets.objects["a("] = nil
 wk.setup({
   show_help = false,
   triggers = "auto",
@@ -90,8 +88,7 @@ vim.keymap.set("n", "[[", function()
 end, { desc = "Prev Reference" })
 
 -- makes * and # work on visual mode too.
-vim.api.nvim_exec(
-  [[
+vim.cmd([[
   function! g:VSetSearch(cmdtype)
     let temp = @s
     norm! gv"sy
@@ -101,9 +98,7 @@ vim.api.nvim_exec(
 
   xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
-]],
-  false
-)
+]])
 
 local leader = {
   ["w"] = {
@@ -125,7 +120,10 @@ local leader = {
     ["s"] = { "<C-W>s", "split-window-below" },
     ["v"] = { "<C-W>v", "split-window-right" },
   },
-  c = { v = { "<cmd>Vista!!<CR>", "Vista" }, O = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" } },
+  c = {
+    v = { "<cmd>Vista!!<CR>", "Vista" },
+    O = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
+  },
   b = {
     name = "+buffer",
     ["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
@@ -236,9 +234,8 @@ local leader = {
     },
   },
   ["<tab>"] = {
-    name = "workspace",
+    name = "tabs",
     ["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },
-
     n = { "<cmd>tabnext<CR>", "Next" },
     d = { "<cmd>tabclose<CR>", "Close" },
     p = { "<cmd>tabprevious<CR>", "Previous" },
@@ -279,15 +276,8 @@ local leader = {
     l = { "<cmd>lopen<cr>", "Open Location List" },
     q = { "<cmd>copen<cr>", "Open Quickfix List" },
   },
-  Z = { [[<cmd>lua require("zen-mode").reset()<cr>]], "Zen Mode" },
   z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
   T = { [[<Plug>PlenaryTestFile]], "Plenary Test" },
-  D = {
-    function()
-      util.docs()
-    end,
-    "Create Docs from README.md",
-  },
 }
 
 for i = 0, 10 do

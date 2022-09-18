@@ -476,7 +476,7 @@ local function plugins(use)
     end,
   })
 
-  use("nanotee/luv-vimdocs")
+  -- use("nanotee/luv-vimdocs")
   use({
     "andymass/vim-matchup",
     event = "CursorMoved",
