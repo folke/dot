@@ -259,8 +259,9 @@ local function plugins(use, plugin)
   use({
     "folke/which-key.nvim",
     event = "VimEnter",
+    module = "which-key",
     config = function()
-      require("config.keys")
+      require("config.mappings")
     end,
   })
 

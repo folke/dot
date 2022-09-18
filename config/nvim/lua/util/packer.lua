@@ -19,11 +19,11 @@ function M.bootstrap()
     group = group,
     callback = function()
       for p, _ in pairs(package.loaded) do
-        if p:find("^plugins") == 1 then
+        if p:find("^plugins") or p == "user.plugins" then
           package.loaded[p] = nil
         end
       end
-      require("plugins")
+      require("user.plugins")
       vim.cmd([[PackerCompile]])
       util.info("Packer compiled...")
     end,
