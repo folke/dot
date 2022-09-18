@@ -10,10 +10,7 @@ function M.setup(client, bufnr)
   local keymap = {
     c = {
       name = "+code",
-      r = {
-        vim.lsp.buf.rename,
-        "Rename",
-      },
+      r = { vim.lsp.buf.rename, "Rename" },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
       d = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics" },
       l = {
