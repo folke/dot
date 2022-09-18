@@ -106,6 +106,9 @@ local function plugins(use, plugin)
     config = function()
       require("symbols-outline").setup()
     end,
+    setup = function()
+      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+    end,
   })
 
   use({
@@ -244,9 +247,7 @@ local function plugins(use, plugin)
     "AckslD/nvim-neoclip.lua",
     event = "TextYankPost",
     module = "telescope._extensions.neoclip",
-    requires = {
-      { "kkharji/sqlite.lua", module = "sqlite" },
-    },
+    requires = { { "kkharji/sqlite.lua", module = "sqlite" } },
     config = function()
       require("neoclip").setup({
         enable_persistent_history = true,

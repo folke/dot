@@ -30,6 +30,30 @@ function M.bootstrap()
   })
 end
 
+function M.use(spec, fn)
+  if type(spec) == "string" then
+    spec = { spec }
+  elseif type(spec) == "table" and #spec > 1 then
+    for i, child_spec in ipairs(spec) do
+      spec[i] = M.use(child_spec, fn)
+    end
+    return
+  end
+  if
+    type(spec.requires) == "string"
+    or (type(spec.requires) == "table" and not vim.tbl_islist(spec.requires) and #spec.requires == 1)
+  then
+    spec.requires = { spec.requires }
+  end
+  if spec.requires then
+    for i, v in ipairs(spec.requires) do
+      spec.requires[i] = M.use(v, fn)
+    end
+  end
+  fn(spec)
+  return spec
+end
+
 function M.get_name(pkg)
   local parts = vim.split(pkg, "/")
   return parts[#parts], parts[1]
@@ -41,63 +65,48 @@ end
 
 -- This method replaces any plugins with the local clone under ~/projects
 function M.process_local_plugins(spec)
-  if type(spec) == "string" then
-    local name, owner = M.get_name(spec)
-    local local_pkg = "~/projects/" .. name
+  local spec_name = spec[1]
+  local name, owner = M.get_name(spec_name)
+  local local_pkg = "~/projects/" .. name
 
-    if M.local_plugins[name] or M.local_plugins[owner] or M.local_plugins[owner .. "/" .. name] then
-      if M.has_local(name) then
-        return local_pkg
-      else
-        util.error("Local package " .. name .. " not found")
-      end
-    end
-    return spec
-  else
-    for i, s in ipairs(spec) do
-      spec[i] = M.process_local_plugins(s)
+  if M.local_plugins[name] or M.local_plugins[owner] or M.local_plugins[owner .. "/" .. name] then
+    if M.has_local(name) then
+      spec[1] = local_pkg
+    else
+      util.error("Local package " .. name .. " not found")
     end
   end
-  if spec.requires then
-    spec.requires = M.process_local_plugins(spec.requires)
-  end
-  return spec
 end
 
-function M.process_plugins(spec)
-  if type(spec) == "table" then
-    for _, v in pairs(spec) do
-      M.process_plugins(v)
-    end
-    if spec.plugin then
-      local ok, plugin = pcall(require, "plugins." .. spec.plugin)
-      if not ok then
-        util.error("Failed to load plugins." .. spec.plugin .. "\n\n" .. plugin)
-      else
-        for k, v in pairs(plugin) do
-          local kk = k
-          -- don't process any setup methods. Those should be called manually
-          if kk == "setup" then
-            kk = nil
-          end
-          -- what we call init, is called setup in Packer
-          if kk == "init" then
-            kk = "setup"
-          end
-          if kk then
-            spec[kk] = type(v) == "function" and ([[require("plugins.%s").%s()]]):format(spec.plugin, k) or v
-          end
+function M.process_plugin(spec)
+  if spec.plugin then
+    local ok, plugin = pcall(require, "plugins." .. spec.plugin)
+    if not ok then
+      util.error("Failed to load plugins." .. spec.plugin .. "\n\n" .. plugin)
+    else
+      for k, v in pairs(plugin) do
+        local kk = k
+        -- don't process any setup methods. Those should be called manually
+        if kk == "setup" then
+          kk = nil
+        end
+        -- what we call init, is called setup in Packer
+        if kk == "init" then
+          kk = "setup"
+        end
+        if kk then
+          spec[kk] = type(v) == "function" and ([[require("plugins.%s").%s()]]):format(spec.plugin, k) or v
         end
       end
-      spec.plugin = nil
     end
+    spec.plugin = nil
   end
 end
 
 function M.wrap(use)
   return function(spec)
-    spec = M.process_local_plugins(spec)
-    M.process_plugins(spec)
+    spec = M.use(spec, M.process_plugin)
+    spec = M.use(spec, M.process_local_plugins)
     use(spec)
   end
 end
