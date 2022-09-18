@@ -12,7 +12,7 @@ vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 
 if vim.fn.has("nvim-0.8") ~= 0 then
-  vim.opt.cmdheight = 0
+  -- vim.opt.cmdheight = 0
 end
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
