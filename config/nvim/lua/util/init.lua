@@ -36,6 +36,21 @@ end
 
 local M = {}
 
+function M.debug_pcall()
+  _G.pcall = function(fn, ...)
+    local args = { ... }
+    return xpcall(fn and function()
+      return fn(unpack(args))
+    end, function(err)
+      if err:find("DevIcon") or err:find("mason") or err:find("Invalid highlight") then
+        return err
+      end
+      vim.api.nvim_echo({ { err, "ErrorMsg" }, { debug.traceback("", 3), "Normal" } }, true, {})
+      return err
+    end)
+  end
+end
+
 function M.t(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
