@@ -66,9 +66,6 @@ vim.keymap.set("n", "<C-c>", "<esc>ciw")
 -- telescope <ctrl-r> in command line
 -- vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
 
--- markdown
-vim.keymap.set("n", "=t", "<cmd>TableFormat<cr>")
-
 -- better indenting
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
@@ -78,6 +75,7 @@ vim.keymap.set("n", "<space>cu", function()
   return "i" .. string.format("%.0f", number)
 end, {
   expr = true,
+  desc = "GUID",
 })
 
 -- makes * and # work on visual mode too.
@@ -114,8 +112,7 @@ local leader = {
     ["v"] = { "<C-W>v", "split-window-right" },
   },
   c = {
-    v = { "<cmd>Vista!!<CR>", "Vista" },
-    O = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" },
+    name = "+code",
   },
   b = {
     name = "+buffer",
@@ -126,11 +123,9 @@ local leader = {
     ["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["d"] = { "<cmd>:Bdelete<CR>", "Delete Buffer" },
     ["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
-    ["g"] = { "<cmd>:BufferLinePick<CR>", "Goto Buffer" },
   },
   g = {
     name = "+git",
-    g = { "<cmd>Neogit kind=split<CR>", "NeoGit" },
     l = {
       function()
         require("util").float_terminal("lazygit")
@@ -163,7 +158,6 @@ local leader = {
       c = { "<cmd>PackerCompile<cr>", "Compile" },
     },
   },
-  u = { "<cmd>UndotreeToggle<CR>", "Undo Tree" },
   s = {
     name = "+search",
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
@@ -279,4 +273,4 @@ end
 
 wk.register(leader, { prefix = "<leader>" })
 
-wk.register({ g = { name = "+goto", h = "Hop Word" } })
+wk.register({ g = { name = "+goto" } })

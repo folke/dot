@@ -12,4 +12,7 @@ return {
       integrations = { diffview = true },
     })
   end,
+  init = function()
+    vim.keymap.set("n", "<leader>gg", "<cmd>Neogit kind=floating<cr>", { desc = "Neogit" })
+  end,
 }
