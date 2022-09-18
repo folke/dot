@@ -3,7 +3,7 @@ require("lua-dev").setup()
 require("config.mason").setup()
 require("config.lsp.diagnostics").setup()
 require("fidget").setup({ text = { spinner = "dots" } })
-require("nvim-settings").setup()
+require("neoconf").setup()
 
 local function on_attach(client, bufnr)
   require("nvim-navic").attach(client, bufnr)
