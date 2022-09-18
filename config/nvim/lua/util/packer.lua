@@ -16,11 +16,11 @@ end
 function M.auto_compile()
   local group = vim.api.nvim_create_augroup("PackerUserConfig", {})
   vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = { "plugins.lua", "*/plugins/*.lua" },
+    pattern = { "plugins.lua", "*/plugins/*.lua", "packer.lua" },
     group = group,
     callback = function()
       for p, _ in pairs(package.loaded) do
-        if p:find("^plugins") or p == "config.plugins" then
+        if p:find("^plugins") or p == "config.plugins" or p == "util.packer" then
           package.loaded[p] = nil
         end
       end
