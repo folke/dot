@@ -22,7 +22,7 @@ local config = {
   },
 }
 
-local function plugins(use)
+local function plugins(use, plugin)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
 
@@ -266,23 +266,8 @@ local function plugins(use)
     },
   })
 
-  -- Indent Guides and rainbow brackets
-  use({
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufReadPre",
-    config = function()
-      require("config.blankline")
-    end,
-  })
-
-  -- Tabs
-  use({
-    "akinsho/nvim-bufferline.lua",
-    event = "BufReadPre",
-    config = function()
-      require("config.bufferline")
-    end,
-  })
+  plugin("lukas-reineke/indent-blankline.nvim")
+  plugin("akinsho/nvim-bufferline.lua")
 
   -- Terminal
   use({
