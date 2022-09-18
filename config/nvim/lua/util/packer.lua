@@ -86,15 +86,9 @@ function M.process_plugin(spec)
       util.error("Failed to load plugins." .. spec.plugin .. "\n\n" .. plugin)
     else
       for k, v in pairs(plugin) do
-        local kk = k
-        -- don't process any setup methods. Those should be called manually
-        if kk == "setup" then
-          kk = nil
-        end
         -- what we call init, is called setup in Packer
-        if kk == "init" then
-          kk = "setup"
-        end
+        -- skip plugin.setup methods. Thos are to be called maually from scripts
+        local kk = k == "init" and "setup" or k ~= "setup" and k
         if kk then
           spec[kk] = type(v) == "function" and ([[require("plugins.%s").%s()]]):format(spec.plugin, k) or v
         end
