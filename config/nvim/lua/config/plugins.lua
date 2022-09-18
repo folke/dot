@@ -26,7 +26,7 @@ local function plugins(use, plugin)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
 
-  use({ "stevearc/dressing.nvim", event = "BufReadPre" })
+  use({ "stevearc/dressing.nvim", event = "VimEnter" })
 
   use({
     "rcarriga/nvim-notify",
@@ -227,8 +227,13 @@ local function plugins(use, plugin)
     end,
   })
 
-  -- use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
-  use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
+  use({
+    "dstein64/vim-startuptime",
+    cmd = "StartupTime",
+    config = function()
+      vim.g.startuptime_tries = 10
+    end,
+  })
 
   use({ "folke/twilight.nvim", module = "twilight" })
   use({
