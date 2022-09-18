@@ -69,6 +69,15 @@ local function plugins(use)
   })
 
   use({
+    "monaqa/dial.nvim",
+    module = "dial",
+    keys = { "<C-a>", "<C-x>" },
+    config = function()
+      require("config.dial")
+    end,
+  })
+
+  use({
     "williamboman/mason.nvim",
     module = "mason",
     opt = true,
