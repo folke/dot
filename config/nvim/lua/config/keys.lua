@@ -257,7 +257,11 @@ local leader = {
     function()
       util.clipman()
     end,
-    "Clipman",
+    "Paste from Clipman",
+  },
+  ["P"] = {
+    ":Telescope neoclip plus<CR>",
+    "Paste from Clipman",
   },
   q = {
     name = "+quit/session",

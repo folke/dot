@@ -115,8 +115,10 @@ function M.clipman()
         vim.ui.select(items, {
           prompt = "Clipman",
         }, function(choice)
-          vim.api.nvim_paste(choice, true, 1)
-          -- vim.fn.setreg("+", choice)
+          if choice then
+            vim.api.nvim_paste(choice, true, 1)
+            -- vim.fn.setreg("+", choice)
+          end
         end)
       else
         vim.notify(("failed to load clipman from %s"):format(file), vim.log.levels.ERROR)
