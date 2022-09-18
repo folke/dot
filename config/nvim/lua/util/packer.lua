@@ -20,7 +20,7 @@ function M.auto_compile()
     group = group,
     callback = function()
       for p, _ in pairs(package.loaded) do
-        if p:find("^plugins") or p == "user.plugins" then
+        if p:find("^plugins") or p == "config.plugins" then
           package.loaded[p] = nil
         end
       end
