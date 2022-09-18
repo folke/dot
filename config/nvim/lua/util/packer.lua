@@ -8,11 +8,12 @@ function M.bootstrap()
   local fn = vim.fn
   local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd("packadd packer.nvim")
+    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    return true
   end
-  vim.cmd([[packadd packer.nvim]])
+end
 
+function M.auto_compile()
   local group = vim.api.nvim_create_augroup("PackerUserConfig", {})
   vim.api.nvim_create_autocmd("BufWritePost", {
     pattern = { "plugins.lua", "*/plugins/*.lua" },
@@ -125,16 +126,26 @@ function M.setup(config, fn)
   -- HACK: see https://github.com/wbthomason/packer.nvim/issues/180
   vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
 
-  M.bootstrap()
+  local bootstrapped = M.bootstrap()
+  M.auto_compile()
+
+  vim.cmd([[packadd packer.nvim]])
+
   local packer = require("packer")
   packer.init(config)
+
   M.local_plugins = config.local_plugins or {}
-  return packer.startup(function(use)
+
+  packer.startup(function(use)
     use = M.wrap(use)
     fn(use, function(pkg)
       return use(M.plugin(pkg))
     end)
   end)
+
+  if bootstrapped then
+    require("packer").sync()
+  end
 end
 
 return M

@@ -36,6 +36,21 @@ end
 
 local M = {}
 
+function M.try(fn, ...)
+  local args = { ... }
+
+  return xpcall(function()
+    return fn(unpack(args))
+  end, function(err)
+    local lines = {}
+    table.insert(lines, err)
+    table.insert(lines, debug.traceback("", 3))
+
+    M.error(table.concat(lines, "\n"))
+    return err
+  end)
+end
+
 function M.debug_pcall()
   _G.pcall = function(fn, ...)
     local args = { ... }
