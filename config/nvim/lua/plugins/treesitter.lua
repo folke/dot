@@ -1,7 +1,8 @@
 local M = {
   run = ":TSUpdate",
-  event = "BufRead",
-  module = "nvim-treesitter",
+  opt = false,
+  -- event = "BufRead",
+  -- module = "nvim-treesitter",
   requires = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-textsubjects",
@@ -10,8 +11,7 @@ local M = {
 }
 
 function M.config()
-  local ts_configs = require("nvim-treesitter.configs")
-  ts_configs.setup({
+  require("nvim-treesitter.configs").setup({
     ensure_installed = {
       "bash",
       "c",
