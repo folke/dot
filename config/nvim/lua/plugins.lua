@@ -102,6 +102,13 @@ local function plugins(use)
   })
 
   use({ "famiu/bufdelete.nvim", cmd = "Bdelete" })
+  use({
+    "petertriho/nvim-scrollbar",
+    event = "BufReadPost",
+    config = function()
+      require("config.scrollbar")
+    end,
+  })
 
   use({
     "hrsh7th/nvim-cmp",
