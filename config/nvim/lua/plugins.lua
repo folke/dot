@@ -426,6 +426,21 @@ local function plugins(use)
   })
 
   use({
+    "AckslD/nvim-neoclip.lua",
+    event = "TextYankPost",
+    module = "telescope._extensions.neoclip",
+    requires = {
+      { "kkharji/sqlite.lua", module = "sqlite" },
+    },
+    config = function()
+      require("neoclip").setup({
+        enable_persistent_history = true,
+        continuous_sync = true,
+      })
+    end,
+  })
+
+  use({
     "folke/which-key.nvim",
     event = "VimEnter",
     config = function()
