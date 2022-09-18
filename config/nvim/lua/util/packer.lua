@@ -23,7 +23,7 @@ function M.bootstrap()
           package.loaded[p] = nil
         end
       end
-      require("user.plugins")
+      require("config.plugins")
       vim.cmd([[PackerCompile]])
       util.info("Packer compiled...")
     end,
@@ -111,6 +111,16 @@ function M.wrap(use)
   end
 end
 
+function M.plugin(pkg)
+  local name = M.get_name(pkg):lower()
+  name = name:gsub("%.n?vim$", "")
+  name = name:gsub("^n?vim%-", "")
+  name = name:gsub("%-n?vim$", "")
+  name = name:gsub("%.lua$", "")
+  name = name:gsub("%.", "_")
+  return { pkg, plugin = name }
+end
+
 function M.setup(config, fn)
   -- HACK: see https://github.com/wbthomason/packer.nvim/issues/180
   vim.fn.setenv("MACOSX_DEPLOYMENT_TARGET", "10.15")
@@ -119,20 +129,12 @@ function M.setup(config, fn)
   local packer = require("packer")
   packer.init(config)
   M.local_plugins = config.local_plugins or {}
-  return packer.startup({
-    function(use)
-      use = M.wrap(use)
-      fn(use, function(pkg)
-        local name = M.get_name(pkg):lower()
-        name = name:gsub("%.n?vim$", "")
-        name = name:gsub("^n?vim%-", "")
-        name = name:gsub("%-n?vim$", "")
-        name = name:gsub("%.lua$", "")
-        name = name:gsub("%.", "_")
-        use({ pkg, plugin = name })
-      end)
-    end,
-  })
+  return packer.startup(function(use)
+    use = M.wrap(use)
+    fn(use, function(pkg)
+      return use(M.plugin(pkg))
+    end)
+  end)
 end
 
 return M
