@@ -14,6 +14,7 @@ return {
         "spectre_panel",
         "NeogitStatus",
         "help",
+        "startuptime",
       },
       on_colors = function(c) end,
       on_highlights = function(hl, c)
