@@ -132,7 +132,6 @@ local function plugins(use, plugin)
     config = function()
       require("neogen").setup({ snippet_engine = "luasnip" })
     end,
-    requires = "nvim-treesitter/nvim-treesitter",
   })
 
   plugin("nvim-treesitter/nvim-treesitter")
@@ -228,7 +227,8 @@ local function plugins(use, plugin)
     end,
   })
 
-  use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+  -- use({ "tweekmonster/startuptime.vim", cmd = "StartupTime" })
+  use({ "dstein64/vim-startuptime", cmd = "StartupTime" })
 
   use({ "folke/twilight.nvim", module = "twilight" })
   use({
@@ -267,10 +267,9 @@ local function plugins(use, plugin)
 
   plugin("nvim-neorg/neorg")
 
-  -- use("nanotee/luv-vimdocs")
   use({
     "andymass/vim-matchup",
-    event = "CursorMoved",
+    event = "BufReadPost",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
