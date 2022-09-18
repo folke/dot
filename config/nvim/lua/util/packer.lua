@@ -75,7 +75,18 @@ function M.process_plugins(spec)
         util.error("Failed to load plugins." .. spec.plugin .. "\n\n" .. plugin)
       else
         for k, v in pairs(plugin) do
-          spec[k] = type(v) == "function" and ([[require("plugins.%s").%s()]]):format(spec.plugin, k) or v
+          local kk = k
+          -- don't process any setup methods. Those should be called manually
+          if kk == "setup" then
+            kk = nil
+          end
+          -- what we call init, is called setup in Packer
+          if kk == "init" then
+            kk = "setup"
+          end
+          if kk then
+            spec[kk] = type(v) == "function" and ([[require("plugins.%s").%s()]]):format(spec.plugin, k) or v
+          end
         end
       end
       spec.plugin = nil
@@ -103,8 +114,10 @@ function M.setup(config, fn)
     function(use)
       use = M.wrap(use)
       fn(use, function(pkg)
-        local name = M.get_name(pkg)
-        name = name:gsub("%.nvim$", "")
+        local name = M.get_name(pkg):lower()
+        name = name:gsub("%.n?vim$", "")
+        name = name:gsub("^n?vim%-", "")
+        name = name:gsub("%-n?vim$", "")
         name = name:gsub("%.lua$", "")
         name = name:gsub("%.", "_")
         use({ pkg, plugin = name })

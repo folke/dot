@@ -80,13 +80,6 @@ end, {
   expr = true,
 })
 
-vim.keymap.set("n", "]]", function()
-  require("illuminate").goto_next_reference(false)
-end, { desc = "Next Reference" })
-vim.keymap.set("n", "[[", function()
-  require("illuminate").goto_prev_reference(false)
-end, { desc = "Prev Reference" })
-
 -- makes * and # work on visual mode too.
 vim.cmd([[
   function! g:VSetSearch(cmdtype)
@@ -210,7 +203,7 @@ local leader = {
   t = {
     name = "toggle",
     f = {
-      require("config.lsp.formatting").toggle,
+      require("plugins.lsp.formatting").toggle,
       "Format on Save",
     },
     s = {

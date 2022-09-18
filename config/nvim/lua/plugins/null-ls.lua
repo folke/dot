@@ -1,4 +1,4 @@
-local M = {}
+local M = { module = "null-ls" }
 
 function M.setup(options)
   local nls = require("null-ls")

@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+  module = "mason",
+}
 
 M.tools = {
   "prettierd",
@@ -19,7 +21,7 @@ function M.check()
   end
 end
 
-function M.setup()
+function M.config()
   require("mason").setup()
   M.check()
   require("mason-lspconfig").setup({

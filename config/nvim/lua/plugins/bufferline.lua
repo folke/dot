@@ -3,7 +3,7 @@ local M = {
 }
 
 function M.config()
-  local signs = require("config.lsp.diagnostics").signs
+  local signs = require("plugins.lsp.diagnostics").signs
 
   signs = {
     error = signs.Error,

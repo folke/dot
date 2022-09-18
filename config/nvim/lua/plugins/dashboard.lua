@@ -1,15 +1,18 @@
-local db = require("dashboard")
+return {
+  opt = false,
+  config = function()
+    local db = require("dashboard")
 
-local logo = {
-  " ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
-  " ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
-  " ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
-  " ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
-  " ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
-  " ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
-}
+    local logo = [[
+███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗
+████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║
+██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║
+██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║
+██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║
+╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝
+]]
 
-logo = [[
+    logo = [[
                                                         *                  
      *                                                          *          
                                   *                  *        .--.         
@@ -24,7 +27,7 @@ logo = [[
      *      <> <>     <> <>          (___||____||_____)   ((~~~~~|   *     
 ]]
 
-logo = [[
+    logo = [[
                                _                         
                            ,--.\`-. __                   
                          _,.`. \:/,"  `-._               
@@ -49,21 +52,23 @@ logo = [[
      ~~   ~   ~~~     ~~~ ~         ~~       ~~   SSt    
               ~        ~~       ~~~       ~              
 ]]
-local lines = {}
-for line in logo:gmatch("[^\n]+") do
-  table.insert(lines, line)
-end
+    local lines = {}
+    for line in logo:gmatch("[^\n]+") do
+      table.insert(lines, line)
+    end
 
-db.custom_header = lines
+    db.custom_header = lines
 
-vim.g.dashboard_custom_header = lines
+    vim.g.dashboard_custom_header = lines
 
-vim.g.dashboard_custom_shortcut = {
-  ["last_session"] = "SPC s l",
-  ["find_history"] = "SPC f r",
-  ["find_file"] = "SPC spc",
-  ["new_file"] = "SPC f n",
-  ["change_colorscheme"] = "SPC h c",
-  ["find_word"] = "SPC f g",
-  ["book_marks"] = "SPC f b",
+    vim.g.dashboard_custom_shortcut = {
+      ["last_session"] = "SPC s l",
+      ["find_history"] = "SPC f r",
+      ["find_file"] = "SPC spc",
+      ["new_file"] = "SPC f n",
+      ["change_colorscheme"] = "SPC h c",
+      ["find_word"] = "SPC f g",
+      ["book_marks"] = "SPC f b",
+    }
+  end,
 }

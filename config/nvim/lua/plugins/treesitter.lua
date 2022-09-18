@@ -1,4 +1,15 @@
-local function setup()
+local M = {
+  run = ":TSUpdate",
+  event = "BufRead",
+  module = "nvim-treesitter",
+  requires = {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    "RRethy/nvim-treesitter-textsubjects",
+    "nvim-treesitter/nvim-treesitter-refactor",
+  },
+}
+
+function M.config()
   local ts_configs = require("nvim-treesitter.configs")
   ts_configs.setup({
     ensure_installed = {
@@ -139,4 +150,4 @@ local function setup()
   })
 end
 
-setup()
+return M

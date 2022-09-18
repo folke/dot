@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+  module = "rust-tools",
+}
 
 function M.setup(options)
   local opts = {
