@@ -18,6 +18,7 @@ local config = {
     folke = true,
     ["null-ls.nvim"] = false,
     ["nvim-lspconfig"] = false,
+    ["windows.nvim"] = true,
     -- ["nvim-treesitter"] = true,
   },
 }
@@ -63,6 +64,8 @@ local function plugins(use, plugin)
       vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
     end,
   })
+
+  plugin("anuvyklack/windows.nvim")
 
   plugin("monaqa/dial.nvim")
 
