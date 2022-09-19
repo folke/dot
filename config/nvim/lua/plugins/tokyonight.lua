@@ -4,7 +4,7 @@ return {
     -- vim.o.background = "dark"
     local tokyonight = require("tokyonight")
     tokyonight.setup({
-      terminal_colors = false,
+      style = "moon",
       hide_inactive_statusline = false,
       sidebars = {
         "qf",
