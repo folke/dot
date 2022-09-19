@@ -698,4 +698,4 @@ live_config_reload: true
 
 # TokyoNight Alacritty Colors
 import:
-  - ~/projects/tokyonight.nvim/extras/alacritty_tokyonight_storm.yml
+  - ~/projects/tokyonight.nvim/extras/alacritty/tokyonight_storm.yml

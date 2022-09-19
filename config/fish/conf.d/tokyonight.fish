@@ -1,1 +1,1 @@
-. ~/projects/tokyonight.nvim/extras/fish_tokyonight_storm.fish
+. ~/projects/tokyonight.nvim/extras/fish/tokyonight_storm.fish
