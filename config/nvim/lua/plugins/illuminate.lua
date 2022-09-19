@@ -1,5 +1,5 @@
 return {
-  event = "CursorHold",
+  event = "User PackerDefered",
   module = "illuminate",
   config = function()
     require("illuminate").configure({ delay = 200 })

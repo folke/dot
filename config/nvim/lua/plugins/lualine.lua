@@ -1,4 +1,4 @@
-local M = { event = "VimEnter" }
+local M = { event = "User PackerDefered" }
 
 local function clock()
   return " " .. os.date("%H:%M")

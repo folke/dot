@@ -1,8 +1,6 @@
 local M = {
   run = ":TSUpdate",
-  opt = false,
-  -- event = "BufRead",
-  -- module = "nvim-treesitter",
+  event = "User PackerDefered",
   requires = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-textsubjects",

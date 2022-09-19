@@ -26,11 +26,11 @@ local function plugins(use, plugin)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
 
-  use({ "stevearc/dressing.nvim", event = "VimEnter" })
+  use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
 
   use({
     "rcarriga/nvim-notify",
-    event = "VimEnter",
+    event = "User PackerDefered",
     config = function()
       vim.notify = require("notify")
     end,

@@ -36,6 +36,10 @@ end
 
 local M = {}
 
+function M.packer_defered()
+  vim.api.nvim_exec_autocmds("User", { pattern = "PackerDefered" })
+end
+
 function M.require(mod)
   return M.try(require, mod)
 end

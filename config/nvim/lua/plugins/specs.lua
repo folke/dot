@@ -1,5 +1,5 @@
 return {
-  event = "VimEnter",
+  event = "User PackerDefered",
   config = function()
     require("specs").setup({
       show_jumps = true,
