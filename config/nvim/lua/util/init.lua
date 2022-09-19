@@ -36,6 +36,10 @@ end
 
 local M = {}
 
+function M.require(mod)
+  return M.try(require, mod)
+end
+
 function M.try(fn, ...)
   local args = { ... }
 

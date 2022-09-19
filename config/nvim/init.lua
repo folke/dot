@@ -2,11 +2,11 @@ local util = require("util")
 
 -- util.debug_pcall()
 
-util.try(require, "config.options")
+util.require("config.options")
 
--- no need to load this immediately, since we have packer_compiled
-vim.defer_fn(function()
+vim.schedule(function()
   util.version()
-  util.try(require, "config.mappings")
-  util.try(require, "config.plugins")
-end, 0)
+  util.require("config.commands")
+  util.require("config.mappings")
+  util.require("config.plugins")
+end)
