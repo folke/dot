@@ -82,8 +82,10 @@ bindsym $mod+Alt+v exec clipman pick -t rofi
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec_always pkill swayidle; swayidle -w \
          timeout 300 "$lock" \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-         before-sleep "$lock"
+         timeout 600 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep "$lock" \
+         before-sleep 'playerctl pause'
 bindswitch lid:on exec $lock
 bindsym $mod+Alt+l exec $lock
 
