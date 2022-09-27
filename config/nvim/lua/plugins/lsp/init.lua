@@ -9,7 +9,6 @@ function M.config()
   require("plugins.lsp.diagnostics").setup()
   require("fidget").setup({ text = { spinner = "dots" } })
   require("neoconf").setup()
-
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
     require("plugins.lsp.formatting").setup(client, bufnr)
@@ -50,10 +49,36 @@ function M.config()
       },
     },
     sumneko_lua = {
+      -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
       single_file_support = true,
       settings = {
         Lua = {
+          workspace = {
+            checkThirdParty = false,
+          },
+          completion = {
+            workspaceWord = false,
+          },
+          misc = {
+            parameters = {
+              "--log-level=trace",
+            },
+          },
           diagnostics = {
+            groupFileStatus = {
+              ["ambiguity"] = "Opened",
+              ["await"] = "Opened",
+              ["codestyle"] = "None",
+              ["duplicate"] = "Opened",
+              ["global"] = "Opened",
+              ["luadoc"] = "Opened",
+              ["redefined"] = "Opened",
+              ["strict"] = "Opened",
+              ["strong"] = "Opened",
+              ["type-check"] = "Opened",
+              ["unbalanced"] = "Opened",
+              ["unused"] = "Opened",
+            },
             unusedLocalExclude = { "_*" },
           },
           format = {
@@ -70,7 +95,6 @@ function M.config()
     vimls = {},
     -- tailwindcss = {},
   }
-
   local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
