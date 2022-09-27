@@ -16,9 +16,10 @@ local config = {
   -- this is NOT packer functionality!
   local_plugins = {
     folke = true,
-    ["null-ls.nvim"] = false,
-    ["nvim-lspconfig"] = false,
-    ["windows.nvim"] = true,
+    -- ["null-ls.nvim"] = true,
+    -- ["nvim-lspconfig"] = true,
+    -- ["nvim-notify"] = true,
+    -- ["windows.nvim"] = true,
     -- ["nvim-treesitter"] = true,
   },
 }
@@ -208,14 +209,6 @@ local function plugins(use, plugin)
   plugin("TimUntersberger/neogit")
 
   plugin("mfussenegger/nvim-dap")
-  use({
-    "rcarriga/nvim-dap-ui",
-    module = "dapui",
-    config = function()
-      require("dapui").setup()
-    end,
-  })
-  use({ "jbyuki/one-small-step-for-vimkind", module = "osv" })
 
   use({ "rlch/github-notifications.nvim", module = "github-notifications" })
   -- Statusline
