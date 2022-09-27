@@ -30,7 +30,7 @@ function M.config()
           function()
             local navic = require("nvim-navic")
             local ret = navic.get_location()
-            return ret:len() > 200 and "navic error" or ret
+            return ret:len() > 2000 and "navic error" or ret
           end,
           cond = function()
             local navic = require("nvim-navic")

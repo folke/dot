@@ -5,7 +5,8 @@ return {
     local tokyonight = require("tokyonight")
     tokyonight.setup({
       style = "moon",
-      hide_inactive_statusline = false,
+      -- transparent = true,
+      -- hide_inactive_statusline = false,
       sidebars = {
         "qf",
         "vista_kind",
