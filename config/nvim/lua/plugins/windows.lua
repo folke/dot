@@ -15,7 +15,7 @@ function M.config()
       duration = 150,
     },
   })
-  vim.keymap.set("n", "<leader>Z", "<Cmd>WindowsMaximaze<CR>")
+  vim.keymap.set("n", "<leader>Z", "<Cmd>WindowsMaximize<CR>")
 end
 
 return M
