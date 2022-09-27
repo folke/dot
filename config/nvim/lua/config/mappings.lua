@@ -19,10 +19,10 @@ vim.keymap.set("n", "<up>", "<C-w>k")
 vim.keymap.set("n", "<right>", "<C-w>l")
 
 -- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<S-Up>", ":resize +2<CR>")
-vim.keymap.set("n", "<S-Down>", ":resize -2<CR>")
-vim.keymap.set("n", "<S-Left>", ":vertical resize -2<CR>")
-vim.keymap.set("n", "<S-Right>", ":vertical resize +2<CR>")
+vim.keymap.set("n", "<S-Up>", "<cmd>resize +2<CR>")
+vim.keymap.set("n", "<S-Down>", "<cmd>resize -2<CR>")
+vim.keymap.set("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
+vim.keymap.set("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
 -- Move Lines
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==")
@@ -33,15 +33,15 @@ vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
 -- Switch buffers with tab
-vim.keymap.set("n", "<C-Left>", ":bprevious<cr>")
-vim.keymap.set("n", "<C-Right>", ":bnext<cr>")
+vim.keymap.set("n", "<C-Left>", "<cmd>bprevious<cr>")
+vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>")
 
 -- Easier pasting
 vim.keymap.set("n", "[p", ":pu!<cr>")
 vim.keymap.set("n", "]p", ":pu<cr>")
 
 -- Clear search with <esc>
-vim.keymap.set("", "<esc>", ":noh<cr>")
+vim.keymap.set("", "<esc>", ":noh<esc>")
 vim.keymap.set("n", "gw", "*N")
 vim.keymap.set("x", "gw", "*N")
 
@@ -59,9 +59,9 @@ vim.keymap.set("i", ".", ".<c-g>u")
 vim.keymap.set("i", ";", ";<c-g>u")
 
 -- save in insert mode
-vim.keymap.set("i", "<C-s>", "<esc>:w<cr>")
-vim.keymap.set("n", "<C-s>", "<esc>:w<cr>")
-vim.keymap.set("n", "<C-c>", "<esc>ciw")
+vim.keymap.set("i", "<C-s>", "<cmd>:w<cr><esc>")
+vim.keymap.set("n", "<C-s>", "<cmd>:w<cr><esc>")
+vim.keymap.set("n", "<C-c>", "<cmd>normal ciw<cr>a")
 
 -- telescope <ctrl-r> in command line
 -- vim.cmd([[cmap <C-R> <Plug>(TelescopeFuzzyCommandSearch)]])
@@ -249,7 +249,7 @@ local leader = {
   },
   q = {
     name = "+quit/session",
-    q = { "<cmd>:qa<cr>", "Quit" },
+    q = { "<cmd>qa<cr>", "Quit" },
     ["!"] = { "<cmd>:qa!<cr>", "Quit without saving" },
     s = { [[<cmd>lua require("persistence").load()<cr>]], "Restore Session" },
     l = { [[<cmd>lua require("persistence").load({last=true})<cr>]], "Restore Last Session" },
