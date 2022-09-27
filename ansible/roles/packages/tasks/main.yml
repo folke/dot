@@ -98,7 +98,6 @@
       - ripgrep
       - ShellCheck
       - shfmt
-      - starship
       - tealdeer
       - tmux
       # - tmuxinator
@@ -124,3 +123,4 @@
       - pfetch
       - selene
       - stylua
+      - starship
