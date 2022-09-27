@@ -123,13 +123,7 @@ local function plugins(use, plugin)
     end,
   })
 
-  use({
-    "numToStr/Comment.nvim",
-    keys = { "gc", "gcc", "gbc" },
-    config = function()
-      require("Comment").setup({})
-    end,
-  })
+  plugin("numToStr/Comment.nvim")
 
   plugin("nvim-neo-tree/neo-tree.nvim")
 
