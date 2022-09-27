@@ -199,6 +199,16 @@ local function plugins(use, plugin)
   plugin("lewis6991/gitsigns.nvim")
   plugin("TimUntersberger/neogit")
 
+  plugin("mfussenegger/nvim-dap")
+  use({
+    "rcarriga/nvim-dap-ui",
+    module = "dapui",
+    config = function()
+      require("dapui").setup()
+    end,
+  })
+  use({ "jbyuki/one-small-step-for-vimkind", module = "osv" })
+
   use({ "rlch/github-notifications.nvim", module = "github-notifications" })
   -- Statusline
   plugin("nvim-lualine/lualine.nvim")
