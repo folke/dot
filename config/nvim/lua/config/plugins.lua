@@ -26,6 +26,14 @@ local config = {
 local function plugins(use, plugin)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
+  use({
+    "folke/noice.nvim",
+    module = "noice",
+    event = "VimEnter",
+    config = function()
+      require("noice").setup()
+    end,
+  })
 
   use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
 
