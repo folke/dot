@@ -141,6 +141,16 @@ local function plugins(use, plugin)
 
   use({ "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" })
 
+  use({
+    "m-demare/hlargs.nvim",
+    event = "User PackerDefered",
+    config = function()
+      require("hlargs").setup({
+        color = require("tokyonight.colors").setup().yellow,
+      })
+    end,
+  })
+
   -- Theme: color schemes
   plugin("folke/tokyonight.nvim")
 
