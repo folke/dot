@@ -142,7 +142,7 @@ local function plugins(use, plugin)
 
   plugin("nvim-treesitter/nvim-treesitter")
 
-  use({ "nvim-treesitter/playground", cmd = "TSHighlightCapturesUnderCursor" })
+  use({ "nvim-treesitter/playground", cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" } })
 
   use({
     "m-demare/hlargs.nvim",
