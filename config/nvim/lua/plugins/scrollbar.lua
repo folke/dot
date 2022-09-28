@@ -3,9 +3,14 @@ local M = {
 }
 
 function M.config()
-  local colors = require("tokyonight.colors").setup()
+  local scrollbar = require("scrollbar")
 
-  require("scrollbar").setup({
+  --- PERF: throttle scrollbar refresh
+  local render = scrollbar.render
+  scrollbar.render = require("util").throttle(300, render)
+
+  local colors = require("tokyonight.colors").setup()
+  scrollbar.setup({
     handle = {
       color = colors.bg_highlight,
     },
