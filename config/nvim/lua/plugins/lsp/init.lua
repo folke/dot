@@ -3,8 +3,11 @@ local M = {
 }
 
 function M.config()
-  -- require("workspace").setup()
-  require("lua-dev").setup()
+  require("lua-dev").setup({
+    library = {
+      runtime = "~/projects/neovim/runtime/",
+    },
+  })
   require("mason")
   require("plugins.lsp.diagnostics").setup()
   require("fidget").setup({ text = { spinner = "dots" } })
