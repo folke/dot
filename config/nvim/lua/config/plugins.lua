@@ -96,7 +96,6 @@ local function plugins(use, plugin)
 
   plugin("simrat39/rust-tools.nvim")
 
-  use({ "famiu/bufdelete.nvim", cmd = "Bdelete" })
   plugin("petertriho/nvim-scrollbar")
 
   plugin("hrsh7th/nvim-cmp")
@@ -199,6 +198,7 @@ local function plugins(use, plugin)
   plugin("edluffy/specs.nvim")
 
   plugin("michaelb/sniprun")
+  plugin("echasnovski/mini.nvim")
 
   plugin("lewis6991/gitsigns.nvim")
   plugin("TimUntersberger/neogit")
