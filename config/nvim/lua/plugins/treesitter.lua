@@ -1,12 +1,21 @@
 local M = {
   run = ":TSUpdate",
   event = "User PackerDefered",
+  module = "nvim-treesitter",
   requires = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-refactor",
+    { "mfussenegger/nvim-treehopper", module = "tsht" },
   },
 }
+
+function M.init()
+  vim.cmd([[
+    omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+    xnoremap <silent> m :lua require('tsht').nodes()<CR>
+  ]])
+end
 
 function M.config()
   require("nvim-treesitter.configs").setup({
