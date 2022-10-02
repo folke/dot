@@ -151,6 +151,11 @@ local function plugins(use, plugin)
     config = function()
       require("hlargs").setup({
         color = require("tokyonight.colors").setup().yellow,
+        excluded_argnames = {
+          usages = {
+            lua = { "self", "use" },
+          },
+        },
       })
     end,
   })
