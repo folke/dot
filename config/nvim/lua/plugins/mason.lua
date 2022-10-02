@@ -6,6 +6,7 @@ M.tools = {
   "prettierd",
   "stylua",
   "selene",
+  "luacheck",
   "eslint_d",
   "shellcheck",
   "shfmt",
