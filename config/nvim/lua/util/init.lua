@@ -107,19 +107,21 @@ function M.toggle(option, silent)
 end
 
 ---@param fn fun(buf: buffer, win: window)
-function M.float(fn)
+function M.float(fn, opts)
   local buf = vim.api.nvim_create_buf(false, true)
   local vpad = 4
   local hpad = 10
-  local win = vim.api.nvim_open_win(buf, true, {
+
+  opts = vim.tbl_deep_extend("force", {
     relative = "editor",
     width = vim.o.columns - hpad * 2,
     height = vim.o.lines - vpad * 2,
     row = vpad,
     col = hpad,
     style = "minimal",
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  })
+    border = "rounded",
+  }, opts or {})
+  local win = vim.api.nvim_open_win(buf, true, opts)
 
   local function close()
     if vim.api.nvim_buf_is_valid(buf) then
@@ -140,15 +142,15 @@ function M.float(fn)
   fn(buf, win)
 end
 
-function M.float_cmd(cmd)
+function M.float_cmd(cmd, opts)
   M.float(function(buf)
     local output = vim.api.nvim_exec(cmd, true)
     local lines = vim.split(output, "\n")
     vim.api.nvim_buf_set_lines(buf, 0, -1, true, lines)
-  end)
+  end, opts)
 end
 
-function M.float_terminal(cmd)
+function M.float_terminal(cmd, opts)
   M.float(function(buf, win)
     vim.fn.termopen(cmd)
     local autocmd = {
@@ -158,7 +160,7 @@ function M.float_terminal(cmd)
     }
     vim.cmd(table.concat(autocmd, " "))
     vim.cmd([[startinsert]])
-  end)
+  end, opts)
 end
 
 function M.exists(fname)

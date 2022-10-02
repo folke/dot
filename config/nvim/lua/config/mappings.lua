@@ -146,7 +146,7 @@ local leader = {
     name = "+git",
     l = {
       function()
-        require("util").float_terminal("lazygit")
+        require("util").float_terminal("lazygit", { border = "none" })
       end,
       "LazyGit",
     },
