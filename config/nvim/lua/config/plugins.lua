@@ -197,7 +197,6 @@ local function plugins(use, plugin)
 
   plugin("edluffy/specs.nvim")
 
-  plugin("michaelb/sniprun")
   plugin("echasnovski/mini.nvim")
 
   plugin("lewis6991/gitsigns.nvim")
