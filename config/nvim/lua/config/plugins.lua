@@ -95,6 +95,20 @@ local function plugins(use, plugin)
     end,
   })
 
+  use({
+    "ThePrimeagen/refactoring.nvim",
+    module = "refactoring",
+    config = function()
+      require("refactoring").setup({})
+    end,
+    setup = function()
+      -- prompt for a refactor to apply when the remap is triggered
+      vim.keymap.set("v", "<leader>cr", function()
+        require("refactoring").select_refactor()
+      end, { noremap = true, silent = true, expr = false })
+    end,
+  })
+
   plugin("simrat39/rust-tools.nvim")
 
   plugin("petertriho/nvim-scrollbar")
