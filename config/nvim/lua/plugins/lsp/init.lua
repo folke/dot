@@ -51,6 +51,7 @@ function M.config()
         },
       },
     },
+    yamlls = {},
     sumneko_lua = {
       -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
       single_file_support = true,
@@ -68,6 +69,7 @@ function M.config()
             },
           },
           diagnostics = {
+            -- enable = false,
             groupFileStatus = {
               ["ambiguity"] = "Opened",
               ["await"] = "Opened",
