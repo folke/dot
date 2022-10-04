@@ -35,6 +35,7 @@ local function plugins(use, plugin)
       require("noice").setup()
     end,
   })
+  plugin("b0o/incline.nvim")
 
   use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
 
