@@ -143,9 +143,10 @@ bindsym $mod+Alt+e exec rofimoji -a copy
 # Screenshots
 bindsym Print exec grim - | wl-copy && $notify screenshot "Full Screen Captured"
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy && $notify screenshot "Screenshot Captured"
+bindsym $mod+Alt+Print exec wf-recorder -g "$(slurp)" && $notify screenshot "Video Captured"
 
 # Quake Mode
-for_window [app_id="quake"] move scratchpad, resize set 1440 900, scratchpad show
+for_window [app_id="quake"] move scratchpad, resize set 1920 1200, scratchpad show
 bindsym Ctrl+Return exec swaymsg [app_id="quake"] scratchpad show || \
  kitty -1 --class quake -o background_opacity=0.95 -o hide_window_decorations=yes -o remember_window_size=no
 
