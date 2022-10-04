@@ -45,6 +45,38 @@ function M.require(mod)
   return M.try(require, mod)
 end
 
+function M.format_table()
+  local from = vim.fn.getpos("'<")[2]
+  local to = vim.fn.getpos("'>")[2]
+  dumpp({ from = from, to = to })
+
+  ---@type string[]
+  local lines = vim.api.nvim_buf_get_lines(0, from - 1, to, false)
+
+  ---@type number[]
+  local widths = {}
+
+  for _, line in ipairs(lines) do
+    local parts = vim.split(line, "|")
+    for p, part in ipairs(parts) do
+      widths[p] = math.max(widths[p] or 0, vim.fn.strwidth(part))
+    end
+  end
+
+  for l, line in ipairs(lines) do
+    local parts = vim.split(line, "|")
+    for p, part in ipairs(parts) do
+      if part:find("^%s*%-+%s*$") then
+        part = " " .. string.rep("-", widths[p] - 2)
+      end
+      parts[p] = part .. string.rep(" ", widths[p] - vim.fn.strwidth(part))
+    end
+    lines[l] = table.concat(parts, "|")
+  end
+
+  vim.api.nvim_buf_set_lines(0, from - 1, to, true, lines)
+end
+
 function M.try(fn, ...)
   local args = { ... }
 
