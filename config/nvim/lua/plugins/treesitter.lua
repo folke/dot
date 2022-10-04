@@ -71,7 +71,7 @@ function M.config()
     indent = { enable = false },
     context_commentstring = { enable = true, enable_autocmd = false },
     incremental_selection = {
-      enable = true,
+      enable = false,
       keymaps = {
         init_selection = "<C-n>",
         node_incremental = "<C-n>",
