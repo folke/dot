@@ -55,8 +55,8 @@ vim.keymap.set("n", "S", function()
 end)
 
 -- Easier pasting
-vim.keymap.set("n", "[p", ":pu!<cr>")
-vim.keymap.set("n", "]p", ":pu<cr>")
+-- vim.keymap.set("n", "[p", ":pu!<cr>")
+-- vim.keymap.set("n", "]p", ":pu<cr>")
 
 -- Clear search with <esc>
 vim.keymap.set("", "<esc>", ":noh<esc>")

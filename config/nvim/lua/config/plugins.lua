@@ -36,6 +36,7 @@ local function plugins(use, plugin)
     end,
   })
   plugin("b0o/incline.nvim")
+  plugin("gbprod/yanky.nvim")
 
   use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
 
