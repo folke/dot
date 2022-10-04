@@ -287,19 +287,6 @@ local function plugins(use, plugin)
   plugin("folke/todo-comments.nvim")
 
   use({
-    "AckslD/nvim-neoclip.lua",
-    event = "TextYankPost",
-    module = "telescope._extensions.neoclip",
-    requires = { { "kkharji/sqlite.lua", module = "sqlite" } },
-    config = function()
-      require("neoclip").setup({
-        enable_persistent_history = true,
-        continuous_sync = true,
-      })
-    end,
-  })
-
-  use({
     "folke/which-key.nvim",
     module = "which-key",
   })

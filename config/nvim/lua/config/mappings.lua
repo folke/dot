@@ -260,10 +260,6 @@ local leader = {
     end,
     "Paste from Clipman",
   },
-  ["P"] = {
-    ":Telescope neoclip plus<CR>",
-    "Paste from Clipman",
-  },
   q = {
     name = "+quit/session",
     q = { "<cmd>qa<cr>", "Quit" },
