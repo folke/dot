@@ -1,5 +1,6 @@
 local M = {
   event = "User PackerDefered",
+  requires = { "kkharji/sqlite.lua", module = "sqlite" },
 }
 
 ---@alias YankyType 'p'|'P'|'gp'|'gP'|'[p'|']p'
@@ -26,6 +27,9 @@ function M.config()
   require("yanky").setup({
     highlight = {
       timer = 150,
+    },
+    ring = {
+      storage = "sqlite",
     },
   })
 
