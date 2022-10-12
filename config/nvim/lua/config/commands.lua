@@ -30,9 +30,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   command = [[call mkdir(expand('<afile>:p:h'), 'p')]],
 })
 
--- Fix conceallevel for json files
+-- Fix conceallevel for json & help files
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "json", "jsonc" },
+  pattern = { "json", "jsonc", "help" },
   callback = function()
     vim.wo.spell = false
     vim.wo.conceallevel = 0
