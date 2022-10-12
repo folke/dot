@@ -35,8 +35,12 @@ local function plugins(use, plugin)
   use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
 
   plugin("rcarriga/nvim-notify")
+
   use({
+    "vigoux/notifier.nvim",
+    module = "notifier",
     config = function()
+      require("notifier").setup({ components = {} })
     end,
   })
 
