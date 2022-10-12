@@ -5,9 +5,10 @@ M.event = "BufReadPre"
 function M.config()
   local indent = require("indent_blankline")
 
-  --- PERF: debounce indent-blankline refresh
-  local refresh = indent.refresh
-  indent.refresh = require("util").debounce(100, refresh)
+  -- PERF: debounce indent-blankline refresh
+  -- Disable, throttle, since it was caused by comment TS
+  -- local refresh = indent.refresh
+  -- indent.refresh = require("util").debounce(100, refresh)
 
   indent.setup({
     buftype_exclude = { "terminal", "nofile" },

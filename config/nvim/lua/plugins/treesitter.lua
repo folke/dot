@@ -23,7 +23,7 @@ function M.config()
       "bash",
       "c",
       "cmake",
-      "comment",
+      -- "comment", -- comments are slowing down TS bigtime, so disable for now
       "cpp",
       "css",
       "fish",
