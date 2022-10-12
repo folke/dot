@@ -72,9 +72,10 @@ function M.config()
   -- cmp.setup.cmdline(":", {
   --   mapping = cmp.mapping.preset.cmdline(),
   --   sources = cmp.config.sources({
+  --     -- { name = "noice_popupmenu" },
   --     { name = "path" },
   --     { name = "cmdline" },
-  --     { name = "cmdline_history" },
+  --     -- { name = "cmdline_history" },
   --   }),
   -- })
 
