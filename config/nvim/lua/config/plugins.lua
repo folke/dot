@@ -34,13 +34,9 @@ local function plugins(use, plugin)
 
   use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
 
+  plugin("rcarriga/nvim-notify")
   use({
-    "rcarriga/nvim-notify",
-    event = "User PackerDefered",
-    module = "notify",
     config = function()
-      require("notify").setup({ level = vim.log.levels.INFO, fps = 20 })
-      vim.notify = require("notify")
     end,
   })
 
