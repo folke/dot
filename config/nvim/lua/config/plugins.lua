@@ -29,6 +29,14 @@ local function plugins(use, plugin)
   use({ "wbthomason/packer.nvim" })
   plugin("folke/noice.nvim")
 
+  use({
+    "folke/paint.nvim",
+    event = "BufReadPre",
+    config = function()
+      require("paint").setup()
+    end,
+  })
+
   plugin("b0o/incline.nvim")
   plugin("gbprod/yanky.nvim")
 
