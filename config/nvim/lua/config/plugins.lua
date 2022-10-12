@@ -280,6 +280,8 @@ local function plugins(use, plugin)
     end,
   })
 
+  plugin("pwntester/octo.nvim")
+
   plugin("folke/todo-comments.nvim")
 
   use({
