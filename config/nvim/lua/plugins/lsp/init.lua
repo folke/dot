@@ -4,8 +4,12 @@ local M = {
 
 function M.config()
   require("lua-dev").setup({
+    debug = true,
+    experimental = {
+      pathStrict = true,
+    },
     library = {
-      runtime = "~/projects/neovim/runtime/",
+      -- runtime = "~/projects/neovim/runtime/",
     },
   })
   require("mason")
@@ -53,7 +57,7 @@ function M.config()
     },
     yamlls = {},
     sumneko_lua = {
-      -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
+      cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
       single_file_support = true,
       settings = {
         Lua = {
@@ -61,7 +65,7 @@ function M.config()
             checkThirdParty = false,
           },
           completion = {
-            workspaceWord = false,
+            workspaceWord = true,
           },
           misc = {
             parameters = {
@@ -97,10 +101,13 @@ function M.config()
         },
       },
     },
+    teal_ls = {},
     vimls = {},
     -- tailwindcss = {},
   }
-  local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
   capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
