@@ -1,5 +1,12 @@
 local indent = 2
 
+vim.notify = function(...)
+  local args = { ... }
+  vim.defer_fn(function()
+    vim.notify(unpack(args))
+  end, 300)
+end
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
