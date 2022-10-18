@@ -44,7 +44,7 @@ gui:
 git:
   paging:
     colorArg: always
-    pager: ""
+    pager: delta --dark --paging=never
     useConfig: false
   commit:
     signOff: false

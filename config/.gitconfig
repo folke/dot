@@ -11,9 +11,6 @@ email = folke.lemaitre@gmail.com
 [color]
 ui = true
 
-[core]
-pager = delta
-
 [alias]
 st = status -sb
 co = checkout
@@ -22,22 +19,27 @@ ci = commit --short
 p = push
 l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short
 
+[core]
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	side-by-side = false
+	line-numbers = true
+[merge]
+  conflictstyle = diff3
+[diff]
+  colorMoved = default
+
 [pull]
 	ff = only
 [github]
 	user = folke
-[delta]
-	side-by-side = false
-	line-numbers = true
 [init]
 	defaultBranch = main
-[diff]
-	tool = vimdiff3
-[difftool "vimdiff3"]
-	path = nvim
-[merge]
-	tool = vimdiff3
-[mergetool "vimdiff3"]
-	path = nvim
 [commit]
 	gpgsign = true
+[credential]
+	helper = cache
