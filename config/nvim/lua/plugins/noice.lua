@@ -1,10 +1,14 @@
 local M = {
-  module = "noice",
-  event = "VimEnter",
+  -- module = "noice",
+  opt = false,
+  -- event = "User PackerDefered",
 }
 
 function M.config()
-  require("noice").setup({ debug = true })
+  require("noice").setup({
+    debug = true,
+    cmdline = {
+      format = {
         IncRename = {
           pattern = "^:%s*IncRename%s+",
           icon = " ",
@@ -16,6 +20,10 @@ function M.config()
             buf_options = { filetype = "text" },
           },
         },
+      },
+    },
+  })
+  -- require("telescope").load_extension("noice")
 end
 
 return M
