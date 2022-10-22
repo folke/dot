@@ -111,7 +111,7 @@ input type:touchpad {
 
 input type:keyboard {
     repeat_delay 200
-    repeat_rate 50
+    repeat_rate 30
 }
 
 
@@ -143,7 +143,7 @@ bindsym $mod+Alt+e exec rofimoji -a copy
 # Screenshots
 bindsym Print exec grim - | wl-copy && $notify screenshot "Full Screen Captured"
 bindsym $mod+Print exec grim -g "$(slurp)" - | wl-copy && $notify screenshot "Screenshot Captured"
-bindsym $mod+Alt+Print exec wf-recorder -g "$(slurp)" && $notify screenshot "Video Captured"
+bindsym $mod+Alt+Print exec $scripts/cast
 
 # Quake Mode
 for_window [app_id="quake"] move scratchpad, resize set 1920 1200, scratchpad show

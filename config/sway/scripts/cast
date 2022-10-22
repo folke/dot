@@ -1,0 +1,9 @@
+#!/bin/bash
+
+notify=~/.config/sway/scripts/notify
+
+(pkill -INT wf-recorder && $notify "screenshot" "Video Captured") ||
+	( 
+		(wf-recorder -g "$(slurp)" -f "$HOME/screenshots/mov-$(date +"%Y-%m-%d--%H-%M-%S.mp4")" &) &&
+			$notify screenshot "Video Capture Started"
+	)
