@@ -36,10 +36,6 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 vim.keymap.set("n", "<C-Left>", "<cmd>bprevious<cr>")
 vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>")
 
-vim.keymap.set("v", "<leader>ct", function()
-  util.format_table()
-end, { desc = "Format Table" })
-
 local function search(backward)
   vim.cmd([[echo "1> "]])
   local first = vim.fn.getcharstr()
