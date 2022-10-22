@@ -22,7 +22,7 @@ function M.setup(options)
       -- nls.builtins.code_actions.gitsigns,
     },
     on_attach = options.on_attach,
-    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".nvim.settings.json", ".git"),
+    root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
   })
 end
 
