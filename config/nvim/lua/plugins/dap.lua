@@ -38,7 +38,7 @@ function M.init()
   end, { desc = "Repl" })
 
   vim.keymap.set("n", "<leader>du", function()
-    require("dapui").toggle()
+    require("dapui").toggle({})
   end, { desc = "Dap UI" })
 
   vim.keymap.set("n", "<leader>ds", function()
@@ -65,15 +65,15 @@ function M.config()
     callback({ type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 })
   end
 
-  local dap, dapui = require("dap"), require("dapui")
+  local dapui = require("dapui")
   dap.listeners.after.event_initialized["dapui_config"] = function()
-    dapui.open()
+    dapui.open({})
   end
   dap.listeners.before.event_terminated["dapui_config"] = function()
-    dapui.close()
+    dapui.close({})
   end
   dap.listeners.before.event_exited["dapui_config"] = function()
-    dapui.close()
+    dapui.close({})
   end
 end
 
