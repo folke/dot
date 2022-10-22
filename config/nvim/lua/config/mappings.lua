@@ -182,7 +182,17 @@ local leader = {
     s = {
       function()
         require("telescope.builtin").lsp_document_symbols({
-          symbols = { "Class", "Function", "Method", "Constructor", "Interface", "Module", "Struct", "Trait" },
+          symbols = {
+            "Class",
+            "Function",
+            "Method",
+            "Constructor",
+            "Interface",
+            "Module",
+            "Struct",
+            "Trait",
+            "String",
+          },
         })
       end,
       "Goto Symbol",
@@ -202,7 +212,7 @@ local leader = {
   },
   o = {
     name = "+open",
-    p = { "<cmd>MarkdownPreview<cr>", "Markdown Preview" },
+    p = { "<cmd>Peek<cr>", "Peek (Markdown Preview)" },
     g = { "<cmd>Glow<cr>", "Markdown Glow" },
     n = { "<cmd>lua require('github-notifications.menu').notifications()<cr>", "GitHub Notifications" },
   },
@@ -272,6 +282,7 @@ local leader = {
     name = "+errors",
     x = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble" },
     t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
+    tt = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo Trouble" },
     T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
     l = { "<cmd>lopen<cr>", "Open Location List" },
     q = { "<cmd>copen<cr>", "Open Quickfix List" },
