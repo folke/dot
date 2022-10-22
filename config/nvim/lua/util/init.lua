@@ -130,6 +130,7 @@ function M.float(fn, opts)
     if vim.api.nvim_win_is_valid(win) then
       vim.api.nvim_win_close(win, true)
     end
+    vim.cmd([[checktime]])
   end
 
   vim.keymap.set("n", "<ESC>", close, { buffer = buf, nowait = true })
@@ -154,7 +155,7 @@ function M.float_terminal(cmd, opts)
   M.float(function(buf, win)
     vim.fn.termopen(cmd)
     local autocmd = {
-      "autocmd! TermClose <buffer> lua",
+      "autocmd! TermClose <buffer> lua vim.cmd[[checktime]];",
       string.format("vim.api.nvim_win_close(%d, {force = true});", win),
       string.format("vim.api.nvim_buf_delete(%d, {force = true});", buf),
     }
