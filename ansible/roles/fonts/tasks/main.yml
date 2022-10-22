@@ -7,9 +7,10 @@
     - FantasqueSansMono
     - VictorMono
     - SourceCodePro
+    - Hack
 
 - name: install fonts
-  become: yes
+  become: true
   dnf:
     name:
       - google-roboto-fonts

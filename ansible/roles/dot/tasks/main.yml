@@ -41,12 +41,23 @@
     dest: ~/.gitconfig
     state: link
 
+- name: .ssh/config
+  copy:
+    src: ~/.config/.ssh.config
+    dest: ~/.ssh/config
+    mode: u=rw,o=,g=
+
+- name: .ssh/config/control
+  file:
+    path: ~/.ssh/control
+    state: directory
+    mode: u=rwx,o=,g=
+
 - name: .Xresources
   file:
     src: ~/.config/.Xresources
     dest: ~/.Xresources
     state: link
-
 
 - name: gpg-agent.conf
   copy:

@@ -1,7 +1,7 @@
 - import_tasks: repos.yml
 
 - name: install dnf tools
-  become: yes
+  become: true
   dnf:
     name:
       # LinuxBrew Dependencies
@@ -104,7 +104,7 @@
       - tokei
       - weechat
       - wget
-      # - wezterm
+      - wezterm
       - zoxide
 
 - name: install brew tools
