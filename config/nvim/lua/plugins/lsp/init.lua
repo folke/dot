@@ -43,6 +43,7 @@ function M.config()
         },
       },
     },
+    marksman = {},
     pyright = {},
     rust_analyzer = {
       settings = {
