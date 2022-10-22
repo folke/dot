@@ -292,6 +292,7 @@ for_window [window_type = "dialog"] floating enable
 for_window [window_role = "task_dialog"] floating enable
 for_window [class = "Toplevel"] floating enable
 for_window [window_type = "menu"] floating enable
+no_focus [title="^Peek preview$"]
 
 
 include /etc/sway/config.d/*

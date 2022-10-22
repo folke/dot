@@ -36,6 +36,7 @@ local function plugins(use, plugin)
       require("paint").setup()
     end,
   })
+  plugin("toppair/peek.nvim")
 
   plugin("b0o/incline.nvim")
   plugin("gbprod/yanky.nvim")
@@ -235,15 +236,6 @@ local function plugins(use, plugin)
   plugin("NvChad/nvim-colorizer.lua")
 
   -- plugin("kevinhwang91/nvim-ufo")
-
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-    ft = "markdown",
-    cmd = { "MarkdownPreview" },
-  })
 
   plugin("phaazon/hop.nvim")
 
