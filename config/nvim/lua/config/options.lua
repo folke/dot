@@ -52,13 +52,14 @@ vim.opt.expandtab = true -- Use spaces instead of tabs
 -- vim.opt.foldmethod = "expr" -- TreeSitter folding
 -- vim.opt.foldmethod = "indent"
 -- vim.opt.foldlevel = 0
+vim.o.formatoptions = "jcroqlnt" -- tcqj
 
 vim.opt.guifont = "FiraCode Nerd Font:h12"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.hidden = true -- Enable modified buffers in background
 vim.opt.ignorecase = true -- Ignore case
-vim.opt.inccommand = "split" -- preview incremental substitute
+vim.opt.inccommand = "nosplit" -- preview incremental substitute
 vim.opt.joinspaces = false -- No double spaces with join after a dot
 vim.opt.list = true -- Show some invisible characters (tabs...
 vim.opt.mouse = "a" -- enable mouse mode
