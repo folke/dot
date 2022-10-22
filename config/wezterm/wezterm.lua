@@ -10,14 +10,14 @@ return {
 		},
 		{
 			italic = true,
-			font = wt.font("VictorMono Nerd Font", { weight = "DemiLight" }),
+			font = wt.font("VictorMono Nerd Font", { weight = "Light", style = "Italic" }),
 		},
 		{
 			italic = true,
 			intensity = "Bold",
-			font = wt.font("VictorMono Nerd Font", { weight = "DemiBold" }),
+			font = wt.font("VictorMono Nerd Font", { weight = "Bold", style = "Italic" }),
 		},
 	},
-	color_scheme_dirs = { "/Users/folke/projects/tokyonight.nvim/extras/wezterm" },
+	color_scheme_dirs = { "/home/folke/projects/tokyonight.nvim/extras/wezterm" },
 	color_scheme = "tokyonight_storm",
 }
