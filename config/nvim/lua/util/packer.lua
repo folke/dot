@@ -71,6 +71,9 @@ function M.process_local_plugins(spec)
   local local_pkg = "~/projects/" .. name
 
   if M.local_plugins[name] or M.local_plugins[owner] or M.local_plugins[owner .. "/" .. name] then
+    if M.local_plugins[owner .. "/" .. name] == false then
+      return
+    end
     if M.has_local(name) then
       spec[1] = local_pkg
     else
