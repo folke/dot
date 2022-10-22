@@ -1,11 +1,23 @@
 local indent = 2
 
-vim.notify = function(...)
+local notify = {
+  old = vim.notify,
+  lazy = nil,
+}
+notify.lazy = function(...)
   local args = { ... }
   vim.defer_fn(function()
-    vim.notify(unpack(args))
+    if vim.notify == notify.lazy then
+      -- if vim.notify still hasn't been replaces yet, then something went wrong,
+      -- so use the old vim.notify instead
+      notify.old(unpack(args))
+    else
+      -- use the new notify
+      vim.notify(unpack(args))
+    end
   end, 300)
 end
+vim.notify = notify.lazy
 
 if vim.fn.has("nvim-0.8") == 1 then
   --   vim.opt.spell = true -- Put new windows below current
