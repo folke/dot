@@ -45,14 +45,6 @@ local function plugins(use, plugin)
 
   plugin("rcarriga/nvim-notify")
 
-  use({
-    "vigoux/notifier.nvim",
-    module = "notifier",
-    config = function()
-      require("notifier").setup({ components = {} })
-    end,
-  })
-
   -- LSP
   use({ "neovim/nvim-lspconfig", plugin = "lsp" })
 
@@ -66,19 +58,6 @@ local function plugins(use, plugin)
     "folke/neoconf.nvim",
     module = "neoconf",
     cmd = "Neoconf",
-  })
-  use({
-    "j-hui/fidget.nvim",
-    module = "fidget",
-    config = function()
-      require("fidget").setup({
-        window = {
-          relative = "editor",
-        },
-      })
-      -- HACK: prevent error when exiting Neovim
-      vim.api.nvim_create_autocmd("VimLeavePre", { command = [[silent! FidgetClose]] })
-    end,
   })
 
   plugin("anuvyklack/windows.nvim")
