@@ -30,14 +30,15 @@ if vim.fn.has("nvim-0.8") == 1 then
     opts.silent = opts.silent ~= false
     return keymap_set(mode, lhs, rhs, opts)
   end
-elseif vim.fn.has("nvim-0.9") == 1 then
+end
+
+if vim.fn.has("nvim-0.9.0") == 1 then
   vim.opt.splitkeep = "screen"
 end
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
-
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
 -- vim.opt.concealcursor = "nc" -- Hide * markup for bold and italic
