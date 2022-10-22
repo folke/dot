@@ -49,11 +49,11 @@ function M.config()
       "php",
       "python",
       "regex",
-      "regex",
       "rust",
       "scss",
       "sql",
       "svelte",
+      "teal",
       "toml",
       "tsx",
       "typescript",
@@ -155,6 +155,8 @@ function M.config()
       },
     },
   })
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.markdown.filetype_to_parsername = "octo"
 end
 
 return M
