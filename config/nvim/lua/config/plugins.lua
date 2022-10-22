@@ -246,7 +246,9 @@ local function plugins(use, plugin)
     event = "BufReadPre",
     module = "persistence",
     config = function()
-      require("persistence").setup()
+      require("persistence").setup({
+        options = { "buffers", "curdir", "tabpages", "winsize", "help" },
+      })
     end,
   })
 
