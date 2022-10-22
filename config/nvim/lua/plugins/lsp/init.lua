@@ -14,7 +14,6 @@ function M.config()
   })
   require("mason")
   require("plugins.lsp.diagnostics").setup()
-  require("fidget").setup({ text = { spinner = "dots" } })
   require("plugins.lsp.handlers").setup()
   require("neoconf").setup()
   local function on_attach(client, bufnr)
@@ -75,20 +74,20 @@ function M.config()
           },
           diagnostics = {
             -- enable = false,
-            groupFileStatus = {
-              ["ambiguity"] = "Opened",
-              ["await"] = "Opened",
-              ["codestyle"] = "None",
-              ["duplicate"] = "Opened",
-              ["global"] = "Opened",
-              ["luadoc"] = "Opened",
-              ["redefined"] = "Opened",
-              ["strict"] = "Opened",
-              ["strong"] = "Opened",
-              ["type-check"] = "Opened",
-              ["unbalanced"] = "Opened",
-              ["unused"] = "Opened",
-            },
+            -- groupFileStatus = {
+            --   ["ambiguity"] = "Opened",
+            --   ["await"] = "Opened",
+            --   ["codestyle"] = "None",
+            --   ["duplicate"] = "Opened",
+            --   ["global"] = "Opened",
+            --   ["luadoc"] = "Opened",
+            --   ["redefined"] = "Opened",
+            --   ["strict"] = "Opened",
+            --   ["strong"] = "Opened",
+            --   ["type-check"] = "Opened",
+            --   ["unbalanced"] = "Opened",
+            --   ["unused"] = "Opened",
+            -- },
             unusedLocalExclude = { "_*" },
           },
           format = {
