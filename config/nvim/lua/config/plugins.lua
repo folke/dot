@@ -61,7 +61,7 @@ local function plugins(use, plugin)
 
   plugin("jose-elias-alvarez/null-ls.nvim")
 
-  use({ "folke/lua-dev.nvim", module = "lua-dev" })
+  use({ "folke/neodev.nvim", module = "neodev" })
   use({
     "folke/neoconf.nvim",
     module = "neoconf",

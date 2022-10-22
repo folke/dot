@@ -3,7 +3,7 @@ local M = {
 }
 
 function M.config()
-  require("lua-dev").setup({
+  require("neodev").setup({
     debug = true,
     experimental = {
       pathStrict = true,
