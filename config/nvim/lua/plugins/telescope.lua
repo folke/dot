@@ -4,7 +4,7 @@ local M = {
   requires = {
     { "nvim-telescope/telescope-file-browser.nvim", module = "telescope._extensions.file_browser" },
     { "nvim-telescope/telescope-z.nvim", module = "telescope._extensions.z" },
-    { "nvim-telescope/telescope-project.nvim", module = "telescope._extensions.project" },
+    -- { "nvim-telescope/telescope-project.nvim", module = "telescope._extensions.project" },
     { "nvim-telescope/telescope-symbols.nvim", module = "telescope._extensions.symbols" },
     { "nvim-telescope/telescope-fzf-native.nvim", module = "telescope._extensions.fzf", run = "make" },
   },
@@ -13,8 +13,9 @@ local M = {
 function M.project_files(opts)
   opts = opts or {}
   opts.show_untracked = true
-  local ok = pcall(require("telescope.builtin").git_files, opts)
-  if not ok then
+  if vim.loop.fs_stat(".git") then
+    require("telescope.builtin").git_files(opts)
+  else
     local client = vim.lsp.get_active_clients()[1]
     if client then
       opts.cwd = client.config.root_dir
@@ -45,7 +46,13 @@ function M.config()
         prompt_position = "top",
       },
       sorting_strategy = "ascending",
-      mappings = { i = { ["<c-t>"] = trouble.open_with_trouble } },
+      mappings = {
+        i = {
+          ["<c-t>"] = trouble.open_with_trouble,
+          ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+          ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+        },
+      },
       -- mappings = { i = { ["<esc>"] = actions.close } },
       -- vimgrep_arguments = {
       --   'rg',
