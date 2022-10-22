@@ -1,12 +1,11 @@
 local M = {
-  -- module = "noice",
-  opt = false,
-  -- event = "User PackerDefered",
+  module = "noice",
+  event = "User PackerDefered",
 }
 
 function M.config()
   require("noice").setup({
-    debug = true,
+    debug = false,
     cmdline = {
       format = {
         IncRename = {
@@ -23,7 +22,6 @@ function M.config()
       },
     },
   })
-  -- require("telescope").load_extension("noice")
 end
 
 return M
