@@ -15,7 +15,15 @@ function M.setup(client, buffer)
           o = { "<cmd>:TypescriptOrganizeImports<CR>", "Organize Imports" },
           R = { "<cmd>:TypescriptRenameFile<CR>", "Rename File" },
         },
-        r = { vim.lsp.buf.rename, "Rename", cond = cap.renameProvider },
+        r = {
+          function()
+            require("inc_rename")
+            return ":IncRename " .. vim.fn.expand("<cword>")
+          end,
+          "Rename",
+          cond = cap.renameProvider,
+          expr = true,
+        },
         a = {
           { vim.lsp.buf.code_action, "Code Action" },
           { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
@@ -57,8 +65,14 @@ function M.setup(client, buffer)
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Prev Diagnostic" },
     ["[e"] = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>", "Next Error" },
     ["]e"] = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>", "Prev Error" },
-    ["[w"] = { "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>", "Next Warning" },
-    ["]w"] = { "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>", "Prev Warning" },
+    ["[w"] = {
+      "<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARNING})<CR>",
+      "Next Warning",
+    },
+    ["]w"] = {
+      "<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARNING})<CR>",
+      "Prev Warning",
+    },
   }
 
   wk.register(keymap)

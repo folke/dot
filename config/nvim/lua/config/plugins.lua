@@ -16,10 +16,11 @@ local config = {
   -- this is NOT packer functionality!
   local_plugins = {
     folke = true,
+    -- ["folke/neodev.nvim"] = false,
     -- ["null-ls.nvim"] = true,
     -- ["nvim-lspconfig"] = true,
     -- ["nvim-notify"] = true,
-    -- ["windows.nvim"] = true,
+    -- ["yanky.nvim"] = true,
     -- ["nvim-treesitter"] = true,
   },
 }
@@ -28,6 +29,15 @@ local function plugins(use, plugin)
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim" })
   plugin("folke/noice.nvim")
+
+  use({
+    "smjonas/inc-rename.nvim",
+    cmd = "IncRename",
+    module = "inc_rename",
+    config = function()
+      require("inc_rename").setup()
+    end,
+  })
 
   use({
     "folke/paint.nvim",
