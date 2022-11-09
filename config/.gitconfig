@@ -28,6 +28,7 @@ l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(
   light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
 	side-by-side = false
 	line-numbers = true
+  syntax-theme = tokyonight_moon
 [merge]
   conflictstyle = diff3
 [diff]
