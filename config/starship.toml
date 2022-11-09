@@ -8,24 +8,33 @@ command = "echo $STARSHIP_SHELL"  # shows output of command
 when = """ test "$STARSHIP_SHELL" != "fish" """
 style = "dimmed blue"
 format = "[$output]($style)"
-shell =["dash"]
+shell =["bash"]
 
 
 # [git_status]
-
-[aws]
-symbol = " "
 
 [battery]
 full_symbol = ""
 charging_symbol = ""
 discharging_symbol = ""
 
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
 [conda]
 symbol = " "
 
 [dart]
 symbol = " "
+
+[directory]
+read_only = " "
 
 [docker_context]
 symbol = " "
@@ -42,6 +51,9 @@ symbol = " "
 [golang]
 symbol = " "
 
+[haskell]
+symbol = " "
+
 [hg_branch]
 symbol = " "
 
@@ -51,35 +63,41 @@ symbol = " "
 [julia]
 symbol = " "
 
+[lua]
+symbol = " "
+
 [memory_usage]
 symbol = " "
+
+[meson]
+symbol = "喝 "
 
 [nim]
 symbol = " "
 
 [nix_shell]
-symbol = " "
+symbol = " "
 
 [nodejs]
-symbol = " "
+symbol = " "
 
 [package]
 symbol = " "
 
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
 [python]
-symbol = " "
+symbol = " "
+
+[rlang]
+symbol = "ﳒ "
 
 [ruby]
-symbol = " "
+symbol = " "
 
 [rust]
-symbol = " "
+symbol = " "
 
-[swift]
-symbol = "ﯣ "
+[scala]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
