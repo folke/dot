@@ -29,5 +29,4 @@ function update --description 'Update homebrew, fish, pnpm'
     and echo "[update] fish"
     # and fisher update
     and fish_update_completions
-    and starship init fish --print-full-init >~/.config/fish/functions/fish_prompt.fish
 end
