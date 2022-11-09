@@ -30,6 +30,7 @@ function M.config()
         numhl = "GitSignsChangeNr",
         linehl = "GitSignsChangeLn",
       },
+      untracked = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
     },
     on_attach = function(bufnr)
       local gs = package.loaded.gitsigns
