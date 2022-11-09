@@ -12,7 +12,6 @@
     - fuhrmann/ctop
     - lehrenfried/fzy
     - eddsalkield/swaylock-effects
-    - chrisbouchard/neovide-nightly
 
 - name: gh repo
   become: yes
