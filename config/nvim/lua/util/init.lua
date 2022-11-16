@@ -259,7 +259,6 @@ function M.clipman()
         }, function(choice)
           if choice then
             vim.api.nvim_paste(choice, true, 1)
-            -- vim.fn.setreg("+", choice)
           end
         end)
       else
@@ -295,6 +294,12 @@ function M.throttle(ms, fn)
       running = true
     end
   end
+end
+
+function M.test(is_file)
+  local file = is_file and vim.fn.expand("%:p") or "./tests"
+  local init = vim.fn.glob("tests/*init*")
+  require("plenary.test_harness").test_directory(file, { minimal_init = init })
 end
 
 function M.version()

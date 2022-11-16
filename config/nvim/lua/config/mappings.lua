@@ -288,7 +288,18 @@ local leader = {
     q = { "<cmd>copen<cr>", "Open Quickfix List" },
   },
   z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
-  T = { [[<Plug>PlenaryTestFile]], "Plenary Test" },
+  T = {
+    function()
+      util.test(true)
+    end,
+    "Plenary Test File",
+  },
+  D = {
+    function()
+      util.test()
+    end,
+    "Plenary Test Directory",
+  },
 }
 
 for i = 0, 10 do
