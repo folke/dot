@@ -26,6 +26,7 @@ function M.config()
       -- "comment", -- comments are slowing down TS bigtime, so disable for now
       "cpp",
       "css",
+      "diff",
       "fish",
       "gitignore",
       "go",
@@ -48,6 +49,7 @@ function M.config()
       "org",
       "php",
       "python",
+      "query",
       "regex",
       "rust",
       "scss",
@@ -62,11 +64,11 @@ function M.config()
       "wgsl",
       "yaml",
       -- "wgsl",
-      -- "json",
+      "json",
       -- "markdown",
     },
     sync_install = false,
-    auto_install = true,
+    auto_install = false,
     highlight = { enable = true },
     indent = { enable = false },
     context_commentstring = { enable = true, enable_autocmd = false },
@@ -129,7 +131,7 @@ function M.config()
     },
     textobjects = {
       select = {
-        enable = true,
+        enable = false,
         lookahead = true,
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
@@ -140,7 +142,7 @@ function M.config()
         },
       },
       move = {
-        enable = true,
+        enable = false,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
         goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
@@ -148,7 +150,7 @@ function M.config()
         goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
       },
       lsp_interop = {
-        enable = true,
+        enable = false,
         peek_definition_code = {
           ["gD"] = "@function.outer",
         },
