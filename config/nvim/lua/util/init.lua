@@ -66,6 +66,20 @@ function M.try(fn, ...)
   end)
 end
 
+function M.markdown(msg, opts)
+  opts = vim.tbl_deep_extend("force", {
+    title = "Debug",
+    on_open = function(win)
+      vim.wo[win].conceallevel = 3
+      vim.wo[win].concealcursor = ""
+      vim.wo[win].spell = false
+      local buf = vim.api.nvim_win_get_buf(win)
+      vim.treesitter.start(buf, "markdown")
+    end,
+  }, opts or {})
+  require("notify").notify(msg, vim.log.levels.INFO, opts)
+end
+
 function M.debug_pcall()
   _G.pcall = function(fn, ...)
     local args = { ... }
