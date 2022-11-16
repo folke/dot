@@ -140,8 +140,11 @@ function M.float(fn, opts)
     col = hpad,
     style = "minimal",
     border = "rounded",
+    noautocmd = true,
   }, opts or {})
-  local win = vim.api.nvim_open_win(buf, true, opts)
+
+  local enter = opts.enter == nil and true or opts.enter
+  local win = vim.api.nvim_open_win(buf, enter, opts)
 
   local function close()
     if vim.api.nvim_buf_is_valid(buf) then
@@ -161,6 +164,44 @@ function M.float(fn, opts)
     callback = close,
   })
   fn(buf, win)
+end
+
+function M.hl()
+  ---@type string[]
+  local lines = {}
+
+  local treesitter = {}
+  for _, capture in pairs(vim.treesitter.get_captures_at_cursor(0)) do
+    table.insert(treesitter, "- **@" .. capture .. "**")
+  end
+  if #treesitter > 0 then
+    table.insert(lines, "# Treesitter")
+    vim.list_extend(lines, treesitter)
+  end
+
+  local syntax = {}
+  for _, i1 in ipairs(vim.fn.synstack(vim.fn.line("."), vim.fn.col("."))) do
+    local i2 = vim.fn.synIDtrans(i1)
+    local n1 = vim.fn.synIDattr(i1, "name")
+    local n2 = vim.fn.synIDattr(i2, "name")
+    table.insert(syntax, "- " .. n1 .. " -> **" .. n2 .. "**")
+  end
+  if #syntax > 0 then
+    table.insert(lines, "# Syntax")
+    vim.list_extend(lines, syntax)
+  end
+
+  local max_width = 10
+  for _, line in ipairs(lines) do
+    max_width = math.max(max_width, vim.fn.strwidth(line))
+  end
+
+  if vim.tbl_isempty(lines) then
+    lines = { "No highlights under the cursor" }
+    max_width = vim.fn.strwidth(lines[1])
+  end
+
+  M.markdown(table.concat(lines, "\n"), { title = "Highlights" })
 end
 
 function M.float_cmd(cmd, opts)
