@@ -6,7 +6,7 @@
     - { name: "Gmail", url: "https://mail.google.com/mail/u/0/#inbox" }
     - { name: "WhatsApp", url: "https://web.whatsapp.com/" }
     - { name: "Notion", url: "https://notion.so/" }
-    - { name: "Twitter", url: "https://twitter.com/home" }
+    - { name: "Twitter", url: "https://twitter.com/home", icon: "web-twitter" }
     - {
         name: "Google Keep",
         url: "https://keep.google.com/u/0/",
