@@ -10,6 +10,9 @@ M.tools = {
   "eslint_d",
   "shellcheck",
   "shfmt",
+  "black",
+  "isort",
+  "flake8",
 }
 
 function M.check()
