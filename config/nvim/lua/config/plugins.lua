@@ -283,6 +283,14 @@ local function plugins(use, plugin)
     end,
   })
 
+  use({
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufReadPre",
+    config = function()
+      require("treesitter-context").setup()
+    end,
+  })
+
   use({ "folke/twilight.nvim", module = "twilight" })
   use({
     "folke/zen-mode.nvim",
