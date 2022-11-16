@@ -59,7 +59,7 @@ end)
 -- vim.keymap.set("n", "]p", ":pu<cr>")
 
 -- Clear search with <esc>
-vim.keymap.set("", "<esc>", ":noh<esc>")
+vim.keymap.set("", "<esc>", "<cmd>:noh<cr><esc>")
 vim.keymap.set("n", "gw", "*N")
 vim.keymap.set("x", "gw", "*N")
 
