@@ -23,7 +23,6 @@ function M.setup(options)
       nls.builtins.formatting.isort,
       nls.builtins.formatting.black,
       nls.builtins.diagnostics.flake8,
-      nls.builtins.formatting.uncrustify,
     },
     on_attach = options.on_attach,
     root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", ".git"),
