@@ -19,6 +19,7 @@ function M.config()
       "prompt",
       "TelescopePrompt",
       "noice",
+      "notify",
     },
     marks = {
       Search = { color = colors.orange },
