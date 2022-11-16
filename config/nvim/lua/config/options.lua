@@ -103,6 +103,10 @@ vim.opt.fillchars = {
   foldclose = "",
 }
 -- vim.o.shortmess = "IToOlxfitn"
+-- vim.opt.shortmess:get()
+if vim.fn.has("nvim-0.9") == 1 then
+  vim.o.shortmess = "filnxtToOFWIcC"
+end
 
 -- don't load the plugins below
 local builtins = {
@@ -146,3 +150,4 @@ local fences = {
   "console=sh",
 }
 vim.g.markdown_fenced_languages = fences
+vim.g.markdown_recommended_style = 0
