@@ -36,24 +36,6 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 vim.keymap.set("n", "<C-Left>", "<cmd>bprevious<cr>")
 vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>")
 
-local function search(backward)
-  vim.cmd([[echo "1> "]])
-  local first = vim.fn.getcharstr()
-  vim.fn.search(first, "s" .. (backward and "b" or ""))
-  vim.schedule(function()
-    vim.cmd([[echo "2> "]])
-    local second = vim.fn.getcharstr()
-    vim.fn.search(first .. second, "c" .. (backward and "b" or ""))
-
-    vim.fn.setreg("/", first .. second)
-  end)
-end
-
-vim.keymap.set("n", "s", search)
-vim.keymap.set("n", "S", function()
-  search(true)
-end)
-
 -- Easier pasting
 -- vim.keymap.set("n", "[p", ":pu!<cr>")
 -- vim.keymap.set("n", "]p", ":pu<cr>")
@@ -163,7 +145,7 @@ local leader = {
     m = { "<cmd>:Telescope man_pages<cr>", "Man Pages" },
     k = { "<cmd>:Telescope keymaps<cr>", "Key Maps" },
     s = { "<cmd>:Telescope highlights<cr>", "Search Highlight Groups" },
-    l = { [[<cmd>TSHighlightCapturesUnderCursor<cr>]], "Highlight Groups at cursor" },
+    l = { util.hl, "Highlight Groups at cursor" },
     f = { "<cmd>:Telescope filetypes<cr>", "File Types" },
     o = { "<cmd>:Telescope vim_options<cr>", "Options" },
     a = { "<cmd>:Telescope autocommands<cr>", "Auto Commands" },
