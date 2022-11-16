@@ -9,7 +9,7 @@ function M.config()
       pathStrict = true,
     },
     library = {
-      -- runtime = "~/projects/neovim/runtime/",
+      runtime = "~/projects/neovim/runtime/",
     },
   })
   require("mason")
@@ -30,6 +30,7 @@ function M.config()
     cssls = {},
     dockerls = {},
     tsserver = {},
+    svelte = {},
     eslint = {},
     html = {},
     jsonls = {
@@ -43,6 +44,7 @@ function M.config()
         },
       },
     },
+    gopls = {},
     marksman = {},
     pyright = {},
     rust_analyzer = {
@@ -58,7 +60,7 @@ function M.config()
     },
     yamlls = {},
     sumneko_lua = {
-      cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
+      -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
       single_file_support = true,
       settings = {
         Lua = {
@@ -67,6 +69,7 @@ function M.config()
           },
           completion = {
             workspaceWord = true,
+            callSnippet = "Replace",
           },
           misc = {
             parameters = {
@@ -75,20 +78,24 @@ function M.config()
           },
           diagnostics = {
             -- enable = false,
-            -- groupFileStatus = {
-            --   ["ambiguity"] = "Opened",
-            --   ["await"] = "Opened",
-            --   ["codestyle"] = "None",
-            --   ["duplicate"] = "Opened",
-            --   ["global"] = "Opened",
-            --   ["luadoc"] = "Opened",
-            --   ["redefined"] = "Opened",
-            --   ["strict"] = "Opened",
-            --   ["strong"] = "Opened",
-            --   ["type-check"] = "Opened",
-            --   ["unbalanced"] = "Opened",
-            --   ["unused"] = "Opened",
-            -- },
+            groupSeverity = {
+              strong = "Warning",
+              strict = "Warning",
+            },
+            groupFileStatus = {
+              --   ["ambiguity"] = "Opened",
+              --   ["await"] = "Opened",
+              --   ["codestyle"] = "None",
+              --   ["duplicate"] = "Opened",
+              --   ["global"] = "Opened",
+              --   ["luadoc"] = "Opened",
+              --   ["redefined"] = "Opened",
+              ["strict"] = "Opened",
+              ["strong"] = "Opened",
+              --   ["type-check"] = "Opened",
+              --   ["unbalanced"] = "Opened",
+              --   ["unused"] = "Opened",
+            },
             unusedLocalExclude = { "_*" },
           },
           format = {
