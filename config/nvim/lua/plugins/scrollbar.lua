@@ -15,6 +15,11 @@ function M.config()
     handle = {
       color = colors.bg_highlight,
     },
+    excluded_filetypes = {
+      "prompt",
+      "TelescopePrompt",
+      "noice",
+    },
     marks = {
       Search = { color = colors.orange },
       Error = { color = colors.error },
