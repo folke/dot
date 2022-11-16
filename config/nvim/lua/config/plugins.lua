@@ -109,7 +109,7 @@ local function plugins(use, plugin)
 
   plugin("hrsh7th/nvim-cmp")
 
-  plugin("windwp/nvim-autopairs")
+  -- plugin("windwp/nvim-autopairs")
 
   plugin("L3MON4D3/LuaSnip")
 

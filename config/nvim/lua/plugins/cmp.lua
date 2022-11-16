@@ -9,7 +9,6 @@ local M = {
     "dmitmel/cmp-cmdline-history",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
   },
 }
 
@@ -42,7 +41,6 @@ function M.config()
       { name = "path" },
       { name = "emoji" },
       { name = "neorg" },
-      { name = "nvim_lsp_signature_help" },
     }),
     formatting = {
       format = require("plugins.lsp.kind").cmp_format(),
@@ -78,9 +76,6 @@ function M.config()
   --     -- { name = "cmdline_history" },
   --   }),
   -- })
-
-  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))
 end
 
 return M
