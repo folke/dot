@@ -16,12 +16,14 @@ local config = {
   -- this is NOT packer functionality!
   local_plugins = {
     folke = true,
-    -- ["folke/neodev.nvim"] = false,
+    -- ["ggandor/flit.nvim"] = true,
+    -- ["ggandor/leap.nvim"] = true,
     -- ["null-ls.nvim"] = true,
     -- ["nvim-lspconfig"] = true,
     -- ["nvim-notify"] = true,
     -- ["yanky.nvim"] = true,
-    -- ["nvim-treesitter"] = true,
+    -- ["nui.nvim"] = true,
+    -- ["nvim-treesitter/nvim-treesitter"] = true,
   },
 }
 
@@ -38,6 +40,8 @@ local function plugins(use, plugin)
       require("inc_rename").setup()
     end,
   })
+  -- plugin("zbirenbaum/copilot.lua")
+
   use({
     "folke/styler.nvim",
     opt = false,
@@ -126,7 +130,7 @@ local function plugins(use, plugin)
     end,
     setup = function()
       -- prompt for a refactor to apply when the remap is triggered
-      vim.keymap.set("v", "<leader>cr", function()
+      vim.keymap.set("v", "<leader>r", function()
         require("refactoring").select_refactor()
       end, { noremap = true, silent = true, expr = false })
     end,
@@ -138,17 +142,7 @@ local function plugins(use, plugin)
 
   plugin("hrsh7th/nvim-cmp")
 
-  -- plugin("windwp/nvim-autopairs")
-
   plugin("L3MON4D3/LuaSnip")
-
-  use({
-    "kylechui/nvim-surround",
-    event = "BufReadPre",
-    config = function()
-      require("nvim-surround").setup({})
-    end,
-  })
 
   use({
     "simrat39/symbols-outline.nvim",
@@ -160,8 +154,6 @@ local function plugins(use, plugin)
       vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
     end,
   })
-
-  plugin("numToStr/Comment.nvim")
 
   plugin("nvim-neo-tree/neo-tree.nvim")
 
@@ -187,7 +179,6 @@ local function plugins(use, plugin)
     event = "User PackerDefered",
     config = function()
       require("hlargs").setup({
-        color = require("tokyonight.colors").setup().yellow,
         excluded_argnames = {
           usages = {
             lua = { "self", "use" },
@@ -208,9 +199,6 @@ local function plugins(use, plugin)
       require("nvim-web-devicons").setup({ default = true })
     end,
   })
-
-  -- Dashboard
-  plugin("glepnir/dashboard-nvim")
 
   use({
     "norcalli/nvim-terminal.lua",
@@ -253,9 +241,11 @@ local function plugins(use, plugin)
 
   plugin("NvChad/nvim-colorizer.lua")
 
-  -- plugin("kevinhwang91/nvim-ufo")
+  plugin("kevinhwang91/nvim-ufo")
 
   plugin("phaazon/hop.nvim")
+
+  plugin("ggandor/leap.nvim")
 
   use({
     "folke/trouble.nvim",

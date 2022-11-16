@@ -5,7 +5,7 @@ local M = {
 }
 
 function M.config()
-  require("todo-comments").setup({ keywords = { TODO = { alt = { "WIP" } } } })
+  require("todo-comments").setup()
 end
 
 function M.init()
