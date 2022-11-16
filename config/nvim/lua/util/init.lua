@@ -1,17 +1,23 @@
 -- selene: allow(global_usage)
-_G.dump = function(...)
-  vim.pretty_print(...)
-end
 
-_G.dumpp = function(...)
-  local msg = vim.inspect(...)
-  vim.notify(msg, vim.log.levels.INFO, {
-    title = "Debug",
+_G.d = function(...)
+  local info = debug.getinfo(2, "S")
+  local source = info.source:sub(2)
+  source = vim.loop.fs_realpath(source) or source
+  source = vim.fn.fnamemodify(source, ":~:.") .. ":" .. info.linedefined
+  local what = { ... }
+  if vim.tbl_islist(what) and vim.tbl_count(what) <= 1 then
+    what = what[1]
+  end
+  local msg = vim.inspect(vim.deepcopy(what))
+  require("notify").notify(msg, vim.log.levels.INFO, {
+    title = "Debug: " .. source,
     on_open = function(win)
-      vim.api.nvim_win_set_option(win, "conceallevel", 3)
+      vim.wo[win].conceallevel = 3
+      vim.wo[win].concealcursor = ""
+      vim.wo[win].spell = false
       local buf = vim.api.nvim_win_get_buf(win)
-      vim.api.nvim_buf_set_option(buf, "filetype", "lua")
-      vim.api.nvim_win_set_option(win, "spell", false)
+      vim.treesitter.start(buf, "lua")
     end,
   })
 end
