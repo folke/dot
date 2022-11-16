@@ -55,6 +55,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   end,
 })
 
+local reloaded_id = nil
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.lua",
   callback = function(event)
@@ -66,7 +67,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end
     if mod then
       package.loaded[mod] = nil
-      vim.notify("Reloaded " .. mod, vim.log.levels.INFO, { title = "nvim" })
+      reloaded_id = vim.notify("Reloaded " .. mod, vim.log.levels.INFO, { title = "nvim", replace = reloaded_id })
     end
   end,
 })
