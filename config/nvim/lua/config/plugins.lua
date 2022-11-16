@@ -54,6 +54,15 @@ local function plugins(use, plugin)
   })
 
   use({
+    "folke/drop.nvim",
+    event = "VimEnter",
+    config = function()
+      math.randomseed(os.time())
+      local theme = ({ "stars", "snow" })[math.random(1, 2)]
+      require("drop").setup({ theme = theme })
+    end,
+  })
+  use({
     "folke/paint.nvim",
     event = "BufReadPre",
     config = function()
