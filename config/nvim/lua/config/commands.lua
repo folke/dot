@@ -75,6 +75,20 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 -- Highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
 
--- windows to close with "q"
-vim.cmd([[autocmd FileType help,startuptime,qf,lspinfo nnoremap <buffer><silent> q :close<CR>]])
-vim.cmd([[autocmd FileType man nnoremap <buffer><silent> q :quit<CR>]])
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = {
+    "qf",
+    "help",
+    "man",
+    "lspinfo",
+    "spectre_panel",
+    "startuptime",
+    "tsplayground",
+  },
+  callback = function()
+    vim.cmd([[
+    nnoremap <silent> <buffer> q :close<CR> 
+    set nobuflisted 
+    ]])
+  end,
+})
