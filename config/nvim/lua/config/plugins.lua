@@ -62,6 +62,12 @@ local function plugins(use, plugin)
       require("drop").setup({ theme = theme })
     end,
   })
+
+  use({
+    opt = false,
+    "ellisonleao/gruvbox.nvim",
+  })
+
   use({
     "folke/paint.nvim",
     event = "BufReadPre",
