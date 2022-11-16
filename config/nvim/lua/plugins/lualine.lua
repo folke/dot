@@ -4,23 +4,18 @@ local function clock()
   return " " .. os.date("%H:%M")
 end
 
-local function holidays()
-  return "🌴🌊"
-  -- return "🎅🎄🌟🎁"
-end
-
 function M.config()
   require("lualine").setup({
     options = {
       theme = "auto",
-      section_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
       icons_enabled = true,
       globalstatus = true,
       disabled_filetypes = { statusline = { "dashboard" } },
     },
     sections = {
-      lualine_a = { "mode" },
+      lualine_a = { { "mode", separator = { left = "" } } },
       lualine_b = { "branch" },
       lualine_c = {
         { "diagnostics", sources = { "nvim_diagnostic" } },
@@ -34,7 +29,7 @@ function M.config()
           end,
           cond = function()
             local navic = require("nvim-navic")
-            return navic.is_available() and false
+            return navic.is_available()
           end,
           color = { fg = "#ff9e64" },
         },
@@ -63,7 +58,11 @@ function M.config()
         --   return require("messages.view").status
         -- end,
         { require("github-notifications").statusline_notification_count },
-        { holidays },
+        {
+          function()
+            return require("util.dashboard").status()
+          end,
+        },
       },
       lualine_y = { "location" },
       lualine_z = { clock },
