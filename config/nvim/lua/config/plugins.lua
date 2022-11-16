@@ -38,6 +38,20 @@ local function plugins(use, plugin)
       require("inc_rename").setup()
     end,
   })
+  use({
+    "folke/styler.nvim",
+    opt = false,
+    event = "User PackerDefered",
+    config = function()
+      require("styler").setup({
+        themes = {
+          markdown = { colorscheme = "tokyonight-storm" },
+          help = { colorscheme = "gruvbox", background = "dark" },
+          -- noice = { colorscheme = "gruvbox", background = "dark" },
+        },
+      })
+    end,
+  })
 
   use({
     "folke/paint.nvim",
