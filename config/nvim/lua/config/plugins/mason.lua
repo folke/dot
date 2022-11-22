@@ -9,6 +9,7 @@ M.tools = {
   "luacheck",
   "eslint_d",
   "shellcheck",
+  "deno",
   "shfmt",
   "black",
   "isort",

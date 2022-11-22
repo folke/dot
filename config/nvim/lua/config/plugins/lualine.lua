@@ -1,10 +1,14 @@
-local M = { event = "User PackerDefered" }
+local M = { event = "User VeryLazy" }
 
 local function clock()
   return " " .. os.date("%H:%M")
 end
 
 function M.config()
+  if vim.g.started_by_firenvim then
+    return
+  end
+
   require("lualine").setup({
     options = {
       theme = "auto",
@@ -65,7 +69,7 @@ function M.config()
         },
       },
       lualine_y = { "location" },
-      lualine_z = { clock },
+      lualine_z = { { clock, separator = { right = "" } } },
     },
     inactive_sections = {
       lualine_a = {},

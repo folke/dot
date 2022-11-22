@@ -1,5 +1,5 @@
 local M = {
-  event = "User PackerDefered",
+  event = "User VeryLazy",
   requires = {
     { "anuvyklack/middleclass", module = "middleclass" },
     { "anuvyklack/animation.nvim", module = "animation" },

@@ -1,5 +1,5 @@
 return {
-  event = "User PackerDefered",
+  event = "User VeryLazy",
   config = function()
     require("specs").setup({
       show_jumps = true,

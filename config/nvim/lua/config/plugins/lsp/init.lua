@@ -13,13 +13,13 @@ function M.config()
     },
   })
   require("mason")
-  require("plugins.lsp.diagnostics").setup()
+  require("config.plugins.lsp.diagnostics").setup()
   require("neoconf").setup()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
-    require("plugins.lsp.formatting").setup(client, bufnr)
-    require("plugins.lsp.keys").setup(client, bufnr)
+    require("config.plugins.lsp.formatting").setup(client, bufnr)
+    require("config.plugins.lsp.keys").setup(client, bufnr)
   end
 
   ---@type lspconfig.options
@@ -83,18 +83,18 @@ function M.config()
               strict = "Warning",
             },
             groupFileStatus = {
-              --   ["ambiguity"] = "Opened",
-              --   ["await"] = "Opened",
-              --   ["codestyle"] = "None",
-              --   ["duplicate"] = "Opened",
-              --   ["global"] = "Opened",
-              --   ["luadoc"] = "Opened",
-              --   ["redefined"] = "Opened",
+              ["ambiguity"] = "Opened",
+              ["await"] = "Opened",
+              ["codestyle"] = "None",
+              ["duplicate"] = "Opened",
+              ["global"] = "Opened",
+              ["luadoc"] = "Opened",
+              ["redefined"] = "Opened",
               ["strict"] = "Opened",
               ["strong"] = "Opened",
-              --   ["type-check"] = "Opened",
-              --   ["unbalanced"] = "Opened",
-              --   ["unused"] = "Opened",
+              ["type-check"] = "Opened",
+              ["unbalanced"] = "Opened",
+              ["unused"] = "Opened",
             },
             unusedLocalExclude = { "_*" },
           },
@@ -139,7 +139,7 @@ function M.config()
     end
   end
 
-  require("plugins.null-ls").setup(options)
+  require("config.plugins.null-ls").setup(options)
 end
 
 return M

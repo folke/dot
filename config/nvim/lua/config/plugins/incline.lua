@@ -3,6 +3,10 @@ local M = {
 }
 
 function M.config()
+  if vim.g.started_by_firenvim then
+    return
+  end
+
   local colors = require("tokyonight.colors").setup()
 
   require("incline").setup({

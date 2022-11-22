@@ -29,9 +29,9 @@ function M.setup(client, buffer)
           { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
         },
         f = {
-          { require("plugins.lsp.formatting").format, "Format Document", cond = cap.documentFormatting },
+          { require("config.plugins.lsp.formatting").format, "Format Document", cond = cap.documentFormatting },
           {
-            require("plugins.lsp.formatting").format,
+            require("config.plugins.lsp.formatting").format,
             "Format Range",
             cond = cap.documentRangeFormatting,
             mode = "v",

@@ -1,6 +1,6 @@
 local M = {
   run = ":TSUpdate",
-  event = "User PackerDefered",
+  event = "User VeryLazy",
   module = "nvim-treesitter",
   requires = {
     "nvim-treesitter/nvim-treesitter-textobjects",

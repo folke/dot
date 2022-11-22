@@ -1,5 +1,5 @@
 local M = {
-  event = "User PackerDefered",
+  event = "User VeryLazy",
   module = "leap",
   requires = {
     { "ggandor/flit.nvim", module = "flit" },

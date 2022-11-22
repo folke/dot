@@ -1,63 +1,68 @@
-local packer = require("util.packer")
+return {
+  "folke/noice.nvim",
+  "glacambre/firenvim",
+  "toppair/peek.nvim",
+  "b0o/incline.nvim",
+  "gbprod/yanky.nvim",
+  "rcarriga/nvim-notify",
+  "folke/tokyonight.nvim",
+  "nvim-lualine/lualine.nvim",
+  "NvChad/nvim-colorizer.lua",
+  "kevinhwang91/nvim-ufo",
+  "phaazon/hop.nvim",
+  "ggandor/leap.nvim",
+  "pwntester/octo.nvim",
+  "folke/todo-comments.nvim",
+  "sindrets/diffview.nvim",
+  "RRethy/vim-illuminate",
+  "nvim-neorg/neorg",
+  "jose-elias-alvarez/null-ls.nvim",
+  "anuvyklack/windows.nvim",
+  "monaqa/dial.nvim",
+  "williamboman/mason.nvim",
+  "simrat39/rust-tools.nvim",
+  "petertriho/nvim-scrollbar",
+  "hrsh7th/nvim-cmp",
+  "L3MON4D3/LuaSnip",
+  "nvim-neo-tree/neo-tree.nvim",
+  "nvim-telescope/telescope.nvim",
+  "lukas-reineke/indent-blankline.nvim",
+  "akinsho/nvim-bufferline.lua",
+  "akinsho/nvim-toggleterm.lua",
+  "karb94/neoscroll.nvim",
+  "edluffy/specs.nvim",
+  "echasnovski/mini.nvim",
+  "lewis6991/gitsigns.nvim",
+  "TimUntersberger/neogit",
+  "mfussenegger/nvim-dap",
+  "nvim-treesitter/nvim-treesitter",
 
-local config = {
-  profile = {
-    enable = true,
-    threshold = 0, -- the amount in ms that a plugins load time must be over for it to be included in the profile
-  },
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "single" })
-    end,
-  },
-  opt_default = true,
-  auto_reload_compiled = false,
-  -- list of plugins that should be taken from ~/projects
-  -- this is NOT packer functionality!
-  local_plugins = {
-    folke = true,
-    -- ["ggandor/flit.nvim"] = true,
-    -- ["ggandor/leap.nvim"] = true,
-    -- ["null-ls.nvim"] = true,
-    -- ["nvim-lspconfig"] = true,
-    -- ["nvim-notify"] = true,
-    -- ["yanky.nvim"] = true,
-    -- ["nui.nvim"] = true,
-    -- ["nvim-treesitter/nvim-treesitter"] = true,
-  },
-}
-
-local function plugins(use, plugin)
-  -- Packer can manage itself as an optional plugin
-  use({ "wbthomason/packer.nvim" })
-  plugin("folke/noice.nvim")
-
-  use({
+  {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
     module = "inc_rename",
     config = function()
       require("inc_rename").setup()
     end,
-  })
+  },
   -- plugin("zbirenbaum/copilot.lua")
 
-  use({
+  {
     "folke/styler.nvim",
     opt = false,
-    event = "User PackerDefered",
+    event = "User VeryLazy",
     config = function()
-      require("styler").setup({
-        themes = {
-          markdown = { colorscheme = "tokyonight-storm" },
-          help = { colorscheme = "gruvbox", background = "dark" },
-          -- noice = { colorscheme = "gruvbox", background = "dark" },
-        },
-      })
+      -- require("styler").setup({
+      --   themes = {
+      --     markdown = { colorscheme = "tokyonight-storm" },
+      --     help = { colorscheme = "gruvbox", background = "dark" },
+      --     -- noice = { colorscheme = "gruvbox", background = "dark" },
+      --   },
+      -- })
     end,
-  })
+  },
 
-  use({
+  {
     "folke/drop.nvim",
     event = "VimEnter",
     config = function()
@@ -65,64 +70,51 @@ local function plugins(use, plugin)
       local theme = ({ "stars", "snow" })[math.random(1, 2)]
       require("drop").setup({ theme = theme })
     end,
-  })
+  },
 
-  use({
+  {
     opt = false,
     "ellisonleao/gruvbox.nvim",
-  })
+  },
 
-  use({
+  {
     "folke/paint.nvim",
     event = "BufReadPre",
     config = function()
       require("paint").setup()
     end,
-  })
-  plugin("toppair/peek.nvim")
+  },
 
-  plugin("b0o/incline.nvim")
-  plugin("gbprod/yanky.nvim")
-
-  use({ "stevearc/dressing.nvim", event = "User PackerDefered" })
-
-  plugin("rcarriga/nvim-notify")
+  { "stevearc/dressing.nvim", event = "User VeryLazy" },
 
   -- LSP
-  use({ "neovim/nvim-lspconfig", plugin = "lsp" })
+  { "neovim/nvim-lspconfig", name = "lsp" },
 
-  use({ "b0o/SchemaStore.nvim", module = "schemastore" })
-  use({ "jose-elias-alvarez/typescript.nvim", module = "typescript" })
+  { "b0o/SchemaStore.nvim", module = "schemastore" },
+  { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
 
-  plugin("jose-elias-alvarez/null-ls.nvim")
-
-  use({ "folke/neodev.nvim", module = "neodev" })
-  use({
+  { "folke/neodev.nvim", module = "neodev" },
+  {
     "folke/neoconf.nvim",
     module = "neoconf",
     cmd = "Neoconf",
-  })
+  },
 
-  plugin("anuvyklack/windows.nvim")
-
-  plugin("monaqa/dial.nvim")
-
-  plugin("williamboman/mason.nvim")
-  use({
+  {
     "williamboman/mason-lspconfig.nvim",
     module = "mason-lspconfig",
-  })
+  },
 
-  use({
+  {
     "SmiteshP/nvim-navic",
     module = "nvim-navic",
     config = function()
       vim.g.navic_silence = true
       require("nvim-navic").setup({ separator = " ", highlight = true, depth_limit = 5 })
     end,
-  })
+  },
 
-  use({
+  {
     "ThePrimeagen/refactoring.nvim",
     module = "refactoring",
     config = function()
@@ -134,17 +126,9 @@ local function plugins(use, plugin)
         require("refactoring").select_refactor()
       end, { noremap = true, silent = true, expr = false })
     end,
-  })
+  },
 
-  plugin("simrat39/rust-tools.nvim")
-
-  plugin("petertriho/nvim-scrollbar")
-
-  plugin("hrsh7th/nvim-cmp")
-
-  plugin("L3MON4D3/LuaSnip")
-
-  use({
+  {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline" },
     config = function()
@@ -153,30 +137,26 @@ local function plugins(use, plugin)
     setup = function()
       vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
     end,
-  })
+  },
 
-  plugin("nvim-neo-tree/neo-tree.nvim")
-
-  use({
+  {
     "MunifTanjim/nui.nvim",
     module = "nui",
-  })
+  },
 
-  use({
+  {
     "danymat/neogen",
     module = "neogen",
     config = function()
       require("neogen").setup({ snippet_engine = "luasnip" })
     end,
-  })
+  },
 
-  plugin("nvim-treesitter/nvim-treesitter")
+  { "nvim-treesitter/playground", cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" } },
 
-  use({ "nvim-treesitter/playground", cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" } })
-
-  use({
+  {
     "m-demare/hlargs.nvim",
-    event = "User PackerDefered",
+    event = "User VeryLazy",
     config = function()
       require("hlargs").setup({
         excluded_argnames = {
@@ -186,68 +166,35 @@ local function plugins(use, plugin)
         },
       })
     end,
-  })
-
-  -- Theme: color schemes
-  plugin("folke/tokyonight.nvim")
+  },
 
   -- Theme: icons
-  use({
+  {
     "kyazdani42/nvim-web-devicons",
     module = "nvim-web-devicons",
     config = function()
       require("nvim-web-devicons").setup({ default = true })
     end,
-  })
+  },
 
-  use({
+  {
     "norcalli/nvim-terminal.lua",
     ft = "terminal",
     config = function()
       require("terminal").setup()
     end,
-  })
-  use({ "nvim-lua/plenary.nvim", module = "plenary" })
+  },
+  { "nvim-lua/plenary.nvim", module = "plenary" },
 
-  use({
+  {
     "windwp/nvim-spectre",
     module = "spectre",
-  })
+  },
 
-  -- Fuzzy finder
-  plugin("nvim-telescope/telescope.nvim")
-
-  plugin("lukas-reineke/indent-blankline.nvim")
-  plugin("akinsho/nvim-bufferline.lua")
-
-  -- Terminal
-  plugin("akinsho/nvim-toggleterm.lua")
-
-  -- Smooth Scrolling
-  plugin("karb94/neoscroll.nvim")
-
-  plugin("edluffy/specs.nvim")
-
-  plugin("echasnovski/mini.nvim")
-
-  plugin("lewis6991/gitsigns.nvim")
-  plugin("TimUntersberger/neogit")
-
-  plugin("mfussenegger/nvim-dap")
-
-  use({ "rlch/github-notifications.nvim", module = "github-notifications" })
+  { "rlch/github-notifications.nvim", module = "github-notifications" },
   -- Statusline
-  plugin("nvim-lualine/lualine.nvim")
 
-  plugin("NvChad/nvim-colorizer.lua")
-
-  plugin("kevinhwang91/nvim-ufo")
-
-  plugin("phaazon/hop.nvim")
-
-  plugin("ggandor/leap.nvim")
-
-  use({
+  {
     "folke/trouble.nvim",
     event = "BufReadPre",
     module = "trouble",
@@ -258,9 +205,9 @@ local function plugins(use, plugin)
         use_diagnostic_signs = true, -- en
       })
     end,
-  })
+  },
 
-  use({
+  {
     "folke/persistence.nvim",
     event = "BufReadPre",
     module = "persistence",
@@ -269,26 +216,37 @@ local function plugins(use, plugin)
         options = { "buffers", "curdir", "tabpages", "winsize", "help" },
       })
     end,
-  })
+  },
 
-  use({
+  {
+    "cshuaimin/ssr.nvim",
+    module = "ssr",
+    -- Calling setup is optional.
+    init = function()
+      vim.keymap.set({ "n", "x" }, "<leader>cR", function()
+        require("ssr").open()
+      end, { desc = "Structural Replace" })
+    end,
+  },
+
+  {
     "dstein64/vim-startuptime",
     cmd = "StartupTime",
     config = function()
       vim.g.startuptime_tries = 10
     end,
-  })
+  },
 
-  use({
+  {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
     config = function()
       require("treesitter-context").setup()
     end,
-  })
+  },
 
-  use({ "folke/twilight.nvim", module = "twilight" })
-  use({
+  { "folke/twilight.nvim", module = "twilight" },
+  {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     config = function()
@@ -296,30 +254,18 @@ local function plugins(use, plugin)
         plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } },
       })
     end,
-  })
+  },
 
-  plugin("pwntester/octo.nvim")
-
-  plugin("folke/todo-comments.nvim")
-
-  use({
+  {
     "folke/which-key.nvim",
     module = "which-key",
-  })
+  },
 
-  plugin("sindrets/diffview.nvim")
-
-  plugin("RRethy/vim-illuminate")
-
-  plugin("nvim-neorg/neorg")
-
-  use({
+  {
     "andymass/vim-matchup",
     event = "BufReadPost",
     config = function()
       vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
     end,
-  })
-end
-
-return packer.setup(config, plugins)
+  },
+}

@@ -1,5 +1,5 @@
 return {
-  event = "User PackerDefered",
+  event = "User VeryLazy",
   module = "illuminate",
   config = function()
     require("illuminate").configure({ delay = 200 })
