@@ -46,6 +46,9 @@ vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
 vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.backup = true
+
+vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
 
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
@@ -54,7 +57,7 @@ vim.opt.expandtab = true -- Use spaces instead of tabs
 -- vim.opt.foldlevel = 0
 vim.o.formatoptions = "jcroqlnt" -- tcqj
 
-vim.opt.guifont = "FiraCode Nerd Font:h12"
+vim.opt.guifont = "FiraCode Nerd Font:h11"
 vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.hidden = true -- Enable modified buffers in background
