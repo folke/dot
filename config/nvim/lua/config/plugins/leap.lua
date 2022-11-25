@@ -9,7 +9,9 @@ local M = {
 
 function M.config()
   require("leap").add_default_mappings()
-  -- require("flit").setup()
+  require("flit").setup({
+    labeled_modes = "nv",
+  })
   -- require("leap").setup({})
   vim.keymap.set({ "n", "x", "o" }, "M", function()
     require("leap-ast").leap()
