@@ -62,22 +62,22 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   end,
 })
 
-local reloaded_id = nil
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = "*.lua",
-  callback = function(event)
-    ---@type string
-    local file = event.match
-    local mod = file:match("/lua/(.*)%.lua")
-    if mod then
-      mod = mod:gsub("/", ".")
-    end
-    if mod then
-      package.loaded[mod] = nil
-      reloaded_id = vim.notify("Reloaded " .. mod, vim.log.levels.INFO, { title = "nvim", replace = reloaded_id })
-    end
-  end,
-})
+-- local reloaded_id = nil
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = "*.lua",
+--   callback = function(event)
+--     ---@type string
+--     local file = event.match
+--     local mod = file:match("/lua/(.*)%.lua")
+--     if mod then
+--       mod = mod:gsub("/", ".")
+--     end
+--     if mod and package.loaded[mod] then
+--       package.loaded[mod] = nil
+--       reloaded_id = vim.notify("Reloaded " .. mod, vim.log.levels.INFO, { title = "nvim", replace = reloaded_id })
+--     end
+--   end,
+-- })
 
 -- Highlight on yank
 vim.cmd("au TextYankPost * lua vim.highlight.on_yank {}")
@@ -87,6 +87,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "qf",
     "help",
     "man",
+    "notify",
     "lspinfo",
     "spectre_panel",
     "startuptime",
