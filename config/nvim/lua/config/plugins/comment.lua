@@ -1,4 +1,5 @@
 local M = {
+  enabled = false,
   keys = { "gc", "gcc", "gbc" },
   requires = {
     {

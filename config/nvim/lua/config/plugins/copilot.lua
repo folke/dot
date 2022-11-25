@@ -1,4 +1,5 @@
 local M = {
+  enabled = false,
   event = "User VeryLazy",
 }
 

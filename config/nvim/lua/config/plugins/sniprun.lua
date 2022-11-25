@@ -1,4 +1,5 @@
 local M = {
+  enabled = false,
   run = "bash ./install.sh",
   cmd = "SnipRun",
   keys = { "<leader>r" },

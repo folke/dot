@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   module = "nvim-autopairs",
   config = function()
     local npairs = require("nvim-autopairs")
