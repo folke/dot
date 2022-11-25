@@ -1,6 +1,6 @@
 local M = {
   module = "noice",
-  event = "UIEnter",
+  event = "User VeryLazy",
 }
 
 M.enabled = true
