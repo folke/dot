@@ -1,41 +1,4 @@
 return {
-  "folke/noice.nvim",
-  "glacambre/firenvim",
-  "toppair/peek.nvim",
-  "b0o/incline.nvim",
-  "gbprod/yanky.nvim",
-  "rcarriga/nvim-notify",
-  "folke/tokyonight.nvim",
-  "nvim-lualine/lualine.nvim",
-  "NvChad/nvim-colorizer.lua",
-  "kevinhwang91/nvim-ufo",
-  "phaazon/hop.nvim",
-  "ggandor/leap.nvim",
-  "pwntester/octo.nvim",
-  "folke/todo-comments.nvim",
-  "sindrets/diffview.nvim",
-  "RRethy/vim-illuminate",
-  "nvim-neorg/neorg",
-  "jose-elias-alvarez/null-ls.nvim",
-  "anuvyklack/windows.nvim",
-  "monaqa/dial.nvim",
-  "williamboman/mason.nvim",
-  "simrat39/rust-tools.nvim",
-  "petertriho/nvim-scrollbar",
-  "hrsh7th/nvim-cmp",
-  "L3MON4D3/LuaSnip",
-  "nvim-neo-tree/neo-tree.nvim",
-  "nvim-telescope/telescope.nvim",
-  "lukas-reineke/indent-blankline.nvim",
-  "akinsho/nvim-bufferline.lua",
-  "akinsho/nvim-toggleterm.lua",
-  "karb94/neoscroll.nvim",
-  "edluffy/specs.nvim",
-  "echasnovski/mini.nvim",
-  "lewis6991/gitsigns.nvim",
-  "TimUntersberger/neogit",
-  "mfussenegger/nvim-dap",
-  "nvim-treesitter/nvim-treesitter",
 
   {
     "smjonas/inc-rename.nvim",
@@ -45,20 +8,17 @@ return {
       require("inc_rename").setup()
     end,
   },
-  -- plugin("zbirenbaum/copilot.lua")
-
   {
     "folke/styler.nvim",
-    opt = false,
     event = "User VeryLazy",
     config = function()
-      -- require("styler").setup({
-      --   themes = {
-      --     markdown = { colorscheme = "tokyonight-storm" },
-      --     help = { colorscheme = "gruvbox", background = "dark" },
-      --     -- noice = { colorscheme = "gruvbox", background = "dark" },
-      --   },
-      -- })
+      require("styler").setup({
+        themes = {
+          markdown = { colorscheme = "tokyonight-storm" },
+          help = { colorscheme = "gruvbox", background = "dark" },
+          -- noice = { colorscheme = "gruvbox", background = "dark" },
+        },
+      })
     end,
   },
 
@@ -73,7 +33,7 @@ return {
   },
 
   {
-    opt = false,
+    lazy = false,
     "ellisonleao/gruvbox.nvim",
   },
 
@@ -81,14 +41,46 @@ return {
     "folke/paint.nvim",
     event = "BufReadPre",
     config = function()
-      require("paint").setup()
+      require("paint").setup({
+        highlights = {
+          {
+            filter = { filetype = "lua" },
+            pattern = "%s*%-%-%-%s*(@%w+)",
+            hl = "Constant",
+          },
+          {
+            filter = { filetype = "lua" },
+            pattern = "%s*%-%-%[%[(@%w+)",
+            hl = "Constant",
+          },
+          {
+            filter = { filetype = "lua" },
+            pattern = "%s*%-%-%-%s*@field%s+(%S+)",
+            hl = "@field",
+          },
+          {
+            filter = { filetype = "lua" },
+            pattern = "%s*%-%-%-%s*@class%s+(%S+)",
+            hl = "@variable.builtin",
+          },
+          {
+            filter = { filetype = "lua" },
+            pattern = "%s*%-%-%-%s*@alias%s+(%S+)",
+            hl = "@keyword",
+          },
+          {
+            filter = { filetype = "lua" },
+            pattern = "%s*%-%-%-%s*@param%s+(%S+)",
+            hl = "@parameter",
+          },
+        },
+      })
     end,
   },
 
   { "stevearc/dressing.nvim", event = "User VeryLazy" },
 
   -- LSP
-  { "neovim/nvim-lspconfig", name = "lsp" },
 
   { "b0o/SchemaStore.nvim", module = "schemastore" },
   { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
@@ -196,7 +188,6 @@ return {
 
   {
     "folke/trouble.nvim",
-    event = "BufReadPre",
     module = "trouble",
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
@@ -217,7 +208,14 @@ return {
       })
     end,
   },
-
+  {
+    "Wansmer/treesj",
+    keys = "J",
+    config = function()
+      require("treesj").setup({ use_default_keymaps = false })
+      vim.keymap.set("n", "J", "<cmd>TSJToggle<cr>")
+    end,
+  },
   {
     "cshuaimin/ssr.nvim",
     module = "ssr",
@@ -251,7 +249,11 @@ return {
     cmd = "ZenMode",
     config = function()
       require("zen-mode").setup({
-        plugins = { gitsigns = true, tmux = true, kitty = { enabled = false, font = "+2" } },
+        plugins = {
+          gitsigns = true,
+          tmux = true,
+          kitty = { enabled = false, font = "+2" },
+        },
       })
     end,
   },

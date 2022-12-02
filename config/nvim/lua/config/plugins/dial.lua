@@ -1,4 +1,5 @@
 local M = {
+  "monaqa/dial.nvim",
   module = "dial",
   keys = { "<C-a>", "<C-x>" },
 }

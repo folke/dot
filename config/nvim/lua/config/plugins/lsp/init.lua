@@ -1,5 +1,8 @@
 local M = {
+  "neovim/nvim-lspconfig",
+  name = "lsp",
   event = "BufReadPre",
+  dependencies = { "hrsh7th/cmp-nvim-lsp" },
 }
 
 function M.config()

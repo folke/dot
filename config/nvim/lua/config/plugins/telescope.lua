@@ -1,12 +1,13 @@
 local M = {
+  "nvim-telescope/telescope.nvim",
   cmd = { "Telescope" },
   module = "telescope",
-  requires = {
+  dependencies = {
     { "nvim-telescope/telescope-file-browser.nvim", module = "telescope._extensions.file_browser" },
     { "nvim-telescope/telescope-z.nvim", module = "telescope._extensions.z" },
     -- { "nvim-telescope/telescope-project.nvim", module = "telescope._extensions.project" },
     { "nvim-telescope/telescope-symbols.nvim", module = "telescope._extensions.symbols" },
-    { "nvim-telescope/telescope-fzf-native.nvim", module = "telescope._extensions.fzf", run = "make" },
+    { "nvim-telescope/telescope-fzf-native.nvim", module = "telescope._extensions.fzf", build = "make" },
   },
 }
 

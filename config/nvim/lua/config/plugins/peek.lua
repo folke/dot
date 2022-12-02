@@ -1,5 +1,6 @@
 local M = {
-  run = "deno task --quiet build:fast",
+  "toppair/peek.nvim",
+  build = "deno task --quiet build:fast",
   module = "peek",
 }
 

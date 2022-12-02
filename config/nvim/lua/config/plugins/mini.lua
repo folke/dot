@@ -1,6 +1,7 @@
 local M = {
+  "echasnovski/mini.nvim",
   event = "User VeryLazy",
-  requires = {
+  dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       module = "ts_context_commentstring",

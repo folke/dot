@@ -1,4 +1,7 @@
-local M = { event = "User VeryLazy" }
+local M = {
+  "nvim-lualine/lualine.nvim",
+  event = "User VeryLazy",
+}
 
 local function clock()
   return " " .. os.date("%H:%M")

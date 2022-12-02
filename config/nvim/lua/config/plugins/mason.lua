@@ -1,4 +1,5 @@
 local M = {
+  "williamboman/mason.nvim",
   module = "mason",
 }
 

@@ -1,4 +1,5 @@
 local M = {
+  "zbirenbaum/copilot.lua",
   enabled = false,
   event = "User VeryLazy",
 }

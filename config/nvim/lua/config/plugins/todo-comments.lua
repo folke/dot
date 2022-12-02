@@ -1,4 +1,5 @@
 local M = {
+  "folke/todo-comments.nvim",
   cmd = { "TodoTrouble", "TodoTelescope" },
   module = "todo-comments",
   event = "BufReadPost",

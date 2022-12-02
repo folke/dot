@@ -1,6 +1,7 @@
 local M = {
+  "anuvyklack/windows.nvim",
   event = "User VeryLazy",
-  requires = {
+  dependencies = {
     { "anuvyklack/middleclass", module = "middleclass" },
     { "anuvyklack/animation.nvim", module = "animation" },
   },

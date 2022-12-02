@@ -1,4 +1,5 @@
 return {
+  "akinsho/nvim-toggleterm.lua",
   keys = "<C-/>",
   config = function()
     require("toggleterm").setup({

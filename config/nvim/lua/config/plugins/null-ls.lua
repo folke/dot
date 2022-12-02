@@ -1,4 +1,7 @@
-local M = { module = "null-ls" }
+local M = {
+  "jose-elias-alvarez/null-ls.nvim",
+  module = "null-ls",
+}
 
 function M.setup(options)
   local nls = require("null-ls")
@@ -18,7 +21,7 @@ function M.setup(options)
       nls.builtins.formatting.prettierd.with({
         filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
       }),
-      -- nls.builtins.diagnostics.selene,
+      nls.builtins.diagnostics.selene,
       -- nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.isort,
       nls.builtins.formatting.black,

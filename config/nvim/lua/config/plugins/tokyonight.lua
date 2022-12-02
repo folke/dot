@@ -1,5 +1,7 @@
 local M = {
-  opt = false,
+  "folke/tokyonight.nvim",
+  module = "tokyonight",
+  lazy = false,
 }
 
 function M.config()

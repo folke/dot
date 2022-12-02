@@ -1,4 +1,5 @@
 local M = {
+  "akinsho/nvim-bufferline.lua",
   event = "BufReadPre",
 }
 

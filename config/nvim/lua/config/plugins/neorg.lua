@@ -1,4 +1,5 @@
 return {
+  "nvim-neorg/neorg",
   module = "neorg",
   ft = "norg",
   config = function()

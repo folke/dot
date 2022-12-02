@@ -1,7 +1,7 @@
 local M = {
   enabled = false,
   keys = { "gc", "gcc", "gbc" },
-  requires = {
+  dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
       module = "ts_context_commentstring",

@@ -206,7 +206,7 @@ local leader = {
   t = {
     name = "toggle",
     f = {
-      require("plugins.lsp.formatting").toggle,
+      require("config.plugins.lsp.formatting").toggle,
       "Format on Save",
     },
     s = {

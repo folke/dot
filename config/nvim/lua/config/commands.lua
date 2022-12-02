@@ -92,10 +92,11 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "spectre_panel",
     "startuptime",
     "tsplayground",
+    "PlenaryTestPopup",
   },
   callback = function()
     vim.cmd([[
-    nnoremap <silent> <buffer> q :close<CR> 
+    nnoremap <silent> <buffer> q <cmd>close<CR> 
     set nobuflisted 
     ]])
   end,

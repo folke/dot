@@ -1,4 +1,5 @@
 return {
+  "RRethy/vim-illuminate",
   event = "User VeryLazy",
   module = "illuminate",
   config = function()

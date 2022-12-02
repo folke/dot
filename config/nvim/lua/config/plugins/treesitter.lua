@@ -1,8 +1,9 @@
 local M = {
-  run = ":TSUpdate",
+  "nvim-treesitter/nvim-treesitter",
+  build = ":TSUpdate",
   event = "User VeryLazy",
   module = "nvim-treesitter",
-  requires = {
+  dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-refactor",
@@ -59,6 +60,7 @@ function M.config()
       "toml",
       "tsx",
       "typescript",
+      "vhs",
       "vim",
       "vue",
       "wgsl",

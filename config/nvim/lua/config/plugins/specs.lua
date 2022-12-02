@@ -1,4 +1,5 @@
 return {
+  "edluffy/specs.nvim",
   event = "User VeryLazy",
   config = function()
     require("specs").setup({

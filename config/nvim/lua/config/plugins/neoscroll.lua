@@ -1,4 +1,5 @@
 return {
+  "karb94/neoscroll.nvim",
   keys = { "<C-u>", "<C-d>", "gg", "G" },
   config = function()
     require("neoscroll").setup({

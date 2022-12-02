@@ -1,5 +1,6 @@
 local M = {
-  opt = false,
+  "glacambre/firenvim",
+  lazy = false,
 }
 
 function M.run()

@@ -1,4 +1,6 @@
-local M = {}
+local M = {
+  "lukas-reineke/indent-blankline.nvim",
+}
 
 M.event = "BufReadPre"
 

@@ -1,6 +1,8 @@
 local M = {
+  "kevinhwang91/nvim-ufo",
+  enabled = false,
   event = "BufReadPost",
-  requires = { "kevinhwang91/promise-async", module = "promise" },
+  dependencies = { "kevinhwang91/promise-async", module = "promise" },
 }
 
 function M.config()

@@ -1,4 +1,5 @@
 local M = {
+  "pwntester/octo.nvim",
   cmd = "Octo",
 }
 

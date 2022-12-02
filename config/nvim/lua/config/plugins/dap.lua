@@ -1,6 +1,7 @@
 local M = {
+  "mfussenegger/nvim-dap",
   module = "dap",
-  requires = {
+  dependencies = {
     {
       "rcarriga/nvim-dap-ui",
       module = "dapui",
