@@ -3,7 +3,6 @@ local M = {
   build = "bash ./install.sh",
   cmd = "SnipRun",
   keys = { "<leader>r" },
-  module = "sniprun",
 }
 
 function M.config()

@@ -4,7 +4,6 @@ local M = {
   dependencies = {
     {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      module = "ts_context_commentstring",
     },
   },
 }

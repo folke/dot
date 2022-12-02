@@ -1,7 +1,7 @@
 return {
   "RRethy/vim-illuminate",
   event = "User VeryLazy",
-  module = "illuminate",
+
   config = function()
     require("illuminate").configure({ delay = 200 })
   end,

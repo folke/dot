@@ -2,12 +2,12 @@ local M = {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = "User VeryLazy",
-  module = "nvim-treesitter",
+
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "RRethy/nvim-treesitter-textsubjects",
     "nvim-treesitter/nvim-treesitter-refactor",
-    { "mfussenegger/nvim-treehopper", module = "tsht" },
+    { "mfussenegger/nvim-treehopper" },
   },
 }
 

@@ -1,10 +1,10 @@
 local M = {
   "ggandor/leap.nvim",
   event = "User VeryLazy",
-  module = "leap",
+
   dependencies = {
-    { "ggandor/flit.nvim", module = "flit" },
-    { "ggandor/leap-ast.nvim", module = "leap-ast" },
+    { "ggandor/flit.nvim" },
+    { "ggandor/leap-ast.nvim" },
   },
 }
 

@@ -1,6 +1,5 @@
 local M = {
   "jose-elias-alvarez/null-ls.nvim",
-  module = "null-ls",
 }
 
 function M.setup(options)

@@ -1,7 +1,6 @@
 local M = {
   "phaazon/hop.nvim",
   cmd = "HopWord",
-  module = "hop",
 }
 
 function M.config()

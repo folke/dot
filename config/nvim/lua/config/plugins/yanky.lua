@@ -1,7 +1,7 @@
 local M = {
   "gbprod/yanky.nvim",
   event = "User VeryLazy",
-  dependencies = { "kkharji/sqlite.lua", module = "sqlite" },
+  dependencies = { "kkharji/sqlite.lua" },
 }
 
 ---@alias YankyType 'p'|'P'|'gp'|'gP'|'[p'|']p'

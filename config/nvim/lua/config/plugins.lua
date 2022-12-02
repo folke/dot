@@ -3,7 +3,7 @@ return {
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-    module = "inc_rename",
+
     config = function()
       require("inc_rename").setup()
     end,
@@ -82,24 +82,23 @@ return {
 
   -- LSP
 
-  { "b0o/SchemaStore.nvim", module = "schemastore" },
-  { "jose-elias-alvarez/typescript.nvim", module = "typescript" },
+  { "b0o/SchemaStore.nvim" },
+  { "jose-elias-alvarez/typescript.nvim" },
 
-  { "folke/neodev.nvim", module = "neodev" },
+  { "folke/neodev.nvim" },
   {
     "folke/neoconf.nvim",
-    module = "neoconf",
+
     cmd = "Neoconf",
   },
 
   {
     "williamboman/mason-lspconfig.nvim",
-    module = "mason-lspconfig",
   },
 
   {
     "SmiteshP/nvim-navic",
-    module = "nvim-navic",
+
     config = function()
       vim.g.navic_silence = true
       require("nvim-navic").setup({ separator = " ", highlight = true, depth_limit = 5 })
@@ -108,7 +107,7 @@ return {
 
   {
     "ThePrimeagen/refactoring.nvim",
-    module = "refactoring",
+
     config = function()
       require("refactoring").setup({})
     end,
@@ -133,12 +132,11 @@ return {
 
   {
     "MunifTanjim/nui.nvim",
-    module = "nui",
   },
 
   {
     "danymat/neogen",
-    module = "neogen",
+
     config = function()
       require("neogen").setup({ snippet_engine = "luasnip" })
     end,
@@ -163,7 +161,7 @@ return {
   -- Theme: icons
   {
     "kyazdani42/nvim-web-devicons",
-    module = "nvim-web-devicons",
+
     config = function()
       require("nvim-web-devicons").setup({ default = true })
     end,
@@ -176,19 +174,18 @@ return {
       require("terminal").setup()
     end,
   },
-  { "nvim-lua/plenary.nvim", module = "plenary" },
+  { "nvim-lua/plenary.nvim" },
 
   {
     "windwp/nvim-spectre",
-    module = "spectre",
   },
 
-  { "rlch/github-notifications.nvim", module = "github-notifications" },
+  { "rlch/github-notifications.nvim" },
   -- Statusline
 
   {
     "folke/trouble.nvim",
-    module = "trouble",
+
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
       require("trouble").setup({
@@ -201,7 +198,7 @@ return {
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    module = "persistence",
+
     config = function()
       require("persistence").setup({
         options = { "buffers", "curdir", "tabpages", "winsize", "help" },
@@ -218,7 +215,7 @@ return {
   },
   {
     "cshuaimin/ssr.nvim",
-    module = "ssr",
+
     -- Calling setup is optional.
     init = function()
       vim.keymap.set({ "n", "x" }, "<leader>cR", function()
@@ -243,7 +240,7 @@ return {
     end,
   },
 
-  { "folke/twilight.nvim", module = "twilight" },
+  { "folke/twilight.nvim" },
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
@@ -260,7 +257,6 @@ return {
 
   {
     "folke/which-key.nvim",
-    module = "which-key",
   },
 
   {

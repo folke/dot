@@ -1,15 +1,15 @@
 local M = {
   "mfussenegger/nvim-dap",
-  module = "dap",
+
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",
-      module = "dapui",
+
       config = function()
         require("dapui").setup()
       end,
     },
-    { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+    { "jbyuki/one-small-step-for-vimkind" },
   },
 }
 

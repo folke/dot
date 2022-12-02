@@ -1,6 +1,6 @@
 local M = {
   "folke/tokyonight.nvim",
-  module = "tokyonight",
+
   lazy = false,
 }
 

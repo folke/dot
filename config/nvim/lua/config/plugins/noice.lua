@@ -1,6 +1,6 @@
 local M = {
   "folke/noice.nvim",
-  module = "noice",
+
   event = "User VeryLazy",
 }
 
