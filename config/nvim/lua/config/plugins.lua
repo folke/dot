@@ -1,13 +1,24 @@
 return {
+  "b0o/SchemaStore.nvim",
+  "jose-elias-alvarez/typescript.nvim",
+  "folke/neodev.nvim",
+  "MunifTanjim/nui.nvim",
+  "williamboman/mason-lspconfig.nvim",
+  "nvim-lua/plenary.nvim",
+  "windwp/nvim-spectre",
+  "rlch/github-notifications.nvim",
+  "folke/twilight.nvim",
+  "folke/which-key.nvim",
+  { "folke/neoconf.nvim", cmd = "Neoconf" },
 
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-
     config = function()
       require("inc_rename").setup()
     end,
   },
+
   {
     "folke/styler.nvim",
     event = "User VeryLazy",
@@ -32,10 +43,7 @@ return {
     end,
   },
 
-  {
-    lazy = false,
-    "ellisonleao/gruvbox.nvim",
-  },
+  { "ellisonleao/gruvbox.nvim", lazy = false },
 
   {
     "folke/paint.nvim",
@@ -82,23 +90,8 @@ return {
 
   -- LSP
 
-  { "b0o/SchemaStore.nvim" },
-  { "jose-elias-alvarez/typescript.nvim" },
-
-  { "folke/neodev.nvim" },
-  {
-    "folke/neoconf.nvim",
-
-    cmd = "Neoconf",
-  },
-
-  {
-    "williamboman/mason-lspconfig.nvim",
-  },
-
   {
     "SmiteshP/nvim-navic",
-
     config = function()
       vim.g.navic_silence = true
       require("nvim-navic").setup({ separator = " ", highlight = true, depth_limit = 5 })
@@ -107,42 +100,34 @@ return {
 
   {
     "ThePrimeagen/refactoring.nvim",
-
-    config = function()
-      require("refactoring").setup({})
-    end,
-    setup = function()
+    init = function()
       -- prompt for a refactor to apply when the remap is triggered
       vim.keymap.set("v", "<leader>r", function()
         require("refactoring").select_refactor()
       end, { noremap = true, silent = true, expr = false })
     end,
+    config = function()
+      require("refactoring").setup({})
+    end,
   },
 
   {
     "simrat39/symbols-outline.nvim",
-    cmd = { "SymbolsOutline" },
+    cmd = "SymbolsOutline",
+    init = function()
+      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
+    end,
     config = function()
       require("symbols-outline").setup()
     end,
-    setup = function()
-      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
-    end,
-  },
-
-  {
-    "MunifTanjim/nui.nvim",
   },
 
   {
     "danymat/neogen",
-
     config = function()
       require("neogen").setup({ snippet_engine = "luasnip" })
     end,
   },
-
-  { "nvim-treesitter/playground", cmd = { "TSHighlightCapturesUnderCursor", "TSPlaygroundToggle" } },
 
   {
     "m-demare/hlargs.nvim",
@@ -161,7 +146,6 @@ return {
   -- Theme: icons
   {
     "kyazdani42/nvim-web-devicons",
-
     config = function()
       require("nvim-web-devicons").setup({ default = true })
     end,
@@ -174,18 +158,9 @@ return {
       require("terminal").setup()
     end,
   },
-  { "nvim-lua/plenary.nvim" },
-
-  {
-    "windwp/nvim-spectre",
-  },
-
-  { "rlch/github-notifications.nvim" },
-  -- Statusline
 
   {
     "folke/trouble.nvim",
-
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
       require("trouble").setup({
@@ -198,7 +173,6 @@ return {
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
-
     config = function()
       require("persistence").setup({
         options = { "buffers", "curdir", "tabpages", "winsize", "help" },
@@ -215,7 +189,6 @@ return {
   },
   {
     "cshuaimin/ssr.nvim",
-
     -- Calling setup is optional.
     init = function()
       vim.keymap.set({ "n", "x" }, "<leader>cR", function()
@@ -240,7 +213,6 @@ return {
     end,
   },
 
-  { "folke/twilight.nvim" },
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
@@ -253,10 +225,6 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "folke/which-key.nvim",
   },
 
   {
