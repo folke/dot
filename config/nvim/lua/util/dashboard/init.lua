@@ -20,7 +20,7 @@ function M.show()
   vim.bo[buf].filetype = "dashboard"
   M.set_options()
 
-  local plugins = #vim.tbl_keys(packer_plugins)
+  local plugins = require("lazy").stats().count
   local sections = {
     {
       text = string.rep("\n", 10),
