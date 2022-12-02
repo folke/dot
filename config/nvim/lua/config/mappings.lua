@@ -63,7 +63,7 @@ vim.keymap.set("n", "<C-Right>", "<cmd>bnext<cr>")
 -- vim.keymap.set("n", "]p", ":pu<cr>")
 
 -- Clear search with <esc>
-vim.keymap.set("", "<esc>", "<cmd>:noh<cr><esc>")
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>")
 vim.keymap.set("n", "gw", "*N")
 vim.keymap.set("x", "gw", "*N")
 
@@ -143,7 +143,7 @@ local leader = {
     ["["] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
     ["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
     ["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
-    ["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
+    -- ["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
   },
   g = {
     name = "+git",
@@ -195,7 +195,8 @@ local leader = {
             "Module",
             "Struct",
             "Trait",
-            "String",
+            "Field",
+            "Property",
           },
         })
       end,
