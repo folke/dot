@@ -28,6 +28,10 @@ fish_add_path ~/.gem/ruby/2.6.0/bin
 fish_add_path ~/.local/bin/pnpm
 fish_add_path /bin
 fish_add_path ~/.local/share/neovim/bin
+fish_add_path /var/lib/flatpak/exports/bin/
+
+set -gx DENO_INSTALL "~/.deno"
+fish_add_path ~/.deno/bin
 
 # Fish
 set -U fish_emoji_width 2
