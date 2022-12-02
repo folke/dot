@@ -1,7 +1,14 @@
 -- selene: allow(global_usage)
 
 _G.d = function(...)
-  local info = debug.getinfo(2, "S")
+  local me = debug.getinfo(1, "S")
+  local level = 2
+  local info = debug.getinfo(level, "S")
+  while info and info.source == me.source do
+    level = level + 1
+    info = debug.getinfo(level, "S")
+  end
+  info = info or me
   local source = info.source:sub(2)
   source = vim.loop.fs_realpath(source) or source
   source = vim.fn.fnamemodify(source, ":~:.") .. ":" .. info.linedefined
@@ -10,7 +17,9 @@ _G.d = function(...)
     what = what[1]
   end
   local msg = vim.inspect(vim.deepcopy(what))
-  require("notify").notify(msg, vim.log.levels.INFO, {
+  local ok, notify = pcall(require, "notify")
+  notify = ok and notify or vim
+  notify.notify(msg, vim.log.levels.INFO, {
     title = "Debug: " .. source,
     on_open = function(win)
       vim.wo[win].conceallevel = 3
@@ -22,30 +31,27 @@ _G.d = function(...)
   })
 end
 
+_G.dd = function(...)
+  local args = vim.deepcopy(vim.F.pack_len(...))
+  vim.schedule(function()
+    d(vim.F.unpack_len(args))
+  end)
+end
+
 -- selene: allow(global_usage)
-_G.profile = function(cmd, times)
+_G.profile = function(cmd, times, flush)
   times = times or 100
-  local args = {}
-  if type(cmd) == "string" then
-    args = { cmd }
-    cmd = vim.cmd
-  end
   local start = vim.loop.hrtime()
   for _ = 1, times, 1 do
-    local ok = pcall(cmd, unpack(args))
-    if not ok then
-      error("Command failed: " .. tostring(ok) .. " " .. vim.inspect({ cmd = cmd, args = args }))
+    if flush then
+      jit.flush(cmd, true)
     end
+    cmd()
   end
   print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
 end
 
 local M = {}
-
-function M.packer_defered()
-  vim.cmd([[do User PackerDefered]])
-  -- vim.api.nvim_exec_autocmds("User", { pattern = "PackerDefered" })
-end
 
 function M.require(mod)
   return M.try(require, mod)
