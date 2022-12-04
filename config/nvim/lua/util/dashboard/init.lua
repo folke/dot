@@ -3,9 +3,7 @@ local ns = vim.api.nvim_create_namespace("dashboard")
 
 function M.setup()
   if not M.dont_show() then
-    vim.api.nvim_create_autocmd("VimEnter", {
-      callback = M.show,
-    })
+    M.show()
   end
 end
 
@@ -47,12 +45,11 @@ function M.show()
     })
     start = start + #lines
   end
-  vim.api.nvim_buf_set_lines(buf, start, start, false, vim.split(string.rep("\n", vim.go.lines - start), "\n"))
 
   vim.bo[buf].modifiable = false
 
-  local cursor = vim.go.guicursor
-  vim.api.nvim_set_hl(0, "HiddenCursor", { blend = 100, nocombine = true })
+  -- local cursor = vim.go.guicursor
+  -- vim.api.nvim_set_hl(0, "HiddenCursor", { blend = 100, nocombine = true })
   -- vim.go.guicursor = "a:HiddenCursor/HiddenCursor"
 
   vim.api.nvim_create_autocmd("BufWipeout", {

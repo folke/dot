@@ -72,7 +72,7 @@ function M.config()
           },
           completion = {
             workspaceWord = true,
-            callSnippet = "Replace",
+            callSnippet = "Both",
           },
           misc = {
             parameters = {

@@ -21,7 +21,7 @@ return {
 
   {
     "folke/styler.nvim",
-    event = "User VeryLazy",
+    event = "VeryLazy",
     config = function()
       require("styler").setup({
         themes = {
@@ -36,12 +36,15 @@ return {
   {
     "folke/drop.nvim",
     event = "VimEnter",
+    enabled = true,
     config = function()
       math.randomseed(os.time())
-      local theme = ({ "stars", "snow" })[math.random(1, 2)]
+      local theme = ({ "stars", "snow", "xmas" })[math.random(1, 3)]
       require("drop").setup({ theme = theme })
     end,
   },
+
+  { "shaunsingh/oxocarbon.nvim", branch = "fennel", lazy = false, enabled = false },
 
   { "ellisonleao/gruvbox.nvim", lazy = false },
 
@@ -86,7 +89,7 @@ return {
     end,
   },
 
-  { "stevearc/dressing.nvim", event = "User VeryLazy" },
+  { "stevearc/dressing.nvim", event = "VeryLazy" },
 
   -- LSP
 
@@ -131,7 +134,7 @@ return {
 
   {
     "m-demare/hlargs.nvim",
-    event = "User VeryLazy",
+    event = "VeryLazy",
     config = function()
       require("hlargs").setup({
         excluded_argnames = {
@@ -145,7 +148,7 @@ return {
 
   -- Theme: icons
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     config = function()
       require("nvim-web-devicons").setup({ default = true })
     end,

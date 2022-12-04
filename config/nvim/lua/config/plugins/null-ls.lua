@@ -20,7 +20,11 @@ function M.setup(options)
       nls.builtins.formatting.prettierd.with({
         filetypes = { "markdown" }, -- only runs `deno fmt` for markdown
       }),
-      nls.builtins.diagnostics.selene,
+      nls.builtins.diagnostics.selene.with({
+        condition = function(utils)
+          return utils.root_has_file({ "selene.toml" })
+        end,
+      }),
       -- nls.builtins.code_actions.gitsigns,
       nls.builtins.formatting.isort,
       nls.builtins.formatting.black,

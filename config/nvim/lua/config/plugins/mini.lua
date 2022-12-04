@@ -1,10 +1,8 @@
 local M = {
   "echasnovski/mini.nvim",
-  event = "User VeryLazy",
+  event = "VeryLazy",
   dependencies = {
-    {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
+    { "JoosepAlviste/nvim-ts-context-commentstring" },
   },
 }
 

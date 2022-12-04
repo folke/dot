@@ -7,22 +7,16 @@ local util = require("util")
 
 util.require("config.options")
 
-vim.opt.runtimepath:append("~/projects/lazy.nvim/")
+vim.opt.runtimepath:append("~/projects/lazy.nvim")
 
 local start = vim.loop.hrtime()
--- load our colorscheme as soon as possible while installing
--- vim.api.nvim_create_autocmd("User", {
---   pattern = { "LazyPluginInstall", "LazyInstallPre" },
---   callback = function(event)
---     if event.match == "LazyInstallPre" or (event.data and event.data.plugin == "tokyonight") then
---       vim.cmd("silent! colorscheme tokyonight")
---     end
---   end,
--- })
 
 require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
   dev = { patterns = { "folke" } },
+  install = { colorscheme = { "tokyonight", "habamax" } },
+  performance = { cache = { enabled = true } },
+  debug = true,
 })
 
 local delta = vim.loop.hrtime() - start

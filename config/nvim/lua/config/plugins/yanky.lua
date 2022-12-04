@@ -1,6 +1,6 @@
 local M = {
   "gbprod/yanky.nvim",
-  event = "User VeryLazy",
+  event = "VeryLazy",
   dependencies = { "kkharji/sqlite.lua" },
 }
 

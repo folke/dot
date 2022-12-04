@@ -1,7 +1,7 @@
 local M = {
   "zbirenbaum/copilot.lua",
   enabled = false,
-  event = "User VeryLazy",
+  event = "VeryLazy",
 }
 
 function M.config()

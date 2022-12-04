@@ -31,7 +31,7 @@ function M.packer(rebuild)
     })
   end
   vim.defer_fn(function()
-    vim.cmd("do User VeryLazy")
+    vim.cmd("do VeryLazy")
   end, 1000)
 end
 

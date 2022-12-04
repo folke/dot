@@ -1,6 +1,6 @@
 local M = {
   "nvim-lualine/lualine.nvim",
-  event = "User VeryLazy",
+  event = "VeryLazy",
 }
 
 local function clock()

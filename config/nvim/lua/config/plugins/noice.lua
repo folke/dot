@@ -1,7 +1,7 @@
 local M = {
   "folke/noice.nvim",
 
-  event = "User VeryLazy",
+  event = "VeryLazy",
 }
 
 M.enabled = true

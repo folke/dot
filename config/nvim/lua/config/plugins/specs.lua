@@ -1,6 +1,6 @@
 return {
   "edluffy/specs.nvim",
-  event = "User VeryLazy",
+  event = "VeryLazy",
   config = function()
     require("specs").setup({
       show_jumps = true,

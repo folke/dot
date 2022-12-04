@@ -1,6 +1,6 @@
 local M = {
   "rcarriga/nvim-notify",
-  -- event = "User VeryLazy",
+  -- event = "VeryLazy",
 
   lock = false,
   -- branch = "feat/disable-animation",
