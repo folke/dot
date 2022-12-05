@@ -61,6 +61,11 @@ function M.config()
           cond = require("noice").api.status.search.has,
           color = { fg = "#ff9e64" },
         },
+        {
+          require("lazy.status").updates,
+          cond = require("lazy.status").has_updates,
+          color = { fg = "#ff9e64" },
+        },
         -- function()
         --   return require("messages.view").status
         -- end,

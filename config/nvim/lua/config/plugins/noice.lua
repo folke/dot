@@ -46,7 +46,7 @@ function M.config()
     require("noice").redirect(vim.fn.getcmdline())
   end, { desc = "Redirect Cmdline" })
 
-  vim.keymap.set("n", "<leader>l", function()
+  vim.keymap.set("n", "<leader>nl", function()
     require("noice").cmd("last")
   end, { desc = "Noice Last Message" })
 
