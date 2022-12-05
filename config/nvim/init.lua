@@ -15,9 +15,10 @@ require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
   dev = { patterns = { "folke" } },
   install = { colorscheme = { "tokyonight", "habamax" } },
-  performance = { cache = { enabled = true } },
+  checker = { enabled = true },
   debug = true,
 })
+vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")
 
 local delta = vim.loop.hrtime() - start
 
