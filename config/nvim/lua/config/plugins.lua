@@ -50,6 +50,7 @@ return {
 
   {
     "folke/paint.nvim",
+    enabled = false,
     event = "BufReadPre",
     config = function()
       require("paint").setup({
@@ -135,6 +136,7 @@ return {
   {
     "m-demare/hlargs.nvim",
     event = "VeryLazy",
+    enabled = false,
     config = function()
       require("hlargs").setup({
         excluded_argnames = {
