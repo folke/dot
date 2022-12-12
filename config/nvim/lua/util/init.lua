@@ -173,20 +173,24 @@ function M.float(fn, opts)
 end
 
 function M.hl()
+  local buf = vim.api.nvim_get_current_buf()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+
   ---@type string[]
   local lines = {}
-
+  -- TODO: foo
   local treesitter = {}
-  for _, capture in pairs(vim.treesitter.get_captures_at_cursor(0)) do
-    table.insert(treesitter, "- **@" .. capture .. "**")
+  for _, capture in pairs(vim.treesitter.get_captures_at_pos(buf, cursor[1] - 1, cursor[2])) do
+    table.insert(treesitter, "- **@" .. capture.capture .. "**")
   end
   if #treesitter > 0 then
     table.insert(lines, "# Treesitter")
     vim.list_extend(lines, treesitter)
+    table.insert(lines, "")
   end
 
   local syntax = {}
-  for _, i1 in ipairs(vim.fn.synstack(vim.fn.line("."), vim.fn.col("."))) do
+  for _, i1 in ipairs(vim.fn.synstack(cursor[1], cursor[2] + 1)) do
     local i2 = vim.fn.synIDtrans(i1)
     local n1 = vim.fn.synIDattr(i1, "name")
     local n2 = vim.fn.synIDattr(i2, "name")
@@ -195,6 +199,32 @@ function M.hl()
   if #syntax > 0 then
     table.insert(lines, "# Syntax")
     vim.list_extend(lines, syntax)
+    table.insert(lines, "")
+  end
+
+  local extmark = {}
+  for name, nsid in pairs(vim.api.nvim_get_namespaces()) do
+    local marks = vim.api.nvim_buf_get_extmarks(
+      buf,
+      nsid,
+      { cursor[1] - 1, 0 },
+      { cursor[1] - 1, -1 },
+      { details = true }
+    )
+    for _, ext in ipairs(marks) do
+      if ext[3] == cursor[2] or (ext[4].end_col and cursor[2] >= ext[3] and cursor[2] < ext[4].end_col) then
+        table.insert(extmark, "- " .. name .. " -> **" .. (ext[4].hl_group or "") .. "**")
+      end
+    end
+  end
+  if #extmark > 0 then
+    table.insert(lines, "# Extmarks")
+    vim.list_extend(lines, extmark)
+    table.insert(lines, "")
+  end
+
+  if lines[#lines] == "" then
+    table.remove(lines)
   end
 
   local max_width = 10
