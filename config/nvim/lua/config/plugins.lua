@@ -44,7 +44,7 @@ return {
     end,
   },
 
-  { "shaunsingh/oxocarbon.nvim", branch = "fennel", lazy = false, enabled = false },
+  { "shaunsingh/oxocarbon.nvim", lazy = false, enabled = true },
 
   { "ellisonleao/gruvbox.nvim", lazy = false },
 
