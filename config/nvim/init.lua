@@ -1,35 +1,15 @@
 local util = require("util")
+local require = util.require
 
--- profile(function()
-
--- util.debug_pcall()
--- pcall(vim.cmd, "colorscheme tokyonight")
-
-util.require("config.options")
-
-vim.opt.runtimepath:append("~/projects/lazy.nvim")
-
-local start = vim.loop.hrtime()
-
-require("lazy").setup("config.plugins", {
-  defaults = { lazy = true },
-  dev = { patterns = { "folke" } },
-  install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = true },
-  debug = true,
-})
-vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")
-
-local delta = vim.loop.hrtime() - start
-
+require("config.options")
+require("config.lazy")
 require("util.dashboard").setup()
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
-    vim.notify("Lazy took " .. (delta / 1e6) .. "ms")
-    util.require("config.commands")
     util.version()
-    util.require("config.mappings")
+    require("config.commands")
+    require("config.mappings")
   end,
 })
