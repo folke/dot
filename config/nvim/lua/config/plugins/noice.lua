@@ -16,6 +16,11 @@ function M.config()
         ["cmp.entry.get_documentation"] = true,
       },
     },
+    -- views = {
+    --   cmdline_popup = {
+    --     border = { style = "shadow" },
+    --   },
+    -- },
     routes = {
       {
         filter = {

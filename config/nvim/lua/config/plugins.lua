@@ -26,7 +26,7 @@ return {
       require("styler").setup({
         themes = {
           markdown = { colorscheme = "tokyonight-storm" },
-          help = { colorscheme = "gruvbox", background = "dark" },
+          help = { colorscheme = "oxocarbon", background = "dark" },
           -- noice = { colorscheme = "gruvbox", background = "dark" },
         },
       })

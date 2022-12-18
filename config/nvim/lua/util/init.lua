@@ -54,7 +54,8 @@ end
 local M = {}
 
 function M.require(mod)
-  return M.try(require, mod)
+  local ok, ret = M.try(require, mod)
+  return ok and ret
 end
 
 function M.try(fn, ...)

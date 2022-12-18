@@ -3,7 +3,7 @@ local M = {
   lazy = false,
 }
 
-function M.run()
+function M.build()
   vim.fn["firenvim#install"](0)
 end
 
