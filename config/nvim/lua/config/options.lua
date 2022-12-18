@@ -1,23 +1,34 @@
 local indent = 2
 
+local notifs = {}
 local notify = {
-  old = vim.notify,
-  lazy = nil,
+  orig = vim.notify,
+  lazy = function(...)
+    table.insert(notifs, { ... })
+  end,
 }
-notify.lazy = function(...)
-  local args = { ... }
-  vim.defer_fn(function()
-    if vim.notify == notify.lazy then
-      -- if vim.notify still hasn't been replaces yet, then something went wrong,
-      -- so use the old vim.notify instead
-      notify.old(unpack(args))
-    else
-      -- use the new notify
-      vim.notify(unpack(args))
-    end
-  end, 300)
-end
 vim.notify = notify.lazy
+
+local function lazy_notify()
+  local check = vim.loop.new_check()
+  local start = vim.loop.hrtime()
+  check:start(function()
+    if vim.notify ~= notify.lazy then
+    elseif (vim.loop.hrtime() - start) / 1e6 > 300 then
+      vim.notify = notify.orig
+    else
+      return
+    end
+    check:stop()
+    -- use the new notify
+    vim.schedule(function()
+      for _, notif in ipairs(notifs) do
+        vim.notify(unpack(notif))
+      end
+    end)
+  end)
+end
+lazy_notify()
 
 if vim.fn.has("nvim-0.8") == 1 then
   --   vim.opt.spell = true -- Put new windows below current
@@ -48,7 +59,9 @@ vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.backup = true
 
-vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
+if vim.fn.has("nvim-0.8.0") == 1 then
+  vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
+end
 
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()" -- TreeSitter folding
 -- vim.opt.foldlevel = 6
