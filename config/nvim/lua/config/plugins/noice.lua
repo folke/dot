@@ -7,6 +7,17 @@ local M = {
 M.enabled = true
 
 function M.config()
+  local focused = true
+  vim.api.nvim_create_autocmd("FocusGained", {
+    callback = function()
+      focused = true
+    end,
+  })
+  vim.api.nvim_create_autocmd("FocusLost", {
+    callback = function()
+      focused = false
+    end,
+  })
   require("noice").setup({
     debug = false,
     lsp = {
@@ -16,12 +27,15 @@ function M.config()
         ["cmp.entry.get_documentation"] = true,
       },
     },
-    -- views = {
-    --   cmdline_popup = {
-    --     border = { style = "shadow" },
-    --   },
-    -- },
     routes = {
+      {
+        filter = {
+          cond = function()
+            return not focused
+          end,
+        },
+        view = "notify_send",
+      },
       {
         filter = {
           event = "msg_show",
