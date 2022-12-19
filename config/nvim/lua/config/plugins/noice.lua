@@ -35,6 +35,7 @@ function M.config()
           end,
         },
         view = "notify_send",
+        opts = { stop = false },
       },
       {
         filter = {
