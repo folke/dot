@@ -1,3 +1,18 @@
+-- vim.opt.runtimepath:prepend("~/projects/lazy.nvim")
+-- require("lazy").setup({
+--
+--   "nvim-telescope/telescope.nvim",
+--   dependencies = {
+--     "nvim-lua/plenary.nvim",
+--     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+--     { "nvim-telescope/telescope-frecency.nvim", dependencies = "kkharji/sqlite.lua" },
+--   },
+-- })
+--
+-- if true then
+--   return
+-- end
+
 local util = require("util")
 local require = util.require
 

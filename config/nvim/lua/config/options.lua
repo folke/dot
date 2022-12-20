@@ -31,7 +31,7 @@ end
 lazy_notify()
 
 if vim.fn.has("nvim-0.8") == 1 then
-  --   vim.opt.spell = true -- Put new windows below current
+  vim.opt.spell = true -- Put new windows below current
   vim.opt.cmdheight = 0
 
   -- make all keymaps silent by default
