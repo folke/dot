@@ -43,7 +43,7 @@ function M.setup(options)
         --     -- autoSetHints both are true.
         --     only_current_line_autocmd = "CursorHold",
 
-        --     -- wheter to show parameter hints with the inlay hints or not
+        --     -- whether to show parameter hints with the inlay hints or not
         --     show_parameter_hints = true,
 
         --     -- prefix for parameter hints
