@@ -22,7 +22,7 @@ end
 -- load lazy
 require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
-  -- dev = { patterns = { "folke" } },
+  dev = { patterns = jit.os:find("Windows") and {} or { "folke" } },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
   performance = {
