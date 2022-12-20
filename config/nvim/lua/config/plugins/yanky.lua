@@ -1,7 +1,12 @@
 local M = {
   "gbprod/yanky.nvim",
   event = "VeryLazy",
-  dependencies = { "kkharji/sqlite.lua" },
+  dependencies = {
+    "kkharji/sqlite.lua",
+    enabled = function()
+      return not jit.os:find("Windows")
+    end,
+  },
 }
 
 ---@alias YankyType 'p'|'P'|'gp'|'gP'|'[p'|']p'
@@ -30,7 +35,7 @@ function M.config()
       timer = 150,
     },
     ring = {
-      storage = "sqlite",
+      storage = jit.os:find("Windows") and "shada" or "sqlite",
     },
   })
 

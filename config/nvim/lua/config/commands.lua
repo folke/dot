@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
     local backup = vim.fn.fnamemodify(file, ":p:~:h")
-    backup = backup:gsub("/", "%%")
+    backup = backup:gsub("[/\\]", "%%")
     vim.go.backupext = backup
   end,
 })

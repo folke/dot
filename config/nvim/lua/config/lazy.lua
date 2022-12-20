@@ -2,7 +2,7 @@ local use_dev = true
 
 if use_dev then
   -- use the local project
-  vim.opt.runtimepath:prepend("~/projects/lazy.nvim")
+  vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/lazy.nvim"))
 else
   -- bootstrap from github
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -22,7 +22,7 @@ end
 -- load lazy
 require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
-  dev = { patterns = { "folke" } },
+  -- dev = { patterns = { "folke" } },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
   performance = {
