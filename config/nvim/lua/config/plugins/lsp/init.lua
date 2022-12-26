@@ -1,23 +1,28 @@
 local M = {
   "neovim/nvim-lspconfig",
-  name = "lsp",
   event = "BufReadPre",
-  dependencies = { "hrsh7th/cmp-nvim-lsp" },
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+    {
+      "folke/neodev.nvim",
+      config = {
+        debug = true,
+        experimental = {
+          pathStrict = true,
+        },
+        library = {
+          runtime = "~/projects/neovim/runtime/",
+        },
+      },
+    },
+  },
+  pin = true,
 }
 
 function M.config()
-  require("neodev").setup({
-    debug = true,
-    experimental = {
-      pathStrict = true,
-    },
-    library = {
-      runtime = "~/projects/neovim/runtime/",
-    },
-  })
   require("mason")
   require("config.plugins.lsp.diagnostics").setup()
-  require("neoconf").setup()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
