@@ -182,6 +182,11 @@ function M.float_cmd(cmd, opts)
 end
 
 function M.float_terminal(cmd, opts)
+  -- require("lazy.util").open_cmd(cmd, {
+  --   terminal = true,
+  --   close_on_exit = true,
+  --   enter = true,
+  -- })
   M.float(function(buf, win)
     vim.fn.termopen(cmd)
     local autocmd = {

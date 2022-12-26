@@ -149,7 +149,7 @@ local leader = {
     name = "+git",
     l = {
       function()
-        require("util").float_terminal("lazygit", { border = "none" })
+        require("util").float_terminal({ "lazygit" })
       end,
       "LazyGit",
     },
@@ -208,7 +208,6 @@ local leader = {
   },
   f = {
     name = "+file",
-    t = { "<cmd>Neotree toggle<cr>", "NeoTree" },
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     n = { "<cmd>enew<cr>", "New File" },
@@ -217,7 +216,6 @@ local leader = {
   },
   o = {
     name = "+open",
-    p = { "<cmd>Peek<cr>", "Peek (Markdown Preview)" },
     g = { "<cmd>Glow<cr>", "Markdown Glow" },
     n = { "<cmd>lua require('github-notifications.menu').notifications()<cr>", "GitHub Notifications" },
   },

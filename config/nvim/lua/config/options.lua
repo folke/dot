@@ -31,7 +31,7 @@ end
 lazy_notify()
 
 if vim.fn.has("nvim-0.8") == 1 then
-  vim.opt.spell = true -- Put new windows below current
+  -- vim.opt.spell = true -- Put new windows below current
   vim.opt.cmdheight = 0
 
   -- make all keymaps silent by default
@@ -48,7 +48,7 @@ if vim.fn.has("nvim-0.9.0") == 1 then
 end
 
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = " "
 vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
@@ -58,6 +58,7 @@ vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
 vim.opt.cursorline = true -- Enable highlighting of the current line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.backup = true
+vim.opt.spelllang = { "en" }
 
 if vim.fn.has("nvim-0.8.0") == 1 then
   vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
@@ -123,33 +124,6 @@ vim.opt.fillchars = {
 -- vim.opt.shortmess:get()
 if vim.fn.has("nvim-0.9") == 1 then
   vim.o.shortmess = "filnxtToOFWIcC"
-end
-
--- don't load the plugins below
-local builtins = {
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "fzf",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "matchit",
-  "matchparen",
-  "logiPat",
-  "rrhelper",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-}
-
-for _, plugin in ipairs(builtins) do
-  vim.g["loaded_" .. plugin] = 1
 end
 
 -- Use proper syntax highlighting in code blocks

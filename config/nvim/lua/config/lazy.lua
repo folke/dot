@@ -19,13 +19,19 @@ else
   vim.opt.runtimepath:prepend(lazypath)
 end
 
--- load lazy
 require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
   dev = { patterns = jit.os:find("Windows") and {} or { "folke" } },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
+  diff = {
+    cmd = "terminal_git",
+  },
   performance = {
+    cache = {
+      enabled = true,
+      -- disable_events = {},
+    },
     rtp = {
       disabled_plugins = {
         "gzip",
@@ -37,6 +43,14 @@ require("lazy").setup("config.plugins", {
         "tutor",
         "zipPlugin",
       },
+    },
+  },
+  ui = {
+    custom_keys = {
+
+      ["<localleader>d"] = function(plugin)
+        dd(plugin)
+      end,
     },
   },
   debug = true,

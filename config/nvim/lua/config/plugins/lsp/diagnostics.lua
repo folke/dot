@@ -11,11 +11,11 @@ function M.setup()
     severity_sort = true,
   })
 
-  vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
-    local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
-    pcall(vim.diagnostic.reset, ns)
-    return true
-  end
+  -- vim.lsp.handlers["workspace/diagnostic/refresh"] = function(_, _, ctx)
+  --   local ns = vim.lsp.diagnostic.get_namespace(ctx.client_id)
+  --   vim.diagnostic.reset(ns)
+  --   return vim.NIL
+  -- end
 
   for type, icon in pairs(M.signs) do
     local hl = "DiagnosticSign" .. type

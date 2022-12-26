@@ -1,7 +1,7 @@
 return {
+  "jay-babu/mason-null-ls.nvim",
   "b0o/SchemaStore.nvim",
   "jose-elias-alvarez/typescript.nvim",
-  "folke/neodev.nvim",
   "MunifTanjim/nui.nvim",
   "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
@@ -9,28 +9,23 @@ return {
   "rlch/github-notifications.nvim",
   "folke/twilight.nvim",
   "folke/which-key.nvim",
-  { "folke/neoconf.nvim", cmd = "Neoconf" },
 
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
-    config = function()
-      require("inc_rename").setup()
-    end,
+    config = true,
   },
 
   {
     "folke/styler.nvim",
     event = "VeryLazy",
-    config = function()
-      require("styler").setup({
-        themes = {
-          markdown = { colorscheme = "tokyonight-storm" },
-          help = { colorscheme = "oxocarbon", background = "dark" },
-          -- noice = { colorscheme = "gruvbox", background = "dark" },
-        },
-      })
-    end,
+    config = {
+      themes = {
+        markdown = { colorscheme = "tokyonight-storm" },
+        help = { colorscheme = "oxocarbon", background = "dark" },
+        -- noice = { colorscheme = "gruvbox", background = "dark" },
+      },
+    },
   },
 
   {
@@ -44,9 +39,9 @@ return {
     end,
   },
 
-  { "shaunsingh/oxocarbon.nvim", lazy = false, enabled = true },
+  { "shaunsingh/oxocarbon.nvim", enabled = true },
 
-  { "ellisonleao/gruvbox.nvim", lazy = false },
+  { "ellisonleao/gruvbox.nvim" },
 
   {
     "folke/paint.nvim",
@@ -110,96 +105,88 @@ return {
         require("refactoring").select_refactor()
       end, { noremap = true, silent = true, expr = false })
     end,
-    config = function()
-      require("refactoring").setup({})
-    end,
+    config = {},
   },
 
   {
     "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    init = function()
-      vim.keymap.set("n", "<leader>cs", "<cmd>SymbolsOutline<cr>", { desc = "Symbols Outline" })
-    end,
-    config = function()
-      require("symbols-outline").setup()
-    end,
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    config = true,
   },
 
   {
     "danymat/neogen",
-    config = function()
-      require("neogen").setup({ snippet_engine = "luasnip" })
-    end,
+    keys = {
+      {
+        "<leader>cc",
+        function()
+          require("neogen").generate({})
+        end,
+        desc = "Neogen Comment",
+      },
+    },
+    config = { snippet_engine = "luasnip" },
   },
 
   {
     "m-demare/hlargs.nvim",
     event = "VeryLazy",
     enabled = false,
-    config = function()
-      require("hlargs").setup({
-        excluded_argnames = {
-          usages = {
-            lua = { "self", "use" },
-          },
+    config = {
+      excluded_argnames = {
+        usages = {
+          lua = { "self", "use" },
         },
-      })
-    end,
+      },
+    },
   },
 
   -- Theme: icons
   {
     "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").setup({ default = true })
-    end,
+    config = { default = true },
   },
 
   {
     "norcalli/nvim-terminal.lua",
     ft = "terminal",
-    config = function()
-      require("terminal").setup()
-    end,
+    config = true,
   },
 
   {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
-    config = function()
-      require("trouble").setup({
-        auto_open = false,
-        use_diagnostic_signs = true, -- en
-      })
-    end,
+    config = {
+      auto_open = false,
+      use_diagnostic_signs = true, -- en
+    },
   },
 
   {
     "folke/persistence.nvim",
     event = "BufReadPre",
-    config = function()
-      require("persistence").setup({
-        options = { "buffers", "curdir", "tabpages", "winsize", "help" },
-      })
-    end,
+    config = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
   },
+
   {
     "Wansmer/treesj",
-    keys = "J",
-    config = function()
-      require("treesj").setup({ use_default_keymaps = false })
-      vim.keymap.set("n", "J", "<cmd>TSJToggle<cr>")
-    end,
+    keys = {
+      { "J", "<cmd>TSJToggle<cr>" },
+    },
+    config = { use_default_keymaps = false },
   },
   {
     "cshuaimin/ssr.nvim",
-    -- Calling setup is optional.
-    init = function()
-      vim.keymap.set({ "n", "x" }, "<leader>cR", function()
-        require("ssr").open()
-      end, { desc = "Structural Replace" })
-    end,
+    keys = {
+      {
+        "<leader>cR",
+        function()
+          require("ssr").open()
+        end,
+        mode = { "n", "x" },
+        desc = "Structural Replace",
+      },
+    },
   },
 
   {
@@ -213,23 +200,19 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     event = "BufReadPre",
-    config = function()
-      require("treesitter-context").setup()
-    end,
+    config = true,
   },
 
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
-    config = function()
-      require("zen-mode").setup({
-        plugins = {
-          gitsigns = true,
-          tmux = true,
-          kitty = { enabled = false, font = "+2" },
-        },
-      })
-    end,
+    config = {
+      plugins = {
+        gitsigns = true,
+        tmux = true,
+        kitty = { enabled = false, font = "+2" },
+      },
+    },
   },
 
   {
