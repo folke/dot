@@ -9,9 +9,6 @@ local M = {
   },
 }
 
----@alias YankyType 'p'|'P'|'gp'|'gP'|'[p'|']p'
----@alias YankyChange boolean|'>'|'<'|'='
-
 function M.config()
   require("yanky").setup({
     highlight = {

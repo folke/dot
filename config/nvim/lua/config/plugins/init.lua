@@ -1,5 +1,4 @@
 return {
-  "jay-babu/mason-null-ls.nvim",
   "b0o/SchemaStore.nvim",
   "jose-elias-alvarez/typescript.nvim",
   "MunifTanjim/nui.nvim",
@@ -99,12 +98,18 @@ return {
 
   {
     "ThePrimeagen/refactoring.nvim",
-    init = function()
-      -- prompt for a refactor to apply when the remap is triggered
-      vim.keymap.set("v", "<leader>r", function()
-        require("refactoring").select_refactor()
-      end, { noremap = true, silent = true, expr = false })
-    end,
+    keys = {
+      {
+        "<leader>r",
+        function()
+          require("refactoring").select_refactor()
+        end,
+        mode = "v",
+        noremap = true,
+        silent = true,
+        expr = false,
+      },
+    },
     config = {},
   },
 

@@ -1,3 +1,4 @@
+local cmdline = false
 local M = {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
@@ -5,8 +6,8 @@ local M = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-emoji",
-    "hrsh7th/cmp-cmdline",
-    "dmitmel/cmp-cmdline-history",
+    { "hrsh7th/cmp-cmdline", enabled = cmdline },
+    { "dmitmel/cmp-cmdline-history", enabled = cmdline },
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
   },
@@ -66,16 +67,17 @@ function M.config()
     --   },
     -- },
   })
-
-  -- cmp.setup.cmdline(":", {
-  --   mapping = cmp.mapping.preset.cmdline(),
-  --   sources = cmp.config.sources({
-  --     -- { name = "noice_popupmenu" },
-  --     { name = "path" },
-  --     { name = "cmdline" },
-  --     -- { name = "cmdline_history" },
-  --   }),
-  -- })
+  if cmdline then
+    cmp.setup.cmdline(":", {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        -- { name = "noice_popupmenu" },
+        { name = "path" },
+        { name = "cmdline" },
+        -- { name = "cmdline_history" },
+      }),
+    })
+  end
 end
 
 return M
