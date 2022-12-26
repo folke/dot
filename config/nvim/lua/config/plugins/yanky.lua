@@ -12,23 +12,6 @@ local M = {
 ---@alias YankyType 'p'|'P'|'gp'|'gP'|'[p'|']p'
 ---@alias YankyChange boolean|'>'|'<'|'='
 
----@param type YankyType
----@param is_visual boolean
----@param linewise YankyChange
-function M.put(type, is_visual, linewise)
-  local yanky_wrappers = require("yanky.wrappers")
-  local yanky = require("yanky")
-  local callback = linewise == true and yanky_wrappers.linewise()
-    or type(linewise) == "string" and yanky_wrappers.linewise(yanky_wrappers.change(linewise))
-  yanky.put(type, is_visual, callback)
-end
-
-function M.init()
-  vim.keymap.set("n", "<leader>P", function()
-    require("telescope").extensions.yank_history.yank_history({})
-  end, { desc = "Paste from Yanky" })
-end
-
 function M.config()
   require("yanky").setup({
     highlight = {
@@ -61,6 +44,9 @@ function M.config()
 
   vim.keymap.set("n", "]p", "<Plug>(YankyPutAfterFilter)")
   vim.keymap.set("n", "[p", "<Plug>(YankyPutBeforeFilter)")
+  vim.keymap.set("n", "<leader>P", function()
+    require("telescope").extensions.yank_history.yank_history({})
+  end, { desc = "Paste from Yanky" })
 end
 
 return M

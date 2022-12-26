@@ -3,20 +3,12 @@ local M = {
   event = "VeryLazy",
 
   dependencies = {
-    { "ggandor/flit.nvim" },
-    { "ggandor/leap-ast.nvim" },
+    { "ggandor/flit.nvim", config = { labeled_modes = "nv" } },
   },
-}
 
-function M.config()
-  require("leap").add_default_mappings()
-  require("flit").setup({
-    labeled_modes = "nv",
-  })
-  -- require("leap").setup({})
-  vim.keymap.set({ "n", "x", "o" }, "M", function()
-    require("leap-ast").leap()
-  end, {})
-end
+  config = function()
+    require("leap").add_default_mappings()
+  end,
+}
 
 return M

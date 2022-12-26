@@ -4,8 +4,6 @@ local M = {
   event = "VeryLazy",
 }
 
-M.enabled = true
-
 function M.config()
   local focused = true
   vim.api.nvim_create_autocmd("FocusGained", {
@@ -58,6 +56,11 @@ function M.config()
         view = "split",
         opts = { enter = true, format = "details" },
         filter = {},
+      },
+    },
+    format = {
+      level = {
+        icons = false,
       },
     },
   })

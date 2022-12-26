@@ -1,6 +1,7 @@
 local M = {
   "glacambre/firenvim",
   lazy = false,
+  enabled = false,
 }
 
 function M.build()

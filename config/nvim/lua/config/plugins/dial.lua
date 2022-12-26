@@ -1,6 +1,21 @@
 local M = {
   "monaqa/dial.nvim",
-  keys = { "<C-a>", "<C-x>" },
+  keys = {
+    {
+      "<C-a>",
+      function()
+        return require("dial.map").inc_normal()
+      end,
+      expr = true,
+    },
+    {
+      "<C-x>",
+      function()
+        return require("dial.map").dec_normal()
+      end,
+      expr = true,
+    },
+  },
 }
 
 function M.config()
@@ -14,9 +29,6 @@ function M.config()
       augend.semver.alias.semver,
     },
   })
-
-  vim.api.nvim_set_keymap("n", "<C-a>", require("dial.map").inc_normal(), { noremap = true })
-  vim.api.nvim_set_keymap("n", "<C-x>", require("dial.map").dec_normal(), { noremap = true })
 end
 
 return M

@@ -1,9 +1,10 @@
 local M = {
+  enabled = true,
   "anuvyklack/windows.nvim",
   event = "VeryLazy",
   dependencies = {
     { "anuvyklack/middleclass" },
-    { "anuvyklack/animation.nvim" },
+    { "anuvyklack/animation.nvim", enabled = false },
   },
 }
 
@@ -13,6 +14,7 @@ function M.config()
   vim.o.equalalways = false
   require("windows").setup({
     animation = {
+      enable = false,
       duration = 150,
     },
   })
