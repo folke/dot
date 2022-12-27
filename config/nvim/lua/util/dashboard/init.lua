@@ -3,8 +3,14 @@ local ns = vim.api.nvim_create_namespace("dashboard")
 
 function M.setup()
   if not M.dont_show() then
-    M.show()
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "LazyVimStarted",
+      callback = function()
+        M.show()
+      end,
+    })
   end
+  M.show()
 end
 
 function M.status()
@@ -18,7 +24,7 @@ function M.show()
   vim.bo[buf].filetype = "dashboard"
   M.set_options()
 
-  local plugins = require("lazy").stats().count
+  local stats = require("lazy").stats()
   local sections = {
     {
       text = string.rep("\n", 10),
@@ -28,12 +34,19 @@ function M.show()
       hl_group = "DashboardHeader",
     },
     {
-      text = "🎉 Neovim loaded " .. plugins .. " plugins " .. theme.statusline,
+      text = "🎉 Neovim loaded "
+        .. stats.count
+        .. " plugins in "
+        .. (math.floor(stats.startuptime * 100 + 0.5) / 100)
+        .. "ms"
+        .. theme.statusline,
       hl_group = "DashboardFooter",
     },
   }
 
   vim.bo[buf].modifiable = true
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
+  vim.api.nvim_buf_clear_namespace(buf, ns, 0, -1)
 
   local start = 0
   for _, section in ipairs(sections) do
