@@ -100,5 +100,6 @@ function M.setup()
     return keymap_set(mode, lhs, rhs, opts)
   end
 end
+M.setup()
 
 return M
