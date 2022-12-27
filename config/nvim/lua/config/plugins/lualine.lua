@@ -19,7 +19,7 @@ function M.config()
       component_separators = { left = "", right = "" },
       icons_enabled = true,
       globalstatus = true,
-      disabled_filetypes = { statusline = { "dashboard" } },
+      disabled_filetypes = { statusline = { "dashboard", "lazy" } },
     },
     sections = {
       lualine_a = { { "mode", separator = { left = "" } } },
@@ -35,8 +35,10 @@ function M.config()
             return ret:len() > 2000 and "navic error" or ret
           end,
           cond = function()
-            local navic = require("nvim-navic")
-            return navic.is_available()
+            if package.loaded["nvim-navic"] then
+              local navic = require("nvim-navic")
+              return navic.is_available()
+            end
           end,
           color = { fg = "#ff9e64" },
         },
@@ -47,29 +49,48 @@ function M.config()
         --   cond = require("noice").api.status.message.has,
         -- },
         {
-          require("noice").api.status.command.get,
-          cond = require("noice").api.status.command.has,
+          function()
+            return require("noice").api.status.command.get()
+          end,
+          cond = function()
+            if package.loaded["noice"] then
+              return require("noice").api.status.command.has()
+            end
+          end,
           color = { fg = "#ff9e64" },
         },
         {
-          require("noice").api.status.mode.get,
-          cond = require("noice").api.status.mode.has,
+          function()
+            return require("noice").api.status.mode.get()
+          end,
+          cond = function()
+            if package.loaded["noice"] then
+              return require("noice").api.status.mode.has()
+            end
+          end,
           color = { fg = "#ff9e64" },
         },
         {
-          require("noice").api.status.search.get,
-          cond = require("noice").api.status.search.has,
+          function()
+            return require("noice").api.status.search.get()
+          end,
+          cond = function()
+            if package.loaded["noice"] then
+              return require("noice").api.status.search.has()
+            end
+          end,
           color = { fg = "#ff9e64" },
         },
         {
-          require("lazy.status").updates,
+          function()
+            return require("lazy.status").updates()
+          end,
           cond = require("lazy.status").has_updates,
           color = { fg = "#ff9e64" },
         },
         -- function()
         --   return require("messages.view").status
         -- end,
-        { require("github-notifications").statusline_notification_count },
         {
           function()
             return require("util.dashboard").status()

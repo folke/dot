@@ -1,7 +1,7 @@
 local M = {
   enabled = true,
   "anuvyklack/windows.nvim",
-  event = "VeryLazy",
+  event = "WinNew",
   dependencies = {
     { "anuvyklack/middleclass" },
     { "anuvyklack/animation.nvim", enabled = false },

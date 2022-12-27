@@ -7,6 +7,11 @@ local M = {
 }
 
 function M.config()
+  if not package.loaded.trouble then
+    package.preload.trouble = function()
+      return true
+    end
+  end
   require("gitsigns").setup({
     signs = {
       add = { hl = "GitSignsAdd", text = "▍", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
@@ -88,6 +93,8 @@ function M.config()
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
     end,
   })
+  package.loaded.trouble = nil
+  package.preload.trouble = nil
 end
 
 return M

@@ -5,7 +5,6 @@ return {
   "williamboman/mason-lspconfig.nvim",
   "nvim-lua/plenary.nvim",
   "windwp/nvim-spectre",
-  "rlch/github-notifications.nvim",
   "folke/twilight.nvim",
   "folke/which-key.nvim",
 
@@ -84,7 +83,21 @@ return {
     end,
   },
 
-  { "stevearc/dressing.nvim", event = "VeryLazy" },
+  {
+    "stevearc/dressing.nvim",
+    init = function()
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.select = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.select(...)
+      end
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.ui.input = function(...)
+        require("lazy").load({ plugins = { "dressing.nvim" } })
+        return vim.ui.input(...)
+      end
+    end,
+  },
 
   -- LSP
 

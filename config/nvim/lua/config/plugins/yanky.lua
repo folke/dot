@@ -1,6 +1,6 @@
 local M = {
   "gbprod/yanky.nvim",
-  event = "VeryLazy",
+  event = "BufReadPost",
   dependencies = {
     "kkharji/sqlite.lua",
     enabled = function()
