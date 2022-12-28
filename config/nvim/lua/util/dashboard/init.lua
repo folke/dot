@@ -9,8 +9,8 @@ function M.setup()
         M.show()
       end,
     })
+    M.show()
   end
-  M.show()
 end
 
 function M.status()
