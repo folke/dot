@@ -91,6 +91,7 @@ abbr ncdu "ncdu --color dark"
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
+abbr vd "cd ~/dot/config/nvim; nvim"
 abbr sv sudoedit
 abbr vudo sudoedit
 
