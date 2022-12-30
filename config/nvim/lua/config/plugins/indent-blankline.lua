@@ -13,7 +13,7 @@ local M = {
       "neo-tree",
       "Trouble",
     },
-    char = "│",
+    char = "▏",
     use_treesitter_scope = false,
     show_trailing_blankline_indent = false,
     show_current_context = true,

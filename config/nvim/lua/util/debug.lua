@@ -81,15 +81,38 @@ function M.get_value(...)
   return vim.tbl_islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
 end
 
-_G.d = function(...)
-  M.dump(M.get_value(...))
-end
-
-_G.dd = function(...)
-  M.dump(M.get_value(...), { schedule = true })
+function M.switch(config)
+  config = vim.loop.fs_realpath(config)
+  local config_name = vim.fn.fnamemodify(config, ":p:~"):gsub("[\\/]", "."):gsub("^~%.", ""):gsub("%.$", "")
+  local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p")
+  vim.fn.mkdir(root, "p")
+  for _, name in ipairs({ "config", "data", "state", "cache" }) do
+    local path = root .. "/" .. name
+    vim.fn.mkdir(path, "p")
+    ---@diagnostic disable-next-line: no-unknown
+    vim.env[("XDG_%s_HOME"):format(name:upper())] = path
+    if name == "config" then
+      path = path .. "/nvim"
+      pcall(vim.loop.fs_unlink, path)
+      vim.loop.fs_symlink(config, path, { dir = true })
+    end
+  end
+  local ffi = require("ffi")
+  ffi.cdef([[char *runtimepath_default(bool clean_arg);]])
+  local rtp = ffi.string(ffi.C.runtimepath_default(false))
+  vim.go.rtp = rtp
+  vim.go.pp = rtp
+  dofile(root .. "/config/nvim/init.lua")
 end
 
 function M.setup()
+  _G.d = function(...)
+    M.dump(M.get_value(...))
+  end
+
+  _G.dd = function(...)
+    M.dump(M.get_value(...), { schedule = true })
+  end
   M.notify.setup()
   -- make all keymaps silent by default
   local keymap_set = vim.keymap.set

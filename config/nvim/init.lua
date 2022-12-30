@@ -1,4 +1,8 @@
-require("util.debug")
+local debug = require("util.debug")
+
+if vim.env.VIMCONFIG then
+  return debug.switch(vim.env.VIMCONFIG)
+end
 
 require("config.options")
 require("config.lazy")

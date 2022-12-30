@@ -17,7 +17,6 @@ local M = {
       },
     },
   },
-  pin = true,
 }
 
 function M.config()
