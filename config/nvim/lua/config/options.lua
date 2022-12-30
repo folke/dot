@@ -1,5 +1,7 @@
 local indent = 2
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
 vim.opt.autowrite = true -- enable auto write
 vim.opt.clipboard = "unnamedplus" -- sync with system clipboard

@@ -93,70 +93,17 @@ function M.toggle(option, silent)
   end
 end
 
----@param fn fun(buf: buffer, win: window)
-function M.float(fn, opts)
-  local buf = vim.api.nvim_create_buf(false, true)
-  local vpad = 4
-  local hpad = 10
-
-  opts = vim.tbl_deep_extend("force", {
-    relative = "editor",
-    width = vim.o.columns - hpad * 2,
-    height = vim.o.lines - vpad * 2,
-    row = vpad,
-    col = hpad,
-    style = "minimal",
-    border = "rounded",
-    noautocmd = true,
-  }, opts or {})
-
-  local enter = opts.enter == nil and true or opts.enter
-  local win = vim.api.nvim_open_win(buf, enter, opts)
-
-  local function close()
-    if vim.api.nvim_buf_is_valid(buf) then
-      vim.api.nvim_buf_delete(buf, { force = true })
-    end
-    if vim.api.nvim_win_is_valid(win) then
-      vim.api.nvim_win_close(win, true)
-    end
-    vim.cmd([[checktime]])
-  end
-
-  vim.keymap.set("n", "<ESC>", close, { buffer = buf, nowait = true })
-  vim.keymap.set("n", "q", close, { buffer = buf, nowait = true })
-  vim.api.nvim_create_autocmd({ "BufDelete", "BufLeave", "BufHidden" }, {
-    once = true,
-    buffer = buf,
-    callback = close,
+function M.lazygit(cwd)
+  require("lazy.util").open_cmd({ "lazygit" }, {
+    cwd = cwd,
+    terminal = true,
+    close_on_exit = true,
+    enter = true,
+    float = {
+      size = { width = 0.9, height = 0.9 },
+      margin = { top = 0, right = 0, bottom = 0, left = 0 },
+    },
   })
-  fn(buf, win)
-end
-
-function M.float_cmd(cmd, opts)
-  M.float(function(buf)
-    local output = vim.api.nvim_exec(cmd, true)
-    local lines = vim.split(output, "\n")
-    vim.api.nvim_buf_set_lines(buf, 0, -1, true, lines)
-  end, opts)
-end
-
-function M.float_terminal(cmd, opts)
-  -- require("lazy.util").open_cmd(cmd, {
-  --   terminal = true,
-  --   close_on_exit = true,
-  --   enter = true,
-  -- })
-  M.float(function(buf, win)
-    vim.fn.termopen(cmd)
-    local autocmd = {
-      "autocmd! TermClose <buffer> lua vim.cmd[[checktime]];",
-      string.format("vim.api.nvim_win_close(%d, {force = true});", win),
-      string.format("vim.api.nvim_buf_delete(%d, {force = true});", buf),
-    }
-    vim.cmd(table.concat(autocmd, " "))
-    vim.cmd([[startinsert]])
-  end, opts)
 end
 
 function M.exists(fname)
