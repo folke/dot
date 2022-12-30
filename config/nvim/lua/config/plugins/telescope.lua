@@ -1,15 +1,13 @@
-local function project_files()
-  local opts = {}
-  if vim.loop.fs_stat(".git") then
-    opts.show_untracked = true
-    require("telescope.builtin").git_files(opts)
-  else
-    local client = vim.lsp.get_active_clients()[1]
-    if client then
-      opts.cwd = client.config.root_dir
-    end
-    require("telescope.builtin").find_files(opts)
-  end
+-- Gets the root dir from either:
+-- * connected lsp
+-- * .git from file
+-- * .git from cwd
+-- * cwd
+---@param opts? table
+local function project_files(opts)
+  opts = opts or {}
+  opts.cwd = require("util").get_root()
+  require("telescope.builtin").find_files(opts)
 end
 
 return {
@@ -38,6 +36,12 @@ return {
           i = {
             ["<c-t>"] = function(...)
               return require("trouble.providers.telescope").open_with_trouble(...)
+            end,
+            ["<C-i>"] = function(...)
+              project_files({ no_ignore = true })
+            end,
+            ["<C-h>"] = function(...)
+              project_files({ hidden = true })
             end,
             ["<C-Down>"] = function(...)
               return require("telescope.actions").cycle_history_next(...)

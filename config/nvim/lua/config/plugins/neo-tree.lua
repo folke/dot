@@ -3,7 +3,16 @@ return {
   "nvim-neo-tree/neo-tree.nvim",
   cmd = "Neotree",
   keys = {
-    { "<leader>ft", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+    {
+      "<leader>ft",
+      function()
+        require("neo-tree.command").execute({
+          toggle = true,
+          dir = require("util").get_root(),
+        })
+      end,
+      desc = "NeoTree",
+    },
   },
   config = {
     filesystem = {
