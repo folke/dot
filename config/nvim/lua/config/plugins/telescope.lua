@@ -19,6 +19,15 @@ return {
   },
   keys = {
     { "<leader><space>", project_files, desc = "Find File" },
+    {
+      "<leader>fl",
+      function()
+        require("telescope.builtin").find_files({
+          cwd = require("lazy.core.config").options.root,
+        })
+      end,
+      desc = "Find Plugin File",
+    },
   },
   config = function()
     -- local actions = require("telescope.actions")
