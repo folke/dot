@@ -7,7 +7,6 @@ local M = {
       "help",
       "startify",
       "dashboard",
-      "packer",
       "neogitstatus",
       "NvimTree",
       "neo-tree",

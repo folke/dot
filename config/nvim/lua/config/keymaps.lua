@@ -177,13 +177,6 @@ local leader = {
     f = { "<cmd>:Telescope filetypes<cr>", "File Types" },
     o = { "<cmd>:Telescope vim_options<cr>", "Options" },
     a = { "<cmd>:Telescope autocommands<cr>", "Auto Commands" },
-    p = {
-      name = "+packer",
-      p = { "<cmd>PackerSync<cr>", "Sync" },
-      s = { "<cmd>PackerStatus<cr>", "Status" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
-    },
   },
   s = {
     name = "+search",
