@@ -84,7 +84,7 @@ end
 function M.switch(config)
   config = vim.loop.fs_realpath(config)
   local config_name = vim.fn.fnamemodify(config, ":p:~"):gsub("[\\/]", "."):gsub("^~%.", ""):gsub("%.$", "")
-  local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p")
+  local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p"):gsub("/$", "")
   vim.fn.mkdir(root, "p")
   for _, name in ipairs({ "config", "data", "state", "cache" }) do
     local path = root .. "/" .. name
