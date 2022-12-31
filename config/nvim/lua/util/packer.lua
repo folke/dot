@@ -2,7 +2,7 @@ local M = {}
 
 function M.packer(rebuild)
   if rebuild then
-    local spec = require("config.plugins")
+    local spec = require("plugins")
     local files = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/config/plugins/*.lua", false, true)
     table.insert(files, vim.fn.stdpath("config") .. "/lua/config/plugins/lsp/init.lua")
     for _, file in ipairs(files) do

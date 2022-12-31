@@ -21,12 +21,12 @@ local M = {
 
 function M.config()
   require("mason")
-  require("config.plugins.lsp.diagnostics").setup()
+  require("plugins.lsp.diagnostics").setup()
 
   local function on_attach(client, bufnr)
     require("nvim-navic").attach(client, bufnr)
-    require("config.plugins.lsp.formatting").setup(client, bufnr)
-    require("config.plugins.lsp.keys").setup(client, bufnr)
+    require("plugins.lsp.formatting").setup(client, bufnr)
+    require("plugins.lsp.keys").setup(client, bufnr)
   end
 
   ---@type lspconfig.options
@@ -149,7 +149,7 @@ function M.config()
     end
   end
 
-  require("config.plugins.null-ls").setup(options)
+  require("plugins.null-ls").setup(options)
 end
 
 return M

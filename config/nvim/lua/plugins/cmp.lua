@@ -44,7 +44,7 @@ function M.config()
       { name = "neorg" },
     }),
     formatting = {
-      format = require("config.plugins.lsp.kind").cmp_format(),
+      format = require("plugins.lsp.kind").cmp_format(),
     },
     -- documentation = {
     --   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },

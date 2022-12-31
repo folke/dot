@@ -30,12 +30,12 @@ function M.setup(client, buffer)
         },
         f = {
           {
-            require("config.plugins.lsp.formatting").format,
+            require("plugins.lsp.formatting").format,
             "Format Document",
             cond = cap.documentFormatting,
           },
           {
-            require("config.plugins.lsp.formatting").format,
+            require("plugins.lsp.formatting").format,
             "Format Range",
             cond = cap.documentRangeFormatting,
             mode = "v",
