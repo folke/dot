@@ -121,7 +121,11 @@ function M.set_options()
 end
 
 function M.dont_show()
-  if #vim.v.argv > 1 then
+  local argv = vim.tbl_filter(function(arg)
+    return arg ~= "--embed"
+  end, vim.v.argv)
+
+  if #argv > 1 then
     return true
   end
 

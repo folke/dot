@@ -86,17 +86,48 @@ function M.switch(config)
   local config_name = vim.fn.fnamemodify(config, ":p:~"):gsub("[\\/]", "."):gsub("^~%.", ""):gsub("%.$", "")
   local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p"):gsub("/$", "")
   vim.fn.mkdir(root, "p")
+
+  ---@type table<string,string>
+  local old = {}
+  ---@type table<string,string>
+  local new = {}
+
   for _, name in ipairs({ "config", "data", "state", "cache" }) do
     local path = root .. "/" .. name
     vim.fn.mkdir(path, "p")
-    ---@diagnostic disable-next-line: no-unknown
-    vim.env[("XDG_%s_HOME"):format(name:upper())] = path
+    local xdg = ("XDG_%s_HOME"):format(name:upper())
+    old[xdg] = vim.env[xdg] or vim.env.HOME .. "/." .. name
+    new[xdg] = path
     if name == "config" then
       path = path .. "/nvim"
       pcall(vim.loop.fs_unlink, path)
       vim.loop.fs_symlink(config, path, { dir = true })
     end
   end
+
+  ---@param env table<string,string>
+  local function apply(env)
+    for k, v in pairs(env) do
+      vim.env[k] = v
+    end
+  end
+
+  local function wrap(fn)
+    return function(...)
+      apply(old)
+      local ok, ret = pcall(fn, ...)
+      apply(new)
+      if ok then
+        return ret
+      end
+      error(ret)
+    end
+  end
+
+  vim.fn.termopen = wrap(vim.fn.termopen)
+
+  apply(new)
+
   local ffi = require("ffi")
   ffi.cdef([[char *runtimepath_default(bool clean_arg);]])
   local rtp = ffi.string(ffi.C.runtimepath_default(false))
@@ -113,6 +144,8 @@ function M.setup()
   _G.dd = function(...)
     M.dump(M.get_value(...), { schedule = true })
   end
+
+  vim.pretty_print = _G.d
   M.notify.setup()
   -- make all keymaps silent by default
   local keymap_set = vim.keymap.set

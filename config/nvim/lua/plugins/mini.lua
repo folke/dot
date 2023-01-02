@@ -1,11 +1,9 @@
-local mini = {
+local M = {
   "echasnovski/mini.nvim",
   event = "VeryLazy",
 }
 
-local specs = { mini, "JoosepAlviste/nvim-ts-context-commentstring" }
-
-function mini.surround()
+function M.surround()
   require("mini.surround").setup({
     mappings = {
       add = "gza", -- Add surrounding in Normal and Visual modes
@@ -19,25 +17,7 @@ function mini.surround()
   })
 end
 
-function mini.jump()
-  require("mini.jump").setup({})
-end
-
-function mini.pairs()
-  require("mini.pairs").setup({})
-end
-
-function mini.comment()
-  require("mini.comment").setup({
-    hooks = {
-      pre = function()
-        require("ts_context_commentstring.internal").update_commentstring({})
-      end,
-    },
-  })
-end
-
-function mini.ai()
+function M.ai()
   local ai = require("mini.ai")
   require("mini.ai").setup({
     n_lines = 500,
@@ -72,23 +52,20 @@ function mini.ai()
   map("o", "block")
 end
 
-function mini.config()
-  -- M.jump()
-  mini.surround()
-  mini.ai()
-  mini.pairs()
-  mini.comment()
-  mini.animate()
+function M.config()
+  M.surround()
+  M.ai()
+  M.animate()
 end
 
-function mini.animate()
+function M.animate()
   local mouse_scrolled = false
   for _, scroll in ipairs({ "Up", "Down" }) do
     local key = "<ScrollWheel" .. scroll .. ">"
     vim.keymap.set("", key, function()
       mouse_scrolled = true
       return key
-    end, { remap = true, expr = true })
+    end, { expr = true })
   end
 
   local animate = require("mini.animate")
@@ -114,13 +91,4 @@ function mini.animate()
   })
 end
 
-function mini.init()
-  vim.keymap.set("n", "<leader>bd", function()
-    require("mini.bufremove").delete(0, false)
-  end)
-  vim.keymap.set("n", "<leader>bD", function()
-    require("mini.bufremove").delete(0, true)
-  end)
-end
-
-return specs
+return M

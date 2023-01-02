@@ -12,7 +12,12 @@ else
   vim.opt.rtp:prepend(lazypath)
 end
 
-require("lazy").setup("plugins", {
+require("lazy").setup({
+  spec = {
+    { "folke/LazyVim", dev = true },
+    { import = "lazyvim.plugins" },
+    { import = "plugins" },
+  },
   defaults = { lazy = true },
   dev = { patterns = jit.os:find("Windows") and {} or { "folke" } },
   install = { colorscheme = { "tokyonight", "habamax" } },

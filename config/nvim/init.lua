@@ -4,10 +4,11 @@ if vim.env.VIMCONFIG then
   return debug.switch(vim.env.VIMCONFIG)
 end
 
-require("config.options")
+vim.g.mapleader = " "
 require("config.lazy")
+require("config.options")
 
-require("util.dashboard").setup()
+-- require("util.dashboard").setup()
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",

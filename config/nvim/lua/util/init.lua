@@ -93,19 +93,6 @@ function M.toggle(option, silent)
   end
 end
 
-function M.lazygit(cwd)
-  require("lazy.util").open_cmd({ "lazygit" }, {
-    cwd = cwd,
-    terminal = true,
-    close_on_exit = true,
-    enter = true,
-    float = {
-      size = { width = 0.9, height = 0.9 },
-      margin = { top = 0, right = 0, bottom = 0, left = 0 },
-    },
-  })
-end
-
 function M.exists(fname)
   local stat = vim.loop.fs_stat(fname)
   return (stat and stat.type) or false
@@ -179,10 +166,11 @@ end
 
 ---@return string
 function M.get_root()
-  local path = vim.loop.fs_realpath(vim.api.nvim_buf_get_name(0))
+  local path = vim.api.nvim_buf_get_name(0)
+  path = path ~= "" and vim.loop.fs_realpath(path) or nil
   ---@type string[]
   local roots = {}
-  if path ~= "" then
+  if path then
     for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
       local workspace = client.config.workspace_folders
       local paths = workspace and vim.tbl_map(function(ws)
@@ -196,12 +184,15 @@ function M.get_root()
       end
     end
   end
+  table.sort(roots, function(a, b)
+    return #a > #b
+  end)
   ---@type string?
   local root = roots[1]
   if not root then
-    path = path == "" and vim.loop.cwd() or vim.fs.dirname(path)
+    path = path and vim.fs.dirname(path) or vim.loop.cwd()
     ---@type string?
-    root = vim.fs.find({ ".git" }, { path = path, upward = true })[1]
+    root = vim.fs.find({ ".git", "/lua" }, { path = path, upward = true })[1]
     root = root and vim.fs.dirname(root) or vim.loop.cwd()
   end
   ---@cast root string
