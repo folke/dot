@@ -14,7 +14,7 @@ end
 
 require("lazy").setup({
   spec = {
-    { "folke/LazyVim", dev = true, config = true, lazy = false, priority = 10000 },
+    { "folke/LazyVim", dev = true, lazy = false, priority = 10000 },
     { import = "lazyvim.plugins" },
     { import = "plugins" },
   },
