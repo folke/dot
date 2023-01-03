@@ -1,5 +1,3 @@
-require("lazyvim.config.autocmds")
-
 vim.cmd([[autocmd FileType markdown setlocal spell]])
 
 -- show cursor line only in active window

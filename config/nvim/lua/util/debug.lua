@@ -8,7 +8,7 @@ M.notify = {
 }
 
 function M.notify.lazy(...)
-  table.insert(M.notify.notifs, { ... })
+  table.insert(M.notify.notifs, vim.F.pack_len(...))
 end
 
 function M.notify.setup()
@@ -29,7 +29,7 @@ function M.notify.setup()
     vim.schedule(function()
       ---@diagnostic disable-next-line: no-unknown
       for _, notif in ipairs(M.notify.notifs) do
-        vim.notify(unpack(notif))
+        vim.notify(vim.F.unpack_len(notif))
       end
     end)
   end)

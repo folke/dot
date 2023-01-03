@@ -30,10 +30,10 @@ return {
               return require("trouble.providers.telescope").open_with_trouble(...)
             end,
             ["<C-i>"] = function(...)
-              require("lazyvim.util").telescope("find_files", { no_ignore = true })
+              require("lazyvim.util").telescope("find_files", { no_ignore = true })()
             end,
             ["<C-h>"] = function(...)
-              require("lazyvim.util").telescope("find_files", { hidden = true })
+              require("lazyvim.util").telescope("find_files", { hidden = true })()
             end,
             ["<C-Down>"] = function(...)
               return require("telescope.actions").cycle_history_next(...)
