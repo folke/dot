@@ -114,15 +114,6 @@ local leader = {
     end,
     "Paste from Clipman",
   },
-  x = {
-    name = "+errors",
-    x = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble" },
-    t = { "<cmd>TodoTrouble<cr>", "Todo Trouble" },
-    tt = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", "Todo Trouble" },
-    T = { "<cmd>TodoTelescope<cr>", "Todo Telescope" },
-    l = { "<cmd>lopen<cr>", "Open Location List" },
-    q = { "<cmd>copen<cr>", "Open Quickfix List" },
-  },
   z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
   T = {
     function()

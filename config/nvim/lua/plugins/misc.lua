@@ -2,15 +2,6 @@ return {
   "folke/twilight.nvim",
 
   {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    config = {
-      auto_open = false,
-      use_diagnostic_signs = true, -- en
-    },
-  },
-
-  {
     "Wansmer/treesj",
     keys = {
       { "J", "<cmd>TSJToggle<cr>" },
