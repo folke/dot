@@ -40,13 +40,11 @@ require("lazy").setup({
         "tohtml",
         "tutor",
         "zipPlugin",
-        "nvim-treesitter-textobjects",
       },
     },
   },
   ui = {
     custom_keys = {
-
       ["<localleader>d"] = function(plugin)
         dd(plugin)
       end,
