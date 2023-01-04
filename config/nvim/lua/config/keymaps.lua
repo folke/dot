@@ -114,14 +114,6 @@ local leader = {
     end,
     "Paste from Clipman",
   },
-  q = {
-    name = "+quit/session",
-    q = { "<cmd>qa<cr>", "Quit" },
-    ["!"] = { "<cmd>:qa!<cr>", "Quit without saving" },
-    s = { [[<cmd>lua require("persistence").load()<cr>]], "Restore Session" },
-    l = { [[<cmd>lua require("persistence").load({last=true})<cr>]], "Restore Last Session" },
-    d = { [[<cmd>lua require("persistence").stop()<cr>]], "Stop Current Session" },
-  },
   x = {
     name = "+errors",
     x = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Trouble" },

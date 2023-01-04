@@ -11,12 +11,6 @@ return {
   },
 
   {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    config = { options = { "buffers", "curdir", "tabpages", "winsize", "help" } },
-  },
-
-  {
     "Wansmer/treesj",
     keys = {
       { "J", "<cmd>TSJToggle<cr>" },
