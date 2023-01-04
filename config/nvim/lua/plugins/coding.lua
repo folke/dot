@@ -2,14 +2,17 @@ return {
   -- better text objects
   {
     "echasnovski/mini.ai",
-    keys = { "[f", "]f" },
+    keys = { { "[f", desc = "Prev function" }, { "]f", desc = "Next function" } },
     config = function(plugin)
       -- call config of parent spec
       plugin._.super.config()
 
       -- add treesitter jumping
+      ---@param capture string
+      ---@param start boolean
+      ---@param down boolean
       local function jump(capture, start, down)
-        return function()
+        local rhs = function()
           local parser = vim.treesitter.get_parser()
           if not parser then
             return vim.notify("No treesitter parser for the current buffer", vim.log.levels.ERROR)
@@ -38,15 +41,21 @@ return {
           end
           return pcall(vim.api.nvim_win_set_cursor, 0, down and locs[1] or locs[#locs])
         end
+
+        local c = capture:sub(1, 1):lower()
+        local lhs = (down and "]" or "[") .. (start and c or c:upper())
+        local desc = (down and "Next " or "Prev ") .. (start and "start" or "end") .. " of " .. capture:gsub("%..*", "")
+        dd(lhs, desc)
+        vim.keymap.set("n", lhs, rhs, { desc = desc })
       end
-      vim.keymap.set("n", "[f", jump("function.outer", true, false))
-      vim.keymap.set("n", "]f", jump("function.outer", true, true))
-      vim.keymap.set("n", "[F", jump("function.outer", false, false))
-      vim.keymap.set("n", "]F", jump("function.outer", false, true))
-      vim.keymap.set("n", "[c", jump("class.outer", true, false))
-      vim.keymap.set("n", "]c", jump("class.outer", true, true))
-      vim.keymap.set("n", "[C", jump("class.outer", false, false))
-      vim.keymap.set("n", "]C", jump("class.outer", false, true))
+
+      for _, capture in ipairs({ "function.outer", "class.outer" }) do
+        for _, start in ipairs({ true, false }) do
+          for _, down in ipairs({ true, false }) do
+            jump(capture, start, down)
+          end
+        end
+      end
     end,
   },
 

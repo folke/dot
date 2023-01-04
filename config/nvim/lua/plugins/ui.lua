@@ -25,7 +25,6 @@ return {
 
   -- auto-resize windows
   {
-    enabled = true,
     "anuvyklack/windows.nvim",
     event = "WinNew",
     dependencies = {
@@ -92,6 +91,7 @@ return {
   -- animations
   {
     "echasnovski/mini.animate",
+    event = "VeryLazy",
     config = function()
       local mouse_scrolled = false
       for _, scroll in ipairs({ "Up", "Down" }) do

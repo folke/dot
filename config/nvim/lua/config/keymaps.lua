@@ -1,7 +1,4 @@
-local wk = require("which-key")
 local util = require("util")
-
-vim.o.timeoutlen = 300
 
 local id
 for _, key in ipairs({ "h", "j", "k", "l" }) do
@@ -47,66 +44,10 @@ vim.cmd([[
   xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 ]])
 
-local leader = {
-  ["w"] = {
-    name = "+windows",
-    ["w"] = { "<C-W>p", "other-window" },
-    ["d"] = { "<C-W>c", "delete-window" },
-    ["-"] = { "<C-W>s", "split-window-below" },
-    ["|"] = { "<C-W>v", "split-window-right" },
-  },
-  b = {
-    name = "+buffer",
-    ["b"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
-    ["p"] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
-    ["["] = { "<cmd>:BufferLineCyclePrev<CR>", "Previous Buffer" },
-    ["n"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
-    ["]"] = { "<cmd>:BufferLineCycleNext<CR>", "Next Buffer" },
-    -- ["D"] = { "<cmd>:bd<CR>", "Delete Buffer & Window" },
-  },
-  g = {
-    name = "+git",
-    d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
-    h = { name = "+hunk" },
-  },
-  ["<tab>"] = {
-    name = "tabs",
-    ["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },
-    n = { "<cmd>tabnext<CR>", "Next" },
-    d = { "<cmd>tabclose<CR>", "Close" },
-    p = { "<cmd>tabprevious<CR>", "Previous" },
-    ["]"] = { "<cmd>tabnext<CR>", "Next" },
-    ["["] = { "<cmd>tabprevious<CR>", "Previous" },
-    f = { "<cmd>tabfirst<CR>", "First" },
-    l = { "<cmd>tablast<CR>", "Last" },
-  },
-  ["`"] = { "<cmd>:e #<cr>", "Switch to Other Buffer" },
-  [" "] = "Find File",
-  ["C"] = {
-    function()
-      util.clipman()
-    end,
-    "Paste from Clipman",
-  },
-  z = { [[<cmd>ZenMode<cr>]], "Zen Mode" },
-  T = {
-    function()
-      util.test(true)
-    end,
-    "Plenary Test File",
-  },
-  D = {
-    function()
-      util.test()
-    end,
-    "Plenary Test Directory",
-  },
-}
-
-for i = 0, 10 do
-  leader[tostring(i)] = "which_key_ignore"
-end
-
-wk.register(leader, { prefix = "<leader>" })
-
-wk.register({ g = { name = "+goto" } })
+-- plenary testing
+vim.keymap.set("n", "<leader>tt", function()
+  util.test(true)
+end, { desc = "Test File" })
+vim.keymap.set("n", "<leader>td", function()
+  util.test()
+end, { desc = "Test Directory" })

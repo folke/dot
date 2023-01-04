@@ -6,7 +6,7 @@ return {
     keys = {
       { "J", "<cmd>TSJToggle<cr>" },
     },
-    config = { use_default_keymaps = false },
+    config = { use_default_keymaps = false, max_join_length = 150 },
   },
 
   {
@@ -33,6 +33,7 @@ return {
         kitty = { enabled = false, font = "+2" },
       },
     },
+    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   },
 
   {
