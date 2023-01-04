@@ -4,7 +4,6 @@ if vim.env.VIMCONFIG then
   return debug.switch(vim.env.VIMCONFIG)
 end
 
-vim.g.mapleader = " "
 require("config.lazy")
 
 -- require("util.dashboard").setup()

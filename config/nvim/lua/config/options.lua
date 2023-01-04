@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 if vim.fn.has("nvim-0.8") == 1 then
   vim.opt.backup = true
   vim.opt.cmdheight = 0
