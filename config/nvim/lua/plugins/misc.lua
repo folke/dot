@@ -2,49 +2,6 @@ return {
   "folke/twilight.nvim",
 
   {
-    "smjonas/inc-rename.nvim",
-    cmd = "IncRename",
-    config = true,
-  },
-
-  {
-    "ThePrimeagen/refactoring.nvim",
-    keys = {
-      {
-        "<leader>r",
-        function()
-          require("refactoring").select_refactor()
-        end,
-        mode = "v",
-        noremap = true,
-        silent = true,
-        expr = false,
-      },
-    },
-    config = {},
-  },
-
-  {
-    "simrat39/symbols-outline.nvim",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = true,
-  },
-
-  {
-    "danymat/neogen",
-    keys = {
-      {
-        "<leader>cc",
-        function()
-          require("neogen").generate({})
-        end,
-        desc = "Neogen Comment",
-      },
-    },
-    config = { snippet_engine = "luasnip" },
-  },
-
-  {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     config = {
@@ -66,6 +23,7 @@ return {
     },
     config = { use_default_keymaps = false },
   },
+
   {
     "cshuaimin/ssr.nvim",
     keys = {
