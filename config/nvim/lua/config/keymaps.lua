@@ -32,7 +32,7 @@ vim.keymap.set("n", "<up>", "<C-w>k")
 vim.keymap.set("n", "<right>", "<C-w>l")
 
 -- change word with <c-c>
-vim.keymap.set("n", "<C-c>", "<cmd>normal ciw<cr>a")
+vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a")
 
 -- makes * and # work on visual mode too.
 vim.cmd([[
