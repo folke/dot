@@ -69,32 +69,6 @@ local leader = {
     d = { "<cmd>DiffviewOpen<cr>", "DiffView" },
     h = { name = "+hunk" },
   },
-  t = {
-    name = "toggle",
-    f = {
-      require("lazyvim.plugins.lsp.format").toggle,
-      "Format on Save",
-    },
-    s = {
-      function()
-        util.toggle("spell")
-      end,
-      "Spelling",
-    },
-    w = {
-      function()
-        util.toggle("wrap")
-      end,
-      "Word Wrap",
-    },
-    n = {
-      function()
-        util.toggle("relativenumber", true)
-        util.toggle("number")
-      end,
-      "Line Numbers",
-    },
-  },
   ["<tab>"] = {
     name = "tabs",
     ["<tab>"] = { "<cmd>tabnew<CR>", "New Tab" },

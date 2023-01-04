@@ -52,4 +52,3 @@ require("lazy").setup({
   },
   debug = true,
 })
-vim.keymap.set("n", "<leader>l", "<cmd>:Lazy<cr>")
