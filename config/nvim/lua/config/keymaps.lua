@@ -31,3 +31,6 @@ end, { desc = "Test File" })
 vim.keymap.set("n", "<leader>td", function()
   util.test()
 end, { desc = "Test Directory" })
+
+-- run lua
+vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })
