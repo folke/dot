@@ -31,7 +31,7 @@ return {
       { "anuvyklack/middleclass" },
       { "anuvyklack/animation.nvim", enabled = false },
     },
-    keys = { { "<leader>Z", "<cmd>WindowsMaximize<cr>" } },
+    keys = { { "<leader>Z", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
     config = function()
       vim.o.winwidth = 5
       vim.o.winminwidth = 5
@@ -125,4 +125,7 @@ return {
       })
     end,
   },
+
+  -- { "echasnovski/mini.starter", enabled = true },
+  -- { "goolord/alpha-nvim", enabled = false },
 }

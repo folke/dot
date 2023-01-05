@@ -45,7 +45,6 @@ return {
         local c = capture:sub(1, 1):lower()
         local lhs = (down and "]" or "[") .. (start and c or c:upper())
         local desc = (down and "Next " or "Prev ") .. (start and "start" or "end") .. " of " .. capture:gsub("%..*", "")
-        dd(lhs, desc)
         vim.keymap.set("n", lhs, rhs, { desc = desc })
       end
 
