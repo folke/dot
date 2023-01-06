@@ -4,6 +4,8 @@ if vim.env.VIMCONFIG then
   return debug.switch(vim.env.VIMCONFIG)
 end
 
+-- require("util.profiler").start()
+
 require("config.lazy")
 
 -- require("util.dashboard").setup()

@@ -1,5 +1,3 @@
-vim.cmd([[autocmd FileType markdown setlocal spell]])
-
 -- show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
   callback = function()

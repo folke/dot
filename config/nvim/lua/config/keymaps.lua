@@ -28,9 +28,9 @@ vim.cmd([[
 vim.keymap.set("n", "<leader>tt", function()
   util.test(true)
 end, { desc = "Test File" })
-vim.keymap.set("n", "<leader>td", function()
+vim.keymap.set("n", "<leader>tT", function()
   util.test()
-end, { desc = "Test Directory" })
+end, { desc = "Test All Files" })
 
 -- run lua
 vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })

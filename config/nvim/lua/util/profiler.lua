@@ -1,84 +1,101 @@
 local M = {}
 
----@type {event:string, func:fun(), start?:number, stop?:number, id:number}[]
-local events = {}
-local names = {}
-local hook_time = 0
-local hook_total = 0
+---@type table<fun(), true>
+M.wrapped = {}
 
-local function hook(event)
-  local now = vim.loop.hrtime()
-  hook_total = hook_total + 1
+---@type {total:number, time:number}[]
+M.stats = {}
+M._require = _G.require
+local pack_len = vim.F.pack_len
 
-  local info = debug.getinfo(2, "fn")
-  local func = info.func
-  local name = info.name
-  if func then
-    names[func] = name
-    local id = #events + 1
-    if event == "call" then
-      events[id] = { event = "call", func = func, start = now, id = id }
-    elseif event == "return" then
-      events[id] = { event = "return", func = func, stop = now, id = id }
-    end
-  end
-  hook_time = hook_time + vim.loop.hrtime() - now
+function M.stat(name, start)
+  M.stats[name] = M.stats[name] or { total = 0, time = 0 }
+  M.stats[name].total = M.stats[name].total + 1
+  M.stats[name].time = M.stats[name].time + vim.loop.hrtime() - start
 end
 
-function M.stats()
-  ---@type table<string,{total:number, time:number, name:string}>
-  local stats = {}
-  ---@type {func:fun(), start:number}[]
-  local stack = {}
-  for _, event in ipairs(events) do
-    if event.event == "call" then
-      stack[#stack + 1] = event
-    elseif event.event == "return" then
-      local info = debug.getinfo(event.func, "Snf")
-      if info.what ~= "C" then
-        while #stack > 0 and stack[#stack].func ~= info.func do
-          table.remove(stack)
-        end
-        local entry = stack[#stack]
-        if entry then
-          local source = info.source:sub(2)
-          local modname = source:match("/lua/(.*)%.lua")
-          if modname then
-            source = modname:gsub("/", ".")
-          end
-          source = source .. ":" .. info.linedefined
-          if names[event.func] then
-            source = source .. ":" .. names[event.func] .. "()"
-          end
-          local name = source
-          stats[name] = stats[name] or { total = 0, time = 0, name = name }
-          stats[name].total = stats[name].total + 1
-          local time = event.stop - entry.start - (hook_time / hook_total * (event.id - entry.id))
-          stats[name].time = stats[name].time + time / 1e6
-        end
+function M.wrap(name, fn)
+  if M.wrapped[fn] then
+    return fn
+  end
+  M.wrapped[fn] = true
+  return function(...)
+    local start = vim.loop.hrtime()
+    local ret = pack_len(pcall(fn, ...))
+    M.stat(name, start)
+    if ret[1] then
+      return unpack(ret, 2, ret.n)
+    end
+    error(ret[2])
+  end
+end
+
+function M.hook(name, value, done)
+  if value == nil then
+    return nil
+  end
+  done = done or {}
+  if done[value] then
+    return value
+  end
+  done[value] = true
+  if type(value) == "function" then
+    return M.wrap(name, value)
+  elseif type(value) == "table" then
+    for k, v in pairs(value) do
+      if type(v) == "function" then
+        rawset(value, k, M.wrap(name .. "." .. k .. "()", v))
+      elseif type(v) == "table" then
+        rawset(value, k, M.hook(name .. "." .. k, v, done))
       end
     end
   end
-  return vim.tbl_values(stats)
+  return value
+end
+
+function M.require(modname)
+  if package.loaded[modname] then
+    return package.loaded[modname]
+  end
+  local start = vim.loop.hrtime()
+  local ret = pack_len(pcall(M._require, modname))
+  M.stat(modname, start)
+  if ret[1] then
+    M.hook(modname, ret[2])
+    return unpack(ret, 2, ret.n)
+  end
+  error(ret[2])
 end
 
 function M.start()
+  _G.require = M.require
   vim.api.nvim_create_autocmd("User", {
-    pattern = "LazyVimStarted",
+    pattern = "VeryLazy",
     callback = function()
-      debug.sethook()
-      local stats = M.stats()
-      table.sort(stats, function(a, b)
+      _G.require = M._require
+      local s = {}
+      for name, stat in pairs(M.stats) do
+        stat.name = name
+        s[#s + 1] = stat
+      end
+      table.sort(s, function(a, b)
         return a.time > b.time
       end)
-      for _, stat in ipairs(stats) do
-        if stat.time > 1 then
-          print(stat.time .. "\t" .. stat.total .. "\t" .. stat.name .. "\n")
+      for _, stat in ipairs(s) do
+        if stat.time / 1e6 > 0.5 then
+          local time = math.floor(stat.time / 1e6 * 100 + 0.5) / 100
+          local line = {
+            { time .. "ms", "Number" },
+            { stat.total .. "", "Number" },
+            { stat.name },
+          }
+          line[1][1] = line[1][1] .. string.rep(" ", 10 - #line[1][1])
+          line[2][1] = line[2][1] .. string.rep(" ", 10 - #line[2][1])
+          vim.api.nvim_echo(line, true, {})
         end
       end
     end,
   })
-  debug.sethook(hook, "cr")
 end
 
 return M
