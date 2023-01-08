@@ -3,10 +3,7 @@ return {
   {
     "echasnovski/mini.ai",
     keys = { { "[f", desc = "Prev function" }, { "]f", desc = "Next function" } },
-    config = function(plugin)
-      -- call config of parent spec
-      plugin._.super.config()
-
+    opts = function()
       -- add treesitter jumping
       ---@param capture string
       ---@param start boolean
@@ -69,7 +66,7 @@ return {
         desc = "Neogen Comment",
       },
     },
-    config = { snippet_engine = "luasnip" },
+    opts = { snippet_engine = "luasnip" },
   },
 
   {
@@ -92,7 +89,7 @@ return {
         expr = false,
       },
     },
-    config = {},
+    opts = {},
   },
 
   -- better yank/paste
@@ -146,21 +143,10 @@ return {
   -- better increase/descrease
   {
     "monaqa/dial.nvim",
+    -- stylua: ignore
     keys = {
-      {
-        "<C-a>",
-        function()
-          return require("dial.map").inc_normal()
-        end,
-        expr = true,
-      },
-      {
-        "<C-x>",
-        function()
-          return require("dial.map").dec_normal()
-        end,
-        expr = true,
-      },
+      { "<C-a>", function() return require("dial.map").inc_normal() end, expr = true, desc = "Increment" },
+      { "<C-x>", function() return require("dial.map").dec_normal() end, expr = true, desc = "Decrement" },
     },
     config = function()
       local augend = require("dial.augend")
@@ -188,5 +174,17 @@ return {
     "simrat39/symbols-outline.nvim",
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = true,
+  },
+
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-emoji",
+    },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+    end,
   },
 }

@@ -59,7 +59,7 @@ end
 function M.test(is_file)
   local file = is_file and vim.fn.expand("%:p") or "./tests"
   local init = vim.fn.glob("tests/*init*")
-  require("plenary.test_harness").test_directory(file, { minimal_init = init })
+  require("plenary.test_harness").test_directory(file, { minimal_init = init, sequential = true })
 end
 
 function M.version()

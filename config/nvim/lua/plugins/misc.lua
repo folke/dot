@@ -4,9 +4,9 @@ return {
   {
     "Wansmer/treesj",
     keys = {
-      { "J", "<cmd>TSJToggle<cr>" },
+      { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
     },
-    config = { use_default_keymaps = false, max_join_length = 150 },
+    opts = { use_default_keymaps = false, max_join_length = 150 },
   },
 
   {
@@ -26,7 +26,7 @@ return {
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
-    config = {
+    opts = {
       plugins = {
         gitsigns = true,
         tmux = true,

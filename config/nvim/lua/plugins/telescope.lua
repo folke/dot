@@ -14,16 +14,17 @@ return {
       desc = "Find Plugin File",
     },
   },
-  config = function(plugin)
+  opts = {
+    defaults = {
+      layout_strategy = "horizontal",
+      layout_config = { prompt_position = "top" },
+      sorting_strategy = "ascending",
+      winblend = 0,
+    },
+  },
+  config = function(_, opts)
     local telescope = require("telescope")
-    telescope.setup(vim.tbl_deep_extend("force", plugin._.super.config, {
-      defaults = {
-        layout_strategy = "horizontal",
-        layout_config = { prompt_position = "top" },
-        sorting_strategy = "ascending",
-        winblend = 0,
-      },
-    }))
+    telescope.setup(opts)
     telescope.load_extension("fzf")
   end,
 }

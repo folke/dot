@@ -1,6 +1,6 @@
 local util = require("util")
 
-util.cowboy()
+-- util.cowboy()
 
 -- Move to window using the movement keys
 vim.keymap.set("n", "<left>", "<C-w>h")

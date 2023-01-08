@@ -4,7 +4,7 @@ return {
   {
     "nvim-neorg/neorg",
     ft = "norg",
-    config = {
+    opts = {
       load = {
         ["core.defaults"] = {},
         ["core.norg.concealer"] = {},
@@ -34,7 +34,7 @@ return {
         desc = "Peek (Markdown Preview)",
       },
     },
-    config = { theme = "light" },
+    opts = { theme = "light" },
   },
 
   -- better diffing
@@ -49,7 +49,7 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "BufReadPre",
-    config = {
+    opts = {
       filetypes = { "*", "!lazy" },
       buftype = { "*", "!prompt", "!nofile" },
       user_default_options = {

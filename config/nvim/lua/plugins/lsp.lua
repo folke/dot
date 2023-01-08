@@ -2,7 +2,7 @@ return {
   -- neodev
   {
     "folke/neodev.nvim",
-    config = {
+    opts = {
       debug = true,
       experimental = {
         pathStrict = true,
@@ -16,18 +16,20 @@ return {
   -- tools
   {
     "williamboman/mason.nvim",
-    ensure_installed = {
-      "prettierd",
-      "stylua",
-      "selene",
-      "luacheck",
-      "eslint_d",
-      "shellcheck",
-      "deno",
-      "shfmt",
-      "black",
-      "isort",
-      "flake8",
+    opts = {
+      ensure_installed = {
+        "prettierd",
+        "stylua",
+        "selene",
+        "luacheck",
+        "eslint_d",
+        "shellcheck",
+        "deno",
+        "shfmt",
+        "black",
+        "isort",
+        "flake8",
+      },
     },
   },
 
@@ -37,99 +39,101 @@ return {
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
-    ---@type lspconfig.options
-    servers = {
-      ansiblels = {},
-      bashls = {},
-      clangd = {},
-      cssls = {},
-      dockerls = {},
-      tsserver = {},
-      svelte = {},
-      eslint = {},
-      html = {},
-      jsonls = {
-        on_new_config = function(new_config)
-          new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-          vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-        end,
-        settings = {
-          json = {
-            format = {
-              enable = true,
-            },
-            validate = { enable = true },
-          },
-        },
-      },
-      gopls = {},
-      marksman = {},
-      pyright = {},
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = { allFeatures = true },
-            checkOnSave = {
-              command = "clippy",
-              extraArgs = { "--no-deps" },
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        ansiblels = {},
+        bashls = {},
+        clangd = {},
+        cssls = {},
+        dockerls = {},
+        tsserver = {},
+        svelte = {},
+        eslint = {},
+        html = {},
+        jsonls = {
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
             },
           },
         },
-      },
-      yamlls = {},
-      sumneko_lua = {
-        -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
-        single_file_support = true,
-        settings = {
-          Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            completion = {
-              workspaceWord = true,
-              callSnippet = "Both",
-            },
-            misc = {
-              parameters = {
-                "--log-level=trace",
-              },
-            },
-            diagnostics = {
-              -- enable = false,
-              groupSeverity = {
-                strong = "Warning",
-                strict = "Warning",
-              },
-              groupFileStatus = {
-                ["ambiguity"] = "Opened",
-                ["await"] = "Opened",
-                ["codestyle"] = "None",
-                ["duplicate"] = "Opened",
-                ["global"] = "Opened",
-                ["luadoc"] = "Opened",
-                ["redefined"] = "Opened",
-                ["strict"] = "Opened",
-                ["strong"] = "Opened",
-                ["type-check"] = "Opened",
-                ["unbalanced"] = "Opened",
-                ["unused"] = "Opened",
-              },
-              unusedLocalExclude = { "_*" },
-            },
-            format = {
-              enable = false,
-              defaultConfig = {
-                indent_style = "space",
-                indent_size = "2",
-                continuation_indent_size = "2",
+        gopls = {},
+        marksman = {},
+        pyright = {},
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = { allFeatures = true },
+              checkOnSave = {
+                command = "clippy",
+                extraArgs = { "--no-deps" },
               },
             },
           },
         },
+        yamlls = {},
+        sumneko_lua = {
+          -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
+          single_file_support = true,
+          settings = {
+            Lua = {
+              workspace = {
+                checkThirdParty = false,
+              },
+              completion = {
+                workspaceWord = true,
+                callSnippet = "Both",
+              },
+              misc = {
+                parameters = {
+                  "--log-level=trace",
+                },
+              },
+              diagnostics = {
+                -- enable = false,
+                groupSeverity = {
+                  strong = "Warning",
+                  strict = "Warning",
+                },
+                groupFileStatus = {
+                  ["ambiguity"] = "Opened",
+                  ["await"] = "Opened",
+                  ["codestyle"] = "None",
+                  ["duplicate"] = "Opened",
+                  ["global"] = "Opened",
+                  ["luadoc"] = "Opened",
+                  ["redefined"] = "Opened",
+                  ["strict"] = "Opened",
+                  ["strong"] = "Opened",
+                  ["type-check"] = "Opened",
+                  ["unbalanced"] = "Opened",
+                  ["unused"] = "Opened",
+                },
+                unusedLocalExclude = { "_*" },
+              },
+              format = {
+                enable = false,
+                defaultConfig = {
+                  indent_style = "space",
+                  indent_size = "2",
+                  continuation_indent_size = "2",
+                },
+              },
+            },
+          },
+        },
+        teal_ls = {},
+        vimls = {},
+        -- tailwindcss = {},
       },
-      teal_ls = {},
-      vimls = {},
-      -- tailwindcss = {},
     },
   },
 
