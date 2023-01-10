@@ -2,39 +2,6 @@
 
 local M = {}
 
-M.notify = {
-  notifs = {},
-  orig = vim.notify,
-}
-
-function M.notify.lazy(...)
-  table.insert(M.notify.notifs, vim.F.pack_len(...))
-end
-
-function M.notify.setup()
-  vim.notify = M.notify.lazy
-  local check = vim.loop.new_check()
-  local start = vim.loop.hrtime()
-  check:start(function()
-    if vim.notify ~= M.notify.lazy then
-      -- use the new notify
-    elseif (vim.loop.hrtime() - start) / 1e6 > 1000 then
-      -- use the old notify if loading the new one takes over 1 second
-      vim.notify = M.notify.orig
-    else
-      return
-    end
-    check:stop()
-    -- use the new notify
-    vim.schedule(function()
-      ---@diagnostic disable-next-line: no-unknown
-      for _, notif in ipairs(M.notify.notifs) do
-        vim.notify(vim.F.unpack_len(notif))
-      end
-    end)
-  end)
-end
-
 function M.get_loc()
   local me = debug.getinfo(1, "S")
   local level = 2
@@ -146,20 +113,11 @@ function M.setup()
   end
 
   vim.pretty_print = _G.d
-  M.notify.setup()
-  local dups = {}
   -- make all keymaps silent by default
   local keymap_set = vim.keymap.set
   ---@diagnostic disable-next-line: duplicate-set-field
   vim.keymap.set = function(mode, lhs, rhs, opts)
     opts = opts or {}
-    -- for _, m in ipairs(type(mode) == "table" and mode or { mode or "n" }) do
-    --   local key = m .. lhs .. (opts.buffer or "")
-    --   if dups[key] then
-    --     dd(m, lhs)
-    --   end
-    --   dups[key] = true
-    -- end
     opts.silent = opts.silent ~= false
     return keymap_set(mode, lhs, rhs, opts)
   end
