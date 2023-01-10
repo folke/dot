@@ -13,34 +13,33 @@ function M.get_loc()
   info = info or me
   local source = info.source:sub(2)
   source = vim.loop.fs_realpath(source) or source
-  return vim.fn.fnamemodify(source, ":~:.") .. ":" .. info.linedefined
+  return source .. ":" .. info.linedefined
 end
 
 ---@param value any
----@param opts? {loc:string, schedule:boolean}
+---@param opts? {loc:string}
 function M.dump(value, opts)
   opts = opts or {}
   opts.loc = opts.loc or M.get_loc()
+  if vim.in_fast_event() then
+    return vim.schedule(function()
+      M.dump(value, opts)
+    end)
+  end
+  opts.loc = vim.fn.fnamemodify(opts.loc, ":~:.")
   local msg = vim.inspect(value)
-  local function notify()
-    vim.notify(msg, vim.log.levels.INFO, {
-      title = "Debug: " .. opts.loc,
-      on_open = function(win)
-        vim.wo[win].conceallevel = 3
-        vim.wo[win].concealcursor = ""
-        vim.wo[win].spell = false
-        local buf = vim.api.nvim_win_get_buf(win)
-        if not pcall(vim.treesitter.start, buf, "lua") then
-          vim.bo[buf].filetype = "lua"
-        end
-      end,
-    })
-  end
-  if opts.schedule then
-    vim.schedule(notify)
-  else
-    notify()
-  end
+  vim.notify(msg, vim.log.levels.INFO, {
+    title = "Debug: " .. opts.loc,
+    on_open = function(win)
+      vim.wo[win].conceallevel = 3
+      vim.wo[win].concealcursor = ""
+      vim.wo[win].spell = false
+      local buf = vim.api.nvim_win_get_buf(win)
+      if not pcall(vim.treesitter.start, buf, "lua") then
+        vim.bo[buf].filetype = "lua"
+      end
+    end,
+  })
 end
 
 function M.get_value(...)
@@ -108,9 +107,7 @@ function M.setup()
     M.dump(M.get_value(...))
   end
 
-  _G.dd = function(...)
-    M.dump(M.get_value(...), { schedule = true })
-  end
+  _G.dd = _G.d
 
   vim.pretty_print = _G.d
   -- make all keymaps silent by default
