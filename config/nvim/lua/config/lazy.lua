@@ -14,12 +14,17 @@ end
 
 require("lazy").setup({
   spec = {
-    { "folke/LazyVim", import = "lazyvim.plugins" },
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = {},
+    },
     { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.lang.json" },
     { import = "plugins" },
   },
   defaults = { lazy = true },
-  dev = { patterns = jit.os:find("Windows") and {} or { "folke" } },
+  dev = { patterns = jit.os:find("Windows") and {} or { "folke", "LazyVim" } },
   install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true },
   diff = {
