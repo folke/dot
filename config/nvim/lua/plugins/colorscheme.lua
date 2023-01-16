@@ -2,7 +2,7 @@ return {
   { "shaunsingh/oxocarbon.nvim" },
   { "ellisonleao/gruvbox.nvim" },
   {
-    "folke/tokyonight.nvim",
+    "tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = function()

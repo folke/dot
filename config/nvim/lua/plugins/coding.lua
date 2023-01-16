@@ -101,8 +101,22 @@ return {
   },
   {
     "gbprod/yanky.nvim",
+    enabled = true,
     event = "BufReadPost",
     config = function()
+      -- vim.g.clipboard = {
+      --   name = "xsel_override",
+      --   copy = {
+      --     ["+"] = "xsel --input --clipboard",
+      --     ["*"] = "xsel --input --primary",
+      --   },
+      --   paste = {
+      --     ["+"] = "xsel --output --clipboard",
+      --     ["*"] = "xsel --output --primary",
+      --   },
+      --   cache_enabled = 1,
+      -- }
+
       require("yanky").setup({
         highlight = {
           timer = 150,
@@ -178,7 +192,7 @@ return {
   },
 
   {
-    "hrsh7th/nvim-cmp",
+    "nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
     },

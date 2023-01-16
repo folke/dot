@@ -1,9 +1,10 @@
 return {
-  "nvim-telescope/telescope.nvim",
+  "telescope.nvim",
   dependencies = {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   },
   keys = {
+    -- { "<leader>/", vim.NIL },
     {
       "<leader>fp",
       function()
