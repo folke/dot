@@ -35,6 +35,10 @@ floating_modifier $mod normal
 ## Appearance
 #################################################################
 font pango:FiraCode Nerd Font 12
+
+# Apply gtk theming
+exec_always ~/.config/sway/scripts/import-gsettings
+
 seat seat0 xcursor_theme WhiteSur-cursors 32
 # output * bg ~/Downloads/beach3.jpg fill
 output * bg ~/Pictures/jwst5.jpg fill
@@ -51,17 +55,6 @@ set $dimmed_accent "#ffffff66"
 client.focused $accent $accent $white $indicator $accent 
 client.unfocused $dimmed "#ffffff33" $white $dimmed $dimmed
 client.focused_inactive $dimmed_accent $dimmed_accent $white $dimmed $dimmed
-
-
-set $gnome-schema org.gnome.desktop.interface
-
-exec_always {
-    gsettings set $gnome-schema gtk-theme 'WhiteSur-light'
-    gsettings set $gnome-schema icon-theme 'Fluent'
-    gsettings set $gnome-schema cursor-theme 'WhiteSur-cursors'
-    gsettings set $gnome-schema font-name 'Your font name'
-}
-
 
 #################################################################
 ## Clipboard
@@ -265,7 +258,7 @@ exec_always nm-applet --indicator
 exec_always blueman-applet --indicator
 
 # Automatic Tiling
-exec ~/.local/bin/autotiling
+exec autotiling
 
 # Gestures
 exec gebaard -b
@@ -274,15 +267,24 @@ exec gebaard -b
 exec_always pgrep gammastep || gammastep-indicator 
 
 # Flash Focus
-exec_always --no-startup-id ~/.local/bin/flashfocus
+exec_always --no-startup-id flashfocus
 
+# Auth with polkit-gnome:
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# GTK3 applications take a long time to start
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 #################################################################
 ## Layout Rules
 #################################################################
 for_window [app_id="nm-connection-editor"] floating enable 
 for_window [app_id="pavucontrol"] floating enable 
-for_window [app_id="blueman-manager"] floating enable 
+for_window [class="Yad" instance="yad"] floating enable
+for_window [app_id="yad"] floating enable
+for_window [app_id="blueman-manager"] floating enable,  resize set width 40 ppt height 30 ppt
 for_window [title="PyLNP"] floating enable 
 
 # for_window [window_role = "pop-up"] floating enable
@@ -293,6 +295,22 @@ for_window [window_role = "task_dialog"] floating enable
 for_window [class = "Toplevel"] floating enable
 for_window [window_type = "menu"] floating enable
 no_focus [title="^Peek preview$"]
+# set floating for window roles
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="About"] floating enable
+for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="firefox" title="^Library$"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [title="Picture in picture"] floating enable, sticky enable
+for_window [title="nmtui"] floating enable,  resize set width 50 ppt height 70 ppt
+for_window [app_id="xsensors"] floating enable
+for_window [title="Save File"] floating enable
+for_window [app_id="firefox" title="Firefox — Sharing Indicator"] kill
 
 
 include /etc/sway/config.d/*

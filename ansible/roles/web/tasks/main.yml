@@ -26,29 +26,3 @@
         url: "https://www.messenger.com/",
         icon: "messengerfordesktop",
       }
-
-- name: Brave Launcher
-  copy:
-    dest: ~/.local/bin/brave-launcher
-    mode: "0755"
-    content: |-
-      #!/bin/sh
-
-      XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-      BRAVE_USER_FLAGS_FILE="$XDG_CONFIG_HOME/brave-flags.conf"
-      if [[ -f $BRAVE_USER_FLAGS_FILE ]]; then
-          USER_FLAGS="$(cat $BRAVE_USER_FLAGS_FILE | sed 's/#.*//')"
-      fi
-
-      /usr/bin/brave-browser-beta $@ $USER_FLAGS
-
-- name: Shadow Brave App
-  copy:
-    dest: ~/.local/share/applications/brave-browser-beta.desktop
-    src: /usr/share/applications/brave-browser-beta.desktop
-
-- name: Use Brave Launcher
-  ansible.builtin.replace:
-    path: ~/.local/share/applications/brave-browser-beta.desktop
-    regexp: "^Exec=/usr/bin/brave-browser-beta"
-    replace: "Exec={{ lookup('env', 'HOME') }}/.local/bin/brave-launcher"

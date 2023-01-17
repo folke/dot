@@ -13,8 +13,8 @@ configuration {
 	modi: "drun";
 	scroll-method: 0;
 	show-icons: true;
-sorting-method: "fzf";
-sort: true;
+  sorting-method: "fzf";
+  sort: true;
 	threads: 0;
 	window-thumbnail: true;
   timeout {

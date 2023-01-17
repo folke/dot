@@ -1,6 +1,6 @@
-- import_tasks: repos.yml
+# - import_tasks: repos.yml
 
-- name: install dnf tools
+- name: install tools
   become: true
   dnf:
     name:

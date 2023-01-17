@@ -1,44 +1,44 @@
 - name: Keyd
-  become: yes
+  become: true
   copy:
-    dest: /etc/keyd/default.cfg
-    src: ~/dot/ansible/roles/system/files/keyd.cfg
+    dest: /etc/keyd/default.conf
+    src: ~/dot/ansible/roles/system/files/keyd.conf
     owner: root
     group: root
     mode: "0644"
 
 - name: Enable Keyd Daemon
-  become: yes
+  become: true
   ansible.builtin.systemd:
     name: keyd
     enabled: yes
     state: started
 
-- name: Touchpad
-  become: yes
-  copy:
-    dest: /etc/X11/xorg.conf.d/30-touchpad.conf
-    src: ~/dot/ansible/roles/system/files/touchpad.conf
-    owner: root
-    group: root
-    mode: "0644"
+# - name: Touchpad
+#   become: true
+#   copy:
+#     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
+#     src: ~/dot/ansible/roles/system/files/touchpad.conf
+#     owner: root
+#     group: root
+#     mode: "0644"
+#
+# - name: prefer libinput over synaptics
+#   become: true
+#   file:
+#     src: /usr/share/X11/xorg.conf.d/40-libinput.conf
+#     dest: /etc/X11/xorg.conf.d/40-libinput.conf
+#     state: link
 
-- name: prefer libinput over synaptics
-  become: yes
-  file:
-    src: /usr/share/X11/xorg.conf.d/40-libinput.conf
-    dest: /etc/X11/xorg.conf.d/40-libinput.conf
-    state: link
-
-- name: Install Sway Autotiling
-  pip:
-    name:
-      - autotiling
-      - flashfocus
-
-- name: Disable sudo systemctl disable NetworkManager-wait-online.service
-  become: yes
-  ansible.builtin.systemd:
-    name: NetworkManager-wait-online.service
-    state: stopped
-    enabled: no
+# - name: Install Sway Autotiling
+#   pip:
+#     name:
+#       - autotiling
+#       - flashfocus
+#
+# - name: Disable sudo systemctl disable NetworkManager-wait-online.service
+#   become: true
+#   ansible.builtin.systemd:
+#     name: NetworkManager-wait-online.service
+#     state: stopped
+#     enabled: no
