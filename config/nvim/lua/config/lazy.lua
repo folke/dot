@@ -1,7 +1,6 @@
 local use_dev = true
 
 if use_dev then
-  -- use the local project
   vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/lazy.nvim"))
 else
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -21,6 +20,7 @@ require("lazy").setup({
     },
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
+    { import = "lazyvim.plugins.extras.ui.mini-animate" },
     { import = "plugins" },
   },
   defaults = { lazy = true },
