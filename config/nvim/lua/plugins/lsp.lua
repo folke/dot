@@ -42,6 +42,7 @@ return {
         ansiblels = {},
         bashls = {},
         clangd = {},
+        denols = false,
         cssls = {},
         dockerls = {},
         tsserver = {},

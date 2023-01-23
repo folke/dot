@@ -1,5 +1,5 @@
 local M = {}
-M.default = "xmas"
+M.default = "winter"
 M.ns = vim.api.nvim_create_namespace("dashboard")
 
 function M.get_theme(name)
@@ -15,6 +15,7 @@ end
 M.statusline = {
   halloween = "🧛👻👺🧟🎃",
   summer = "🌴🌊",
+  winter = "🏂❄️ ⛷️",
   xmas = "🎅🎄🌟🎁",
 }
 

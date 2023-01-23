@@ -14,3 +14,5 @@ fish_variables
 *.session
 state.yml
 config/lazygit/*/*.patch
+*.log
+tt.*
