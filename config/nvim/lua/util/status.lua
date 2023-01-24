@@ -33,6 +33,8 @@ function M.column()
   return table.concat(components, "")
 end
 
-vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
+if vim.fn.has("nvim-0.9.0") == 1 then
+  vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
+end
 
 return M
