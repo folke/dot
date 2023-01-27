@@ -43,6 +43,7 @@ colorMoved = default
 
 [pull]
 ff = only
+	rebase = true
 [github]
 user = folke
 [init]
@@ -51,3 +52,5 @@ defaultBranch = main
 gpgsign = true
 [credential]
 helper = cache
+[rebase]
+	autoStash = true

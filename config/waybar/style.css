@@ -7,14 +7,15 @@
 }
 
 window#waybar {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  background: rgba(30, 32, 48, 0.5);
   /* background: rgba(0, 0, 0, 0.4); */
   color: rgba(255, 255, 255, 1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 tooltip {
-  background: rgba(255, 255, 255, 0.93);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -26,7 +27,7 @@ tooltip label {
 widget label,
 widget image {
   padding: 0 8px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 #window,

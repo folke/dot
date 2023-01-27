@@ -1,10 +1,14 @@
+// vim: set ft=jsonc:
 {
   "height": 30,
   "spacing": 0,
+  "layer": "top",
   "modules-left": [
     "sway/workspaces",
+    "wlr/workspaces",
     "sway/mode",
-    "sway/window"
+    "sway/window",
+    "hyprland/window"
   ],
   "modules-center": [
     "clock"
@@ -20,6 +24,17 @@
     "battery",
     "custom/power"
   ],
+  "wlr/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "format-icons": {
+      "urgent": " ",
+      "active": " ",
+      "default": " "
+    },
+    "sort-by-number": true
+  },
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -78,6 +93,7 @@
     ]
   },
   "battery": {
+    "on-click": "cpupower-gui",
     "bat": "BAT0",
     "states": {
       "good": 95,
@@ -128,7 +144,7 @@
   },
   "custom/power": {
     "format": " ",
-    "on-click": "nwgbar"
+    "on-click": "wlogout"
   },
   "custom/media": {
     "format": "{icon} {}",

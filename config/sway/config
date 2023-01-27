@@ -5,7 +5,6 @@
 # Read `man 5 sway` for a complete reference.
 #
 
-
 #################################################################
 ## Variables
 #################################################################
@@ -140,8 +139,11 @@ bindsym $mod+Alt+Print exec $scripts/cast
 
 # Quake Mode
 for_window [app_id="quake"] move scratchpad, resize set 1920 1200, scratchpad show
+# bindsym Ctrl+Return exec swaymsg [app_id="quake"] scratchpad show || \
+#  kitty -1 --class quake -o background_opacity=0.95 -o hide_window_decorations=yes -o remember_window_size=no
+
 bindsym Ctrl+Return exec swaymsg [app_id="quake"] scratchpad show || \
- kitty -1 --class quake -o background_opacity=0.95 -o hide_window_decorations=yes -o remember_window_size=no
+  wezterm --config window_background_opacity=0.95 start --class quake
 
 
 #################################################################
@@ -195,7 +197,6 @@ bindsym $mod+Alt+0 move container to workspace number 10, workspace number 10
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $volume | xargs $wob
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $volume | xargs $wob
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && $volume | xargs $wob
-# bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' | xargs $wob
 bindsym --locked XF86MonBrightnessUp exec brightnessctl set +5% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' | xargs $wob
 bindsym --locked XF86AudioPlay exec playerctl play-pause && sleep .1 && $notify playmusic "$(playerctl status)"
