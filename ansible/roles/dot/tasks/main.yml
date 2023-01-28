@@ -47,6 +47,12 @@
     dest: ~/.config/nvim
     state: link
 
+- name: scripts
+  file:
+    src: ~/dot/scripts
+    dest: ~/.scripts
+    state: link
+
 - name: .ssh/config
   copy:
     src: ~/.config/.ssh.config
