@@ -1,11 +1,12 @@
 #!/bin/env bash
 
 WORKSPACE=$(hyprctl clients -j | jq -rec '.[] | select(.class == "quake") | .workspace .name')
+TERM_CMD="wezterm start --class quake"
+TERM_CMD="kitty -1 --class quake -o background_opacity=0.90 -o hide_window_decorations=yes -o remember_window_size=no"
 
 if [ -z "$WORKSPACE" ]; then
 	echo "start"
-	hyprctl dispatch -- exec "[float;size 1920 1200;center] \
-    wezterm start --class quake"
+	hyprctl dispatch -- exec "[float;size 1920 1200;center] $TERM_CMD"
 elif [ "$WORKSPACE" == "special:quake" ]; then
 	echo "show"
 	hyprctl dispatch movetoworkspace "+0,^(quake)\$"
