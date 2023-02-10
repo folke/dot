@@ -9,7 +9,19 @@ local function font(opts)
   })
 end
 
-function make_mouse_binding(dir, streak, button, mods, action)
+-- The filled in variant of the < symbol
+local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+
+-- The filled in variant of the > symbol
+local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+  return {
+    { Text = " " .. tab.active_pane.title .. " " },
+  }
+end)
+
+local function make_mouse_binding(dir, streak, button, mods, action)
   return {
     event = { [dir] = { streak = streak, button = button } },
     mods = mods,
@@ -80,7 +92,7 @@ return {
 
     -- The overall background color of the tab bar when
     -- the window is focused
-    active_titlebar_bg = "#191b28",
+    active_titlebar_bg = "#12131d",
 
     -- The overall background color of the tab bar when
     -- the window is not focused
@@ -91,33 +103,6 @@ return {
     right = 0,
     top = 0,
     bottom = 0,
-  },
-  colors = {
-    tab_bar = {
-      -- The color of the inactive tab bar edge/divider
-      inactive_tab_edge = "#1e2030",
-      background = "#191b28",
-      active_tab = {
-        fg_color = "#82aaff",
-        bg_color = "#222436",
-      },
-      inactive_tab = {
-        bg_color = "#1e2030",
-        fg_color = "#545c7e",
-      },
-      inactive_tab_hover = {
-        bg_color = "#1e2030",
-        fg_color = "#82aaff",
-      },
-      new_tab_hover = {
-        fg_color = "#1e2030",
-        bg_color = "#82aaff",
-      },
-      new_tab = {
-        fg_color = "#82aaff",
-        bg_color = "#191b28",
-      },
-    },
   },
   disable_default_key_bindings = true,
   keys = {
@@ -136,6 +121,7 @@ return {
     { mods = mod, key = "l", action = wezterm.action({ ActivateTabRelative = 1 }) },
     { mods = mod, key = "h", action = wezterm.action({ ActivateTabRelative = -1 }) },
     { key = "C", mods = "CTRL", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
+    { mods = mod, key = "d", action = wezterm.action.ShowDebugOverlay },
   },
   bold_brightens_ansi_colors = true,
   window_background_opacity = 0.9,
