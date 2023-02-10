@@ -1,7 +1,49 @@
 -- if true then
 --   return {}
 -- end
+local i = 0
 return {
+  -- {
+  --   "folke/noice.nvim",
+  --   keys = {
+  --     { "<c-f>", false, mode = { "i", "n", "s" } },
+  --     { "<c-b>", false, mode = { "i", "n", "s" } },
+  --   },
+  -- },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     i = i + 1
+  --     dd("color" .. i)
+  --     require("tokyonight").setup()
+  --     vim.cmd.colorscheme("tokyonight")
+  --     vim.api.nvim_set_hl(0, "Normal", { bg = "#000000" })
+  --   end,
+  -- },
+  -- {
+  --   "echasnovski/mini.surround",
+  --   opts = {
+  --     mappings = {
+  --       add = "sa",
+  --       delete = "sd",
+  --       find = "sf",
+  --       find_left = "sF",
+  --       highlight = "sh",
+  --       replace = "sr",
+  --       update_n_lines = "sn",
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     diagnostics = {
+  --       update_in_insert = true,
+  --     },
+  --   },
+  -- },
   -- {
   --   "akinsho/bufferline.nvim",
   --   event = "VeryLazy",
@@ -36,7 +78,6 @@ return {
   --
   -- {
   --   "romgrk/barbar.nvim",
-  --   event = "VeryLazy",
   --   config = true,
   -- },
   -- { "ggandor/flit.nvim", enabled = false },

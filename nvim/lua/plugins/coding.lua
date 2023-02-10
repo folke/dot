@@ -193,9 +193,7 @@ return {
 
   {
     "nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-    },
+    dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")

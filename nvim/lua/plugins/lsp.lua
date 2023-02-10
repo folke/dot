@@ -121,6 +121,17 @@ return {
     },
   },
 
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      setup = {
+        clangd = function(_, opts)
+          opts.capabilities.offsetEncoding = { "utf-16" }
+        end,
+      },
+    },
+  },
+
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
