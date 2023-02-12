@@ -20,7 +20,6 @@ avizo
 b43-fwcutter
 base
 bash-completion
-bashtop
 bat
 bind
 binutils
@@ -32,6 +31,7 @@ bob-bin
 bottom
 brave-beta-bin
 brightnessctl
+btop
 btrfs-assistant
 btrfs-progs
 cantarell-fonts
@@ -150,6 +150,7 @@ gvfs-smb
 gzip
 haveged
 hdparm
+helix
 howdy-beta-git
 hplip
 htop
@@ -191,6 +192,7 @@ linux-zen-headers
 logrotate
 lsb-release
 lsscsi
+lua-language-server
 lvm2
 lxappearance
 m4

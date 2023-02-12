@@ -24,7 +24,7 @@ return {
         "luacheck",
         "eslint_d",
         "shellcheck",
-        "deno",
+        -- "deno",
         "shfmt",
         "black",
         "isort",
@@ -47,7 +47,7 @@ return {
         dockerls = {},
         tsserver = {},
         svelte = {},
-        eslint = {},
+        -- eslint = {},
         html = {},
         gopls = {},
         marksman = {},
@@ -64,7 +64,7 @@ return {
           },
         },
         yamlls = {},
-        sumneko_lua = {
+        lua_ls = {
           -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
           single_file_support = true,
           settings = {
