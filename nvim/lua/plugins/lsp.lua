@@ -55,6 +55,7 @@ return {
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
+              procMacro = { enable = true },
               cargo = { allFeatures = true },
               checkOnSave = {
                 command = "clippy",
