@@ -6,7 +6,26 @@ end
 
 -- require("util.profiler").start()
 
-require("config.lazy")
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyVimStarted",
+  callback = function()
+    vim.schedule(function()
+      -- require("lazy.core.cache").inspect()
+    end)
+  end,
+})
+
+vim.g.profile_loaders = true
+require("config.lazy")({
+  defaults = {
+    lazy = true,
+  },
+  performance = {
+    cache = {
+      enabled = true,
+    },
+  },
+})
 
 -- require("util.dashboard").setup()
 

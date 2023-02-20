@@ -11,50 +11,54 @@ else
   vim.opt.rtp:prepend(lazypath)
 end
 
-require("lazy").setup({
-  spec = {
-    {
-      "LazyVim/LazyVim",
-      import = "lazyvim.plugins",
-      opts = {},
+---@param opts LazyConfig
+return function(opts)
+  opts = vim.tbl_deep_extend("force", {
+    spec = {
+      {
+        "LazyVim/LazyVim",
+        import = "lazyvim.plugins",
+        opts = {},
+      },
+      { import = "lazyvim.plugins.extras.lang.typescript" },
+      { import = "lazyvim.plugins.extras.lang.json" },
+      { import = "lazyvim.plugins.extras.ui.mini-animate" },
+      { import = "plugins" },
     },
-    { import = "lazyvim.plugins.extras.lang.typescript" },
-    { import = "lazyvim.plugins.extras.lang.json" },
-    { import = "lazyvim.plugins.extras.ui.mini-animate" },
-    { import = "plugins" },
-  },
-  defaults = { lazy = true },
-  dev = { patterns = jit.os:find("Windows") and {} or { "folke", "LazyVim" } },
-  install = { colorscheme = { "tokyonight", "habamax" } },
-  checker = { enabled = true },
-  diff = {
-    cmd = "terminal_git",
-  },
-  performance = {
-    cache = {
-      enabled = true,
-      -- disable_events = {},
+    defaults = { lazy = true },
+    dev = { patterns = jit.os:find("Windows") and {} or { "folke", "LazyVim" } },
+    install = { colorscheme = { "tokyonight", "habamax" } },
+    checker = { enabled = true },
+    diff = {
+      cmd = "terminal_git",
     },
-    rtp = {
-      disabled_plugins = {
-        "gzip",
-        "matchit",
-        "matchparen",
-        "netrwPlugin",
-        "rplugin",
-        "tarPlugin",
-        "tohtml",
-        "tutor",
-        "zipPlugin",
+    performance = {
+      cache = {
+        enabled = true,
+        -- disable_events = {},
+      },
+      rtp = {
+        disabled_plugins = {
+          "gzip",
+          "matchit",
+          "matchparen",
+          "netrwPlugin",
+          "rplugin",
+          "tarPlugin",
+          "tohtml",
+          "tutor",
+          "zipPlugin",
+        },
       },
     },
-  },
-  ui = {
-    custom_keys = {
-      ["<localleader>d"] = function(plugin)
-        dd(plugin)
-      end,
+    ui = {
+      custom_keys = {
+        ["<localleader>d"] = function(plugin)
+          dd(plugin)
+        end,
+      },
     },
-  },
-  debug = false,
-})
+    debug = false,
+  }, opts or {})
+  require("lazy").setup(opts)
+end
