@@ -1,4 +1,5 @@
 accountsservice
+act
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
@@ -19,11 +20,13 @@ autotiling
 avizo
 b43-fwcutter
 base
+base-devel
 bash-completion
 bat
 bind
 binutils
 bison
+bitwarden
 blueman
 bluez
 bluez-utils
@@ -31,10 +34,12 @@ bob-bin
 bottom
 brave-beta-bin
 brightnessctl
+browsh-bin
 btop
 btrfs-assistant
 btrfs-progs
 cantarell-fonts
+clang
 cliphist-bin
 clipman
 cpupower
@@ -189,6 +194,7 @@ linux-firmware
 linux-headers
 linux-zen
 linux-zen-headers
+lld
 logrotate
 lsb-release
 lsscsi
@@ -226,6 +232,7 @@ networkmanager-openconnect
 networkmanager-openvpn
 nfs-utils
 nilfs-utils
+nitch
 notion-app
 noto-fonts
 noto-fonts-emoji
@@ -273,6 +280,7 @@ rofi-lbonn-wayland-git
 rofimoji
 rsync
 rtkit
+rustup
 rz-cutter
 s-nail
 s-tui
@@ -288,6 +296,7 @@ splix
 spotify-launcher
 starship
 steam
+strace
 stylua
 sudo
 sushi
@@ -327,7 +336,7 @@ virt-manager
 vlc
 waybar-hyprland-git
 welcome
-wezterm-git
+wezterm
 wf-recorder-git
 wget
 which

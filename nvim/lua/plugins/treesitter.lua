@@ -77,6 +77,11 @@ return {
         use_virtual_text = true,
         lint_events = { "BufWrite", "CursorHold" },
       },
+      -- textobjects = {
+      --   move = {
+      --     enable = true,
+      --   },
+      -- },
       playground = {
         enable = true,
         disable = {},

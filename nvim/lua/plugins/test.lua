@@ -71,6 +71,17 @@ return {
   --   end,
   -- },
   -- {
+  --   "authot/plugin.vim",
+  --   init = function(plugin)
+  --     vim.fn["flog#cmd#flog"] = function(...)
+  --       vim.fn["flog#cmd#flog"] = nil
+  --       require("lazy").load({ plugins = { plugin } })
+  --       return vim.fn["flog#cmd#flog"](...)
+  --     end
+  --   end,
+  -- },
+  -- {
+  --
   --   "echasnovski/mini.surround",
   --   opts = {
   --     mappings = {
