@@ -94,6 +94,7 @@ function M.start()
           vim.api.nvim_echo(line, true, {})
         end
       end
+      require("lazy.core.cache").inspect()
     end,
   })
 end
