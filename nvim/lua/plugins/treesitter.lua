@@ -22,6 +22,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
+        "astro",
         "bash",
         "c",
         "cmake",
@@ -74,17 +75,11 @@ return {
         enable = true,
       },
       highlight = { enable = true },
-      -- indent = { enable = false },
       query_linter = {
         enable = true,
         use_virtual_text = true,
         lint_events = { "BufWrite", "CursorHold" },
       },
-      -- textobjects = {
-      --   move = {
-      --     enable = true,
-      --   },
-      -- },
       playground = {
         enable = true,
         disable = {},

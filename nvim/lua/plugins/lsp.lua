@@ -39,6 +39,7 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
+        astro = {},
         ansiblels = {},
         bashls = {},
         clangd = {},
