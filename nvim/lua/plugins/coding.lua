@@ -93,12 +93,10 @@ return {
   },
 
   {
-    "echasnovski/nvim",
+    "echasnovski/mini.bracketed",
     event = "BufReadPost",
-    name = "bracketed",
-    submodules = false,
     config = function()
-      local bracketed = require("mini-dev.bracketed")
+      local bracketed = require("mini.bracketed")
 
       local function put(cmd, regtype)
         local body = vim.fn.getreg(vim.v.register)
@@ -132,6 +130,7 @@ return {
       bracketed.setup({
         file = { suffix = "" },
         window = { suffix = "" },
+        quickfix = { suffix = "" },
         treesitter = { suffix = "n" },
       })
     end,
