@@ -70,6 +70,9 @@ return {
         "json",
         -- "markdown",
       },
+      matchup = {
+        enable = true,
+      },
       highlight = { enable = true },
       -- indent = { enable = false },
       query_linter = {
