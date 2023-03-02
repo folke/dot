@@ -158,6 +158,7 @@ hdparm
 helix
 howdy-beta-git
 hplip
+hplip-plugin
 htop
 httpie
 hub
@@ -284,6 +285,8 @@ rustup
 rz-cutter
 s-nail
 s-tui
+scrounge-ntfs
+seahorse
 sed
 sg3_utils
 shell-color-scripts
@@ -307,6 +310,7 @@ sysfsutils
 system-config-printer
 systemd-sysvcompat
 tealdeer
+testdisk
 texinfo
 thermald
 throttled
@@ -368,4 +372,5 @@ xsel
 xterm
 yay
 zellij
+zfxtop
 zoxide
