@@ -43,6 +43,7 @@ return {
         "jsonc",
         "latex",
         "lua",
+        "luap",
         "markdown",
         "markdown_inline",
         "meson",
