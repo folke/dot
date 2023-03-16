@@ -8,3 +8,5 @@ function _fnm_autoload_hook --on-variable PWD --description 'Change Node version
         fnm --log-level error use
     end
 end
+
+_fnm_autoload_hook
