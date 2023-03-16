@@ -1,3 +1,10 @@
+if vim.loader then
+  vim.loader.enable()
+  vim.schedule(function()
+    vim.notify("nvim cache is enabled")
+  end)
+end
+
 local debug = require("util.debug")
 
 if vim.env.VIMCONFIG then
@@ -15,10 +22,12 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
-vim.g.profile_loaders = true
+-- vim.g.profile_loaders = true
 require("config.lazy")({
+  debug = false,
   defaults = {
     lazy = true,
+    -- cond = false,
   },
   performance = {
     cache = {
