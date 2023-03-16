@@ -3,6 +3,20 @@
 -- end
 local i = 0
 return {
+  -- { name = "folketest", dir = "~/projects/test" },
+  -- {
+  --   "ggandor/leap.nvim",
+  --   keys = false,
+  --   config = function(_, opts)
+  --     local leap = require("leap")
+  --     for k, v in pairs(opts) do
+  --       leap.opts[k] = v
+  --     end
+  --     leap.add_default_mappings(true)
+  --     vim.keymap.del({ "x", "o" }, "x")
+  --     vim.keymap.del({ "x", "o" }, "X")
+  --   end,
+  -- },
   -- {
   --   "L3MON4D3/LuaSnip",
   --   keys = function()
@@ -98,8 +112,8 @@ return {
   -- {
   --   "neovim/nvim-lspconfig",
   --   opts = {
-  --     diagnostics = {
-  --       update_in_insert = true,
+  --     servers = {
+  --       lua_ls = false,
   --     },
   --   },
   -- },
@@ -127,7 +141,7 @@ return {
   -- {
   --   "rcarriga/nvim-notify",
   --   opts = {
-  --     background_colour = "#000000", -- doesn't work
+  --     render = "compact",
   --   },
   -- },
   -- { "stevearc/dressing.nvim", enabled = false },

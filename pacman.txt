@@ -30,7 +30,7 @@ bitwarden
 blueman
 bluez
 bluez-utils
-bob-bin
+bob
 bottom
 brave-beta-bin
 brightnessctl
@@ -56,6 +56,7 @@ discord_arch_electron
 dmidecode
 dmraid
 dnsmasq
+docker-compose
 dosfstools
 downgrade
 doxygen
@@ -177,6 +178,7 @@ jq
 kernel-install-for-dracut
 keyd-git
 kitty
+lazydocker
 lazygit
 less
 libdvdcss
@@ -242,6 +244,7 @@ ntfs-3g
 ntp
 nwg-launchers
 nwg-look
+omnisharp-roslyn-bin
 p7zip
 pacman
 pacman-contrib
@@ -258,6 +261,7 @@ pkgfile
 playerctl
 plymouth-theme-arch-glow
 podman
+podman-compose
 pokemon-colorscripts-git
 polkit-gnome
 poppler-glib
@@ -317,6 +321,7 @@ throttled
 tlp-rdw
 tlpui-git
 tmux
+tokei
 topgrade
 totem
 ttf-bitstream-vera
@@ -337,6 +342,7 @@ upower
 usb_modeswitch
 usbutils
 virt-manager
+visual-studio-code-bin
 vlc
 waybar-hyprland-git
 welcome
