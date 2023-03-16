@@ -1,0 +1,1 @@
+rtx activate fish | source

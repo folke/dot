@@ -82,6 +82,7 @@ eos-rankmirrors
 eos-sddm-theme
 eos-settings-gnome
 eos-update-notifier
+erdtree
 ethtool
 evince
 exa
@@ -98,7 +99,6 @@ firewalld
 fish
 flashfocus-git
 flex
-fnm
 foomatic-db
 foomatic-db-engine
 foomatic-db-gutenprint-ppds
@@ -285,6 +285,7 @@ rofi-lbonn-wayland-git
 rofimoji
 rsync
 rtkit
+rtx
 rustup
 rz-cutter
 s-nail
