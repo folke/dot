@@ -109,6 +109,7 @@ alias -s todo "ag --color-line-number '1;36' --color-path '1;36' --print-long-li
 
 alias -s winboot "sudo grub2-reboot \"Windows Boot Manager (on /dev/nvme0n1p1)\"; sudo reboot"
 
+
 # Other
 abbr df "grc /bin/df -h"
 abbr ntop "ultra --monitor"
