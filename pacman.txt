@@ -119,6 +119,7 @@ git-delta
 gita
 github-cli
 glances
+glow
 gnome-calculator
 gnome-console
 gnome-control-center
