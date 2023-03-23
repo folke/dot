@@ -44,6 +44,7 @@ return {
         denols = {},
         cssls = {},
         dockerls = {},
+        ruff_lsp = {},
         tsserver = {
           settings = {
             typescript = {
