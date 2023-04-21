@@ -1,5 +1,7 @@
 return {
 
+  { "pwntester/octo.nvim", opts = {}, cmd = "Octo" },
+
   -- neorg
   {
     "nvim-neorg/neorg",
@@ -34,7 +36,7 @@ return {
         desc = "Peek (Markdown Preview)",
       },
     },
-    opts = { theme = "light" },
+    opts = { theme = "light", app = "browser" },
   },
 
   -- better diffing

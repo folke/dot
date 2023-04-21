@@ -200,6 +200,7 @@ linux-zen
 linux-zen-headers
 lld
 logrotate
+logseq-desktop-bin
 lsb-release
 lsscsi
 lua-language-server
@@ -266,6 +267,7 @@ podman-compose
 pokemon-colorscripts-git
 polkit-gnome
 poppler-glib
+prettierd
 proxzima-plymouth-git
 pv
 python
@@ -275,6 +277,7 @@ python-msgpack
 python-packaging
 python-pyqt5
 python-reportlab
+python-sentencepiece-git
 qt6-wayland
 rebuild-detector
 reflector
@@ -326,6 +329,7 @@ tmux
 tokei
 topgrade
 totem
+tree
 ttf-bitstream-vera
 ttf-dejavu
 ttf-fira-code
@@ -352,6 +356,7 @@ wezterm
 wf-recorder-git
 wget
 which
+wireguard-tools
 wireplumber
 wl-clipboard
 wlogout

@@ -31,3 +31,5 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 
 require("util.status")
+
+-- require("vim.treesitter.language").register("html", "xml")
