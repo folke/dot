@@ -94,6 +94,7 @@ abbr v nvim
 abbr vd "cd ~/dot/config/nvim; nvim"
 abbr sv sudoedit
 abbr vudo sudoedit
+alias -s lazyvim "NVIM_APPNAME=lazyvim nvim"
 
 # Dev
 abbr git hub
