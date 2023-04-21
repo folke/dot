@@ -25,7 +25,7 @@ function M.column()
     nu = vim.v.relnum == 0 and vim.v.lnum or vim.v.relnum
   end
   local components = {
-    sign and ("%#" .. sign.texthl .. "#" .. sign.text .. "%*") or "  ",
+    sign and ("%#" .. (sign.texthl or "DiagnosticInfo") .. "#" .. sign.text .. "%*") or "  ",
     [[%=]],
     nu .. " ",
     git_sign and ("%#" .. git_sign.texthl .. "#" .. git_sign.text .. "%*") or "  ",
