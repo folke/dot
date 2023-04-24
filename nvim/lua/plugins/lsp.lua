@@ -46,6 +46,7 @@ return {
         dockerls = {},
         ruff_lsp = {},
         tsserver = {
+          single_file_support = false,
           settings = {
             typescript = {
               inlayHints = {
