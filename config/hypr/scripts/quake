@@ -12,5 +12,5 @@ elif [ "$WORKSPACE" == "special:quake" ]; then
 	hyprctl dispatch movetoworkspace "+0,^(quake)\$"
 else
 	echo "hide"
-	hyprctl dispatch movetoworkspace "special:quake,^(quake)\$"
+	hyprctl dispatch movetoworkspacesilent "special:quake,^(quake)\$"
 fi
