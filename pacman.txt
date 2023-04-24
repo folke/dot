@@ -27,6 +27,7 @@ bind
 binutils
 bison
 bitwarden
+bloop-desktop-bin
 blueman
 bluez
 bluez-utils
