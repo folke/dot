@@ -223,6 +223,7 @@ keybinding:
     bulkMenu: b
 os:
   editCommand: "nvim"
+  editCommandTemplate: "{{editor}} --server $NVIM --remote-tab {{filename}}"
   openCommand: open {{filename}}
   openLinkCommand: open {{link}}
 disableStartupPopups: false
