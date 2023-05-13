@@ -36,7 +36,7 @@ return {
         desc = "Peek (Markdown Preview)",
       },
     },
-    opts = { theme = "light", app = "browser" },
+    opts = { theme = "light" },
   },
 
   -- better diffing
