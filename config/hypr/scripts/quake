@@ -10,7 +10,9 @@ if [ -z "$WORKSPACE" ]; then
 elif [ "$WORKSPACE" == "special:quake" ]; then
 	echo "show"
 	hyprctl dispatch movetoworkspace "+0,^(quake)\$"
+	hyprctl dispatch bringactivetotop
 else
 	echo "hide"
-	hyprctl dispatch movetoworkspacesilent "special:quake,^(quake)\$"
+	hyprctl dispatch movetoworkspace "special:quake,^(quake)\$"
+	hyprctl dispatch focusurgentorlast
 fi
