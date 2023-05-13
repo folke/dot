@@ -43,6 +43,24 @@ return {
   },
 
   -- scrollbar
+  { "lewis6991/satellite.nvim", opts = {}, event = "VeryLazy", enabled = false },
+  {
+    "echasnovski/mini.map",
+    main = "mini.map",
+    event = "VeryLazy",
+    enabled = false,
+    config = function()
+      local map = require("mini.map")
+      map.setup({
+        integrations = {
+          map.gen_integration.builtin_search(),
+          map.gen_integration.gitsigns(),
+          map.gen_integration.diagnostic(),
+        },
+      })
+      map.open()
+    end,
+  },
   {
     "petertriho/nvim-scrollbar",
     event = "BufReadPost",
