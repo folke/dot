@@ -23,10 +23,8 @@ function M.wrap(name, fn)
     local start = vim.loop.hrtime()
     local ret = pack_len(pcall(fn, ...))
     M.stat(name, start)
-    if ret[1] then
-      return unpack(ret, 2, ret.n)
-    end
-    error(ret[2])
+    return unpack(ret, 2, ret.n)
+    -- error(ret[2])
   end
 end
 
@@ -67,36 +65,44 @@ function M.require(modname)
   error(ret[2])
 end
 
+function M.stop()
+  _G.require = M._require
+  local s = {}
+  for name, stat in pairs(M.stats) do
+    stat.name = name
+    s[#s + 1] = stat
+  end
+  table.sort(s, function(a, b)
+    return a.time > b.time
+  end)
+  for _, stat in ipairs(s) do
+    if stat.time / 1e6 > 0.5 then
+      local time = math.floor(stat.time / 1e6 * 100 + 0.5) / 100
+      local line = {
+        { time .. "ms", "Number" },
+        { stat.total .. "", "Number" },
+        { stat.name },
+      }
+      line[1][1] = line[1][1] .. string.rep(" ", 10 - #line[1][1])
+      line[2][1] = line[2][1] .. string.rep(" ", 10 - #line[2][1])
+      vim.api.nvim_echo(line, true, {})
+    end
+  end
+end
+
 function M.start()
   _G.require = M.require
+end
+
+function M.startup()
+  M.start()
   vim.api.nvim_create_autocmd("User", {
     pattern = "VeryLazy",
-    callback = function()
-      _G.require = M._require
-      local s = {}
-      for name, stat in pairs(M.stats) do
-        stat.name = name
-        s[#s + 1] = stat
-      end
-      table.sort(s, function(a, b)
-        return a.time > b.time
-      end)
-      for _, stat in ipairs(s) do
-        if stat.time / 1e6 > 0.5 then
-          local time = math.floor(stat.time / 1e6 * 100 + 0.5) / 100
-          local line = {
-            { time .. "ms", "Number" },
-            { stat.total .. "", "Number" },
-            { stat.name },
-          }
-          line[1][1] = line[1][1] .. string.rep(" ", 10 - #line[1][1])
-          line[2][1] = line[2][1] .. string.rep(" ", 10 - #line[2][1])
-          vim.api.nvim_echo(line, true, {})
-        end
-      end
-      require("lazy.core.cache").inspect()
-    end,
+    callback = M.stop,
   })
 end
+
+vim.api.nvim_create_user_command("ProfileStart", M.start, {})
+vim.api.nvim_create_user_command("ProfileStop", M.stop, {})
 
 return M
