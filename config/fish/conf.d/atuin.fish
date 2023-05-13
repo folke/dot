@@ -1,0 +1,1 @@
+atuin init fish | source
