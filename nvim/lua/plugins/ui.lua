@@ -79,8 +79,8 @@ return {
   -- silly drops
   {
     "folke/drop.nvim",
+    enabled = false,
     event = "VeryLazy",
-    enabled = true,
     config = function()
       math.randomseed(os.time())
       -- local theme = ({ "stars", "snow" })[math.random(1, 3)]
