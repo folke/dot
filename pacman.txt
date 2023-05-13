@@ -14,6 +14,7 @@ archlinux-keyring
 archlinux-xdg-menu
 aria2
 asp
+atuin
 autoconf
 automake
 autotiling
@@ -40,6 +41,7 @@ btop
 btrfs-assistant
 btrfs-progs
 cantarell-fonts
+chromium
 clang
 cliphist-bin
 clipman
@@ -216,9 +218,11 @@ mdadm
 mdcat
 meld
 mesa-utils
+microsoft-edge-beta-bin
 microsoft-edge-dev-bin
 mlocate
 modemmanager
+mods
 mtools
 mullvad-vpn-bin
 nano
@@ -230,6 +234,7 @@ neofetch
 neovide-git
 neovim
 neovim-symlinks
+nerdfix
 netctl
 nethack
 network-manager-applet
@@ -248,6 +253,7 @@ ntp
 nwg-launchers
 nwg-look
 omnisharp-roslyn-bin
+otf-cascadia-code
 p7zip
 pacman
 pacman-contrib
@@ -337,7 +343,8 @@ ttf-fira-code
 ttf-firacode-nerd
 ttf-liberation
 ttf-ms-fonts
-ttf-nerd-fonts-symbols-1000-em-mono
+ttf-nerd-fonts-symbols
+ttf-nerd-fonts-symbols-mono
 ttf-opensans
 ttf-segoe-ui-variable
 ttf-victor-mono

@@ -17,3 +17,4 @@ config/lazygit/*/*.patch
 *.log
 tt.*
 nvim/lua/config/env.lua
+config/environment.d/secrets.conf
