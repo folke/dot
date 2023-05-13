@@ -6,7 +6,7 @@ TERM_CMD="kitty -1 --class quake -o background_opacity=0.90 -o hide_window_decor
 
 if [ -z "$WORKSPACE" ]; then
 	echo "start"
-	hyprctl dispatch -- exec "[float;size 1920 1200;center] $TERM_CMD"
+	hyprctl dispatch -- exec "[float;size 1600 1000;center] $TERM_CMD"
 elif [ "$WORKSPACE" == "special:quake" ]; then
 	echo "show"
 	hyprctl dispatch movetoworkspace "+0,^(quake)\$"

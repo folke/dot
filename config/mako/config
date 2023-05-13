@@ -1,6 +1,6 @@
 layer=overlay
 anchor=top-center
-font=Roboto 12
+font=Roboto 10
 max-icon-size=64
 icons=1
 icon-path=/home/folke/.local/share/icons/Fluent:/usr/share/icons/Adwaita

@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0;
   font-family: FiraCode Nerd Font, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   min-height: 0;
 }
 
@@ -20,7 +20,7 @@ tooltip {
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 tooltip label {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(0, 0, 0, 0.8);
 }
 
@@ -52,9 +52,9 @@ widget image {
   padding: 0;
 }
 #workspaces button label {
-  padding: 0 6px 0 12px;
+  padding: 0 6px 0 8px;
   color: white;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 #workspaces button.focused {

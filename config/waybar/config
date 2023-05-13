@@ -1,6 +1,6 @@
 // vim: set ft=jsonc:
 {
-  "height": 30,
+  "height": 24,
   "spacing": 0,
   "layer": "top",
   "modules-left": [
@@ -65,7 +65,7 @@
     "format-alt": "{:%Y-%m-%d}"
   },
   "cpu": {
-    "format": " {load}",
+    "format": "󰌢 {load}",
     "tooltip": false,
     "on-click": "gnome-system-monitor"
   },
@@ -87,9 +87,9 @@
   "backlight": {
     "format": "{percent}% {icon}",
     "format-icons": [
-      "",
-      "",
-      ""
+      "󰃞",
+      "󰃟",
+      "󰃠"
     ]
   },
   "battery": {
@@ -113,30 +113,30 @@
     ]
   },
   "network": {
-    "format-wifi": "直",
-    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-    "format-linked": "{ifname} (No IP) ",
-    "format-disconnected": "睊",
+    "format-wifi": "󰖩",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} 󰈀",
+    "format-linked": "{ifname} (No IP) 󰈀",
+    "format-disconnected": "󰖪",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
     "format": "{icon}",
     "format-bluetooth": "{icon}",
-    "format-bluetooth-muted": "ﱝ {icon}",
-    "format-muted": "ﱝ ",
+    "format-bluetooth-muted": "󰝟 {icon}",
+    "format-muted": "󰝟 ",
     "format-source": "{volume}% ",
     "format-source-muted": "",
     "format-icons": {
       "headphone": "",
-      "hands-free": "",
-      "headset": "",
+      "hands-free": "󰂑",
+      "headset": "󰂑",
       "phone": "",
       "portable": "",
       "car": "",
       "default": [
-        "奄",
-        "奔",
-        "墳"
+        "󰕿",
+        "󰖀",
+        "󰕾"
       ]
     },
     "on-click": "pavucontrol",
