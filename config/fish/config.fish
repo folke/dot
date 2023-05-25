@@ -21,6 +21,7 @@ set -Ux fish_user_paths
 # Path
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
+fish_add_path ~/.luarocks/bin
 fish_add_path ~/Library/Python/3.{8,9}/bin
 fish_add_path /usr/local/opt/sqlite/bin
 fish_add_path /usr/local/sbin
