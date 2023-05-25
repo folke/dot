@@ -144,6 +144,7 @@ return {
                 },
               },
               diagnostics = {
+                disable = { "incomplete-signature-doc" },
                 -- enable = false,
                 groupSeverity = {
                   strong = "Warning",
