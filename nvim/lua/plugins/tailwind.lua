@@ -20,7 +20,7 @@ M.plugin = {
             then
               return
             end
-            return "%f[%w-]()[%w-]+%-[a-z%-]+%-%d+()%f[^%w-]"
+            return "%f[%w:-]()[%w:-]+%-[a-z%-]+%-%d+()%f[^%w:-]"
           end,
           group = function(_, match)
             local color, shade = match:match("[%w-]+%-([a-z%-]+)%-(%d+)")
