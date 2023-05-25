@@ -6,18 +6,14 @@ M.plugin = {
   opts = function()
     local hi = require("mini.hipatterns")
     local H = require("util.debug").get_upvalue(hi.setup, "H")
+    local tailwind_ft = { "typescriptreact", "javascriptreact", "css", "javascript", "typescript", "html" }
     return {
       highlighters = {
         hex_color = hi.gen_highlighter.hex_color({ priority = 5000 }),
         tailwind = {
           pattern = function()
             local ft = vim.bo.filetype
-            if
-              not vim.list_contains(
-                { "typescriptreact", "javascriptreact", "css", "javascript", "typescript", "html" },
-                ft
-              )
-            then
+            if not vim.list_contains(tailwind_ft, ft) then
               return
             end
             return "%f[%w:-]()[%w:-]+%-[a-z%-]+%-%d+()%f[^%w:-]"
