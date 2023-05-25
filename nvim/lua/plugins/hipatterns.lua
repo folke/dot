@@ -12,8 +12,7 @@ M.plugin = {
         hex_color = hi.gen_highlighter.hex_color({ priority = 5000 }),
         tailwind = {
           pattern = function()
-            local ft = vim.bo.filetype
-            if not vim.list_contains(tailwind_ft, ft) then
+            if not vim.list_contains(tailwind_ft, vim.bo.filetype) then
               return
             end
             return "%f[%w:-]()[%w:-]+%-[a-z%-]+%-%d+()%f[^%w:-]"
