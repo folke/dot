@@ -24,6 +24,7 @@ return function(opts)
       { import = "lazyvim.plugins.extras.lang.tailwind" },
       { import = "lazyvim.plugins.extras.ui.mini-animate" },
       { import = "lazyvim.plugins.extras.dap.core" },
+      { import = "lazyvim.plugins.extras.vscode" },
       { import = "lazyvim.plugins.extras.dap.nlua" },
       -- { import = "lazyvim.plugins.extras.util.project" },
       { import = "plugins" },
