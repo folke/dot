@@ -179,7 +179,6 @@ return {
         },
         teal_ls = {},
         vimls = {},
-        -- tailwindcss = {},
       },
       setup = {},
     },
@@ -200,10 +199,13 @@ return {
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
+    dev = true,
     opts = function(_, opts)
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {
+        nls.builtins.formatting.dprint,
         nls.builtins.diagnostics.markdownlint,
+        nls.builtins.diagnostics.deno_lint,
         nls.builtins.diagnostics.selene.with({
           condition = function(utils)
             return utils.root_has_file({ "selene.toml" })
