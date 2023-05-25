@@ -89,8 +89,8 @@ return {
     event = "VeryLazy",
     opts = {
       themes = {
-        markdown = { colorscheme = "tokyonight-storm" },
-        help = { colorscheme = "oxocarbon", background = "dark" },
+        markdown = { colorscheme = "catppuccin" },
+        help = { colorscheme = "catppuccin", background = "dark" },
       },
     },
   },
