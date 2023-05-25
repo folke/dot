@@ -3,6 +3,7 @@ return {
 
   {
     "echasnovski/mini.splitjoin",
+    enabled = false,
     opts = { mappings = { toggle = "J" } },
     keys = {
       { "J", desc = "Split/Join" },
@@ -10,7 +11,6 @@ return {
   },
   {
     "Wansmer/treesj",
-    enabled = false,
     keys = {
       { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
     },
