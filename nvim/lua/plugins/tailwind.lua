@@ -345,11 +345,4 @@ M.colors = {
   },
 }
 
-for color, shades in pairs(M.colors) do
-  for shade, hex in pairs(shades) do
-    local hl = "Tailwind" .. color .. shade
-    vim.api.nvim_set_hl(0, hl, { bg = "#" .. hex })
-  end
-end
-
 return M.plugin
