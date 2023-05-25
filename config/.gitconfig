@@ -42,8 +42,7 @@ conflictstyle = diff3
 colorMoved = default
 
 [pull]
-ff = only
-	rebase = true
+rebase = true
 [github]
 user = folke
 [init]
