@@ -6,11 +6,10 @@ if vim.loader then
   end)
 end
 
-local debug = require("util.debug")
-
-if vim.env.VIMCONFIG then
-  return debug.switch(vim.env.VIMCONFIG)
+_G.dd = function(...)
+  require("util.debug").dump(...)
 end
+vim.print = _G.dd
 
 -- require("util.profiler").start()
 

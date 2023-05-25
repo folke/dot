@@ -8,7 +8,7 @@ _G.profile = function(cmd, times, flush)
     end
     cmd()
   end
-  print(((vim.loop.hrtime() - start) / 1000000 / times) .. "ms")
+  print(((vim.loop.hrtime() - start) / 1e6 / times) .. "ms")
 end
 
 local M = {}

@@ -6,7 +6,7 @@ function M.get_loc()
   local me = debug.getinfo(1, "S")
   local level = 2
   local info = debug.getinfo(level, "S")
-  while info and info.source == me.source do
+  while info and (info.source == me.source or info.source == "@" .. vim.env.MYVIMRC or info.what ~= "Lua") do
     level = level + 1
     info = debug.getinfo(level, "S")
   end
@@ -18,12 +18,12 @@ end
 
 ---@param value any
 ---@param opts? {loc:string}
-function M.dump(value, opts)
+function M._dump(value, opts)
   opts = opts or {}
   opts.loc = opts.loc or M.get_loc()
   if vim.in_fast_event() then
     return vim.schedule(function()
-      M.dump(value, opts)
+      M._dump(value, opts)
     end)
   end
   opts.loc = vim.fn.fnamemodify(opts.loc, ":~:.")
@@ -42,83 +42,113 @@ function M.dump(value, opts)
   })
 end
 
-function M.get_value(...)
+function M.dump(...)
   local value = { ... }
-  return vim.tbl_islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
+  value = vim.tbl_islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
+  M._dump(value)
 end
 
-function M.switch(config)
-  config = vim.loop.fs_realpath(config)
-  local config_name = vim.fn.fnamemodify(config, ":p:~"):gsub("[\\/]", "."):gsub("^~%.", ""):gsub("%.$", "")
-  local root = vim.fn.fnamemodify("~/.nvim/" .. config_name, ":p"):gsub("/$", "")
-  vim.fn.mkdir(root, "p")
+function M.extmark_leaks()
+  local nsn = vim.api.nvim_get_namespaces()
 
-  ---@type table<string,string>
-  local old = {}
-  ---@type table<string,string>
-  local new = {}
+  local counts = {}
 
-  for _, name in ipairs({ "config", "data", "state", "cache" }) do
-    local path = root .. "/" .. name
-    vim.fn.mkdir(path, "p")
-    local xdg = ("XDG_%s_HOME"):format(name:upper())
-    old[xdg] = vim.env[xdg] or vim.env.HOME .. "/." .. name
-    new[xdg] = path
-    if name == "config" then
-      path = path .. "/nvim"
-      pcall(vim.loop.fs_unlink, path)
-      vim.loop.fs_symlink(config, path, { dir = true })
-    end
-  end
-
-  ---@param env table<string,string>
-  local function apply(env)
-    for k, v in pairs(env) do
-      vim.env[k] = v
-    end
-  end
-
-  local function wrap(fn)
-    return function(...)
-      apply(old)
-      local ok, ret = pcall(fn, ...)
-      apply(new)
-      if ok then
-        return ret
+  for name, ns in pairs(nsn) do
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      local count = #vim.api.nvim_buf_get_extmarks(buf, ns, 0, -1, {})
+      if count > 0 then
+        counts[#counts + 1] = {
+          name = name,
+          buf = buf,
+          count = count,
+          ft = vim.bo[buf].ft,
+        }
       end
-      error(ret)
     end
   end
-
-  vim.fn.termopen = wrap(vim.fn.termopen)
-
-  apply(new)
-
-  local ffi = require("ffi")
-  ffi.cdef([[char *runtimepath_default(bool clean_arg);]])
-  local rtp = ffi.string(ffi.C.runtimepath_default(false))
-  vim.go.rtp = rtp
-  vim.go.pp = rtp
-  dofile(root .. "/config/nvim/init.lua")
+  table.sort(counts, function(a, b)
+    return a.count > b.count
+  end)
+  dd(counts)
 end
 
-function M.setup()
-  _G.d = function(...)
-    M.dump(M.get_value(...))
+function estimateSize(value, visited)
+  if value == nil then
+    return 0
+  end
+  local bytes = 0
+
+  -- initialize the visited table if not already done
+  --- @type table<any, true>
+  visited = visited or {}
+
+  -- handle already-visited value to avoid infinite recursion
+  if visited[value] then
+    return 0
+  else
+    visited[value] = true
   end
 
-  _G.dd = _G.d
+  if type(value) == "boolean" or value == nil then
+    bytes = 4
+  elseif type(value) == "number" then
+    bytes = 8
+  elseif type(value) == "string" then
+    bytes = string.len(value) + 24
+  elseif type(value) == "function" then
+    bytes = 32 -- base size for a function
+    -- add size of upvalues
+    local i = 1
+    while true do
+      local name, val = debug.getupvalue(value, i)
+      if not name then
+        break
+      end
+      bytes = bytes + estimateSize(val, visited)
+      i = i + 1
+    end
+  elseif type(value) == "table" then
+    bytes = 40 -- base size for a table entry
+    for k, v in pairs(value) do
+      bytes = bytes + estimateSize(k, visited) + estimateSize(v, visited)
+    end
+    local mt = debug.getmetatable(value)
+    if mt then
+      bytes = bytes + estimateSize(mt, visited)
+    end
+  end
+  return bytes
+end
 
-  vim.pretty_print = _G.d
-  -- make all keymaps silent by default
-  local keymap_set = vim.keymap.set
-  ---@diagnostic disable-next-line: duplicate-set-field
-  vim.keymap.set = function(mode, lhs, rhs, opts)
-    opts = opts or {}
-    opts.silent = opts.silent ~= false
-    return keymap_set(mode, lhs, rhs, opts)
+function M.module_leaks(filter)
+  local sizes = {}
+  for modname, mod in pairs(package.loaded) do
+    if not filter or modname:match(filter) then
+      local root = modname:match("^([^%.]+)%..*$") or modname
+      -- root = modname
+      sizes[root] = sizes[root] or { mod = root, size = 0 }
+      sizes[root].size = sizes[root].size + estimateSize(mod) / 1024 / 1024
+    end
+  end
+  sizes = vim.tbl_values(sizes)
+  table.sort(sizes, function(a, b)
+    return a.size > b.size
+  end)
+  dd(sizes)
+end
+
+function M.get_upvalue(func, name)
+  local i = 1
+  while true do
+    local n, v = debug.getupvalue(func, i)
+    if not n then
+      break
+    end
+    if n == name then
+      return v
+    end
+    i = i + 1
   end
 end
-M.setup()
 
 return M
