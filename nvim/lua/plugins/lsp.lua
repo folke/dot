@@ -47,6 +47,18 @@ return {
       ---@type lspconfig.options
       servers = {
         astro = {},
+        -- rome = {
+        --   root_dir = function(fname)
+        --     return require("lspconfig").util.root_pattern("rome.json")(fname)
+        --   end,
+        --   mason = false,
+        --   settings = {
+        --     rome = {
+        --       rename = true,
+        --       -- requireConfiguration = true,
+        --     },
+        --   },
+        -- },
         ansiblels = {},
         bashls = {},
         clangd = {},
