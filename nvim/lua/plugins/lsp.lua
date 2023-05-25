@@ -226,6 +226,7 @@ return {
   -- inlay hints
   {
     "lvimuser/lsp-inlayhints.nvim",
+    branch = "anticonceal",
     event = "LspAttach",
     opts = {},
     config = function(_, opts)
