@@ -143,6 +143,14 @@ return {
                   "--log-level=trace",
                 },
               },
+              hint = {
+                enable = true,
+                setType = false,
+                paramType = true,
+                paramName = "Disable",
+                semicolon = "Disable",
+                arrayIndex = "Disable",
+              },
               diagnostics = {
                 disable = { "incomplete-signature-doc" },
                 -- enable = false,
@@ -238,8 +246,9 @@ return {
           if not (args.data and args.data.client_id) then
             return
           end
+          ---@type lsp.Client
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          require("lsp-inlayhints").on_attach(client, args.buf)
+          require("lsp-inlayhints").on_attach(client, args.buf, false)
         end,
       })
     end,
