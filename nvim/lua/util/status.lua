@@ -11,6 +11,9 @@ end
 
 function M.column()
   local win = vim.g.statusline_winid
+  if vim.wo[win].signcolumn == "no" then
+    return ""
+  end
   local sign, git_sign
   for _, s in ipairs(M.get_signs(win)) do
     if s.name:find("GitSign") then
