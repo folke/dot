@@ -204,6 +204,7 @@ return {
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {
         nls.builtins.formatting.dprint,
+        nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
         nls.builtins.diagnostics.markdownlint,
         nls.builtins.diagnostics.deno_lint,
         nls.builtins.diagnostics.selene.with({
