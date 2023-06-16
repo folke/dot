@@ -3,6 +3,8 @@ return {
   { "marilari88/neotest-vitest" },
   {
     "nvim-neotest/neotest",
-    opts = { adapters = { "neotest-plenary", "neotest-vitest" } },
+    opts = { adapters = { ["neotest-plenary"] = {
+      min_init = "./tests/init.lua",
+    }, "neotest-vitest" } },
   },
 }

@@ -1,5 +1,4 @@
 local M = {}
-_G.Status = M
 
 ---@return {name:string, text:string, texthl:string}[]
 function M.get_signs(win)
@@ -37,7 +36,7 @@ function M.column()
 end
 
 if vim.fn.has("nvim-0.9.0") == 1 then
-  vim.opt.statuscolumn = [[%!v:lua.Status.column()]]
+  vim.opt.statuscolumn = [[%!v:lua.require'util.status'.column()]]
 end
 
 return M

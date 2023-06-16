@@ -22,11 +22,7 @@ return {
         "selene",
         "luacheck",
         "shellcheck",
-        -- "deno",
         "shfmt",
-        "black",
-        "isort",
-        "flake8",
       })
     end,
   },
@@ -46,7 +42,6 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        astro = {},
         -- rome = {
         --   root_dir = function(fname)
         --     return require("lspconfig").util.root_pattern("rome.json")(fname)
@@ -62,7 +57,7 @@ return {
         ansiblels = {},
         bashls = {},
         clangd = {},
-        denols = {},
+        -- denols = {},
         cssls = {},
         dockerls = {},
         ruff_lsp = {},
@@ -101,11 +96,13 @@ return {
             },
           },
         },
-        svelte = {},
+        -- svelte = {},
         html = {},
         gopls = {},
         marksman = {},
-        pyright = {},
+        pyright = {
+          enabled = false,
+        },
         rust_analyzer = {
           settings = {
             ["rust-analyzer"] = {
@@ -140,7 +137,7 @@ return {
               },
               misc = {
                 parameters = {
-                  "--log-level=trace",
+                  -- "--log-level=trace",
                 },
               },
               hint = {
@@ -151,8 +148,14 @@ return {
                 semicolon = "Disable",
                 arrayIndex = "Disable",
               },
+              doc = {
+                privateName = { "^_" },
+              },
+              type = {
+                castNumberToInteger = true,
+              },
               diagnostics = {
-                disable = { "incomplete-signature-doc" },
+                disable = { "incomplete-signature-doc", "trailing-space" },
                 -- enable = false,
                 groupSeverity = {
                   strong = "Warning",
@@ -185,7 +188,6 @@ return {
             },
           },
         },
-        teal_ls = {},
         vimls = {},
       },
       setup = {},

@@ -3,10 +3,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged", "Insert
   group = vim.api.nvim_create_augroup("class_conceal", { clear = true }),
   pattern = { "*.tsx" },
   callback = function(event)
-    do
-      return
-    end
-    dd(event)
     local bufnr = event.buf or vim.api.nvim_get_current_buf()
 
     ---Conceal HTML class attributes. Ideal for big TailwindCSS class lists

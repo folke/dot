@@ -308,6 +308,7 @@ rofimoji
 rsync
 rtkit
 rtx
+rust-analyzer
 rustup
 rz-cutter
 s-nail
