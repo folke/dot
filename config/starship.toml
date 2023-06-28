@@ -24,8 +24,8 @@ staged = '[ $count](bold green) '
 stashed = "[ ](cyan) "
 deleted = '[ $count](bold red) '
 modified= '[ $count](bold blue) '
-behind = '[ ](bold purple)'
-format = '([$all_status$ahead_behind]($style) )'
+behind = '[ ](bold purple) '
+format = '([$all_status$ahead_behind]($style))'
 
 
 [git_metrics]
