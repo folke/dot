@@ -15,9 +15,9 @@ return {
     ---@type Flash.Config
     opts = {
       label = {
-        format = function(opts)
-          return { { opts.match.label:upper(), opts.hl_group } }
-        end,
+        -- format = function(opts)
+        --   return { { opts.match.label:upper(), opts.hl_group } }
+        -- end,
       },
       modes = {
         treesitter_search = {
