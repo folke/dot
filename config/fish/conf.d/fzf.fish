@@ -1,6 +1,6 @@
 # bind \cr '__fzf_history'
-bind \ch __fzf_tldr
-bind \ct __fzf_files
+bind -M insert \ch __fzf_tldr
+bind -M insert \ct __fzf_files
 
 set -l color00 '#292D3E'
 set -l color01 '#444267'
