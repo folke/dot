@@ -10,6 +10,12 @@ style = "dimmed blue"
 format = "[$output]($style)"
 shell =["bash"]
 
+[custom.neovim]
+command = 'bob ls | rg Used | awk "{print \$2}"'  # shows output of command
+when = """ test -d lua """
+style = "green"
+format = "[ $output]($style)"
+shell =["bash"]
 
 # [git_status]
 
