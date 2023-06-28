@@ -36,6 +36,7 @@ return function(opts)
       { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
       { import = "lazyvim.plugins.extras.test.core" },
       { import = "lazyvim.plugins.extras.editor.flash" },
+      { import = "lazyvim.plugins.extras.coding.yanky" },
       { import = "lazyvim.plugins.extras.editor.mini-files" },
       -- { import = "lazyvim.plugins.extras.util.project" },
       { import = "plugins" },
