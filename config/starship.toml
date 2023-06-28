@@ -17,12 +17,19 @@ style = "green"
 format = "[ $output]($style)"
 shell =["bash"]
 
-# [git_status]
 
-[battery]
-full_symbol = "󰁹"
-charging_symbol = "󰂇"
-discharging_symbol = "󰂃"
+[git_status]
+untracked = '[ $count](bold yellow) '
+staged = '[ $count](bold green) '
+stashed = "[ ](cyan) "
+deleted = '[ $count](bold red) '
+modified= '[ $count](bold blue) '
+behind = '[ ](bold purple)'
+format = '([$all_status$ahead_behind]($style) )'
+
+
+[git_metrics]
+disabled = false
 
 [aws]
 symbol = "  "
