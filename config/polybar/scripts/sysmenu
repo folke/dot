@@ -14,7 +14,7 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -location 3 \
 -columns 1 \
 -color-enabled true \
-<<< "  Lock|  Logout|  Reboot|  Shutdown")"
+<<< "󰌾  Lock|  Logout|  Reboot|  Shutdown")"
 case "$MENU" in
   *Lock) betterlockscreen -l dim ;;
   *Logout) bspc quit;;

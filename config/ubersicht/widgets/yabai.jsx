@@ -59,7 +59,7 @@ export const render = ({ output }, dispatch) => {
               run(`/usr/local/bin/yabai -m space --focus ${space.index}`);
             }}
           >
-            {space.windows.length ? "" : ""}
+            {space.windows.length ? "󰝥" : "󰝦"}
           </Space>
         ))}
       </Spaces>

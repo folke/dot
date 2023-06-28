@@ -207,7 +207,7 @@
           (:name "  Social"     :query "tag:social"              :key "cs")
           (:name "  Updates"    :query "tag:updates"             :key "cu")
           (:name "  Promotions" :query "tag:promotions"          :key "cp")
-          (:name "  All Mail"   :query ""                        :key "a")
+          (:name "󰇮  All Mail"   :query ""                        :key "a")
           (:name "  Starred"    :query "tag:flagged"             :key "*")
           (:name "  Sent"       :query "tag:sent"                :key "s")
           (:name "  Drafts"     :query "tag:draft"               :key "d"))))
@@ -337,9 +337,9 @@ lg:overflow-x-auto xl:px-32"
 (after! org
   (setq org-tags-column -80)
   (appendq! +ligatures-extra-symbols
-            `(:checkbox      ""
-              :doing         ""
-              :checkedbox    ""
+            `(:checkbox      "󰄱"
+              :doing         "󰄮"
+              :checkedbox    "󰄵"
               :list_property "∷"))
   (set-ligatures! 'org-mode
     :merge t
