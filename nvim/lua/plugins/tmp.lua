@@ -1,36 +1,5 @@
 return {
   {
-    "echasnovski/nvim",
-    name = "mini-dev",
-    submodules = false,
-    opts = {
-      windows = {
-        preview = true,
-        width_nofocus = 25,
-        width_focus = 25,
-      },
-    },
-    keys = {
-      {
-        "<leader>fm",
-        function()
-          require("mini-dev.files").open(vim.api.nvim_buf_get_name(0), true)
-        end,
-      },
-    },
-    config = function(_, opts)
-      require("mini-dev.files").setup(opts)
-    end,
-  },
-  {
-    "folke/edgy.nvim",
-    opts = {
-      wo = {},
-      debug = false,
-      animate = { enabled = true },
-    },
-  },
-  {
     "AckslD/muren.nvim",
     opts = {
       patterns_width = 60,
@@ -40,58 +9,36 @@ return {
     },
     cmd = "MurenToggle",
   },
-  -- { "rlane/pounce.nvim", opts = {}, cmd = "Pounce" },
-  -- { "echasnovski/mini.jump", lazy = false, opts = {} },
-  { "ggandor/leap.nvim", enabled = false },
-  { "ggandor/flit.nvim", enabled = false },
-  { "mfussenegger/nvim-treehopper", enabled = false },
-  { "tpope/vim-repeat", enabled = false },
-
   {
     "folke/flash.nvim",
-    opts = {},
     enabled = true,
-    event = "VeryLazy",
-    keys = {
-      {
-        "m",
-        mode = { "o", "x" },
-        function()
-          return require("flash.plugins.treesitter").jump()
+    ---@type Flash.Config
+    opts = {
+      label = {
+        format = function(opts)
+          return { { opts.match.label:upper(), opts.hl_group } }
         end,
       },
-      {
-        "s",
-        mode = { "n", "x", "o" },
-        function()
-          local ret = require("flash.commands").jump({
-            -- search = { mode = "fuzzy" },
-            -- mode = "forward",
-          })
-          return ret
-        end,
-        -- expr = true,
+      modes = {
+        treesitter_search = {
+          label = {
+            rainbow = { enabled = true },
+            -- format = function(opts)
+            --   local label = opts.match.label
+            --   if opts.after then
+            --     label = label .. ">"
+            --   else
+            --     label = "<" .. label
+            --   end
+            --   return { { label, opts.hl_group } }
+            -- end,
+          },
+        },
       },
-      {
-        "S",
-        function()
-          return require("flash.commands").jump({
-            mode = "backward",
-          })
-        end,
-      },
-      {
-        "gs",
-        function()
-          return require("flash.commands").jump({})
-        end,
-      },
-      {
-        "gS",
-        function()
-          return require("flash").jump()
-        end,
-      },
+      -- search = { mode = "fuzzy" },
+      -- labels = "😅😀🏇🐎🐴🐵🐒",
     },
   },
+  -- { "rlane/pounce.nvim", opts = {}, cmd = "Pounce" },
+  -- { "echasnovski/mini.jump", lazy = false, opts = {} },
 }

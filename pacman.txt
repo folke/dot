@@ -124,6 +124,7 @@ ghostscript
 git
 git-delta
 github-cli
+gitui
 glances
 glow
 gnome-calculator
@@ -188,6 +189,7 @@ khal
 kitty
 lazydocker
 lazygit
+lemmy-help
 less
 libdvdcss
 libfprint-2-tod1-xps9300-bin
@@ -227,6 +229,7 @@ meld
 mesa-utils
 microsoft-edge-beta-bin
 microsoft-edge-dev-bin
+mitogen
 mlocate
 modemmanager
 mods
@@ -371,9 +374,11 @@ usbutils
 virt-manager
 visual-studio-code-bin
 vlc
+warpd-git
 watchexec
 waybar-hyprland-git
 welcome
+wev
 wezterm
 wf-recorder-git
 wget
