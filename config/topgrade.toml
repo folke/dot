@@ -1,6 +1,7 @@
+[misc]
 # Don't ask for confirmations
 #assume_yes = true
-display_preamble = false
+# display_preamble = false
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]

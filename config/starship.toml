@@ -12,9 +12,9 @@ shell =["bash"]
 
 [custom.neovim]
 command = 'bob ls | rg Used | awk "{print \$2}"'  # shows output of command
-when = """ test -d lua """
+detect_folders = ["lua"]
 style = "green"
-format = "[ $output]($style)"
+format = "[ $output ]($style)"
 shell =["bash"]
 
 
@@ -25,8 +25,15 @@ stashed = "[ ](cyan) "
 deleted = '[ $count](bold red) '
 modified= '[ $count](bold blue) '
 behind = '[ ](bold purple) '
+ahead = '[ ](bold purple) '
 format = '([$all_status$ahead_behind]($style))'
 
+[[battery.display]]
+threshold = 50
+
+[lua]
+detect_folders = []
+symbol = " "
 
 [git_metrics]
 disabled = false
@@ -87,9 +94,6 @@ symbol = " "
 
 [julia]
 symbol = " "
-
-[lua]
-symbol = " "
 
 [memory_usage]
 symbol = "󰍛 "
