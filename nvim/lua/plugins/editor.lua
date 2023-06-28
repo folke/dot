@@ -32,10 +32,4 @@ return {
       end)
     end,
   },
-
-  {
-    "ggandor/flit.nvim",
-    enabled = true,
-    opts = { labeled_modes = "v" },
-  },
 }

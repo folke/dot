@@ -15,7 +15,13 @@ end
 return function(opts)
   opts = vim.tbl_deep_extend("force", {
     spec = {
-      { "LazyVim/LazyVim", import = "lazyvim.plugins", opts = {} },
+      {
+        "LazyVim/LazyVim",
+        import = "lazyvim.plugins",
+        opts = {
+          -- colorscheme = "rose-pine",
+        },
+      },
       { import = "lazyvim.plugins.extras.lang.typescript" },
       { import = "lazyvim.plugins.extras.linting.eslint" },
       -- { import = "lazyvim.plugins.extras.formatting.prettier" },
@@ -29,6 +35,8 @@ return function(opts)
       { import = "lazyvim.plugins.extras.dap.nlua" },
       { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
       { import = "lazyvim.plugins.extras.test.core" },
+      { import = "lazyvim.plugins.extras.editor.flash" },
+      { import = "lazyvim.plugins.extras.editor.mini-files" },
       -- { import = "lazyvim.plugins.extras.util.project" },
       { import = "plugins" },
     },
