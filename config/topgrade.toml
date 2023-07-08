@@ -67,7 +67,7 @@ repos = [
 # Custom commands
 [commands]
 # "Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
-"Bob Neovim" = "/bin/bob install nightly"
+# "Bob Neovim" = "/bin/bob install nightly"
 "Fish Update Completions" = "fish_update_completions"
 
 [brew]

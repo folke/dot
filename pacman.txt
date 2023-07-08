@@ -28,7 +28,6 @@ bind
 binutils
 bison
 bitwarden
-bloop-desktop-bin
 blueman
 bluez
 bluez-utils
@@ -91,6 +90,7 @@ eos-update-notifier
 erdtree
 ethtool
 evince
+evtest
 exa
 exfatprogs
 f2fs-tools
@@ -165,6 +165,7 @@ gzip
 haveged
 hdparm
 helix
+himalaya
 howdy-beta-git
 hplip
 hplip-plugin
@@ -175,7 +176,7 @@ hwdetect
 hwinfo
 hyperfine
 hyprland
-imv
+imv-git
 inetutils
 intel-ucode
 inxi
@@ -311,6 +312,7 @@ rofimoji
 rsync
 rtkit
 rtx
+ruby
 rust-analyzer
 rustup
 rz-cutter
@@ -397,6 +399,7 @@ wob
 wpa_supplicant
 wtype
 xdg-desktop-portal-hyprland
+xdg-ninja-git
 xdg-user-dirs
 xdg-user-dirs-gtk
 xdg-utils
