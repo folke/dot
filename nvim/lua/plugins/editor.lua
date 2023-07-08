@@ -20,6 +20,7 @@ return {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
+    enabled = false,
     opts = {},
 
     init = function()

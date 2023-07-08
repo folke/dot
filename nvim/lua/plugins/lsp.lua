@@ -105,16 +105,16 @@ return {
           enabled = false,
         },
         rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              procMacro = { enable = true },
-              cargo = { allFeatures = true },
-              checkOnSave = {
-                command = "clippy",
-                extraArgs = { "--no-deps" },
-              },
-            },
-          },
+          -- settings = {
+          --   ["rust-analyzer"] = {
+          --     procMacro = { enable = true },
+          --     cargo = { allFeatures = true },
+          --     checkOnSave = {
+          --       command = "clippy",
+          --       extraArgs = { "--no-deps" },
+          --     },
+          --   },
+          -- },
         },
         yamlls = {
           settings = {
@@ -214,7 +214,11 @@ return {
     opts = function(_, opts)
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {
-        nls.builtins.formatting.dprint,
+        nls.builtins.formatting.dprint.with({
+          condition = function(utils)
+            return utils.root_has_file({ "dprint.json" }) or vim.loop.fs_stat("dprint.json")
+          end,
+        }),
         nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
         nls.builtins.diagnostics.markdownlint,
         nls.builtins.diagnostics.deno_lint,
