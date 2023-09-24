@@ -2,7 +2,7 @@ return {
   {
     "huggingface/hfcc.nvim",
     opts = {
-      api_token = "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",
+      api_token = vim.env.HFCC_API_KEY,
       model = "bigcode/starcoder",
       query_params = {
         max_new_tokens = 200,
