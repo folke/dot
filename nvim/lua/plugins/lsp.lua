@@ -205,34 +205,79 @@ return {
     },
   },
 
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        ["markdown"] = { { "prettierd", "prettier" } },
+        ["markdown.mdx"] = { { "prettierd", "prettier" } },
+        ["javascript"] = { "dprint" },
+        ["javascriptreact"] = { "dprint" },
+        ["typescript"] = { "dprint" },
+        ["typescriptreact"] = { "dprint" },
+      },
+      formatters = {
+        dprint = {
+          condition = function(ctx)
+            return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        lua = { "selene", "luacheck" },
+        markdown = { "markdownlint" },
+      },
+      linters = {
+        selene = {
+          condition = function(ctx)
+            return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
+        luacheck = {
+          condition = function(ctx)
+            return vim.fs.find({ ".luacheckrc" }, { path = ctx.filename, upward = true })[1]
+          end,
+        },
+      },
+    },
+  },
+
   -- null-ls
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    dev = true,
+    "nvimtools/none-ls.nvim",
+    enabled = false,
+    -- dev = true,
     opts = function(_, opts)
       local nls = require("null-ls")
       vim.list_extend(opts.sources, {
-        nls.builtins.formatting.dprint.with({
-          condition = function(utils)
-            return utils.root_has_file({ "dprint.json" }) or vim.loop.fs_stat("dprint.json")
-          end,
-        }),
-        nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
-        nls.builtins.diagnostics.markdownlint,
-        nls.builtins.diagnostics.deno_lint,
-        nls.builtins.diagnostics.selene.with({
-          condition = function(utils)
-            return utils.root_has_file({ "selene.toml" })
-          end,
-        }),
-        nls.builtins.formatting.isort,
-        nls.builtins.formatting.black,
-        nls.builtins.diagnostics.flake8,
-        nls.builtins.diagnostics.luacheck.with({
-          condition = function(utils)
-            return utils.root_has_file({ ".luacheckrc" })
-          end,
-        }),
+        -- nls.builtins.formatting.dprint.with({
+        --   condition = function(utils)
+        --     return utils.root_has_file({ "dprint.json" }) or vim.loop.fs_stat("dprint.json")
+        --   end,
+        -- }),
+        -- nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
+        -- nls.builtins.formatting.csharpier,
+        -- nls.builtins.diagnostics.markdownlint,
+        -- nls.builtins.diagnostics.deno_lint,
+        -- nls.builtins.diagnostics.selene.with({
+        --   condition = function(utils)
+        --     return utils.root_has_file({ "selene.toml" })
+        --   end,
+        -- }),
+        -- nls.builtins.formatting.isort,
+        -- nls.builtins.formatting.black,
+        -- nls.builtins.diagnostics.flake8,
+        -- nls.builtins.diagnostics.luacheck.with({
+        --   condition = function(utils)
+        --     return utils.root_has_file({ ".luacheckrc" })
+        --   end,
+        -- }),
       })
     end,
   },
