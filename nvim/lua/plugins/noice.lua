@@ -19,17 +19,6 @@ return {
         focused = false
       end,
     })
-    -- table.insert(opts.routes, {
-    --   filter = {
-    --     event = "lsp",
-    --     kind = "progress",
-    --     cond = function(message)
-    --       local client = vim.tbl_get(message.opts, "progress", "client")
-    --       return client == "lua_ls"
-    --     end,
-    --   },
-    --   opts = { skip = true },
-    -- })
     table.insert(opts.routes, 1, {
       filter = {
         cond = function()
@@ -48,6 +37,7 @@ return {
         filter = {},
       },
     }
+    -- opts.status = { lsp_progress = { event = "lsp", kind = "progress" } }
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "markdown",

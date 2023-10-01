@@ -20,7 +20,7 @@ if vim.fn.has("nvim-0.8") == 1 then
 end
 
 if vim.g.neovide then
-  vim.opt.guifont = { "FiraCode Nerd Font Mono", "h9" }
+  vim.o.guifont = "Fira Code,Symbols Nerd Font Mono:h34"
   vim.g.neovide_scale_factor = 0.3
 end
 

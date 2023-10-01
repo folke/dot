@@ -1,5 +1,29 @@
+vim.opt.foldmethod = "indent"
+-- vim.keymap.set("n", "<leader>w", "<cmd>lua vim.notify('hi')<cr>", { desc = "foooo" })
+-- vim.keymap.set("n", ";", ":")
 return {
-  { "nvim-telescope/telescope.nvim", dev = true },
+  {
+    "echasnovski/nvim",
+    name = "mini.dev",
+    submodules = false,
+    config = function()
+      require("mini-dev.pick").setup()
+    end,
+    init = function()
+      vim.api.nvim_create_user_command("Pick", function(cmd)
+        require("mini-dev.pick").builtin[cmd.args]()
+      end, {
+        nargs = "?",
+        complete = function(_, line)
+          local prefix = vim.split(vim.trim(line), "%s+")[2] or ""
+          ---@param key string
+          return vim.tbl_filter(function(key)
+            return key:find(prefix, 1, true) == 1
+          end, vim.tbl_keys(require("mini-dev.pick").builtin))
+        end,
+      })
+    end,
+  },
   {
     "AckslD/muren.nvim",
     opts = {
@@ -10,23 +34,20 @@ return {
     },
     cmd = "MurenToggle",
   },
-  { "3rd/image.nvim", opts = {}, ft = "markdown", lazy = false, enabled = true },
+  -- { "ggandor/leap.nvim" },
+  -- { "3rd/image.nvim", opts = {}, ft = "markdown", lazy = false, enabled = true },
   {
     "folke/flash.nvim",
     enabled = true,
-    build = function() end,
     init = function()
+      -- vim.keymap.set("n", "x", "<cmd>lua require('flash').jump()<cr>")
       -- vim.opt.keymap = "emoji"
     end,
     ---@type Flash.Config
     opts = {
       -- labels = "#abcdef",
-      label = {
-        -- format = function(opts)
-        --   return { { opts.match.label:upper(), opts.hl_group } }
-        -- end,
-      },
       modes = {
+        -- char = { jump_labels = false },
         -- treesitter = {
         --   label = {
         --     rainbow = { enabled = true },
@@ -51,6 +72,4 @@ return {
       -- labels = "😅😀🏇🐎🐴🐵🐒",
     },
   },
-  -- { "rlane/pounce.nvim", opts = {}, cmd = "Pounce" },
-  -- { "echasnovski/mini.jump", lazy = false, opts = {} },
 }
