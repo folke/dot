@@ -25,6 +25,7 @@ vim.api.nvim_create_autocmd("User", {
     end)
   end,
 })
+require("config.env")
 
 -- vim.g.profile_loaders = true
 require("config.lazy")({
@@ -45,7 +46,6 @@ require("config.lazy")({
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
-    require("config.env")
     require("util").version()
   end,
 })
