@@ -157,4 +157,14 @@ function M.cowboy()
   end
 end
 
+function M.colorize()
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+  local buf = vim.api.nvim_create_buf(false, true)
+  vim.api.nvim_set_current_buf(buf)
+  local channel = vim.api.nvim_open_term(buf, {})
+  for _, line in ipairs(lines) do
+    vim.api.nvim_chan_send(channel, line .. "\r\n")
+  end
+end
+
 return M
