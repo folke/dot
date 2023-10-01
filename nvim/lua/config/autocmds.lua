@@ -37,3 +37,24 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.wo.conceallevel = 0
   end,
 })
+
+vim.filetype.add({
+  extension = {
+    overlay = "dts",
+    keymap = "dts",
+    rasi = "rasi",
+  },
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    local commentstrings = {
+      dts = "// %s",
+      hypr = "# %s",
+    }
+    local ft = vim.bo.filetype
+    if commentstrings[ft] then
+      vim.bo.commentstring = commentstrings[ft]
+    end
+  end,
+})

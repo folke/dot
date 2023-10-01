@@ -20,15 +20,18 @@ return {
         "cpp",
         "css",
         "diff",
+        "devicetree",
         "fish",
         "gitignore",
         "go",
         "graphql",
+        "glsl",
         "html",
         "http",
         "java",
         "javascript",
         "jsdoc",
+        "rasi",
         "jsonc",
         "lua",
         "luap",
@@ -94,6 +97,33 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       { "windwp/nvim-ts-autotag", opts = {} },
+    },
+  },
+
+  -- Add Hyprland Parser
+  {
+    "luckasRanarison/tree-sitter-hypr",
+    ft = "hypr",
+    init = function()
+      -- Fix ft detection for hyprland
+      vim.filetype.add({
+        pattern = { [".*/hypr/.*%.conf"] = "hypr" },
+      })
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        table.insert(opts.ensure_installed, "hypr")
+        local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+        parser_config.hypr = {
+          install_info = {
+            url = "https://github.com/luckasRanarison/tree-sitter-hypr",
+            files = { "src/parser.c" },
+            branch = "master",
+          },
+          filetype = "hypr",
+        }
+      end,
     },
   },
 }
