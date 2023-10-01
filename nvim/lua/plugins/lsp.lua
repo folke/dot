@@ -97,7 +97,7 @@ return {
         },
         -- svelte = {},
         html = {},
-        gopls = {},
+        -- gopls = {},
         marksman = {},
         pyright = {
           enabled = false,
