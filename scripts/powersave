@@ -1,20 +1,38 @@
-#!/bin/env sh
+#!/bin/env bash
+
+USER=folke
+
+function run() {
+	DBUS=unix:path=/run/user/$(id -u $USER)/bus
+	sudo -u $USER DBUS_SESSION_BUS_ADDRESS="$DBUS" /usr/bin/systemd-run --user "$@"
+}
+
+# if this runs as root, run it as user
+if [ "$EUID" -eq 0 ]; then
+	run $0 "$@"
+	exit 0
+fi
 
 # true when on battery
 if [ "$1" = "true" ]; then
 	brightnessctl -s # save brightness
 	brightnessctl s 30%
 	powerprofilesctl set power-saver
+	hyprctl keyword decoration:drop_shadow false
+	hyprctl keyword decoration:blur:enabled false
 fi
 
 if [ "$1" = "false" ]; then
 	brightnessctl -r # restore brightness
 	powerprofilesctl set balanced
+	hyprctl keyword decoration:drop_shadow true
+	hyprctl keyword decoration:blur:enabled true
 fi
 
 # reload waybar
 pkill -SIGUSR2 waybar
 
-# HACK: reload hyprland when waybar was killed
-sleep 2
-pgrep waybar || touch /home/folke/.config/hypr/hyprland.conf
+# HACK: restart waybar if it crashed
+sleep 5
+pgrep waybar || nohup waybar &
+disown
