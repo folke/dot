@@ -4,10 +4,10 @@
   "spacing": 0,
   "layer": "top",
   "modules-left": [
-    "sway/workspaces",
-    "wlr/workspaces",
-    "sway/mode",
-    "sway/window",
+    // "sway/workspaces",
+    "hyprland/workspaces",
+    // "sway/mode",
+    // "sway/window",
     "hyprland/window"
   ],
   "modules-center": [
@@ -19,11 +19,25 @@
     "memory",
     "cpu",
     "temperature",
+    // "bluetooth",
     "pulseaudio",
+    "custom/hyprshade",
     "tray",
-    "battery",
+    // "battery",
+    "custom/power_profile",
+    "upower",
     "custom/power"
   ],
+  "bluetooth": {
+    "format": " {status}",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  },
   "wlr/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
@@ -32,6 +46,20 @@
       "urgent": " ",
       "active": " ",
       "default": " "
+    },
+    "sort-by-number": true
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "format-icons": {
+      "urgent": " ",
+      "active": " ",
+      "default": " ",
+    },
+    "persistent_workspaces": {
+      "*": 5 // 5 workspaces by default on every monitor
     },
     "sort-by-number": true
   },
@@ -92,6 +120,14 @@
       "󰃠"
     ]
   },
+  "upower": {
+    "icon-size": 18,
+    "hide-if-empty": true,
+    "tooltip": true,
+    "tooltip-spacing": 20,
+    "tooltip-padding": 8,
+    "on-click": "cpupower-gui"
+  },
   "battery": {
     "on-click": "cpupower-gui",
     "bat": "BAT0",
@@ -141,6 +177,25 @@
     },
     "on-click": "pavucontrol",
     "on-click-right": "blueman-manager"
+  },
+  "custom/power_profile": {
+    "exec": "sleep 0.3; $HOME/.config/waybar/scripts/power-profile",
+    "tooltip": false,
+    "return-type": "json",
+    "format": "{icon}",
+    "interval": 60,
+    "on-click": "$HOME/.config/waybar/scripts/power-profile cycle",
+    "format-icons": {
+      "power-saver": "",
+      "balanced": "",
+      "performance": ""
+    }
+  },
+  "custom/hyprshade": {
+    "exec": "sleep 0.3; hyprshade ls | rg '\\* night' > /dev/null 2>&1 && echo '' || echo '󰖨'",
+    "tooltip": false,
+    "interval": 60,
+    "on-click": "hyprshade toggle night"
   },
   "custom/power": {
     "format": " ",

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ "$1" = "cycle" ]; then
+	case $(powerprofilesctl get) in
+	performance)
+		powerprofilesctl set power-saver
+		;;
+	power-saver)
+		powerprofilesctl set balanced
+		;;
+	balanced)
+		powerprofilesctl set performance
+		;;
+	esac
+fi
+
+ACTIVE=$(powerprofilesctl get)
+printf '{"text": "%s", "tooltip": "%s", "alt": "%s"}\n' "$ACTIVE" "$ACTIVE" "$ACTIVE"

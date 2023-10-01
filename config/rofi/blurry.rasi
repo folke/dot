@@ -1,6 +1,7 @@
 * {
 	transparent: #00000000;
 	foreground: #000000cc;
+	foreground-selected: #000000cc;
 	background-selected: #00000011;
 	background-active: #F2F2F230;
 	background-white: #00000011;

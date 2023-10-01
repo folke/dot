@@ -1,0 +1,19 @@
+#!/bin/env sh
+
+# true when on battery
+if [ "$1" = "true" ]; then
+	brightnessctl -s # save brightness
+	brightnessctl s 30%
+	powerprofilesctl set power-saver
+fi
+
+if [ "$1" = "false" ]; then
+	brightnessctl -r # restore brightness
+	powerprofilesctl set balanced
+fi
+
+# reload waybar
+pkill -SIGUSR2 waybar
+
+# HACK: reload hyprland when waybar was killed
+pgrep waybar || touch /home/folke/.config/hypr/hyprland.conf
