@@ -16,4 +16,5 @@ fi
 pkill -SIGUSR2 waybar
 
 # HACK: reload hyprland when waybar was killed
+sleep 2
 pgrep waybar || touch /home/folke/.config/hypr/hyprland.conf
