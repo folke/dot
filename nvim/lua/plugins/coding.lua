@@ -1,5 +1,11 @@
 return {
   {
+    "zbirenbaum/copilot.lua",
+    opts = {
+      filetypes = { ["*"] = true },
+    },
+  },
+  {
     "huggingface/hfcc.nvim",
     opts = {
       api_token = vim.env.HFCC_API_KEY,
