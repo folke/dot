@@ -24,7 +24,7 @@ if not status is-interactive
     exit
 end
 
-set -g __done_version 1.16.5
+set -g __done_version 1.17.0
 
 function __done_run_powershell_script
     set -l powershell_exe (command --search "powershell.exe")
@@ -82,6 +82,8 @@ function __done_get_focused_window_id
     else if test -n "$SWAYSOCK"
         and type -q jq
         swaymsg --type get_tree | jq '.. | objects | select(.focused == true) | .id'
+    else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
+        hyprctl activewindow | awk 'NR==13 {print $2}'
     else if begin
             test "$XDG_SESSION_DESKTOP" = gnome; and type -q gdbus
         end
@@ -141,6 +143,9 @@ function __done_is_process_window_focused
         and test -n "$SWAYSOCK"
         string match --quiet --regex "^true" (swaymsg -t get_tree | jq ".. | objects | select(.id == "$__done_initial_window_id") | .visible")
         return $status
+    else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
+        and test $__done_initial_window_id -eq (hyprctl activewindow | awk 'NR==13 {print $2}')
+        return $status
     else if test "$__done_initial_window_id" != "$__done_focused_window_id"
         return 1
     end
@@ -191,15 +196,16 @@ end
 if set -q __done_enabled
     set -g __done_initial_window_id ''
     set -q __done_min_cmd_duration; or set -g __done_min_cmd_duration 5000
-    set -q __done_exclude; or set -g __done_exclude 'git (?!push|pull|fetch)'
+    set -q __done_exclude; or set -g __done_exclude '^git (?!push|pull|fetch)'
     set -q __done_notify_sound; or set -g __done_notify_sound 0
     set -q __done_sway_ignore_visible; or set -g __done_sway_ignore_visible 0
+    set -q __done_tmux_pane_format; or set -g __done_tmux_pane_format '[#{window_index}]'
 
     function __done_started --on-event fish_preexec
         set __done_initial_window_id (__done_get_focused_window_id)
     end
 
-    function __done_ended --on-event fish_prompt
+    function __done_ended --on-event fish_postexec
         set -l exit_status $status
 
         # backwards compatibility for fish < v3.0
@@ -208,18 +214,28 @@ if set -q __done_enabled
         if test $cmd_duration
             and test $cmd_duration -gt $__done_min_cmd_duration # longer than notify_duration
             and not __done_is_process_window_focused # process pane or window not focused
-            and not string match -qr $__done_exclude $history[1] # don't notify on git commands which might wait external editor
+
+            # don't notify if command matches exclude list
+            for pattern in $__done_exclude
+                if string match -qr $pattern $argv[1]
+                    return
+                end
+            end
 
             # Store duration of last command
             set -l humanized_duration (__done_humanize_duration "$cmd_duration")
 
             set -l title "Done in $humanized_duration"
             set -l wd (string replace --regex "^$HOME" "~" (pwd))
-            set -l message "$wd/ $history[1]"
+            set -l message "$wd/ $argv[1]"
             set -l sender $__done_initial_window_id
 
             if test $exit_status -ne 0
                 set title "Failed ($exit_status) after $humanized_duration"
+            end
+
+            if test -n "$TMUX_PANE"
+                set message (tmux lsw  -F"$__done_tmux_pane_format" -f '#{==:#{pane_id},'$TMUX_PANE'}')" $message"
             end
 
             if set -q __done_notification_command
@@ -227,6 +243,9 @@ if set -q __done_enabled
                 if test "$__done_notify_sound" -eq 1
                     echo -e "\a" # bell sound
                 end
+            else if set -q KITTY_WINDOW_ID
+                printf "\x1b]99;i=done:d=0;$title\x1b\\"
+                printf "\x1b]99;i=done:d=1:p=body;$message\x1b\\"
             else if type -q terminal-notifier # https://github.com/julienXX/terminal-notifier
                 if test "$__done_notify_sound" -eq 1
                     terminal-notifier -message "$message" -title "$title" -sender "$__done_initial_window_id" -sound default
@@ -235,9 +254,15 @@ if set -q __done_enabled
                 end
 
             else if type -q osascript # AppleScript
+                # escape double quotes that might exist in the message and break osascript. fixes #133
+                set -l message (string replace --all '"' '\"' "$message")
+                set -l title (string replace --all '"' '\"' "$title")
+
                 osascript -e "display notification \"$message\" with title \"$title\""
                 if test "$__done_notify_sound" -eq 1
-                    echo -e "\a" # bell sound
+                    osascript -e "display notification \"$message\" with title \"$title\" sound name \"Glass\""
+                else
+                    osascript -e "display notification \"$message\" with title \"$title\""
                 end
 
             else if type -q notify-send # Linux notify-send

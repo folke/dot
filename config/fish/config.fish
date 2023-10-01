@@ -15,6 +15,7 @@ fish_add_path ~/.local/bin/pnpm
 fish_add_path /bin
 fish_add_path ~/.local/share/bob/nvim-bin
 fish_add_path /var/lib/flatpak/exports/bin/
+fish_add_path ~/.dotnet/tools
 
 set -gx DENO_INSTALL "~/.deno"
 fish_add_path ~/.deno/bin
@@ -67,9 +68,9 @@ abbr mux tmuxinator
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
-alias ls="exa --color=always --icons --group-directories-first"
-alias la 'exa --color=always --icons --group-directories-first --all'
-alias ll 'exa --color=always --icons --group-directories-first --all --long'
+alias ls="eza --color=always --icons --group-directories-first"
+alias la 'eza --color=always --icons --group-directories-first --all'
+alias ll 'eza --color=always --icons --group-directories-first --all --long'
 abbr l ll
 abbr ncdu "ncdu --color dark"
 
@@ -81,10 +82,12 @@ abbr vd "VIM=~/projects/neovim nvim --luamod-dev"
 abbr sv sudoedit
 abbr vudo sudoedit
 alias lazyvim "NVIM_APPNAME=lazyvim nvim"
+alias astronvim "NVIM_APPNAME=astronvim nvim"
 abbr lv lazyvim
 
 # Dev
 abbr git hub
+abbr topgit topgrade --only git_repos
 abbr g hub
 abbr lg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
@@ -108,3 +111,4 @@ abbr weather "curl -s wttr.in/Ghent | grep -v Follow"
 abbr show-cursor "tput cnorm"
 abbr hide-cursor "tput civis"
 abbr aria2c-daemon "aria2c -D"
+alias gnome-control-center "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
