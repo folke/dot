@@ -21,6 +21,10 @@ return {
     })
     table.insert(opts.routes, 1, {
       filter = {
+        ["not"] = {
+          event = "lsp",
+          kind = "progress",
+        },
         cond = function()
           return not focused
         end,
