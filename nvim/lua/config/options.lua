@@ -3,15 +3,22 @@ vim.g.mapleader = " "
 vim.opt.fillchars = {
   foldopen = "",
   foldclose = "",
+  -- fold = "⸱",
   fold = " ",
   foldsep = " ",
   diff = "╱",
   eob = " ",
 }
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.o.foldlevelstart = 99
-vim.o.foldenable = true
-vim.o.foldcolumn = "0"
+vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.foldcolumn = "0"
+-- vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = "expr"
+if vim.fn.has("nvim-0.10") == 1 then
+  vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+  vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
+end
 
 if vim.fn.has("nvim-0.8") == 1 then
   vim.opt.backup = true

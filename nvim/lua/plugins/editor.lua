@@ -21,7 +21,7 @@ return {
     dependencies = "kevinhwang91/promise-async",
     event = "BufReadPost",
     opts = {},
-    enabled = true,
+    enabled = false,
     init = function()
       -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
       vim.keymap.set("n", "zR", function()

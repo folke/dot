@@ -22,6 +22,8 @@ function M.column()
     end
   end
 
+  local folded = vim.fn.foldclosed(vim.v.lnum) >= 0
+
   local nu = " "
   if vim.wo[win].number and vim.wo[win].relativenumber and vim.v.virtnum == 0 then
     nu = vim.v.relnum == 0 and vim.v.lnum or vim.v.relnum
@@ -30,7 +32,9 @@ function M.column()
     sign and ("%#" .. (sign.texthl or "DiagnosticInfo") .. "#" .. sign.text .. "%*") or "  ",
     [[%=]],
     nu .. " ",
-    git_sign and ("%#" .. git_sign.texthl .. "#" .. git_sign.text .. "%*") or "  ",
+    folded and ("%#Folded#" .. vim.opt.fillchars:get().foldclose .. " %*")
+      or git_sign and ("%#" .. git_sign.texthl .. "#" .. git_sign.text .. "%*")
+      or "  ",
   }
   return table.concat(components, "")
 end

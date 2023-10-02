@@ -1,4 +1,3 @@
-vim.opt.foldmethod = "indent"
 -- vim.keymap.set("n", "<leader>w", "<cmd>lua vim.notify('hi')<cr>", { desc = "foooo" })
 -- vim.keymap.set("n", ";", ":")
 return {
