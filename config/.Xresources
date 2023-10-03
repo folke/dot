@@ -7,7 +7,7 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb */
 
-Xcursor.theme: xcursor-neutral
+Xcursor.theme: Adwaita
 Xcursor.size: 32
 
 URxvt.font: xft:FiraCode Nerd Font Mono:style=Regular:size=10
