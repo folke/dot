@@ -122,4 +122,21 @@ abbr slu "systemctl --user --type service --state running"
 abbr se "sudo systemctl enable --now"
 abbr sd "sudo systemctl disable --now"
 abbr sr "sudo systemctl restart"
+abbr so "sudo systemctl stop"
+abbr sa "sudo systemctl start"
 abbr sf "systemctl --failed --all"
+
+# journalctl
+abbr jb "journalctl -b"
+abbr jf "journalctl --follow"
+abbr jg "journalctl -b --grep"
+abbr ju "journalctl --unit"
+
+# paru
+abbr p paru
+abbr pi "paru -S"
+abbr pr "paru -Rns"
+abbr ps "paru -Ss"
+abbr pl "paru -Q"
+abbr pf "paru -Ql"
+abbr po "paru -Qo"
