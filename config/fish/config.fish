@@ -112,3 +112,14 @@ abbr show-cursor "tput cnorm"
 abbr hide-cursor "tput civis"
 abbr aria2c-daemon "aria2c -D"
 alias gnome-control-center "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+
+# systemctl
+abbr s systemctl
+abbr su "systemctl --user"
+abbr ss "systemctl status"
+abbr sl "systemctl --type service --state running"
+abbr slu "systemctl --user --type service --state running"
+abbr se "sudo systemctl enable --now"
+abbr sd "sudo systemctl disable --now"
+abbr sr "sudo systemctl restart"
+abbr sf "systemctl --failed --all"
