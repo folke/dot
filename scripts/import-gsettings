@@ -1,16 +1,27 @@
-#!/bin/sh
+#!/bin/env bash
+set -e
 
 # usage: import-gsettings
 config="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0/settings.ini"
 if [ ! -f "$config" ]; then exit 1; fi
 
-gnome_schema="org.gnome.desktop.interface"
-gtk_theme="$(grep 'gtk-theme-name' "$config" | cut -d'=' -f2)"
-icon_theme="$(grep 'gtk-icon-theme-name' "$config" | cut -d'=' -f2)"
-cursor_theme="$(grep 'gtk-cursor-theme-name' "$config" | cut -d'=' -f2)"
-font_name="$(grep 'gtk-font-name' "$config" | cut -d'=' -f2)"
-gsettings set "$gnome_schema" gtk-theme "$gtk_theme"
-gsettings set "$gnome_schema" icon-theme "$icon_theme"
-gsettings set "$gnome_schema" cursor-theme "$cursor_theme"
-gsettings set "$gnome_schema" font-name "$font_name"
-gsettings set "$gnome_schema" text-scaling-factor 1
+function gset() {
+	echo "$1=$2"
+	gsettings set org.gnome.desktop.interface "$1" "$2"
+}
+
+function gimport() {
+	local -r key="$1"
+	local -r gkey="$2"
+	local -r value="$(grep "gtk-$key" "$config" | cut -d'=' -f2)"
+	if [ -z "$value" ]; then return; fi
+	gset "$gkey" "$value"
+}
+
+gimport theme-name gtk-theme
+gimport icon-theme-name icon-theme
+gimport cursor-theme-name cursor-theme
+gimport cursor-theme-size cursor-size
+gimport font-name font-name
+gset text-scaling-factor 1
+gset scaling-factor 1
