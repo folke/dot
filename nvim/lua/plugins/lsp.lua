@@ -207,6 +207,7 @@ return {
 
   {
     "stevearc/conform.nvim",
+    -- dev = true,
     optional = true,
     opts = {
       formatters_by_ft = {

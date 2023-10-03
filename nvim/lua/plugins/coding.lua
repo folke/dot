@@ -5,25 +5,25 @@ return {
       filetypes = { ["*"] = true },
     },
   },
-  {
-    "huggingface/llm.nvim",
-    cmd = "LLMToggleAutoSuggest",
-    opts = {
-      api_token = vim.env.HFCC_API_KEY,
-      lsp = {
-        bin_path = vim.api.nvim_call_function("stdpath", { "data" }) .. "/mason/bin/llm-ls",
-      },
-      model = "bigcode/starcoder",
-      query_params = {
-        max_new_tokens = 200,
-      },
-    },
-    init = function()
-      vim.api.nvim_create_user_command("StarCoder", function()
-        require("hfcc.completion").complete()
-      end, {})
-    end,
-  },
+  -- {
+  --   "huggingface/llm.nvim",
+  --   cmd = "LLMToggleAutoSuggest",
+  --   opts = {
+  --     api_token = vim.env.HFCC_API_KEY,
+  --     lsp = {
+  --       bin_path = vim.api.nvim_call_function("stdpath", { "data" }) .. "/mason/bin/llm-ls",
+  --     },
+  --     model = "bigcode/starcoder",
+  --     query_params = {
+  --       max_new_tokens = 200,
+  --     },
+  --   },
+  --   init = function()
+  --     vim.api.nvim_create_user_command("StarCoder", function()
+  --       require("hfcc.completion").complete()
+  --     end, {})
+  --   end,
+  -- },
   -- better text objects
   {
     "echasnovski/mini.ai",
@@ -80,58 +80,41 @@ return {
     end,
   },
 
-  {
-    "danymat/neogen",
-    keys = {
-      {
-        "<leader>cc",
-        function()
-          require("neogen").generate({})
-        end,
-        desc = "Neogen Comment",
-      },
-    },
-    opts = { snippet_engine = "luasnip" },
-  },
-
+  -- {
+  --   "danymat/neogen",
+  --   keys = {
+  --     {
+  --       "<leader>cc",
+  --       function()
+  --         require("neogen").generate({})
+  --       end,
+  --       desc = "Neogen Comment",
+  --     },
+  --   },
+  --   opts = { snippet_engine = "luasnip" },
+  -- },
+  --
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
     config = true,
   },
 
-  {
-    "ThePrimeagen/refactoring.nvim",
-    keys = {
-      {
-        "<leader>r",
-        function()
-          require("refactoring").select_refactor()
-        end,
-        mode = "v",
-        noremap = true,
-        silent = true,
-        expr = false,
-      },
-    },
-    opts = {},
-  },
-
-  {
-    "echasnovski/mini.bracketed",
-    event = "BufReadPost",
-    enabled = false,
-    config = function()
-      local bracketed = require("mini.bracketed")
-      bracketed.setup({
-        file = { suffix = "" },
-        window = { suffix = "" },
-        quickfix = { suffix = "" },
-        yank = { suffix = "" },
-        treesitter = { suffix = "n" },
-      })
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.bracketed",
+  --   event = "BufReadPost",
+  --   enabled = false,
+  --   config = function()
+  --     local bracketed = require("mini.bracketed")
+  --     bracketed.setup({
+  --       file = { suffix = "" },
+  --       window = { suffix = "" },
+  --       quickfix = { suffix = "" },
+  --       yank = { suffix = "" },
+  --       treesitter = { suffix = "n" },
+  --     })
+  --   end,
+  -- },
 
   -- better increase/descrease
   {

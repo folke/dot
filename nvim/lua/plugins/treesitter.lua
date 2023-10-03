@@ -1,5 +1,5 @@
 return {
-  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+  -- { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
   {
     "nvim-treesitter/nvim-treesitter-context",
@@ -93,12 +93,7 @@ return {
       },
     },
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      { "windwp/nvim-ts-autotag", opts = {} },
-    },
-  },
+  { "windwp/nvim-ts-autotag", opts = {}, event = "InsertEnter" },
 
   -- Add Hyprland Parser
   {

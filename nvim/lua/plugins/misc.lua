@@ -1,14 +1,14 @@
 return {
   "folke/twilight.nvim",
 
-  {
-    "echasnovski/mini.splitjoin",
-    enabled = false,
-    opts = { mappings = { toggle = "J" } },
-    keys = {
-      { "J", desc = "Split/Join" },
-    },
-  },
+  -- {
+  --   "echasnovski/mini.splitjoin",
+  --   enabled = false,
+  --   opts = { mappings = { toggle = "J" } },
+  --   keys = {
+  --     { "J", desc = "Split/Join" },
+  --   },
+  -- },
   {
     "Wansmer/treesj",
     keys = {
@@ -44,16 +44,16 @@ return {
     keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
   },
 
-  {
-    "andymass/vim-matchup",
-    event = "BufReadPost",
-    enabled = false,
-    init = function()
-      vim.o.matchpairs = "(:),{:},[:],<:>"
-    end,
-    config = function()
-      vim.g.matchup_matchparen_deferred = 1
-      vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
-    end,
-  },
+  -- {
+  --   "andymass/vim-matchup",
+  --   event = "BufReadPost",
+  --   enabled = false,
+  --   init = function()
+  --     vim.o.matchpairs = "(:),{:},[:],<:>"
+  --   end,
+  --   config = function()
+  --     vim.g.matchup_matchparen_deferred = 1
+  --     vim.g.matchup_matchparen_offscreen = { method = "status_manual" }
+  --   end,
+  -- },
 }

@@ -4,6 +4,7 @@ act
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
+adw-gtk3
 adwaita-icon-theme
 alsa-firmware
 alsa-plugins
@@ -152,6 +153,7 @@ gnome-themes-extra
 gnome-tweaks
 gnome-usage
 gparted
+gpu-viewer
 grc
 grep
 grim
@@ -186,6 +188,7 @@ hyprland
 hyprshade
 imv-git
 inetutils
+intel-gpu-tools
 intel-media-driver
 intel-ucode
 inxi
@@ -239,6 +242,7 @@ meld
 mesa-utils
 microsoft-edge-beta-bin
 microsoft-edge-dev-bin
+mission-center
 mitogen
 mlocate
 modemmanager
@@ -281,6 +285,7 @@ p7zip
 pacman
 pacman-contrib
 pamixer
+papirus-icon-theme-git
 paru
 patch
 pavucontrol
