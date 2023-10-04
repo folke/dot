@@ -38,7 +38,6 @@ fish_add_path $GOPATH $GOPATH/bin
 fish_add_path -m /etc/profiles/per-user/folke/bin /run/current-system/sw/bin
 # Exports
 set -x LESS -rF
-set -x BAT_THEME Dracula
 set -x COMPOSE_DOCKER_CLI_BUILD 1
 set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x DOTDROP_AUTOUPDATE no
@@ -84,6 +83,7 @@ abbr vudo sudoedit
 alias lazyvim "NVIM_APPNAME=lazyvim nvim"
 alias astronvim "NVIM_APPNAME=astronvim nvim"
 abbr lv lazyvim
+alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Program terminated with signal/,0' | bat -l cpp --no-pager --style plain"
 
 # Dev
 abbr git hub
@@ -91,9 +91,9 @@ abbr topgit topgrade --only git_repos
 abbr g hub
 abbr lg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
-abbr st "hub st"
-abbr push "hub push"
-abbr pull "hub pull"
+abbr gs "hub st"
+abbr gpp "hub push"
+abbr gp "hub pull"
 alias tn "npx --no-install ts-node --transpile-only"
 abbr tt "tn src/tt.ts"
 
@@ -116,7 +116,7 @@ alias gnome-control-center "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 # systemctl
 abbr s systemctl
 abbr su "systemctl --user"
-abbr ss "systemctl status"
+abbr ss "command systemctl status"
 abbr sl "systemctl --type service --state running"
 abbr slu "systemctl --user --type service --state running"
 abbr se "sudo systemctl enable --now"

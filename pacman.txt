@@ -193,6 +193,7 @@ intel-media-driver
 intel-ucode
 inxi
 iptables-nft
+iucode-tool
 iwd
 jfsutils
 jq
