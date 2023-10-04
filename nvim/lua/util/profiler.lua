@@ -3,15 +3,25 @@ local M = {}
 ---@type table<fun(), true>
 M.wrapped = {}
 
----@type {total:number, time:number}[]
+---@type {total:number, time:number, self:number}[]
 M.stats = {}
 M._require = _G.require
 local pack_len = vim.F.pack_len
+---@type number[]
+M.stack = { 0 }
+M.stack_names = {}
 
 function M.stat(name, start)
-  M.stats[name] = M.stats[name] or { total = 0, time = 0 }
+  M.stats[name] = M.stats[name] or { total = 0, time = 0, self = 0 }
   M.stats[name].total = M.stats[name].total + 1
-  M.stats[name].time = M.stats[name].time + vim.loop.hrtime() - start
+  local diff = vim.loop.hrtime() - start
+  table.remove(M.stack_names)
+  if not vim.tbl_contains(M.stack_names, name) then
+    M.stats[name].time = M.stats[name].time + diff
+  end
+  local other = table.remove(M.stack)
+  M.stats[name].self = M.stats[name].self + diff - other
+  M.stack[#M.stack] = M.stack[#M.stack] + diff
 end
 
 function M.wrap(name, fn)
@@ -21,6 +31,8 @@ function M.wrap(name, fn)
   M.wrapped[fn] = true
   return function(...)
     local start = vim.loop.hrtime()
+    table.insert(M.stack, 0)
+    table.insert(M.stack_names, name)
     local ret = pack_len(pcall(fn, ...))
     M.stat(name, start)
     if not ret[1] then
@@ -59,6 +71,8 @@ function M.require(modname)
     return package.loaded[modname]
   end
   local start = vim.loop.hrtime()
+  table.insert(M.stack, 0)
+  table.insert(M.stack_names, modname)
   local ret = pack_len(pcall(M._require, modname))
   M.stat(modname, start)
   if ret[1] then
@@ -79,15 +93,21 @@ function M.stop()
     return a.time > b.time
   end)
   for _, stat in ipairs(s) do
-    if stat.time / 1e6 > 0.5 then
+    if stat.time / 1e6 > 0.5 or stat.self / 1e6 > 0.5 then
       local time = math.floor(stat.time / 1e6 * 100 + 0.5) / 100
+      local time_self = math.floor(stat.time / stat.total / 1e6 * 100 + 0.5) / 100
       local line = {
         { time .. "ms", "Number" },
+        {
+          time_self .. "ms",
+          "Number",
+        },
         { stat.total .. "", "Number" },
         { stat.name },
       }
       line[1][1] = line[1][1] .. string.rep(" ", 10 - #line[1][1])
       line[2][1] = line[2][1] .. string.rep(" ", 10 - #line[2][1])
+      line[3][1] = line[3][1] .. string.rep(" ", 10 - #line[3][1])
       vim.api.nvim_echo(line, true, {})
     end
   end
@@ -100,7 +120,7 @@ end
 function M.startup()
   M.start()
   vim.api.nvim_create_autocmd("User", {
-    pattern = "VeryLazy",
+    pattern = "LazyVimStarted",
     callback = M.stop,
   })
 end

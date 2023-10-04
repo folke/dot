@@ -1,5 +1,5 @@
 local M = {}
-M.default = "winter"
+M.default = "summer"
 M.ns = vim.api.nvim_create_namespace("dashboard")
 
 function M.get_theme(name)

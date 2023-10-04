@@ -15,30 +15,14 @@ _G.dd = function(...)
 end
 vim.print = _G.dd
 
--- require("util.profiler").start()
+-- require("util.profiler").startup()
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "LazyVimStarted",
-  callback = function()
-    vim.schedule(function()
-      -- require("util.profiler").stop()
-    end)
-  end,
-})
+-- vim.loader._profile({ loaders = true })
 require("config.env")
 
 -- vim.g.profile_loaders = true
 require("config.lazy")({
   debug = false,
-  defaults = {
-    lazy = true,
-    -- cond = false,
-  },
-  performance = {
-    cache = {
-      enabled = true,
-    },
-  },
 })
 
 -- require("util.dashboard").setup()
