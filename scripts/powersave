@@ -4,6 +4,7 @@ USER=folke
 
 function run() {
 	DBUS=unix:path=/run/user/$(id -u $USER)/bus
+	cd /home/$USER || exit
 	sudo -u $USER DBUS_SESSION_BUS_ADDRESS="$DBUS" /usr/bin/systemd-run --user "$@"
 }
 
@@ -30,9 +31,5 @@ if [ "$1" = "false" ]; then
 fi
 
 # reload waybar
-pkill -SIGUSR2 waybar
-
-# HACK: restart waybar if it crashed
-sleep 5
-pgrep waybar || nohup waybar &
-disown
+pkill waybar
+waybar

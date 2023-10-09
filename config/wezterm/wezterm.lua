@@ -40,7 +40,7 @@ return {
 		make_mouse_binding("Up", 3, "Left", "NONE", wezterm.action.CompleteSelection("ClipboardAndPrimarySelection")),
 	},
   term = "wezterm",
-  font_size = 12,
+  font_size = 11,
   font = font("Fira Code"),
   font_rules = {
     {

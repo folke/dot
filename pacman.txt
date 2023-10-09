@@ -26,6 +26,7 @@ base
 base-devel
 bash-completion
 bat
+bat-extras
 bfs
 bind
 binutils
@@ -41,6 +42,7 @@ brightnessctl
 btop
 btrfs-assistant
 btrfs-progs
+calf
 cantarell-fonts
 catch2
 catppuccin-gtk-theme-latte
@@ -76,6 +78,8 @@ dracut
 duf
 dust
 e2fsprogs
+easyeffects
+easyeffects-presets
 edex-ui-bin
 efibootmgr
 efitools
@@ -163,6 +167,7 @@ gst-libav
 gst-plugin-pipewire
 gst-plugins-bad
 gst-plugins-ugly
+gtklock
 gutenprint
 gvfs
 gvfs-afc
@@ -195,6 +200,7 @@ inxi
 iptables-nft
 iucode-tool
 iwd
+jamesdsp
 jfsutils
 jq
 kernel-install-for-dracut
@@ -203,6 +209,7 @@ khal
 kitty
 lazydocker
 lazygit
+ledger
 lemmy-help
 less
 libdvdcss
@@ -226,6 +233,13 @@ lld
 logrotate
 logseq-desktop-bin
 lsb-release
+lsp-plugins
+lsp-plugins-clap
+lsp-plugins-docs
+lsp-plugins-ladspa
+lsp-plugins-lv2
+lsp-plugins-standalone
+lsp-plugins-vst
 lsscsi
 lua-language-server
 luacheck
@@ -278,10 +292,12 @@ noto-fonts-emoji
 nss-mdns
 ntfs-3g
 ntp
+nushell
 nwg-look
 nwg-panel
 omnisharp-roslyn-bin
 otf-cascadia-code
+ov-bin
 p7zip
 pacman
 pacman-contrib
@@ -323,6 +339,7 @@ python-pyqt5
 python-reportlab
 python-sentencepiece-git
 python-west
+qt5-wayland
 qt6-wayland
 ranger
 rebuild-detector
@@ -366,12 +383,14 @@ sway
 sway-audio-idle-inhibit-git
 swayidle
 swaylock-effects-git
+swaync
 sysfsutils
 system-config-printer
 systemd-sysvcompat
 tealdeer
 testdisk
 texinfo
+texlive-binextra
 thermald
 throttled
 tio
@@ -385,6 +404,7 @@ ttf-dejavu
 ttf-fira-code
 ttf-firacode-nerd
 ttf-liberation
+ttf-maple
 ttf-ms-fonts
 ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-mono

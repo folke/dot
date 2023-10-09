@@ -46,6 +46,8 @@ set -x MANROFFOPT -c
 set -x OPENCV_LOG_LEVEL ERROR
 #set -x MANPAGER "sh -c 'col -bx | bat -l man -p'" # use bat to format man pages
 #set -x MANPAGER "most" # use bat to format man pages
+#
+abbr -a --position anywhere --set-cursor -- -h "-h 2>&1 | bat --plain --language=help"
 
 # Dnf
 abbr dnfi 'sudo dnf install'
@@ -77,6 +79,7 @@ abbr ncdu "ncdu --color dark"
 abbr vim nvim
 abbr vi nvim
 abbr v nvim
+alias vimpager 'nvim - -c "lua require(\'util\').colorize()"'
 abbr vd "VIM=~/projects/neovim nvim --luamod-dev"
 abbr sv sudoedit
 abbr vudo sudoedit
@@ -89,7 +92,7 @@ alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Progr
 abbr git hub
 abbr topgit topgrade --only git_repos
 abbr g hub
-abbr lg lazygit
+abbr gg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
 abbr gs "hub st"
 abbr gpp "hub push"
@@ -134,9 +137,9 @@ abbr ju "journalctl --unit"
 
 # paru
 abbr p paru
-abbr pi "paru -S"
-abbr pr "paru -Rns"
-abbr ps "paru -Ss"
-abbr pl "paru -Q"
-abbr pf "paru -Ql"
-abbr po "paru -Qo"
+abbr pai "paru -S"
+abbr par "paru -Rns"
+abbr pas "paru -Ss"
+abbr pal "paru -Q"
+abbr paf "paru -Ql"
+abbr pao "paru -Qo"
