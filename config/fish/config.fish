@@ -84,7 +84,6 @@ abbr vd "VIM=~/projects/neovim nvim --luamod-dev"
 abbr sv sudoedit
 abbr vudo sudoedit
 alias lazyvim "NVIM_APPNAME=lazyvim nvim"
-alias astronvim "NVIM_APPNAME=astronvim nvim"
 abbr lv lazyvim
 alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Program terminated with signal/,0' | bat -l cpp --no-pager --style plain"
 
