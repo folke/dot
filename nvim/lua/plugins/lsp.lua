@@ -41,18 +41,6 @@ return {
       },
       ---@type lspconfig.options
       servers = {
-        -- rome = {
-        --   root_dir = function(fname)
-        --     return require("lspconfig").util.root_pattern("rome.json")(fname)
-        --   end,
-        --   mason = false,
-        --   settings = {
-        --     rome = {
-        --       rename = true,
-        --       -- requireConfiguration = true,
-        --     },
-        --   },
-        -- },
         ansiblels = {},
         bashls = {},
         clangd = {},
@@ -197,17 +185,11 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = { virtual_text = { prefix = "icons" } },
-      setup = {
-        clangd = function(_, opts)
-          opts.capabilities.offsetEncoding = { "utf-16" }
-        end,
-      },
     },
   },
 
   {
     "stevearc/conform.nvim",
-    -- dev = true,
     optional = true,
     opts = {
       formatters_by_ft = {
@@ -249,37 +231,9 @@ return {
     },
   },
 
-  -- null-ls
+  -- none-ls
   {
     "nvimtools/none-ls.nvim",
     enabled = false,
-    -- dev = true,
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      vim.list_extend(opts.sources, {
-        -- nls.builtins.formatting.dprint.with({
-        --   condition = function(utils)
-        --     return utils.root_has_file({ "dprint.json" }) or vim.loop.fs_stat("dprint.json")
-        --   end,
-        -- }),
-        -- nls.builtins.formatting.prettier.with({ filetypes = { "markdown" } }),
-        -- nls.builtins.formatting.csharpier,
-        -- nls.builtins.diagnostics.markdownlint,
-        -- nls.builtins.diagnostics.deno_lint,
-        -- nls.builtins.diagnostics.selene.with({
-        --   condition = function(utils)
-        --     return utils.root_has_file({ "selene.toml" })
-        --   end,
-        -- }),
-        -- nls.builtins.formatting.isort,
-        -- nls.builtins.formatting.black,
-        -- nls.builtins.diagnostics.flake8,
-        -- nls.builtins.diagnostics.luacheck.with({
-        --   condition = function(utils)
-        --     return utils.root_has_file({ ".luacheckrc" })
-        --   end,
-        -- }),
-      })
-    end,
   },
 }

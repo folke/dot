@@ -17,7 +17,7 @@ function M.get_loc()
 end
 
 ---@param value any
----@param opts? {loc:string}
+---@param opts? {loc:string, bt?:boolean}
 function M._dump(value, opts)
   opts = opts or {}
   opts.loc = opts.loc or M.get_loc()
@@ -28,6 +28,9 @@ function M._dump(value, opts)
   end
   opts.loc = vim.fn.fnamemodify(opts.loc, ":~:.")
   local msg = vim.inspect(value)
+  if opts.bt then
+    msg = msg .. "\n" .. debug.traceback("", 2)
+  end
   vim.notify(msg, vim.log.levels.INFO, {
     title = "Debug: " .. opts.loc,
     on_open = function(win)
@@ -50,6 +53,16 @@ function M.dump(...)
     value = vim.tbl_islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
   end
   M._dump(value)
+end
+
+function M.bt(...)
+  local value = { ... }
+  if vim.tbl_isempty(value) then
+    value = nil
+  else
+    value = vim.tbl_islist(value) and vim.tbl_count(value) <= 1 and value[1] or value
+  end
+  M._dump(value, { bt = true })
 end
 
 function M.extmark_leaks()
@@ -152,6 +165,29 @@ function M.get_upvalue(func, name)
       return v
     end
     i = i + 1
+  end
+end
+
+function M.trace_require()
+  local requires = {} ---@type string[]
+  local done = {} ---@type table<string, true>
+  local r = require
+  _G.require = function(modname)
+    if not done[modname] then
+      local Util = package.loaded["lazy.core.util"]
+      done[modname] = true
+      if Util then
+        Util.track({ require = modname })
+      end
+      requires[#requires + 1] = modname
+      local ret, err = r(modname)
+      if Util then
+        Util.track()
+      end
+      return ret, err
+    else
+      return r(modname)
+    end
   end
 end
 

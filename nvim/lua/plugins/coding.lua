@@ -5,40 +5,6 @@ return {
       filetypes = { ["*"] = true },
     },
   },
-  -- {
-  --   "huggingface/llm.nvim",
-  --   cmd = "LLMToggleAutoSuggest",
-  --   opts = {
-  --     api_token = vim.env.HFCC_API_KEY,
-  --     lsp = {
-  --       bin_path = vim.api.nvim_call_function("stdpath", { "data" }) .. "/mason/bin/llm-ls",
-  --     },
-  --     model = "bigcode/starcoder",
-  --     query_params = {
-  --       max_new_tokens = 200,
-  --     },
-  --   },
-  --   init = function()
-  --     vim.api.nvim_create_user_command("StarCoder", function()
-  --       require("hfcc.completion").complete()
-  --     end, {})
-  --   end,
-  -- },
-
-  -- {
-  --   "danymat/neogen",
-  --   keys = {
-  --     {
-  --       "<leader>cc",
-  --       function()
-  --         require("neogen").generate({})
-  --       end,
-  --       desc = "Neogen Comment",
-  --     },
-  --   },
-  --   opts = { snippet_engine = "luasnip" },
-  -- },
-  --
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
@@ -94,10 +60,30 @@ return {
   {
     "nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
-    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
+      table.insert(opts.sources, { name = "emoji" })
     end,
+  },
+
+  {
+    "Wansmer/treesj",
+    keys = {
+      { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" },
+    },
+    opts = { use_default_keymaps = false, max_join_length = 150 },
+  },
+
+  {
+    "cshuaimin/ssr.nvim",
+    keys = {
+      {
+        "<leader>sR",
+        function()
+          require("ssr").open()
+        end,
+        mode = { "n", "x" },
+        desc = "Structural Replace",
+      },
+    },
   },
 }
