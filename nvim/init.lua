@@ -27,6 +27,8 @@ require("config.lazy")({
   },
 })
 
+_G.lv = require("lazyvim.util")
+
 -- require("util.dashboard").setup()
 
 vim.api.nvim_create_autocmd("User", {
