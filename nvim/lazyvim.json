@@ -1,1 +1,25 @@
-{"hashes":{"\/home\/folke\/projects\/LazyVim\/NEWS.md":"2035","\/home\/folke\/.local\/share\/bob\/v0.9.4\/nvim-linux64\/share\/nvim\/runtime\/doc\/news.txt":"13995","\/home\/folke\/.local\/share\/bob\/nightly\/nvim-linux64\/share\/nvim\/runtime\/doc\/news.txt":"13972"},"extras":["dap.core","test.core","coding.codeium","coding.copilot","coding.yanky","dap.nlua","lang.json","lang.omnisharp","lang.tailwind","lang.typescript","lang.yaml","linting.eslint","ui.edgy","ui.mini-animate","util.dot","util.mini-hipatterns","vscode","editor.aerial"]}
+{
+  "extras": [
+
+    "coding.codeium",
+    "coding.copilot","coding.yanky",
+    "dap.core",
+    "dap.nlua",
+    "lang.json",
+    "lang.omnisharp",
+    "lang.python",
+    "lang.python-semshi",
+    "lang.tailwind",
+    "lang.typescript",
+    "lang.yaml",
+    "linting.eslint",
+    "test.core",
+    "ui.mini-animate",
+    "util.dot",
+    "util.mini-hipatterns"
+  ],
+  "news": {
+    "NEWS.md": "2035",
+    "doc/news.txt": "13972"
+  }
+}
