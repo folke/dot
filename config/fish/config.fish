@@ -94,6 +94,8 @@ abbr g hub
 abbr gg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
 abbr gs "hub st"
+abbr gc "hub commit"
+abbr gcp "hub commit -p"
 abbr gpp "hub push"
 abbr gp "hub pull"
 alias tn "npx --no-install ts-node --transpile-only"

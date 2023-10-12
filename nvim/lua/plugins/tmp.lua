@@ -1,6 +1,25 @@
 -- vim.keymap.set("n", "<leader>w", "<cmd>lua vim.notify('hi')<cr>", { desc = "foooo" })
 -- vim.keymap.set("n", ";", ":")
+vim.schedule(function()
+  -- dd(require("null-ls"))
+end)
 return {
+  {
+    "echasnovski/mini.align",
+    opts = {},
+    keys = {
+      { "ga", mode = { "n", "v" } },
+      { "gA", mode = { "n", "v" } },
+    },
+  },
+  {
+    "2kabhishek/nerdy.nvim",
+    cmd = "Nerdy",
+    keys = {
+      { "<leader>ci", "<cmd>Nerdy<cr>", desc = "Pick Icon" },
+    },
+  },
+  { "stevearc/aerial.nvim", dev = true },
   -- {
   --   "echasnovski/nvim",
   --   name = "mini.dev",
@@ -23,16 +42,19 @@ return {
   --     })
   --   end,
   -- },
-  -- {
-  --   "AckslD/muren.nvim",
-  --   opts = {
-  --     patterns_width = 60,
-  --     patterns_height = 20,
-  --     options_width = 40,
-  --     preview_height = 24,
-  --   },
-  --   cmd = "MurenToggle",
-  -- },
+  {
+    "AckslD/muren.nvim",
+    event = {
+      { "BufNewFile", "BufAdd" },
+    },
+    opts = {
+      patterns_width = 60,
+      patterns_height = 20,
+      options_width = 40,
+      preview_height = 24,
+    },
+    cmd = "MurenToggle",
+  },
   -- { "ggandor/leap.nvim" },
   -- { "3rd/image.nvim", opts = {}, ft = "markdown", lazy = false, enabled = true },
   {

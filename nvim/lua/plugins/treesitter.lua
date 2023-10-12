@@ -2,13 +2,6 @@ return {
   -- { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "LazyFile",
-    enabled = true,
-    opts = { mode = "cursor" },
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
@@ -36,5 +29,4 @@ return {
       })
     end,
   },
-  { "windwp/nvim-ts-autotag", opts = {}, event = "InsertEnter" },
 }

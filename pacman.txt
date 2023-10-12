@@ -6,6 +6,7 @@ adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adw-gtk3
 adwaita-icon-theme
+alacritty
 alsa-firmware
 alsa-plugins
 alsa-utils
