@@ -12,7 +12,7 @@ alsa-plugins
 alsa-utils
 ansible
 ansiweather
-arc-gtk-theme-eos
+arc-gtk-theme
 archlinux-keyring
 archlinux-xdg-menu
 aria2
@@ -86,20 +86,7 @@ efibootmgr
 efitools
 egl-wayland
 element-desktop
-endeavouros-keyring
-endeavouros-mirrorlist
-endeavouros-theming
 eog
-eos-apps-info
-eos-hooks
-eos-log-tool
-eos-packagelist
-eos-qogir-icons
-eos-quickstart
-eos-rankmirrors
-eos-sddm-theme
-eos-settings-gnome
-eos-update-notifier
 erdtree
 ethtool
 evince
@@ -345,7 +332,6 @@ qt6-wayland
 ranger
 rebuild-detector
 reflector
-reflector-simple
 reiserfsprogs
 ripgrep
 rizin
@@ -425,7 +411,6 @@ vlc
 warpd-git
 watchexec
 waybar-git
-welcome
 wev
 wezterm
 wf-recorder-git
@@ -466,7 +451,6 @@ xprintidle
 xsane
 xsel
 xterm
-yay
 zellij
 zfxtop
 zoxide
