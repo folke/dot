@@ -47,6 +47,36 @@ function M.setup(config)
     { mods = M.mod, key = "d", action = act.ShowDebugOverlay },
   }
 
+  for dir, key in pairs(M.pane_nav) do
+    table.insert(config.keys, { key = key, mods = M.pane_nav_mods, action = M.activate_pane(dir) })
+  end
+end
+
+M.pane_nav = {
+  Left = "h",
+  Down = "j",
+  Up = "k",
+  Right = "l",
+}
+M.pane_nav_mods = "CTRL"
+
+---@param dir "Right" | "Left" | "Up" | "Down"
+function M.activate_pane(dir)
+  return wezterm.action_callback(function(window, pane)
+    if M.is_nvim(pane) then
+      window:perform_action(act.SendKey({ key = M.pane_nav[dir], mods = M.pane_nav_mods }), pane)
+    else
+      window:perform_action(act.ActivatePaneDirection(dir), pane)
+    end
+  end)
+end
+
+function M.is_nvim(pane)
+  -- get_foreground_process_name On Linux, macOS and Windows,
+  -- the process can be queried to determine this path. Other operating systems
+  -- (notably, FreeBSD and other unix systems) are not currently supported
+  return pane:get_foreground_process_name():find("n?vim") ~= nil
+  -- return pane:get_title():find("n?vim") ~= nil
 end
 
 return M
