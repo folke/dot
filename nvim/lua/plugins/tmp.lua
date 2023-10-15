@@ -4,6 +4,8 @@ vim.schedule(function()
   -- dd(require("null-ls"))
 end)
 return {
+  { "justinsgithub/wezterm-types" },
+
   {
     "echasnovski/mini.align",
     opts = {},
@@ -19,7 +21,7 @@ return {
       { "<leader>ci", "<cmd>Nerdy<cr>", desc = "Pick Icon" },
     },
   },
-  { "stevearc/aerial.nvim", dev = true },
+  -- { "stevearc/aerial.nvim", dev = true },
   -- {
   --   "echasnovski/nvim",
   --   name = "mini.dev",

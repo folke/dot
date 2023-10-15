@@ -94,7 +94,10 @@ abbr g hub
 abbr gg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
 abbr gs "hub st"
+abbr gb "hub checkout -b"
 abbr gc "hub commit"
+abbr gpr "hub pr checkout"
+abbr gm "hub branch -l main | rg main > /dev/null 2>&1 && hub checkout main || hub checkout master"
 abbr gcp "hub commit -p"
 abbr gpp "hub push"
 abbr gp "hub pull"
