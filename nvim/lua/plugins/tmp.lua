@@ -5,6 +5,8 @@ vim.schedule(function()
 end)
 return {
   { "justinsgithub/wezterm-types" },
+  -- { "LazyVim/LazyVim", dev = false },
+  -- { "folke/tokyonight.nvim", dev = false },
 
   {
     "echasnovski/mini.align",
@@ -20,6 +22,11 @@ return {
     keys = {
       { "<leader>ci", "<cmd>Nerdy<cr>", desc = "Pick Icon" },
     },
+  },
+  {
+    "echasnovski/mini.pick",
+    cmd = "Pick",
+    opts = {},
   },
   -- { "stevearc/aerial.nvim", dev = true },
   -- {

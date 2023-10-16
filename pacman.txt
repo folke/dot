@@ -215,8 +215,6 @@ linux-apfs-rw-dkms-git
 linux-enable-ir-emitter
 linux-firmware
 linux-headers
-linux-lts
-linux-zen-headers
 lld
 logrotate
 logseq-desktop-bin
@@ -412,7 +410,7 @@ warpd-git
 watchexec
 waybar-git
 wev
-wezterm
+wezterm-git
 wf-recorder-git
 wget
 which
