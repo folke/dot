@@ -47,7 +47,7 @@ return {
         -- denols = {},
         cssls = {},
         dockerls = {},
-        ruff_lsp = {},
+        -- ruff_lsp = {},
         tailwindcss = {
           root_dir = function(...)
             return require("lspconfig.util").root_pattern(".git")(...)
@@ -87,21 +87,21 @@ return {
         html = {},
         -- gopls = {},
         marksman = {},
-        pyright = {
-          enabled = false,
-        },
-        rust_analyzer = {
-          -- settings = {
-          --   ["rust-analyzer"] = {
-          --     procMacro = { enable = true },
-          --     cargo = { allFeatures = true },
-          --     checkOnSave = {
-          --       command = "clippy",
-          --       extraArgs = { "--no-deps" },
-          --     },
-          --   },
-          -- },
-        },
+        -- pyright = {
+        --   enabled = false,
+        -- },
+        -- rust_analyzer = {
+        -- settings = {
+        --   ["rust-analyzer"] = {
+        --     procMacro = { enable = true },
+        --     cargo = { allFeatures = true },
+        --     checkOnSave = {
+        --       command = "clippy",
+        --       extraArgs = { "--no-deps" },
+        --     },
+        --   },
+        -- },
+        -- },
         yamlls = {
           settings = {
             yaml = {

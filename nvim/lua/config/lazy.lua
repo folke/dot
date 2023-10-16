@@ -28,7 +28,10 @@ return function(opts)
       { import = "plugins" },
     },
     defaults = { lazy = true },
-    dev = { patterns = jit.os:find("Windows") and {} or { "folke", "LazyVim" } },
+    dev = {
+      patterns = { "folke", "LazyVim" },
+      fallback = jit.os:find("Windows"),
+    },
     install = { colorscheme = { "tokyonight", "habamax" } },
     checker = { enabled = true },
     diff = {

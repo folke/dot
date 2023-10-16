@@ -1,14 +1,13 @@
 ---@type Wezterm
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
-config.term = "wezterm"
 
 wezterm.log_info("reloading")
 
 require("tabs").setup(config)
 require("mouse").setup(config)
-require("keys").setup(config)
 require("links").setup(config)
+require("keys").setup(config)
 
 config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
@@ -17,14 +16,30 @@ config.cursor_blink_ease_in = "Constant"
 config.cursor_blink_ease_out = "Constant"
 
 -- Colorscheme
-config.color_scheme_dirs = { "/home/folke/projects/tokyonight.nvim/extras/wezterm" }
+config.color_scheme_dirs = { wezterm.home_dir .. "/projects/tokyonight.nvim/extras/wezterm" }
 config.color_scheme = "tokyonight_night"
 wezterm.add_to_config_reload_watch_list(config.color_scheme_dirs[1] .. config.color_scheme .. ".toml")
 
 config.underline_thickness = 3
 config.cursor_thickness = 4
 config.underline_position = -6
-config.window_decorations = "RESIZE"
+
+if wezterm.target_triple:find("windows") then
+  config.default_prog = { "pwsh" }
+  config.window_decorations = "RESIZE|TITLE"
+  wezterm.on("gui-startup", function(cmd)
+    local screen = wezterm.gui.screens().active
+    local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+    local gui = window:gui_window()
+    local width = 0.7 * screen.width
+    local height = 0.7 * screen.height
+    gui:set_inner_size(width, height)
+    gui:set_position((screen.width - width) / 2, (screen.height - height) / 2)
+  end)
+else
+  config.term = "wezterm"
+  config.window_decorations = "RESIZE"
+end
 
 -- Fonts
 config.font_size = 11

@@ -31,6 +31,8 @@ M.icons = {
   ["pacman"] = "󰮯 ",
   ["paru"] = "󰮯 ",
   ["Topgrade"] = wezterm.nerdfonts.md_rocket_launch,
+  ["pwsh.exe"] = wezterm.nerdfonts.md_console,
+  ["C:\\WINDOWS\\system32\\cmd.exe"] = wezterm.nerdfonts.md_console_line,
 }
 
 ---@param tab MuxTabObj
