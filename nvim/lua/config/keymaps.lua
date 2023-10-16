@@ -29,6 +29,8 @@ local function navigate(dir)
   end
 end
 
+util.set_user_var("IS_NVIM", true)
+
 -- Move to window using the movement keys
 for key, dir in pairs(nav) do
   vim.keymap.set("n", "<" .. dir .. ">", navigate(key))
