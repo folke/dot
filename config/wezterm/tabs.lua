@@ -39,7 +39,6 @@ M.icons = {
 ---@param max_width number
 function M.title(tab, max_width)
   local title = (tab.tab_title and #tab.tab_title > 0) and tab.tab_title or tab.active_pane.title
-  wezterm.log_info("title: " .. title)
   local process, other = title:match("^(%S+)%s*%-?%s*%s*(.*)$")
 
   if M.icons[process] then

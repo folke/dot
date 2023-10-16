@@ -45,38 +45,44 @@ function M.setup(config)
     { mods = M.mod, key = "M", action = act.TogglePaneZoomState },
     { mods = M.mod, key = "p", action = act.ActivateCommandPalette },
     { mods = M.mod, key = "d", action = act.ShowDebugOverlay },
+    M.split_nav("resize", "CTRL", "LeftArrow", "Right"),
+    M.split_nav("resize", "CTRL", "RightArrow", "Left"),
+    M.split_nav("resize", "CTRL", "UpArrow", "Up"),
+    M.split_nav("resize", "CTRL", "DownArrow", "Down"),
+    M.split_nav("move", "CTRL", "h", "Left"),
+    M.split_nav("move", "CTRL", "j", "Down"),
+    M.split_nav("move", "CTRL", "k", "Up"),
+    M.split_nav("move", "CTRL", "l", "Right"),
   }
-
-  for dir, key in pairs(M.pane_nav) do
-    table.insert(config.keys, { key = key, mods = M.pane_nav_mods, action = M.activate_pane(dir) })
-  end
 end
 
-M.pane_nav = {
-  Left = "h",
-  Down = "j",
-  Up = "k",
-  Right = "l",
-}
-M.pane_nav_mods = "CTRL"
-
+---@param resize_or_move "resize" | "move"
+---@param mods string
+---@param key string
 ---@param dir "Right" | "Left" | "Up" | "Down"
-function M.activate_pane(dir)
-  return wezterm.action_callback(function(window, pane)
+function M.split_nav(resize_or_move, mods, key, dir)
+  local event = "SplitNav_" .. resize_or_move .. "_" .. dir
+  wezterm.on(event, function(win, pane)
     if M.is_nvim(pane) then
-      window:perform_action(act.SendKey({ key = M.pane_nav[dir], mods = M.pane_nav_mods }), pane)
+      -- pass the keys through to vim/nvim
+      win:perform_action({ SendKey = { key = key, mods = mods } }, pane)
     else
-      window:perform_action(act.ActivatePaneDirection(dir), pane)
+      if resize_or_move == "resize" then
+        win:perform_action({ AdjustPaneSize = { dir, 3 } }, pane)
+      else
+        win:perform_action({ ActivatePaneDirection = dir }, pane)
+      end
     end
   end)
+  return {
+    key = key,
+    mods = mods,
+    action = wezterm.action.EmitEvent(event),
+  }
 end
 
 function M.is_nvim(pane)
-  -- get_foreground_process_name On Linux, macOS and Windows,
-  -- the process can be queried to determine this path. Other operating systems
-  -- (notably, FreeBSD and other unix systems) are not currently supported
-  return pane:get_foreground_process_name():find("n?vim") ~= nil
-  -- return pane:get_title():find("n?vim") ~= nil
+  return pane:get_user_vars().IS_NVIM == "true" or pane:get_foreground_process_name():find("n?vim")
 end
 
 return M
