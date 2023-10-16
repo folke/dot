@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 local M = {}
 
-M.mod = "SHIFT|SUPER"
+M.mod = wezterm.target_triple:find("windows") and "SHIFT|CTRL" or "SHIFT|SUPER"
 
 M.smart_split = wezterm.action_callback(function(window, pane)
   local dim = pane:get_dimensions()
