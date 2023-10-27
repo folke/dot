@@ -449,6 +449,7 @@ xprintidle
 xsane
 xsel
 xterm
+yazi
 zellij
 zfxtop
 zoxide

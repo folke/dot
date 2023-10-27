@@ -70,7 +70,20 @@ function M.split_nav(resize_or_move, mods, key, dir)
       if resize_or_move == "resize" then
         win:perform_action({ AdjustPaneSize = { dir, 3 } }, pane)
       else
+        local panes = pane:tab():panes_with_info()
+        local is_zoomed = false
+        for _, p in ipairs(panes) do
+          if p.is_zoomed then
+            is_zoomed = true
+          end
+        end
+        wezterm.log_info("is_zoomed: " .. tostring(is_zoomed))
+        if is_zoomed then
+          dir = dir == "Up" or dir == "Right" and "Next" or "Prev"
+          wezterm.log_info("dir: " .. dir)
+        end
         win:perform_action({ ActivatePaneDirection = dir }, pane)
+        win:perform_action({ SetPaneZoomState = is_zoomed }, pane)
       end
     end
   end)

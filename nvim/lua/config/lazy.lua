@@ -19,6 +19,7 @@ return function(opts)
         "LazyVim/LazyVim",
         import = "lazyvim.plugins",
         opts = {
+          -- colorscheme = "rose-pine",
           news = {
             lazyvim = true,
             neovim = true,
@@ -47,7 +48,7 @@ return function(opts)
           "gzip",
           -- "matchit",
           -- "matchparen",
-          "netrwPlugin",
+          -- "netrwPlugin",
           "rplugin",
           "tarPlugin",
           "tohtml",

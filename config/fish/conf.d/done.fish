@@ -24,7 +24,7 @@ if not status is-interactive
     exit
 end
 
-set -g __done_version 1.17.1
+set -g __done_version 1.19.0
 
 function __done_run_powershell_script
     set -l powershell_exe (command --search "powershell.exe")
@@ -138,6 +138,11 @@ function __done_is_process_window_focused
         return 1
     end
 
+    if set -q __done_kitty_remote_control
+        kitty @ --password="$__done_kitty_remote_control_password" ls | jq -e ".[].tabs.[] | select(any(.windows.[]; .is_self)) | .is_focused" >/dev/null
+        return $status
+    end
+
     set __done_focused_window_id (__done_get_focused_window_id)
     if test "$__done_sway_ignore_visible" -eq 1
         and test -n "$SWAYSOCK"
@@ -200,6 +205,7 @@ if set -q __done_enabled
     set -q __done_notify_sound; or set -g __done_notify_sound 0
     set -q __done_sway_ignore_visible; or set -g __done_sway_ignore_visible 0
     set -q __done_tmux_pane_format; or set -g __done_tmux_pane_format '[#{window_index}]'
+    set -q __done_notification_duration; or set -g __done_notification_duration 3000
 
     function __done_started --on-event fish_preexec
         set __done_initial_window_id (__done_get_focused_window_id)
@@ -248,9 +254,10 @@ if set -q __done_enabled
                 printf "\x1b]99;i=done:d=1:p=body;$message\x1b\\"
             else if type -q terminal-notifier # https://github.com/julienXX/terminal-notifier
                 if test "$__done_notify_sound" -eq 1
-                    terminal-notifier -message "$message" -title "$title" -sender "$__done_initial_window_id" -sound default
+                    # pipe message into terminal-notifier to avoid escaping issues (https://github.com/julienXX/terminal-notifier/issues/134). fixes #140
+                    echo "$message" | terminal-notifier -title "$title" -sender "$__done_initial_window_id" -sound default
                 else
-                    terminal-notifier -message "$message" -title "$title" -sender "$__done_initial_window_id"
+                    echo "$message" | terminal-notifier -title "$title" -sender "$__done_initial_window_id"
                 end
 
             else if type -q osascript # AppleScript
@@ -281,7 +288,7 @@ if set -q __done_enabled
                     end
                 end
 
-                notify-send --hint=int:transient:1 --urgency=$urgency --icon=utilities-terminal --app-name=fish "$title" "$message"
+                notify-send --hint=int:transient:1 --urgency=$urgency --icon=utilities-terminal --app-name=fish --expire-time=$__done_notification_duration "$title" "$message"
 
                 if test "$__done_notify_sound" -eq 1
                     echo -e "\a" # bell sound

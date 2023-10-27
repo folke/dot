@@ -127,6 +127,7 @@ return {
                   -- "--log-level=trace",
                 },
               },
+              hover = { expandAlias = false },
               hint = {
                 enable = true,
                 setType = false,
