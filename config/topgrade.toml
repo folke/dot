@@ -44,7 +44,7 @@ disable = ["vim"]
 #skip_notify = true
 
 [git]
-pull_only_repos = ["~/projects/*/", "~/dot"]
+repos = ["~/projects/*/", "~/dot"]
 #max_concurrency = 5
 # Git repositories that you want to pull and push
 #repos = [

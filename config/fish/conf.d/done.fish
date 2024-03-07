@@ -24,7 +24,7 @@ if not status is-interactive
     exit
 end
 
-set -g __done_version 1.19.0
+set -g __done_version 1.19.2
 
 function __done_run_powershell_script
     set -l powershell_exe (command --search "powershell.exe")
@@ -83,7 +83,7 @@ function __done_get_focused_window_id
         and type -q jq
         swaymsg --type get_tree | jq '.. | objects | select(.focused == true) | .id'
     else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
-        hyprctl activewindow | awk 'NR==13 {print $2}'
+        hyprctl activewindow | awk 'NR==1 {print $2}'
     else if begin
             test "$XDG_SESSION_DESKTOP" = gnome; and type -q gdbus
         end
@@ -118,7 +118,10 @@ function __done_is_tmux_window_active
     # ppid == "tmux" -> break
     set tmux_fish_pid $fish_pid
     while set tmux_fish_ppid (ps -o ppid= -p $tmux_fish_pid | string trim)
-        and ! string match -q "tmux*" (basename (ps -o command= -p $tmux_fish_ppid))
+        # remove leading hyphen so that basename does not treat it as an argument (e.g. -fish), and return only
+        # the actual command and not its arguments so that basename finds the correct command name.
+        # (e.g. '/usr/bin/tmux' from command '/usr/bin/tmux new-session -c /some/start/dir')
+        and ! string match -q "tmux*" (basename (ps -o command= -p $tmux_fish_ppid | string replace -r '^-' '' | string split ' ')[1])
         set tmux_fish_pid $tmux_fish_ppid
     end
 
@@ -139,7 +142,7 @@ function __done_is_process_window_focused
     end
 
     if set -q __done_kitty_remote_control
-        kitty @ --password="$__done_kitty_remote_control_password" ls | jq -e ".[].tabs.[] | select(any(.windows.[]; .is_self)) | .is_focused" >/dev/null
+        kitty @ --password="$__done_kitty_remote_control_password" ls | jq -e ".[].tabs[] | select(any(.windows[]; .is_self)) | .is_focused" >/dev/null
         return $status
     end
 
@@ -149,7 +152,7 @@ function __done_is_process_window_focused
         string match --quiet --regex "^true" (swaymsg -t get_tree | jq ".. | objects | select(.id == "$__done_initial_window_id") | .visible")
         return $status
     else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
-        and test $__done_initial_window_id -eq (hyprctl activewindow | awk 'NR==13 {print $2}')
+        and test $__done_initial_window_id = (hyprctl activewindow | awk 'NR==1 {print $2}')
         return $status
     else if test "$__done_initial_window_id" != "$__done_focused_window_id"
         return 1

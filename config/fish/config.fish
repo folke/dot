@@ -23,6 +23,7 @@ fish_add_path /bin
 fish_add_path ~/.local/share/bob/nvim-bin
 fish_add_path /var/lib/flatpak/exports/bin/
 fish_add_path ~/.dotnet/tools
+fish_add_path ~/.local/share/mise/shims
 
 set -gx DENO_INSTALL "~/.deno"
 fish_add_path ~/.deno/bin
@@ -30,6 +31,8 @@ fish_add_path ~/.deno/bin
 # Fish
 set fish_emoji_width 2
 alias fish_greeting color-test
+alias ssh "TERM=xterm-256color command ssh"
+alias mosh "TERM=xterm-256color command mosh"
 
 # Emacs
 # set -l emacs_path /Applications/Emacs.app/Contents/MacOS
