@@ -9,10 +9,10 @@
 
 - name: Enable Keyd Daemon
   become: true
-  ansible.builtin.systemd:
+  ansible.builtin.systemd_service:
+    state: restarted
+    enabled: true
     name: keyd
-    enabled: yes
-    state: started
 
 - name: Powersave udev rule
   become: true

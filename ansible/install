@@ -3,15 +3,11 @@
 set -e
 
 function have {
-	command -v "$1" &>/dev/null
+  command -v "$1" &>/dev/null
 }
 
 # install ansible
-have ansible || yay ansible
-
-# install ansible community plugins
-[ -d ~/.ansible/collections/ansible_collections/community ] ||
-	ansible-galaxy collection install community.general
+have ansible || paru ansible
 
 # Run Ansible
 ansible-playbook -i ./hosts ./linux.yml --ask-become-pass
