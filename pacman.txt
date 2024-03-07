@@ -16,6 +16,7 @@ arc-gtk-theme
 archlinux-keyring
 archlinux-xdg-menu
 aria2
+arp-scan
 asp
 atuin
 autoconf
@@ -43,6 +44,7 @@ brightnessctl
 btop
 btrfs-assistant
 btrfs-progs
+caddy
 calf
 cantarell-fonts
 catch2
@@ -51,16 +53,16 @@ chkservice
 chromium
 circumflex-bin
 clang
-cliphist-bin
+cliphist
 clipman
+cool-retro-term
 cpupower
 cpupower-gui
 cryptsetup
+ctop
 cups
 cups-filters
 cups-pdf
-cutechess
-cutechess-cli
 debugedit
 device-mapper
 dhclient
@@ -88,6 +90,7 @@ egl-wayland
 element-desktop
 eog
 erdtree
+esptool
 ethtool
 evince
 evtest
@@ -95,11 +98,11 @@ exfatprogs
 eza
 f2fs-tools
 fakeroot
-fcgu-mirrorlist
 fd
 ffmpegthumbnailer
 file
 file-roller
+filezilla
 findutils
 firefox
 firewalld
@@ -113,6 +116,7 @@ foomatic-db-nonfree-ppds
 foomatic-db-ppds
 fprintd
 fsarchiver
+fswatch
 fwupd
 gammastep
 gawk
@@ -127,12 +131,14 @@ github-cli
 gitui
 glances
 glow
+gnome-boxes
 gnome-calculator
 gnome-console
 gnome-control-center
 gnome-disk-utility
 gnome-keyring
 gnome-menus
+gnome-multi-writer
 gnome-nettool
 gnome-power-manager
 gnome-screenshot
@@ -144,6 +150,7 @@ gnome-text-editor
 gnome-themes-extra
 gnome-tweaks
 gnome-usage
+gnu-netcat
 gparted
 gpu-viewer
 grc
@@ -156,6 +163,7 @@ gst-plugin-pipewire
 gst-plugins-bad
 gst-plugins-ugly
 gtklock
+gupnp-tools
 gutenprint
 gvfs
 gvfs-afc
@@ -185,12 +193,15 @@ intel-gpu-tools
 intel-media-driver
 intel-ucode
 inxi
+iotop
 iptables-nft
 iucode-tool
 iwd
 jamesdsp
+java-openjfx-bin
 jfsutils
 jq
+just
 kernel-install-for-dracut
 keyd-git
 khal
@@ -201,6 +212,7 @@ ledger
 lemmy-help
 less
 libdvdcss
+liberica-jdk-8-full-bin
 libfprint-2-tod1-xps9300-bin
 libfprint-tod-git
 libgdm
@@ -243,12 +255,14 @@ meld
 mesa-utils
 microsoft-edge-beta-bin
 microsoft-edge-dev-bin
+mise-bin
 mission-center
 mitogen
 mlocate
 modemmanager
 mods
 mono-msbuild
+mosh
 mtools
 mullvad-vpn-bin
 nano
@@ -256,6 +270,7 @@ nano-syntax-highlighting
 nautilus
 nautilus-sendto
 navi
+nbtscan
 needrestart
 nemo
 neofetch
@@ -272,6 +287,8 @@ networkmanager-openvpn
 nfs-utils
 nilfs-utils
 nitch
+nmap
+nodejs-lts-hydrogen
 notion-app
 noto-fonts
 noto-fonts-emoji
@@ -282,6 +299,7 @@ nushell
 nwg-look
 nwg-panel
 omnisharp-roslyn-bin
+ookla-speedtest-bin
 otf-cascadia-code
 ov-bin
 p7zip
@@ -328,7 +346,9 @@ python-west
 qt5-wayland
 qt6-wayland
 ranger
+rclone
 rebuild-detector
+recyclarr
 reflector
 reiserfsprogs
 ripgrep
@@ -337,7 +357,6 @@ rofi-lbonn-wayland-git
 rofimoji
 rsync
 rtkit
-rtx
 ruby
 rust-analyzer
 rustup
@@ -353,10 +372,13 @@ shell-color-scripts
 slurp
 smartmontools
 snap-pac
+snapd
 snapper
 sof-firmware
 splix
 spotify-launcher
+sqliteman
+sshfs
 starship
 steam
 stockfish
@@ -364,6 +386,7 @@ strace
 stylua
 sudo
 sushi
+swaks
 sway
 sway-audio-idle-inhibit-git
 swayidle
@@ -383,6 +406,7 @@ tmux
 tokei
 topgrade
 totem
+traceroute
 tree
 ttf-bitstream-vera
 ttf-dejavu
@@ -408,9 +432,9 @@ visual-studio-code-bin
 vlc
 warpd-git
 watchexec
-waybar-git
+waybar
 wev
-wezterm-git
+wezterm
 wf-recorder-git
 wget
 which
@@ -445,7 +469,6 @@ xorg-xinput
 xorg-xkill
 xorg-xrandr
 xorg-xwininfo
-xprintidle
 xsane
 xsel
 xterm

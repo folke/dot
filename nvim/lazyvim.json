@@ -4,13 +4,14 @@
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.coding.codeium",
     "lazyvim.plugins.extras.coding.copilot",
+    "lazyvim.plugins.extras.coding.native_snippets",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.nlua",
+    "lazyvim.plugins.extras.editor.trouble-v3",
+    "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.omnisharp",
-    "lazyvim.plugins.extras.lang.python",
-    "lazyvim.plugins.extras.lang.python-semshi",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.lang.yaml",
@@ -19,13 +20,11 @@
     "lazyvim.plugins.extras.ui.mini-animate",
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.mini-hipatterns",
-    "lazyvim.plugins.extras.vscode",
-    "lazyvim.plugins.extras.editor.aerial",
-    "lazyvim.plugins.extras.editor.symbols-outline"
+    "lazyvim.plugins.extras.vscode"
   ],
   "news": {
     "NEWS.md": "2123",
-    "doc/news.txt": "14377"
+    "doc/news.txt": "24277"
   },
   "version": 2
 }

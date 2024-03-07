@@ -4,7 +4,7 @@ return {
   -- {
   --   "b0o/incline.nvim",
   --   event = "BufReadPre",
-  --   enabled = false,
+  --   -- enabled = false,
   --   config = function()
   --     local colors = require("tokyonight.colors").setup()
   --     require("incline").setup({
@@ -27,6 +27,7 @@ return {
   -- auto-resize windows
   {
     "anuvyklack/windows.nvim",
+    enabled = false,
     event = "WinNew",
     dependencies = {
       { "anuvyklack/middleclass" },
@@ -114,6 +115,13 @@ return {
       table.insert(opts.sections.lualine_x, {
         function()
           return require("util.dashboard").status()
+        end,
+      })
+      local count = 0
+      table.insert(opts.sections.lualine_x, {
+        function()
+          count = count + 1
+          return tostring(count)
         end,
       })
     end,

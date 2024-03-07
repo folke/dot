@@ -15,7 +15,7 @@ _G.bt = function(...)
 end
 vim.print = _G.dd
 
--- require("util.profiler").start()
+-- require("util.profiler").startup()
 
 pcall(require, "config.env")
 

@@ -194,11 +194,11 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["markdown"] = { { "prettierd", "prettier" } },
+        ["markdown"] = { { "prettierd", "prettier" }, "markdownlint" },
         ["markdown.mdx"] = { { "prettierd", "prettier" } },
-        ["javascript"] = { "dprint" },
+        ["javascript"] = { "dprint", { "prettierd", "prettier" } },
         ["javascriptreact"] = { "dprint" },
-        ["typescript"] = { "dprint" },
+        ["typescript"] = { "dprint", { "prettierd", "prettier" } },
         ["typescriptreact"] = { "dprint" },
       },
       formatters = {
@@ -206,7 +206,7 @@ return {
           prepend_args = { "-i", "2", "-ci" },
         },
         dprint = {
-          condition = function(ctx)
+          condition = function(self, ctx)
             return vim.fs.find({ "dprint.json" }, { path = ctx.filename, upward = true })[1]
           end,
         },

@@ -1,89 +1,79 @@
 local M = {}
 
----@type table<fun(), true>
-M.wrapped = {}
-
----@type {total:number, time:number, self:number}[]
+---@type {count:number, time:number}[]
 M.stats = {}
-M._require = _G.require
+---@type table<string, true>
+M.tracked = {}
+---@type table<function, true>
+M.active = {}
+M.mods = {} ---@type table<string, true>
 local pack_len = vim.F.pack_len
----@type number[]
-M.stack = { 0 }
-M.stack_names = {}
 
-function M.stat(name, start)
-  M.stats[name] = M.stats[name] or { total = 0, time = 0, self = 0 }
-  M.stats[name].total = M.stats[name].total + 1
-  local diff = vim.loop.hrtime() - start
-  table.remove(M.stack_names)
-  if not vim.tbl_contains(M.stack_names, name) then
-    M.stats[name].time = M.stats[name].time + diff
-  end
-  local other = table.remove(M.stack)
-  M.stats[name].self = M.stats[name].self + diff - other
-  M.stack[#M.stack] = M.stack[#M.stack] + diff
-end
-
-function M.wrap(name, fn)
-  if M.wrapped[fn] then
-    return fn
-  end
-  M.wrapped[fn] = true
+---@param name string
+---@param fn function
+function M.track(name, fn)
   return function(...)
-    local start = vim.loop.hrtime()
-    table.insert(M.stack, 0)
-    table.insert(M.stack_names, name)
-    local ret = pack_len(pcall(fn, ...))
-    M.stat(name, start)
-    if not ret[1] then
-      error(ret[2])
+    if M.active[fn] then
+      return fn(...)
     end
-    return unpack(ret, 2, ret.n)
-    -- error(ret[2])
+    M.active[fn] = true
+    local start = vim.uv.hrtime()
+    local result = vim.F.pack_len(pcall(fn, ...))
+    local stop = vim.uv.hrtime()
+    M.active[fn] = nil
+    M.stats[name] = M.stats[name] or { count = 0, time = 0 }
+    M.stats[name].count = M.stats[name].count + 1
+    M.stats[name].time = M.stats[name].time + (stop - start)
+    if result[1] then
+      return unpack(result, 2, result.n)
+    end
+    error(result[2], 2)
   end
 end
 
-function M.hook(name, value, done)
-  if value == nil then
-    return nil
+function M.wrap(name, obj)
+  if M.tracked[obj] then
+    return obj
   end
-  done = done or {}
-  if done[value] then
-    return value
+  M.tracked[obj] = true
+  if type(obj) == "function" then
+    return M.track(name, obj)
+  elseif type(obj) == "table" then
+    for k, v in pairs(obj) do
+      obj[k] = M.wrap(name .. "." .. tostring(k), v)
+    end
   end
-  done[value] = true
-  if type(value) == "function" then
-    return M.wrap(name, value)
-  elseif type(value) == "table" and getmetatable(value) == nil then
-    for k, v in pairs(value) do
-      if type(v) == "function" then
-        rawset(value, k, M.wrap(name .. "." .. k .. "()", v))
-      elseif type(v) == "table" then
-        rawset(value, k, M.hook(name .. "." .. k, v, done))
+  return obj
+end
+
+function M.loader(modname)
+  local chunk ---@type function?
+  for _, loader in ipairs(package.loaders) do
+    if loader ~= M.loader then
+      local c = loader(modname)
+      if type(c) == "function" then
+        chunk = c
+        break
       end
     end
   end
-  return value
-end
-
-function M.require(modname)
-  if package.loaded[modname] then
-    return package.loaded[modname]
+  if not chunk then
+    return
   end
-  local start = vim.loop.hrtime()
-  table.insert(M.stack, 0)
-  table.insert(M.stack_names, modname)
-  local ret = pack_len(pcall(M._require, modname))
-  M.stat(modname, start)
-  if ret[1] then
-    ret[2] = M.hook(modname, ret[2])
-    return unpack(ret, 2, ret.n)
+  local ret = function()
+    local mod = pack_len(pcall(chunk))
+    if mod[1] then
+      for i = 2, mod.n do
+        mod[i] = M.wrap(modname, mod[i])
+      end
+      return unpack(mod, 2, mod.n)
+    end
+    error(mod[2])
   end
-  error(ret[2])
+  return ret
 end
 
 function M.stop()
-  _G.require = M._require
   local s = {}
   for name, stat in pairs(M.stats) do
     stat.name = name
@@ -93,16 +83,11 @@ function M.stop()
     return a.time > b.time
   end)
   for _, stat in ipairs(s) do
-    if stat.time / 1e6 > 0.5 or stat.self / 1e6 > 0.5 then
+    if stat.time / 1e6 > 0.5 then
       local time = math.floor(stat.time / 1e6 * 100 + 0.5) / 100
-      local time_self = math.floor(stat.time / stat.total / 1e6 * 100 + 0.5) / 100
       local line = {
         { time .. "ms", "Number" },
-        {
-          time_self .. "ms",
-          "Number",
-        },
-        { stat.total .. "", "Number" },
+        { stat.count .. "", "Number" },
         { stat.name },
       }
       line[1][1] = line[1][1] .. string.rep(" ", 10 - #line[1][1])
@@ -114,15 +99,15 @@ function M.stop()
 end
 
 function M.start()
-  _G.require = M.require
+  table.insert(package.loaders, 1, M.loader)
 end
 
 function M.startup()
   M.start()
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "LazyVimStarted",
-    callback = M.stop,
-  })
+  -- vim.api.nvim_create_autocmd("User", {
+  --   pattern = "LazyVimStarted",
+  --   callback = M.stop,
+  -- })
 end
 
 vim.api.nvim_create_user_command("ProfileStart", M.start, {})
