@@ -1,26 +1,26 @@
 -- selene: allow(global_usage)
 _G.profile = function(cmd, times, flush)
   times = times or 100
-  local start = vim.loop.hrtime()
+  local start = vim.uv.hrtime()
   for _ = 1, times, 1 do
     if flush then
       jit.flush(cmd, true)
     end
     cmd()
   end
-  print(((vim.loop.hrtime() - start) / 1e6 / times) .. "ms")
+  print(((vim.uv.hrtime() - start) / 1e6 / times) .. "ms")
 end
 
 local M = {}
 
 function M.exists(fname)
-  local stat = vim.loop.fs_stat(fname)
+  local stat = vim.uv.fs_stat(fname)
   return (stat and stat.type) or false
 end
 
 function M.fqn(fname)
   fname = vim.fn.fnamemodify(fname, ":p")
-  return vim.loop.fs_realpath(fname) or fname
+  return vim.uv.fs_realpath(fname) or fname
 end
 
 function M.clipman()
@@ -128,7 +128,7 @@ function M.cowboy()
   local ok = true
   for _, key in ipairs({ "h", "j", "k", "l", "+", "-" }) do
     local count = 0
-    local timer = assert(vim.loop.new_timer())
+    local timer = assert(vim.uv.new_timer())
     local map = key
     vim.keymap.set("n", key, function()
       if vim.v.count > 0 then
