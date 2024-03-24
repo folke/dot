@@ -16,7 +16,7 @@ return {
         sidebars = {
           "qf",
           "vista_kind",
-          "terminal",
+          -- "terminal",
           "spectre_panel",
           "startuptime",
           "Outline",
