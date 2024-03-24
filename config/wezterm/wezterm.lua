@@ -22,6 +22,10 @@ config.color_scheme_dirs = { wezterm.home_dir .. "/projects/tokyonight.nvim/extr
 config.color_scheme = "tokyonight_night"
 wezterm.add_to_config_reload_watch_list(config.color_scheme_dirs[1] .. config.color_scheme .. ".toml")
 
+config.colors = {
+  indexed = { [241] = "#65bcff" },
+}
+
 config.underline_thickness = 3
 config.cursor_thickness = 4
 config.underline_position = -6
