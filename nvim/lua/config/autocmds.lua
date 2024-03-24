@@ -48,3 +48,16 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end,
 })
+
+-- Work-around for https://github.com/mutagen-io/mutagen/issues/163
+vim.api.nvim_create_autocmd("BufWritePost", {
+  callback = function()
+    local file = vim.api.nvim_buf_get_name(0)
+    if file:find("pyscript") then
+      file = file:gsub(".*nodes/ha/", "")
+      vim.defer_fn(function()
+        vim.fn.system(("ssh root@10.0.0.4 touch /config/%s"):format(file))
+      end, 2000)
+    end
+  end,
+})
