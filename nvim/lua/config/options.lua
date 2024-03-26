@@ -29,4 +29,6 @@ vim.keymap.set = function(mode, lhs, rhs, opts)
 end
 
 vim.g.lazyvim_python_lsp = "basedpyright"
--- LazyVim.terminal.setup("bash")
+if vim.fn.has("win32") == 1 then
+  LazyVim.terminal.setup("pwsh")
+end
