@@ -101,6 +101,10 @@ alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Progr
 abbr git hub
 abbr topgit topgrade --only git_repos
 abbr g hub
+
+set -x LG_CONFIG_FILE /home/folke/.config/lazygit/config.yml,/home/folke/.cache/nvim/lazygit-theme.yml
+
+alias lazygit "TERM=xterm-256color command lazygit"
 abbr gg lazygit
 abbr gl 'hub l --color | devmoji --log --color | less -rXF'
 abbr gs "hub st"

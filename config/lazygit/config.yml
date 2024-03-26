@@ -12,22 +12,6 @@ gui:
   mainPanelSplitMode: flexible
   language: auto
   timeFormat: 02 Jan 06 15:04 MST
-  theme:
-    activeBorderColor:
-      - "#ff966c"
-      - bold
-    inactiveBorderColor:
-      - "#589ed7"
-    optionsTextColor:
-      - blue
-    selectedLineBgColor:
-      - "#2f334d"
-    cherryPickedCommitBgColor:
-      - cyan
-    cherryPickedCommitFgColor:
-      - blue
-    unstagedChangesColor:
-      - red
   commitLength:
     show: true
   skipNoStagedFilesWarning: false
