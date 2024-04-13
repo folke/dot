@@ -6,7 +6,8 @@ TERM_CMD="wezterm --config window_background_opacity=0.9 start --class quake"
 
 if [ -z "$WORKSPACE" ]; then
   echo "start"
-  hyprctl dispatch -- exec "[float;size 1600 1000;center] $TERM_CMD"
+  # hyprctl dispatch -- exec "[float;size 1600 1000;center] $TERM_CMD"
+  hyprctl dispatch -- exec "$TERM_CMD"
 elif [ "$WORKSPACE" == "special:quake" ]; then
   echo "show"
 

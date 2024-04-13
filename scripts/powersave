@@ -18,14 +18,16 @@ fi
 if [ "$1" = "true" ]; then
   brightnessctl -s # save brightness
   brightnessctl s 30%
-  powerprofilesctl set power-saver
+  tuned-adm profile laptop-battery-powersave
+  # powerprofilesctl set power-saver
   hyprctl keyword decoration:drop_shadow false
   hyprctl keyword decoration:blur:enabled false
 fi
 
 if [ "$1" = "false" ]; then
   brightnessctl -r # restore brightness
-  powerprofilesctl set balanced
+  # powerprofilesctl set balanced
+  tuned-adm profile laptop-ac-powersave
   hyprctl keyword decoration:drop_shadow true
   hyprctl keyword decoration:blur:enabled true
 fi

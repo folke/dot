@@ -56,8 +56,6 @@ clang
 cliphist
 clipman
 cool-retro-term
-cpupower
-cpupower-gui
 cryptsetup
 ctop
 cups
@@ -124,6 +122,7 @@ gcc
 gdm
 gdm-settings
 gettext
+ghex
 ghostscript
 git
 git-delta
@@ -175,6 +174,9 @@ gzip
 haveged
 hdparm
 helix
+hexer
+hexxy-git
+hexyl
 himalaya
 howdy-beta-git
 hplip
@@ -265,6 +267,7 @@ mono-msbuild
 mosh
 mtools
 mullvad-vpn-bin
+mutagen.io-bin
 nano
 nano-syntax-highlighting
 nautilus
@@ -311,23 +314,25 @@ paru
 patch
 pavucontrol
 perl
+perl-hash-merge
+perl-json
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pkgconf
 pkgfile
 playerctl
-plex-media-server
 plymouth-theme-arch-glow
 podman
 podman-compose
 pokemon-colorscripts-git
 polkit-gnome
 poppler-glib
-power-profiles-daemon
+powershell-bin
 powerstat
 powertop
 powertop-auto-tune
+pre-commit
 prettierd
 procs
 proxzima-plymouth-git
@@ -339,6 +344,7 @@ python-defusedxml
 python-msgpack
 python-packaging
 python-pipx
+python-poetry
 python-pyqt5
 python-reportlab
 python-sentencepiece-git
@@ -358,6 +364,7 @@ rofimoji
 rsync
 rtkit
 ruby
+ruff
 rust-analyzer
 rustup
 rz-cutter
@@ -401,6 +408,7 @@ texinfo
 texlive-binextra
 thermald
 throttled
+tinyxxd
 tio
 tmux
 tokei
@@ -422,6 +430,8 @@ ttf-segoe-ui-variable
 ttf-victor-mono
 ttf-victor-mono-nerd
 tuir
+tuned
+tuned-ppd
 unrar
 unzip
 upower
