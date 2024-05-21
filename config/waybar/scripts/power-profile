@@ -1,18 +1,68 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$1" = "cycle" ]; then
-	case $(powerprofilesctl get) in
-	performance)
-		powerprofilesctl set power-saver
-		;;
-	power-saver)
-		powerprofilesctl set balanced
-		;;
-	balanced)
-		powerprofilesctl set performance
-		;;
-	esac
+tool=tuned # tuned or powerprofilesctl
+
+if [ $tool = "tuned" ]; then
+  powersave=laptop-battery-powersave
+  balanced=laptop-ac-powersave
+  performance=latency-performance
+else
+  powersave=power-saver
+  balanced=balanced
+  performance=performance
 fi
 
-ACTIVE=$(powerprofilesctl get)
+function get {
+  profile=""
+  if [ $tool = "tuned" ]; then
+    profile=$(tuned-adm active | awk '{print $4}')
+  else
+    profile=$(powerprofilesctl get)
+  fi
+
+  if [ "$profile" = "$powersave" ]; then
+    echo "powersave"
+  elif [ "$profile" = "$balanced" ]; then
+    echo "balanced"
+  elif [ "$profile" = "$performance" ]; then
+    echo "performance"
+  else
+    echo "unknown"
+  fi
+}
+
+function set {
+  profile=$1
+  if [ "$profile" = "powersave" ]; then
+    profile=$powersave
+  elif [ "$profile" = "balanced" ]; then
+    profile=$balanced
+  elif [ "$profile" = "performance" ]; then
+    profile=$performance
+  fi
+  if [ $tool = "tuned" ]; then
+    tuned-adm profile "$profile"
+  else
+    powerprofilesctl set "$profile"
+  fi
+}
+
+if [ "$1" = "cycle" ]; then
+  case $(get) in
+    performance)
+      set powersave
+      ;;
+    powersave)
+      set balanced
+      ;;
+    balanced)
+      set performance
+      ;;
+    unknown)
+      set balanced
+      ;;
+  esac
+fi
+
+ACTIVE=$(get)
 printf '{"text": "%s", "tooltip": "%s", "alt": "%s"}\n' "$ACTIVE" "$ACTIVE" "$ACTIVE"

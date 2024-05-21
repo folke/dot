@@ -15,6 +15,7 @@
   "modules-right": [
     "custom/media",
     "idle_inhibitor",
+    "disk",
     "cpu",
     "memory",
     "temperature",
@@ -27,6 +28,15 @@
     "upower",
     "custom/power"
   ],
+  "disk": {
+      "interval": 30,
+      "format": " {percentage_used}%",
+      "path": "/",
+      "states": {
+        "warning": 60,
+        "critical": 80
+      }
+  },
   "bluetooth": {
     "format": " {status}",
     "format-connected": " {device_alias}",
@@ -185,9 +195,10 @@
     "interval": 60,
     "on-click": "$HOME/.config/waybar/scripts/power-profile cycle",
     "format-icons": {
-      "power-saver": "",
+      "powersave": "",
       "balanced": "",
-      "performance": ""
+      "performance": "",
+      "unknown": ""
     }
   },
   "custom/hyprshade": {

@@ -1,7 +1,11 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: FiraCode Nerd Font, Helvetica, Arial, sans-serif;
+  font-family:
+    FiraCode Nerd Font,
+    Helvetica,
+    Arial,
+    sans-serif;
   font-size: 13px;
   min-height: 0;
 }
@@ -30,10 +34,14 @@ widget image {
   background: rgba(255, 255, 255, 0.1);
 }
 
-#window,
+window#waybar #window,
 #custom-media {
   background: rgba(0, 0, 0, 0);
   padding-right: 20px;
+}
+
+window#waybar.empty #window label {
+  background: rgba(0, 0, 0, 0);
 }
 
 .modules-right,
@@ -69,6 +77,16 @@ widget image {
 }
 
 #battery.warning:not(.charging) {
+  background: #f87171;
+  color: white;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#disk.critical {
   background: #f87171;
   color: white;
   animation-name: blink;

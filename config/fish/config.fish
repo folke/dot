@@ -58,6 +58,7 @@ set -x OPENCV_LOG_LEVEL ERROR
 #set -x MANPAGER "most" # use bat to format man pages
 #
 abbr -a --position anywhere --set-cursor -- -h "-h 2>&1 | bat --plain --language=help"
+abbr j just
 
 # Dnf
 abbr dnfi 'sudo dnf install'

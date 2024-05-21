@@ -96,6 +96,7 @@ exfatprogs
 eza
 f2fs-tools
 fakeroot
+fastfetch
 fd
 ffmpegthumbnailer
 file
@@ -211,7 +212,6 @@ kitty
 lazydocker
 lazygit
 ledger
-lemmy-help
 less
 libdvdcss
 liberica-jdk-8-full-bin
@@ -221,6 +221,7 @@ libgdm
 libgsf
 libopenraw
 libreoffice-fresh
+librewolf-bin
 libtool
 libva-utils
 libwnck3
@@ -229,6 +230,7 @@ linux-apfs-rw-dkms-git
 linux-enable-ir-emitter
 linux-firmware
 linux-headers
+linux-lts
 lld
 logrotate
 logseq-desktop-bin
@@ -274,10 +276,9 @@ nautilus
 nautilus-sendto
 navi
 nbtscan
+ncdu
 needrestart
-nemo
 neofetch
-neovide-git
 neovim
 neovim-symlinks
 nerdfix
@@ -302,6 +303,7 @@ nushell
 nwg-look
 nwg-panel
 omnisharp-roslyn-bin
+onefetch
 ookla-speedtest-bin
 otf-cascadia-code
 ov-bin
@@ -309,7 +311,6 @@ p7zip
 pacman
 pacman-contrib
 pamixer
-papirus-icon-theme-git
 paru
 patch
 pavucontrol
@@ -319,6 +320,7 @@ perl-json
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
+pipewire-support
 pkgconf
 pkgfile
 playerctl
@@ -347,8 +349,6 @@ python-pipx
 python-poetry
 python-pyqt5
 python-reportlab
-python-sentencepiece-git
-python-west
 qt5-wayland
 qt6-wayland
 ranger
@@ -379,7 +379,6 @@ shell-color-scripts
 slurp
 smartmontools
 snap-pac
-snapd
 snapper
 sof-firmware
 splix
@@ -398,7 +397,6 @@ sway
 sway-audio-idle-inhibit-git
 swayidle
 swaylock-effects-git
-swaync
 sysfsutils
 system-config-printer
 systemd-sysvcompat
@@ -408,6 +406,7 @@ texinfo
 texlive-binextra
 thermald
 throttled
+tig
 tinyxxd
 tio
 tmux
@@ -416,6 +415,7 @@ topgrade
 totem
 traceroute
 tree
+tree-sitter-cli
 ttf-bitstream-vera
 ttf-dejavu
 ttf-fira-code
@@ -432,6 +432,7 @@ ttf-victor-mono-nerd
 tuir
 tuned
 tuned-ppd
+typos
 unrar
 unzip
 upower
