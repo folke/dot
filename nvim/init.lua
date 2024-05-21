@@ -23,11 +23,9 @@ require("config.lazy")({
   debug = false,
   profiling = {
     loader = false,
-    require = false,
+    require = true,
   },
 })
-
-_G.lv = require("lazyvim.util")
 
 -- require("util.dashboard").setup()
 

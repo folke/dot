@@ -1,110 +1,69 @@
 return {
-
-  -- floating winbar
-  -- {
-  --   "b0o/incline.nvim",
-  --   event = "BufReadPre",
-  --   -- enabled = false,
-  --   config = function()
-  --     local colors = require("tokyonight.colors").setup()
-  --     require("incline").setup({
-  --       highlight = {
-  --         groups = {
-  --           InclineNormal = { guibg = "#FC56B1", guifg = colors.black },
-  --           InclineNormalNC = { guifg = "#FC56B1", guibg = colors.black },
-  --         },
-  --       },
-  --       window = { margin = { vertical = 0, horizontal = 1 } },
-  --       render = function(props)
-  --         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
-  --         local icon, color = require("nvim-web-devicons").get_icon_color(filename)
-  --         return { { icon, guifg = color }, { " " }, { filename } }
-  --       end,
-  --     })
-  --   end,
-  -- },
-
-  -- auto-resize windows
   {
-    "anuvyklack/windows.nvim",
-    enabled = false,
-    event = "WinNew",
-    dependencies = {
-      { "anuvyklack/middleclass" },
-      { "anuvyklack/animation.nvim", enabled = false },
-    },
-    keys = { { "<leader>m", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
-    config = function()
-      vim.o.winwidth = 5
-      vim.o.equalalways = false
-      require("windows").setup({
-        animation = { enable = false, duration = 150 },
+    "folke/noice.nvim",
+    opts = function(_, opts)
+      opts.debug = false
+
+      table.insert(opts.routes, {
+        filter = {
+          event = "notify",
+          find = "No information available",
+        },
+        opts = { skip = true },
+      })
+      local focused = true
+      vim.api.nvim_create_autocmd("FocusGained", {
+        callback = function()
+          focused = true
+        end,
+      })
+      vim.api.nvim_create_autocmd("FocusLost", {
+        callback = function()
+          focused = false
+        end,
+      })
+
+      table.insert(opts.routes, 1, {
+        filter = {
+          ["not"] = {
+            event = "lsp",
+            kind = "progress",
+          },
+          cond = function()
+            return not focused
+          end,
+        },
+        view = "notify_send",
+        opts = { stop = false },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "markdown",
+        callback = function(event)
+          vim.schedule(function()
+            require("noice.text.markdown").keys(event.buf)
+          end)
+        end,
       })
     end,
   },
 
-  -- scrollbar
-  -- { "lewis6991/satellite.nvim", opts = {}, event = "VeryLazy", enabled = false },
+  -- auto-resize windows
   -- {
-  --   "echasnovski/mini.map",
-  --   main = "mini.map",
-  --   event = "VeryLazy",
+  --   "anuvyklack/windows.nvim",
   --   enabled = false,
-  --   config = function()
-  --     local map = require("mini.map")
-  --     map.setup({
-  --       integrations = {
-  --         map.gen_integration.builtin_search(),
-  --         map.gen_integration.gitsigns(),
-  --         map.gen_integration.diagnostic(),
-  --       },
-  --     })
-  --     map.open()
-  --   end,
-  -- },
-  -- {
-  --   "petertriho/nvim-scrollbar",
-  --   event = "BufReadPost",
-  --   enabled = false,
-  --   config = function()
-  --     local scrollbar = require("scrollbar")
-  --     local colors = require("tokyonight.colors").setup()
-  --     scrollbar.setup({
-  --       handle = { color = colors.bg_highlight },
-  --       excluded_filetypes = { "prompt", "TelescopePrompt", "noice", "notify" },
-  --       marks = {
-  --         Search = { color = colors.orange },
-  --         Error = { color = colors.error },
-  --         Warn = { color = colors.warning },
-  --         Info = { color = colors.info },
-  --         Hint = { color = colors.hint },
-  --         Misc = { color = colors.purple },
-  --       },
-  --     })
-  --   end,
-  -- },
-
-  -- style windows with different colorschemes
-  -- {
-  --   "folke/styler.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     themes = {
-  --       -- markdown = { colorscheme = "catppuccin" },
-  --       help = { colorscheme = "catppuccin", background = "dark" },
-  --     },
+  --   event = "WinNew",
+  --   dependencies = {
+  --     { "anuvyklack/middleclass" },
+  --     { "anuvyklack/animation.nvim", enabled = false },
   --   },
-  -- },
-
-  -- silly drops
-  -- {
-  --   "folke/drop.nvim",
-  --   enabled = false,
-  --   event = "VeryLazy",
+  --   keys = { { "<leader>m", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
   --   config = function()
-  --     math.randomseed(os.time())
-  --     -- local theme = ({ "stars", "snow" })[math.random(1, 3)]
-  --     require("drop").setup({ theme = "spring" })
+  --     vim.o.winwidth = 5
+  --     vim.o.equalalways = false
+  --     require("windows").setup({
+  --       animation = { enable = false, duration = 150 },
+  --     })
   --   end,
   -- },
 
@@ -118,7 +77,7 @@ return {
         end,
       })
 
-      ---@type table<string, {updated:number, total:number, enabled: boolean}>
+      ---@type table<string, {updated:number, total:number, enabled: boolean, status:string[]}>
       local mutagen = {}
 
       local function mutagen_status()
@@ -128,14 +87,37 @@ return {
             updated = 0,
             total = 0,
             enabled = vim.fs.find("mutagen.yml", { path = cwd, upward = true })[1] ~= nil,
+            status = {},
           }
         local now = vim.uv.now() -- timestamp in milliseconds
         if mutagen[cwd].enabled and (mutagen[cwd].updated + 10000 < now) then
-          local sessions = vim.tbl_filter(function(line)
-            return line:match("^Name: %S*")
-          end, vim.fn.systemlist("mutagen project list"))
+          ---@type {name:string, status:string, idle:boolean}[]
+          local sessions = {}
+          local lines = vim.fn.systemlist("mutagen project list")
+          local status = {}
+          local name = nil
+          for _, line in ipairs(lines) do
+            local n = line:match("^Name: (.*)")
+            if n then
+              name = n
+            end
+            local s = line:match("^Status: (.*)")
+            if s then
+              table.insert(sessions, {
+                name = name,
+                status = s,
+                idle = s == "Watching for changes",
+              })
+            end
+          end
+          for _, session in ipairs(sessions) do
+            if not session.idle then
+              table.insert(status, session.name .. ": " .. session.status)
+            end
+          end
           mutagen[cwd].updated = now
           mutagen[cwd].total = #sessions
+          mutagen[cwd].status = status
           if #sessions == 0 then
             vim.notify("Mutagen is not running", vim.log.levels.ERROR, { title = "Mutagen" })
           end
@@ -150,13 +132,53 @@ return {
           return mutagen_status().enabled
         end,
         color = function()
-          return mutagen_status().total == 0 and error_color or ok_color
+          return (mutagen_status().total == 0 or mutagen_status().status[1]) and error_color or ok_color
         end,
         function()
-          local total = mutagen_status().total
-          return (total == 0 and "󰋘 " or "󰋙 ") .. total
+          local s = mutagen_status()
+          local msg = s.total
+          if #s.status > 0 then
+            msg = msg .. " | " .. table.concat(s.status, " | ")
+          end
+          return (s.total == 0 and "󰋘 " or "󰋙 ") .. msg
         end,
       })
+
+      -- local keys = {}
+      -- local in_mapping = false
+      --
+      -- vim.api.nvim_create_autocmd("SafeState", {
+      --   callback = function()
+      --     in_mapping = false
+      --   end,
+      -- })
+      --
+      -- vim.on_key(function(_, key)
+      --   if not key then
+      --     return
+      --   end
+      --   -- local unsafe = not vim.fn.state():find("S")
+      --   local m = vim.fn.state():find("[moS]")
+      --   -- if in_mapping and not m then
+      --   --   in_mapping = false
+      --   --   return
+      --   -- end
+      --   if m and not in_mapping then
+      --     in_mapping = true
+      --     keys = {}
+      --   end
+      --   if in_mapping then
+      --     table.insert(keys, key)
+      --     require("lualine").refresh()
+      --     vim.cmd.redraw()
+      --   end
+      -- end)
+      --
+      -- table.insert(opts.sections.lualine_x, {
+      --   function()
+      --     return table.concat(keys, "")
+      --   end,
+      -- })
 
       -- local count = 0
       -- table.insert(opts.sections.lualine_x, {

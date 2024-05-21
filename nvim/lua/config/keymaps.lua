@@ -14,7 +14,7 @@ local function navigate(dir)
     local win = vim.api.nvim_get_current_win()
     vim.cmd.wincmd(dir)
     local pane = vim.env.WEZTERM_PANE
-    if pane and win == vim.api.nvim_get_current_win() then
+    if vim.system and pane and win == vim.api.nvim_get_current_win() then
       local pane_dir = nav[dir]
       vim.system({ "wezterm", "cli", "activate-pane-direction", pane_dir }, { text = true }, function(p)
         if p.code ~= 0 then

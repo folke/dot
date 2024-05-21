@@ -1,13 +1,56 @@
--- vim.keymap.set("n", "<leader>w", "<cmd>lua vim.notify('hi')<cr>", { desc = "foooo" })
--- vim.keymap.set("n", ";", ":")
-vim.schedule(function()
-  -- dd(require("null-ls"))
-end)
 return {
+  {
+    "folke/trouble.nvim",
+    opts = { debug = true },
+  },
+  {
+    "fei6409/log-highlight.nvim",
+    event = "BufRead *.log",
+    opts = {},
+  },
+  -- {
+  --   enabled = false,
+  --   "nvimdev/indentmini.nvim",
+  --   opts = {
+  --     exclude = {
+  --       "help",
+  --       "alpha",
+  --       "dashboard",
+  --       "neo-tree",
+  --       "Trouble",
+  --       "trouble",
+  --       "lazy",
+  --       "mason",
+  --       "notify",
+  --       "toggleterm",
+  --       "lazyterm",
+  --     },
+  --   },
+  --   event = "LazyFile",
+  -- },
+  {
+    "t-troebst/perfanno.nvim",
+    opts = function()
+      local util = require("perfanno.util")
+      local hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+      local bg = string.format("#%06x", hl.bg)
+      local fg = "#dc2626"
+      return {
+        line_highlights = util.make_bg_highlights(bg, fg, 10),
+        vt_highlight = util.make_fg_highlight(fg),
+      }
+    end,
+    cmd = "PerfLuaProfileStart",
+  },
+  {
+    "akinsho/bufferline.nvim",
+    opts = {
+      options = {
+        separator_style = "slope",
+      },
+    },
+  },
   { "justinsgithub/wezterm-types" },
-  -- { "LazyVim/LazyVim", dev = false },
-  -- { "folke/tokyonight.nvim", dev = false },
-
   {
     "echasnovski/mini.align",
     opts = {},
@@ -24,55 +67,8 @@ return {
     },
   },
   {
-    "echasnovski/mini.pick",
-    cmd = "Pick",
-    opts = {},
-  },
-  -- { "stevearc/aerial.nvim", dev = true },
-  -- {
-  --   "echasnovski/nvim",
-  --   name = "mini.dev",
-  --   submodules = false,
-  --   config = function()
-  --     require("mini-dev.pick").setup()
-  --   end,
-  --   init = function()
-  --     vim.api.nvim_create_user_command("Pick", function(cmd)
-  --       require("mini-dev.pick").builtin[cmd.args]()
-  --     end, {
-  --       nargs = "?",
-  --       complete = function(_, line)
-  --         local prefix = vim.split(vim.trim(line), "%s+")[2] or ""
-  --         ---@param key string
-  --         return vim.tbl_filter(function(key)
-  --           return key:find(prefix, 1, true) == 1
-  --         end, vim.tbl_keys(require("mini-dev.pick").builtin))
-  --       end,
-  --     })
-  --   end,
-  -- },
-  {
-    "AckslD/muren.nvim",
-    event = {
-      { "BufNewFile", "BufAdd" },
-    },
-    opts = {
-      patterns_width = 60,
-      patterns_height = 20,
-      options_width = 40,
-      preview_height = 24,
-    },
-    cmd = "MurenToggle",
-  },
-  -- { "ggandor/leap.nvim" },
-  -- { "3rd/image.nvim", opts = {}, ft = "markdown", lazy = false, enabled = true },
-  {
     "folke/flash.nvim",
     enabled = true,
-    init = function()
-      -- vim.keymap.set("n", "x", "<cmd>lua require('flash').jump()<cr>")
-      -- vim.opt.keymap = "emoji"
-    end,
     ---@type Flash.Config
     opts = {
       -- labels = "#abcdef",
