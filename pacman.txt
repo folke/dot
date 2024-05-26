@@ -188,7 +188,10 @@ hub
 hwdetect
 hwinfo
 hyperfine
+hypridle
 hyprland
+hyprlock-git
+hyprpaper
 hyprshade
 imv-git
 inetutils
@@ -454,6 +457,7 @@ whitesur-gtk-theme
 whitesur-icon-theme-git
 wireguard-tools
 wireplumber
+wl-clip-persist
 wl-clipboard
 wlogout
 wlr-randr

@@ -185,7 +185,7 @@
       ]
     },
     "on-click": "pavucontrol",
-    "on-click-right": "blueman-manager"
+    "on-click-right": "easyeffects"
   },
   "custom/power_profile": {
     "exec": "sleep 0.3; $HOME/.config/waybar/scripts/power-profile",
