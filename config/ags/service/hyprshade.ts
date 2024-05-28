@@ -28,6 +28,10 @@ class Hyprshade extends Service {
     this.#update()
   }
 
+  get isNight() {
+    return this.#shader === "blue-light-filter"
+  }
+
   constructor() {
     super()
 
