@@ -5,19 +5,29 @@ import GLib from "gi://GLib"
 // const tempPath = options.system.temperature.value
 
 export const clock = Variable(GLib.DateTime.new_now_local(), {
-    poll: [1000, () => GLib.DateTime.new_now_local()],
+  poll: [1000, () => GLib.DateTime.new_now_local()],
 })
 
 export const uptime = Variable(0, {
-    poll: [60_000, "cat /proc/uptime", line =>
-        Number.parseInt(line.split(".")[0]) / 60,
-    ],
+  poll: [60_000, "cat /proc/uptime", (line) => Number.parseInt(line.split(".")[0]) / 60],
 })
 
 export const distro = {
-    id: GLib.get_os_info("ID"),
-    logo: GLib.get_os_info("LOGO"),
+  id: GLib.get_os_info("ID"),
+  logo: GLib.get_os_info("LOGO"),
 }
+
+export const df = Variable(0, {
+  poll: [
+    1000,
+    "/bin/df / --output=size,used",
+    (out) => {
+      out = out.trim().split("\n")[1]
+      const [total, used] = out.match(/\d+/g).map(Number)
+      return (used * 100.0) / total
+    },
+  ],
+})
 
 // const divide = ([total, free]: string[]) => Number.parseInt(free) / Number.parseInt(total)
 //

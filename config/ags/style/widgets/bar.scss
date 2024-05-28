@@ -26,6 +26,13 @@ $button-radius: $radius;
   }
 }
 
+@keyframes error {
+  to {
+    background-color: $error-bg;
+    color: $error-fg;
+  }
+}
+
 .bar {
   transition: $transition;
   background-color: transparentize($bg, 0.5);
@@ -102,6 +109,17 @@ $button-radius: $radius;
 
   .taskbar label {
     margin: 0 ($spacing * 0.5);
+  }
+
+  .system-info > * {
+    animation-name: error;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    label {
+      margin: 0 ($spacing * 0.5);
+    }
   }
 
   .taskbar .indicator.active {

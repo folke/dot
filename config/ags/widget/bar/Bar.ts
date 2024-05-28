@@ -11,6 +11,7 @@ import Workspaces from "./buttons/Workspaces"
 import ScreenRecord from "./buttons/ScreenRecord"
 import Messages from "./buttons/Messages"
 import Hyprshade from "./buttons/Hyprshade"
+import SystemInfo from "./buttons/SystemInfo"
 import options from "options"
 
 const { start, center, end } = options.bar.layout
@@ -32,6 +33,7 @@ const widget = {
   screenrecord: ScreenRecord,
   hyprshade: Hyprshade,
   messages: Messages,
+  ["system-info"]: SystemInfo,
   expander: () => Widget.Box({ expand: true }),
 }
 

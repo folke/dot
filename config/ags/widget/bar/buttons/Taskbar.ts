@@ -32,8 +32,7 @@ const AppItem = (address: string) => {
 
   const title = Utils.watch(client.title, hyprland, () => hyprland.getClient(address)?.title || "")
 
-  let icon_name = app?.icon_name ?? client.class
-  icon_name = icon_name === "quake" ? "org.wezfurlong.wezterm" : icon_name
+  const icon_name = app?.icon_name ?? client.class
 
   const btn = PanelButton({
     class_name: "panel-button",
