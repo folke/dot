@@ -1,0 +1,17 @@
+{
+  "bar.battery.percentage": true,
+  "autotheme": false,
+  "theme.scheme": "light",
+  "font.size": 10,
+  "bar.workspaces.workspaces": 5,
+  "bar.taskbar.iconSize": 18,
+  "quicksettings.avatar.image": "/home/folke/Pictures/beach.webp",
+  "bar.transparent": false,
+  "theme.blur": 7,
+  "bar.powermenu.monochrome": true,
+  "bar.date.format": " %b %d %H:%M",
+  "bar.launcher.icon.colored": true,
+  "bar.launcher.label.label": " Applications",
+  "bar.taskbar.monochrome": false,
+  "bar.taskbar.exclusive": true
+}

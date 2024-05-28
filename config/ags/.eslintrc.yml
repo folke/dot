@@ -1,0 +1,65 @@
+env:
+  es2022: true
+extends:
+  - "eslint:recommended"
+  - "plugin:@typescript-eslint/recommended"
+  - "prettier"
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: 2022
+  sourceType: "module"
+  project: "./tsconfig.json"
+  warnOnUnsupportedTypeScriptVersion: false
+root: true
+ignorePatterns:
+  - types/
+plugins:
+  - "@typescript-eslint"
+rules:
+  "@typescript-eslint/ban-ts-comment":
+    - "off"
+  "@typescript-eslint/no-non-null-assertion":
+    - "off"
+  # "@typescript-eslint/no-explicit-any":
+  #   - "off"
+  "@typescript-eslint/no-unused-vars":
+    - error
+    - varsIgnorePattern: (^unused|_$)
+      argsIgnorePattern: ^(unused|_)
+  "@typescript-eslint/no-empty-interface":
+    - "off"
+
+  eqeqeq:
+    - error
+    - always
+  prefer-const:
+    - error
+  quotes:
+    - error
+    - double
+    - avoidEscape: true
+globals:
+  Widget: readonly
+  Utils: readonly
+  App: readonly
+  Variable: readonly
+  Service: readonly
+  pkg: readonly
+  ARGV: readonly
+  Debugger: readonly
+  GIRepositoryGType: readonly
+  globalThis: readonly
+  imports: readonly
+  Intl: readonly
+  log: readonly
+  logError: readonly
+  print: readonly
+  printerr: readonly
+  window: readonly
+  TextEncoder: readonly
+  TextDecoder: readonly
+  console: readonly
+  setTimeout: readonly
+  setInterval: readonly
+  clearTimeout: readonly
+  clearInterval: readonly
