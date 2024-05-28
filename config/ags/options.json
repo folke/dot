@@ -13,5 +13,6 @@
   "bar.launcher.icon.colored": true,
   "bar.launcher.label.label": " Applications",
   "bar.taskbar.monochrome": false,
-  "bar.taskbar.exclusive": true
+  "bar.taskbar.exclusive": true,
+  "font.name": "Fira Code"
 }

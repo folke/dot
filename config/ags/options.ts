@@ -59,7 +59,7 @@ const options = mkOptions(OPTIONS, {
 
   font: {
     size: opt(11),
-    name: opt("Fira Code"),
+    name: opt("Maple Mono"),
   },
 
   bar: {
