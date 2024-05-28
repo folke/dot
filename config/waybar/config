@@ -202,10 +202,10 @@
     }
   },
   "custom/hyprshade": {
-    "exec": "sleep 0.3; hyprshade ls | rg '\\* night' > /dev/null 2>&1 && echo '' || echo '󰖨'",
+    "exec": "sleep 0.3; hyprshade current | rg 'blue' > /dev/null 2>&1 && echo '' || echo '󰖨'",
     "tooltip": false,
     "interval": 60,
-    "on-click": "hyprshade toggle night"
+    "on-click": "hyprshade toggle blue-light-filter"
   },
   "custom/power": {
     "format": " ",
