@@ -1,4 +1,0 @@
-
-Todo:
-  ☐ sed "s/brave-browser --app/brave-browser --password-store=gnome --app/" .local/share/applications/brave-djmdgjiaidmadlabkkpelamdkdabolad-Default.desktop
-  fix 
