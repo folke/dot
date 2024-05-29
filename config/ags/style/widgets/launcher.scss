@@ -170,7 +170,7 @@ window#launcher .launcher {
     &:hover,
     &:focus {
       color: $primary-bg;
-      background-color: transparentize($primary-bg, 0.9);
+      background-color: transparentize($primary-bg, 0.6);
       border-radius: 0;
       text-shadow: $text-shadow;
     }
