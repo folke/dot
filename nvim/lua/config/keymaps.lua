@@ -39,6 +39,3 @@ end
 
 -- change word with <c-c>
 vim.keymap.set("n", "<C-c>", "<cmd>normal! ciw<cr>a")
-
--- run lua
-vim.keymap.set("n", "<leader>cR", util.runlua, { desc = "Run Lua" })

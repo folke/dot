@@ -1,13 +1,23 @@
 return {
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    -- dev = true,
+    opts = { show_help = false },
+  },
+  {
+    "garymjr/nvim-snippets",
+    -- dev = true,
+  },
+  {
     "folke/trouble.nvim",
-    opts = { debug = true },
+    -- opts = { debug = true },
   },
   {
     "fei6409/log-highlight.nvim",
     event = "BufRead *.log",
     opts = {},
   },
+  -- { "gbprod/yanky.nvim", dev = true },
   -- {
   --   enabled = false,
   --   "nvimdev/indentmini.nvim",
