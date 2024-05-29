@@ -7,6 +7,7 @@ import * as AppLauncher from "./AppLauncher"
 import * as NixRun from "./NixRun"
 import * as ShRun from "./ShRun"
 import * as Cliphist from "./Cliphist"
+import * as Emoji from "./Emoji"
 
 const { width, margin } = options.launcher
 const isnix = nix.available
@@ -20,6 +21,8 @@ function Launcher() {
   const nixload = NixRun.Spinner()
   const ch = Cliphist.Cliphist()
   const chicon = Cliphist.Icon()
+  const emoji = Emoji.Emoji()
+  const emojiicon = Emoji.Icon()
 
   function HelpButton(cmd: string, desc: string | Binding<string>) {
     return Widget.Box(
@@ -55,6 +58,7 @@ function Launcher() {
       { vertical: true },
       HelpButton("sh", "run a binary"),
       HelpButton("ch", "copy a clipboard history entry"),
+      HelpButton("em", "copy an emoji"),
       isnix
         ? HelpButton(
             "nx",
@@ -72,6 +76,8 @@ function Launcher() {
       else if (text?.startsWith(":sh")) sh.run(text.substring(3))
       else if (text?.startsWith(":ch")) {
         ch.runFirst()
+      } else if (text?.startsWith(":em")) {
+        emoji.copyFirst()
       } else applauncher.launchFirst()
 
       App.toggleWindow("launcher")
@@ -90,6 +96,9 @@ function Launcher() {
 
       if (text?.startsWith(":ch")) ch.filter(text.substring(3))
       else ch.clear()
+
+      if (text?.startsWith(":em")) emoji.filter(text.substring(3))
+      else emoji.clear()
 
       if (!text?.startsWith(":")) applauncher.filter(text)
       else applauncher.clear()
@@ -130,7 +139,16 @@ function Launcher() {
         entry.text = ""
         if (visible) focus()
       }),
-    children: [Widget.Box([entry, nixload, shicon, chicon]), favs, help, applauncher, nix, sh, ch],
+    children: [
+      Widget.Box([entry, nixload, shicon, chicon, emojiicon]),
+      favs,
+      help,
+      applauncher,
+      nix,
+      sh,
+      ch,
+      emoji,
+    ],
   })
 
   return Widget.Box(

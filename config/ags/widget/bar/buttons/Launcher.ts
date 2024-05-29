@@ -2,7 +2,7 @@ import PanelButton from "../PanelButton"
 import options from "options"
 import nix from "service/nix"
 
-const { icon, label, action } = options.bar.launcher
+const { icon, action } = options.bar.launcher
 
 function Spinner() {
   const child = Widget.Icon({
