@@ -23,6 +23,7 @@ autoconf
 automake
 autotiling
 avizo
+aylurs-gtk-shell
 b43-fwcutter
 base
 base-devel
@@ -44,6 +45,7 @@ brightnessctl
 btop
 btrfs-assistant
 btrfs-progs
+bun-bin
 caddy
 calf
 cantarell-fonts
@@ -61,6 +63,7 @@ ctop
 cups
 cups-filters
 cups-pdf
+dart-sass
 debugedit
 device-mapper
 dhclient
@@ -119,6 +122,7 @@ fswatch
 fwupd
 gammastep
 gawk
+gbar-git
 gcc
 gdm
 gdm-settings
@@ -192,7 +196,8 @@ hypridle
 hyprland
 hyprlock-git
 hyprpaper
-hyprshade
+hyprpicker
+hyprshade-git
 imv-git
 inetutils
 intel-gpu-tools
@@ -253,9 +258,9 @@ lvm2
 lxappearance
 m4
 make
-mako
 man-db
 man-pages
+matugen-bin
 mdadm
 mdcat
 meld
@@ -303,6 +308,7 @@ nss-mdns
 ntfs-3g
 ntp
 nushell
+nwg-dock-hyprland-bin
 nwg-look
 nwg-panel
 omnisharp-roslyn-bin
@@ -333,6 +339,7 @@ podman-compose
 pokemon-colorscripts-git
 polkit-gnome
 poppler-glib
+power-profiles-daemon
 powershell-bin
 powerstat
 powertop
@@ -400,6 +407,7 @@ sway
 sway-audio-idle-inhibit-git
 swayidle
 swaylock-effects-git
+swww
 sysfsutils
 system-config-printer
 systemd-sysvcompat
@@ -433,8 +441,6 @@ ttf-segoe-ui-variable
 ttf-victor-mono
 ttf-victor-mono-nerd
 tuir
-tuned
-tuned-ppd
 typos
 unrar
 unzip
@@ -447,6 +453,7 @@ vlc
 warpd-git
 watchexec
 waybar
+wayshot
 wev
 wezterm
 wf-recorder-git

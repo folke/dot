@@ -1,4 +1,0 @@
-{
-  "Lua.workspace.library" : {"/usr/share/awesome/lib" : true},
-  "Lua.diagnostics.globals": ["awesome", "client", "root", "screen"]
-}
