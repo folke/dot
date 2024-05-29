@@ -1,17 +1,14 @@
 vim.g.mapleader = " "
 
-if vim.fn.has("nvim-0.8") == 1 then
-  vim.opt.backup = true
-  vim.opt.cmdheight = 0
-  vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
-end
+vim.opt.backup = true
+vim.opt.cmdheight = 0
+vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
+vim.opt.mousescroll = "ver:2,hor:6"
 
 if vim.g.neovide then
   vim.o.guifont = "Fira Code,Symbols Nerd Font Mono:h34"
   vim.g.neovide_scale_factor = 0.3
 end
-
-vim.opt.mousescroll = "ver:2,hor:6"
 
 -- vim.g.node_host_prog = "/Users/folke/.pnpm-global/5/node_modules/neovim/bin/cli.js"
 vim.g.loaded_python3_provider = 0
@@ -30,6 +27,7 @@ end
 
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
+
 if vim.fn.has("win32") == 1 then
   LazyVim.terminal.setup("pwsh")
 end

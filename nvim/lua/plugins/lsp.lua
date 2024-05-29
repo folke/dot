@@ -24,19 +24,6 @@ return {
       },
       ---@type lspconfig.options
       servers = {
-        ansiblels = {},
-        bashls = {},
-        clangd = {},
-        -- denols = {},
-        cssls = {},
-        dockerls = {},
-        -- ruff_lsp = {},
-        tailwindcss = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-        },
-        html = {},
         lua_ls = {
           single_file_support = true,
           settings = {
