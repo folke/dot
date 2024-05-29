@@ -13,25 +13,28 @@ const css = (color: string) => `
 }`
 
 export default () => {
-    const menu = Widget.Menu({
-        class_name: "colorpicker",
-        children: colorpicker.bind("colors").as(c => c.map(color => Widget.MenuItem({
-            child: Widget.Label(color),
-            css: css(color),
-            on_activate: () => colorpicker.wlCopy(color),
-        }))),
-    })
+  const menu = Widget.Menu({
+    class_name: "colorpicker",
+    children: colorpicker.bind("colors").as((c) =>
+      c.map((color) =>
+        Widget.MenuItem({
+          child: Widget.Label(color),
+          css: css(color),
+          on_activate: () => colorpicker.wlCopy(color),
+        })
+      )
+    ),
+  })
 
-    return PanelButton({
-        class_name: "color-picker",
-        child: Widget.Icon("color-select-symbolic"),
-        tooltip_text: colorpicker.bind("colors").as(v => `${v.length} colors`),
-        on_clicked: colorpicker.pick,
-        on_secondary_click: self => {
-            if (colorpicker.colors.length === 0)
-                return
+  return PanelButton({
+    class_name: "color-picker",
+    child: Widget.Icon("color-select-symbolic"),
+    tooltip_text: colorpicker.bind("colors").as((v) => `${v.length} colors`),
+    on_clicked: colorpicker.pick,
+    on_secondary_click: (self) => {
+      if (colorpicker.colors.length === 0) return
 
-            menu.popup_at_widget(self, Gdk.Gravity.SOUTH, Gdk.Gravity.NORTH, null)
-        },
-    })
+      menu.popup_at_widget(self, Gdk.Gravity.SOUTH, Gdk.Gravity.NORTH, null)
+    },
+  })
 }
