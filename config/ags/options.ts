@@ -156,7 +156,7 @@ const options = mkOptions(OPTIONS, {
       iconSize: opt(62),
       max: opt(6),
       favorites: opt([
-        ["firefox", "wezterm", "org.gnome.Nautilus", "org.gnome.Calendar", "spotify"],
+        ["microsoft-edge-dev", "wezterm", "org.gnome.Nautilus", "org.gnome.Calendar", "spotify"],
       ]),
     },
   },

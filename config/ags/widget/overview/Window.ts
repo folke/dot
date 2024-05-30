@@ -1,5 +1,5 @@
 import { type Client } from "types/service/hyprland"
-import { createSurfaceFromWidget, icon } from "lib/utils"
+import { createSurfaceFromWidget, findApp, icon } from "lib/utils"
 import Gdk from "gi://Gdk"
 import Gtk from "gi://Gtk?version=3.0"
 import options from "options"
@@ -8,7 +8,6 @@ import icons from "lib/icons"
 const monochrome = options.overview.monochromeIcon
 const TARGET = [Gtk.TargetEntry.new("text/plain", Gtk.TargetFlags.SAME_APP, 0)]
 const hyprland = await Service.import("hyprland")
-const apps = await Service.import("applications")
 const dispatch = (args: string) => hyprland.messageAsync(`dispatch ${args}`)
 
 export default ({ address, size: [w, h], class: c, title }: Client) =>
@@ -24,7 +23,7 @@ export default ({ address, size: [w, h], class: c, title }: Client) =>
         `
       ),
       icon: monochrome.bind().as((m) => {
-        const app = apps.list.find((app) => app.match(c))
+        const app = findApp(c)
         if (!app) return icons.fallback.executable + (m ? "-symbolic" : "")
 
         return icon(

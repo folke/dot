@@ -15,5 +15,6 @@
   "bar.taskbar.monochrome": false,
   "bar.taskbar.exclusive": true,
   "font.name": "Fira Code",
-  "theme.light.primary.bg": "#07b5ef"
+  "theme.light.primary.bg": "#07b5ef",
+  "overview.monochromeIcon": false
 }

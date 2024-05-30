@@ -4,6 +4,7 @@ import icons, { substitutes } from "./icons"
 import Gtk from "gi://Gtk?version=3.0"
 import Gdk from "gi://Gdk"
 import GLib from "gi://GLib?version=2.0"
+const apps = await Service.import("applications")
 
 export type Binding<T> = import("types/service").Binding<any, any, T>
 
@@ -19,6 +20,7 @@ export function icon(name: string | null, fallback = icons.missing) {
   if (Utils.lookUpIcon(icon)) return icon
 
   print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
+  // print stack trace
   return fallback
 }
 
@@ -106,4 +108,40 @@ export function createSurfaceFromWidget(widget: Gtk.Widget) {
   cr.fill()
   widget.draw(cr)
   return surface
+}
+
+export function findApp(klass: string) {
+  // HACK: wezterm is quake
+  if (klass === "quake") klass = "org.wezfurlong.wezterm"
+
+  function filter(props: string[]) {
+    return apps.list.filter((app) =>
+      props.some((prop) => {
+        const value = typeof app[prop] === "function" ? app[prop]() : app[prop]
+        return value?.toLowerCase().includes(klass.toLowerCase())
+      })
+    )
+  }
+
+  let ret = filter(["icon_name", "desktop"])
+
+  if (ret.length === 0) ret = filter(["name", "executable", "description"])
+
+  if (ret.length > 1) print(`multiple apps found for ${klass}`)
+  ret.forEach((app) => {
+    const props = [
+      "name",
+      "icon_name",
+      "desktop",
+      "wm_class",
+      "description",
+      "frequency",
+      "executable",
+    ]
+    print(`  - name: ${app.name}`)
+    for (const prop of props) print(`    * ${prop}: ${app[prop]}`)
+  })
+
+  if (ret.length === 0) print(`no app found for ${klass}`)
+  return ret[0]
 }

@@ -2,10 +2,9 @@ import { launchApp, icon } from "lib/utils"
 import icons from "lib/icons"
 import options from "options"
 import PanelButton from "../PanelButton"
-import { Application } from "types/service/applications"
+import { findApp } from "lib/utils"
 
 const hyprland = await Service.import("hyprland")
-const apps = await Service.import("applications")
 const { monochrome, exclusive, iconSize } = options.bar.taskbar
 const { position } = options.bar
 
@@ -21,14 +20,7 @@ const AppItem = (address: string) => {
   const client = hyprland.getClient(address)
   if (!client || client.class === "") return DummyItem(address)
 
-  let app: Application | undefined
-
-  const filtered = apps.list.filter((app) => app.match(client.class))
-
-  for (const a of filtered) {
-    app ??= a
-    if (a.icon_name === client.class) app = a
-  }
+  const app = findApp(client.class)
 
   const title = Utils.watch(client.title, hyprland, () => hyprland.getClient(address)?.title || "")
 
