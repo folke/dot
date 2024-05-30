@@ -24,7 +24,23 @@ const AppItem = (address: string) => {
 
   const title = Utils.watch(client.title, hyprland, () => hyprland.getClient(address)?.title || "")
 
-  const icon_name = app?.icon_name ?? client.class
+  const ico = Utils.merge([title, monochrome.bind()], (title, monochrome) => {
+    let icon_name = app?.icon_name ?? client.class
+    let icon_fallback = icons.fallback.executable
+
+    if (app?.name === "WezTerm") {
+      const cmd = title.split(" ")[1]
+      if (cmd) {
+        icon_fallback = icon_name
+        icon_name = cmd
+      }
+    }
+
+    return icon(
+      icon_name + (monochrome ? "-symbolic" : ""),
+      icon_fallback + (monochrome ? "-symbolic" : "")
+    )
+  })
 
   const btn = PanelButton({
     class_name: "panel-button",
@@ -34,14 +50,7 @@ const AppItem = (address: string) => {
     child: Widget.Box([
       Widget.Icon({
         size: iconSize.bind(),
-        icon: monochrome
-          .bind()
-          .as((m) =>
-            icon(
-              icon_name + (m ? "-symbolic" : ""),
-              icons.fallback.executable + (m ? "-symbolic" : "")
-            )
-          ),
+        icon: ico,
       }),
       Widget.Label({
         label: title,
