@@ -27,12 +27,13 @@ function OnScreenProgress(vertical: boolean) {
   })
 
   let count = 0
-  let last = 0
+  let last = -1
   function show(value: number, icon: string) {
-    revealer.reveal_child = true
-    indicator.icon = icon
+    if (last === -1) last = value
     if (value === last) return
     last = value
+    revealer.reveal_child = true
+    indicator.icon = icon
     progress.setValue(value)
     count++
     Utils.timeout(DELAY, () => {
