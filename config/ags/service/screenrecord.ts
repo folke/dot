@@ -89,7 +89,10 @@ class Recorder extends Service {
       await sh(`wayshot -f ${file}`)
     } else {
       const size = await sh("slurp")
-      if (!size) return
+      if (!size) {
+        this.resetHyprshade()
+        return
+      }
 
       await sh(`wayshot -f ${file} -s "${size}"`)
     }

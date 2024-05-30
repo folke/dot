@@ -35,7 +35,6 @@ $button-radius: $radius;
 
 .bar {
   transition: $transition;
-  background-color: transparentize($bg, 0.5);
   background-color: rgba(30, 32, 48, 0.5);
   // border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
@@ -71,7 +70,7 @@ $button-radius: $radius;
       box-shadow: inset 0 0 0 $border-width $border-color;
       margin: 0 $padding * 0.5;
       transition: $transition * 0.5;
-      background-color: transparentize($fg, 0.8);
+      background-color: transparentize($fg, 0.6);
 
       &.occupied {
         background-color: white;

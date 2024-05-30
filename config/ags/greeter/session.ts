@@ -9,8 +9,8 @@ declare global {
 
 Object.assign(globalThis, {
   TMP: `${GLib.get_tmp_dir()}/greeter`,
-  OPTIONS: "/var/cache/greeter/options.json",
-  WALLPAPER: "/var/cache/greeter/background",
+  WALLPAPER: "~/.config/background",
+  OPTIONS: `${App.configDir}/greeter-options.json`,
   // TMP: "/tmp/ags",
   // OPTIONS: Utils.CACHE_DIR + "/options.json",
   // WALLPAPER: Utils.HOME + "/.config/background",

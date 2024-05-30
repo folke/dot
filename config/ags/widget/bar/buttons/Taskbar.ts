@@ -44,7 +44,12 @@ const AppItem = (address: string) => {
         size: iconSize.bind(),
         icon: monochrome
           .bind()
-          .as((m) => icon(icon_name, icons.fallback.executable + (m ? "-symbolic" : ""))),
+          .as((m) =>
+            icon(
+              icon_name + (m ? "-symbolic" : ""),
+              icons.fallback.executable + (m ? "-symbolic" : "")
+            )
+          ),
       }),
       Widget.Label({
         label: title,
