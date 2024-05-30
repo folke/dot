@@ -27,14 +27,16 @@ function OnScreenProgress(vertical: boolean) {
   })
 
   let count = 0
+  let last = 0
   function show(value: number, icon: string) {
     revealer.reveal_child = true
     indicator.icon = icon
+    if (value === last) return
+    last = value
     progress.setValue(value)
     count++
     Utils.timeout(DELAY, () => {
       count--
-
       if (count === 0) revealer.reveal_child = false
     })
   }
@@ -45,8 +47,14 @@ function OnScreenProgress(vertical: boolean) {
     .hook(
       audio.speaker,
       () =>
-        show(audio.speaker.volume, icon(audio.speaker.icon_name || "", icons.audio.type.speaker)),
-      "notify::volume"
+        show(
+          audio.speaker.is_muted ? 0 : audio.speaker.volume,
+          icon(
+            audio.speaker.is_muted ? icons.audio.volume.muted : audio.speaker.icon_name || "",
+            icons.audio.type.speaker
+          )
+        )
+      // "notify::volume"
     )
 }
 
