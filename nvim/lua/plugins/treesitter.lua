@@ -27,7 +27,7 @@ return {
       })
     end,
   },
-  { "IndianBoy42/tree-sitter-just", ft = "just", opts = {} },
+  { "IndianBoy42/tree-sitter-just", event = "BufRead justfile", opts = {} },
   {
     "https://github.com/Samonitari/tree-sitter-caddy",
     dependencies = {

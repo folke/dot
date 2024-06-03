@@ -1,15 +1,5 @@
 ---@diagnostic disable: missing-fields
 return {
-  -- neodev
-  {
-    "folke/neodev.nvim",
-    opts = {
-      library = {
-        runtime = "~/projects/neovim/runtime/",
-      },
-    },
-  },
-
   -- lsp servers
   {
     "neovim/nvim-lspconfig",
@@ -25,7 +15,7 @@ return {
       ---@type lspconfig.options
       servers = {
         lua_ls = {
-          single_file_support = true,
+          -- single_file_support = true,
           settings = {
             Lua = {
               hover = { expandAlias = false },

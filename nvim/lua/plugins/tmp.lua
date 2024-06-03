@@ -1,4 +1,29 @@
+local function foo() end
+foo()
+local lazydev = true
 return {
+  -- {
+  --   "folke/neodev.nvim",
+  --   enabled = false,
+  -- },
+  -- {
+  --   "folke/neoconf.nvim",
+  --   enabled = true,
+  -- },
+  -- { "Bilal2453/luvit-meta", lazy = true },
+  { "justinsgithub/wezterm-types", lazy = true },
+  {
+    "folke/lazydev.nvim",
+    -- ft = "lua",
+    opts = {
+      runtime = "~/projects/neovim/runtime",
+      debug = true,
+      library = {
+        wezterm = "wezterm-types",
+      },
+      -- enabled = true,
+    },
+  },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     -- dev = true,
@@ -10,7 +35,15 @@ return {
   },
   {
     "folke/trouble.nvim",
-    -- opts = { debug = true },
+    opts = { debug = true },
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {
+      -- registries = {
+      --   "file:/home/folke/projects/mason-registry",
+      -- },
+    },
   },
   {
     "fei6409/log-highlight.nvim",
@@ -60,7 +93,6 @@ return {
       },
     },
   },
-  { "justinsgithub/wezterm-types" },
   {
     "echasnovski/mini.align",
     opts = {},
