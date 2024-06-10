@@ -1,0 +1,87 @@
+{
+  "Create Auto Command": {
+    "prefix": "autocmd",
+    "body": [
+      "vim.api.nvim_create_autocmd(\"${1:event}\", {",
+      "  group = vim.api.nvim_create_augroup(\"${2:group}\", { clear = true }),",
+      "  callback = function(ev)",
+      "    ${0}",
+      "  end",
+      "})"
+    ]
+  },
+  "Create Auto Command Group": {
+    "prefix": "augroup",
+    "body": [
+      "vim.api.nvim_create_augroup(\"${1:group}\", { clear = true })$0"
+    ]
+  },
+  "Current Win": {
+    "prefix": "win",
+    "body": "local win = vim.api.nvim_get_current_win()\n$0"
+  },
+  "Current Buf": {
+    "prefix": "buf",
+    "body": "local buf = vim.api.nvim_get_current_buf()\n$0"
+  },
+  "Buf Valid": {
+    "prefix": "bufvalid",
+    "body": "vim.api.nvim_buf_is_valid(${1:buf})"
+  },
+  "Win Valid": {
+    "prefix": "winvalid",
+    "body": "vim.api.nvim_win_is_valid(${1:win})"
+  },
+  "Win Call": {
+    "prefix": "wincall",
+    "body": [
+      "vim.api.nvim_win_call(${1:win}, function(win)",
+      "  ${0}",
+      "end)"
+    ]
+  },
+  "Buf Call": {
+    "prefix": "bufcall",
+    "body": [
+      "vim.api.nvim_buf_call(${1:buf}, function(buf)",
+      "  ${0}",
+      "end)"
+    ]
+  },
+  "Schedule": {
+    "prefix": "schedule",
+    "body": [
+      "vim.schedule(function()",
+      "  ${0}",
+      "end)"
+    ]
+  },
+  "Table Deep Extend": {
+    "prefix": "deepextend",
+    "body": "vim.tbl_deep_extend(\"force\", ${1:table}, ${2:table})$0"
+  },
+  "Table Filter": {
+    "prefix": "filter",
+    "body": [
+      "vim.tbl_filter(function()",
+      "  $0",
+      "end, ${1:table})"
+    ]
+  },
+  "Table Map": {
+    "prefix": "map",
+    "body": [
+      "vim.tbl_map(function()",
+      "  $0",
+      "end, ${1:table})"
+    ]
+  },
+  "Table Values": {
+    "prefix": "values",
+    "body": "vim.tbl_values(${1:table})"
+  },
+  "Table Keys": {
+    "prefix": "keys",
+    "body": "vim.tbl_keys(${1:table})"
+  }
+}
