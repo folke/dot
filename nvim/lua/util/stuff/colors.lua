@@ -45,4 +45,4 @@ function M.update(buf)
   end)
 end
 
-M.update()
+return M

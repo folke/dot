@@ -1,47 +1,29 @@
-local function foo() end
-foo()
-local lazydev = true
 return {
-  -- {
-  --   "folke/neodev.nvim",
-  --   enabled = false,
-  -- },
-  -- {
-  --   "folke/neoconf.nvim",
-  --   enabled = true,
-  -- },
-  -- { "Bilal2453/luvit-meta", lazy = true },
+
   { "justinsgithub/wezterm-types", lazy = true },
   {
     "folke/lazydev.nvim",
-    -- ft = "lua",
-    opts = {
-      runtime = "~/projects/neovim/runtime",
-      debug = true,
-      library = {
-        wezterm = "wezterm-types",
-      },
-      -- enabled = true,
-    },
+    opts = function(_, opts)
+      opts.debug = true
+      opts.runtime = "~/projects/neovim/runtime"
+      vim.list_extend(opts.library, {
+        { path = "wezterm-types", mods = { "wezterm" } },
+      })
+    end,
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    -- dev = true,
     opts = { show_help = false },
   },
   {
-    "garymjr/nvim-snippets",
-    -- dev = true,
-  },
-  {
     "folke/trouble.nvim",
-    opts = { debug = true },
-  },
-  {
-    "williamboman/mason.nvim",
     opts = {
-      -- registries = {
-      --   "file:/home/folke/projects/mason-registry",
+      debug = true,
+      -- preview = {
+      --   type = "split",
+      --   relative = "win",
+      --   position = "right",
+      --   size = 0.5,
       -- },
     },
   },
@@ -50,27 +32,6 @@ return {
     event = "BufRead *.log",
     opts = {},
   },
-  -- { "gbprod/yanky.nvim", dev = true },
-  -- {
-  --   enabled = false,
-  --   "nvimdev/indentmini.nvim",
-  --   opts = {
-  --     exclude = {
-  --       "help",
-  --       "alpha",
-  --       "dashboard",
-  --       "neo-tree",
-  --       "Trouble",
-  --       "trouble",
-  --       "lazy",
-  --       "mason",
-  --       "notify",
-  --       "toggleterm",
-  --       "lazyterm",
-  --     },
-  --   },
-  --   event = "LazyFile",
-  -- },
   {
     "t-troebst/perfanno.nvim",
     opts = function()
@@ -110,7 +71,7 @@ return {
   },
   {
     "folke/flash.nvim",
-    enabled = true,
+    ---@module 'flash'
     ---@type Flash.Config
     opts = {
       -- labels = "#abcdef",

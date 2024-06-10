@@ -3,7 +3,7 @@ return {
     "folke/noice.nvim",
     opts = function(_, opts)
       opts.debug = false
-
+      opts.routes = opts.routes or {}
       table.insert(opts.routes, {
         filter = {
           event = "notify",
@@ -45,6 +45,7 @@ return {
           end)
         end,
       })
+      return opts
     end,
   },
 

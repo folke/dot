@@ -15,10 +15,14 @@ return {
       ---@type lspconfig.options
       servers = {
         lua_ls = {
+          -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
           -- single_file_support = true,
           settings = {
             Lua = {
-              hover = { expandAlias = false },
+              misc = {
+                -- parameters = { "--loglevel=trace" },
+              },
+              -- hover = { expandAlias = false },
               type = {
                 castNumberToInteger = true,
               },
@@ -80,12 +84,20 @@ return {
       linters = {
         selene = {
           condition = function(ctx)
-            return vim.fs.find({ "selene.toml" }, { path = ctx.filename, upward = true })[1]
+            local root = LazyVim.root.get({ normalize = true })
+            if root ~= vim.uv.cwd() then
+              return false
+            end
+            return vim.fs.find({ "selene.toml" }, { path = root, upward = true })[1]
           end,
         },
         luacheck = {
           condition = function(ctx)
-            return vim.fs.find({ ".luacheckrc" }, { path = ctx.filename, upward = true })[1]
+            local root = LazyVim.root.get({ normalize = true })
+            if root ~= vim.uv.cwd() then
+              return false
+            end
+            return vim.fs.find({ ".luacheckrc" }, { path = root, upward = true })[1]
           end,
         },
       },

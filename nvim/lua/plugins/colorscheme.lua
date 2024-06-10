@@ -18,6 +18,9 @@ return {
           "Outline",
         },
         on_highlights = function(hl, c)
+          do
+            return
+          end
           local prompt = "#2d3149"
           hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg }
           hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
