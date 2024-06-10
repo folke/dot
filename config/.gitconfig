@@ -43,6 +43,8 @@ colorMoved = default
 
 [pull]
 rebase = true
+[push]
+default = upstream
 [github]
 user = folke
 [init]

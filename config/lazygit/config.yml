@@ -1,0 +1,204 @@
+gui:
+  authorColors: {}
+  branchColors: {}
+  scrollHeight: 2
+  scrollPastBottom: true
+  mouseEvents: true
+  nerdFontsVersion: "3"
+  skipDiscardChangeWarning: false
+  skipStashWarning: false
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: false
+  mainPanelSplitMode: flexible
+  language: auto
+  timeFormat: 02 Jan 06 15:04 MST
+  commitLength:
+    show: true
+  skipNoStagedFilesWarning: false
+  showListFooter: true
+  showFileTree: true
+  showRandomTip: true
+  showCommandLog: true
+  showBottomLine: true
+  commandLogSize: 8
+  splitDiff: auto
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+    useConfig: false
+  commit:
+    signOff: false
+  merging:
+    manualCommit: false
+    args: ""
+  skipHookPrefix: WIP
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium
+  overrideGpg: false
+  disableForcePushing: false
+  commitPrefixes: {}
+  parseEmoji: false
+  log:
+    order: topo-order
+    showGraph: "always"
+    showWholeGraph: false
+update:
+  method: prompt
+  days: 14
+refresher:
+  refreshInterval: 10
+  fetchInterval: 60
+confirmOnQuit: false
+quitOnTopLevelReturn: false
+keybinding:
+  universal:
+    quit: q
+    quit-alt1: <c-c>
+    return: <esc>
+    quitWithoutChangingDirectory: Q
+    togglePanel: <tab>
+    prevItem: <up>
+    nextItem: <down>
+    prevItem-alt: k
+    nextItem-alt: j
+    prevPage: ","
+    nextPage: .
+    scrollLeft: H
+    scrollRight: L
+    gotoTop: <
+    gotoBottom: ">"
+    prevBlock: <left>
+    nextBlock: <right>
+    prevBlock-alt: h
+    nextBlock-alt: l
+    nextBlock-alt2: <tab>
+    prevBlock-alt2: <backtab>
+    jumpToBlock:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
+    nextMatch: "n"
+    prevMatch: "N"
+    startSearch: /
+    optionMenu: x
+    optionMenu-alt1: "?"
+    select: <space>
+    goInto: <enter>
+    confirm: <enter>
+    remove: d
+    new: "n"
+    edit: e
+    openFile: o
+    scrollUpMain: <pgup>
+    scrollDownMain: <pgdown>
+    scrollUpMain-alt1: K
+    scrollDownMain-alt1: J
+    scrollUpMain-alt2: <c-u>
+    scrollDownMain-alt2: <c-d>
+    executeCustomCommand: ":"
+    createRebaseOptionsMenu: m
+    pushFiles: P
+    pullFiles: p
+    refresh: R
+    createPatchOptionsMenu: <c-p>
+    nextTab: "]"
+    prevTab: "["
+    nextScreenMode: +
+    prevScreenMode: _
+    undo: z
+    redo: <c-z>
+    filteringMenu: <c-s>
+    diffingMenu: W
+    diffingMenu-alt: <c-e>
+    copyToClipboard: <c-o>
+    openRecentRepos: <c-r>
+    submitEditorText: <enter>
+    extrasMenu: "@"
+    toggleWhitespaceInDiffView: <c-w>
+    increaseContextInDiffView: "}"
+    decreaseContextInDiffView: "{"
+  status:
+    checkForUpdate: u
+    recentRepos: <enter>
+    allBranchesLogGraph: a
+  files:
+    commitChanges: c
+    commitChangesWithoutHook: w
+    amendLastCommit: A
+    commitChangesWithEditor: C
+    refreshFiles: r
+    stashAllChanges: s
+    viewStashOptions: S
+    toggleStagedAll: a
+    viewResetOptions: D
+    fetch: f
+    toggleTreeView: "`"
+    openMergeTool: M
+    openStatusFilter: <c-b>
+  branches:
+    createPullRequest: o
+    viewPullRequestOptions: O
+    copyPullRequestURL: <c-y>
+    checkoutBranchByName: c
+    forceCheckoutBranch: F
+    rebaseBranch: r
+    renameBranch: R
+    mergeIntoCurrentBranch: M
+    viewGitFlowOptions: i
+    fastForward: f
+    pushTag: P
+    setUpstream: u
+    fetchRemote: f
+  commits:
+    squashDown: s
+    renameCommit: r
+    renameCommitWithEditor: R
+    viewResetOptions: g
+    markCommitAsFixup: f
+    createFixupCommit: F
+    squashAboveCommits: S
+    moveDownCommit: <c-j>
+    moveUpCommit: <c-k>
+    amendToCommit: A
+    resetCommitAuthor: a
+    pickCommit: p
+    revertCommit: t
+    cherryPickCopy: c
+    pasteCommits: v
+    tagCommit: T
+    checkoutCommit: <space>
+    resetCherryPick: <c-R>
+    copyCommitAttributeToClipboard: "y"
+    openLogMenu: <c-l>
+    openInBrowser: o
+    viewBisectOptions: b
+  stash:
+    popStash: g
+  commitFiles:
+    checkoutCommitFile: c
+  main:
+    toggleSelectHunk: a
+    pickBothHunks: b
+    editSelectHunk: E
+  submodules:
+    init: i
+    update: u
+    bulkMenu: b
+os:
+  editPreset: "nvim-remote"
+disableStartupPopups: false
+customCommands:
+  - key: "b"
+    command: "gh browse"
+    context: "files"
+  - key: "b"
+    command: 'gh browse "{{.SelectedLocalCommit.Sha}}"'
+    context: "commits"
+services: {}
+notARepository: skip
+promptToReturnFromSubprocess: true

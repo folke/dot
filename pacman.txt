@@ -155,6 +155,7 @@ gnome-themes-extra
 gnome-tweaks
 gnome-usage
 gnu-netcat
+goread-bin
 gparted
 gpu-viewer
 grc
@@ -198,6 +199,7 @@ hyprlock-git
 hyprpaper
 hyprpicker
 hyprshade-git
+hyprutils-git
 imv-git
 inetutils
 intel-gpu-tools
@@ -320,6 +322,7 @@ p7zip
 pacman
 pacman-contrib
 pamixer
+papirus-icon-theme-git
 paru
 patch
 pavucontrol
@@ -339,7 +342,6 @@ podman-compose
 pokemon-colorscripts-git
 polkit-gnome
 poppler-glib
-power-profiles-daemon
 powershell-bin
 powerstat
 powertop
@@ -385,7 +387,8 @@ scrounge-ntfs
 seahorse
 sed
 sg3_utils
-shell-color-scripts
+shell-color-scripts-git
+skim
 slurp
 smartmontools
 snap-pac
@@ -393,6 +396,7 @@ snapper
 sof-firmware
 splix
 spotify-launcher
+sqlfluff
 sqliteman
 sshfs
 starship
@@ -407,7 +411,6 @@ sway
 sway-audio-idle-inhibit-git
 swayidle
 swaylock-effects-git
-swww
 sysfsutils
 system-config-printer
 systemd-sysvcompat
@@ -441,6 +444,7 @@ ttf-segoe-ui-variable
 ttf-victor-mono
 ttf-victor-mono-nerd
 tuir
+tuned-ppd
 typos
 unrar
 unzip
@@ -495,6 +499,7 @@ xsane
 xsel
 xterm
 yazi
+yq
 zellij
 zfxtop
 zoxide

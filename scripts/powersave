@@ -16,7 +16,7 @@ fi
 
 # true when on battery
 if [ "$1" = "true" ]; then
-	brightnessctl -s set 30 # save brightness
+	brightnessctl -s set 40 # save brightness
 	# tuned-adm profile laptop-battery-powersave
 	# powerprofilesctl set power-saver
 	hyprctl keyword decoration:drop_shadow false

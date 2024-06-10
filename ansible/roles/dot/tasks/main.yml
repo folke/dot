@@ -41,12 +41,6 @@
     dest: ~/.gitconfig
     state: link
 
-- name: .tool-versions
-  file:
-    src: ~/.config/.tool-versions
-    dest: ~/.tool-versions
-    state: link
-
 - name: nvim
   file:
     src: ~/dot/nvim
