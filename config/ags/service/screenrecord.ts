@@ -78,7 +78,7 @@ class Recorder extends Service {
   }
 
   async screenshot(full = false) {
-    if (!dependencies("slurp", "wayshot")) return
+    if (!dependencies("slurp", "grim")) return
 
     const file = `${this.#screenshots}/${now()}.png`
     Utils.ensureDirectory(this.#screenshots)
@@ -86,7 +86,7 @@ class Recorder extends Service {
     this.stopHyprshade()
 
     if (full) {
-      await sh(`wayshot -f ${file}`)
+      await sh(`grim "${file}"`)
     } else {
       const size = await sh("slurp")
       if (!size) {
@@ -94,7 +94,7 @@ class Recorder extends Service {
         return
       }
 
-      await sh(`wayshot -f ${file} -s "${size}"`)
+      await sh(`grim -g "${size}" "${file}"`)
     }
     this.resetHyprshade()
 
