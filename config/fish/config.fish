@@ -1,6 +1,3 @@
-set -gx EDITOR (which nvim)
-set -gx VISUAL $EDITOR
-set -gx SUDO_EDITOR $EDITOR
 
 # Cursor styles
 set -gx fish_vi_force_cursor 1
@@ -11,6 +8,7 @@ set -gx fish_cursor_replace_one underscore
 
 # Path
 set -x fish_user_paths
+fish_add_path /bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.local/bin
 fish_add_path ~/.luarocks/bin
@@ -19,14 +17,17 @@ fish_add_path /usr/local/opt/sqlite/bin
 fish_add_path /usr/local/sbin
 fish_add_path ~/.gem/ruby/2.6.0/bin
 fish_add_path ~/.local/bin/pnpm
-fish_add_path /bin
-fish_add_path ~/.local/share/bob/nvim-bin
+fish_add_path ~/.local/share/bob/active/bin
 fish_add_path /var/lib/flatpak/exports/bin/
 fish_add_path ~/.dotnet/tools
 fish_add_path ~/.local/share/mise/shims
 
 set -gx DENO_INSTALL "~/.deno"
 fish_add_path ~/.deno/bin
+
+set -gx EDITOR (which nvim)
+set -gx VISUAL $EDITOR
+set -gx SUDO_EDITOR $EDITOR
 
 # Fish
 set fish_emoji_width 2
