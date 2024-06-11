@@ -20,10 +20,10 @@ vim.print = _G.dd
 pcall(require, "config.env")
 
 require("config.lazy")({
-  debug = false,
+  -- debug = false,
   profiling = {
     loader = false,
-    require = true,
+    require = false,
   },
 })
 

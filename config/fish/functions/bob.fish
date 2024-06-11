@@ -2,7 +2,9 @@
 function bob --wraps bob
     command bob $argv
     set used (cat ~/.local/share/bob/used)
-    test -L ~/.local/share/bob/active
-    and unlink ~/.local/share/bob/active
-    ln -s ~/.local/share/bob/$used/nvim-linux64 ~/.local/share/bob/active
+    set src ~/.local/share/bob/$used
+    set dest ~/.local/share/bob-nvim
+    test -L $dest
+    and unlink $dest
+    ln -s $src/nvim-linux64 $dest
 end
