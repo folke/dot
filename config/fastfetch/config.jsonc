@@ -1,0 +1,112 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "width": 60,
+    "printRemaining": false,
+    "padding": {
+      "top": 1,
+      "left": 2,
+      "right": 2,
+      "bottom": 0,
+    },
+  },
+  "display": {
+    "separator": "",
+    "keyWidth": 15,
+  },
+  "modules": [
+    {
+      "key": " ",
+      "type": "custom",
+    },
+    {
+      "key": "╭───────────╮",
+      "type": "custom",
+    },
+    {
+      // draw borders first to make colors of left and right border consistant
+      "key": "│           │\u001b[11D{#31}  \u001b[{#37}user",
+      "type": "title",
+      "format": "{1}",
+      "outputColor": "31;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#32}󰇅  \u001b[{#37}hname",
+      "type": "title",
+      "format": "{2}",
+      "outputColor": "32;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#33}󰅐  \u001b[{#37}uptime",
+      "type": "uptime",
+      "outputColor": "33;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#34}󰟾  \u001b[{#37}distro",
+      "type": "os",
+      "outputColor": "34;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#35}  \u001b[{#37}kernel",
+      "type": "kernel",
+      "outputColor": "35;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#36}󰏗  \u001b[{#37}pkgs",
+      "type": "packages",
+      "outputColor": "36;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#36}󰇄  \u001b[{#37}desktop",
+      "type": "de",
+      "outputColor": "36;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#31}  \u001b[{#37}term",
+      "type": "terminal",
+      "outputColor": "31;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#32}  \u001b[{#37}shell",
+      "type": "shell",
+      "outputColor": "32;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#33}󰍛  \u001b[{#37}cpu",
+      "type": "cpu",
+      "showPeCoreCount": true,
+      "outputColor": "33;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#34}󰉉  \u001b[{#37}disk",
+      "type": "disk",
+      "folders": "/",
+      "outputColor": "34;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#35}  \u001b[{#37}memory",
+      "type": "memory",
+      "outputColor": "35;1",
+    },
+    {
+      "key": "│           │\u001b[11D{#36}󰩟  \u001b[{#37}network",
+      "type": "localip",
+      "format": "{1} ({4})",
+      "outputColor": "36;1",
+    },
+    {
+      "key": "├───────────┤",
+      "type": "custom",
+    },
+    {
+      "key": "│           │\u001b[11D{#39}  colors",
+      "type": "colors",
+      "symbol": "circle",
+    },
+    {
+      "key": "╰───────────╯",
+      "type": "custom",
+    },
+  ],
+}

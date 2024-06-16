@@ -65,11 +65,11 @@
     state: directory
     mode: u=rwx,o=,g=
 
-- name: .Xresources
-  file:
-    src: ~/.config/.Xresources
-    dest: ~/.Xresources
-    state: link
+# - name: .Xresources
+#   file:
+#     src: ~/.config/.Xresources
+#     dest: ~/.Xresources
+#     state: link
 
 - name: gpg-agent.conf
   copy:

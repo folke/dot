@@ -5,28 +5,18 @@ return {
     keys = {
       {
         "<leader>fp",
-        LazyVim.pick("files", {
-          cwd = require("lazy.core.config").options.root,
-        }),
+        LazyVim.pick("files", { cwd = require("lazy.core.config").options.root }),
         desc = "Find Plugin File",
       },
       {
-        "<leader>fl",
+        "<leader>sp",
         function()
-          local files = {} ---@type table<string, string>
-          for _, plugin in pairs(require("lazy.core.config").plugins) do
-            repeat
-              if plugin._.module then
-                local info = vim.loader.find(plugin._.module)[1]
-                if info then
-                  files[info.modpath] = info.modpath
-                end
-              end
-              plugin = plugin._.super
-            until not plugin
-          end
-          local filespec = table.concat(vim.tbl_values(files), " ")
-          require("fzf-lua").live_grep({ filespec = "-- " .. filespec, search = "/" })
+          local dirs = { "~/dot/nvim/lua/plugins", "~/projects/LazyVim/lua/lazyvim/plugins" }
+          require("fzf-lua").live_grep({
+            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
+            search = "/",
+            formatter = "path.filename_first",
+          })
         end,
         desc = "Find Lazy Plugin Spec",
       },

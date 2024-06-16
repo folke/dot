@@ -1,4 +1,4 @@
-local wezterm = require("wezterm")
+local wezterm = require("wezterm") --[[@as Wezterm]]
 
 local act = wezterm.action
 local M = {}
@@ -35,14 +35,20 @@ function M.setup(config)
     { mods = M.mod, key = "h", action = act({ ActivateTabRelative = -1 }) },
     { mods = M.mod, key = "R", action = wezterm.action.RotatePanes("Clockwise") },
     -- show the pane selection mode, but have it swap the active and selected panes
-    { mods = M.mod, key = "S", action = wezterm.action.PaneSelect({ mode = "SwapWithActive" }) },
+    { mods = M.mod, key = "S", action = wezterm.action.PaneSelect({}) },
     -- Clipboard
-    { mods = M.mod, key = "C", action = act.CopyTo("Clipboard") },
+    { mods = M.mod, key = "c", action = act.CopyTo("Clipboard") },
     { mods = M.mod, key = "Space", action = act.QuickSelect },
     { mods = M.mod, key = "X", action = act.ActivateCopyMode },
     { mods = M.mod, key = "f", action = act.Search("CurrentSelectionOrEmptyString") },
-    { mods = M.mod, key = "V", action = act.PasteFrom("Clipboard") },
-    { mods = M.mod, key = "M", action = act.TogglePaneZoomState },
+    { mods = M.mod, key = "v", action = act.PasteFrom("Clipboard") },
+    {
+      mods = M.mod,
+      key = "u",
+      action = act.CharSelect({ copy_on_select = true, copy_to = "ClipboardAndPrimarySelection" }),
+    },
+    -- { mods = M.mod, key = "v", action = act.ShowDebugOverlay },
+    { mods = M.mod, key = "m", action = act.TogglePaneZoomState },
     { mods = M.mod, key = "p", action = act.ActivateCommandPalette },
     { mods = M.mod, key = "d", action = act.ShowDebugOverlay },
     M.split_nav("resize", "CTRL", "LeftArrow", "Right"),

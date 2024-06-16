@@ -18,7 +18,7 @@ set fzf_diff_highlighter delta --paging=never --width=20
 fzf_configure_bindings \
     --directory=\ct \
     --git_log=\cg \
-    --git_status= \
+    --git_status=\cs \
     --history= \
     --processes=\cp \
-    --variables=\c\ev
+    --variables=

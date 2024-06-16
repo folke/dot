@@ -31,7 +31,6 @@ set -gx SUDO_EDITOR $EDITOR
 
 # Fish
 set fish_emoji_width 2
-alias fish_greeting color-test
 alias ssh "TERM=xterm-256color command ssh"
 alias mosh "TERM=xterm-256color command mosh"
 
