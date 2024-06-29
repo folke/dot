@@ -72,12 +72,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, {
-        function()
-          return require("util.dashboard").status()
-        end,
-      })
-
       ---@type table<string, {updated:number, total:number, enabled: boolean, status:string[]}>
       local mutagen = {}
 
@@ -91,7 +85,11 @@ return {
             status = {},
           }
         local now = vim.uv.now() -- timestamp in milliseconds
-        if mutagen[cwd].enabled and (mutagen[cwd].updated + 10000 < now) then
+        local refresh = mutagen[cwd].updated + 10000 < now
+        if #mutagen[cwd].status > 0 then
+          refresh = mutagen[cwd].updated + 1000 < now
+        end
+        if mutagen[cwd].enabled and refresh then
           ---@type {name:string, status:string, idle:boolean}[]
           local sessions = {}
           local lines = vim.fn.systemlist("mutagen project list")

@@ -1,5 +1,43 @@
-return {
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   group = vim.api.nvim_create_augroup("group", { clear = true }),
+--   callback = function(ev)
+--     vim.defer_fn(function()
+--       dd("loading")
+--       require("lazy.core.plugin").load()
+--       -- local plugins = require("lazy.core.config").plugins["lazy.nvim"]
+--       -- local p = require("lazy.core.config").plugins
+--     end, 2000)
+--   end,
+-- })
 
+return {
+  -- { "gvvaughan/lyaml" },
+  { "folke/noice.nvim", event = "CmdLineEnter" },
+  -- { "stevearc/dressing.nvim", enabled = false },
+  -- { "folke/noice.nvim", opts = { debug = true } },
+  -- { "neo-tree.nvim", enabled = false },
+  {
+    "ibhagwan/fzf-lua",
+    dev = false,
+    opts = {
+      winopts = {
+        -- border = "none",
+      },
+    },
+  },
+  -- {
+  --   "nvim-neorg/neorg",
+  --   enabled = false,
+  --   cmd = "Neorg",
+  --   opts = {},
+  -- },
+  {
+    "folke/edgy.nvim",
+    enabled = true,
+    opts = {
+      animate = { enabled = true },
+    },
+  },
   { "justinsgithub/wezterm-types", lazy = true },
   {
     "folke/lazydev.nvim",
@@ -16,9 +54,16 @@ return {
     opts = { show_help = false },
   },
   {
+
     "folke/trouble.nvim",
+    -- build = function()
+    --   for i = 1, 5 do
+    --     require("lazy.util").sleep(1000)
+    --     coroutine.yield("step" .. i)
+    --   end
+    -- end,
     opts = {
-      debug = true,
+      -- debug = true,
       -- preview = {
       --   type = "split",
       --   relative = "win",
@@ -60,13 +105,6 @@ return {
     keys = {
       { "ga", mode = { "n", "v" } },
       { "gA", mode = { "n", "v" } },
-    },
-  },
-  {
-    "2kabhishek/nerdy.nvim",
-    cmd = "Nerdy",
-    keys = {
-      { "<leader>ci", "<cmd>Nerdy<cr>", desc = "Pick Icon" },
     },
   },
   {
