@@ -50,3 +50,19 @@ function nvims_install -a url -a profile
     git clone $url.git $dest
     nvims $profile
 end
+
+function nvims_clean -a profile
+    if test -z "$profile"
+        echo "Usage: nvim_clean <profile>"
+        return 1
+    end
+
+    test -d ~/.local/share/nvim-profiles/$profile
+    and rm -rf ~/.local/share/nvim-profiles/$profile
+
+    test -d ~/.local/state/nvim-profiles/$profile
+    and rm -rf ~/.local/state/nvim-profiles/$profile
+
+    test -d ~/.cache/nvim-profiles/$profile
+    and rm -rf ~/.cache/nvim-profiles/$profile
+end

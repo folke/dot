@@ -17,6 +17,7 @@ archlinux-keyring
 archlinux-xdg-menu
 aria2
 arp-scan
+asciiquarium-transparent-git
 asp
 atuin
 autoconf
@@ -51,6 +52,8 @@ calf
 cantarell-fonts
 catch2
 catppuccin-gtk-theme-latte
+cava
+chafa
 chkservice
 chromium
 circumflex-bin
@@ -58,6 +61,8 @@ clang
 cliphist
 clipman
 cool-retro-term
+cowfortune
+cowsay
 cryptsetup
 ctop
 cups
@@ -168,6 +173,7 @@ gst-plugin-pipewire
 gst-plugins-bad
 gst-plugins-ugly
 gtklock
+gum
 gupnp-tools
 gutenprint
 gvfs
@@ -180,6 +186,7 @@ gzip
 haveged
 hdparm
 helix
+helixbinhx
 hexer
 hexxy-git
 hexyl
@@ -200,7 +207,7 @@ hyprpaper
 hyprpicker
 hyprshade-git
 hyprutils-git
-imv-git
+imv
 inetutils
 intel-gpu-tools
 intel-media-driver
@@ -212,9 +219,11 @@ iucode-tool
 iwd
 jamesdsp
 java-openjfx-bin
+jekyll
 jfsutils
 jq
 just
+kakoune
 kernel-install-for-dracut
 keyd-git
 khal
@@ -259,6 +268,7 @@ luarocks
 lvm2
 lxappearance
 m4
+macchina-bin
 make
 man-db
 man-pages
@@ -277,6 +287,7 @@ modemmanager
 mods
 mono-msbuild
 mosh
+mousam
 mtools
 mullvad-vpn-bin
 mutagen.io-bin
@@ -289,6 +300,7 @@ nbtscan
 ncdu
 needrestart
 neofetch
+neonmodem
 neovim
 neovim-symlinks
 nerdfix
@@ -356,6 +368,7 @@ python-capng
 python-croniter
 python-defusedxml
 python-msgpack
+python-openslide
 python-packaging
 python-pipx
 python-poetry
@@ -446,6 +459,7 @@ ttf-victor-mono-nerd
 tuir
 tuned-ppd
 typos
+ueberzugpp
 unrar
 unzip
 upower
@@ -453,13 +467,14 @@ usb_modeswitch
 usbutils
 virt-manager
 visual-studio-code-bin
+viu
 vlc
 warpd-git
 watchexec
 waybar
 wayshot
 wev
-wezterm
+wezterm-git
 wf-recorder-git
 wget
 which
