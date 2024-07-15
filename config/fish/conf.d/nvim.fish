@@ -1,3 +1,25 @@
+
+function repro -a issue
+    if test -z "$issue"
+        echo "Usage: repro <issue>"
+        return 1
+    end
+    set file ./debug/$issue.lua
+
+    # Fetch the issue if it doesn't exist
+    if not test -f $file
+        echo "Fetching issue #$issue"
+        gh issue view $issue | sed -n '/```[Ll]ua/,/```/p' | sed '1d;$d' >$file
+    end
+
+    # Use local lazy and plugins
+    set -x LAZY_PATH ~/projects/lazy.nvim
+    set -x LAZY_DEV "folke,LazyVim"
+
+    # Run the repro
+    nvim -u $file $file
+end
+
 # Function to select or use a given Neovim profile
 function nvims --wraps nvim
     set -l profile $argv[1]
