@@ -6,6 +6,7 @@ adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adw-gtk3
 adwaita-icon-theme
+aerc
 alacritty
 alsa-firmware
 alsa-plugins
@@ -48,18 +49,20 @@ btrfs-assistant
 btrfs-progs
 bun-bin
 caddy
+calcure
 calf
 cantarell-fonts
 catch2
 catppuccin-gtk-theme-latte
 cava
-chafa
+chafa-git
 chkservice
 chromium
 circumflex-bin
 clang
 cliphist
 clipman
+contour
 cool-retro-term
 cowfortune
 cowsay
@@ -104,7 +107,7 @@ exfatprogs
 eza
 f2fs-tools
 fakeroot
-fastfetch
+fastfetch-git
 fd
 ffmpegthumbnailer
 file
@@ -239,6 +242,7 @@ libfprint-tod-git
 libgdm
 libgsf
 libopenraw
+libqalculate
 libreoffice-fresh
 librewolf-bin
 libtool
@@ -246,7 +250,7 @@ libva-utils
 libwnck3
 linux
 linux-apfs-rw-dkms-git
-linux-enable-ir-emitter
+linux-enable-ir-emitter-git
 linux-firmware
 linux-headers
 linux-lts
@@ -302,7 +306,6 @@ needrestart
 neofetch
 neonmodem
 neovim
-neovim-symlinks
 nerdfix
 netctl
 nethack
@@ -321,6 +324,7 @@ noto-fonts-emoji
 nss-mdns
 ntfs-3g
 ntp
+numbat-bin
 nushell
 nwg-dock-hyprland-bin
 nwg-look
@@ -367,6 +371,7 @@ python
 python-capng
 python-croniter
 python-defusedxml
+python-dlib-git
 python-msgpack
 python-openslide
 python-packaging
@@ -434,7 +439,6 @@ texlive-binextra
 thermald
 throttled
 tig
-tinyxxd
 tio
 tmux
 tokei
@@ -465,6 +469,7 @@ unzip
 upower
 usb_modeswitch
 usbutils
+vim
 virt-manager
 visual-studio-code-bin
 viu
@@ -517,4 +522,5 @@ yazi
 yq
 zellij
 zfxtop
+zk
 zoxide

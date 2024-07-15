@@ -102,6 +102,7 @@ alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Progr
 abbr git hub
 abbr topgit topgrade --only git_repos
 abbr g hub
+abbr windows systemctl reboot --boot-loader-entry=auto-windows
 
 set -x LG_CONFIG_FILE /home/folke/.config/lazygit/config.yml,/home/folke/.cache/nvim/lazygit-theme.yml
 

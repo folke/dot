@@ -3,21 +3,15 @@ return {
     "tokyonight.nvim",
     opts = function()
       return {
-        style = "moon",
+        -- style = "day",
+        -- light_style = "moon",
         -- transparent = true,
         -- styles = {
         --   sidebars = "transparent",
         --   floats = "transparent",
         -- },
-        sidebars = {
-          "qf",
-          "vista_kind",
-          -- "terminal",
-          "spectre_panel",
-          "startuptime",
-          "Outline",
-        },
         on_highlights = function(hl, c)
+          -- hl.Normal = "Foo"
           do
             return
           end

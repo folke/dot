@@ -38,6 +38,7 @@ return function(opts)
     diff = {
       cmd = "terminal_git",
     },
+    rocks = { hererocks = true },
     performance = {
       cache = {
         enabled = true,

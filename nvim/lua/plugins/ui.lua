@@ -144,41 +144,27 @@ return {
       })
 
       -- local keys = {}
-      -- local in_mapping = false
-      --
-      -- vim.api.nvim_create_autocmd("SafeState", {
-      --   callback = function()
-      --     in_mapping = false
-      --   end,
-      -- })
       --
       -- vim.on_key(function(_, key)
       --   if not key then
       --     return
       --   end
-      --   -- local unsafe = not vim.fn.state():find("S")
-      --   local m = vim.fn.state():find("[moS]")
-      --   -- if in_mapping and not m then
-      --   --   in_mapping = false
-      --   --   return
-      --   -- end
-      --   if m and not in_mapping then
-      --     in_mapping = true
-      --     keys = {}
-      --   end
-      --   if in_mapping then
-      --     table.insert(keys, key)
-      --     require("lualine").refresh()
-      --     vim.cmd.redraw()
+      --   if #key > 0 then
+      --     table.insert(keys, vim.fn.keytrans(key))
+      --     -- require("lualine").refresh()
+      --     -- vim.cmd.redraw()
       --   end
       -- end)
       --
       -- table.insert(opts.sections.lualine_x, {
       --   function()
-      --     return table.concat(keys, "")
+      --     if #keys > 10 then
+      --       keys = vim.list_slice(keys, #keys - 10)
+      --     end
+      --     return table.concat(keys)
       --   end,
       -- })
-
+      --
       -- local count = 0
       -- table.insert(opts.sections.lualine_x, {
       --   function()
@@ -188,12 +174,15 @@ return {
       -- })
     end,
   },
+  -- { "folke/which-key.nvim", enabled = true, config = function() end },
+  { "folke/noice.nvim", enabled = true },
 
   "folke/twilight.nvim",
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
     opts = {
+      window = { backdrop = 0.7 },
       plugins = {
         gitsigns = true,
         tmux = true,

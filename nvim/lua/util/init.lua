@@ -153,8 +153,8 @@ function M.wezterm()
 
   -- Move to window using the movement keys
   for key, dir in pairs(nav) do
-    vim.keymap.set("n", "<" .. dir .. ">", navigate(key))
-    vim.keymap.set("n", "<C-" .. key .. ">", navigate(key))
+    vim.keymap.set("n", "<" .. dir .. ">", navigate(key), { desc = "Go to " .. dir .. " window" })
+    vim.keymap.set("n", "<C-" .. key .. ">", navigate(key), { desc = "Go to " .. dir .. " window" })
   end
 end
 

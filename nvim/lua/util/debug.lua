@@ -168,26 +168,51 @@ function M.get_upvalue(func, name)
   end
 end
 
-function M.trace_require()
-  local requires = {} ---@type string[]
-  local done = {} ---@type table<string, true>
-  local r = require
-  _G.require = function(modname)
-    if not done[modname] then
-      local Util = package.loaded["lazy.core.util"]
-      done[modname] = true
-      if Util then
-        Util.track({ require = modname })
+---@type table<fun(), {id:number, event: string|string[], group?:string|number, loc:string, cb:fun(), count:number, time:number}>
+local events = {}
+
+function M.autocmds()
+  local au = vim.api.nvim_create_autocmd
+
+  vim.api.nvim_create_autocmd = function(event, opts)
+    local id
+    local cb = opts.callback
+    if cb then
+      local info = debug.getinfo(cb)
+      local loc = vim.fn.fnamemodify(info.source:sub(2), ":~:.") .. ":" .. info.linedefined
+      opts.callback = function(...)
+        events[cb] = events[cb]
+          or { id = id, event = event, count = 0, time = 0, loc = loc, group = opts.group, pattern = opts.pattern }
+        local start = vim.uv.hrtime()
+        local ok, err = pcall(cb, ...)
+        events[cb].time = events[cb].time + (vim.uv.hrtime() - start) / 1e6
+        events[cb].count = events[cb].count + 1
+        return not ok and error(err) or err
       end
-      requires[#requires + 1] = modname
-      local ret, err = r(modname)
-      if Util then
-        Util.track()
-      end
-      return ret, err
-    else
-      return r(modname)
     end
+
+    vim.api.nvim_create_user_command("DebugAutocmds", function()
+      local data = vim.tbl_values(events)
+      local all = vim.api.nvim_get_autocmds({})
+      for _, v in ipairs(data) do
+        v.avg = v.time / v.count
+        if type(v.group) == "number" then
+          for _, a in ipairs(all) do
+            if a.id == v.id then
+              v.group = a.group_name
+              break
+            end
+          end
+        end
+      end
+      table.sort(data, function(a, b)
+        return a.time > b.time
+      end)
+      dd(data)
+    end, {})
+
+    id = au(event, opts)
+    return id
   end
 end
 
