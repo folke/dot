@@ -4,7 +4,6 @@ act
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
-adw-gtk3
 adwaita-icon-theme
 aerc
 alacritty
@@ -49,20 +48,17 @@ btrfs-assistant
 btrfs-progs
 bun-bin
 caddy
-calcure
 calf
 cantarell-fonts
 catch2
-catppuccin-gtk-theme-latte
 cava
-chafa-git
+chafa
 chkservice
 chromium
 circumflex-bin
 clang
 cliphist
 clipman
-contour
 cool-retro-term
 cowfortune
 cowsay
@@ -97,6 +93,7 @@ efibootmgr
 efitools
 egl-wayland
 element-desktop
+emulationstation-de
 eog
 erdtree
 esptool
@@ -107,7 +104,7 @@ exfatprogs
 eza
 f2fs-tools
 fakeroot
-fastfetch-git
+fastfetch
 fd
 ffmpegthumbnailer
 file
@@ -130,7 +127,6 @@ fswatch
 fwupd
 gammastep
 gawk
-gbar-git
 gcc
 gdm
 gdm-settings
@@ -191,7 +187,6 @@ hdparm
 helix
 helixbinhx
 hexer
-hexxy-git
 hexyl
 himalaya
 howdy-beta-git
@@ -205,11 +200,11 @@ hwinfo
 hyperfine
 hypridle
 hyprland
-hyprlock-git
+hyprlock
 hyprpaper
 hyprpicker
 hyprshade-git
-hyprutils-git
+hyprutils
 imv
 inetutils
 intel-gpu-tools
@@ -225,6 +220,7 @@ java-openjfx-bin
 jekyll
 jfsutils
 jq
+julia
 just
 kakoune
 kernel-install-for-dracut
@@ -250,7 +246,7 @@ libva-utils
 libwnck3
 linux
 linux-apfs-rw-dkms-git
-linux-enable-ir-emitter-git
+linux-enable-ir-emitter
 linux-firmware
 linux-headers
 linux-lts
@@ -281,8 +277,6 @@ mdadm
 mdcat
 meld
 mesa-utils
-microsoft-edge-beta-bin
-microsoft-edge-dev-bin
 mise-bin
 mission-center
 mitogen
@@ -315,10 +309,8 @@ networkmanager-openconnect
 networkmanager-openvpn
 nfs-utils
 nilfs-utils
-nitch
 nmap
 nodejs-lts-hydrogen
-notion-app
 noto-fonts
 noto-fonts-emoji
 nss-mdns
@@ -326,12 +318,13 @@ ntfs-3g
 ntp
 numbat-bin
 nushell
-nwg-dock-hyprland-bin
 nwg-look
 nwg-panel
+obsidian
 omnisharp-roslyn-bin
 onefetch
 ookla-speedtest-bin
+opencl-nvidia
 otf-cascadia-code
 ov-bin
 p7zip
@@ -371,7 +364,8 @@ python
 python-capng
 python-croniter
 python-defusedxml
-python-dlib-git
+python-dlib
+python-html2text
 python-msgpack
 python-openslide
 python-packaging
@@ -379,6 +373,7 @@ python-pipx
 python-poetry
 python-pyqt5
 python-reportlab
+python-tinytuya
 qt5-wayland
 qt6-wayland
 ranger
@@ -387,9 +382,12 @@ rebuild-detector
 recyclarr
 reflector
 reiserfsprogs
+retroarch
+retroarch-assets-glui
+retroarch-assets-ozone
+retroarch-assets-xmb
 ripgrep
 rizin
-rofi-lbonn-wayland-git
 rofimoji
 rsync
 rtkit
@@ -400,7 +398,7 @@ rustup
 rz-cutter
 s-nail
 s-tui
-safeeyes-git
+safeeyes
 scrounge-ntfs
 seahorse
 sed
@@ -430,6 +428,7 @@ sway-audio-idle-inhibit-git
 swayidle
 swaylock-effects-git
 sysfsutils
+sysstat
 system-config-printer
 systemd-sysvcompat
 tealdeer
@@ -474,7 +473,6 @@ virt-manager
 visual-studio-code-bin
 viu
 vlc
-warpd-git
 watchexec
 waybar
 wayshot
