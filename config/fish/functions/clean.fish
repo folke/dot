@@ -6,6 +6,8 @@ function clean
     yarn cache clean
     pnpm store prune
     pip cache purge
+    sudo docker system prune -a
+    podman system prune -a
     start snapper-cleanup.service
     sudo systemctl status snapper-cleanup.service
     duf
