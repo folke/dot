@@ -1,8 +1,9 @@
 #!/bin/env bash
 
-WORKSPACE=$(hyprctl clients -j | jq -rec '.[] | select(.class == "quake") | .workspace .name')
-TERM_CMD="wezterm --config window_background_opacity=0.9 start --class quake"
+WORKSPACE=$(hyprctl clients -j | jq -rec '.[] | select(.class == "folke.quake") | .workspace .name')
 # TERM_CMD="kitty -1 --class quake -o background_opacity=0.90 -o hide_window_decorations=yes -o remember_window_size=no"
+TERM_CMD="wezterm --config window_background_opacity=0.9 start --class folke.quake"
+TERM_CMD="ghostty --class=\"folke.quake\""
 
 # hyprctl --batch '
 # keyword windowrulev2 float,class:quake ;
@@ -27,14 +28,14 @@ elif [ "$WORKSPACE" == "special:quake" ]; then
   hyprctl activewindow | rg "fullscreen: 1" && hyprctl dispatch fullscreenstate 0 0
 
   # Move the quake window to the current workspace, focus it, and bring it to the top
-  hyprctl dispatch movetoworkspacesilent "+0,^(quake)\$"
-  hyprctl dispatch focuswindow "^(quake)\$"
+  hyprctl dispatch movetoworkspacesilent "+0,^(folke\.quake)\$"
+  hyprctl dispatch focuswindow "^(folke\.quake)\$"
   hyprctl dispatch bringactivetotop
 else
   echo "hide"
 
   # Move the quake window to the special workspace
-  hyprctl dispatch movetoworkspacesilent "special:quake,^(quake)\$"
+  hyprctl dispatch movetoworkspacesilent "special:quake,^(folke\.quake)\$"
 
   # Focus the previously active window and bring it to the top
   hyprctl dispatch focuswindow "address:0x$(cat /tmp/hypr-quake-address)"
