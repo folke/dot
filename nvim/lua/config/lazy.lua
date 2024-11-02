@@ -34,7 +34,10 @@ return function(opts)
       fallback = jit.os:find("Windows"),
     },
     install = { colorscheme = { "tokyonight", "habamax" } },
-    checker = { enabled = true },
+    checker = {
+      enabled = true,
+      notify = false,
+    },
     diff = {
       cmd = "terminal_git",
     },
