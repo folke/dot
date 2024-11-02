@@ -5,8 +5,9 @@
     "width": 60,
     "printRemaining": false,
     "source": "~/.config/wall.png",
+    // "recache": true,
     "chafa": {
-      "symbols": "vhalf",
+      "symbols": "-block-border-space+vhalf",
     },
     "padding": {
       "top": 1,
