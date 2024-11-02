@@ -4,6 +4,7 @@ act
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
+adw-gtk-theme
 adwaita-icon-theme
 aerc
 alacritty
@@ -23,7 +24,6 @@ atuin
 autoconf
 automake
 autotiling
-avizo
 aylurs-gtk-shell
 b43-fwcutter
 base
@@ -40,6 +40,7 @@ blueman
 bluez
 bluez-utils
 bob
+bottles
 bottom
 brave-beta-bin
 brightnessctl
@@ -54,7 +55,6 @@ catch2
 cava
 chafa
 chkservice
-chromium
 circumflex-bin
 clang
 cliphist
@@ -67,10 +67,12 @@ ctop
 cups
 cups-filters
 cups-pdf
+cv4pve-pepper-git
 dart-sass
 debugedit
 device-mapper
 dhclient
+dialog
 diffutils
 discord
 dmidecode
@@ -78,6 +80,7 @@ dmraid
 dnsmasq
 docker-buildx
 docker-compose
+dosbox
 dosfstools
 dotnet-sdk-6.0
 downgrade
@@ -87,8 +90,6 @@ duf
 dust
 e2fsprogs
 easyeffects
-easyeffects-presets
-edex-ui-bin
 efibootmgr
 efitools
 egl-wayland
@@ -101,6 +102,7 @@ ethtool
 evince
 evtest
 exfatprogs
+expac
 eza
 f2fs-tools
 fakeroot
@@ -115,6 +117,7 @@ firefox
 firewalld
 fish
 flex
+flips
 foomatic-db
 foomatic-db-engine
 foomatic-db-gutenprint-ppds
@@ -124,6 +127,7 @@ foomatic-db-ppds
 fprintd
 fsarchiver
 fswatch
+fuseiso
 fwupd
 gammastep
 gawk
@@ -133,12 +137,14 @@ gdm-settings
 gettext
 ghex
 ghostscript
+ghostty-git
 git
 git-delta
 github-cli
 gitui
 glances
 glow
+gnome-backgrounds
 gnome-boxes
 gnome-calculator
 gnome-console
@@ -152,6 +158,9 @@ gnome-power-manager
 gnome-screenshot
 gnome-shell
 gnome-shell-extension-dash-to-dock
+gnome-shell-extension-freon-git
+gnome-shell-extension-pop-shell-git
+gnome-shell-extension-tilingshell
 gnome-shell-extensions
 gnome-system-monitor
 gnome-text-editor
@@ -220,7 +229,6 @@ java-openjfx-bin
 jekyll
 jfsutils
 jq
-julia
 just
 kakoune
 kernel-install-for-dracut
@@ -231,6 +239,10 @@ lazydocker
 lazygit
 ledger
 less
+lib32-gnutls
+lib32-libogg
+lib32-libvorbis
+lib32-sdl2
 libdvdcss
 liberica-jdk-8-full-bin
 libfprint-2-tod1-xps9300-bin
@@ -240,7 +252,6 @@ libgsf
 libopenraw
 libqalculate
 libreoffice-fresh
-librewolf-bin
 libtool
 libva-utils
 libwnck3
@@ -252,7 +263,6 @@ linux-headers
 linux-lts
 lld
 logrotate
-logseq-desktop-bin
 lsb-release
 lsp-plugins
 lsp-plugins-clap
@@ -268,7 +278,6 @@ luarocks
 lvm2
 lxappearance
 m4
-macchina-bin
 make
 man-db
 man-pages
@@ -280,14 +289,12 @@ mesa-utils
 mise-bin
 mission-center
 mitogen
-mlocate
 modemmanager
 mods
 mono-msbuild
 mosh
 mousam
 mtools
-mullvad-vpn-bin
 mutagen.io-bin
 nano
 nano-syntax-highlighting
@@ -298,7 +305,6 @@ nbtscan
 ncdu
 needrestart
 neofetch
-neonmodem
 neovim
 nerdfix
 netctl
@@ -332,7 +338,8 @@ pacman
 pacman-contrib
 pamixer
 papirus-icon-theme-git
-paru
+paru-git
+paru-git-debug
 patch
 pavucontrol
 perl
@@ -340,11 +347,13 @@ perl-hash-merge
 perl-json
 pipewire-alsa
 pipewire-jack
+pipewire-libcamera
 pipewire-pulse
 pipewire-support
 pkgconf
 pkgfile
 playerctl
+plocate
 plymouth-theme-arch-glow
 podman
 podman-compose
@@ -358,6 +367,7 @@ powertop-auto-tune
 pre-commit
 prettierd
 procs
+proton-vpn-gtk-app
 proxzima-plymouth-git
 pv
 python
@@ -367,7 +377,6 @@ python-defusedxml
 python-dlib
 python-html2text
 python-msgpack
-python-openslide
 python-packaging
 python-pipx
 python-poetry
@@ -423,10 +432,6 @@ stylua
 sudo
 sushi
 swaks
-sway
-sway-audio-idle-inhibit-git
-swayidle
-swaylock-effects-git
 sysfsutils
 sysstat
 system-config-printer
@@ -449,7 +454,6 @@ tree-sitter-cli
 ttf-bitstream-vera
 ttf-dejavu
 ttf-fira-code
-ttf-firacode-nerd
 ttf-liberation
 ttf-maple
 ttf-ms-fonts
@@ -468,8 +472,10 @@ unzip
 upower
 usb_modeswitch
 usbutils
+vesktop-bin
 vim
 virt-manager
+virt-viewer
 visual-studio-code-bin
 viu
 vlc
@@ -477,13 +483,16 @@ watchexec
 waybar
 wayshot
 wev
-wezterm-git
+wezterm
 wf-recorder-git
 wget
 which
 whitesur-cursor-theme-git
 whitesur-gtk-theme
 whitesur-icon-theme-git
+wine-mono
+wine-staging
+winetricks
 wireguard-tools
 wireplumber
 wl-clip-persist
@@ -492,7 +501,6 @@ wlogout
 wlr-randr
 wlrctl
 wlsunset
-wluma
 wob
 wpa_supplicant
 wtype
@@ -519,6 +527,8 @@ xterm
 yazi
 yq
 zellij
+zen-browser-bin
 zfxtop
 zk
+zoom
 zoxide
