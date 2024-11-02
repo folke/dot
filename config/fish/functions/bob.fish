@@ -6,5 +6,5 @@ function bob --wraps bob
     set dest ~/.local/share/bob-nvim
     test -L $dest
     and unlink $dest
-    ln -s $src/nvim-linux64 $dest
+    ln -s $src $dest
 end
