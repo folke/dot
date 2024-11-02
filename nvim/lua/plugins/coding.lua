@@ -9,8 +9,22 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
+    optional = true,
     opts = {
       filetypes = { ["*"] = true },
+    },
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    optional = true,
+    opts = { show_help = false },
+  },
+  {
+    "echasnovski/mini.align",
+    opts = {},
+    keys = {
+      { "ga", mode = { "n", "v" } },
+      { "gA", mode = { "n", "v" } },
     },
   },
   {
@@ -25,8 +39,6 @@ return {
     },
     opts = { use_default_keymaps = false, max_join_length = 150 },
   },
-  -- { "nvim-neotest/neotest-plenary" },
-  -- { "marilari88/neotest-vitest" },
   {
     "nvim-neotest/neotest",
     opts = {
@@ -39,5 +51,23 @@ return {
         -- },
       },
     },
+  },
+  { "echasnovski/mini.test" },
+
+  { "folke/github" },
+  -- { "justinsgithub/wezterm-types", lazy = true },
+  { "LuaCATS/luassert", name = "luassert-types", lazy = true },
+  { "LuaCATS/busted", name = "busted-types", lazy = true },
+  {
+    "folke/lazydev.nvim",
+    opts = function(_, opts)
+      opts.debug = true
+      opts.runtime = "~/projects/neovim/runtime"
+      vim.list_extend(opts.library, {
+        -- { path = "wezterm-types", mods = { "wezterm" } },
+        { path = "luassert-types/library", words = { "assert" } },
+        { path = "busted-types/library", words = { "describe" } },
+      })
+    end,
   },
 }

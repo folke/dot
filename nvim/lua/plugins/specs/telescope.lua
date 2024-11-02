@@ -1,28 +1,5 @@
 return {
   {
-    "ibhagwan/fzf-lua",
-    optional = true,
-    keys = {
-      {
-        "<leader>fp",
-        LazyVim.pick("files", { cwd = require("lazy.core.config").options.root }),
-        desc = "Find Plugin File",
-      },
-      {
-        "<leader>sp",
-        function()
-          local dirs = { "~/dot/nvim/lua/plugins", "~/projects/LazyVim/lua/lazyvim/plugins" }
-          require("fzf-lua").live_grep({
-            filespec = "-- " .. table.concat(vim.tbl_values(dirs), " "),
-            search = "/",
-            formatter = "path.filename_first",
-          })
-        end,
-        desc = "Find Lazy Plugin Spec",
-      },
-    },
-  },
-  {
     "telescope.nvim",
     optional = true,
     keys = {
@@ -36,7 +13,7 @@ return {
         desc = "Find Plugin File",
       },
       {
-        "<leader>fl",
+        "<leader>sp",
         function()
           local files = {} ---@type table<string, string>
           for _, plugin in pairs(require("lazy.core.config").plugins) do
@@ -55,7 +32,7 @@ return {
             search_dirs = vim.tbl_values(files),
           })
         end,
-        desc = "Find Lazy Plugin Spec",
+        desc = "Search Plugin Spec",
       },
     },
     opts = {
@@ -73,6 +50,21 @@ return {
         sorting_strategy = "ascending",
         winblend = 0,
       },
+    },
+  },
+  {
+    "tokyonight.nvim",
+    opts = {
+      on_highlights = function(hl, c)
+        local prompt = "#2d3149"
+        hl.TelescopeNormal = { bg = c.bg_dark, fg = c.fg }
+        hl.TelescopeBorder = { bg = c.bg_dark, fg = c.bg_dark }
+        hl.TelescopePromptNormal = { bg = prompt }
+        hl.TelescopePromptBorder = { bg = prompt, fg = prompt }
+        hl.TelescopePromptTitle = { bg = c.fg_gutter, fg = c.orange }
+        hl.TelescopePreviewTitle = { bg = c.bg_dark, fg = c.bg_dark }
+        hl.TelescopeResultsTitle = { bg = c.bg_dark, fg = c.bg_dark }
+      end,
     },
   },
 }

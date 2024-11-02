@@ -153,17 +153,17 @@ function M.start_perfanno()
   }
   require("perfanno").setup(opts)
   require("perfanno.lua_profile").start(1)
-  vim.api.nvim_create_autocmd("UIEnter", {
-    callback = function()
-      vim.defer_fn(function()
-        vim.cmd("PerfLuaProfileStop")
-        vim.defer_fn(function()
-          vim.cmd("PerfHottestLines")
-          -- vim.cmd("PerfHottestSymbols")
-        end, 1000)
-      end, 5000)
-    end,
-  })
+  -- vim.api.nvim_create_autocmd("UIEnter", {
+  --   callback = function()
+  --     vim.defer_fn(function()
+  --       vim.cmd("PerfLuaProfileStop")
+  --       vim.defer_fn(function()
+  --         vim.cmd("PerfHottestLines")
+  --         -- vim.cmd("PerfHottestSymbols")
+  --       end, 1000)
+  --     end, 5000)
+  --   end,
+  -- })
 end
 
 ---@param method? "loader" | "hook" | "perfanno"

@@ -1,4 +1,15 @@
 return {
+  { "akinsho/bufferline.nvim", opts = { options = { separator_style = "slope" } } },
+  {
+    "folke/which-key.nvim",
+    enabled = true,
+    opts = {
+      preset = "helix",
+      debug = vim.uv.cwd():find("which%-key"),
+      win = {},
+      spec = {},
+    },
+  },
   {
     "folke/noice.nvim",
     opts = function(_, opts)
@@ -48,25 +59,6 @@ return {
       return opts
     end,
   },
-
-  -- auto-resize windows
-  -- {
-  --   "anuvyklack/windows.nvim",
-  --   enabled = false,
-  --   event = "WinNew",
-  --   dependencies = {
-  --     { "anuvyklack/middleclass" },
-  --     { "anuvyklack/animation.nvim", enabled = false },
-  --   },
-  --   keys = { { "<leader>m", "<cmd>WindowsMaximize<cr>", desc = "Zoom" } },
-  --   config = function()
-  --     vim.o.winwidth = 5
-  --     vim.o.equalalways = false
-  --     require("windows").setup({
-  --       animation = { enable = false, duration = 150 },
-  --     })
-  --   end,
-  -- },
 
   -- lualine
   {
@@ -142,42 +134,11 @@ return {
           return (s.total == 0 and "󰋘 " or "󰋙 ") .. msg
         end,
       })
-
-      -- local keys = {}
-      --
-      -- vim.on_key(function(_, key)
-      --   if not key then
-      --     return
-      --   end
-      --   if #key > 0 then
-      --     table.insert(keys, vim.fn.keytrans(key))
-      --     -- require("lualine").refresh()
-      --     -- vim.cmd.redraw()
-      --   end
-      -- end)
-      --
-      -- table.insert(opts.sections.lualine_x, {
-      --   function()
-      --     if #keys > 10 then
-      --       keys = vim.list_slice(keys, #keys - 10)
-      --     end
-      --     return table.concat(keys)
-      --   end,
-      -- })
-      --
-      -- local count = 0
-      -- table.insert(opts.sections.lualine_x, {
-      --   function()
-      --     count = count + 1
-      --     return tostring(count)
-      --   end,
-      -- })
     end,
   },
-  -- { "folke/which-key.nvim", enabled = true, config = function() end },
-  { "folke/noice.nvim", enabled = true },
 
   "folke/twilight.nvim",
+
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
