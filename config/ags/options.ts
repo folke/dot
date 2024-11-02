@@ -156,7 +156,14 @@ const options = mkOptions(OPTIONS, {
       iconSize: opt(62),
       max: opt(6),
       favorites: opt([
-        ["brave-beta", "wezterm", "org.gnome.Nautilus", "org.gnome.Calendar", "spotify"],
+        [
+          "zen-browser",
+          "brave-beta",
+          "wezterm",
+          "org.gnome.Nautilus",
+          "org.gnome.Calendar",
+          "spotify",
+        ],
       ]),
     },
   },

@@ -19,7 +19,7 @@ export function icon(name: string | null, fallback = icons.missing) {
   const icon = substitutes[name] || name
   if (Utils.lookUpIcon(icon)) return icon
 
-  print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
+  // print(`no icon substitute "${icon}" for "${name}", fallback: "${fallback}"`)
   // print stack trace
   return fallback
 }
@@ -113,6 +113,7 @@ export function createSurfaceFromWidget(widget: Gtk.Widget) {
 export function findApp(klass: string) {
   // HACK: wezterm is quake
   if (klass === "quake") klass = "org.wezfurlong.wezterm"
+  if (klass === "folke.quake") klass = "com.mitchellh.ghostty"
 
   function filter(props: string[]) {
     return apps.list.filter((app) =>
