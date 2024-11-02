@@ -31,3 +31,6 @@ vim.g.lazyvim_python_ruff = "ruff"
 if vim.fn.has("win32") == 1 then
   LazyVim.terminal.setup("pwsh")
 end
+
+-- better coop with fzf-lua
+vim.env.FZF_DEFAULT_OPTS = ""
