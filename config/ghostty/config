@@ -1,0 +1,47 @@
+# Fonts
+font-family = "Symbols Nerd Font Mono"
+font-family = "Fira Code"
+font-family-bold = "Fira Code"
+font-family-italic = "Maple Mono"
+font-family-bold-italic = "Maple Mono"
+font-size = 10
+adjust-underline-position = 4
+
+# Mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+# Theme
+theme = /home/folke/projects/tokyonight.nvim/extras/ghostty/tokyonight_night
+cursor-invert-fg-bg = true
+background-opacity = 0.9
+window-theme = ghostty
+
+# keybindings
+keybind = clear
+keybind = ctrl+j=goto_split:bottom
+keybind = super+shift+i=inspector:toggle
+keybind = super+shift+l=next_tab
+keybind = super+shift+t=new_tab
+keybind = super+shift+m=toggle_split_zoom
+keybind = super+shift+comma=move_tab:-1
+keybind = super+shift+period=move_tab:1
+keybind = ctrl+h=goto_split:left
+keybind = super+shift+c=copy_to_clipboard
+keybind = ctrl+k=goto_split:top
+keybind = super+shift+enter=new_split:auto
+keybind = super+shift+r=reload_config
+keybind = ctrl+l=goto_split:right
+keybind = super+shift+h=previous_tab
+keybind = super+shift+v=paste_from_clipboard
+
+# Window
+gtk-single-instance = true
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
+window-padding-y = 2,0
+window-padding-balance = true
+window-decoration = false
+
+# Other
+copy-on-select = clipboard
