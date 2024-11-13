@@ -1,16 +1,3 @@
--- selene: allow(global_usage)
-_G.profile = function(cmd, times, flush)
-  times = times or 100
-  local start = vim.uv.hrtime()
-  for _ = 1, times, 1 do
-    if flush then
-      jit.flush(cmd, true)
-    end
-    cmd()
-  end
-  print(((vim.uv.hrtime() - start) / 1e6 / times) .. "ms")
-end
-
 local M = {}
 
 function M.test(is_file)
