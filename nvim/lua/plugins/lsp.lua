@@ -22,7 +22,7 @@ return {
               misc = {
                 -- parameters = { "--loglevel=trace" },
               },
-              -- hover = { expandAlias = false },
+              hover = { expandAlias = true },
               type = {
                 castNumberToInteger = true,
               },
