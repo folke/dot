@@ -32,7 +32,6 @@ end
 
 function M.cowboy()
   ---@type table?
-  local id
   local ok = true
   for _, key in ipairs({ "h", "j", "k", "l", "+", "-" }) do
     local count = 0
@@ -43,15 +42,14 @@ function M.cowboy()
         count = 0
       end
       if count >= 10 and vim.bo.buftype ~= "nofile" then
-        ok, id = pcall(vim.notify, "Hold it Cowboy!", vim.log.levels.WARN, {
+        ok = pcall(vim.notify, "Hold it Cowboy!", vim.log.levels.WARN, {
           icon = "🤠",
-          replace = id,
+          id = "cowboy",
           keep = function()
             return count >= 10
           end,
         })
         if not ok then
-          id = nil
           return map
         end
       else
