@@ -57,8 +57,6 @@ return {
 
   { "folke/github" },
   -- { "justinsgithub/wezterm-types", lazy = true },
-  { "LuaCATS/luassert", name = "luassert-types", lazy = true },
-  { "LuaCATS/busted", name = "busted-types", lazy = true },
   {
     "folke/lazydev.nvim",
     opts = function(_, opts)
@@ -66,8 +64,8 @@ return {
       opts.runtime = "~/projects/neovim/runtime"
       vim.list_extend(opts.library, {
         -- { path = "wezterm-types", mods = { "wezterm" } },
-        { path = "luassert-types/library", words = { "assert" } },
-        { path = "busted-types/library", words = { "describe" } },
+        { path = "${3rd}/luassert/library", words = { "assert" } },
+        { path = "${3rd}/busted/library", words = { "describe" } },
       })
     end,
   },
