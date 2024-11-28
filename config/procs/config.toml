@@ -20,20 +20,6 @@ nonnumeric_search = false
 align = "Left"
 
 [[columns]]
-kind = "State"
-style = "ByState"
-numeric_search = false
-nonnumeric_search = false
-align = "Left"
-
-[[columns]]
-kind = "Nice"
-style = "BrightMagenta|Magenta"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
-
-[[columns]]
 kind = "Tty"
 style = "BrightWhite|Black"
 numeric_search = false
@@ -55,64 +41,6 @@ nonnumeric_search = false
 align = "Right"
 
 [[columns]]
-kind = "VmSize"
-style = "ByUnit"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
-
-[[columns]]
-kind = "VmRss"
-style = "ByUnit"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
-
-[[columns]]
-kind = "TcpPort"
-style = "BrightCyan|Cyan"
-numeric_search = true
-nonnumeric_search = false
-align = "Left"
-max_width = 20
-
-[[columns]]
-kind = "UdpPort"
-style = "BrightCyan|Cyan"
-numeric_search = true
-nonnumeric_search = false
-align = "Left"
-max_width = 20
-
-[[columns]]
-kind = "ReadBytes"
-style = "ByUnit"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
-
-[[columns]]
-kind = "WriteBytes"
-style = "ByUnit"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
-
-[[columns]]
-kind = "Slot"
-style = "ByUnit"
-numeric_search = false
-nonnumeric_search = false
-align = "Right"
-
-[[columns]]
-kind = "Separator"
-style = "White|BrightBlack"
-numeric_search = false
-nonnumeric_search = false
-align = "Left"
-
-[[columns]]
 kind = "CpuTime"
 style = "BrightCyan|Cyan"
 numeric_search = false
@@ -120,18 +48,11 @@ nonnumeric_search = false
 align = "Left"
 
 [[columns]]
-kind = "StartTime"
-style = "BrightMagenta|Magenta"
+kind = "MultiSlot"
+style = "ByUnit"
 numeric_search = false
 nonnumeric_search = false
-align = "Left"
-
-[[columns]]
-kind = "Docker"
-style = "BrightGreen|Green"
-numeric_search = false
-nonnumeric_search = true
-align = "Left"
+align = "Right"
 
 [[columns]]
 kind = "Separator"
@@ -182,9 +103,17 @@ color_x = "BrightBlue|Blue"
 numeric_search = "Exact"
 nonnumeric_search = "Partial"
 logic = "And"
+case = "Smart"
 
 [display]
 show_self = false
+show_self_parents = false
+show_thread = false
+show_thread_in_tree = true
+show_parent_in_tree = true
+show_children_in_tree = true
+show_header = true
+show_footer = false
 cut_to_terminal = true
 cut_to_pager = false
 cut_to_pipe = false
@@ -194,6 +123,8 @@ ascending = "▲"
 descending = "▼"
 tree_symbols = ["│", "─", "┬", "├", "└"]
 abbr_sid = true
+theme = "Auto"
+show_kthreads = true
 
 [sort]
 column = 0
@@ -204,4 +135,6 @@ path = "unix:///var/run/docker.sock"
 
 [pager]
 mode = "Auto"
+detect_width = false
+use_builtin = false
 
