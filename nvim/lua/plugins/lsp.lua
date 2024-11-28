@@ -22,9 +22,10 @@ return {
               misc = {
                 -- parameters = { "--loglevel=trace" },
               },
-              hover = { expandAlias = true },
+              hover = { expandAlias = false },
               type = {
                 castNumberToInteger = true,
+                inferParamType = true,
               },
               diagnostics = {
                 disable = { "incomplete-signature-doc", "trailing-space" },
