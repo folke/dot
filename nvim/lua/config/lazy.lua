@@ -11,8 +11,10 @@ else
   vim.opt.rtp:prepend(lazypath)
 end
 
+local M = {}
+
 ---@param opts LazyConfig
-return function(opts)
+function M.load(opts)
   opts = vim.tbl_deep_extend("force", {
     spec = {
       {
@@ -72,3 +74,5 @@ return function(opts)
   }, opts or {})
   require("lazy").setup(opts)
 end
+
+return M
