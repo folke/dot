@@ -34,6 +34,8 @@ keybind = super+shift+r=reload_config
 keybind = ctrl+l=goto_split:right
 keybind = super+shift+h=previous_tab
 keybind = super+shift+v=paste_from_clipboard
+keybind = super+shift+s=write_screen_file:open
+keybind = super+shift+w=close_surface
 
 # Window
 gtk-single-instance = true
@@ -45,3 +47,4 @@ window-decoration = false
 
 # Other
 copy-on-select = clipboard
+shell-integration-features = cursor,sudo,no-title
