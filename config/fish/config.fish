@@ -16,7 +16,7 @@ fish_add_path ~/Library/Python/3.{8,9}/bin
 fish_add_path /usr/local/opt/sqlite/bin
 fish_add_path /usr/local/sbin
 fish_add_path ~/.gem/ruby/2.6.0/bin
-fish_add_path ~/.local/bin/pnpm
+fish_add_path ~/.local/bin/pnpm-bins
 fish_add_path ~/.local/share/bob-nvim/bin
 fish_add_path ~/.local/share/bob-nvim/nvim-linux64/bin
 fish_add_path /var/lib/flatpak/exports/bin/
