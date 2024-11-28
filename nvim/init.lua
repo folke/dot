@@ -17,11 +17,20 @@ _G.p = function(...)
 end
 vim.print = _G.dd
 
--- require("util.profiler").startup("perfanno")
+if vim.env.PROF then
+  vim.opt.rtp:append("/home/folke/projects/snacks.nvim/")
+  require("snacks.profiler").startup({
+    startup = {
+      event = "UIEnter",
+      -- event = "VeryLazy",
+    },
+    runtime = "~/projects/neovim/runtime",
+  })
+end
 
 pcall(require, "config.env")
 
-require("config.lazy")({
+require("config.lazy").load({
   -- debug = false,
   profiling = {
     loader = false,
