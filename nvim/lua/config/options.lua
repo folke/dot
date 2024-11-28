@@ -32,6 +32,7 @@ if vim.fn.has("win32") == 1 then
   LazyVim.terminal.setup("pwsh")
 end
 
+vim.g.deprecation_warnings = true
 -- better coop with fzf-lua
 vim.env.FZF_DEFAULT_OPTS = ""
 vim.g.ai_cmp = false
