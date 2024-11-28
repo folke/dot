@@ -24,7 +24,6 @@ atuin
 autoconf
 automake
 autotiling
-aylurs-gtk-shell
 b43-fwcutter
 base
 base-devel
@@ -53,12 +52,14 @@ calf
 cantarell-fonts
 catch2
 cava
+cbonsai
 chafa
 chkservice
 circumflex-bin
 clang
 cliphist
 clipman
+cmatrix
 cool-retro-term
 cowfortune
 cowsay
@@ -109,6 +110,7 @@ fakeroot
 fastfetch
 fd
 ffmpegthumbnailer
+figlet
 file
 file-roller
 filezilla
@@ -214,6 +216,7 @@ hyprpaper
 hyprpicker
 hyprshade-git
 hyprutils
+illogical-impulse-ags
 imv
 inetutils
 intel-gpu-tools
@@ -263,6 +266,7 @@ linux-headers
 linux-lts
 lld
 logrotate
+lolcat
 lsb-release
 lsp-plugins
 lsp-plugins-clap
@@ -304,8 +308,10 @@ navi
 nbtscan
 ncdu
 needrestart
+neo-matrix-git
 neofetch
 neohtop-bin
+neovide
 neovim
 nerdfix
 netctl
@@ -327,6 +333,7 @@ numbat-bin
 nushell
 nwg-look
 nwg-panel
+nyancat
 obsidian
 omnisharp-roslyn-bin
 onefetch
@@ -464,6 +471,7 @@ ttf-opensans
 ttf-segoe-ui-variable
 ttf-victor-mono
 ttf-victor-mono-nerd
+tty-clock
 tuir
 tuned-ppd
 typos
@@ -528,7 +536,7 @@ xterm
 yazi
 yq
 zellij
-zen-browser-bin
+zen-browser-avx2-bin
 zfxtop
 zk
 zoom
