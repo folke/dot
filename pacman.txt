@@ -259,7 +259,6 @@ libtool
 libva-utils
 libwnck3
 linux
-linux-apfs-rw-dkms-git
 linux-enable-ir-emitter
 linux-firmware
 linux-headers
@@ -290,6 +289,7 @@ mdadm
 mdcat
 meld
 mesa-utils
+minecraft-launcher
 mise-bin
 mission-center
 mitogen
@@ -427,6 +427,7 @@ smartmontools
 snap-pac
 snapper
 sof-firmware
+speech-dispatcher
 splix
 spotify-launcher
 sqlfluff
@@ -537,6 +538,7 @@ yazi
 yq
 zellij
 zen-browser-avx2-bin
+zen-twilight-avx2-bin
 zfxtop
 zk
 zoom

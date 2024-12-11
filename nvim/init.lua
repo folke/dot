@@ -21,7 +21,7 @@ if vim.env.PROF then
   vim.opt.rtp:append("/home/folke/projects/snacks.nvim/")
   require("snacks.profiler").startup({
     startup = {
-      event = "UIEnter",
+      -- event = "UIEnter",
       -- event = "VeryLazy",
     },
     runtime = "~/projects/neovim/runtime",
