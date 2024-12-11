@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.opt.backup = true
 vim.opt.cmdheight = 0
 vim.opt.backupdir = vim.fn.stdpath("state") .. "/backup"
-vim.opt.mousescroll = "ver:4,hor:6"
+vim.opt.mousescroll = "ver:1,hor:6"
 
 if vim.g.neovide then
   vim.o.guifont = "Fira Code,Symbols Nerd Font Mono:h34"
