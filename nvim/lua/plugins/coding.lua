@@ -14,11 +14,7 @@ return {
       filetypes = { ["*"] = true },
     },
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    optional = true,
-    opts = { show_help = false },
-  },
+
   {
     "echasnovski/mini.align",
     opts = {},
@@ -27,11 +23,13 @@ return {
       { "gA", mode = { "n", "v" } },
     },
   },
+
   {
     "smjonas/inc-rename.nvim",
     cmd = "IncRename",
     config = true,
   },
+
   {
     "Wansmer/treesj",
     keys = {
@@ -39,24 +37,9 @@ return {
     },
     opts = { use_default_keymaps = false, max_join_length = 150 },
   },
-  -- {
-  --   "nvim-neotest/neotest",
-  --   optional = true,
-  --   opts = {
-  --     adapters = {
-  --       -- ["neotest-plenary"] = { min_init = "./tests/init.lua" },
-  --       -- "neotest-vitest",
-  --       -- ["neotest-busted"] = {
-  --       --   busted_command = "./tests/minit.lua",
-  --       --   busted_args = { "--busted" },
-  --       -- },
-  --     },
-  --   },
-  -- },
-  { "echasnovski/mini.test" },
 
-  { "folke/github" },
-  -- { "justinsgithub/wezterm-types", lazy = true },
+  { "echasnovski/mini.test", cond = vim.fn.isdirectory("test") == 1 },
+
   {
     "folke/lazydev.nvim",
     opts = function(_, opts)
@@ -69,7 +52,9 @@ return {
       })
     end,
   },
+
   { "markdown-preview.nvim", enabled = false },
+
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",

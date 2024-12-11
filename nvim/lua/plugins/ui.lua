@@ -1,5 +1,6 @@
 return {
   { "akinsho/bufferline.nvim", opts = { options = { separator_style = "slope" } } },
+
   {
     "folke/which-key.nvim",
     enabled = true,
@@ -10,6 +11,7 @@ return {
       spec = {},
     },
   },
+
   {
     "folke/noice.nvim",
     opts = function(_, opts)
@@ -41,11 +43,11 @@ return {
             kind = "progress",
           },
           cond = function()
-            return not focused
+            return not focused and false
           end,
         },
         view = "notify_send",
-        opts = { stop = false },
+        opts = { stop = false, replace = true },
       })
 
       vim.api.nvim_create_autocmd("FileType", {
@@ -137,19 +139,19 @@ return {
     end,
   },
 
-  "folke/twilight.nvim",
+  -- "folke/twilight.nvim",
 
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    opts = {
-      window = { backdrop = 0.7 },
-      plugins = {
-        gitsigns = true,
-        tmux = true,
-        kitty = { enabled = false, font = "+2" },
-      },
-    },
-    keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
-  },
+  -- {
+  --   "folke/zen-mode.nvim",
+  --   cmd = "ZenMode",
+  --   opts = {
+  --     window = { backdrop = 0.7 },
+  --     plugins = {
+  --       gitsigns = true,
+  --       tmux = true,
+  --       kitty = { enabled = false, font = "+2" },
+  --     },
+  --   },
+  --   keys = { { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode" } },
+  -- },
 }
