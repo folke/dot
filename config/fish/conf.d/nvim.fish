@@ -16,6 +16,9 @@ function repro -a issue
     set -x LAZY_PATH ~/projects/lazy.nvim
     set -x LAZY_DEV "folke,LazyVim"
 
+    # Format the file
+    stylua $file
+
     # Run the repro
     nvim -u $file $file
 end
