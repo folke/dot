@@ -9,7 +9,7 @@ adjust-underline-position = 4
 
 # Mouse
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = 2
+# mouse-scroll-multiplier = 1
 
 # Theme
 theme = /home/folke/projects/tokyonight.nvim/extras/ghostty/tokyonight_night
