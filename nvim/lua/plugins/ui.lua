@@ -118,8 +118,8 @@ return {
         return mutagen[cwd]
       end
 
-      local error_color = LazyVim.ui.fg("DiagnosticError")
-      local ok_color = LazyVim.ui.fg("DiagnosticInfo")
+      local error_color = { fg = Snacks.util.color("DiagnosticError") }
+      local ok_color = { fg = Snacks.util.color("DiagnosticInfo") }
       table.insert(opts.sections.lualine_x, {
         cond = function()
           return mutagen_status().enabled
