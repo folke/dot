@@ -38,7 +38,7 @@ return {
     opts = { use_default_keymaps = false, max_join_length = 150 },
   },
 
-  { "echasnovski/mini.test", cond = vim.fn.isdirectory("test") == 1 },
+  { "echasnovski/mini.test", cond = vim.fn.isdirectory("tests") == 1 },
 
   {
     "folke/lazydev.nvim",
