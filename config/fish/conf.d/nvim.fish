@@ -91,3 +91,6 @@ function nvims_clean -a profile
     test -d ~/.cache/nvim-profiles/$profile
     and rm -rf ~/.cache/nvim-profiles/$profile
 end
+
+abbr nvim-stable ~/.local/share/bob/v0.10.0/nvim-linux64/bin/nvim
+abbr nvim-0.9.5 ~/.local/share/bob/v0.9.5/nvim-linux64/bin/nvim
