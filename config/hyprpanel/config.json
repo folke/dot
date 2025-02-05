@@ -389,7 +389,7 @@
   "theme.bar.buttons.padding_y": "0.05rem",
   "bar.clock.format": "%b %d %H:%M",
   "theme.bar.buttons.background_opacity": 15,
-  "bar.windowtitle.custom_title": true,
+  "bar.windowtitle.custom_title": false,
   "theme.bar.menus.card_radius": "0.2em",
   "theme.bar.buttons.background_hover_opacity": 75,
   "theme.bar.menus.buttons.radius": "0.4em",
@@ -463,5 +463,14 @@
   "bar.volume.label": false,
   "bar.bluetooth.label": false,
   "bar.network.label": true,
-  "bar.media.show_active_only": true
+  "bar.media.show_active_only": true,
+  "menus.dashboard.shortcuts.left.shortcut4.command": "ags -i main toggle launcher",
+  "menus.dashboard.directories.left.directory3.command": "bash -c \"xdg-open $HOME/projects/\"",
+  "bar.customModules.weather.unit": "metric",
+  "bar.workspaces.show_icons": false,
+  "bar.workspaces.workspaceMask": false,
+  "bar.workspaces.showWsIcons": false,
+  "bar.workspaces.showApplicationIcons": false,
+  "bar.workspaces.ignored": "-.*",
+  "bar.windowtitle.class_name": false
 }
