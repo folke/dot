@@ -12,7 +12,6 @@ return {
           },
         },
       },
-      ---@type lspconfig.options
       servers = {
         lua_ls = {
           -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
