@@ -1,3 +1,4 @@
+7zip
 accountsservice
 acpi
 act
@@ -7,6 +8,7 @@ adobe-source-han-sans-kr-fonts
 adw-gtk-theme
 adwaita-icon-theme
 aerc
+ags-hyprpanel-git
 alacritty
 alsa-firmware
 alsa-plugins
@@ -95,7 +97,6 @@ efibootmgr
 efitools
 egl-wayland
 element-desktop
-emulationstation-de
 eog
 erdtree
 esptool
@@ -131,6 +132,7 @@ fsarchiver
 fswatch
 fuseiso
 fwupd
+fzy
 gammastep
 gawk
 gcc
@@ -139,7 +141,7 @@ gdm-settings
 gettext
 ghex
 ghostscript
-ghostty-git
+ghostty
 git
 git-delta
 github-cli
@@ -176,6 +178,7 @@ gpu-viewer
 grc
 grep
 grim
+grimblast-git
 groff
 gsfonts
 gst-libav
@@ -211,14 +214,16 @@ hwinfo
 hyperfine
 hypridle
 hyprland
+hyprland-qtutils
 hyprlock
 hyprpaper
 hyprpicker
 hyprshade-git
+hyprsunset
 hyprutils
-illogical-impulse-ags
 imv
 inetutils
+inotify-tools
 intel-gpu-tools
 intel-media-driver
 intel-ucode
@@ -227,7 +232,6 @@ iotop
 iptables-nft
 iucode-tool
 iwd
-jamesdsp
 java-openjfx-bin
 jekyll
 jfsutils
@@ -245,7 +249,7 @@ less
 lib32-gnutls
 lib32-libogg
 lib32-libvorbis
-lib32-sdl2
+lib32-sdl2-compat
 libdvdcss
 liberica-jdk-8-full-bin
 libfprint-2-tod1-xps9300-bin
@@ -323,7 +327,7 @@ networkmanager-openvpn
 nfs-utils
 nilfs-utils
 nmap
-nodejs-lts-hydrogen
+nodejs
 noto-fonts
 noto-fonts-emoji
 nss-mdns
@@ -335,17 +339,15 @@ nwg-look
 nwg-panel
 nyancat
 obsidian
-omnisharp-roslyn-bin
 onefetch
 ookla-speedtest-bin
 opencl-nvidia
 otf-cascadia-code
 ov-bin
-p7zip
 pacman
 pacman-contrib
 pamixer
-papirus-icon-theme-git
+papirus-icon-theme
 paru-git
 paru-git-debug
 patch
@@ -353,6 +355,7 @@ pavucontrol
 perl
 perl-hash-merge
 perl-json
+php
 pipewire-alsa
 pipewire-jack
 pipewire-libcamera
@@ -396,7 +399,6 @@ qt6-wayland
 ranger
 rclone
 rebuild-detector
-recyclarr
 reflector
 reiserfsprogs
 retroarch
@@ -405,6 +407,7 @@ retroarch-assets-ozone
 retroarch-assets-xmb
 ripgrep
 rizin
+rofi-wayland
 rofimoji
 rsync
 rtkit
@@ -482,6 +485,7 @@ unzip
 upower
 usb_modeswitch
 usbutils
+uv
 vesktop-bin
 vim
 virt-manager
@@ -539,6 +543,7 @@ yq
 zellij
 zen-browser-avx2-bin
 zen-twilight-avx2-bin
+zf-bin
 zfxtop
 zk
 zoom
