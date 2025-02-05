@@ -62,9 +62,9 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["javascript"] = { "dprint", { "prettierd", "prettier" } },
+        ["javascript"] = { "dprint", "prettier" },
         ["javascriptreact"] = { "dprint" },
-        ["typescript"] = { "dprint", { "prettierd", "prettier" } },
+        ["typescript"] = { "dprint", "prettier" },
         ["typescriptreact"] = { "dprint" },
       },
       formatters = {
