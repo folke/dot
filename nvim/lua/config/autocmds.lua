@@ -36,11 +36,11 @@ vim.filetype.add({
   },
 })
 
-vim.api.nvim_create_autocmd("QuickFixCmdPost", {
-  callback = function()
-    vim.cmd([[Trouble qflist open]])
-  end,
-})
+-- vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+--   callback = function()
+--     vim.cmd([[Trouble qflist open]])
+--   end,
+-- })
 
 -- vim.api.nvim_create_autocmd("BufRead", {
 --   callback = function(ev)
