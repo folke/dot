@@ -1,9 +1,9 @@
 # Fonts
-font-family = "Symbols Nerd Font Mono"
 font-family = "Fira Code"
 font-family-bold = "Fira Code"
 font-family-italic = "Maple Mono"
 font-family-bold-italic = "Maple Mono"
+font-family = "Symbols Nerd Font Mono"
 font-size = 10
 adjust-underline-position = 4
 
@@ -19,10 +19,10 @@ window-theme = ghostty
 
 # keybindings
 keybind = clear
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+j=goto_split:bottom
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+l=goto_split:right
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
 keybind = super+shift+t=new_tab
 keybind = super+shift+h=previous_tab
 keybind = super+shift+l=next_tab

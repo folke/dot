@@ -21,6 +21,7 @@ function repro -a issue
 
     # Run the repro
     nvim -u $file $file
+    # nvim -u $file
 end
 
 # Function to select or use a given Neovim profile
