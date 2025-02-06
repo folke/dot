@@ -369,7 +369,7 @@
   "theme.bar.buttons.modules.cava.border": "#73daca",
   "menus.transition": "crossfade",
   "notifications.position": "top right",
-  "menus.clock.weather.location": "Brussels",
+  "menus.clock.weather.location": "9030, Mariakerke",
   "menus.clock.weather.unit": "metric",
   "menus.clock.time.military": true,
   "bar.launcher.autoDetectIcon": true,
@@ -472,5 +472,24 @@
   "bar.workspaces.showWsIcons": false,
   "bar.workspaces.showApplicationIcons": false,
   "bar.workspaces.ignored": "-.*",
-  "bar.windowtitle.class_name": false
+  "bar.windowtitle.class_name": false,
+  "bar.windowtitle.title_map": [
+    [
+      "ghostty",
+      "",
+      "Ghostty"
+    ],
+    [
+      "folke.quake",
+      "",
+      "Terminal"
+    ],
+    [
+      "zen",
+      "",
+      "Zen Browser"
+    ]
+  ],
+  "menus.clock.weather.key": "18314f574825468496c183537250502",
+  "bar.customModules.cava.showActiveOnly": true
 }
