@@ -44,6 +44,14 @@ export default function Applauncher() {
     hide()
   }
 
+  const search =
+    <entry
+      placeholderText="Search"
+      text={text()}
+      onChanged={self => text.set(self.text)}
+      onActivate={onEnter}
+    />
+
   return <window
     name="launcher"
     anchor={Astal.WindowAnchor.TOP | Astal.WindowAnchor.BOTTOM}
@@ -51,6 +59,7 @@ export default function Applauncher() {
     keymode={Astal.Keymode.ON_DEMAND}
     application={App}
     onShow={(self) => {
+      search.grab_focus()
       text.set("")
       width.set(self.get_current_monitor().workarea.width)
     }}
@@ -63,12 +72,7 @@ export default function Applauncher() {
       <box hexpand={false} vertical>
         <eventbox heightRequest={100} onClick={hide} />
         <box widthRequest={500} className="Applauncher" vertical>
-          <entry
-            placeholderText="Search"
-            text={text()}
-            onChanged={self => text.set(self.text)}
-            onActivate={onEnter}
-          />
+          {search}
           <box spacing={6} vertical>
             {list.as(list => list.map(app => (
               <AppButton app={app} />

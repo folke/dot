@@ -20,12 +20,22 @@ window#launcher {
 
     entry {
       margin-bottom: 0.8rem;
+      &:focus {
+        border-color: #65bcff;
+      }
     }
 
     button {
       min-width: 0;
       min-height: 0;
       padding: 0.5rem;
+
+      &:focus {
+        outline: none;
+        border: 3px solid #65bcff;
+        margin: -2px;
+        border-radius: 3px;
+      }
 
       icon {
         font-size: 3em;
