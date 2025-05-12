@@ -27,6 +27,7 @@ config.colors = {
 config.underline_thickness = 3
 config.cursor_thickness = 4
 config.underline_position = -6
+config.enable_kitty_graphics = true
 
 if wezterm.target_triple:find("windows") then
   config.default_prog = { "pwsh" }

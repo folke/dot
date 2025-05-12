@@ -5,6 +5,7 @@ return {
     "snacks.nvim",
     ---@type snacks.Config
     opts = {
+      scroll = { debug = true },
       picker = {
         debug = { scores = false, leaks = false, explorer = true, files = true },
         sources = {

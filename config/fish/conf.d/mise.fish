@@ -1,1 +1,0 @@
-mise activate fish | source

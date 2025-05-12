@@ -14,7 +14,7 @@ mouse-hide-while-typing = true
 # Theme
 theme = /home/folke/projects/tokyonight.nvim/extras/ghostty/tokyonight_night
 cursor-invert-fg-bg = true
-background-opacity = 0.9
+background-opacity = 0.8
 window-theme = ghostty
 
 # keybindings

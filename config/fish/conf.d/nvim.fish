@@ -1,9 +1,15 @@
+set -g nvim_current ~/.local/share/bob/v0.10.4/bin/nvim
+set -g nvim_old ~/.local/share/bob/v0.9.5/nvim-linux64/bin/nvim
+
+
+abbr -a nvim_current $nvim_current
+abbr -a nvim_old $nvim_old
 
 function repro -a issue
-    if test -z "$issue"
-        echo "Usage: repro <issue>"
-        return 1
-    end
+    argparse --min-args=1 n 'v/version=?' s/silent -- $argv
+    or return $status
+
+    set issue $argv[1]
     set file ./debug/$issue.lua
 
     # Fetch the issue if it doesn't exist
@@ -19,9 +25,27 @@ function repro -a issue
     # Format the file
     stylua $file
 
+    if [ "$_flag_v" = stable ]
+        set _flag_v ''
+    end
+
+    set nvim nvim
+    if set -q _flag_v
+        fd --type=d --maxdepth=1 "^v$_flag_v" ~/.local/share/bob
+        set nvim_dir (fd --type=d --maxdepth=1 "^v$_flag_v" ~/.local/share/bob | sort -V | tail -1)
+        set nvim (fd --type=x '^nvim$' $nvim_dir -1)
+        if test -z "$nvim"
+            echo "Version v$_flag_v not found"
+            return 1
+        end
+    end
+
     # Run the repro
-    nvim -u $file $file
-    # nvim -u $file
+    if set -q _flag_s
+        $nvim -u $file
+    else
+        $nvim -u $file $file
+    end
 end
 
 # Function to select or use a given Neovim profile
@@ -92,6 +116,3 @@ function nvims_clean -a profile
     test -d ~/.cache/nvim-profiles/$profile
     and rm -rf ~/.cache/nvim-profiles/$profile
 end
-
-abbr nvim-stable ~/.local/share/bob/v0.10.0/nvim-linux64/bin/nvim
-abbr nvim-0.9.5 ~/.local/share/bob/v0.9.5/nvim-linux64/bin/nvim

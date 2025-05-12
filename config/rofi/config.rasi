@@ -1,0 +1,27 @@
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
+ **/
+
+/*****----- Configuration -----*****/
+configuration {
+  modi               : "run,drun,window";
+  disable-history    : false;
+  display-run        : " ";
+  display-drun       : " ";
+  display-window     : "󰕰 ";
+  display-clipboard  : " ";
+  drun-display-format: "{icon} {name}";
+  clipboard-display-format: "{name}";
+  hide-scrollbar     : true;
+  location           : 0;
+  show-icons         : true;
+  sidebar-mode       : true;
+  terminal           : "ghostty";
+}
+
+@theme "theme.rasi"

@@ -6,8 +6,6 @@
     "lazyvim.plugins.extras.editor.dial",
     "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.editor.mini-diff",
-    "lazyvim.plugins.extras.editor.snacks_explorer",
-    "lazyvim.plugins.extras.editor.snacks_picker",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
@@ -19,9 +17,10 @@
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.mini-hipatterns"
   ],
+  "install_version": 8,
   "news": {
     "NEWS.md": "10960",
-    "doc/news.txt": "21508"
+    "doc/news.txt": "5866"
   },
-  "version": 7
+  "version": 8
 }

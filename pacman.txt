@@ -6,6 +6,7 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adw-gtk-theme
+adwaita-fonts
 adwaita-icon-theme
 aerc
 ags-hyprpanel-git
@@ -53,7 +54,6 @@ caddy
 calf
 cantarell-fonts
 catch2
-cava
 cbonsai
 chafa
 chkservice
@@ -81,11 +81,11 @@ discord
 dmidecode
 dmraid
 dnsmasq
+docker
 docker-buildx
 docker-compose
 dosbox
 dosfstools
-dotnet-sdk-6.0
 downgrade
 doxygen
 dracut
@@ -121,6 +121,7 @@ firewalld
 fish
 flex
 flips
+fnm-bin
 foomatic-db
 foomatic-db-engine
 foomatic-db-gutenprint-ppds
@@ -218,7 +219,6 @@ hyprland-qtutils
 hyprlock
 hyprpaper
 hyprpicker
-hyprshade-git
 hyprsunset
 hyprutils
 imv
@@ -232,6 +232,7 @@ iotop
 iptables-nft
 iucode-tool
 iwd
+jamesdsp-pipewire-bin
 java-openjfx-bin
 jekyll
 jfsutils
@@ -244,6 +245,7 @@ khal
 kitty
 lazydocker
 lazygit
+lazyjournal
 ledger
 less
 lib32-gnutls
@@ -292,9 +294,9 @@ matugen-bin
 mdadm
 mdcat
 meld
+mermaid-cli
 mesa-utils
 minecraft-launcher
-mise-bin
 mission-center
 mitogen
 modemmanager
@@ -339,6 +341,7 @@ nwg-look
 nwg-panel
 nyancat
 obsidian
+ollama
 onefetch
 ookla-speedtest-bin
 opencl-nvidia
@@ -365,7 +368,7 @@ pkgconf
 pkgfile
 playerctl
 plocate
-plymouth-theme-arch-glow
+plymouth-theme-arch-charge-big
 podman
 podman-compose
 pokemon-colorscripts-git
@@ -449,9 +452,11 @@ sysstat
 system-config-printer
 systemd-sysvcompat
 tealdeer
+tectonic
 testdisk
 texinfo
 texlive-binextra
+texlive-latexextra
 thermald
 throttled
 tig
@@ -466,6 +471,7 @@ tree-sitter-cli
 ttf-bitstream-vera
 ttf-dejavu
 ttf-fira-code
+ttf-firacode-nerd
 ttf-liberation
 ttf-maple
 ttf-ms-fonts
@@ -479,6 +485,7 @@ tty-clock
 tuir
 tuned-ppd
 typos
+typst
 ueberzugpp
 unrar
 unzip
@@ -493,6 +500,7 @@ virt-viewer
 visual-studio-code-bin
 viu
 vlc
+walker-bin
 watchexec
 waybar
 wayshot
@@ -541,8 +549,7 @@ xterm
 yazi
 yq
 zellij
-zen-browser-avx2-bin
-zen-twilight-avx2-bin
+zen-browser-bin
 zf-bin
 zfxtop
 zk

@@ -1,8 +1,8 @@
 #!/bin/env bash
 
 WORKSPACE=$(hyprctl clients -j | jq -rec '.[] | select(.class == "folke.quake") | .workspace .name')
-# TERM_CMD="kitty -1 --class quake -o background_opacity=0.90 -o hide_window_decorations=yes -o remember_window_size=no"
-TERM_CMD="wezterm --config window_background_opacity=0.9 start --class folke.quake"
+# TERM_CMD="kitty -1 --class=\"folke.quake\" -o background_opacity=0.90 -o hide_window_decorations=yes -o remember_window_size=no"
+# TERM_CMD="wezterm --config window_background_opacity=0.9 start --class folke.quake"
 TERM_CMD="ghostty --class=\"folke.quake\""
 
 # hyprctl --batch '
