@@ -1,19 +1,31 @@
 return {
-  -- { "ibhagwan/fzf-lua", cmd = "FzfLua" },
-  -- {
-  --   "echasnovski/mini.pick",
-  --   event = "VeryLazy",
-  --   cmd = "MiniPick",
-  --   opts = {},
-  -- },
   -- {
   --   "nvim-telescope/telescope.nvim",
   --   cmd = "Telescope",
   --   opts = {},
   -- },
-  {
-    "sphamba/smear-cursor.nvim",
-    enabled = false,
-    cond = not (vim.env.KITTY_PID or vim.g.neovide),
-  },
+  -- {
+  --   "sphamba/smear-cursor.nvim",
+  --   enabled = true,
+  --   cond = not (vim.env.KITTY_PID or vim.g.neovide) and vim.fn.has("nvim-0.10") == 1,
+  -- },
+  -- {
+  --   "nvim-neorg/neorg",
+  --   lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+  --   version = "*", -- Pin Neorg to the latest stable release
+  --   opts = {
+  --     load = {
+  --       ["core.defaults"] = {},
+  --       ["core.concealer"] = {},
+  --       ["core.dirman"] = {
+  --         config = {
+  --           workspaces = {
+  --             notes = "~/notes",
+  --           },
+  --           default_workspace = "notes",
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
 }

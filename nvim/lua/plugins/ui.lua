@@ -15,6 +15,7 @@ return {
   {
     "folke/noice.nvim",
     opts = function(_, opts)
+      opts.debug = vim.uv.cwd():find("noice%.nvim")
       opts.debug = false
       opts.routes = opts.routes or {}
       table.insert(opts.routes, {

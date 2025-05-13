@@ -5,10 +5,29 @@ return {
     "snacks.nvim",
     ---@type snacks.Config
     opts = {
-      scroll = { debug = true },
+      statuscolumn = { folds = { open = false } },
+      notifier = { sort = { "added" } },
+      scroll = { debug = false },
+      image = {
+        force = false,
+        enabled = true,
+        debug = { request = false, convert = false, placement = false },
+        math = { enabled = true },
+        doc = { inline = true, float = true },
+      },
       picker = {
-        debug = { scores = false, leaks = false, explorer = true, files = true },
+        previewers = {
+          diff = { builtin = false },
+          git = { builtin = false },
+        },
+        debug = { scores = false, leaks = false, explorer = false, files = false, proc = true },
         sources = {
+          explorer = {
+            layout = {
+              preset = "sidebar",
+              preview = { main = true, enabled = false },
+            },
+          },
           files_with_symbols = {
             multi = { "files", "lsp_symbols" },
             filter = {
@@ -36,18 +55,23 @@ return {
           },
         },
         win = {
+          list = {
+            keys = {
+              ["<c-i>"] = { "toggle_input", mode = { "n", "i" } },
+            },
+          },
           input = {
             keys = {
               ["<c-l>"] = { "toggle_lua", mode = { "n", "i" } },
+              ["<c-i>"] = { "toggle_input", mode = { "n", "i" } },
               -- ["<c-t>"] = { "edit_tab", mode = { "n", "i" } },
+              -- ["<c-t>"] = { "yankit", mode = { "n", "i" } },
               -- ["<Esc>"] = { "close", mode = { "n", "i" } },
             },
           },
-          list = {
-            keys = {},
-          },
         },
         actions = {
+          yankit = { action = "yank", notify = true },
           toggle_lua = function(p)
             local opts = p.opts --[[@as snacks.picker.grep.Config]]
             opts.ft = not opts.ft and "lua" or nil
@@ -77,6 +101,7 @@ return {
     -- stylua: ignore
     keys = {
       { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Open" },
+      { "<leader>dd", function() Snacks.picker.grep({search = "^(?!\\s*--).*\\b(bt|dd)\\(", args = {"-P"}, live = false, ft = "lua"}) end, desc = "Debug Searcher" },
       { "<leader>t", function() Snacks.scratch({ icon = " ", name = "Todo", ft = "markdown", file = "~/dot/TODO.md" }) end, desc = "Todo List" },
       {
         "<leader>dpd",
