@@ -497,5 +497,8 @@
       "icon": "󰺢",
       "color": "#ffffff"
     }
-  }
+  },
+  "bar.customModules.storage.paths": [
+    "/"
+  ]
 }

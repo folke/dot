@@ -1,5 +1,5 @@
 - name: copr
-  become: yes
+  become: true
   community.general.copr:
     name: "{{item}}"
   loop:
@@ -14,7 +14,7 @@
     - eddsalkield/swaylock-effects
 
 - name: gh repo
-  become: yes
+  become: true
   command:
     cmd: dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
     warn: false

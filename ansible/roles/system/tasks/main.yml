@@ -1,3 +1,5 @@
+- import_tasks: howdy.yml
+
 - name: Keyd
   become: true
   copy:
@@ -7,14 +9,14 @@
     group: root
     mode: "0644"
 
-- name: Tuned Laptop Performance Profile
-  become: true
-  copy:
-    dest: /etc/tuned/profiles/laptop-performance/tuned.conf
-    src: ~/dot/ansible/roles/system/files/tuner-laptop-performance.conf
-    owner: root
-    group: root
-    mode: "0644"
+# - name: Tuned Laptop Performance Profile
+#   become: true
+#   copy:
+#     dest: /etc/tuned/profiles/laptop-performance/tuned.conf
+#     src: ~/dot/ansible/roles/system/files/tuner-laptop-performance.conf
+#     owner: root
+#     group: root
+#     mode: "0644"
 
 - name: Enable Keyd Daemon
   become: true
@@ -22,15 +24,14 @@
     state: restarted
     enabled: true
     name: keyd
-
-- name: Powersave udev rule
-  become: true
-  copy:
-    dest: /etc/udev/rules.d/powersave.rules
-    src: ~/dot/ansible/roles/system/files/powersave.rules
-    owner: root
-    group: root
-    mode: "0644"
+# - name: Powersave udev rule
+#   become: true
+#   copy:
+#     dest: /etc/udev/rules.d/powersave.rules
+#     src: ~/dot/ansible/roles/system/files/powersave.rules
+#     owner: root
+#     group: root
+#     mode: "0644"
 # - name: Touchpad
 #   become: true
 #   copy:
