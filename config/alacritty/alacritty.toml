@@ -1,26 +1,29 @@
-decorations = "None"
-import = ["/home/folke/projects/tokyonight.nvim/extras/alacritty/tokyonight_storm.yml"]
-live_config_reload = true
-
 [colors]
 draw_bold_text_with_bright_colors = true
 
 [font]
-size = 11.0
+size = 10.0
 
 [font.bold]
-family = "Fira Code Bold Nerd Font Complete"
+family = "FiraCode Nerd Font"
+style = "Bold"
 
 [font.bold_italic]
-family = "Victor Mono Bold Italic Nerd Font Complete"
+family = "Maple Mono NF"
+style = "Bold Italic"
 
 [font.italic]
-family = "Victor Mono Medium Italic Nerd Font Complete"
+family = "Maple Mono NF"
 style = "Italic"
 
 [font.normal]
 family = "FiraCode Nerd Font"
+style = "Regular"
 
 [window.padding]
-x = 10
-y = 10
+x = 5
+y = 5
+
+[general]
+live_config_reload = true
+import = ["/home/folke/projects/tokyonight.nvim/extras/alacritty/tokyonight_storm.toml"]
