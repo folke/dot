@@ -1,9 +1,17 @@
-set -g nvim_current ~/.local/share/bob/v0.10.4/bin/nvim
-set -g nvim_old ~/.local/share/bob/v0.9.5/nvim-linux64/bin/nvim
+function nvim_v -a v --wraps nvim
+    set dir (command ls -d ~/.local/share/bob/v$v.* | sort -V | tail -1)
+    echo $dir/bin/nvim
+    $dir/bin/nvim $argv[2..-1]
+end
 
+alias nvim_10="nvim_v 0.10"
+alias nvim_11="nvim_v 0.11"
+abbr nvim_stable nvim_11
 
-abbr -a nvim_current $nvim_current
-abbr -a nvim_old $nvim_old
+function nvim_update
+    bob install stable
+    bob use nightly
+end
 
 function repro -a issue
     argparse --min-args=1 n 'v/version=?' s/silent -- $argv
