@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Generating Package List
+When = PostTransaction
+Exec = /bin/sh -c 'pacman -Qqe > /home/folke/dot/pacman.txt; chown folke:folke /home/folke/dot/pacman.txt'

@@ -24,6 +24,13 @@
     state: restarted
     enabled: true
     name: keyd
+
+- name: Enable Gnome SSH Agent (GCR)
+  ansible.builtin.systemd_service:
+    state: started
+    scope: user
+    enabled: true
+    name: gcr-ssh-agent.socket
 # - name: Powersave udev rule
 #   become: true
 #   copy:

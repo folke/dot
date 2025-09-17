@@ -1,3 +1,12 @@
+- name: Howdy Config File
+  become: true
+  copy:
+    dest: /etc/howdy/config.ini
+    src: ~/dot/ansible/roles/system/files/howdy.ini
+    owner: root
+    group: root
+    mode: "0744"
+
 - name: Set list of PAM files for Howdy
   ansible.builtin.set_fact:
     pam_files:

@@ -1,124 +1,111 @@
 # - import_tasks: repos.yml
-
-- name: install tools
+- name: Create the `aur_builder` user
   become: true
-  dnf:
-    name:
-      # LinuxBrew Dependencies
-      - "@Development Tools"
-      - "@Multimedia"
-      - procps-ng
-      - curl
-      - file
-      - libxcrypt-compat
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
 
-      # gui
+- name: Allow the `aur_builder` user to run `sudo pacman` without a password
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: yes
+    mode: 0644
+    validate: "visudo -cf %s"
+
+- name: Install packages (pacman)
+  become: true
+  become_user: aur_builder
+  aur:
+    state: present
+    use: paru
+    name:
+      # system
+      - keyd
+      - cachyos-snapper-support
+      - cups
+      - howdy-beta-git
+      - jamesdsp
+      - polkit-gnome
+      - topgrade
+      - xdg-desktop-portal-gnome
+      - xdg-desktop-portal-hyprland
+      - aria2
+
+      # ui
+      - brightnessctl
+      - hyprland
+      - hypridle
+      - hyprland
+      - hyprlock
+      - hyprpaper
+      - hyprpicker
+      - hyprpolkitagent
+      - hyprsunset
+      - pavucontrol
+      - rofi-wayland
+
+      # cli
+      - atuin
+      - bat
+      - bob
+      - btop
+      - chafa
+      - cliphist
+      - duf
+      - fd
+      - fzf
+      - grc
+      - gum
+      - htop
+      - hyperfine
+      - numbat-bin
+      - ripgrep
+      - starship
+      - tealdeer
+      - zoxide
+      - mdcat
+      - eza
+      - ncdu
+      - procs
+      - dust
+      - ranger
+      - tokei
+
+      # dev
+      - fnm-bin
+      - git
+      - git-delta
+      - github-cli
+      - httpie
+      - jq
+      - hub
+      - just
+      - lazygit
+      - lazydocker
+      - mermaid-cli
+      - mutagen.io-bin
+      - neovim
+      - rustup
+      - tectonic
+      - wezterm
+      - aspell
+      - pnpm
+
+      # apps
       - alacritty
-      - brave-browser-beta
-      - dconf-editor
-      - discord
-      # - element
-      - gnome-tweaks
       - kitty
-      - foot
-      - waybar
-      - sway
-      - wdisplays
-      - nwg-launchers
-      - nwg-panel
+      - ghostty
+      - brave-bin
+      - btrfs-assistant
+      - rog-control-center
+      - zen-browser-bin
+      - discord
       - slurp
       - grim
+      - grimblast-git
       - wev
-      - swaylock-effects
       - imv
       - blueman
-
-      # Wayland Development
-      - wayland-devel
-      - libxkbcommon-devel
-
-      # Gaming
-      - lutris
-      - steam
-      - wine
-      - mangohud
-
-      # utils
-      - clipman
-      - pulseaudio-utils
-      - playerctl
-      - brightnessctl
-      - wob
-      - fuzzel
-      - wofi
-      - bemenu
-      - rofi-wayland
-      - rofimoji
-      - lm_sensors
-      - gammastep-indicator
-
-      # cli
-      - aria2
-      - aspell
-      - bat
-      - bandwhich
-      - bottom
-      - ctop
-      - curl
-      - gh
-      - git-delta
-      - exa
-      - fd-find
-      - direnv
-      - fzf
-      - fzy
-      - git
-      - git-lfs
-      # - glow
-      - gnupg
-      - gnuplot
-      - htop
-      - httpie
-      - hub
-      - hyperfine
-      - jq
-      # - languagetool
-      - lazydocker
-      - lazygit
-      - neovim
-      - nnn
-      - nodejs
-      - ncdu
-      - osmium-tool
-      - pass
-      - procs
-      - qemu
-      - ranger
-      - ripgrep
-      - ShellCheck
-      - shfmt
-      - tealdeer
-      - tmux
-      # - tmuxinator
-      - tokei
-      - weechat
-      - wget
-      - wezterm
-      - zoxide
-
-- name: install brew tools
-  community.general.homebrew:
-    path: /home/linuxbrew/.linuxbrew/bin
-    name:
-      # cli
-      - as-tree
-      - broot
-      - duf
-      - dust
-      - grc
-      - markdownlint-cli
-      - mdcat
-      - pfetch
-      - selene
-      - stylua
-      - starship
