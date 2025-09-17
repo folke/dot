@@ -24,7 +24,7 @@ if not status is-interactive
     exit
 end
 
-set -g __done_version 1.19.3
+set -g __done_version 1.20.0
 
 function __done_run_powershell_script
     set -l powershell_exe (command --search "powershell.exe")
@@ -84,6 +84,9 @@ function __done_get_focused_window_id
         swaymsg --type get_tree | jq '.. | objects | select(.focused == true) | .id'
     else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
         hyprctl activewindow | awk 'NR==1 {print $2}'
+    else if test -n "$NIRI_SOCKET"
+        and type -q jq
+        niri msg --json focused-window | jq ".id"
     else if begin
             test "$XDG_SESSION_DESKTOP" = gnome; and type -q gdbus
         end
@@ -153,6 +156,9 @@ function __done_is_process_window_focused
         return $status
     else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
         and test $__done_initial_window_id = (hyprctl activewindow | awk 'NR==1 {print $2}')
+        return $status
+    else if test -n "$NIRI_SOCKET"
+        and test $__done_initial_window_id = (niri msg --json focused-window | jq ".id")
         return $status
     else if test "$__done_initial_window_id" != "$__done_focused_window_id"
         return 1

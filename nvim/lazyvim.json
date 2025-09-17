@@ -12,6 +12,7 @@
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lang.vue",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.util.dot",
@@ -19,8 +20,8 @@
   ],
   "install_version": 8,
   "news": {
-    "NEWS.md": "10960",
-    "doc/news.txt": "6239"
+    "NEWS.md": "11866",
+    "doc/news.txt": "15471"
   },
   "version": 8
 }
