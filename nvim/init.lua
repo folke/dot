@@ -15,7 +15,9 @@ end
 _G.p = function(...)
   require("snacks.debug").profile(...)
 end
-vim.print = _G.dd
+vim._print = function(_, ...)
+  dd(...)
+end
 
 if vim.env.PROF then
   vim.opt.rtp:append("/home/folke/projects/snacks.nvim/")
