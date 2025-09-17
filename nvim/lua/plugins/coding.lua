@@ -16,7 +16,7 @@ return {
   },
 
   {
-    "echasnovski/mini.align",
+    "nvim-mini/mini.align",
     opts = {},
     keys = {
       { "ga", mode = { "n", "v" } },
@@ -38,7 +38,7 @@ return {
     opts = { use_default_keymaps = false, max_join_length = 150 },
   },
 
-  { "echasnovski/mini.test", cond = vim.fn.isdirectory("tests") == 1 },
+  { "nvim-mini/mini.test", cond = vim.fn.isdirectory("tests") == 1 },
 
   {
     "folke/lazydev.nvim",
