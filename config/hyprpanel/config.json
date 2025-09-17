@@ -372,7 +372,7 @@
   "menus.clock.weather.location": "9030, Mariakerke",
   "menus.clock.weather.unit": "metric",
   "menus.clock.time.military": true,
-  "bar.launcher.autoDetectIcon": true,
+  "bar.launcher.autoDetectIcon": false,
   "bar.battery.hideLabelWhenFull": false,
   "bar.notifications.show_total": false,
   "bar.notifications.hideCountWhenZero": true,
