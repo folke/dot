@@ -12,6 +12,7 @@ application/x-extension-xht=zen.desktop
 image/png=org.gnome.eog.desktop
 inode/directory=org.gnome.Nautilus.desktop
 application/pdf=org.gnome.Papers.desktop;
+image/jpeg=org.gnome.Loupe.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
@@ -26,3 +27,4 @@ application/x-extension-xhtml=zen.desktop;
 application/x-extension-xht=zen.desktop;
 image/png=org.gnome.Loupe.desktop;org.gnome.eog.desktop;
 application/pdf=org.gnome.Papers.desktop
+image/jpeg=org.gnome.Loupe.desktop;
