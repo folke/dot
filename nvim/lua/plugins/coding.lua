@@ -8,6 +8,12 @@ return {
     },
   },
   {
+    "pwntester/octo.nvim",
+    opts = {
+      use_local_fs = true,
+    },
+  },
+  {
     "zbirenbaum/copilot.lua",
     optional = true,
     opts = {

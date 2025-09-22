@@ -9,19 +9,19 @@
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.php",
     "lazyvim.plugins.extras.lang.python",
-    "lazyvim.plugins.extras.lang.tailwind",
     "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.lang.vue",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.linting.eslint",
     "lazyvim.plugins.extras.util.dot",
-    "lazyvim.plugins.extras.util.mini-hipatterns"
+    "lazyvim.plugins.extras.util.mini-hipatterns",
+    "lazyvim.plugins.extras.util.octo"
   ],
   "install_version": 8,
   "news": {
     "NEWS.md": "11866",
-    "doc/news.txt": "15471"
+    "doc/news.txt": "15552"
   },
   "version": 8
 }
