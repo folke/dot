@@ -26,13 +26,21 @@
       - keyd
       - cachyos-snapper-support
       - cups
-      - howdy-beta-git
-      - jamesdsp
+      - howdy-git
       - polkit-gnome
       - topgrade
       - xdg-desktop-portal-gnome
       - xdg-desktop-portal-hyprland
       - aria2
+
+      # audio
+      - easyeffects
+      - lsp-plugins-lv2
+      - zam-plugins
+      - calf
+      - mda.lv2
+      - easyeffects-bundy01-presets
+      # - jamesdsp
 
       # ui
       - brightnessctl
@@ -73,6 +81,7 @@
       - dust
       - ranger
       - tokei
+      - lazyjournal
 
       # dev
       - fnm-bin
@@ -109,3 +118,15 @@
       - wev
       - imv
       - blueman
+
+      # fonts
+      - ttf-dejavu
+      - ttf-fira-code
+      - ttf-firacode-nerd
+      - ttf-maple
+      - ttf-ms-fonts
+      - ttf-nerd-fonts-symbols
+      - ttf-nerd-fonts-symbols-mono
+      - ttf-opensans
+      - ttf-victor-mono
+      - ttf-victor-mono-nerd

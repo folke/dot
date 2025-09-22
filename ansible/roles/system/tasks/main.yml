@@ -4,7 +4,25 @@
   become: true
   copy:
     dest: /etc/keyd/default.conf
-    src: ~/dot/ansible/roles/system/files/keyd.conf
+    src: roles/system/files/keyd.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: NetworkManager mdns config
+  become: true
+  copy:
+    dest: /etc/NetworkManager/conf.d/mdns.conf
+    src: roles/system/files/mdns.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: NetworkManager wifi powersave config
+  become: true
+  copy:
+    dest: /etc/NetworkManager/conf.d/wifi-powersave.conf
+    src: roles/system/files/wifi-powersave.conf
     owner: root
     group: root
     mode: "0644"
