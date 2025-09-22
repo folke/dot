@@ -18,3 +18,9 @@ config/lazygit/*/*.patch
 tt.*
 nvim/lua/config/env.lua
 config/environment.d/secrets.conf
+config/ghostty/config-dankcolors
+config/gtk-3.0/dank-colors.css
+config/gtk-4.0/dank-colors.css
+config/kitty/dank-theme.conf
+config/niri/dankshell-colors.kdl
+config/DankMaterialShell/firefox.css

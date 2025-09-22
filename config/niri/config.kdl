@@ -1,0 +1,376 @@
+// vim: set ts=4 sw=4 et:
+
+input {
+    workspace-auto-back-and-forth
+    keyboard {
+        repeat-delay 200
+        repeat-rate 25
+    }
+
+    touchpad {
+        tap
+        dwt
+        drag false
+        natural-scroll
+        accel-speed 0.2
+        accel-profile "adaptive"
+        scroll-method "two-finger"
+        click-method "clickfinger"
+    }
+}
+
+environment {
+  CLUTTER_BACKEND "wayland"
+  GDK_BACKEND "wayland,x11,*"
+  GDK_DPI_SCALE "1"
+  GDK_SCALE "1"
+  QT_AUTO_SCREEN_SCALE_FACTOR "1"
+  QT_QPA_PLATFORM "wayland;xcb"
+  QT_QPA_PLATFORMTHEME "gtk3"
+  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
+  SDL_VIDEODRIVER "wayland"
+  GSK_RENDERER "ngl"
+  XCURSOR_SIZE "24"
+  XCURSOR_THEME "Adwaita"
+  ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
+
+cursor {
+    xcursor-theme "Adwaita"
+    xcursor-size 24
+    hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
+output "eDP-2" {
+    mode "2880x1800@120"
+    scale 1.5
+    transform "normal"
+    position x=1280 y=0
+}
+
+debug {
+    render-drm-device "/dev/dri/renderD129"
+}
+
+layout {
+    gaps 16
+    center-focused-column "never"
+    background-color "#000000"
+    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    preset-column-widths {
+        // Proportion sets the width as a fraction of the output width, taking gaps into account.
+        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
+        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+
+        // Fixed sets the width in logical pixels exactly.
+        // fixed 1920
+    }
+
+    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
+    // preset-window-heights { }
+
+    // You can change the default width of the new windows.
+    default-column-width { proportion 0.5; }
+    // If you leave the brackets empty, the windows themselves will decide their initial width.
+    // default-column-width {}
+
+    // By default focus ring and border are rendered as a solid background rectangle
+    // behind windows. That is, they will show up through semitransparent windows.
+    // This is because windows using client-side decorations can have an arbitrary shape.
+    //
+    // If you don't like that, you should uncomment `prefer-no-csd` below.
+    // Niri will draw focus ring and border *around* windows that agree to omit their
+    // client-side decorations.
+    //
+    // Alternatively, you can override it with a window rule called
+    // `draw-border-with-background`.
+
+    // You can change how the focus ring looks.
+    focus-ring {
+        width 3
+
+        // Colors can be set in a variety of ways:
+        // - CSS named colors: "red"
+        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
+        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
+
+        // Color of the ring on the active monitor.
+        active-color "#07b5ef"
+        // Color of the ring on inactive monitors.
+        inactive-color "#ffffff00"
+    }
+
+    // You can also add a border. It's similar to the focus ring, but always visible.
+    border {
+        off
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#505050"
+        urgent-color "#9b0000"
+    }
+
+    // You can enable drop shadows for windows.
+    shadow {
+        on
+        draw-behind-window false
+        softness 40
+        spread 5
+        offset x=0 y=5
+        color "#0007"
+    }
+
+    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
+    // You can think of them as a kind of outer gaps. They are set in logical pixels.
+    // Left and right struts will cause the next window to the side to always be visible.
+    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
+    // layer-shell panels and regular gaps.
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+}
+
+prefer-no-csd
+
+overview {
+    backdrop-color "#1a1b26"
+}
+
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
+spawn-at-startup "systemctl" "--user" "import-environment"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XAUTHORITY"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "dms" "run"
+spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "udiskie"
+spawn-at-startup "journalctl-desktop-notification"
+spawn-at-startup "easyeffects" "--gapplication-service"
+spawn-at-startup "zen-browser"
+spawn-at-startup "xhost si:localuser:root"
+spawn-sh-at-startup "sleep 3; amixer -c2 set Master 100% unmute"
+spawn-sh-at-startup "sleep 3; rog-control-center"
+spawn-sh-at-startup "sleep 3; safeeyes"
+
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Arc"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "Adwaita"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "Adwaita"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "text-scaling-factor" "1"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-size" "24"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-light"
+
+config-notification {
+    disable-failed
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+animations {
+}
+
+// Maximized
+window-rule {
+    match app-id="zen"
+    open-maximized true
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Dialogs window rule
+window-rule{
+  match app-id="confirm"
+  match app-id="pavucontrol"
+  match app-id="blueman"
+  match app-id="nm-connection-editor"
+  match app-id="cpupower"
+  match app-id="rog-control-center"
+  match app-id="jamesdsp"
+  match app-id="easyeffects"
+  match app-id="Hello"
+  match app-id="xdg-desktop-portal-gtk"
+  match app-id="system-config-printer"
+  match app-id="ghostty_journalctl"
+  match title=r#".*Extension.*Bitwarden.*"#
+  open-floating true
+  default-column-width { proportion 0.45; }
+  default-window-height { proportion 0.45; }
+}
+
+// Floating Terminal
+window-rule {
+  match app-id="folke.scratchpad"
+  open-maximized true
+  // open-floating true
+  // default-column-width { proportion 0.8; }
+  // default-window-height { proportion 0.8; }
+}
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // Suggested binds for running programs: terminal, app launcher, screen locker.
+    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+    Mod+Alt+Return { spawn "~/.config/niri/scripts/scratchpad"; }
+
+    Mod+Alt+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+    Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Space hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+X hotkey-overlay-title="Power Menu" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Shift+Alt+S { spawn "grimblast" "--notify" "copy" "area"; } // Fn+F6
+
+    Mod+E { spawn "nautilus" "--new-window"; }
+    Mod+I { spawn "zen-browser"; }
+
+    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
+    XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
+    XF86KbdBrightnessDown { spawn "asusctl" "--prev-kbd-bright"; }
+    XF86KbdBrightnessUp { spawn "asusctl" "--next-kbd-bright"; }
+    XF86Launch1 { spawn "rog-control-center"; }
+    XF86Launch4 { spawn "asusctl" "profile" "--next"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "amdgpu_bl2"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl2"; }
+
+    // Open/close the Overview: a zoomed-out view of workspaces and windows.
+    // You can also move the mouse into the top-left hot corner,
+    // or do a four-finger swipe up on a touchpad.
+    Mod+O repeat=false { toggle-overview; }
+    Mod+Q repeat=false { close-window; }
+
+    Mod+H     { focus-column-left; }
+    Mod+J     { focus-window-or-workspace-down; }
+    Mod+K     { focus-window-or-workspace-up; }
+    Mod+L     { focus-column-right; }
+
+    Mod+Alt+H     { move-column-left; }
+    Mod+Alt+J     { move-window-down-or-to-workspace-down; }
+    Mod+Alt+K     { move-window-up-or-to-workspace-up; }
+    Mod+Alt+L     { move-column-right; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Home { move-column-to-first; }
+    Mod+Ctrl+End  { move-column-to-last; }
+
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+Alt+1 { move-column-to-workspace 1; }
+    Mod+Alt+2 { move-column-to-workspace 2; }
+    Mod+Alt+3 { move-column-to-workspace 3; }
+    Mod+Alt+4 { move-column-to-workspace 4; }
+    Mod+Alt+5 { move-column-to-workspace 5; }
+    Mod+Alt+6 { move-column-to-workspace 6; }
+    Mod+Alt+7 { move-column-to-workspace 7; }
+    Mod+Alt+8 { move-column-to-workspace 8; }
+    Mod+Alt+9 { move-column-to-workspace 9; }
+
+    // Alternatively, there are commands to move just a single window:
+    // Mod+Ctrl+1 { move-window-to-workspace 1; }
+
+    // Switches focus between the current and the previous workspace.
+    // Mod+Tab { focus-workspace-previous; }
+
+    // The following binds move the focused window in and out of a column.
+    // If the window is alone, they will consume it into the nearby column to the side.
+    // If the window is already in a column, they will expel it out.
+    Mod+Comma  { consume-or-expel-window-left; }
+    Mod+Period { consume-or-expel-window-right; }
+
+    Mod+R { switch-preset-column-width; }
+    // Cycling through the presets in reverse order is also possible.
+    // Mod+R { switch-preset-column-width-back; }
+    Mod+Shift+R { switch-preset-window-height; }
+    Mod+Ctrl+R { reset-window-height; }
+    Mod+M { maximize-column; }
+    Mod+Alt+M { expand-column-to-available-width; }
+    Mod+F { fullscreen-window; }
+    // Super+Super_L { maximize-column; }
+    // Mod+Shift+F { fullscreen-window; }
+
+    // Expand the focused column to space not taken up by other fully visible columns.
+    // Makes the column "fill the rest of the space".
+
+    Mod+C { center-column; }
+
+    // Center all fully visible columns on screen.
+    Mod+Ctrl+C { center-visible-columns; }
+
+    // Finer width adjustments.
+    // This command can also:
+    // * set width in pixels: "1000"
+    // * adjust width in pixels: "-5" or "+5"
+    // * set width as a percentage of screen width: "25%"
+    // * adjust width as a percentage of screen width: "-10%" or "+10%"
+    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+    // set-column-width "100" will make the cmn occupy 200 physical screen pixels.
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    // Finer height adjustments when in column with other windows.
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Move the focused window between the floating and the tiling layout.
+    Mod+T       { toggle-window-floating; }
+    Mod+Alt+T { switch-focus-between-floating-and-tiling; }
+
+    // Toggle tabbed column display mode.
+    // Windows in this column will appear as vertical tabs,
+    // rather than stacked on top of each other.
+    Mod+W { toggle-column-tabbed-display; }
+
+    // Actions to switch layouts.
+    // Note: if you uncomment these, make sure you do NOT have
+    // a matching layout switch hotkey configured in xkb options above.
+    // Having both at once on the same hotkey will break the switching,
+    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // The quit action will show a confirmation dialog to avoid accidental exits.
+    Mod+Shift+E { quit; }
+    Ctrl+Alt+Delete { quit; }
+
+    // Powers off the monitors. To turn them back on, do any input like
+    // moving the mouse or pressing any other key.
+    Mod+Shift+P { power-off-monitors; }
+}
