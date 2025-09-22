@@ -1,3 +1,6 @@
+if ! status is-interactive
+    return
+end
 
 # Cursor styles
 set -gx fish_vi_force_cursor 1
@@ -45,7 +48,6 @@ fish_add_path ~/.emacs.d/bin
 set -x GOPATH ~/go
 fish_add_path $GOPATH $GOPATH/bin
 
-
 fish_add_path -m /etc/profiles/per-user/folke/bin /run/current-system/sw/bin
 # Exports
 set -x LESS -rF
@@ -60,12 +62,6 @@ set -x OPENCV_LOG_LEVEL ERROR
 #
 abbr -a --position anywhere --set-cursor -- -h "-h 2>&1 | bat --plain --language=help"
 abbr j just
-
-# Dnf
-abbr dnfi 'sudo dnf install'
-abbr dnfs 'sudo dnf search'
-abbr dnfr 'sudo dnf remove'
-abbr dnfu 'sudo dnf upgrade --refresh'
 
 # Tmux
 abbr t tmux
@@ -95,6 +91,7 @@ alias vimpager 'nvim - -c "lua require(\'util\').colorize()"'
 abbr vd "VIM=~/projects/neovim nvim --luamod-dev"
 abbr sv sudoedit
 abbr vudo sudoedit
+abbr v! sudoedit
 alias lazyvim "NVIM_APPNAME=lazyvim nvim"
 abbr lv lazyvim
 alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Program terminated with signal/,0' | bat -l cpp --no-pager --style plain"
@@ -103,7 +100,6 @@ alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Progr
 abbr git hub
 abbr topgit topgrade --only git_repos
 abbr g hub
-abbr windows systemctl reboot --boot-loader-entry=auto-windows
 
 set -x LG_CONFIG_FILE /home/folke/.config/lazygit/config.yml,/home/folke/.cache/nvim/lazygit-theme.yml
 
@@ -142,19 +138,25 @@ abbr s systemctl
 abbr su "systemctl --user"
 abbr ss "command systemctl status"
 abbr sl "systemctl --type service --state running"
-abbr slu "systemctl --user --type service --state running"
 abbr se "sudo systemctl enable --now"
 abbr sd "sudo systemctl disable --now"
 abbr sr "sudo systemctl restart"
 abbr so "sudo systemctl stop"
 abbr sa "sudo systemctl start"
+abbr slu "systemctl --user --type service --state running"
+abbr seu "systemctl --user enable --now"
+abbr sdu "systemctl --user disable --now"
+abbr sru "systemctl --user restart"
+abbr sou "systemctl --user stop"
+abbr sau "systemctl --user start"
 abbr sf "systemctl --failed --all"
 
 # journalctl
 abbr jb "journalctl -b"
-abbr jf "journalctl --follow"
+abbr jf "journalctl --follow -n 100"
 abbr jg "journalctl -b --grep"
-abbr ju "journalctl --unit"
+abbr ju "journalctl --all --follow -n 100 --unit"
+abbr juu "journalctl --all --follow -n 100 --user-unit"
 
 # paru
 abbr p paru
