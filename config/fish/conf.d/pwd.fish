@@ -1,3 +1,5 @@
+status is-interactive; or exit
+
 # the following functions are here instead of in the functions directory
 # because they utilize event handlers which autoloading does not support
 

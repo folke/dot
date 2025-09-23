@@ -1,6 +1,4 @@
-if ! status is-interactive
-    return
-end
+status is-interactive; or exit
 
 # Cursor styles
 set -gx fish_vi_force_cursor 1
