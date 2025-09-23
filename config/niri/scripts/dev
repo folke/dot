@@ -1,0 +1,20 @@
+#!/usr/bin/env fish
+
+set -l class "folke.scratchpad"
+
+# Toggle workspace "dev"
+niri msg action focus-workspace dev
+
+# Get info about the "dev" workspace and the terminal window
+niri msg --json workspaces \
+    | jq -r '.[] | select(.name=="dev") | "\(.id) \(.is_focused)"' \
+    | read -l dev_id dev_is_focused
+niri msg --json windows \
+    | jq -r --arg class "$class" --argjson dev_id "$dev_id" \
+    '.[] | select(.app_id==$class and .workspace_id==$dev_id) | .id' \
+    | read -l t_id
+
+# If the "dev" workspace is focused and the terminal is not present, spawn it
+test "$dev_is_focused" = true
+and test -z "$t_id"
+and niri msg action spawn -- ghostty --class="$class"

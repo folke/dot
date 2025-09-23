@@ -132,8 +132,8 @@ hotkey-overlay {
     skip-at-startup
 }
 
-animations {
-}
+workspace "main"
+workspace "dev"
 
 // Maximized
 window-rule {
@@ -169,11 +169,9 @@ window-rule{
 
 // Floating Terminal
 window-rule {
-  match app-id="folke.scratchpad"
-  open-maximized true
-  // open-floating true
-  // default-column-width { proportion 0.8; }
-  // default-window-height { proportion 0.8; }
+    match app-id="folke.scratchpad"
+    open-maximized true
+    open-on-workspace "dev"
 }
 
 binds {
@@ -181,7 +179,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Alt+Return { spawn "~/.config/niri/scripts/scratchpad"; }
+    Mod+Alt+Return { spawn "~/.config/niri/scripts/dev"; }
 
     Mod+Alt+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
     Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
