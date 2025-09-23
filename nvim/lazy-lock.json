@@ -1,11 +1,11 @@
 {
   "SchemaStore.nvim": { "branch": "main", "commit": "22f0c2f7c727a15b45b7bfcbbab533720223b840" },
-  "blink.cmp": { "branch": "main", "commit": "2fcf66aa31e37d4b443c669ec1bf189530dcbf20" },
+  "blink.cmp": { "branch": "main", "commit": "0590187042b60456edef3808cfa3a4f34b2e4027" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
   "catppuccin": { "branch": "main", "commit": "f19cab18ec4dc86d415512c7a572863b2adbcc18" },
   "codecompanion.nvim": { "branch": "main", "commit": "6d26211b18ccbf35a7c9925f77878dcd22fe2cb9" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
-  "copilot.lua": { "branch": "master", "commit": "46e9895565fdae79833eda075b9b05d8543d7a77" },
+  "copilot.lua": { "branch": "master", "commit": "304fc5f2dadb5067ed26c60fa69fb7ba8a57eaf3" },
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
   "gitsigns.nvim": { "branch": "main", "commit": "f780609807eca1f783a36a8a31c30a48fbe150c5" },
