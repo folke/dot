@@ -15,7 +15,7 @@
       - gdm-password
       # - system-local-login
       - hyprlock
-      - su
+      # - su
 
 - name: Insert pam_unix line for fallback to password
   become: true
