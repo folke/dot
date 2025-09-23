@@ -25,3 +25,17 @@
     insertafter: "^#%PAM-1.0"
     state: present
   loop: "{{ pam_files }}"
+
+- name: Create /etc/pam.d/polkit-1 for Howdy
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/pam.d/polkit-1
+    content: |
+      #%PAM-1.0
+      auth sufficient /lib/security/pam_howdy.so
+      auth            include         system-auth
+      account         include         system-auth
+      session         include         system-auth
+    owner: root
+    group: root
+    mode: "0644"

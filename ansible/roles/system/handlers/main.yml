@@ -1,0 +1,11 @@
+- name: Restart keyd
+  become: true
+  ansible.builtin.systemd_service:
+    name: keyd
+    state: restarted
+
+- name: Reload NetworkManager
+  become: true
+  ansible.builtin.systemd_service:
+    name: NetworkManager
+    state: reloaded

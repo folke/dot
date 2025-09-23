@@ -4,4 +4,4 @@
     - { role: packages, tags: ["packages"] }
     - { role: dot, tags: ["dot"] }
     - { role: system, tags: ["system"] }
-    - { role: web, tags: ["system", "never"] }
+    - { role: web, tags: ["web", "never"] }

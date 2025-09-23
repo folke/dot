@@ -55,6 +55,11 @@
       - pavucontrol
       - rofi-wayland
 
+      # niri
+      - niri
+      - mate-polkit
+      - dms-shell-git
+
       # cli
       - atuin
       - bat

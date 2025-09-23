@@ -7,6 +7,6 @@ Target = usr/lib/modules/*/vmlinuz
 
 [Action]
 Depends = rsync
-Description = Backing up /efi...
+Description = Backing up /boot...
 When = PostTransaction
-Exec = /usr/bin/rsync -a --delete /efi /.efi-backup
+Exec = /usr/bin/rsync -a --delete /boot /.efi-backup

@@ -9,39 +9,34 @@
     group: root
     mode: "0644"
 
-- name: NetworkManager mdns config
-  become: true
-  copy:
-    dest: /etc/NetworkManager/conf.d/mdns.conf
-    src: roles/system/files/mdns.conf
-    owner: root
-    group: root
-    mode: "0644"
-
-- name: NetworkManager wifi powersave config
-  become: true
-  copy:
-    dest: /etc/NetworkManager/conf.d/wifi-powersave.conf
-    src: roles/system/files/wifi-powersave.conf
-    owner: root
-    group: root
-    mode: "0644"
-
-# - name: Tuned Laptop Performance Profile
-#   become: true
-#   copy:
-#     dest: /etc/tuned/profiles/laptop-performance/tuned.conf
-#     src: ~/dot/ansible/roles/system/files/tuner-laptop-performance.conf
-#     owner: root
-#     group: root
-#     mode: "0644"
-
 - name: Enable Keyd Daemon
   become: true
   ansible.builtin.systemd_service:
-    state: restarted
+    state: started
     enabled: true
     name: keyd
+  notify: Restart keyd
+
+- name: Deploy NetworkManager configs
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/NetworkManager/conf.d/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ lookup('fileglob', 'roles/system/files/network-manager/*', wantlist=True) }}"
+  notify: Reload NetworkManager
+
+- name: Deploy pacman hooks
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/pacman.d/hooks/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ lookup('fileglob', 'roles/system/files/hooks/*', wantlist=True) }}"
 
 - name: Enable Gnome SSH Agent (GCR)
   ansible.builtin.systemd_service:
@@ -49,39 +44,10 @@
     scope: user
     enabled: true
     name: gcr-ssh-agent.socket
-# - name: Powersave udev rule
-#   become: true
-#   copy:
-#     dest: /etc/udev/rules.d/powersave.rules
-#     src: ~/dot/ansible/roles/system/files/powersave.rules
-#     owner: root
-#     group: root
-#     mode: "0644"
-# - name: Touchpad
-#   become: true
-#   copy:
-#     dest: /etc/X11/xorg.conf.d/30-touchpad.conf
-#     src: ~/dot/ansible/roles/system/files/touchpad.conf
-#     owner: root
-#     group: root
-#     mode: "0644"
-#
-# - name: prefer libinput over synaptics
-#   become: true
-#   file:
-#     src: /usr/share/X11/xorg.conf.d/40-libinput.conf
-#     dest: /etc/X11/xorg.conf.d/40-libinput.conf
-#     state: link
 
-# - name: Install Sway Autotiling
-#   pip:
-#     name:
-#       - autotiling
-#       - flashfocus
-#
-# - name: Disable sudo systemctl disable NetworkManager-wait-online.service
-#   become: true
-#   ansible.builtin.systemd:
-#     name: NetworkManager-wait-online.service
-#     state: stopped
-#     enabled: no
+- name: Disable sudo systemctl disable NetworkManager-wait-online.service
+  become: true
+  ansible.builtin.systemd:
+    name: NetworkManager-wait-online.service
+    state: stopped
+    enabled: no
