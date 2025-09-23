@@ -30,8 +30,6 @@ environment {
   QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
   SDL_VIDEODRIVER "wayland"
   GSK_RENDERER "ngl"
-  XCURSOR_SIZE "24"
-  XCURSOR_THEME "Adwaita"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
@@ -39,14 +37,13 @@ cursor {
     xcursor-theme "Adwaita"
     xcursor-size 24
     hide-when-typing
-    hide-after-inactive-ms 1000
+    hide-after-inactive-ms 10000
 }
 
 output "eDP-2" {
     mode "2880x1800@120"
     scale 1.5
-    transform "normal"
-    position x=1280 y=0
+    variable-refresh-rate
 }
 
 debug {
@@ -56,64 +53,27 @@ debug {
 layout {
     gaps 16
     center-focused-column "never"
-    background-color "#000000"
-    // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
+    background-color "#1a1b26"
+
     preset-column-widths {
-        // Proportion sets the width as a fraction of the output width, taking gaps into account.
-        // For example, you can perfectly fit four windows sized "proportion 0.25" on an output.
-        // The default preset widths are 1/3, 1/2 and 2/3 of the output.
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-
-        // Fixed sets the width in logical pixels exactly.
-        // fixed 1920
     }
 
-    // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
-    // preset-window-heights { }
-
-    // You can change the default width of the new windows.
     default-column-width { proportion 0.5; }
-    // If you leave the brackets empty, the windows themselves will decide their initial width.
-    // default-column-width {}
 
-    // By default focus ring and border are rendered as a solid background rectangle
-    // behind windows. That is, they will show up through semitransparent windows.
-    // This is because windows using client-side decorations can have an arbitrary shape.
-    //
-    // If you don't like that, you should uncomment `prefer-no-csd` below.
-    // Niri will draw focus ring and border *around* windows that agree to omit their
-    // client-side decorations.
-    //
-    // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
-
-    // You can change how the focus ring looks.
     focus-ring {
-        width 3
-
-        // Colors can be set in a variety of ways:
-        // - CSS named colors: "red"
-        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
-
-        // Color of the ring on the active monitor.
+        width 4
         active-color "#07b5ef"
-        // Color of the ring on inactive monitors.
         inactive-color "#ffffff00"
+        active-gradient from="#f00f" to="#0f05" angle=45 in="oklch longer hue"
     }
 
-    // You can also add a border. It's similar to the focus ring, but always visible.
     border {
         off
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
     }
 
-    // You can enable drop shadows for windows.
     shadow {
         on
         draw-behind-window false
@@ -122,24 +82,18 @@ layout {
         offset x=0 y=5
         color "#0007"
     }
-
-    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
-    // You can think of them as a kind of outer gaps. They are set in logical pixels.
-    // Left and right struts will cause the next window to the side to always be visible.
-    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
-    // layer-shell panels and regular gaps.
-    struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
-    }
 }
 
 prefer-no-csd
 
 overview {
     backdrop-color "#1a1b26"
+    workspace-shadow {
+        softness 50
+        spread 20
+        offset x=0 y=10
+        color "#0007"
+    }
 }
 
 window-rule {
@@ -249,9 +203,6 @@ binds {
     XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "amdgpu_bl2"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl2"; }
 
-    // Open/close the Overview: a zoomed-out view of workspaces and windows.
-    // You can also move the mouse into the top-left hot corner,
-    // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
 
@@ -265,10 +216,10 @@ binds {
     Mod+Alt+K     { move-window-up-or-to-workspace-up; }
     Mod+Alt+L     { move-column-right; }
 
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    Mod+Left { focus-column-first; }
+    Mod+Right  { focus-column-last; }
+    Mod+Alt+Left { move-column-to-first; }
+    Mod+Alt+Right  { move-column-to-last; }
 
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
@@ -289,36 +240,16 @@ binds {
     Mod+Alt+8 { move-column-to-workspace 8; }
     Mod+Alt+9 { move-column-to-workspace 9; }
 
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Ctrl+1 { move-window-to-workspace 1; }
-
-    // Switches focus between the current and the previous workspace.
-    // Mod+Tab { focus-workspace-previous; }
-
-    // The following binds move the focused window in and out of a column.
-    // If the window is alone, they will consume it into the nearby column to the side.
-    // If the window is already in a column, they will expel it out.
     Mod+Comma  { consume-or-expel-window-left; }
     Mod+Period { consume-or-expel-window-right; }
 
     Mod+R { switch-preset-column-width; }
-    // Cycling through the presets in reverse order is also possible.
-    // Mod+R { switch-preset-column-width-back; }
-    Mod+Shift+R { switch-preset-window-height; }
-    Mod+Ctrl+R { reset-window-height; }
     Mod+M { maximize-column; }
     Mod+Alt+M { expand-column-to-available-width; }
     Mod+F { fullscreen-window; }
-    // Super+Super_L { maximize-column; }
-    // Mod+Shift+F { fullscreen-window; }
-
-    // Expand the focused column to space not taken up by other fully visible columns.
-    // Makes the column "fill the rest of the space".
-
     Mod+C { center-column; }
-
     // Center all fully visible columns on screen.
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Alt+C { center-visible-columns; }
 
     // Finer width adjustments.
     // This command can also:
@@ -344,18 +275,6 @@ binds {
     // rather than stacked on top of each other.
     Mod+W { toggle-column-tabbed-display; }
 
-    // Actions to switch layouts.
-    // Note: if you uncomment these, make sure you do NOT have
-    // a matching layout switch hotkey configured in xkb options above.
-    // Having both at once on the same hotkey will break the switching,
-    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
-
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
-
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
     // so they may, for example, forward the key presses as-is to a remote machine.
@@ -365,12 +284,4 @@ binds {
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-
-    // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
-
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
 }

@@ -17,10 +17,9 @@ if test -z "$sp_id"
     echo start
     niri msg action focus-workspace 99
     niri msg action spawn -- ghostty --class="folke.scratchpad"
-    exit 0
 else if test "$sp_workspace_id" = "$ws_id"
     echo hide
-    niri msg action focus-workspace "$ws_idx"
+    niri msg action focus-workspace-previous
 else
     echo show
     niri msg action focus-window --id "$sp_id"
