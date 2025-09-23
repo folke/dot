@@ -102,9 +102,10 @@ window-rule {
     draw-border-with-background false
 }
 
-spawn-at-startup "systemctl" "--user" "import-environment"
-spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XAUTHORITY"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+// spawn-at-startup "systemctl" "--user" "import-environment"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XAUTHORITY"
+// spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 spawn-at-startup "dms" "run"
 spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
@@ -123,6 +124,8 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "text-scaling-factor" "1"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-size" "24"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-light"
+// delay prefer-light to override other desktop environment settings
+spawn-sh-at-startup "sleep 5; gsettings set org.gnome.desktop.interface color-scheme prefer-light"
 
 config-notification {
     disable-failed
