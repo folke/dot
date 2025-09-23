@@ -2,7 +2,7 @@
   become: true
   copy:
     dest: /etc/howdy/config.ini
-    src: ~/dot/ansible/roles/system/files/howdy.ini
+    src: "roles/system/files/howdy.ini"
     owner: root
     group: root
     mode: "0744"

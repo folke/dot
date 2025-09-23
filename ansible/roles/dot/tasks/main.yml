@@ -5,7 +5,7 @@
 
 - name: Find .config files
   find:
-    paths: ~/dot/config/
+    paths: "{{ dot_repo_root }}/config/"
     recurse: no
     file_type: any
     hidden: yes
@@ -13,8 +13,8 @@
 
 - name: ~/.config/
   file:
-    src: "{{item.path}}"
-    dest: "~/.config/{{item.path | basename}}"
+    src: "{{ item.path }}"
+    dest: "~/.config/{{ item.path | basename }}"
     state: link
   loop: "{{ dot_config.files }}"
   loop_control:
@@ -43,7 +43,7 @@
 
 - name: nvim
   file:
-    src: ~/dot/nvim
+    src: "{{ dot_repo_root }}/nvim"
     dest: ~/.config/nvim
     state: link
 

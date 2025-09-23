@@ -1,5 +1,7 @@
 - name: Setup Linux Workstation
   hosts: local
+  vars:
+    dot_repo_root: "{{ playbook_dir | dirname }}"
   roles:
     - { role: packages, tags: ["packages"] }
     - { role: dot, tags: ["dot"] }

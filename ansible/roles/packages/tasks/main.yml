@@ -12,12 +12,19 @@
     path: /etc/sudoers.d/11-install-aur_builder
     line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
     create: yes
-    mode: 0644
+    mode: 0440
     validate: "visudo -cf %s"
+
+- name: Ensure paru is installed
+  become: true
+  ansible.builtin.package:
+    name: paru
+    state: present
 
 - name: Install packages (pacman)
   become: true
   become_user: aur_builder
+  become_method: sudo
   aur:
     state: present
     use: paru
@@ -128,7 +135,8 @@
       - ttf-dejavu
       - ttf-fira-code
       - ttf-firacode-nerd
-      - ttf-maple
+      - maplemono-ttf
+      - maplemono-nf
       - ttf-ms-fonts
       - ttf-nerd-fonts-symbols
       - ttf-nerd-fonts-symbols-mono

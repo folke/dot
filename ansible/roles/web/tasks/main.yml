@@ -1,6 +1,6 @@
 - name: Create Brave Apps
   template:
-    src: "~/dot/ansible/roles/web/templates/app.j2"
+    src: "roles/web/templates/app.j2"
     dest: "~/.local/share/applications/brave-{{item.name | lower | regex_replace(' ', '-')}}.desktop"
   loop:
     - { name: "Gmail", url: "https://mail.google.com/mail/u/0/#inbox" }

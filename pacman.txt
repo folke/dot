@@ -291,6 +291,7 @@ plymouth-theme-hexagon-hud-git
 pnpm
 podman
 pokemon-colorscripts-git
+polkit-gnome
 poppler-glib
 power-profiles-daemon
 procs
@@ -353,9 +354,12 @@ ttf-fira-code
 ttf-firacode-nerd
 ttf-liberation
 ttf-meslo-nerd
+ttf-ms-fonts
 ttf-nerd-fonts-symbols
 ttf-nerd-fonts-symbols-mono
 ttf-opensans
+ttf-victor-mono
+ttf-victor-mono-nerd
 udiskie
 ufw
 unrar
