@@ -370,6 +370,7 @@ unzip
 upower
 usb_modeswitch
 usbutils
+ventoy-bin
 vi
 vim
 vulkan-icd-loader
