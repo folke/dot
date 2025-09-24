@@ -32,6 +32,7 @@ environment {
   GSK_RENDERER "ngl"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
   WLR_NO_HARDWARE_CURSORS "1"
+  DMS_DISABLE_MATUGEN "1"
 }
 
 cursor {
@@ -197,30 +198,26 @@ window-rule {
 }
 
 binds {
-    Mod+Shift+Slash { show-hotkey-overlay; }
+    Mod+Return     { spawn "ghostty"; }
+    Mod+Alt+Return { spawn "~/.config/niri/scripts/dev"; } // Mapped to SUPER_R in keyd. Opens dev workspace with terminal
+    Mod+Alt+V      { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+    Mod+N          { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Space      { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+X          { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Shift+Alt+S    { spawn "grimblast" "--notify" "copy" "area"; } // Fn+F6
+    Mod+E          { spawn "nautilus" "--new-window"; }
+    Mod+Z          { spawn "zen-browser"; }
+    XF86Launch1    { spawn "rog-control-center"; }
+    XF86Launch4    { spawn "asusctl" "profile" "--next"; }
 
-    Mod+Return { spawn "ghostty"; }
-    Mod+Alt+Return { spawn "~/.config/niri/scripts/dev"; }
-    Mod+Alt+V { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-    Mod+N { spawn "dms" "ipc" "call" "notifications" "toggle"; }
-    Mod+Space  { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
-    Mod+X { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
-    Mod+Alt+X { quit skip-confirmation=true; }
-    Shift+Alt+S { spawn "grimblast" "--notify" "copy" "area"; } // Fn+F6
-
-    Mod+E { spawn "nautilus" "--new-window"; }
-    Mod+I { spawn "zen-browser"; }
-
-    XF86AudioLowerVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
-    XF86AudioMicMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
-    XF86AudioMute allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
-    XF86KbdBrightnessDown { spawn "asusctl" "--prev-kbd-bright"; }
-    XF86KbdBrightnessUp { spawn "asusctl" "--next-kbd-bright"; }
-    XF86Launch1 { spawn "rog-control-center"; }
-    XF86Launch4 { spawn "asusctl" "profile" "--next"; }
+    XF86AudioLowerVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
+    XF86AudioMicMute      allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
+    XF86AudioMute         allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
+    XF86AudioRaiseVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
+    XF86KbdBrightnessDown allow-when-locked=true { spawn "asusctl" "--prev-kbd-bright"; }
+    XF86KbdBrightnessUp   allow-when-locked=true { spawn "asusctl" "--next-kbd-bright"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "amdgpu_bl2"; }
-    XF86MonBrightnessUp allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl2"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl2"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
@@ -235,9 +232,9 @@ binds {
     Mod+Alt+K     { move-window-up-or-to-workspace-up; }
     Mod+Alt+L     { move-column-right; }
 
-    Mod+Left { focus-column-first; }
-    Mod+Right  { focus-column-last; }
-    Mod+Alt+Left { move-column-to-first; }
+    Mod+Left       { focus-column-first; }
+    Mod+Right      { focus-column-last; }
+    Mod+Alt+Left   { move-column-to-first; }
     Mod+Alt+Right  { move-column-to-last; }
 
     Mod+1 { focus-workspace 1; }
@@ -249,6 +246,7 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
+
     Mod+Alt+1 { move-column-to-workspace 1; }
     Mod+Alt+2 { move-column-to-workspace 2; }
     Mod+Alt+3 { move-column-to-workspace 3; }
@@ -262,22 +260,19 @@ binds {
     Mod+Comma  { consume-or-expel-window-left; }
     Mod+Period { consume-or-expel-window-right; }
 
-    Mod+R { switch-preset-column-width; }
-    Mod+M { maximize-column; }
-    Mod+Alt+M { expand-column-to-available-width; }
-    Mod+F { fullscreen-window; }
-    Mod+C { center-column; }
-    Mod+Alt+C { center-visible-columns; }
-
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+R         { switch-preset-column-width; }
+    Mod+M         { maximize-column; } // Mapped to SUPER_L in keyd
+    Mod+Alt+M     { expand-column-to-available-width; }
+    Mod+F         { fullscreen-window; }
+    Mod+C         { center-column; }
+    Mod+Alt+C     { center-visible-columns; }
+    Mod+Minus     { set-column-width "-10%"; }
+    Mod+Equal     { set-column-width "+10%"; }
     Mod+Alt+Minus { set-window-height "-10%"; }
     Mod+Alt+Equal { set-window-height "+10%"; }
-
-    Mod+T       { toggle-window-floating; }
-    Mod+Alt+T { switch-focus-between-floating-and-tiling; }
-
-    Mod+W { toggle-column-tabbed-display; }
+    Mod+T         { toggle-window-floating; }
+    Mod+Alt+T     { switch-focus-between-floating-and-tiling; }
+    Mod+W         { toggle-column-tabbed-display; }
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 }
