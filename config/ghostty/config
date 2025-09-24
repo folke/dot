@@ -41,11 +41,12 @@ keybind = super+shift+w=close_surface
 gtk-single-instance = true
 gtk-tabs-location = bottom
 gtk-wide-tabs = false
+gtk-toolbar-style = flat
 window-padding-y = 2,0
 window-padding-balance = true
 window-decoration = false
 
 # Other
 copy-on-select = clipboard
-shell-integration-features = cursor,sudo,no-title
+shell-integration-features = cursor,sudo,no-title,ssh-env,ssh-terminfo
 app-notifications = no-clipboard-copy
