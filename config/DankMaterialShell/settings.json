@@ -32,9 +32,51 @@
   "controlCenterShowNetworkIcon": true,
   "controlCenterShowBluetoothIcon": true,
   "controlCenterShowAudioIcon": true,
+  "controlCenterWidgets": [
+    {
+      "id": "volumeSlider",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "brightnessSlider",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "wifi",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "bluetooth",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "audioOutput",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "audioInput",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "nightMode",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "darkMode",
+      "enabled": true,
+      "width": 50
+    }
+  ],
   "showWorkspaceIndex": false,
   "showWorkspacePadding": true,
-  "showWorkspaceApps": true,
+  "showWorkspaceApps": false,
   "maxWorkspaceIcons": 3,
   "workspacesPerMonitor": true,
   "workspaceNameIcons": {},
@@ -61,7 +103,7 @@
     },
     {
       "id": "runningApps",
-      "enabled": false
+      "enabled": true
     }
   ],
   "topBarCenterWidgets": [
@@ -83,16 +125,25 @@
     }
   ],
   "topBarRightWidgets": [
-    "systemTray",
-    "clipboard",
-    "cpuUsage",
-    "battery",
+    {
+      "id": "systemTray",
+      "enabled": true
+    },
+    {
+      "id": "clipboard",
+      "enabled": true
+    },
+    {
+      "id": "cpuUsage",
+      "enabled": true
+    },
+    {
+      "id": "battery",
+      "enabled": true
+    },
     {
       "id": "controlCenterButton",
-      "enabled": true,
-      "showNetworkIcon": true,
-      "showBluetoothIcon": true,
-      "showAudioIcon": true
+      "enabled": true
     }
   ],
   "appLauncherViewMode": "list",

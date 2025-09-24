@@ -17,4 +17,4 @@ niri msg --json windows \
 # If the "dev" workspace is focused and the terminal is not present, spawn it
 test "$dev_is_focused" = true
 and test -z "$t_id"
-and niri msg action spawn -- ghostty --class="$class"
+and niri msg action spawn -- ghostty --class="$class" --working-directory="$HOME/dot" -e fish

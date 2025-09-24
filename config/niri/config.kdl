@@ -31,6 +31,7 @@ environment {
   SDL_VIDEODRIVER "wayland"
   GSK_RENDERER "ngl"
   ELECTRON_OZONE_PLATFORM_HINT "auto"
+  WLR_NO_HARDWARE_CURSORS "1"
 }
 
 cursor {
@@ -40,14 +41,22 @@ cursor {
     hide-after-inactive-ms 10000
 }
 
+// Screen when in Hybrid or Integrated graphics mode
 output "eDP-2" {
     mode "2880x1800@120"
     scale 1.5
-    variable-refresh-rate
+    // variable-refresh-rate
+}
+
+// Screen when in AsusMuxDgpu mode
+output "eDP-1" {
+    mode "2880x1800@120"
+    scale 1.5
+    // variable-refresh-rate
 }
 
 debug {
-    render-drm-device "/dev/dri/renderD129"
+    render-drm-device "/dev/dri/by-path/pci-0000:65:00.0-render" // AMD GPU
 }
 
 layout {
@@ -102,13 +111,17 @@ window-rule {
     draw-border-with-background false
 }
 
+clipboard {
+    disable-primary
+}
+
 // spawn-at-startup "systemctl" "--user" "import-environment"
 // spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XAUTHORITY"
 // spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 spawn-at-startup "dms" "run"
-spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+// spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-at-startup "udiskie"
 spawn-at-startup "journalctl-desktop-notification"
 spawn-at-startup "easyeffects" "--gapplication-service"
@@ -180,14 +193,13 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
+    Mod+Return { spawn "ghostty"; }
     Mod+Alt+Return { spawn "~/.config/niri/scripts/dev"; }
-
-    Mod+Alt+V hotkey-overlay-title="Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-    Mod+N hotkey-overlay-title="Notification Center" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
-    Mod+Space hotkey-overlay-title="Application Launcher" { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
-    Mod+X hotkey-overlay-title="Power Menu" { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Mod+Alt+V { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+    Mod+N { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+    Mod+Space  { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
+    Mod+X { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
+    Mod+Alt+X { quit skip-confirmation=true; }
     Shift+Alt+S { spawn "grimblast" "--notify" "copy" "area"; } // Fn+F6
 
     Mod+E { spawn "nautilus" "--new-window"; }
@@ -249,40 +261,17 @@ binds {
     Mod+Alt+M { expand-column-to-available-width; }
     Mod+F { fullscreen-window; }
     Mod+C { center-column; }
-    // Center all fully visible columns on screen.
     Mod+Alt+C { center-visible-columns; }
 
-    // Finer width adjustments.
-    // This command can also:
-    // * set width in pixels: "1000"
-    // * adjust width in pixels: "-5" or "+5"
-    // * set width as a percentage of screen width: "25%"
-    // * adjust width as a percentage of screen width: "-10%" or "+10%"
-    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-    // set-column-width "100" will make the cmn occupy 200 physical screen pixels.
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
+    Mod+Alt+Minus { set-window-height "-10%"; }
+    Mod+Alt+Equal { set-window-height "+10%"; }
 
-    // Finer height adjustments when in column with other windows.
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
-
-    // Move the focused window between the floating and the tiling layout.
     Mod+T       { toggle-window-floating; }
     Mod+Alt+T { switch-focus-between-floating-and-tiling; }
 
-    // Toggle tabbed column display mode.
-    // Windows in this column will appear as vertical tabs,
-    // rather than stacked on top of each other.
     Mod+W { toggle-column-tabbed-display; }
 
-    // Applications such as remote-desktop clients and software KVM switches may
-    // request that niri stops processing the keyboard shortcuts defined here
-    // so they may, for example, forward the key presses as-is to a remote machine.
-    // It's a good idea to bind an escape hatch to toggle the inhibitor,
-    // so a buggy application can't hold your session hostage.
-    //
-    // The allow-inhibiting=false property can be applied to other binds as well,
-    // which ensures niri always processes them, even when an inhibitor is active.
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 }

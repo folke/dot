@@ -13,6 +13,7 @@ alsa-plugins
 alsa-tools
 alsa-utils
 amd-ucode
+amdgpu_top
 ansible
 ansible-aur-git
 aria2
@@ -100,6 +101,7 @@ fsarchiver
 fwupd
 gammastep
 gdm
+gdm-settings
 gedit
 ghostty
 git
@@ -142,6 +144,7 @@ gnome-usage
 gnome-user-docs
 gnome-user-share
 gnome-weather
+gpu-viewer
 grc
 grilo-plugins
 grim
@@ -378,6 +381,7 @@ which
 wireless-regdb
 wireplumber
 wl-clip-persist
+wlr-randr
 wpa_supplicant
 xdg-desktop-portal-gnome
 xdg-desktop-portal-hyprland
