@@ -51,3 +51,12 @@
     name: NetworkManager-wait-online.service
     state: stopped
     enabled: no
+
+- name: /etc/supergfxd.conf
+  become: true
+  copy:
+    dest: /etc/supergfxd.conf
+    src: roles/system/files/supergfxd.conf
+    owner: root
+    group: root
+    mode: "0644"
