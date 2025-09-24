@@ -1,0 +1,41 @@
+#!/usr/bin/env fish
+
+function watch
+    niri msg --json event-stream \
+        | jq -rc --unbuffered 'select(.WindowOpenedOrChanged)
+              | .WindowOpenedOrChanged.window
+              | [.id, .app_id, .title] | @sh' \
+        | while read -t -a parts
+        set -l id $parts[1]
+        set -l app $parts[2]
+        set -l title (string join "," $parts[3..-1])
+
+        set -l key "$app:$title"
+        set -l filters
+
+        set -a filters "zen:Sign in.*"
+        set -a filters "zen:Extension:.*"
+
+        set -l matches false
+        for filter in $filters
+            if string match -rq -- "$filter" "$key"
+                set matches true
+                break
+            end
+        end
+
+        set -l icon (test "$matches" = true; and echo "✅"; or echo "❌")
+        echo "$icon [$app:$id] $title "
+
+        if test "$matches" = false
+            continue
+        end
+        niri msg action move-window-to-floating --id $id
+        niri msg action set-window-width "30%" --id $id
+        niri msg action set-window-height "60%" --id $id
+        niri msg action center-window --id $id
+
+    end
+end
+
+watch

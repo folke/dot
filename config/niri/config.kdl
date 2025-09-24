@@ -130,6 +130,7 @@ spawn-at-startup "xhost si:localuser:root"
 spawn-sh-at-startup "sleep 3; amixer -c2 set Master 100% unmute"
 spawn-sh-at-startup "sleep 3; rog-control-center"
 spawn-sh-at-startup "sleep 3; safeeyes"
+spawn-at-startup "~/.config/niri/scripts/dynamic-rules"
 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Arc"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "icon-theme" "Adwaita"
