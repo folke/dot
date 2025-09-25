@@ -197,6 +197,8 @@ window-rule {
     open-on-workspace "dev"
 }
 
+screenshot-path null
+
 binds {
     Mod+Return     { spawn "ghostty"; }
     Mod+Alt+Return { spawn "~/.config/niri/scripts/dev"; } // Mapped to SUPER_R in keyd. Opens dev workspace with terminal
@@ -204,7 +206,7 @@ binds {
     Mod+N          { spawn "dms" "ipc" "call" "notifications" "toggle"; }
     Mod+Space      { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+X          { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
-    Shift+Alt+S    { spawn "grimblast" "--notify" "copy" "area"; } // Fn+F6
+    Shift+Alt+S    { screenshot show-pointer=false; } // Fn+F6
     Mod+E          { spawn "nautilus" "--new-window"; }
     Mod+Z          { spawn "zen-browser"; }
     XF86Launch1    { spawn "rog-control-center"; }
