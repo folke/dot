@@ -1,4 +1,6 @@
 - import_tasks: howdy.yml
+- import_tasks: greetd.yml
+  tags: greetd
 
 - name: Keyd
   become: true

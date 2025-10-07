@@ -1,0 +1,56 @@
+- name: Deploy greetd configs
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/greetd/{{ item | basename }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ lookup('fileglob', 'roles/system/files/greetd/*', wantlist=True) }}"
+  tags: greetd
+
+- name: Make greetd start script executable
+  become: true
+  file:
+    path: /etc/greetd/start-dms.sh
+    mode: "0755"
+
+- name: Create /etc/greetd/.dms directory
+  become: true
+  file:
+    path: /etc/greetd/.dms
+    state: directory
+    owner: greeter
+    group: root
+    mode: "0755"
+
+- name: Symlink DMS settings.json to user config
+  become: true
+  file:
+    src: /home/folke/.config/DankMaterialShell/settings.json
+    dest: /etc/greetd/.dms/settings.json
+    state: link
+    force: true
+
+- name: Symlink DMS session.json to user state
+  become: true
+  file:
+    src: /home/folke/.local/state/DankMaterialShell/session.json
+    dest: /etc/greetd/.dms/session.json
+    state: link
+    force: true
+
+- name: Symlink DMS colors.json to user cache
+  become: true
+  file:
+    src: /home/folke/.cache/quickshell/dankshell/dms-colors.json
+    dest: /etc/greetd/.dms/colors.json
+    state: link
+    force: true
+
+- name: Enable greetd service
+  become: true
+  ansible.builtin.systemd_service:
+    state: started
+    enabled: true
+    name: greetd
