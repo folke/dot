@@ -1,9 +1,10 @@
 {
   "currentThemeName": "blue",
   "customThemeFile": "",
-  "topBarTransparency": 0.84,
-  "topBarWidgetTransparency": 0.59,
-  "popupTransparency": 0.92,
+  "matugenScheme": "scheme-tonal-spot",
+  "dankBarTransparency": 0.63,
+  "dankBarWidgetTransparency": 1,
+  "popupTransparency": 0.91,
   "dockTransparency": 1,
   "use24HourClock": true,
   "useFahrenheit": false,
@@ -88,7 +89,7 @@
   "clockDateFormat": "",
   "lockDateFormat": "",
   "mediaSize": 1,
-  "topBarLeftWidgets": [
+  "dankBarLeftWidgets": [
     {
       "id": "launcherButton",
       "enabled": true
@@ -106,7 +107,7 @@
       "enabled": true
     }
   ],
-  "topBarCenterWidgets": [
+  "dankBarCenterWidgets": [
     {
       "id": "notificationButton",
       "enabled": true
@@ -124,7 +125,7 @@
       "enabled": true
     }
   ],
-  "topBarRightWidgets": [
+  "dankBarRightWidgets": [
     {
       "id": "systemTray",
       "enabled": true
@@ -150,15 +151,18 @@
   "spotlightModalViewMode": "list",
   "networkPreference": "auto",
   "iconTheme": "System Default",
-  "useOSLogo": false,
-  "osLogoColorOverride": "#ffffff",
-  "osLogoBrightness": 0.5,
-  "osLogoContrast": 1,
-  "wallpaperDynamicTheming": true,
+  "launcherLogoMode": "apps",
+  "launcherLogoCustomPath": "",
+  "launcherLogoColorOverride": "#ffffff",
+  "launcherLogoColorInvertOnMode": false,
+  "launcherLogoBrightness": 0.5,
+  "launcherLogoContrast": 1,
+  "launcherLogoSizeOffset": 0,
   "fontFamily": "Inter Variable",
   "monoFontFamily": "Fira Code",
   "fontWeight": 400,
-  "fontScale": 1.1,
+  "fontScale": 1,
+  "dankBarFontScale": 1.2000000000000002,
   "notepadUseMonospace": true,
   "notepadFontFamily": "",
   "notepadFontSize": 14,
@@ -169,22 +173,33 @@
   "qtThemingEnabled": false,
   "showDock": false,
   "dockAutoHide": false,
-  "cornerRadius": 8,
+  "dockGroupByApp": false,
+  "dockOpenOnOverview": false,
+  "dockPosition": 1,
+  "dockSpacing": 4,
+  "dockBottomGap": 0,
+  "cornerRadius": 10,
   "notificationOverlayEnabled": true,
-  "topBarAutoHide": false,
-  "topBarOpenOnOverview": false,
-  "topBarVisible": true,
-  "topBarSpacing": 0,
-  "topBarBottomGap": 0,
-  "topBarInnerPadding": 0,
-  "topBarSquareCorners": true,
-  "topBarNoBackground": false,
-  "topBarGothCornersEnabled": false,
+  "dankBarAutoHide": false,
+  "dankBarOpenOnOverview": false,
+  "dankBarVisible": true,
+  "dankBarSpacing": 0,
+  "dankBarBottomGap": 0,
+  "dankBarInnerPadding": 0,
+  "dankBarSquareCorners": true,
+  "dankBarNoBackground": false,
+  "dankBarGothCornersEnabled": false,
+  "dankBarBorderEnabled": false,
+  "dankBarPosition": 0,
   "lockScreenShowPowerActions": true,
   "hideBrightnessSlider": false,
   "widgetBackgroundColor": "sth",
+  "surfaceBase": "sc",
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
-  "screenPreferences": {}
+  "notificationPopupPosition": 0,
+  "osdAlwaysShowValue": false,
+  "screenPreferences": {},
+  "animationSpeed": 2
 }

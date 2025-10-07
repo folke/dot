@@ -40,6 +40,7 @@ conflictstyle = diff3
 
 [diff]
 colorMoved = default
+	tool = nvimdiff
 
 [pull]
 rebase = true

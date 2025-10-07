@@ -24,3 +24,7 @@ config/gtk-4.0/dank-colors.css
 config/kitty/dank-theme.conf
 config/niri/dankshell-colors.kdl
 config/DankMaterialShell/firefox.css
+config/niri/dms
+config/zellij/config.kdl.bak
+config/zellij/config.kdl.bak.1
+config/zellij/config.kdl.new

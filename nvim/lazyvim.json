@@ -1,11 +1,13 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
+    "lazyvim.plugins.extras.ai.copilot-native",
+    "lazyvim.plugins.extras.ai.sidekick",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.editor.dial",
     "lazyvim.plugins.extras.editor.inc-rename",
     "lazyvim.plugins.extras.editor.mini-diff",
+    "lazyvim.plugins.extras.formatting.biome",
     "lazyvim.plugins.extras.formatting.prettier",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
@@ -21,7 +23,7 @@
   "install_version": 8,
   "news": {
     "NEWS.md": "11866",
-    "doc/news.txt": "15552"
+    "doc/news.txt": "15781"
   },
   "version": 8
 }

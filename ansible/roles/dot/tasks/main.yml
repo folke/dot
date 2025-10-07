@@ -69,11 +69,15 @@
   copy:
     dest: ~/.gnupg/gpg-agent.conf
     content: "pinentry-program /bin/pinentry"
-
 # npm/pnpm
-- name: .npmrc
-  copy:
-    dest: ~/.npmrc
-    content: |-
-      global-dir={{ lookup('env', 'HOME') }}/.pnpm-global
-      global-bin-dir={{ lookup('env', 'HOME') }}/.local/bin/pnpm-bins
+# - name: .npmrc
+#   copy:
+#     dest: ~/.npmrc
+#     content: |-
+#       global-dir={{ lookup('env', 'HOME') }}/.pnpm-global
+#       global-bin-dir={{ lookup('env', 'HOME') }}/.local/bin/pnpm-bins
+#
+# "@github/copilot": "^0.0.328",
+#  4   │         "@google/gemini-cli": "^0.6.1",
+#  5   │         "devmoji": "^2.3.0",
+#  6   │         "prettier": "^3.6.2"

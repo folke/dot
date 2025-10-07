@@ -17,7 +17,6 @@ fish_add_path ~/Library/Python/3.{8,9}/bin
 fish_add_path /usr/local/opt/sqlite/bin
 fish_add_path /usr/local/sbin
 fish_add_path ~/.gem/ruby/2.6.0/bin
-fish_add_path ~/.local/bin/pnpm-bins
 fish_add_path ~/.local/share/bob-nvim/bin
 fish_add_path ~/.local/share/bob-nvim/nvim-linux64/bin
 fish_add_path /var/lib/flatpak/exports/bin/
@@ -62,7 +61,6 @@ abbr -a --position anywhere --set-cursor -- -h "-h 2>&1 | bat --plain --language
 abbr j just
 
 # Tmux
-abbr t tmux
 abbr tc 'tmux attach'
 abbr ta 'tmux attach -t'
 abbr tad 'tmux attach -d -t'
@@ -80,6 +78,8 @@ alias la 'eza --color=always --icons --group-directories-first --all'
 alias ll 'eza --color=always --icons --group-directories-first --all --long'
 abbr l ll
 abbr ncdu "ncdu --color dark"
+abbr b btm
+abbr h htop
 
 # Editor
 abbr vim nvim

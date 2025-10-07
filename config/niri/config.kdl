@@ -172,22 +172,23 @@ window-rule {
 
 // Dialogs window rule
 window-rule{
-  match app-id="confirm"
-  match app-id="pavucontrol"
-  match app-id="blueman"
-  match app-id="nm-connection-editor"
-  match app-id="cpupower"
-  match app-id="rog-control-center"
-  match app-id="jamesdsp"
-  match app-id="easyeffects"
-  match app-id="Hello"
-  match app-id="xdg-desktop-portal-gtk"
-  match app-id="system-config-printer"
-  match app-id="ghostty_journalctl"
-  match title=r#".*Extension.*Bitwarden.*"#
-  open-floating true
-  default-column-width { proportion 0.45; }
-  default-window-height { proportion 0.45; }
+    match app-id="confirm"
+    match app-id="pavucontrol"
+    match app-id="blueman"
+    match app-id="nm-connection-editor"
+    match app-id="org.gnome.PowerStats"
+    match app-id="cpupower"
+    match app-id="rog-control-center"
+    match app-id="jamesdsp"
+    match app-id="easyeffects"
+    match app-id="Hello"
+    match app-id="xdg-desktop-portal-gtk"
+    match app-id="system-config-printer"
+    match app-id="ghostty_journalctl"
+    match title=r#".*Extension.*Bitwarden.*"#
+    open-floating true
+    default-column-width { proportion 0.45; }
+    default-window-height { proportion 0.45; }
 }
 
 // Floating Terminal
@@ -218,8 +219,8 @@ binds {
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
     XF86KbdBrightnessDown allow-when-locked=true { spawn "asusctl" "--prev-kbd-bright"; }
     XF86KbdBrightnessUp   allow-when-locked=true { spawn "asusctl" "--next-kbd-bright"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "amdgpu_bl2"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl2"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }

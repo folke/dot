@@ -9,7 +9,7 @@ require("keys").setup(config)
 
 -- config.front_end = "WebGpu"
 -- config.front_end = "OpenGL" -- current work-around for https://github.com/wez/wezterm/issues/4825
-config.enable_wayland = true
+config.enable_wayland = false
 config.webgpu_power_preference = "HighPerformance"
 -- config.animation_fps = 1
 config.cursor_blink_ease_in = "Constant"

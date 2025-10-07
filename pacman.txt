@@ -7,11 +7,13 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adw-gtk-theme
+aider-chat-venv
 alacritty
 alsa-firmware
 alsa-plugins
 alsa-tools
 alsa-utils
+amazon-q-bin
 amd-ucode
 amdgpu_top
 ansible
@@ -34,12 +36,14 @@ bluez-hid2hci
 bluez-libs
 bluez-utils
 bob
+bottom
 brave-bin
 brightnessctl
 broot
 btop
 btrfs-assistant
 btrfs-progs
+bun-bin
 cachyos-fish-config
 cachyos-hello
 cachyos-hooks
@@ -48,8 +52,6 @@ cachyos-keyring
 cachyos-micro-settings
 cachyos-mirrorlist
 cachyos-packageinstaller
-cachyos-plymouth-bootanimation
-cachyos-plymouth-theme
 cachyos-rate-mirrors
 cachyos-settings
 cachyos-snapper-support
@@ -67,6 +69,7 @@ cryptsetup
 cups
 cups-pdf
 decibels
+deno
 device-mapper
 dex
 dhclient
@@ -100,8 +103,6 @@ freecad
 fsarchiver
 fwupd
 gammastep
-gdm
-gdm-settings
 gedit
 ghostty
 git
@@ -146,11 +147,13 @@ gnome-user-share
 gnome-weather
 gpu-viewer
 grc
+greetd
 grilo-plugins
 grim
 grimblast-git
 gst-libav
 gst-plugin-pipewire
+gst-plugin-va
 gst-plugins-bad
 gst-plugins-ugly
 gum
@@ -200,7 +203,9 @@ lazydocker
 lazygit
 lazyjournal
 less
+lib32-mesa
 lib32-nvidia-utils
+lib32-opencl-mesa
 lib32-opencl-nvidia
 lib32-vulkan-icd-loader
 lib32-vulkan-radeon
@@ -240,6 +245,7 @@ mdadm
 mdcat
 meld
 mermaid-cli
+mesa
 mesa-utils
 micro
 microsoft-edge-dev-bin
@@ -273,8 +279,10 @@ nvidia-prime
 nvidia-settings
 nvidia-utils
 nvtop
+obsidian
 octopi
 openai-codex
+opencl-mesa
 opencl-nvidia
 opendesktop-fonts
 openssh
@@ -289,8 +297,6 @@ pipewire-libcamera
 pipewire-pulse
 playerctl
 plocate
-plymouth
-plymouth-theme-hexagon-hud-git
 pnpm
 podman
 pokemon-colorscripts-git
@@ -325,6 +331,7 @@ rygel
 s-nail
 safeeyes
 sbctl
+seahorse
 selene
 sg3_utils
 shell-color-scripts-git
@@ -335,7 +342,9 @@ snapper
 snapshot
 socat
 sof-firmware
+speech-dispatcher
 starship
+stylua
 sudo
 supergfxctl
 sushi
@@ -345,7 +354,9 @@ system-config-printer
 tcpdump
 tecla
 tectonic
+terminus-font
 texinfo
+tmux
 tokei
 topgrade
 totem
@@ -373,6 +384,7 @@ usbutils
 ventoy-bin
 vi
 vim
+visual-studio-code-bin
 vulkan-icd-loader
 vulkan-radeon
 wev
@@ -404,6 +416,7 @@ xwayland-satellite
 yelp
 yt-dlp
 zam-plugins
+zellij
 zen-browser-bin
 zip
 zoxide

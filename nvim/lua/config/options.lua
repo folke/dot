@@ -37,3 +37,21 @@ vim.g.deprecation_warnings = true
 vim.env.FZF_DEFAULT_OPTS = ""
 vim.g.ai_cmp = false
 vim.g.lazyvim_blink_main = not jit.os:find("Windows")
+
+vim.filetype.add({
+  extension = {
+    overlay = "dts",
+    keymap = "dts",
+  },
+  pattern = {
+    [".*"] = {
+      function(path, bufnr)
+        local content = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)[1] or ""
+        if content:match("^%w+ %d+ %d%d:%d%d:") then
+          return "log"
+        end
+      end,
+      { priority = -math.huge },
+    },
+  },
+})
