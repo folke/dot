@@ -18,4 +18,4 @@ user = "folke"
 # in the `video` group.
 user = "greeter"
 
-command = "/etc/greetd/start-dms.sh"
+command = "/etc/greetd/greet-niri.sh"

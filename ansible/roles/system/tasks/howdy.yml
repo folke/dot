@@ -12,7 +12,7 @@
     pam_files:
       - sudo
       - login
-      - gdm-password
+      # - gdm-password
       # - system-local-login
       - hyprlock
       # - su
