@@ -13,14 +13,7 @@ return {
       use_local_fs = true,
     },
   },
-  {
-    "zbirenbaum/copilot.lua",
-    optional = true,
-    opts = {
-      filetypes = { ["*"] = true },
-    },
-  },
-
+  { "sindrets/diffview.nvim", opts = {}, cmd = { "DiffviewOpen" } },
   {
     "nvim-mini/mini.align",
     opts = {},

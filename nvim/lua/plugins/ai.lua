@@ -1,5 +1,23 @@
 return {
-  { "zbirenbaum/copilot.lua" },
+  {
+    "folke/sidekick.nvim",
+    opts = {
+      cli = {
+        mux = {
+          -- backend = "tmux",
+          enabled = true,
+          -- create = "window",
+        },
+        tools = {
+          debug = {
+            -- print env and read -p "any key to continue"
+            cmd = { "bash", "-c", "env | sort | bat -l env" },
+          },
+        },
+      },
+    },
+  },
+  -- { "zbirenbaum/copilot.lua" },
   {
     "olimorris/codecompanion.nvim",
     enabled = false,

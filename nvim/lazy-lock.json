@@ -1,10 +1,10 @@
 {
   "SchemaStore.nvim": { "branch": "main", "commit": "f3d6d9afc8f09bf4dec91bf2bb5a40fcfe7ea477" },
-  "blink.cmp": { "branch": "main", "commit": "d918ebde3a71c0fcbdd6e8f8c146d986d7aaf76f" },
+  "blink.cmp": { "branch": "main", "commit": "8483171db6c780545589e63160b020c6af3dedf4" },
   "bufferline.nvim": { "branch": "main", "commit": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3" },
-  "catppuccin": { "branch": "main", "commit": "e79d09fa347b367e0e7f693bfe87dba932a8cbd1" },
+  "catppuccin": { "branch": "main", "commit": "af58927c55c9f3272c940ff02b3cee94a1249f26" },
   "codecompanion.nvim": { "branch": "main", "commit": "6d26211b18ccbf35a7c9925f77878dcd22fe2cb9" },
-  "conform.nvim": { "branch": "master", "commit": "9d859cbfbde7a1bd1770e7c97aef30ec5a237a71" },
+  "conform.nvim": { "branch": "master", "commit": "fbcb4fa7f34bfea9be702ffff481a8e336ebf6ed" },
   "dial.nvim": { "branch": "master", "commit": "f0404ec1f83a03f2c3457e60087c6331d1cbb83f" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "friendly-snippets": { "branch": "main", "commit": "572f5660cf05f8cd8834e096d7b4c921ba18e175" },
@@ -34,8 +34,8 @@
   "octo.nvim": { "branch": "master", "commit": "2a758bd6f121c63cd0d0a749ffda89993f869101" },
   "peek.nvim": { "branch": "master", "commit": "5820d937d5414baea5f586dc2a3d912a74636e5b" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
-  "render-markdown.nvim": { "branch": "main", "commit": "ea3678daff66656a9e1c20914d204b7c841c5030" },
+  "render-markdown.nvim": { "branch": "main", "commit": "f3321d0b74d61a8305cf19d891f3c7046bc4dac2" },
   "treesj": { "branch": "main", "commit": "4770492244ccecdc9b01e0e81fa8f2f6b4a23841" },
-  "venv-selector.nvim": { "branch": "main", "commit": "dbd117478f1b609c620d88e2fc5f099f374d3d54" },
+  "venv-selector.nvim": { "branch": "main", "commit": "ffb04a0aba6dc986da3e1e4da926f8a1f6434bf5" },
   "yanky.nvim": { "branch": "main", "commit": "04775cc6e10ef038c397c407bc17f00a2f52b378" }
 }

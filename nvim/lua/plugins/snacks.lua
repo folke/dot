@@ -102,7 +102,13 @@ return {
     keys = {
       { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Open" },
       { "<leader>dd", function() Snacks.picker.grep({search = "^(?!\\s*--).*\\b(bt|dd)\\(", args = {"-P"}, live = false, ft = "lua"}) end, desc = "Debug Searcher" },
-      { "<leader>t", function() Snacks.scratch({ icon = " ", name = "Todo", ft = "markdown", file = "~/dot/TODO.md" }) end, desc = "Todo List" },
+      { "<leader>t", function() 
+        local file = vim.uv.fs_stat("TODO.md") and "TODO.md" or "~/dot/TODO.md"
+        Snacks.scratch({ icon = " ", name = "Todo", ft = "markdown", file = file })
+      end, desc = "Todo List" },
+      { "<leader>T", function() 
+        Snacks.scratch({ icon = " ", name = "Todo", ft = "markdown", file = "~/dot/TODO.md" })
+      end, desc = "Todo List" },
       {
         "<leader>dpd",
         desc = "Debug profiler",
