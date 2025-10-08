@@ -80,6 +80,7 @@ dmraid
 dms-shell-git
 dnsmasq
 dosfstools
+downgrade
 dua-cli
 duf
 dust
@@ -95,6 +96,7 @@ ethtool
 evince
 exfatprogs
 f2fs-tools
+feh
 ffmpegthumbnailer
 file-roller
 firefox
@@ -225,6 +227,7 @@ linux-cachyos-lts
 linux-cachyos-lts-nvidia-open
 linux-cachyos-nvidia-open
 linux-firmware
+linux-firmware-amdgpu
 linux-firmware-cirrus
 logrotate
 loupe
@@ -281,7 +284,6 @@ nvidia-utils
 nvtop
 obsidian
 octopi
-openai-codex
 opencl-mesa
 opencl-nvidia
 opendesktop-fonts
@@ -291,6 +293,7 @@ pacman-contrib
 papers
 paru
 pavucontrol
+pax-utils
 perl
 pipewire-alsa
 pipewire-libcamera
@@ -343,6 +346,7 @@ snapshot
 socat
 sof-firmware
 speech-dispatcher
+spotify-launcher
 starship
 stylua
 sudo

@@ -19,7 +19,6 @@ image/tiff=org.gnome.Loupe.desktop
 image/png=org.gnome.Loupe.desktop
 image/webp=org.gnome.Loupe.desktop
 text/plain=nvim.desktop
-text/markdown=nvim.desktop
 text/x-log=nvim.desktop
 text/markdown=nvim.desktop
 application/javascript=nvim.desktop
