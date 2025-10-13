@@ -80,6 +80,7 @@
       # dev
       - fnm-bin
       - git
+      - git-crypt
       - git-delta
       - github-cli
       - httpie

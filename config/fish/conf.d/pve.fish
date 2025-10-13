@@ -14,15 +14,7 @@ function pct_enter
     pve pct enter $id
 end
 
-function pve-ssh-copy-id -d "Copy the SSH public key to a Proxmox VM/LXC" -a name
-    set cid $argv[1]
-    echo "Copying SSH public key to $cid"
-
-    cat ~/.ssh/id_ed25519.pub |
-        ssh $node bash -c "pct exec $cid -- bash -c \"mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys\""
-end
-
-
 function win
+    test -z "$PVE_API_KEY"; and echo "PVE_API_KEY not set" and return 1
     cv4pve-pepper --api-token $PVE_API_KEY --host 10.0.0.10 --viewer (which remote-viewer) --vmid 106 --start-or-resume
 end

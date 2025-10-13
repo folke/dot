@@ -7,6 +7,7 @@ adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-han-sans-kr-fonts
 adw-gtk-theme
+age
 aider-chat-venv
 alacritty
 alsa-firmware
@@ -110,6 +111,7 @@ gammastep
 gedit
 ghostty
 git
+git-crypt
 git-delta
 github-cli
 glances
@@ -348,6 +350,7 @@ snapper
 snapshot
 socat
 sof-firmware
+sops
 speech-dispatcher
 spotify-launcher
 spotify-player
