@@ -9,6 +9,7 @@
     "lazyvim.plugins.extras.editor.mini-diff",
     "lazyvim.plugins.extras.formatting.biome",
     "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.ansible",
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
     "lazyvim.plugins.extras.lang.php",
@@ -23,7 +24,7 @@
   "install_version": 8,
   "news": {
     "NEWS.md": "11866",
-    "doc/news.txt": "15781"
+    "doc/news.txt": "16328"
   },
   "version": 8
 }

@@ -17,7 +17,7 @@ amazon-q-bin
 amd-ucode
 amdgpu_top
 ansible
-ansible-aur-git
+ansible-lint
 aria2
 aspell
 asusctl
@@ -28,6 +28,7 @@ baobab
 base
 base-devel
 bash-completion
+bash-language-server
 bind
 blender
 blueman
@@ -68,6 +69,7 @@ cpupower
 cryptsetup
 cups
 cups-pdf
+cv4pve-pepper-git
 decibels
 deno
 device-mapper
@@ -147,6 +149,7 @@ gnome-usage
 gnome-user-docs
 gnome-user-share
 gnome-weather
+gotify-desktop
 gpu-viewer
 grc
 greetd
@@ -347,6 +350,7 @@ socat
 sof-firmware
 speech-dispatcher
 spotify-launcher
+spotify-player
 starship
 stylua
 sudo
@@ -388,6 +392,7 @@ usbutils
 ventoy-bin
 vi
 vim
+virt-viewer
 visual-studio-code-bin
 vulkan-icd-loader
 vulkan-radeon
@@ -417,6 +422,7 @@ xorg-xinput
 xorg-xkill
 xorg-xrandr
 xwayland-satellite
+yazi
 yelp
 yt-dlp
 zam-plugins
