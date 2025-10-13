@@ -3,8 +3,7 @@ set nvim ~/.local/share/bob/nvim-used
 
 function bob_update
     read -f used <$bob/used
-    test -L $nvim; and unlink $nvim
-    ln -sfT $bob/$used $nvim
+    ln -sfn $bob/$used $nvim
 end
 
 function bob --wraps bob
