@@ -1,31 +1,13 @@
 # - import_tasks: repos.yml
-- name: Create the `aur_builder` user
-  become: true
-  ansible.builtin.user:
-    name: aur_builder
-    create_home: yes
-    group: wheel
-
-- name: Allow the `aur_builder` user to run `sudo pacman` without a password
-  become: true
-  ansible.builtin.lineinfile:
-    path: /etc/sudoers.d/11-install-aur_builder
-    line: "aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman"
-    create: yes
-    mode: 0440
-    validate: "visudo -cf %s"
-
 - name: Ensure paru is installed
   become: true
   ansible.builtin.package:
     name: paru
     state: present
 
-- name: Install packages (pacman)
+- name: Install packages (paru)
   become: true
-  become_user: aur_builder
-  become_method: sudo
-  aur:
+  kewlfft.aur.aur:
     state: present
     use: paru
     name:
@@ -60,7 +42,7 @@
       - hyprpolkitagent
       - hyprsunset
       - pavucontrol
-      - rofi-wayland
+      - rofi
 
       # niri
       - niri
@@ -143,3 +125,7 @@
       - ttf-opensans
       - ttf-victor-mono
       - ttf-victor-mono-nerd
+
+      # Homelab
+      - cv4pve-pepper-git
+      - virt-viewer
