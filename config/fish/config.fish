@@ -10,8 +10,8 @@ set -gx fish_cursor_visual block
 set -gx fish_cursor_replace_one underscore
 
 # Path
-set -x fish_user_paths
-fish_add_path /bin
+set -e fish_user_paths
+# fish_add_path /bin
 fish_add_path ~/.cargo/bin
 fish_add_path ~/.bun/bin
 fish_add_path ~/.local/bin
@@ -20,8 +20,6 @@ fish_add_path ~/Library/Python/3.{8,9}/bin
 fish_add_path /usr/local/opt/sqlite/bin
 fish_add_path /usr/local/sbin
 fish_add_path ~/.gem/ruby/2.6.0/bin
-fish_add_path ~/.local/share/bob-nvim/bin
-fish_add_path ~/.local/share/bob-nvim/nvim-linux64/bin
 fish_add_path /var/lib/flatpak/exports/bin/
 fish_add_path ~/.dotnet/tools
 fish_add_path ~/.local/share/mise/shims
