@@ -12,7 +12,7 @@
 - name: Make greetd start script executable
   become: true
   file:
-    path: /etc/greetd/start-dms.sh
+    path: /etc/greetd/greet-niri.sh
     mode: "0755"
 
 - name: Create /etc/greetd/.dms directory

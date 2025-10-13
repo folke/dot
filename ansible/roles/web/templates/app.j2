@@ -4,5 +4,5 @@ Version=1.0
 Terminal=false
 Type=Application
 Name={{item.name}}
-Exec=/bin/brave-beta --app="{{item.url}}"
+Exec=/bin/brave --app="{{item.url}}"
 Icon={% if item.icon is defined %}{{item.icon}}{% else %}{{item.name | lower | regex_replace(' ', '-')}}{% endif %}
