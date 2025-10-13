@@ -27,7 +27,7 @@ return {
                 inferParamType = true,
               },
               diagnostics = {
-                disable = { "incomplete-signature-doc", "trailing-space" },
+                disable = { "incomplete-signature-doc", "trailing-space", "missing-local-export-doc" },
                 -- enable = false,
                 groupSeverity = {
                   strong = "Warning",
@@ -79,7 +79,8 @@ return {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
-        lua = { "selene", "luacheck" },
+        -- lua = { "selene", "luacheck" },
+        lua = { "luacheck" },
       },
       linters = {
         selene = {
