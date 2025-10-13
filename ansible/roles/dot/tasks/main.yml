@@ -79,6 +79,30 @@
   copy:
     src: roles/dot/files/nvim.desktop
     dest: ~/.local/share/applications/nvim.desktop
+
+- name: Create ~/.config/systemd/user
+  file:
+    path: ~/.config/systemd/user
+    state: directory
+
+- name: bob-update.service
+  copy:
+    src: roles/dot/files/bob-update.service
+    dest: ~/.config/systemd/user/bob-update.service
+  notify: Reload systemd user daemon
+
+- name: bob-update.timer
+  copy:
+    src: roles/dot/files/bob-update.timer
+    dest: ~/.config/systemd/user/bob-update.timer
+  notify: Reload systemd user daemon
+
+- name: Enable bob-update.timer
+  systemd:
+    name: bob-update.timer
+    enabled: yes
+    state: started
+    scope: user
 # npm/pnpm
 # - name: .npmrc
 #   copy:
