@@ -62,3 +62,12 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Geoclue
+  become: true
+  copy:
+    dest: /etc/geoclue/conf.d/99-position.xyz.conf
+    src: roles/system/files/geoclue.conf
+    owner: root
+    group: root
+    mode: "0644"
