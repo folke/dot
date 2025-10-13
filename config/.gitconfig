@@ -1,66 +1,126 @@
 [filter "lfs"]
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-process = git-lfs filter-process
-required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
 
 [user]
-name = Folke Lemaitre
-email = folke.lemaitre@gmail.com
+	name = Folke Lemaitre
+	email = folke.lemaitre@gmail.com
+	signingkey = folke.lemaitre@gmail.com
 
 [color]
-ui = true
+	ui = auto
 
 [alias]
-st = status -sb
-co = checkout
-c = commit --short
-ci = commit --short
-p = push
-l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --decorate --date=short --color --decorate
+	st = status -sb
+	co = checkout
+	sw = switch
+	br = branch
+	c = commit --short
+	ci = commit --short
+	p = push
+	pf = push --force-with-lease
+	l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=short
+	ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --all
+	uncommit = reset --soft HEAD^
+	unstage = reset HEAD --
+	amend = commit --amend --no-edit
+	fixup = commit --fixup
 
 [core]
-pager = delta
+	pager = delta
+	editor = nvim
+	autocrlf = input
+	# Treat whitespace issues as errors
+	whitespace = trailing-space,space-before-tab
 
 [interactive]
-diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [include]
-path = ~/projects/tokyonight.nvim/extras/delta/tokyonight_moon.gitconfig
+	path = ~/projects/tokyonight.nvim/extras/delta/tokyonight_moon.gitconfig
 
 [delta]
-navigate = true    # use n and N to move between diff sections
-light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-side-by-side = false
-line-numbers = true
-syntax-theme = tokyonight_moon
+	navigate = true
+	light = false
+	side-by-side = false
+	line-numbers = true
+	syntax-theme = tokyonight_moon
+	features = decorations
+
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
 
 [merge]
-conflictstyle = diff3
-
-[diff]
-colorMoved = default
+	conflictstyle = zdiff3
 	tool = nvimdiff
 
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	tool = nvimdiff
+	# Better submodule diffs
+	submodule = log
+
+[difftool]
+	prompt = false
+
+[mergetool]
+	prompt = false
+	keepBackup = false
+
 [pull]
-rebase = true
+	rebase = true
+
 [push]
-default = upstream
-[github]
-user = folke
-[init]
-defaultBranch = main
-[commit]
-gpgsign = true
-[credential]
-helper = cache
+	default = current
+	autoSetupRemote = true
+	followTags = true
+
+[fetch]
+	prune = true
+	pruneTag = true
+
 [rebase]
 	autoStash = true
+	autoSquash = true
+	updateRefs = true
+
+[rerere]
+	enabled = true
+
+[init]
+	defaultBranch = main
+
+[commit]
+	gpgsign = true
+	verbose = true
+
+[tag]
+	gpgsign = true
+
+[github]
+	user = folke
+
+[credential]
+	helper = cache --timeout=3600
+
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
-[feature]
-	experimental = false
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[help]
+	autocorrect = prompt
+
+[log]
+	date = auto:human

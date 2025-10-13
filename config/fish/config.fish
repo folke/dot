@@ -99,23 +99,22 @@ abbr lv lazyvim
 alias bt "coredumpctl -1 gdb -A '-ex \"bt\" -q -batch' 2>/dev/null | awk '/Program terminated with signal/,0' | bat -l cpp --no-pager --style plain"
 
 # Dev
-abbr git hub
 abbr topgit topgrade --only git_repos
-abbr g hub
+abbr g git
 
 set -x LG_CONFIG_FILE /home/folke/.config/lazygit/config.yml,/home/folke/.cache/nvim/lazygit-theme.yml
 
 alias lazygit "TERM=xterm-256color command lazygit"
 abbr gg lazygit
-abbr gl 'hub l --color | devmoji --log --color | less -rXF'
-abbr gs "hub st"
-abbr gb "hub checkout -b"
-abbr gc "hub commit"
-abbr gpr "hub pr checkout"
-abbr gm "hub branch -l main | rg main > /dev/null 2>&1 && hub checkout main || hub checkout master"
-abbr gcp "hub commit -p"
-abbr gpp "hub push"
-abbr gp "hub pull"
+abbr gl 'git l --color | devmoji --log --color | less -rXF'
+abbr gs "git st"
+abbr gb "git checkout -b"
+abbr gc "git commit"
+abbr gpr "gh pr checkout"
+abbr gm "git branch -l main | rg main > /dev/null 2>&1 && git checkout main || git checkout master"
+abbr gcp "git commit -p"
+abbr gpp "git push"
+abbr gp "git pull"
 alias tn "npx --no-install ts-node --transpile-only"
 abbr tt "tn src/tt.ts"
 
