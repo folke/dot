@@ -1,4 +1,4 @@
 - name: Reload systemd user daemon
-  systemd:
-    daemon_reload: yes
+  ansible.builtin.systemd:
+    daemon_reload: true
     scope: user

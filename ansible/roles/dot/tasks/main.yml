@@ -1,106 +1,116 @@
 - name: Create ~/.config
-  file:
+  ansible.builtin.file:
     path: ~/.config
     state: directory
+    mode: '0755'
 
 - name: Find .config files
-  find:
+  ansible.builtin.find:
     paths: "{{ dot_repo_root }}/config/"
-    recurse: no
+    recurse: false
     file_type: any
-    hidden: yes
+    hidden: true
   register: dot_config
 
 - name: ~/.config/
-  file:
+  ansible.builtin.file:
     src: "{{ item.path }}"
     dest: "~/.config/{{ item.path | basename }}"
     state: link
   loop: "{{ dot_config.files }}"
   loop_control:
-    label: "~/.config/{{item.path | basename}}"
+    label: "~/.config/{{ item.path | basename }}"
 
 - name: .bashrc
-  copy:
+  ansible.builtin.copy:
     dest: ~/.bashrc
     content: "source <(starship init bash --print-full-init)"
+    mode: '0644'
 
 - name: .zshrc
-  copy:
+  ansible.builtin.copy:
     dest: ~/.zshrc
     content: "source <(starship init zsh --print-full-init)"
+    mode: '0644'
 
 - name: .hushlogin
-  copy:
+  ansible.builtin.copy:
     dest: ~/.hushlogin
     content: ""
+    mode: '0644'
 
 - name: .gitconfig
-  file:
+  ansible.builtin.file:
     src: ~/.config/.gitconfig
     dest: ~/.gitconfig
     state: link
 
-- name: nvim
-  file:
+- name: Neovim config symlink
+  ansible.builtin.file:
     src: "{{ dot_repo_root }}/nvim"
     dest: ~/.config/nvim
     state: link
 
 - name: .ssh/config
-  copy:
+  ansible.builtin.copy:
     src: ~/.config/.ssh.config
     dest: ~/.ssh/config
-    mode: u=rw,o=,g=
+    mode: '0600'
 
 - name: .ssh/config/control
-  file:
+  ansible.builtin.file:
     path: ~/.ssh/control
     state: directory
-    mode: u=rwx,o=,g=
+    mode: '0700'
 
 # - name: .Xresources
-#   file:
+#   ansible.builtin.file:
 #     src: ~/.config/.Xresources
 #     dest: ~/.Xresources
 #     state: link
 
-- name: gpg-agent.conf
-  copy:
+- name: GPG agent configuration
+  ansible.builtin.copy:
     dest: ~/.gnupg/gpg-agent.conf
     content: "pinentry-program /bin/pinentry"
+    mode: '0644'
 
 - name: Create ~/.local/share/applications
-  file:
+  ansible.builtin.file:
     path: ~/.local/share/applications
     state: directory
+    mode: '0755'
 
-- name: nvim.desktop
-  copy:
+- name: Neovim desktop file
+  ansible.builtin.copy:
     src: roles/dot/files/nvim.desktop
     dest: ~/.local/share/applications/nvim.desktop
+    mode: '0644'
 
 - name: Create ~/.config/systemd/user
-  file:
+  ansible.builtin.file:
     path: ~/.config/systemd/user
     state: directory
+    mode: '0755'
 
-- name: bob-update.service
-  copy:
+- name: Bob update systemd service
+  ansible.builtin.copy:
     src: roles/dot/files/bob-update.service
     dest: ~/.config/systemd/user/bob-update.service
+    mode: '0644'
   notify: Reload systemd user daemon
 
-- name: bob-update.timer
-  copy:
+- name: Bob update systemd timer
+  ansible.builtin.copy:
     src: roles/dot/files/bob-update.timer
     dest: ~/.config/systemd/user/bob-update.timer
+    mode: '0644'
   notify: Reload systemd user daemon
 
 - name: Enable bob-update.timer
-  systemd:
+  ansible.builtin.systemd:
     name: bob-update.timer
-    enabled: yes
+    enabled: true
     state: started
     scope: user
 # npm/pnpm

@@ -1,10 +1,12 @@
-- import_tasks: howdy.yml
-- import_tasks: greetd.yml
+- name: Import howdy tasks
+  ansible.builtin.import_tasks: howdy.yml
+- name: Import greetd tasks
+  ansible.builtin.import_tasks: greetd.yml
   tags: greetd
 
 - name: Keyd
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/keyd/default.conf
     src: roles/system/files/keyd.conf
     owner: root
@@ -21,7 +23,7 @@
 
 - name: Deploy NetworkManager configs
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/etc/NetworkManager/conf.d/{{ item | basename }}"
     owner: root
@@ -32,7 +34,7 @@
 
 - name: Deploy pacman hooks
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/etc/pacman.d/hooks/{{ item | basename }}"
     owner: root
@@ -47,16 +49,16 @@
     enabled: true
     name: gcr-ssh-agent.socket
 
-- name: Disable sudo systemctl disable NetworkManager-wait-online.service
+- name: Disable NetworkManager-wait-online.service
   become: true
   ansible.builtin.systemd:
     name: NetworkManager-wait-online.service
     state: stopped
-    enabled: no
+    enabled: false
 
 - name: /etc/supergfxd.conf
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/supergfxd.conf
     src: roles/system/files/supergfxd.conf
     owner: root
@@ -65,7 +67,7 @@
 
 - name: Geoclue
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/geoclue/conf.d/99-position.xyz.conf
     src: roles/system/files/geoclue.conf
     owner: root

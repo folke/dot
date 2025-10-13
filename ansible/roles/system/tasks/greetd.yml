@@ -1,6 +1,6 @@
 - name: Deploy greetd configs
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "/etc/greetd/{{ item | basename }}"
     owner: root
@@ -11,13 +11,13 @@
 
 - name: Make greetd start script executable
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/greetd/greet-niri.sh
     mode: "0755"
 
 - name: Create /etc/greetd/.dms directory
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/greetd/.dms
     state: directory
     owner: greeter
@@ -26,7 +26,7 @@
 
 - name: Symlink DMS settings.json to user config
   become: true
-  file:
+  ansible.builtin.file:
     src: /home/folke/.config/DankMaterialShell/settings.json
     dest: /etc/greetd/.dms/settings.json
     state: link
@@ -34,7 +34,7 @@
 
 - name: Symlink DMS session.json to user state
   become: true
-  file:
+  ansible.builtin.file:
     src: /home/folke/.local/state/DankMaterialShell/session.json
     dest: /etc/greetd/.dms/session.json
     state: link
@@ -42,7 +42,7 @@
 
 - name: Symlink DMS colors.json to user cache
   become: true
-  file:
+  ansible.builtin.file:
     src: /home/folke/.cache/quickshell/dankshell/dms-colors.json
     dest: /etc/greetd/.dms/colors.json
     state: link

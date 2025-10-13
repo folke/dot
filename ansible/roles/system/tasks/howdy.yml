@@ -1,6 +1,6 @@
 - name: Howdy Config File
   become: true
-  copy:
+  ansible.builtin.copy:
     dest: /etc/howdy/config.ini
     src: "roles/system/files/howdy.ini"
     owner: root
@@ -9,7 +9,7 @@
 
 - name: Set list of PAM files for Howdy
   ansible.builtin.set_fact:
-    pam_files:
+    system_pam_files:
       - sudo
       - login
       # - gdm-password
@@ -24,7 +24,7 @@
     line: "auth sufficient /lib/security/pam_howdy.so"
     insertafter: "^#%PAM-1.0"
     state: present
-  loop: "{{ pam_files }}"
+  loop: "{{ system_pam_files }}"
 
 - name: Create /etc/pam.d/polkit-1 for Howdy
   become: true
