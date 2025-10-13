@@ -12,16 +12,26 @@
     use: paru
     name:
       # system
-      - keyd
+      - aria2
+      - asusctl
       - cachyos-snapper-support
       - cups
+      - downgrade
       - howdy-git
+      - journalctl-desktop-notification
+      - keyd
+      - nfs-utils
       - polkit-gnome
+      - rsync
+      - safeeyes
+      - snapper
+      - socat
       - topgrade
+      - udiskie
+      - wl-clip-persist
       - xdg-desktop-portal-gnome
       - xdg-desktop-portal-gtk
       - xdg-desktop-portal-hyprland
-      - aria2
 
       # audio
       - easyeffects
@@ -59,27 +69,44 @@
       - chafa
       - cliphist
       - duf
+      - dust
+      - eza
+      - fastfetch
       - fd
+      - fish
       - fzf
       - grc
       - gum
       - htop
       - hyperfine
+      - lazyjournal
+      - mdcat
+      - ncdu
       - numbat-bin
+      - nvtop
+      - playerctl
+      - plocate
+      - procs
+      - ranger
+      - rebuild-detector
       - ripgrep
+      - spotify-player
       - starship
       - tealdeer
-      - zoxide
-      - mdcat
-      - eza
-      - ncdu
-      - procs
-      - dust
-      - ranger
+      - tmux
       - tokei
-      - lazyjournal
+      - trash-cli
+      - yazi
+      - zellij
+      - zoxide
 
       # dev
+      - act
+      - ansible
+      - ansible-lint
+      - aspell
+      - bun-bin
+      - deno
       - fnm-bin
       - git
       - git-crypt
@@ -90,30 +117,41 @@
       - just
       - lazygit
       - lazydocker
+      - luacheck
       - mermaid-cli
       - mutagen.io-bin
       - neovim
-      - rustup
-      - tectonic
-      - wezterm
-      - aspell
       - pnpm
+      - podman
+      - python-pipx
+      - python-uv
+      - rustup
+      - selene
+      - stylua
+      - tectonic
+      - tree-sitter-cli
+      - wezterm
 
       # apps
       - alacritty
-      - kitty
-      - ghostty
+      - blueman
       - brave-bin
       - btrfs-assistant
-      - rog-control-center
-      - zen-browser-bin
       - discord
-      - slurp
+      - ghostty
       - grim
       - grimblast-git
-      - wev
       - imv
-      - blueman
+      - kitty
+      - libreoffice-fresh
+      - loupe
+      - nautilus
+      - obsidian
+      - rog-control-center
+      - slurp
+      - spotify-launcher
+      - wev
+      - zen-browser-bin
 
       # fonts
       - ttf-dejavu
@@ -130,5 +168,5 @@
 
       # Homelab
       - cv4pve-pepper-git
-      - virt-viewer
       - gotify-desktop
+      - virt-viewer
