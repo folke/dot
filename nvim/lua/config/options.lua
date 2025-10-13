@@ -43,6 +43,9 @@ vim.filetype.add({
     overlay = "dts",
     keymap = "dts",
   },
+  filename = {
+    Caddyfile = "caddy",
+  },
   pattern = {
     [".*"] = {
       function(path, bufnr)
