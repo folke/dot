@@ -187,6 +187,7 @@ window-rule{
     match app-id="system-config-printer"
     match app-id="ghostty_journalctl"
     match title=r#".*Extension.*Bitwarden.*"#
+    match app-id="brave-keep"
     open-floating true
     default-column-width { proportion 0.45; }
     default-window-height { proportion 0.45; }
