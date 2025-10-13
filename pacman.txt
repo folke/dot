@@ -181,7 +181,6 @@ howdy-git
 hplip
 htop
 httpie
-hub
 hwdetect
 hwinfo
 hyperfine
