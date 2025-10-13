@@ -1,0 +1,1 @@
+config/fish/secrets.env filter=git-crypt diff=git-crypt
