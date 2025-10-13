@@ -208,10 +208,13 @@ binds {
     Mod+Space      { spawn "dms" "ipc" "call" "spotlight" "toggle"; }
     Mod+X          { spawn "dms" "ipc" "call" "powermenu" "toggle"; }
     Shift+Alt+S    { screenshot show-pointer=false; } // Fn+F6
+    Print          { screenshot show-pointer=false; } // Fn+F6
     Mod+E          { spawn "nautilus" "--new-window"; }
     Mod+Z          { spawn "zen-browser"; }
     XF86Launch1    { spawn "rog-control-center"; }
     XF86Launch4    { spawn "asusctl" "profile" "--next"; }
+    XF86Launch3    { spawn "dms" "ipc" "call" "mpris" "playPause"; }
+
 
     XF86AudioLowerVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "decrement" "3"; }
     XF86AudioMicMute      allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
