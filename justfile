@@ -1,20 +1,16 @@
 set shell := ["bash", "-cu"]
 
-
-ansible tags='' *args='':
+ansible *args='':
   #!/bin/env bash
   set -euo pipefail
   cd "./ansible"
-  if [ -n "{{tags}}" ]; then
-    ansible-playbook --ask-become-pass playbook.yml --tags "{{tags}}" {{args}}
-  else
-    ansible-playbook --ask-become-pass playbook.yml {{args}}
-  fi
+  ansible-galaxy collection install -r requirements.yml --upgrade
+  ansible-playbook --ask-become-pass playbook.yml {{args}}
 
-packages *args='': (ansible "packages" args)
-dot *args='':      (ansible "dot" args)
-system *args='':   (ansible "system" args)
-web *args='':      (ansible "web" args)
-greetd *args='':   (ansible "greetd" args)
+packages *args='': (ansible "--tags" "packages" args)
+dot *args='':      (ansible "--tags" "dot" args)
+system *args='':   (ansible "--tags" "system" args)
+web *args='':      (ansible "--tags" "web" args)
+greetd *args='':   (ansible "--tags" "greetd" args)
 
 
