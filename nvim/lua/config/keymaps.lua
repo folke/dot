@@ -8,3 +8,7 @@ vim.keymap.set("n", "<Up>", "<c-w>k")
 vim.keymap.set("n", "<Down>", "<c-w>j")
 vim.keymap.set("n", "<Left>", "<c-w>h")
 vim.keymap.set("n", "<Right>", "<c-w>l")
+
+vim.keymap.set("n", "<leader>cp", function()
+  require("util.preview").preview()
+end, { desc = "Markdown Preview" })
