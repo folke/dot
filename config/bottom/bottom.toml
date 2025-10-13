@@ -77,7 +77,9 @@ basic = true
 #disable_click = false
 
 # Show memory values in the processes widget as values by default
-#process_memory_as_value = false
+process_memory_as_value = true
+hide_k_threads = true
+unnormalized_cpu = true
 
 # Show tree mode by default in the processes widget.
 #tree = false
@@ -117,10 +119,10 @@ process_command = true
 
 
 # Processes widget configuration
-#[processes]
+[processes]
 # The columns shown by the process widget. The following columns are supported (the GPU columns are only available if the GPU feature is enabled when built):
 # PID, Name, CPU%, Mem%, R/s, W/s, T.Read, T.Write, User, State, Time, GMem%, GPU%
-#columns = ["PID", "Name", "CPU%", "Mem%", "R/s", "W/s", "T.Read", "T.Write", "User", "State", "GMem%", "GPU%"]
+columns = ["PID", "Name", "CPU%", "Mem%", "User", "GMem%", "GPU%"]
 
 
 # CPU widget configuration
