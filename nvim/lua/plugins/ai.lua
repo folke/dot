@@ -2,11 +2,12 @@ return {
   {
     "folke/sidekick.nvim",
     opts = {
+      debug = false,
       cli = {
         mux = {
-          -- backend = "tmux",
+          -- backend = "zellij",
           enabled = true,
-          -- create = "window",
+          create = "terminal",
         },
         tools = {
           debug = {

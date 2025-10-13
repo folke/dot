@@ -1,7 +1,6 @@
 local util = require("util")
 
 util.cowboy()
--- util.wezterm()
 
 vim.keymap.set("n", "<C-c>", "ciw")
 vim.keymap.set("n", "<Up>", "<c-w>k")

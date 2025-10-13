@@ -26,3 +26,6 @@ config/niri/dms
 config/zellij/config.kdl.bak
 config/zellij/config.kdl.bak.1
 config/zellij/config.kdl.new
+.claude
+.crush
+.ansible
