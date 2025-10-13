@@ -74,9 +74,9 @@ abbr mux tmuxinator
 abbr mv "mv -iv"
 abbr cp "cp -riv"
 abbr mkdir "mkdir -vp"
-alias ls="eza --color=always --icons --group-directories-first"
-alias la 'eza --color=always --icons --group-directories-first --all'
-alias ll 'eza --color=always --icons --group-directories-first --all --long'
+alias ls="eza --color=auto --icons=auto --group-directories-first"
+alias la 'eza --color=auto --icons=auto --group-directories-first --all --git'
+alias ll 'eza --color=auto --icons=auto --group-directories-first --all --git --long'
 abbr l ll
 abbr ncdu "ncdu --color dark"
 abbr b btm
@@ -134,7 +134,7 @@ alias gnome-control-center "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 # systemctl
 abbr s systemctl
-abbr su "systemctl --user"
+abbr scu "systemctl --user"
 abbr ss "command systemctl status"
 abbr sl "systemctl --type service --state running"
 abbr se "sudo systemctl enable --now"
