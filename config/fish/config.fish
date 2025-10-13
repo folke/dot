@@ -2,6 +2,9 @@
 
 status is-interactive; or exit
 
+# Load secrets if available
+dotenv ~/dot/secrets.env
+
 # Cursor styles
 set -gx fish_vi_force_cursor 1
 set -gx fish_cursor_default block
