@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Find .config files
   ansible.builtin.find:
@@ -25,19 +25,19 @@
   ansible.builtin.copy:
     dest: ~/.bashrc
     content: "source <(starship init bash --print-full-init)"
-    mode: '0644'
+    mode: "0644"
 
 - name: .zshrc
   ansible.builtin.copy:
     dest: ~/.zshrc
     content: "source <(starship init zsh --print-full-init)"
-    mode: '0644'
+    mode: "0644"
 
 - name: .hushlogin
   ansible.builtin.copy:
     dest: ~/.hushlogin
     content: ""
-    mode: '0644'
+    mode: "0644"
 
 - name: .gitconfig
   ansible.builtin.file:
@@ -55,56 +55,50 @@
   ansible.builtin.copy:
     src: ~/.config/.ssh.config
     dest: ~/.ssh/config
-    mode: '0600'
+    mode: "0600"
 
 - name: .ssh/config/control
   ansible.builtin.file:
     path: ~/.ssh/control
     state: directory
-    mode: '0700'
-
-# - name: .Xresources
-#   ansible.builtin.file:
-#     src: ~/.config/.Xresources
-#     dest: ~/.Xresources
-#     state: link
+    mode: "0700"
 
 - name: GPG agent configuration
   ansible.builtin.copy:
     dest: ~/.gnupg/gpg-agent.conf
     content: "pinentry-program /bin/pinentry"
-    mode: '0644'
+    mode: "0644"
 
 - name: Create ~/.local/share/applications
   ansible.builtin.file:
     path: ~/.local/share/applications
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Neovim desktop file
   ansible.builtin.copy:
     src: roles/dot/files/nvim.desktop
     dest: ~/.local/share/applications/nvim.desktop
-    mode: '0644'
+    mode: "0644"
 
 - name: Create ~/.config/systemd/user
   ansible.builtin.file:
     path: ~/.config/systemd/user
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Bob update systemd service
   ansible.builtin.copy:
     src: roles/dot/files/bob-update.service
     dest: ~/.config/systemd/user/bob-update.service
-    mode: '0644'
+    mode: "0644"
   notify: Reload systemd user daemon
 
 - name: Bob update systemd timer
   ansible.builtin.copy:
     src: roles/dot/files/bob-update.timer
     dest: ~/.config/systemd/user/bob-update.timer
-    mode: '0644'
+    mode: "0644"
   notify: Reload systemd user daemon
 
 - name: Enable bob-update.timer
@@ -113,15 +107,10 @@
     enabled: true
     state: started
     scope: user
-# npm/pnpm
-# - name: .npmrc
-#   copy:
-#     dest: ~/.npmrc
-#     content: |-
-#       global-dir={{ lookup('env', 'HOME') }}/.pnpm-global
-#       global-bin-dir={{ lookup('env', 'HOME') }}/.local/bin/pnpm-bins
-#
-# "@github/copilot": "^0.0.328",
-#  4   │         "@google/gemini-cli": "^0.6.1",
-#  5   │         "devmoji": "^2.3.0",
-#  6   │         "prettier": "^3.6.2"
+
+- name: Enable gotify-desktop service
+  ansible.builtin.systemd:
+    name: gotify-desktop.service
+    enabled: true
+    state: started
+    scope: user

@@ -19,6 +19,7 @@
       - polkit-gnome
       - topgrade
       - xdg-desktop-portal-gnome
+      - xdg-desktop-portal-gtk
       - xdg-desktop-portal-hyprland
       - aria2
 
@@ -33,14 +34,6 @@
 
       # ui
       - brightnessctl
-      - hyprland
-      - hypridle
-      - hyprland
-      - hyprlock
-      - hyprpaper
-      - hyprpicker
-      - hyprpolkitagent
-      - hyprsunset
       - pavucontrol
       - rofi
 
@@ -48,6 +41,15 @@
       - niri
       - mate-polkit
       - dms-shell-git
+
+      # hyprland
+      - hyprland
+      - hypridle
+      - hyprlock
+      - hyprpaper
+      - hyprpicker
+      - hyprpolkitagent
+      - hyprsunset
 
       # cli
       - atuin
@@ -85,7 +87,6 @@
       - github-cli
       - httpie
       - jq
-      - hub
       - just
       - lazygit
       - lazydocker
@@ -130,3 +131,4 @@
       # Homelab
       - cv4pve-pepper-git
       - virt-viewer
+      - gotify-desktop
