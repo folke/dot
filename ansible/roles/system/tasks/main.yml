@@ -42,6 +42,18 @@
     mode: "0644"
   loop: "{{ lookup('fileglob', 'roles/system/files/hooks/*', wantlist=True) }}"
 
+- name: Configure MT7925 WiFi driver
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/modprobe.d/mt7925.conf
+    content: |
+      # Stability improvements for MediaTek MT7925 WiFi driver
+      # Disable power management features that cause firmware timeouts
+      options mt7925e disable_aspm=1
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Enable Gnome SSH Agent (GCR)
   ansible.builtin.systemd_service:
     state: started
