@@ -137,6 +137,11 @@
     },
     {
       "id": "cpuUsage",
+      "enabled": true,
+      "minimumWidth": false
+    },
+    {
+      "id": "optimusPlugin",
       "enabled": true
     },
     {
@@ -170,6 +175,10 @@
   "notepadShowLineNumbers": false,
   "notepadTransparencyOverride": -1,
   "notepadLastCustomTransparency": 0.95,
+  "soundsEnabled": true,
+  "soundNewNotification": true,
+  "soundVolumeChanged": true,
+  "soundPluggedIn": true,
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "showDock": false,
@@ -194,6 +203,8 @@
   "dankBarBorderColor": "surfaceText",
   "dankBarBorderOpacity": 1,
   "dankBarBorderThickness": 1,
+  "popupGapsAuto": true,
+  "popupGapsManual": 4,
   "dankBarPosition": 0,
   "lockScreenShowPowerActions": true,
   "hideBrightnessSlider": false,
@@ -204,6 +215,9 @@
   "notificationTimeoutCritical": 0,
   "notificationPopupPosition": 0,
   "osdAlwaysShowValue": false,
+  "updaterUseCustomCommand": false,
+  "updaterCustomCommand": "",
+  "updaterTerminalAdditionalParams": "",
   "screenPreferences": {},
   "animationSpeed": 2
 }

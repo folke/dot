@@ -1,1 +1,8 @@
-{}
+{
+  "exampleEmojiPlugin": {
+    "enabled": true
+  },
+  "optimusPlugin": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "optimusPlugin",
+  "name": "Optimus GPU Mode",
+  "description": "Monitor and switch GPU modes on ASUS laptops with MUX switch support",
+  "version": "1.0.0",
+  "author": "Folke Lemaitre",
+  "icon": "memory",
+  "component": "./OptimusWidget.qml",
+  "settings": "./OptimusSettings.qml",
+  "permissions": ["settings_read", "settings_write"]
+}

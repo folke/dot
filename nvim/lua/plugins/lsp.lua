@@ -13,6 +13,10 @@ return {
         },
       },
       servers = {
+        qmlls = {
+          cmd = { "qmlls6" },
+          root_markers = { ".qmlls.ini" },
+        },
         lua_ls = {
           -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
           -- single_file_support = true,
