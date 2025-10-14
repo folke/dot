@@ -19,13 +19,13 @@ function auto_pwd --on-variable PWD
 
         # recent commits
         echo -e "## Recent Activity\n" | gum format
-        hub l -10 \
+        git l -10 \
             --since='1 week ago' \
             | devmoji --log --color \
             | sed 's/^/  /'
 
         # local changes
         echo -e "## Status\n" | gum format
-        hub -c color.ui=always st | sed 's/^/  /'
+        git -c color.ui=always st | sed 's/^/  /'
     end
 end

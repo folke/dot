@@ -22,7 +22,6 @@ ansible-lint
 aria2
 aspell
 asusctl
-asusctltray-upgraded-git
 atuin
 awesome-terminal-fonts
 baobab
@@ -71,6 +70,7 @@ cryptsetup
 cups
 cups-pdf
 cv4pve-pepper-git
+ddcutil
 decibels
 deno
 device-mapper
@@ -356,7 +356,6 @@ spotify-player
 starship
 stylua
 sudo
-supergfxctl
 sushi
 switcheroo-control
 sysfsutils

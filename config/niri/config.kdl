@@ -61,7 +61,9 @@ output "eDP-1" {
 }
 
 debug {
-    render-drm-device "/dev/dri/by-path/pci-0000:65:00.0-render" // AMD GPU
+    render-drm-device "/dev/dri/by-path/pci-0000:65:00.0-render" // iGPU (AMD)
+    // ignore-drm-device "/dev/dri/renderD129"
+    // ignore-drm-device "/dev/dri/card0"
 }
 
 layout {
@@ -133,8 +135,8 @@ spawn-at-startup "easyeffects" "--gapplication-service"
 spawn-at-startup "zen-browser"
 spawn-at-startup "xhost si:localuser:root"
 spawn-sh-at-startup "sleep 3; amixer -c2 set Master 100% unmute"
-spawn-sh-at-startup "sleep 3; rog-control-center"
-spawn-sh-at-startup "sleep 3; safeeyes"
+// spawn-sh-at-startup "sleep 10; rog-control-center"
+// spawn-sh-at-startup "sleep 3; safeeyes"
 spawn-at-startup "~/.config/niri/scripts/dynamic-rules"
 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "Arc"
@@ -227,8 +229,8 @@ binds {
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
     XF86KbdBrightnessDown allow-when-locked=true { spawn "asusctl" "--prev-kbd-bright"; }
     XF86KbdBrightnessUp   allow-when-locked=true { spawn "asusctl" "--next-kbd-bright"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" ""; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" ""; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "amdgpu_bl1"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl1"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
