@@ -21,6 +21,28 @@
   loop_control:
     label: "~/.config/{{ item.path | basename }}"
 
+- name: Create ~/.local/bin
+  ansible.builtin.file:
+    path: ~/.local/bin
+    state: directory
+    mode: "0755"
+
+- name: Find bin files
+  ansible.builtin.find:
+    paths: "{{ dot_repo_root }}/bin/"
+    recurse: false
+    file_type: any
+  register: dot_bin
+
+- name: ~/.local/bin/
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "~/.local/bin/{{ item.path | basename }}"
+    state: link
+  loop: "{{ dot_bin.files }}"
+  loop_control:
+    label: "~/.local/bin/{{ item.path | basename }}"
+
 - name: .bashrc
   ansible.builtin.copy:
     dest: ~/.bashrc

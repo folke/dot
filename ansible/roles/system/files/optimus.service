@@ -1,0 +1,15 @@
+[Unit]
+Description=Apply GPU mode settings before asusd
+Before=asusd.service
+After=sysinit.target basic.target systemd-udevd.service
+# Wait for firmware-attributes sysfs to be available
+ConditionPathExists=/sys/class/firmware-attributes/asus-armoury
+ConditionPathExists=/etc/optimus.conf
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/optimus apply
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

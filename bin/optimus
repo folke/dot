@@ -1,0 +1,195 @@
+#!/usr/bin/env fish
+# GPU mode switcher for ASUS laptops with MUX switch and dGPU disable support
+# Handles both user configuration and boot-time application
+
+set CONFIG_FILE /etc/optimus.conf
+set DGPU_ATTR /sys/class/firmware-attributes/asus-armoury/attributes/dgpu_disable/current_value
+set MUX_ATTR /sys/class/firmware-attributes/asus-armoury/attributes/gpu_mux_mode/current_value
+
+function show_mode -a mode
+    switch $mode
+        case integrated
+            set_color green
+            echo -n integrated
+        case ultimate
+            set_color red
+            echo -n ultimate
+        case hybrid
+            set_color blue
+            echo -n hybrid
+        case '*'
+            set_color red
+            echo -n unknown
+    end
+    set_color normal
+end
+
+function usage
+    echo ""
+    echo "Usage: optimus [mode|apply]"
+    echo ""
+    echo "Available modes:"
+    echo "  optimus integrated  - iGPU only, dGPU off (best battery)"
+    echo "  optimus hybrid      - Both GPUs, iGPU display (balanced)"
+    echo "  optimus ultimate    - dGPU direct display (best performance)"
+    echo ""
+    echo "Apply pending changes:"
+    echo "  sudo optimus apply  - Apply configured mode immediately"
+    echo ""
+    echo "Help:"
+    echo "  -h, --help       Show this help message"
+end
+
+function show_current_mode
+    # Read from firmware attributes (current runtime state)
+    set -l dgpu_state (cat $DGPU_ATTR 2>/dev/null)
+    set -l mux_state (cat $MUX_ATTR 2>/dev/null)
+    set -l dgpu_status (cat /sys/class/drm/card0/device/power/runtime_status 2>/dev/null || echo "off")
+
+    if test -z "$dgpu_state" -o -z "$mux_state"
+        set_color red
+        echo "Error: Could not read GPU mode from firmware attributes"
+        set_color normal
+        return 1
+    end
+
+    set -l mode unknown
+
+    set_color cyan
+    echo -n "ℹ️ Active mode: "
+    if test "$dgpu_state" = 1
+        show_mode integrated
+        set mode integrated
+        echo
+        echo "  - dGPU: $dgpu_status"
+        echo "  - Display: iGPU only"
+    else if test "$mux_state" = 0
+        show_mode ultimate
+        set mode ultimate
+        echo
+        echo "  - dGPU: $dgpu_status"
+        echo "  - Display: dGPU direct (best gaming performance)"
+    else
+        show_mode hybrid
+        set mode hybrid
+        echo
+        echo "  - dGPU: $dgpu_status"
+        echo "  - Display: iGPU (use prime-run for dGPU)"
+    end
+
+    # Show configured mode if different
+    set -l configured_mode (cat $CONFIG_FILE 2>/dev/null)
+    if test "$configured_mode" != "$mode" -a -n "$configured_mode"
+        echo ""
+        set_color yellow
+        echo -n "⚠️ Pending mode: "
+        show_mode $configured_mode
+        echo
+        set_color normal
+    end
+
+end
+
+function apply_mode
+    if not test -f $CONFIG_FILE
+        set_color yellow
+        echo "No configuration file found at $CONFIG_FILE"
+        set_color normal
+        return 0
+    end
+
+    # Read current values
+    set -l current_dgpu (cat $DGPU_ATTR 2>/dev/null)
+    set -l current_mux (cat $MUX_ATTR 2>/dev/null)
+
+    if test -z "$current_dgpu" -o -z "$current_mux"
+        set_color red
+        echo "Error: Firmware attributes not available"
+        set_color normal
+        return 1
+    end
+
+    # Read desired mode from config
+    set -l mode (cat $CONFIG_FILE)
+    set -l desired_dgpu
+    set -l desired_mux
+
+    switch $mode
+        case integrated
+            set desired_dgpu 1
+            set desired_mux 1
+        case hybrid
+            set desired_dgpu 0
+            set desired_mux 1
+        case ultimate
+            set desired_dgpu 0
+            set desired_mux 0
+        case '*'
+            set_color red
+            echo "Unknown GPU mode in config: $mode"
+            set_color normal
+            return 1
+    end
+
+    # Only write if values need to change
+    set -l changes_made 0
+    if test "$current_dgpu" != "$desired_dgpu"
+        echo "Setting dgpu_disable to $desired_dgpu (was $current_dgpu)"
+        echo $desired_dgpu | sudo tee $DGPU_ATTR >/dev/null
+        set changes_made 1
+    end
+
+    if test "$current_mux" != "$desired_mux"
+        echo "Setting gpu_mux_mode to $desired_mux (was $current_mux)"
+        echo $desired_mux | sudo tee $MUX_ATTR >/dev/null
+        set changes_made 1
+    end
+
+    if test $changes_made -eq 0
+        set_color green
+        echo "✓ GPU mode already set to $mode, no changes needed"
+        set_color normal
+    else
+        set_color green
+        echo "✓ Applied $mode mode"
+        set_color normal
+    end
+end
+
+function set_mode -a mode
+    echo "Configuring $mode mode..."
+    echo $mode | sudo tee $CONFIG_FILE >/dev/null
+    if test $status -eq 0
+        set_color green
+        echo "✓ Configured for $mode mode"
+        set_color yellow
+        echo "⚠ Reboot required to apply changes"
+        set_color normal
+        if test "$mode" = hybrid
+            echo ""
+            echo "After reboot, use 'prime-run <app>' to run apps on dGPU"
+        end
+    else
+        set_color red
+        echo "✗ Failed to write config"
+        set_color normal
+        return 1
+    end
+end
+
+# Main logic
+switch $argv[1]
+    case ''
+        show_current_mode
+    case apply
+        apply_mode
+    case integrated hybrid ultimate
+        set_mode $argv[1]
+    case -h --help
+        usage
+    case '*'
+        set_color red
+        echo "Error: Unknown command '$argv[1]'"
+        set_color normal
+        usage
+end

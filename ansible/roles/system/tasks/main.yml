@@ -54,6 +54,30 @@
     group: root
     mode: "0644"
 
+- name: Symlink optimus to /usr/local/bin for systemd service
+  become: true
+  ansible.builtin.file:
+    src: "{{ dot_repo_root }}/bin/optimus"
+    dest: /usr/local/bin/optimus
+    state: link
+
+- name: Install optimus systemd service
+  become: true
+  ansible.builtin.copy:
+    src: roles/system/files/optimus.service
+    dest: /etc/systemd/system/optimus.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload systemd
+
+- name: Enable optimus service
+  become: true
+  ansible.builtin.systemd_service:
+    name: optimus.service
+    enabled: true
+    daemon_reload: true
+
 - name: Enable Gnome SSH Agent (GCR)
   ansible.builtin.systemd_service:
     state: started
@@ -67,15 +91,6 @@
     name: NetworkManager-wait-online.service
     state: stopped
     enabled: false
-
-- name: /etc/supergfxd.conf
-  become: true
-  ansible.builtin.copy:
-    dest: /etc/supergfxd.conf
-    src: roles/system/files/supergfxd.conf
-    owner: root
-    group: root
-    mode: "0644"
 
 - name: Geoclue
   become: true
