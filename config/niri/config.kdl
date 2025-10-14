@@ -33,6 +33,10 @@ environment {
   ELECTRON_OZONE_PLATFORM_HINT "auto"
   WLR_NO_HARDWARE_CURSORS "1"
   DMS_DISABLE_MATUGEN "1"
+  // Force vaapi backend to prevent using the dGPU
+  QT_MEDIA_BACKEND "ffmpeg"
+  QT_FFMPEG_DECODING_HW_DEVICE_TYPES "vaapi"
+  QT_FFMPEG_ENCODING_HW_DEVICE_TYPES "vaapi"
 }
 
 cursor {
