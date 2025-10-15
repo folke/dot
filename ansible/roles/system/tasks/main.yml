@@ -54,6 +54,15 @@
     group: root
     mode: "0644"
 
+- name: Configure NVIDIA driver
+  become: true
+  ansible.builtin.copy:
+    src: roles/system/files/nvidia.conf
+    dest: /etc/modprobe.d/nvidia.conf
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Symlink optimus to /usr/local/bin for systemd service
   become: true
   ansible.builtin.file:
