@@ -1,15 +1,14 @@
 local use_dev = true
 
-if use_dev then
-  vim.opt.runtimepath:prepend(vim.fn.expand("~/projects/lazy.nvim"))
-else
-  local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.uv.fs_stat(lazypath) then
-    vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
-    vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" }) -- last stable release
-  end
-  vim.opt.rtp:prepend(lazypath)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local devpath = vim.fn.expand("~/projects/lazy.nvim")
+if use_dev and vim.uv.fs_stat(devpath) then
+  lazypath = devpath
+elseif not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", lazypath })
+  vim.fn.system({ "git", "-C", lazypath, "checkout", "tags/stable" }) -- last stable release
 end
+vim.opt.rtp:prepend(lazypath)
 
 local M = {}
 
