@@ -1,0 +1,40 @@
+- name: Add user to docker group
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: true
+  become: true
+
+- name: Create ~/.config/systemd/user
+  ansible.builtin.file:
+    path: ~/.config/systemd/user
+    state: directory
+    mode: "0755"
+
+- name: Bob update systemd service
+  ansible.builtin.copy:
+    src: roles/user/files/bob-update.service
+    dest: ~/.config/systemd/user/bob-update.service
+    mode: "0644"
+  notify: Reload systemd user daemon
+
+- name: Bob update systemd timer
+  ansible.builtin.copy:
+    src: roles/user/files/bob-update.timer
+    dest: ~/.config/systemd/user/bob-update.timer
+    mode: "0644"
+  notify: Reload systemd user daemon
+
+- name: Enable bob-update.timer
+  ansible.builtin.systemd:
+    name: bob-update.timer
+    enabled: true
+    state: started
+    scope: user
+
+- name: Enable gotify-desktop service
+  ansible.builtin.systemd:
+    name: gotify-desktop.service
+    enabled: true
+    state: started
+    scope: user

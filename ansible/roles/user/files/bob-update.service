@@ -1,0 +1,8 @@
+[Unit]
+Description=Update Neovim nightly via bob
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/fish -c 'bob install nightly && notify-send --icon nvim "Neovim Nightly Updated" "Bob has installed the latest nightly build"'
