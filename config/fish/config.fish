@@ -26,6 +26,7 @@ fish_add_path ~/.gem/ruby/2.6.0/bin
 fish_add_path /var/lib/flatpak/exports/bin/
 fish_add_path ~/.dotnet/tools
 fish_add_path ~/.local/share/mise/shims
+fish_add_path ~/.local/share/bob/nvim-used/bin
 
 set -gx DENO_INSTALL "~/.deno"
 fish_add_path ~/.deno/bin

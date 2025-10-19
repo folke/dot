@@ -21,7 +21,6 @@ function bob_run --wraps nvim -a v
 end
 
 bob_update
-fish_add_path --path $nvim/bin
 
 alias nvim_stable="bob_run stable"
 alias nvim_10="bob_run 0.10.4"
