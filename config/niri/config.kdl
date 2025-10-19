@@ -146,7 +146,7 @@ spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "text-scaling-f
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-size" "24"
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-light"
 // delay prefer-light to override other desktop environment settings
-spawn-sh-at-startup "sleep 5; gsettings set org.gnome.desktop.interface color-scheme prefer-light"
+// spawn-sh-at-startup "sleep 5; gsettings set org.gnome.desktop.interface color-scheme prefer-light"
 
 config-notification {
     disable-failed
@@ -200,7 +200,7 @@ window-rule{
 
 // Floating Terminal
 window-rule {
-    match app-id="folke.scratchpad"
+    match app-id="dev.terminal"
     open-maximized true
     open-on-workspace "dev"
 }

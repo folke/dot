@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set -l class "folke.scratchpad"
+set -l class "dev.terminal"
 
 # Toggle workspace "dev"
 niri msg action focus-workspace dev
