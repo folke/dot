@@ -32,6 +32,8 @@
       - xdg-desktop-portal-gnome
       - xdg-desktop-portal-gtk
       - xdg-desktop-portal-hyprland
+      - wavemon
+      - openbsd-netcat
 
       # audio
       - easyeffects
@@ -75,6 +77,7 @@
       - fd
       - fish
       - fzf
+      - gdu
       - grc
       - gum
       - htop

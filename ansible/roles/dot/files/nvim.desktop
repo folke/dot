@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Neovim
-Comment=Vim-fork focused on extensibility and usability
-Exec=ghostty -e nvim %F
-Terminal=false
-Type=Application
-MimeType=text/plain;
-Categories=Utility;TextEditor;
-Icon=nvim
