@@ -1,0 +1,34 @@
+name: "windows"
+volumes:
+  data:
+services:
+  windows:
+    image: "ghcr.io/dockur/windows"
+    container_name: "windows"
+    environment:
+      VERSION: "11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "8"
+      DISK_SIZE: "32G"
+      USERNAME: "${WIN_USER}"
+      PASSWORD: "${WIN_PASS}"
+      HOME: "${HOME}"
+      LANGUAGE: "English"
+      HOST_PORTS: "7149"
+      ARGUMENTS: "-qmp tcp:0.0.0.0:7149,server,wait=off"
+    cap_add:
+      - "NET_ADMIN"
+    privileged: true
+    ports:
+      - "8006:8006"
+      - "3389:3389/tcp"
+      - "3389:3389/udp"
+    stop_grace_period: "2m"
+    restart: "no"
+    volumes:
+      - "./storage:/storage"
+      - "/dev/bus/usb:/dev/bus/usb"
+      - "./oem:/oem"
+      - "${HOME}:/shared"
+    devices:
+      - "/dev/kvm"
