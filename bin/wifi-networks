@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+# Show WiFi networks summary by SSID and band
+
+# Trigger a fresh WiFi scan
+echo "Scanning WiFi networks..."
+nmcli device wifi list --rescan yes
+sleep 2
+
+nmcli -f SSID,FREQ device wifi list | awk '
+NR==1 {next}
+{
+    freq=$(NF-1)
+    if(freq < 3000) band="2.4GHz"
+    else if(freq < 6000) band="5GHz"
+    else band="6GHz"
+
+    ssid=""
+    for(i=1; i<=NF-2; i++) {
+        if(ssid != "") ssid = ssid " "
+        ssid = ssid $i
+    }
+
+    key=ssid "|" band
+    count[key]++
+}
+END {
+    printf "%-30s %8s %8s %8s\n", "SSID", "2.4GHz", "5GHz", "6GHz"
+    printf "%-30s %8s %8s %8s\n", "------------------------------", "--------", "--------", "--------"
+
+    # Get unique SSIDs
+    for(k in count) {
+        split(k, a, "|")
+        ssids[a[1]] = 1
+    }
+
+    # Print summary sorted by total count
+    for(s in ssids) {
+        band24 = count[s "|2.4GHz"] + 0
+        band5 = count[s "|5GHz"] + 0
+        band6 = count[s "|6GHz"] + 0
+        total = band24 + band5 + band6
+
+        if(total > 0) {
+            printf "%-30s %8d %8d %8d", s, band24, band5, band6
+
+            # Warn about IoT/Guest on 5GHz
+            if(band5 > 0 && s ~ /IoT|Guest/) printf " � "
+
+            printf "\n"
+
+            total24 += band24
+            total5 += band5
+            total6 += band6
+        }
+    }
+
+    printf "%-30s %8s %8s %8s\n", "------------------------------", "--------", "--------", "--------"
+    printf "%-30s %8d %8d %8d\n", "TOTAL BSSIDs", total24, total5, total6
+}
+'
