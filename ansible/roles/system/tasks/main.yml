@@ -54,6 +54,18 @@
     group: root
     mode: "0644"
 
+- name: Set WiFi regulatory domain to Belgium
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/conf.d/wireless-regdom
+    content: |
+      # WiFi regulatory domain for Belgium
+      # Enables 6GHz support and proper frequency regulations
+      WIRELESS_REGDOM="BE"
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Configure NVIDIA driver
   become: true
   ansible.builtin.copy:
