@@ -1,0 +1,22 @@
+- name: Create ~/.local/share/applications
+  ansible.builtin.file:
+    path: ~/.local/share/applications
+    state: directory
+    mode: "0755"
+
+- name: Find desktop files
+  ansible.builtin.find:
+    paths: "{{ dot_repo_root }}/ansible/roles/apps/files/"
+    patterns: "*.desktop"
+    recurse: false
+    file_type: file
+  register: dot_desktop_files
+
+- name: Install desktop files
+  ansible.builtin.copy:
+    src: "{{ item.path }}"
+    dest: "~/.local/share/applications/{{ item.path | basename }}"
+    mode: "0644"
+  loop: "{{ dot_desktop_files.files }}"
+  loop_control:
+    label: "{{ item.path | basename }}"

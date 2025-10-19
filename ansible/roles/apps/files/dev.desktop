@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Dev
+Comment=Toggle Dev Terminal
+Exec=~/.config/niri/scripts/dev
+Terminal=false
+Type=Application
+Categories=Utility;TerminalEmulator;
+Icon=dev
+StartupWMClass=dev.terminal
