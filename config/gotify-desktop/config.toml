@@ -9,7 +9,7 @@ token = "C3pgD40hCrt8Ajr"
 # token = { command = "secret-tool lookup Title 'Gotify token'" }
 
 # optional, if true, deletes messages that have been handled, defaults to false
-auto_delete = true
+auto_delete = false
 
 [notification]
 # optional, ignores messages with priority lower than given value, defaults to 0
