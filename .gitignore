@@ -29,3 +29,5 @@ config/zellij/config.kdl.new
 .claude
 .crush
 .ansible
+windows/storage
+config/DankMaterialShell/plugins/.repos

@@ -108,6 +108,7 @@ freecad
 fsarchiver
 fwupd
 gammastep
+gdu
 gedit
 ghostty
 git
@@ -116,6 +117,7 @@ git-delta
 github-cli
 glances
 gnome-backgrounds
+gnome-boxes
 gnome-calculator
 gnome-calendar
 gnome-characters
@@ -225,6 +227,7 @@ libwnck3
 limine
 limine-mkinitcpio-hook
 limine-snapper-sync
+linssid
 linux-cachyos
 linux-cachyos-headers
 linux-cachyos-lts
@@ -234,6 +237,7 @@ linux-firmware
 linux-firmware-amdgpu
 linux-firmware-cirrus
 logrotate
+looking-glass
 loupe
 lsb-release
 lsp-plugins-lv2
@@ -288,6 +292,9 @@ nvidia-utils
 nvtop
 obsidian
 octopi
+ollama
+ollama-cuda
+openbsd-netcat
 opencl-mesa
 opencl-nvidia
 opendesktop-fonts
@@ -328,6 +335,7 @@ quickshell-git
 ranger
 rebuild-detector
 reflector
+remmina
 ripgrep
 rofi
 rog-control-center
@@ -393,14 +401,17 @@ usbutils
 ventoy-bin
 vi
 vim
+virt-manager
 virt-viewer
 visual-studio-code-bin
 vulkan-icd-loader
 vulkan-radeon
+wavemon
 wev
 wezterm
 wget
 which
+winboat-bin
 wireless-regdb
 wireplumber
 wl-clip-persist

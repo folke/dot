@@ -13,8 +13,3 @@ function pct_enter
     end
     pve pct enter $id
 end
-
-function win
-    test -z "$PVE_API_KEY"; and echo "PVE_API_KEY not set" and return 1
-    cv4pve-pepper --api-token $PVE_API_KEY --host 10.0.0.10 --viewer (which remote-viewer) --vmid 106 --start-or-resume
-end
