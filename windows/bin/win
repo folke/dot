@@ -39,6 +39,38 @@ function win_start
     end
 end
 
+function win_autostop
+    # Check if container is running
+    if not docker ps --format '{{.Names}}' | grep -q '^windows$'
+        return 0
+    end
+
+    set -l state_file ~/.cache/win_last_active
+
+    # Check for active xfreerdp processes
+    if pgrep -x xfreerdp3 >/dev/null
+        # Active sessions - update timestamp
+        touch $state_file
+        echo "Active Windows sessions detected, keeping running."
+    else
+        # No active sessions - check idle time
+        if test -f $state_file
+            # Check if file is older than 10 minutes
+            if string length -q -- (find $state_file -mmin +10 -print -quit)
+                echo "No active Windows sessions for 10 minutes, stopping..."
+                win_stop
+                rm -f $state_file
+            else
+                echo "No active Windows sessions, but within idle timeout."
+            end
+        else
+            # Create initial timestamp
+            touch $state_file
+            echo "No active Windows sessions, starting idle timer."
+        end
+    end
+end
+
 function win_stop
     echo "Stopping windows..."
     pkill xfreerdp3 2>/dev/null
@@ -52,7 +84,7 @@ function win_windows -a class
         | sort -k2 -r
 end
 
-function win -a app_path
+function win_app -a app_path
     # Ensure WinBoat container is running
     win_start
     or return 1
@@ -143,4 +175,51 @@ function win -a app_path
     return 1
 end
 
-win $argv
+function win_help
+    echo "Usage: win [OPTIONS] [APP]"
+    echo ""
+    echo "Launch Windows desktop or applications via RDP"
+    echo ""
+    echo "Options:"
+    echo "  --start      Start Windows container"
+    echo "  --stop       Stop Windows container and kill all RDP sessions"
+    echo "  --autostop   Check and auto-stop if idle for 10 minutes"
+    echo "  --help, -h   Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  win                                            # Launch Windows desktop"
+    echo "  win pwsh                                       # Launch PowerShell"
+    echo "  win 'C:\\Program Files\\App\\app.exe'             # Launch custom app"
+    echo "  win --start                                    # Just start the container"
+    echo "  win --stop                                     # Stop container"
+end
+
+function main
+    argparse -n win h/help start stop autostop -- $argv
+    or return 1
+
+    if set -q _flag_help
+        win_help
+        return 0
+    end
+
+    if set -q _flag_start
+        win_start
+        return
+    end
+
+    if set -q _flag_stop
+        win_stop
+        return
+    end
+
+    if set -q _flag_autostop
+        win_autostop
+        return
+    end
+
+    # If no flags, launch app (or desktop if no app specified)
+    win_app $argv
+end
+
+main $argv

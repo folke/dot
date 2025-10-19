@@ -1,0 +1,10 @@
+[Unit]
+Description=Windows container auto-stop timer
+Documentation=https://github.com/folke/dot
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=1min
+
+[Install]
+WantedBy=timers.target

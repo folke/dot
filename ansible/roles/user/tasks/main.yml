@@ -38,3 +38,24 @@
     enabled: true
     state: started
     scope: user
+
+- name: Windows autostop systemd service
+  ansible.builtin.copy:
+    src: roles/user/files/windows-autostop.service
+    dest: ~/.config/systemd/user/windows-autostop.service
+    mode: "0644"
+  notify: Reload systemd user daemon
+
+- name: Windows autostop systemd timer
+  ansible.builtin.copy:
+    src: roles/user/files/windows-autostop.timer
+    dest: ~/.config/systemd/user/windows-autostop.timer
+    mode: "0644"
+  notify: Reload systemd user daemon
+
+- name: Enable windows-autostop.timer
+  ansible.builtin.systemd:
+    name: windows-autostop.timer
+    enabled: true
+    state: started
+    scope: user

@@ -1,0 +1,7 @@
+[Unit]
+Description=Windows container auto-stop check
+Documentation=https://github.com/folke/dot
+
+[Service]
+Type=oneshot
+ExecStart=%h/dot/windows/bin/win --autostop
