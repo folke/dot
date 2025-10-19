@@ -8,6 +8,7 @@
   "popupTransparency": 0.91,
   "dockTransparency": 1,
   "use24HourClock": true,
+  "showSeconds": false,
   "useFahrenheit": false,
   "nightModeEnabled": false,
   "weatherLocation": "40.7128, -74.0060",
@@ -43,7 +44,8 @@
     {
       "id": "brightnessSlider",
       "enabled": true,
-      "width": 50
+      "width": 50,
+      "deviceName": "amdgpu_bl1"
     },
     {
       "id": "wifi",
@@ -77,6 +79,7 @@
     }
   ],
   "showWorkspaceIndex": false,
+  "workspaceScrolling": false,
   "showWorkspacePadding": true,
   "showWorkspaceApps": false,
   "maxWorkspaceIcons": 3,
@@ -87,6 +90,7 @@
   "focusedWindowCompactMode": false,
   "runningAppsCompactMode": true,
   "runningAppsCurrentWorkspace": true,
+  "runningAppsGroupByApp": true,
   "clockDateFormat": "",
   "lockDateFormat": "",
   "mediaSize": 1,
@@ -151,11 +155,16 @@
     {
       "id": "controlCenterButton",
       "enabled": true
+    },
+    {
+      "id": "powerUsagePlugin",
+      "enabled": true
     }
   ],
   "appLauncherViewMode": "list",
   "spotlightModalViewMode": "list",
-  "networkPreference": "auto",
+  "sortAppsAlphabetically": false,
+  "networkPreference": "wifi",
   "iconTheme": "System Default",
   "launcherLogoMode": "os",
   "launcherLogoCustomPath": "",
@@ -176,11 +185,13 @@
   "notepadTransparencyOverride": -1,
   "notepadLastCustomTransparency": 0.95,
   "soundsEnabled": true,
+  "useSystemSoundTheme": false,
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
+  "syncModeWithPortal": false,
   "showDock": false,
   "dockAutoHide": false,
   "dockGroupByApp": false,
@@ -188,6 +199,7 @@
   "dockPosition": 1,
   "dockSpacing": 4,
   "dockBottomGap": 0,
+  "dockIconSize": 40,
   "cornerRadius": 10,
   "notificationOverlayEnabled": true,
   "dankBarAutoHide": false,
@@ -207,6 +219,8 @@
   "popupGapsManual": 4,
   "dankBarPosition": 0,
   "lockScreenShowPowerActions": true,
+  "enableFprint": false,
+  "maxFprintTries": 3,
   "hideBrightnessSlider": false,
   "widgetBackgroundColor": "sth",
   "surfaceBase": "s",
@@ -215,9 +229,28 @@
   "notificationTimeoutCritical": 0,
   "notificationPopupPosition": 0,
   "osdAlwaysShowValue": false,
+  "powerActionConfirm": true,
+  "customPowerActionLock": "",
+  "customPowerActionLogout": "",
+  "customPowerActionSuspend": "",
+  "customPowerActionHibernate": "",
+  "customPowerActionReboot": "",
+  "customPowerActionPowerOff": "",
   "updaterUseCustomCommand": false,
   "updaterCustomCommand": "",
   "updaterTerminalAdditionalParams": "",
   "screenPreferences": {},
-  "animationSpeed": 2
+  "animationSpeed": 2,
+  "acMonitorTimeout": 300,
+  "acLockTimeout": 300,
+  "acSuspendTimeout": 1800,
+  "acHibernateTimeout": 0,
+  "batteryMonitorTimeout": 300,
+  "batteryLockTimeout": 300,
+  "batterySuspendTimeout": 1200,
+  "batteryHibernateTimeout": 0,
+  "lockBeforeSuspend": true,
+  "loginctlLockIntegration": true,
+  "launchPrefix": "",
+  "configVersion": 1
 }

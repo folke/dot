@@ -4,5 +4,11 @@
   },
   "optimusPlugin": {
     "enabled": true
+  },
+  "dankBatteryAlerts": {
+    "enabled": true
+  },
+  "powerUsagePlugin": {
+    "enabled": true
   }
 }
