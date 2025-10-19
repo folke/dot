@@ -168,3 +168,7 @@ abbr pas "paru -Ss"
 abbr pal "paru -Q"
 abbr paf "paru -Ql"
 abbr pao "paru -Qo"
+
+# Windows
+fish_add_path ~/dot/windows/bin
+abbr pwsh "win pwsh"

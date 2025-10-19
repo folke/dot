@@ -1,0 +1,146 @@
+#!/usr/bin/env fish
+
+function win_start
+    # Check if container is already running
+    if docker ps --format '{{.Names}}' | grep -q '^windows$'
+        return 0
+    end
+
+    # Container not running, start it
+    echo "Starting windows..."
+    docker start windows
+
+    # Follow logs and wait for success message (with timeout)
+    set -l found 0
+    docker logs -n 0 --follow windows 2>&1 &
+    set -l docker_pid $last_pid
+
+    # Wait for success message with timeout
+    set -l elapsed 0
+    while test $elapsed -lt 60
+        if docker logs --since 5s windows 2>&1 | strings | grep -q "Windows started successfully"
+            set found 1
+            break
+        end
+        sleep 1
+        set elapsed (math $elapsed + 1)
+    end
+
+    # Kill the background docker logs
+    kill $docker_pid 2>/dev/null
+
+    if test $found -eq 1
+        sleep 2
+        echo "Windows started."
+        return 0
+    else
+        echo "Timeout waiting for Windows to start"
+        return 1
+    end
+end
+
+function win_stop
+    echo "Stopping windows..."
+    pkill xfreerdp3 2>/dev/null
+    docker stop windows
+end
+
+function win_windows -a class
+    niri msg --json windows \
+        | jq -r --arg class "$class" \
+        '.[] | select(.app_id == $class) | {id: .id, has_title: (.title != "")} | [.id, .has_title] | @tsv' \
+        | sort -k2 -r
+end
+
+function win -a app_path
+    # Ensure WinBoat container is running
+    win_start
+    or return 1
+
+    if test -z "$WIN_USER" -o -z "$WIN_PASS"
+        echo "Error: WIN_USER and WIN_PASS environment variables must be set!"
+        return 1
+    end
+
+    # Determine if desktop or app mode
+    set -f wm_class win-desktop
+    set -f hide_windows false
+
+    if test -n "$app_path"
+        # Extract app name from path (exe name without extension)
+        # Handle Windows paths with backslashes
+        set app_name (string split '\\' -- $app_path)[-1]
+        set app_name (string replace -r '\.exe$' '' -- $app_name)
+        set -f wm_class "win-$app_name"
+        set -f app_args "/app:program:$app_path,name:$app_name"
+        set -f hide_windows true
+    else
+        # set -f app_args "+f"
+    end
+
+    # Check if window already exists and focus it
+
+    win_windows "$wm_class" | head -1 | read -l existing_id has_title
+    if test -n "$existing_id" -a "$has_title" = true
+        echo "Window already exists, focusing: $existing_window"
+        niri msg action focus-window --id $existing_id
+        return 0
+    end
+
+    # Create a temporary log file for xfreerdp output
+    set -l logfile (mktemp /tmp/xfreerdp.XXXXXX.log)
+
+    # NOTE: To find the correct resolution in maximized mode, run this in PowerShell:
+    # Get-CimInstance Win32_VideoController | Select-Object CurrentHorizontalResolution, CurrentVerticalResolution
+
+    # Launch xfreerdp in background
+    xfreerdp3 /u:$WIN_USER /p:$WIN_PASS /from-stdin /v:127.0.0.1 /port:3389 \
+        /cert:ignore /clipboard -wallpaper /sound:sys:pulse /microphone:sys:pulse \
+        -compression /wm-class:"$wm_class" /size:2832x1698 /scale:140 /floatbar \
+        +dynamic-resolution \
+        -auto-reconnect -decorations +aero $app_args >$logfile 2>&1 </dev/null &
+
+    # Capture PID before disowning
+    set -l xfreerdp_pid $last_pid
+    disown
+
+    # Wait for window to appear
+    for i in (seq 1 50)
+        sleep 0.1
+
+        # Check if xfreerdp crashed
+        if not kill -0 $xfreerdp_pid 2>/dev/null
+            echo "Error: xfreerdp3 crashed during startup!"
+            echo "Log output:"
+            cat $logfile
+            rm -f $logfile
+            return 1
+        end
+
+        # Look for the main window (has a title)
+        win_windows "$wm_class" | head -1 | read -l main_window has_title
+        if test -n "$main_window" -a "$has_title" = true
+            echo "Found main window: $main_window"
+            if test "$hide_windows" = true
+                win_windows "$wm_class" | while read -l win_id win_has_title
+                    if test "$win_has_title" = false
+                        echo "Hiding extra window: $win_id"
+                        niri msg action move-window-to-floating --id $win_id
+                        niri msg action set-window-width 1 --id $win_id
+                        niri msg action set-window-height 1 --id $win_id
+                        niri msg action move-floating-window --id $win_id -x 5000 -y 5000
+                    end
+                end
+            end
+            echo "RemoteApp launched successfully (PID: $xfreerdp_pid)"
+            rm -f $logfile
+            return 0
+        end
+    end
+    cat $logfile
+    echo "Error: Failed to detect window!"
+    rm -f $logfile
+    return 1
+end
+
+win $argv

@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Windows Desktop
 Comment=Windows Desktop via RDP
-Exec=fish -c windows
+Exec=win
 Terminal=false
 Type=Application
 Categories=System;
