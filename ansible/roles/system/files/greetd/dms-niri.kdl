@@ -6,23 +6,15 @@ environment {
     DMS_RUN_GREETER "1"
 }
 
-output "eDP-2" {
-    mode "2880x1800@120"
-    scale 1.5
-    background-color "#1a1b26"
-}
-
-// Screen when in AsusMuxDgpu mode
-output "eDP-1" {
-    mode "2880x1800@120"
-    scale 1.5
-    background-color "#1a1b26"
-}
-
 spawn-at-startup "sh" "-c" "qs -p /etc/xdg/quickshell/dms; niri msg action quit --skip-confirmation"
 
 debug {
+    keep-max-bpc-unchanged
     render-drm-device "/dev/dri/by-path/pci-0000:65:00.0-render" // iGPU (AMD)
+}
+
+layout {
+    background-color "#1a1b26"
 }
 
 gestures {
@@ -30,3 +22,16 @@ gestures {
      off
    }
 }
+
+output "eDP-2" {
+    mode "2880x1800@120"
+    scale 1.5
+}
+
+// Screen when in AsusMuxDgpu mode
+output "eDP-1" {
+    mode "2880x1800@120"
+    scale 1.5
+}
+
+

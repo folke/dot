@@ -1,52 +1,20 @@
-- name: Deploy greetd configs
+- name: Copy Niri Greetd config
   become: true
   ansible.builtin.copy:
-    src: "{{ item }}"
-    dest: "/etc/greetd/{{ item | basename }}"
+    src: roles/system/files/greetd/dms-niri.kdl
+    dest: /etc/greetd/dms-niri.kdl
     owner: root
     group: root
     mode: "0644"
-  loop: "{{ lookup('fileglob', 'roles/system/files/greetd/*', wantlist=True) }}"
-  tags: greetd
 
-- name: Make greetd start script executable
+- name: Copy Greetd config
   become: true
-  ansible.builtin.file:
-    path: /etc/greetd/greet-niri.sh
-    mode: "0755"
-
-- name: Create /etc/greetd/.dms directory
-  become: true
-  ansible.builtin.file:
-    path: /etc/greetd/.dms
-    state: directory
-    owner: greeter
+  ansible.builtin.copy:
+    src: roles/system/files/greetd/config.toml
+    dest: /etc/greetd/config.toml
+    owner: root
     group: root
-    mode: "0755"
-
-- name: Symlink DMS settings.json to user config
-  become: true
-  ansible.builtin.file:
-    src: /home/folke/.config/DankMaterialShell/settings.json
-    dest: /etc/greetd/.dms/settings.json
-    state: link
-    force: true
-
-- name: Symlink DMS session.json to user state
-  become: true
-  ansible.builtin.file:
-    src: /home/folke/.local/state/DankMaterialShell/session.json
-    dest: /etc/greetd/.dms/session.json
-    state: link
-    force: true
-
-- name: Symlink DMS colors.json to user cache
-  become: true
-  ansible.builtin.file:
-    src: /home/folke/.cache/quickshell/dankshell/dms-colors.json
-    dest: /etc/greetd/.dms/colors.json
-    state: link
-    force: true
+    mode: "0644"
 
 - name: Enable greetd service
   become: true
