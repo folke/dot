@@ -116,10 +116,10 @@ abbr gm "git branch -l main | rg main > /dev/null 2>&1 && git checkout main || g
 abbr gcp "git commit -p"
 abbr gpp "git push"
 abbr gp "git pull"
-alias tn "npx --no-install ts-node --transpile-only"
-abbr tt "tn src/tt.ts"
 
 # Other
+alias tn "npx --no-install ts-node --transpile-only"
+abbr tt "tn src/tt.ts"
 abbr df "grc /bin/df -h"
 abbr ntop "ultra --monitor"
 abbr ytop btm
@@ -172,3 +172,19 @@ abbr pao "paru -Qo"
 # Windows
 fish_add_path ~/dot/windows/bin
 abbr pwsh "win pwsh"
+
+# Docker
+abbr lad lazydocker
+abbr d docker
+abbr dc docker compose
+abbr dcu "docker compose up -d"
+abbr dcd "docker compose down"
+abbr dcl "docker compose logs -f"
+abbr dps "docker ps"
+abbr dpsa "docker ps -a"
+abbr di "docker images"
+abbr dex "docker exec -it"
+abbr dl "docker logs -f"
+abbr dprune "docker system prune -af"
+abbr drm "docker rm -f"
+abbr drmi "docker rmi"
