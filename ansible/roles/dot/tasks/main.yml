@@ -73,6 +73,12 @@
     dest: ~/.config/nvim
     state: link
 
+- name: Claude Code config symlink
+  ansible.builtin.file:
+    src: "{{ dot_repo_root }}/config/claude/settings.json"
+    dest: ~/.claude/settings.json
+    state: link
+
 - name: .ssh/config
   ansible.builtin.copy:
     src: ~/.config/.ssh.config
