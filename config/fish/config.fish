@@ -109,9 +109,9 @@ alias lazygit "TERM=xterm-256color command lazygit"
 abbr gg lazygit
 abbr gl 'git l --color | devmoji --log --color | less -rXF'
 abbr gs "git st"
+abbr gsw "git switch"
 abbr gb "git checkout -b"
 abbr gc "git commit"
-abbr gpr "gh pr checkout"
 abbr gm "git branch -l main | rg main > /dev/null 2>&1 && git checkout main || git checkout master"
 abbr gcp "git commit -p"
 abbr gpp "git push"

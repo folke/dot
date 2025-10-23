@@ -12,10 +12,26 @@ vim.opt.rtp:prepend(lazypath)
 
 local M = {}
 
+local override = {} ---@type LazySpec
+
+-- If we are in a git worktree, use this as the plugin dir
+local cwd = assert(vim.uv.cwd())
+if cwd:find("git-worktrees", 1, true) and vim.fn.isdirectory("lua") == 1 then
+  local root = vim.fn.systemlist({ "git", "rev-parse", "--path-format=absolute", "--git-common-dir" })[1]
+  if root and root ~= "" then
+    root = vim.fs.dirname(root) ---@type string
+    override = {
+      name = vim.fs.basename(root),
+      dir = cwd,
+    }
+  end
+end
+
 ---@param opts LazyConfig
 function M.load(opts)
   opts = vim.tbl_deep_extend("force", {
     spec = {
+      override,
       {
         "LazyVim/LazyVim",
         import = "lazyvim.plugins",
