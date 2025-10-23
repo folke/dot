@@ -42,8 +42,9 @@ return {
   {
     "folke/lazydev.nvim",
     opts = function(_, opts)
+      local v = vim.version()
       opts.debug = true
-      opts.runtime = "~/projects/neovim/runtime"
+      opts.runtime = v and v.prerelease and "~/projects/neovim/runtime" or nil
       vim.list_extend(opts.library, {
         -- { path = "wezterm-types", mods = { "wezterm" } },
         { path = "${3rd}/luassert/library", words = { "assert" } },
