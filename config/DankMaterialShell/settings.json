@@ -140,9 +140,12 @@
       "enabled": true
     },
     {
+      "id": "dockerPlugin",
+      "enabled": true
+    },
+    {
       "id": "cpuUsage",
-      "enabled": true,
-      "minimumWidth": false
+      "enabled": true
     },
     {
       "id": "optimusPlugin",
@@ -154,10 +157,6 @@
     },
     {
       "id": "controlCenterButton",
-      "enabled": true
-    },
-    {
-      "id": "powerUsagePlugin",
       "enabled": true
     }
   ],
@@ -200,6 +199,7 @@
   "dockSpacing": 4,
   "dockBottomGap": 0,
   "dockIconSize": 40,
+  "dockIndicatorStyle": "circle",
   "cornerRadius": 10,
   "notificationOverlayEnabled": true,
   "dankBarAutoHide": false,
@@ -224,10 +224,11 @@
   "hideBrightnessSlider": false,
   "widgetBackgroundColor": "sth",
   "surfaceBase": "s",
+  "wallpaperFillMode": "Fill",
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
-  "notificationPopupPosition": 0,
+  "notificationPopupPosition": -1,
   "osdAlwaysShowValue": false,
   "powerActionConfirm": true,
   "customPowerActionLock": "",
@@ -240,7 +241,9 @@
   "updaterCustomCommand": "",
   "updaterTerminalAdditionalParams": "",
   "screenPreferences": {},
+  "showOnLastDisplay": {},
   "animationSpeed": 2,
+  "customAnimationDuration": 500,
   "acMonitorTimeout": 300,
   "acLockTimeout": 300,
   "acSuspendTimeout": 1800,
@@ -252,5 +255,6 @@
   "lockBeforeSuspend": true,
   "loginctlLockIntegration": true,
   "launchPrefix": "",
+  "brightnessDevicePins": {},
   "configVersion": 1
 }
