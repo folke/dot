@@ -1,14 +1,19 @@
 return {
+  -- { "nvim-telescope/telescope.nvim", cmd = "Telescope" },
+  -- { "ibhagwan/fzf-lua", cmd = "FzfLua" },
   {
     "folke/sidekick.nvim",
     opts = {
-      debug = false,
+      debug = true,
       cli = {
+        -- picker = "fzf-lua",
+        -- picker = "snacks",
         mux = {
           -- backend = "zellij",
           enabled = true,
           create = "terminal",
         },
+        -- win = { layout = "float" },
         tools = {
           debug = {
             -- print env and read -p "any key to continue"

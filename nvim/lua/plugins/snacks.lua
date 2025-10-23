@@ -28,6 +28,16 @@ return {
           grep = {
             hidden = true,
           },
+          select = {
+            kinds = {
+              sidekick_cli = {
+                layout = { preset = "vscode" },
+              },
+              sidekick_prompt = {
+                layout = { preset = "vscode" },
+              },
+            },
+          },
           explorer = {
             hidden = true,
             layout = {
@@ -62,7 +72,7 @@ return {
       indent = {
         chunk = { enabled = true },
       },
-      dashboard = { example = "github" },
+      dashboard = { example = "advanced" },
       gitbrowse = {
         open = function(url)
           vim.fn.system(" ~/dot/config/hypr/scripts/quake")
@@ -85,13 +95,6 @@ return {
         "<leader>dpd",
         desc = "Debug profiler",
         function()
-          do return {
-            a = {
-              b = {
-                c =  123,
-              },
-            },
-          } end
           if not Snacks.profiler.running() then
             Snacks.notify("Profiler debug started")
             Snacks.profiler.start()

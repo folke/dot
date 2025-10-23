@@ -67,6 +67,7 @@ chwd
 cliphist
 cpupower
 cryptsetup
+ctags
 cups
 cups-pdf
 cv4pve-pepper-git
@@ -83,6 +84,7 @@ dmraid
 dms-shell-git
 dnsmasq
 dosfstools
+dotnet-runtime-6.0
 downgrade
 dua-cli
 duf
@@ -116,6 +118,7 @@ git-crypt
 git-delta
 github-cli
 glances
+glow
 gnome-backgrounds
 gnome-boxes
 gnome-calculator
@@ -157,6 +160,7 @@ gotify-desktop
 gpu-viewer
 grc
 greetd
+greetd-dms-greeter-git
 grilo-plugins
 grim
 grimblast-git
@@ -207,6 +211,7 @@ keyd
 khal
 kicad
 kitty
+konsole
 lazydocker
 lazygit
 lazyjournal
@@ -259,6 +264,7 @@ mermaid-cli
 mesa
 mesa-utils
 micro
+microsoft-edge-beta-bin
 microsoft-edge-dev-bin
 mkinitcpio
 modemmanager
@@ -322,6 +328,9 @@ pv
 pyenv
 python
 python-defusedxml
+python-fluidity
+python-invoke
+python-lexicon
 python-notify2
 python-packaging
 python-pipx
@@ -417,6 +426,7 @@ wireplumber
 wl-clip-persist
 wlr-randr
 wpa_supplicant
+xclip
 xdg-desktop-portal-gnome
 xdg-desktop-portal-hyprland
 xdg-user-dirs
