@@ -1,9 +1,9 @@
 # @fish-lsp-disable 2002
 
-status is-interactive; or exit
-
 # Load secrets if available
 dotenv ~/dot/secrets.env
+
+status is-interactive; or exit
 
 # Cursor styles
 set -gx fish_vi_force_cursor 1
