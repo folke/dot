@@ -72,7 +72,7 @@ return {
       indent = {
         chunk = { enabled = true },
       },
-      dashboard = { example = "advanced" },
+      dashboard = { example = vim.fn.has("win32") == 0 and "advanced" or nil },
       gitbrowse = {
         open = function(url)
           vim.fn.system(" ~/dot/config/hypr/scripts/quake")
