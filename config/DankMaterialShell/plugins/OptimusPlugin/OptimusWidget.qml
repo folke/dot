@@ -35,7 +35,7 @@ PluginComponent {
 
     FileView {
         id: gpuStatusFile
-        path: "/sys/class/drm/card0/device/power/runtime_status"
+        path: "/sys/class/drm/renderD129/device/power/runtime_status"
         blockLoading: true
     }
 
