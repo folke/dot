@@ -53,6 +53,7 @@
       - niri
       - mate-polkit
       - dms-shell-git
+      - greetd-dms-greeter-git
 
       # hyprland
       - hyprland

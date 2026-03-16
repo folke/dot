@@ -1,8 +1,8 @@
 - name: Import howdy tasks
   ansible.builtin.import_tasks: howdy.yml
-- name: Import greetd tasks
-  ansible.builtin.import_tasks: greetd.yml
-  tags: greetd
+# - name: Import greetd tasks
+#   ansible.builtin.import_tasks: greetd.yml
+#   tags: greetd
 
 - name: Keyd
   become: true
@@ -86,6 +86,24 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Install nvidia-resume systemd service
+  become: true
+  ansible.builtin.systemd_service:
+    name: nvidia-resume.service
+    enabled: true
+
+- name: Install nvidia-suspend systemd service
+  become: true
+  ansible.builtin.systemd_service:
+    name: nvidia-suspend.service
+    enabled: true
+
+- name: Install nvidia-hibernate systemd service
+  become: true
+  ansible.builtin.systemd_service:
+    name: nvidia-hibernate.service
+    enabled: true
 
 - name: Symlink optimus to /usr/local/bin for systemd service
   become: true
