@@ -31,6 +31,9 @@ format = '([$all_status$ahead_behind]($style))'
 [[battery.display]]
 threshold = 50
 
+[gcloud]
+disabled = true
+
 [lua]
 detect_folders = []
 symbol = " "

@@ -1,17 +1,18 @@
 function fisher --argument-names cmd --description "A plugin manager for Fish"
     set --query fisher_path || set --local fisher_path $__fish_config_dir
-    set --local fisher_version 4.4.5
+    set --local fisher_version 4.4.8
     set --local fish_plugins $__fish_config_dir/fish_plugins
 
     switch "$cmd"
         case -v --version
             echo "fisher, version $fisher_version"
         case "" -h --help
-            echo "Usage: fisher install <plugins...>  Install plugins"
-            echo "       fisher remove  <plugins...>  Remove installed plugins"
-            echo "       fisher update  <plugins...>  Update installed plugins"
-            echo "       fisher update                Update all installed plugins"
-            echo "       fisher list    [<regex>]     List installed plugins matching regex"
+            echo "Usage: fisher install   <plugins...>  Install plugins"
+            echo "       fisher remove    <plugins...>  Remove installed plugins" 
+            echo "       fisher uninstall <plugins...>  Remove installed plugins (alias)" 
+            echo "       fisher update    <plugins...>  Update installed plugins"
+            echo "       fisher update                  Update all installed plugins"
+            echo "       fisher list    [<regex>]       List installed plugins matching regex"
             echo "Options:"
             echo "       -v, --version  Print version"
             echo "       -h, --help     Print this help message"
@@ -19,8 +20,10 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
             echo "       \$fisher_path  Plugin installation path. Default: $__fish_config_dir" | string replace --regex -- $HOME \~
         case ls list
             string match --entire --regex -- "$argv[2]" $_fisher_plugins
-        case install update remove
+        case install update remove uninstall
             isatty || read --local --null --array stdin && set --append argv $stdin
+
+            test "$cmd" = uninstall && set cmd remove
 
             set --local install_plugins
             set --local update_plugins
@@ -38,6 +41,8 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
                     echo "fisher: \"$fish_plugins\" file not found: \"$cmd\"" >&2 && return 1
                 end
                 set arg_plugins $file_plugins
+            else if test "$cmd" = install && ! set --query old_plugins[1] 
+                set --append arg_plugins $file_plugins
             end
 
             for plugin in $arg_plugins
@@ -86,6 +91,7 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
                     if test -e $plugin
                         command cp -Rf $plugin/* $source
                     else
+                        set resp (command mktemp)
                         set temp (command mktemp -d)
                         set repo (string split -- \@ $plugin) || set repo[2] HEAD
 
@@ -98,8 +104,13 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
 
                         echo Fetching (set_color --underline)\$url(set_color normal)
 
-                        if command curl -q --silent -L \$url | command tar -xzC \$temp -f - 2>/dev/null
+                        set http (command curl -q --silent -L -o \$resp -w %{http_code} \$url)
+
+                        if test \"\$http\" = 200 && command tar -xzC \$temp -f \$resp 2>/dev/null
                             command cp -Rf \$temp/*/* $source
+                        else if test \"\$http\" = 403
+                            echo fisher: GitHub API rate limit exceeded \(HTTP 403\) >&2
+                            command rm -rf $source
                         else
                             echo fisher: Invalid plugin name or host unavailable: \\\"$plugin\\\" >&2
                             command rm -rf $source

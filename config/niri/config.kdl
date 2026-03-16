@@ -128,6 +128,7 @@ clipboard {
 spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
 spawn-at-startup "dms" "run"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "~/.config/niri/scripts/xclip"
 // spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-at-startup "udiskie"
 spawn-at-startup "journalctl-desktop-notification"
@@ -162,6 +163,7 @@ workspace "dev"
 // Maximized
 window-rule {
     match app-id="zen"
+    match app-id="calibre-gui"
     open-maximized true
 }
 
@@ -177,7 +179,7 @@ window-rule {
 }
 
 // Dialogs window rule
-window-rule{
+window-rule {
     match app-id="confirm"
     match app-id="pavucontrol"
     match app-id="blueman"
@@ -229,8 +231,8 @@ binds {
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
     XF86KbdBrightnessDown allow-when-locked=true { spawn "asusctl" "--prev-kbd-bright"; }
     XF86KbdBrightnessUp   allow-when-locked=true { spawn "asusctl" "--next-kbd-bright"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "amdgpu_bl1"; }
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "amdgpu_bl1"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "backlight:amdgpu_bl1"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "backlight:amdgpu_bl1"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }

@@ -15,7 +15,7 @@ services:
       HOME: "${HOME}"
       LANGUAGE: "English"
       HOST_PORTS: "7149"
-      ARGUMENTS: "-qmp tcp:0.0.0.0:7149,server,wait=off"
+      ARGUMENTS: "-qmp tcp:0.0.0.0:7149,server,wait=off -device usb-host,vendorid=0x091e,productid=0x51b8"
     cap_add:
       - "NET_ADMIN"
     privileged: true
@@ -32,3 +32,4 @@ services:
       - "${HOME}:/shared"
     devices:
       - "/dev/kvm"
+      - "/dev/bus/usb"

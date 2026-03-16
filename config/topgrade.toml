@@ -5,7 +5,7 @@
 
 # Disable specific steps - same options as the command line flag
 #disable = ["system", "emacs"]
-disable = ["vim"]
+disable = ["vim", "hyprpm", "gcloud"]
 
 # Ignore failures for these steps
 #ignore_failures = ["powershell"]

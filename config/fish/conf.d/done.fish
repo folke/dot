@@ -24,15 +24,15 @@ if not status is-interactive
     exit
 end
 
-set -g __done_version 1.20.0
+set -g __done_version 1.21.1
 
 function __done_run_powershell_script
-    set -l powershell_exe (command --search "powershell.exe")
+    set -f powershell_exe (command --search "powershell.exe")
 
-    if test $status -ne 0
+    if test "$status" -ne 0
         and command --search wslvar
 
-        set -l powershell_exe (wslpath (wslvar windir)/System32/WindowsPowerShell/v1.0/powershell.exe)
+        set -f powershell_exe (wslpath (wslvar windir)/System32/WindowsPowerShell/v1.0/powershell.exe)
     end
 
     if string length --quiet "$powershell_exe"
@@ -152,13 +152,13 @@ function __done_is_process_window_focused
     set __done_focused_window_id (__done_get_focused_window_id)
     if test "$__done_sway_ignore_visible" -eq 1
         and test -n "$SWAYSOCK"
-        string match --quiet --regex "^true" (swaymsg -t get_tree | jq ".. | objects | select(.id == "$__done_initial_window_id") | .visible")
+        string match --quiet --regex "^true" (swaymsg -t get_tree | jq ".. | objects | select(.id == "$__done_initial_window_id") | .visible" 2>/dev/null)
         return $status
     else if test -n "$HYPRLAND_INSTANCE_SIGNATURE"
-        and test $__done_initial_window_id = (hyprctl activewindow | awk 'NR==1 {print $2}')
+        and test "$__done_initial_window_id" = (hyprctl activewindow | awk 'NR==1 {print $2}')
         return $status
     else if test -n "$NIRI_SOCKET"
-        and test $__done_initial_window_id = (niri msg --json focused-window | jq ".id")
+        and test "$__done_initial_window_id" = (niri msg --json focused-window | jq ".id")
         return $status
     else if test "$__done_initial_window_id" != "$__done_focused_window_id"
         return 1
@@ -185,13 +185,13 @@ function __done_humanize_duration -a milliseconds
     set -l minutes (math --scale=0 "$milliseconds/60000" % 60)
     set -l hours (math --scale=0 "$milliseconds/3600000")
 
-    if test $hours -gt 0
+    if test "$hours" -gt 0
         printf '%s' $hours'h '
     end
-    if test $minutes -gt 0
+    if test "$minutes" -gt 0
         printf '%s' $minutes'm '
     end
-    if test $seconds -gt 0
+    if test "$seconds" -gt 0
         printf '%s' $seconds's'
     end
 end
@@ -226,13 +226,13 @@ if set -q __done_enabled
         # backwards compatibility for fish < v3.0
         set -q cmd_duration; or set -l cmd_duration $CMD_DURATION
 
-        if test $cmd_duration
-            and test $cmd_duration -gt $__done_min_cmd_duration # longer than notify_duration
+        if test -n "$cmd_duration"
+            and test "$cmd_duration" -gt "$__done_min_cmd_duration" # longer than notify_duration
             and not __done_is_process_window_focused # process pane or window not focused
 
             # don't notify if command matches exclude list
             for pattern in $__done_exclude
-                if string match -qr $pattern $argv[1]
+                if string match -qr -- $pattern $argv[1]
                     return
                 end
             end
@@ -245,7 +245,7 @@ if set -q __done_enabled
             set -l message "$wd/ $argv[1]"
             set -l sender $__done_initial_window_id
 
-            if test $exit_status -ne 0
+            if test "$exit_status" -ne 0
                 set title "Failed ($exit_status) after $humanized_duration"
             end
 
@@ -258,15 +258,24 @@ if set -q __done_enabled
                 if test "$__done_notify_sound" -eq 1
                     echo -e "\a" # bell sound
                 end
+
             else if set -q KITTY_WINDOW_ID
                 printf "\x1b]99;i=done:d=0;$title\x1b\\"
                 printf "\x1b]99;i=done:d=1:p=body;$message\x1b\\"
+
+            else if test "$TERM_PROGRAM" = ghostty; or test "$TERM_PROGRAM" = WezTerm
+                printf "\x1b]777;notify;%s;%s\x1b\\" "$title" "$message"
+
+            else if test "$TERM_PROGRAM" = iTerm.app
+                printf "\x1b]9;%s: %s\x1b\\" "$title" "$message"
+
             else if type -q terminal-notifier # https://github.com/julienXX/terminal-notifier
                 if test "$__done_notify_sound" -eq 1
                     # pipe message into terminal-notifier to avoid escaping issues (https://github.com/julienXX/terminal-notifier/issues/134). fixes #140
-                    echo "$message" | terminal-notifier -title "$title" -sender "$__done_initial_window_id" -sound default
+                    # not using the -sender option because it hangs for some apps (https://github.com/julienXX/terminal-notifier/issues/301)
+                    echo "$message" | terminal-notifier -title "$title" -sound default
                 else
-                    echo "$message" | terminal-notifier -title "$title" -sender "$__done_initial_window_id"
+                    echo "$message" | terminal-notifier -title "$title"
                 end
 
             else if type -q osascript # AppleScript
@@ -289,7 +298,7 @@ if set -q __done_enabled
                     set urgency "$__done_notification_urgency_level"
                 end
                 # override user-defined urgency level if non-zero exitstatus
-                if test $exit_status -ne 0
+                if test "$exit_status" -ne 0
                     set urgency critical
                     if set -q __done_notification_urgency_level_failure
                         set urgency "$__done_notification_urgency_level_failure"
@@ -304,7 +313,7 @@ if set -q __done_enabled
 
             else if type -q notify-desktop # Linux notify-desktop
                 set -l urgency
-                if test $exit_status -ne 0
+                if test "$exit_status" -ne 0
                     set urgency "--urgency=critical"
                 end
                 notify-desktop $urgency --icon=utilities-terminal --app-name=fish "$title" "$message"

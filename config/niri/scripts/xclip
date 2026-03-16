@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+wl-paste --watch bash -c '
+  type=$(wl-paste --list-types | head -n1)
+  wl-paste -t "$type" | xclip -selection clipboard -t "$type"
+'

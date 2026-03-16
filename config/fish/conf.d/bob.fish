@@ -24,4 +24,4 @@ bob_update
 
 alias nvim_stable="bob_run stable"
 alias nvim_10="bob_run 0.10.4"
-abbr nvim_11 nvim_stable
+abbr nvim_11 "bob run 0.11.5"

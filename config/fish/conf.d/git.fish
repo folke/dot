@@ -11,7 +11,7 @@ function gw -a name
     set -l path $git_worktrees_root/$repo-$name
 
     if not test -d $path
-        git worktree add $path -b $name
+        git worktree add $path $name 2>/dev/null || git worktree add $path -b $name
         echo "Created worktree '$name' at $path"
     end
     cd $path
@@ -25,7 +25,9 @@ function gpr -a pr
 
     set -l branch (gh pr view "$pr" --json headRefName -q .headRefName)
     set -l repo (basename (git rev-parse --show-toplevel))
-    set -l path $git_worktrees_root/$repo-$pr-$branch
+    set -l branch_safe (string replace -a / _ $branch)
+    set -l name "$repo-$pr-$branch_safe"
+    set -l path $git_worktrees_root/$name
 
     if not test -d $path
         git worktree add $path || return 1

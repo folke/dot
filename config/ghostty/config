@@ -9,7 +9,7 @@ adjust-underline-position = 4
 
 # Mouse
 mouse-hide-while-typing = true
-# mouse-scroll-multiplier = 1
+mouse-scroll-multiplier = 1
 
 # Theme
 theme = /home/folke/projects/tokyonight.nvim/extras/ghostty/tokyonight_night
@@ -31,6 +31,8 @@ keybind = super+shift+period=move_tab:1
 keybind = super+shift+c=copy_to_clipboard
 keybind = super+shift+v=paste_from_clipboard
 keybind = super+shift+enter=new_split:auto
+keybind = super+shift+minus=new_split:down
+keybind = super+shift+backslash=new_split:right
 keybind = super+shift+i=inspector:toggle
 keybind = super+shift+m=toggle_split_zoom
 keybind = super+shift+r=reload_config

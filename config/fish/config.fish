@@ -116,6 +116,7 @@ abbr gm "git branch -l main | rg main > /dev/null 2>&1 && git checkout main || g
 abbr gcp "git commit -p"
 abbr gpp "git push"
 abbr gp "git pull"
+abbr gd "git difftool -d"
 
 # Other
 alias tn "npx --no-install ts-node --transpile-only"
@@ -188,3 +189,6 @@ abbr dl "docker logs -f"
 abbr dprune "docker system prune -af"
 abbr drm "docker rm -f"
 abbr drmi "docker rmi"
+
+# OpenClaw Completion
+source "/home/folke/.openclaw/completions/openclaw.fish"

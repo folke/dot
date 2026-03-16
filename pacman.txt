@@ -61,9 +61,13 @@ cachyos-v4-mirrorlist
 cachyos-wallpapers
 cachyos-zsh-config
 calf
+calibre-bin
 cava
+cbconvert
+cbonsai
 chafa
 chwd
+cliamp-bin
 cliphist
 cpupower
 cryptsetup
@@ -86,6 +90,7 @@ dnsmasq
 dosfstools
 dotnet-runtime-6.0
 downgrade
+dsearch-bin
 dua-cli
 duf
 dust
@@ -99,6 +104,7 @@ eog
 epiphany
 ethtool
 evince
+ex-vi-compat
 exfatprogs
 f2fs-tools
 feh
@@ -156,6 +162,8 @@ gnome-usage
 gnome-user-docs
 gnome-user-share
 gnome-weather
+go-yq
+google-cloud-cli
 gotify-desktop
 gpu-viewer
 grc
@@ -272,6 +280,7 @@ mtools
 mutagen.io-bin
 nano
 nano-syntax-highlighting
+nasm
 nautilus
 ncdu
 ndisc6
@@ -328,9 +337,7 @@ pv
 pyenv
 python
 python-defusedxml
-python-fluidity
-python-invoke
-python-lexicon
+python-dlib-cuda
 python-notify2
 python-packaging
 python-pipx
@@ -359,6 +366,8 @@ seahorse
 selene
 sg3_utils
 shell-color-scripts-git
+shellcheck
+shfmt
 simple-scan
 slurp
 smartmontools
@@ -408,7 +417,6 @@ upower
 usb_modeswitch
 usbutils
 ventoy-bin
-vi
 vim
 virt-manager
 virt-viewer
@@ -421,6 +429,9 @@ wezterm
 wget
 which
 winboat-bin
+wine-gecko
+wine-mono
+wine-staging
 wireless-regdb
 wireplumber
 wl-clip-persist

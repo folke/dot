@@ -8,17 +8,26 @@ return {
       statuscolumn = { folds = { open = false } },
       notifier = { sort = { "added" } },
       scroll = { debug = false },
+      -- animate = {
+      --   fps = 240,
+      -- },
       image = {
         force = false,
-        enabled = true,
+        -- enabled = false,
         debug = { request = false, convert = false, placement = false },
         math = { enabled = true },
-        doc = { inline = true, float = true },
+        -- doc = { inline = true, float = true },
+      },
+      lazygit = {
+        config = {
+          os = {
+            edit = 'test -z "$NVIM"; and nvim -- {{filename}}; or begin; nvim --server "$NVIM" --remote-send "q"; and nvim --server "$NVIM" --remote {{filename}}; end',
+          },
+        },
       },
       picker = {
         previewers = {
-          diff = { builtin = false },
-          git = { builtin = false },
+          diff = { style = "fancy" },
         },
         debug = { scores = false, leaks = false, explorer = false, files = false, proc = true },
         sources = {
@@ -57,7 +66,8 @@ return {
           toggle_lua = function(p)
             local opts = p.opts --[[@as snacks.picker.grep.Config]]
             opts.ft = not opts.ft and "lua" or nil
-            p:find()
+            opts.dirs = opts.ft == "lua" and { "lua" } or nil
+            p:refresh()
           end,
         },
       },
@@ -70,9 +80,10 @@ return {
         },
       },
       indent = {
+        -- enabled = true,
         chunk = { enabled = true },
       },
-      dashboard = { example = vim.fn.has("win32") == 0 and "advanced" or nil },
+      dashboard = { example = vim.fn.has("win32") == 0 and "github" or nil },
       gitbrowse = {
         open = function(url)
           vim.fn.system(" ~/dot/config/hypr/scripts/quake")
@@ -106,4 +117,14 @@ return {
       },
     },
   },
+  -- { "folke/todo-comments.nvim", enabled = false },
+  -- { "nvim-mini/mini.hipatterns", enabled = false },
+  -- {
+  --   "folke/snacks.nvim",
+  --   opts = {
+  --     scroll = { enabled = false },
+  --     indent = { enabled = false },
+  --     statuscolumn = { enabled = false },
+  --   },
+  -- }, -- disable scroll for testing
 }
