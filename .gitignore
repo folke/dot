@@ -31,5 +31,6 @@ config/zellij/config.kdl.new
 .ansible
 windows/storage
 config/DankMaterialShell/plugins/.repos
+config/DankMaterialShell/plugins/emojiLauncher
 /config/DankMaterialShell/.changelog-1.2
 /config/DankMaterialShell/.firstlaunch
