@@ -4,7 +4,12 @@ return {
   {
     "folke/sidekick.nvim",
     opts = {
-      debug = true,
+      debug = false,
+      nes = {
+        diff = {
+          -- show = "cursor",
+        },
+      },
       cli = {
         -- picker = "fzf-lua",
         -- picker = "snacks",
