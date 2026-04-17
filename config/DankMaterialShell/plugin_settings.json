@@ -10,5 +10,9 @@
   },
   "powerUsagePlugin": {
     "enabled": true
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "useDMS": false
   }
 }
