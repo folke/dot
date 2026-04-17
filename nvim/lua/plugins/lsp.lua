@@ -19,6 +19,9 @@ return {
           cmd = { "qmlls6" },
           root_markers = { ".qmlls.ini" },
         },
+        jsonls = {
+          filetypes = { "json", "jsonc", "json5" },
+        },
         lua_ls = {
           -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
           -- single_file_support = true,
@@ -67,10 +70,10 @@ return {
     optional = true,
     opts = {
       formatters_by_ft = {
-        ["javascript"] = { "dprint", "prettier" },
-        ["javascriptreact"] = { "dprint" },
-        ["typescript"] = { "dprint", "prettier" },
-        ["typescriptreact"] = { "dprint" },
+        -- ["javascript"] = { "dprint", "prettier" },
+        -- ["javascriptreact"] = { "dprint" },
+        -- ["typescript"] = { "dprint", "prettier" },
+        -- ["typescriptreact"] = { "dprint" },
       },
       formatters = {
         dprint = {
@@ -87,6 +90,10 @@ return {
       linters_by_ft = {
         -- lua = { "selene", "luacheck" },
         lua = { "luacheck" },
+        -- typescript = { "biomejs" },
+        -- typescriptreact = { "biomejs" },
+        -- javascript = { "biomejs" },
+        -- javascriptreact = { "biomejs" },
       },
       linters = {
         selene = {
