@@ -11,3 +11,5 @@ vim.keymap.set("n", "<Right>", "<c-w>l")
 vim.keymap.set("n", "<leader>cp", function()
   require("util.preview").preview()
 end, { desc = "Markdown Preview" })
+
+vim.keymap.set("n", "dm", ":execute 'delmarks '.nr2char(getchar())<cr>", { silent = true })
