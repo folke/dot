@@ -87,6 +87,7 @@ dmidecode
 dmraid
 dms-shell-git
 dnsmasq
+docker-buildx
 dosfstools
 dotnet-runtime-6.0
 downgrade
@@ -182,7 +183,6 @@ gvfs
 gvfs-afc
 gvfs-dnssd
 gvfs-goa
-gvfs-google
 gvfs-gphoto2
 gvfs-mtp
 gvfs-nfs
@@ -209,7 +209,7 @@ imv
 inetutils
 inkscape
 intel-gpu-tools
-iptables-nft
+iptables
 iwd
 jamesdsp
 jfsutils
@@ -249,6 +249,7 @@ linux-cachyos-nvidia-open
 linux-firmware
 linux-firmware-amdgpu
 linux-firmware-cirrus
+llmfit-bin
 logrotate
 looking-glass
 loupe
@@ -300,7 +301,7 @@ npm
 nss-mdns
 ntfs-3g
 ntp
-numbat-bin
+numbat
 nvidia-prime
 nvidia-settings
 nvidia-utils
@@ -338,13 +339,13 @@ pyenv
 python
 python-defusedxml
 python-dlib-cuda
+python-huggingface-hub
 python-notify2
 python-packaging
 python-pipx
 python-poetry
 python-reportlab
 python-uv
-python-youtube-transcript-api
 qflipper
 qt6-wayland
 quickshell-git
@@ -379,6 +380,7 @@ sops
 speech-dispatcher
 spotify-launcher
 spotify-player
+sqlit
 starship
 stylua
 sudo
