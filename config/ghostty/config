@@ -38,6 +38,8 @@ keybind = super+shift+m=toggle_split_zoom
 keybind = super+shift+r=reload_config
 keybind = super+shift+s=write_screen_file:open
 keybind = super+shift+w=close_surface
+# fix for shift+enter in claude-code
+keybind = shift+enter=text:\x1b\r
 
 # Window
 gtk-single-instance = true
