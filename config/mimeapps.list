@@ -53,3 +53,4 @@ text/x-tex=nvim.desktop
 x-scheme-handler/chrome=zen.desktop
 x-scheme-handler/http=zen.desktop
 x-scheme-handler/https=zen.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
