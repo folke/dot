@@ -1,32 +1,54 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:*)",
-      "Read(**)",
-      "Glob(**)",
-      "Bash(gh pr view:*)",
-      "Bash(gh pr diff:*)",
-      "Bash(gh pr list:*)",
-      "Bash(gh issue view:*)",
-      "Bash(gh issue list:*)",
-      "Bash(gh repo view:*)",
-      "Bash(gh status:*)",
-      "Bash(gh api:*)",
+      "WebSearch",
+      "WebFetch",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(wc:*)",
+      "Bash(which:*)",
+      "Bash(echo:*)",
+      "Bash(pwd)",
+      "Bash(tree:*)",
+      "Bash(gh:*)",
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
       "Bash(git show:*)",
       "Bash(git show-ref:*)",
       "Bash(git branch:*)",
-      "Bash(git branch -v:*)",
-      "Bash(git remote -v:*)",
-      "Bash(ls:*)",
-      "Bash(pwd:*)",
-      "Bash(which:*)",
-      "Bash(nvim --version:*)",
-      "Bash(node --version:*)",
-      "Bash(npm list:*)"
+      "Bash(git remote:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(nvim --version:*)"
     ]
   },
-  "alwaysThinkingEnabled": true
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/folke/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "example-skills@anthropic-agent-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      },
+      "autoUpdate": true
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "showThinkingSummaries": true
 }
