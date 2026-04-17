@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
 wl-paste --watch bash -c '
-  type=$(wl-paste --list-types | head -n1)
-  wl-paste -t "$type" | xclip -selection clipboard -t "$type"
+  types=$(timeout 1 wl-paste --list-types 2>/dev/null) || exit 0
+  for t in image/png image/jpeg "text/plain;charset=utf-8" text/plain; do
+    grep -qxF "$t" <<< "$types" || continue
+    timeout 1 wl-paste -t "$t" 2>/dev/null \
+      | timeout 1 xclip -selection clipboard -t "$t" >/dev/null 2>&1
+    exit 0
+  done
 '
