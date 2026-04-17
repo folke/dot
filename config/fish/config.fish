@@ -26,7 +26,12 @@ fish_add_path ~/.gem/ruby/2.6.0/bin
 fish_add_path /var/lib/flatpak/exports/bin/
 fish_add_path ~/.dotnet/tools
 fish_add_path ~/.local/share/mise/shims
-fish_add_path ~/.local/share/bob/nvim-used/bin
+
+if [ -e ~/.local/share/bob/nvim-used ]
+    fish_add_path ~/.local/share/bob/nvim-used/bin
+else
+    fish_add_path ~/.local/share/bob/nvim-bin/
+end
 
 set -gx DENO_INSTALL "~/.deno"
 fish_add_path ~/.deno/bin
@@ -52,7 +57,7 @@ fish_add_path $GOPATH $GOPATH/bin
 
 fish_add_path -m /etc/profiles/per-user/folke/bin /run/current-system/sw/bin
 # Exports
-set -x LESS -rF
+set -x LESS -RF
 set -x COMPOSE_DOCKER_CLI_BUILD 1
 set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x DOTDROP_AUTOUPDATE no
@@ -134,6 +139,7 @@ abbr weather "curl -s wttr.in/Ghent | grep -v Follow"
 abbr show-cursor "tput cnorm"
 abbr hide-cursor "tput civis"
 abbr aria2c-daemon "aria2c -D"
+abbr nvitop "uvx nvitop"
 alias gnome-control-center "env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 # systemctl
