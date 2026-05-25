@@ -7,13 +7,13 @@ return {
       diagnostics = { virtual_text = { prefix = "icons" } },
       servers = {
         ["*"] = {
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = {
-                dynamicRegistration = false,
-              },
-            },
-          },
+          -- capabilities = {
+          --   workspace = {
+          --     didChangeWatchedFiles = {
+          --       dynamicRegistration = false,
+          --     },
+          --   },
+          -- },
         },
         qmlls = {
           cmd = { "qmlls6" },

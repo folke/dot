@@ -14,6 +14,7 @@ return {
 
   {
     "folke/noice.nvim",
+    enabled = true,
     opts = function(_, opts)
       opts.debug = vim.uv.cwd():find("noice%.nvim")
       opts.debug = false

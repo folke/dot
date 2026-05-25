@@ -8,6 +8,10 @@ return {
     },
   },
   {
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
+  },
+  {
     "pwntester/octo.nvim",
     opts = {
       use_local_fs = true,

@@ -36,7 +36,7 @@ require("config.lazy").load({
   -- debug = false,
   profiling = {
     loader = false,
-    require = true,
+    require = false,
   },
 })
 
