@@ -14,3 +14,8 @@
   become: true
   ansible.builtin.systemd:
     daemon_reload: true
+
+- name: Generate locales
+  become: true
+  ansible.builtin.command: locale-gen
+  changed_when: true

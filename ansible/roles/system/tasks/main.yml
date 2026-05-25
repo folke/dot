@@ -143,6 +143,24 @@
     state: stopped
     enabled: false
 
+- name: Enable en_US.UTF-8 in /etc/locale.gen
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/locale.gen
+    regexp: '^#?\s*en_US\.UTF-8 UTF-8'
+    line: en_US.UTF-8 UTF-8
+  notify: Generate locales
+
+- name: Set system locale
+  become: true
+  ansible.builtin.copy:
+    dest: /etc/locale.conf
+    content: |
+      LANG=en_US.UTF-8
+    owner: root
+    group: root
+    mode: "0644"
+
 - name: Geoclue
   become: true
   ansible.builtin.copy:
