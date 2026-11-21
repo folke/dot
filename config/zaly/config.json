@@ -1,0 +1,44 @@
+{
+  "ui": {
+    "theme": "tokyonight-moon",
+    "mode": "fullscreen",
+    "transparent": true
+  },
+  "plugins": [
+    "~/projects/zaly",
+    "https://github.com/obra/superpowers"
+  ],
+  "resources": {
+    ".": {
+      "include": [
+        "commands/test.md"
+      ]
+    },
+    "https://github.com/obra/superpowers": {
+      "enabled": false
+    }
+  },
+  "keymap": {},
+  "permissions": {
+    "preset": "yolo"
+  },
+  "commands": {
+    "actionPrefix": "cmd:"
+  },
+  "compaction": {},
+  "tools": [
+    "bash",
+    "edit",
+    "fetch",
+    "find",
+    "grep",
+    "read",
+    "search",
+    "task_list",
+    "task_poll",
+    "task_stop",
+    "write"
+  ],
+  "masking": {},
+  "model": "openai-codex/gpt-6.2-sol"
+}
