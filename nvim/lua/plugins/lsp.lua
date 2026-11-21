@@ -7,13 +7,13 @@ return {
       diagnostics = { virtual_text = { prefix = "icons" } },
       servers = {
         ["*"] = {
-          -- capabilities = {
-          --   workspace = {
-          --     didChangeWatchedFiles = {
-          --       dynamicRegistration = false,
-          --     },
-          --   },
-          -- },
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = false,
+              },
+            },
+          },
         },
         qmlls = {
           cmd = { "qmlls6" },
@@ -21,6 +21,13 @@ return {
         },
         jsonls = {
           filetypes = { "json", "jsonc", "json5" },
+        },
+        oxlint = {
+          settings = {
+            typeAware = true,
+            fixKind = "all",
+            unusedDisableDirectives = "warn",
+          },
         },
         lua_ls = {
           -- cmd = { "/home/folke/projects/lua-language-server/bin/lua-language-server" },
@@ -85,11 +92,16 @@ return {
     },
   },
   {
+    "mason-org/mason.nvim",
+    opts = { ensure_installed = { "actionlint" } },
+  },
+  {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
         -- lua = { "selene", "luacheck" },
         lua = { "luacheck" },
+        ["yaml.ghaction"] = { "actionlint" },
         -- typescript = { "biomejs" },
         -- typescriptreact = { "biomejs" },
         -- javascript = { "biomejs" },
