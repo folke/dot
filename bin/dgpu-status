@@ -1,0 +1,264 @@
+#!/usr/bin/env fish
+# Show why the NVIDIA dGPU is awake, without waking it via nvidia-smi.
+
+set -l deep 0
+
+function usage
+    echo "Usage: dgpu-status [--deep]"
+    echo ""
+    echo "Shows NVIDIA dGPU runtime state and likely users."
+    echo "Does not run nvidia-smi by default, because nvidia-smi wakes the dGPU."
+    echo ""
+    echo "Options:"
+    echo "  --deep    Also scan process maps for NVIDIA/CUDA libraries"
+    echo "  -h, --help"
+end
+
+for arg in $argv
+    switch $arg
+        case --deep
+            set deep 1
+        case -h --help
+            usage
+            exit 0
+        case '*'
+            set_color red
+            echo "Unknown option: $arg"
+            set_color normal
+            usage
+            exit 1
+    end
+end
+
+function section -a title
+    echo ""
+    set_color cyan
+    echo "== $title =="
+    set_color normal
+end
+
+function warn -a text
+    set_color yellow
+    echo $text
+    set_color normal
+end
+
+function print_file -a label path
+    if test -e $path
+        printf "%-24s %s\n" "$label:" (string collect < $path 2>/dev/null)
+    end
+end
+
+function pci_label -a pci
+    set -l vendor (cat $pci/vendor 2>/dev/null)
+    set -l device (cat $pci/device 2>/dev/null)
+    set -l class (cat $pci/class 2>/dev/null)
+    printf "%s vendor=%s device=%s class=%s" (basename $pci) $vendor $device $class
+end
+
+function drm_nodes_for_pci -a pci
+    set -l pci_real (readlink -f $pci)
+    for node in /sys/class/drm/card* /sys/class/drm/renderD*
+        test -e $node/device
+        or continue
+
+        if test (readlink -f $node/device) = $pci_real
+            printf "/dev/dri/%s\n" (basename $node)
+        end
+    end
+end
+
+function print_runtime_state -a pci
+    echo (pci_label $pci)
+    print_file "runtime_status" $pci/power/runtime_status
+    print_file "runtime_usage" $pci/power/runtime_usage
+    print_file "power_state" $pci/power_state
+    print_file "power/control" $pci/power/control
+    print_file "enable" $pci/enable
+
+    set -l nodes (drm_nodes_for_pci $pci)
+    if test (count $nodes) -gt 0
+        printf "%-24s %s\n" "drm nodes:" (string join ' ' $nodes)
+    end
+end
+
+function collect_nvidia_pci
+    for pci in /sys/bus/pci/devices/*
+        test -e $pci/vendor
+        or continue
+
+        if test (cat $pci/vendor 2>/dev/null) = 0x10de
+            echo $pci
+        end
+    end
+end
+
+function collect_nvidia_device_nodes
+    set -l nodes
+
+    for node in /dev/nvidia* /dev/nvidia-caps/*
+        test -e $node
+        and set -a nodes $node
+    end
+
+    for pci in (collect_nvidia_pci)
+        for node in (drm_nodes_for_pci $pci)
+            test -e $node
+            and set -a nodes $node
+        end
+    end
+
+    printf "%s\n" $nodes | sort -u
+end
+
+function show_lsof_for_nodes
+    set -l nodes $argv
+    if test (count $nodes) -eq 0
+        echo "No NVIDIA device nodes found."
+        return
+    end
+
+    if not type -q lsof
+        warn "lsof not installed; cannot list device users."
+        return
+    end
+
+    set -l output (lsof $nodes 2>/dev/null)
+    if test -z "$output"
+        echo "No processes currently have NVIDIA device nodes open (as visible to this user)."
+        echo "Tip: run with sudo if you suspect a root-owned process."
+    else
+        printf "%s\n" $output
+    end
+end
+
+function show_nvidia_library_users
+    set -l found 0
+
+    for proc in /proc/[0-9]*
+        set -l pid (basename $proc)
+
+        test -r $proc/maps
+        or continue
+
+        if not string match -q (id -u) (stat -c %u $proc 2>/dev/null)
+            continue
+        end
+
+        set -l matches (string match -r '.*(libnvidia|libcuda|libnvcuvid|libGLX_nvidia|libEGL_nvidia|nvidia_icd|libvulkan_nvidia).*' < $proc/maps 2>/dev/null | sort -u)
+        if test -z "$matches"
+            continue
+        end
+
+        set found 1
+        set -l comm (cat $proc/comm 2>/dev/null)
+        set -l args (string split0 < $proc/cmdline 2>/dev/null | string join ' ')
+        if test -z "$args"
+            set args $comm
+        end
+
+        set_color yellow
+        echo "PID $pid $comm"
+        set_color normal
+        echo "  $args"
+        printf "  %s\n" $matches | sed -n '1,8p'
+    end
+
+    if test $found -eq 0
+        echo "No user processes with NVIDIA/CUDA libraries mapped."
+    end
+end
+
+function show_suspicious_processes
+    set -l pattern 'rog-control-center|lm-studio|lmstudio|nvidia-settings|nvtop|btop|missioncenter|resources|steam|gamescope|obs|blender|ollama|llama|cuda|prime-run|nvidia-offload|mpv|ffmpeg|zen|brave|chrome|chromium|electron|qs|dms'
+    set -l matches (ps -u (id -u) -o pid=,ppid=,comm=,args= \
+        | rg -i $pattern 2>/dev/null \
+        | rg -v ' rg | dgpu-status| bash -c | -contentproc |forkserver|Socket Process|Web Content|WebExtensions|Utility Process|Isolated Web|Isolated Servic|Privileged Cont|RDD Process')
+
+    if test -z "$matches"
+        echo "No obvious GPU-adjacent user processes found."
+    else
+        printf "%s\n" $matches | sed -n '1,80p'
+    end
+end
+
+function show_recent_journal
+    if not type -q journalctl
+        return
+    end
+
+    journalctl -b --since '20 min ago' --no-pager 2>/dev/null \
+        | rg -i 'nvidia|nvrm|drm|amdgpu|cuda|vulkan|egl|glx|prime|rog-control|asusd|cardwire|power source|hda controller' \
+        | tail -n 80
+end
+
+section "Summary"
+date
+
+# Cardwire hides device nodes and sysfs from blocked clients; query its daemon instead.
+if type -q cardwire; and cardwire manager status >/dev/null 2>&1
+    section "Cardwire mode and GPUs"
+    cardwire get
+    cardwire list
+    set -l gpu_ids (cardwire list --json | python -c 'import json,sys; [print(g["id"]) for g in json.load(sys.stdin).values() if g["discrete"]]')
+    for gpu_id in $gpu_ids
+        section "GPU $gpu_id power state"
+        cardwire gpu --power $gpu_id
+        section "GPU $gpu_id open files"
+        cardwire gpu --lsof $gpu_id
+    end
+    section "Obvious GPU-adjacent processes"
+    show_suspicious_processes
+    if test $deep -eq 1
+        section "Processes with NVIDIA/CUDA libraries mapped"
+        show_nvidia_library_users
+    end
+    section "Recent GPU-ish journal lines"
+    show_recent_journal
+    exit 0
+end
+
+set -l nvidia_pci (collect_nvidia_pci)
+if test (count $nvidia_pci) -eq 0
+    warn "No NVIDIA PCI devices found."
+    exit 1
+end
+
+for pci in $nvidia_pci
+    print_runtime_state $pci
+end
+
+section "DRM device map"
+for node in /sys/class/drm/card* /sys/class/drm/renderD*
+    test -e $node/device/vendor
+    or continue
+
+    set -l vendor (cat $node/device/vendor 2>/dev/null)
+    set -l runtime (cat $node/device/power/runtime_status 2>/dev/null)
+    printf "%-24s vendor=%s runtime=%s pci=%s\n" "/dev/dri/"(basename $node) $vendor $runtime (basename (readlink -f $node/device))
+end
+
+section "Open NVIDIA device nodes"
+set -l nodes (collect_nvidia_device_nodes)
+printf "%s\n" $nodes
+show_lsof_for_nodes $nodes
+
+section "Obvious GPU-adjacent processes"
+show_suspicious_processes
+
+if test $deep -eq 1
+    section "Processes with NVIDIA/CUDA libraries mapped"
+    show_nvidia_library_users
+else
+    section "NVIDIA/CUDA library scan"
+    echo "Skipped. Use --deep to scan /proc/*/maps for apps that loaded NVIDIA libraries."
+    echo "This can catch cases like rog-control-center loading libEGL_nvidia without holding /dev/nvidia*."
+end
+
+section "Recent GPU-ish journal lines"
+show_recent_journal
+
+section "Notes"
+echo "- This script intentionally does not run nvidia-smi."
+echo "- nvidia-smi can wake the dGPU by itself, which hides the culprit."
+echo "- If lsof shows nothing but runtime_status is active, try: sudo dgpu-status --deep"

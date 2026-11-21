@@ -10,64 +10,86 @@ PluginComponent {
     id: root
 
     property string iconName: "bolt"
-    property bool initialModeLoaded: false
-    readonly property string currentMode: configFile.text().trim()
-    readonly property string gpuStatus: gpuStatusFile.text().trim()
+    property var gpu: ({ "ok": false, "state": "unknown" })
+    property string statusOutput: ""
+    property string switchError: ""
+    property string requestedMode: ""
+    readonly property string currentMode: gpu.ok ? gpu.mode : "unknown"
+    readonly property var modeModel: gpu.ok ? gpu.modes : []
+    readonly property var modeLabels: modeModel.map(mode => mode.charAt(0).toUpperCase() + mode.slice(1))
+    readonly property string helperPath: decodeURIComponent(Qt.resolvedUrl("cardwire-status.py").toString().replace(/^file:\/\//, ""))
 
     function statusColor() {
+        if (!gpu.ok || gpu.state === "unknown")
+            return Theme.surfaceVariantText;
+        if (gpu.state === "awake")
+            return Theme.warning;
         if (currentMode === "integrated")
             return Theme.success;
-        else if (currentMode === "ultimate")
-            return Theme.error;
-        else if (currentMode === "hybrid" && gpuStatus !== "suspended")
-            return Theme.warning;
-        else
-            return Theme.primary;
+        return Theme.primary;
     }
 
-    FileView {
-        id: configFile
-        path: "/etc/optimus.conf"
-        watchChanges: true
-        blockLoading: true
-        onFileChanged: this.reload()
-    }
-
-    FileView {
-        id: gpuStatusFile
-        path: "/sys/class/drm/renderD129/device/power/runtime_status"
-        blockLoading: true
-    }
-
-    Timer {
-        interval: 3000 // 3 seconds
-        running: true
-        repeat: true
-        onTriggered: gpuStatusFile.reload()
-    }
-
-    // onGpuStatusChanged: {
-    //     ToastService.showInfo("dGPU status: " + gpuStatus);
-    // }
-
-    onCurrentModeChanged: {
-        if (!initialModeLoaded) {
-            initialModeLoaded = true;
-            return;
+    function refresh() {
+        if (!statusProcess.running) {
+            statusOutput = "";
+            statusProcess.running = true;
         }
-        const modeLabel = currentMode.toUpperCase().charAt(0) + currentMode.slice(1);
-        ToastService.showInfo("GPU mode set to " + modeLabel + "\nReboot required to apply");
     }
 
     function setMode(mode) {
-        Quickshell.execDetached(["sh", "-c", "optimus " + mode]);
+        if (switchProcess.running || mode === currentMode || modeModel.indexOf(mode) < 0)
+            return;
+        requestedMode = mode;
+        switchError = "";
+        switchProcess.command = ["cardwire", "set", mode];
+        switchProcess.running = true;
     }
+
+    Process {
+        id: statusProcess
+        command: ["/usr/bin/python", root.helperPath]
+        stdout: StdioCollector {
+            onStreamFinished: root.statusOutput = this.text
+        }
+        onExited: (exitCode, exitStatus) => {
+            try {
+                if (exitCode !== 0)
+                    throw new Error("Status helper failed");
+                root.gpu = JSON.parse(root.statusOutput);
+            } catch (error) {
+                root.gpu = { "ok": false, "state": "unknown", "error": error.message };
+            }
+        }
+    }
+
+    Process {
+        id: switchProcess
+        stderr: StdioCollector {
+            onStreamFinished: root.switchError = this.text.trim()
+        }
+        onExited: (exitCode, exitStatus) => {
+            if (exitCode === 0)
+                ToastService.showInfo("Cardwire", "Switched to " + root.requestedMode);
+            else
+                ToastService.showError("Cardwire", root.switchError || "Mode switch failed");
+            root.refresh();
+        }
+    }
+
+    Timer {
+        interval: 3000
+        running: true
+        repeat: true
+        onTriggered: root.refresh()
+    }
+
+    Component.onCompleted: refresh()
 
     horizontalBarPill: Component {
         DankIcon {
             name: root.iconName
             size: Theme.barIconSize(barThickness)
-            color: statusColor()
+            color: root.statusColor()
             anchors.centerIn: parent
             filled: true
         }
@@ -79,26 +101,34 @@ PluginComponent {
         PopoutComponent {
             id: popout
 
-            headerText: "Optimus Mode"
+            headerText: "Cardwire GPU Mode"
             showCloseButton: true
 
             Column {
                 width: parent.width
-                spacing: Theme.spacingMedium
-                padding: Theme.spacingMedium
+                spacing: Theme.spacingM
+                padding: Theme.spacingM
+
+                StyledText {
+                    width: parent.width - 2 * Theme.spacingM
+                    text: root.gpu.ok
+                        ? root.gpu.gpu + "\n" + root.gpu.power + " · " + (root.gpu.blocked ? "Blocked" : "Available")
+                        : "Cardwire unavailable: " + (root.gpu.error || "Waiting for status")
+                    color: Theme.surfaceVariantText
+                    font.pixelSize: Theme.fontSizeSmall
+                    wrapMode: Text.WordWrap
+                }
 
                 DankButtonGroup {
-                    property var modeModel: ["integrated", "hybrid", "ultimate"]
-
-                    model: ["Integrated", "Hybrid", "Ultimate"]
-                    currentIndex: modeModel.indexOf(root.currentMode)
+                    model: root.modeLabels
+                    currentIndex: root.modeModel.indexOf(root.currentMode)
                     selectionMode: "single"
+                    enabled: root.gpu.ok && !switchProcess.running
                     anchors.horizontalCenter: parent.horizontalCenter
                     onSelectionChanged: (index, selected) => {
                         if (!selected)
                             return;
-                        root.setMode(modeModel[index]);
-                        popout.closePopout();
+                        root.setMode(root.modeModel[index]);
                     }
                 }
             }
@@ -106,5 +136,5 @@ PluginComponent {
     }
 
     popoutWidth: 400
-    popoutHeight: 100
+    popoutHeight: 170
 }

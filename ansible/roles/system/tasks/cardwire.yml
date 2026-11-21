@@ -1,0 +1,77 @@
+- name: Verify ASUS firmware is already in Hybrid mode
+  ansible.builtin.slurp:
+    src: "/sys/class/firmware-attributes/asus-armoury/attributes/{{ item }}/current_value"
+  loop:
+    - dgpu_disable
+    - gpu_mux_mode
+  register: system_cardwire_firmware
+
+- name: Require Hybrid firmware for Cardwire GPU policy
+  ansible.builtin.assert:
+    that:
+      - system_cardwire_firmware.results[0].content | b64decode | trim == '0'
+      - system_cardwire_firmware.results[1].content | b64decode | trim == '1'
+    fail_msg: Switch ASUS firmware to Hybrid and reboot before deploying Cardwire integration.
+
+- name: Disable NVIDIA persistence
+  become: true
+  ansible.builtin.systemd_service:
+    name: nvidia-persistenced.service
+    enabled: false
+    state: stopped
+
+- name: Enable NVIDIA sleep integration
+  become: true
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    enabled: true
+  loop:
+    - nvidia-suspend.service
+    - nvidia-hibernate.service
+    - nvidia-resume.service
+
+- name: Check whether Cardwire is already managing NVIDIA power
+  ansible.builtin.command:
+    argv: [systemctl, is-active, cardwired.service]
+  register: system_cardwire_active
+  changed_when: false
+  failed_when: system_cardwire_active.rc not in [0, 3, 4]
+  check_mode: false
+
+- name: Enable NVIDIA power daemon and start it before bootstrapping Cardwire
+  become: true
+  ansible.builtin.systemd_service:
+    name: nvidia-powerd.service
+    enabled: true
+    # Cardwire deliberately stops powerd in Integrated mode; do not undo that.
+    state: "{{ omit if system_cardwire_active.rc == 0 else 'started' }}"
+
+- name: Enable Cardwire daemon
+  become: true
+  ansible.builtin.systemd_service:
+    name: cardwired.service
+    daemon_reload: true
+    enabled: true
+    state: started
+
+- name: Read Cardwire power policies
+  ansible.builtin.command:
+    argv: [cardwire, config, "{{ item.name }}"]
+  changed_when: false
+  check_mode: false
+  loop:
+    - { name: battery-auto-switch, value: 'true', expected: 'BatteryAutoSwitch: true' }
+    - { name: battery-auto-switch-mode, value: hybrid, expected: 'BatteryAutoSwitch: Hybrid' }
+    - { name: experimental-nvidia-block, value: 'true', expected: 'ExperimentalNvidiaBlock: true' }
+  register: system_cardwire_policy
+
+- name: Configure Integrated on battery, Hybrid on AC, and NVIDIA blocking
+  become: true
+  ansible.builtin.command:
+    argv: [cardwire, config, "{{ item.item.name }}", "{{ item.item.value }}"]
+  when: item.stdout | trim != item.item.expected
+  changed_when: true
+  loop: "{{ system_cardwire_policy.results }}"
+  loop_control:
+    label: "{{ item.item.name }}"
+  notify: Save Cardwire configuration

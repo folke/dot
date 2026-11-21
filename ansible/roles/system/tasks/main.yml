@@ -89,47 +89,19 @@
     group: root
     mode: "0644"
 
-- name: Install nvidia-resume systemd service
-  become: true
-  ansible.builtin.systemd_service:
-    name: nvidia-resume.service
-    enabled: true
-
-- name: Install nvidia-suspend systemd service
-  become: true
-  ansible.builtin.systemd_service:
-    name: nvidia-suspend.service
-    enabled: true
-
-- name: Install nvidia-hibernate systemd service
-  become: true
-  ansible.builtin.systemd_service:
-    name: nvidia-hibernate.service
-    enabled: true
-
-- name: Symlink optimus to /usr/local/bin for systemd service
-  become: true
-  ansible.builtin.file:
-    src: "{{ dot_repo_root }}/bin/optimus"
-    dest: /usr/local/bin/optimus
-    state: link
-
-- name: Install optimus systemd service
+- name: Configure NVIDIA auxiliary device udev rules
   become: true
   ansible.builtin.copy:
-    src: roles/system/files/optimus.service
-    dest: /etc/systemd/system/optimus.service
+    src: roles/system/files/udev/80-nvidia-pm.rules
+    dest: /etc/udev/rules.d/80-nvidia-pm.rules
     owner: root
     group: root
     mode: "0644"
-  notify: Reload systemd
+  notify: Reload udev rules
 
-- name: Enable optimus service
-  become: true
-  ansible.builtin.systemd_service:
-    name: optimus.service
-    enabled: true
-    daemon_reload: true
+- name: Configure Cardwire GPU policy
+  ansible.builtin.import_tasks: cardwire.yml
+  tags: [cardwire]
 
 - name: Enable Gnome SSH Agent (GCR)
   ansible.builtin.systemd_service:

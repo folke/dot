@@ -1,0 +1,10 @@
+# Remove NVIDIA USB xHCI Host Controller devices, if present.
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{remove}="1"
+
+# Remove NVIDIA USB Type-C UCSI devices, if present.
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{remove}="1"
+
+# Remove NVIDIA HDA audio devices. The packaged CachyOS udev rules already
+# handle runtime PM for the VGA/3D controller; this only removes auxiliary
+# NVIDIA functions that can wake the dGPU unnecessarily.
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{remove}="1"

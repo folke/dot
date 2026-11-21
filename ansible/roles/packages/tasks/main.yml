@@ -15,6 +15,7 @@
       - aria2
       - asusctl
       - cachyos-snapper-support
+      - cardwire
       - cups
       - downgrade
       - gaze-bin

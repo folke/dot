@@ -1,57 +1,53 @@
-# Optimus GPU Mode Plugin
+# Cardwire GPU Mode Plugin
 
-A DankMaterialShell plugin for managing GPU modes on ASUS laptops with MUX switch support.
+DMS bar widget for Cardwire. The directory, component filenames, and `optimusPlugin`
+ID are retained so existing bar layouts and plugin settings keep working.
 
-## Features
+## Behavior
 
-- **Visual Status Indicator**: Color-coded bar widget showing current GPU mode
-  - 🔋 Green - Integrated (best battery life)
-  - ⚡ Blue - Hybrid (balanced)
-  - 🎮 Red - MUX/dGPU Direct (best performance)
-- **Quick Mode Switching**: Click to open mode selector with three options
-- **Desktop Notifications**: Shows toast notification when mode is changed
-- **Pending Mode Display**: Shows configured mode if different from current (requires reboot)
-- **Auto-refresh**: Updates status every 30 seconds
+- **Green:** Integrated mode and dGPU asleep (D3hot/D3cold).
+- **Theme color:** Hybrid/Smart mode and dGPU asleep.
+- **Orange:** dGPU awake, regardless of selected mode.
+- **Neutral:** daemon unavailable, query failed, or power state unknown.
 
-## Installation
+The popout shows the GPU name, actual power state, blocked status, and the modes
+available on this system: Integrated, Hybrid, and Smart. Changes apply immediately,
+without a reboot or logout. Existing GPU applications may retain previously opened
+device handles; close/restart them if the GPU does not sleep after blocking it.
 
-1. This plugin should already be installed in `~/.config/DankMaterialShell/plugins/OptimusPlugin`
-2. Open DMS Settings → Plugins
-3. Click "Scan for Plugins"
-4. Enable "Optimus GPU Mode"
-5. Add `optimusPlugin` to your DankBar widget list (right side recommended)
+Status refreshes every three seconds. The read-only Python helper queries Cardwire
+through `busctl` and its JSON CLI, discovering the discrete GPU dynamically rather
+than assuming a GPU ID or PCI address. It never opens NVIDIA devices, reads blocked
+sysfs paths, or runs `nvidia-smi`.
 
-## Requirements
+## Setup
 
-- `optimus` command in PATH (from ~/dot/bin/optimus)
-- ASUS laptop with MUX switch support
-- asusd service running
+Requires `cardwire`, a running `cardwired.service`, Python, and systemd's `busctl`.
+Enable **Cardwire GPU Mode** in DMS plugins; existing `optimusPlugin` bar entries
+continue to work.
 
-## GPU Modes
+Deploy the workstation's Cardwire integration:
 
-### Integrated (🔋)
-- iGPU only, dGPU powered off
-- Best for battery life
-- Lowest power consumption
+```sh
+just ansible --tags cardwire --check --diff
+just ansible --tags cardwire
+```
 
-### Hybrid (⚡)
-- Both GPUs active
-- iGPU for display, dGPU for rendering
-- Use `prime-run` for GPU-accelerated apps
-- Balanced performance and battery
+Ansible configures Integrated on battery / Hybrid on AC.
+The packaged Cardwire service is used without overrides.
+It leaves `nvidia-powerd` enabled for Cardwire to manage and disables NVIDIA
+persistence. Additional NVIDIA-interface blocking is enabled for the laptop's
+single-iGPU/single-NVIDIA topology. Smart is available for manual selection but is
+not enabled by default; configure its per-application permissions before relying
+on it for games or Ollama.
 
-### MUX / dGPU Direct (🎮)
-- dGPU directly connected to display
-- Best gaming performance
-- Highest power consumption
-- Requires reboot to switch
+Keep ASUS firmware in **Hybrid** (`dgpu_disable=0`, `gpu_mux_mode=1`). Cardwire's
+Integrated mode blocks applications, not the firmware MUX. Ultimate/dGPU-direct
+mode is intentionally not exposed here.
 
-## Usage
+## Testing
 
-**In the bar**: View current mode and status color
-**Click the widget**: Opens mode selector
-**Click a mode**: Sets the mode and shows notification (reboot required)
-
-## Configuration
-
-The widget updates automatically from the `optimus` command output. Configure mode persistence through the systemd service.
+```sh
+python -m unittest discover -s config/DankMaterialShell/plugins/OptimusPlugin/tests
+python config/DankMaterialShell/plugins/OptimusPlugin/cardwire-status.py
+```

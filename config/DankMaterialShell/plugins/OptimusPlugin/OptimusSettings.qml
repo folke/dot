@@ -7,10 +7,9 @@ PluginSettings {
     id: root
     pluginId: "optimusPlugin"
 
-    // Header section
     StyledText {
         width: parent.width
-        text: "Optimus GPU Mode Settings"
+        text: "Cardwire GPU Mode Settings"
         font.pixelSize: Theme.fontSizeLarge
         font.weight: Font.Bold
         color: Theme.surfaceText
@@ -18,7 +17,7 @@ PluginSettings {
 
     StyledText {
         width: parent.width
-        text: "Monitor and switch GPU modes on your ASUS laptop with MUX switch support."
+        text: "Switch Integrated, Hybrid, and Smart modes immediately through Cardwire. Firmware stays in Hybrid mode."
         font.pixelSize: Theme.fontSizeSmall
         color: Theme.surfaceVariantText
         wrapMode: Text.WordWrap
@@ -30,28 +29,28 @@ PluginSettings {
         font.pixelSize: Theme.fontSizeSmall
         color: Theme.surfaceVariantText
         wrapMode: Text.WordWrap
-        topPadding: Theme.spacingMedium
+        topPadding: Theme.spacingM
     }
 
     Column {
         width: parent.width
         spacing: Theme.spacingXS
-        leftPadding: Theme.spacingMedium
+        leftPadding: Theme.spacingM
 
         StyledText {
-            text: "🔋 Green - Integrated (best battery life)"
+            text: "Green — Integrated, dGPU asleep"
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.surfaceVariantText
         }
 
         StyledText {
-            text: "⚡ Blue - Hybrid (balanced)"
+            text: "Theme color — Hybrid/Smart, dGPU asleep"
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.surfaceVariantText
         }
 
         StyledText {
-            text: "🎮 Red - MUX/dGPU Direct (best performance)"
+            text: "Orange — dGPU awake (any mode)"
             font.pixelSize: Theme.fontSizeSmall
             color: Theme.surfaceVariantText
         }
@@ -59,10 +58,10 @@ PluginSettings {
 
     StyledText {
         width: parent.width
-        text: "💡 Tip: Click the widget in your bar to open the mode selector. Changing modes requires a reboot to take effect."
+        text: "Gray means status is unknown. No reboot is required; already-running GPU apps may need restarting. Cardwire automatically selects Integrated on battery and Hybrid on AC."
         font.pixelSize: Theme.fontSizeSmall
         color: Theme.surfaceVariantText
         wrapMode: Text.WordWrap
-        topPadding: Theme.spacingMedium
+        topPadding: Theme.spacingM
     }
 }
