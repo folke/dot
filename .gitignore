@@ -34,3 +34,7 @@ config/DankMaterialShell/plugins/.repos
 config/DankMaterialShell/plugins/emojiLauncher
 /config/DankMaterialShell/.changelog-1.2
 /config/DankMaterialShell/.firstlaunch
+.changelog*
+*.backup*
+*.bak
+/config/DankMaterialShell/plugins/easyEffects

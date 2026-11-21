@@ -13,6 +13,12 @@
   },
   "emojiLauncher": {
     "enabled": true,
-    "useDMS": false
+    "useDMS": false,
+    "recentEmojis": "😅,🔥,😬,📰,❤️,🚆"
+  },
+  "easyEffects": {
+    "enabled": true,
+    "currentOutputIndex": 7,
+    "currentInputIndex": -1
   }
 }

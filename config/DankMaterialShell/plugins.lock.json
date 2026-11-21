@@ -1,0 +1,18 @@
+{
+  "lockfileVersion": 1,
+  "plugins": {
+    "dankBatteryAlerts": {
+      "repo": "https://github.com/AvengeMedia/dms-plugins",
+      "path": "DankBatteryAlerts",
+      "commit": "829922a8f11949b1c13ae8bd14d7176f9165b6f5"
+    },
+    "easyEffects": {
+      "repo": "https://github.com/jonkristian/dms-easyeffects",
+      "commit": "151f3914b53ba8bebfb5a34f4a0901ed441e80a4"
+    },
+    "emojiLauncher": {
+      "repo": "https://github.com/devnullvoid/dms-emoji-launcher",
+      "commit": "cd7bbba76c0d9b8da65337de5125659846e1ce5c"
+    }
+  }
+}

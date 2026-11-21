@@ -1,7 +1,3 @@
-# - name: Import greetd tasks
-#   ansible.builtin.import_tasks: greetd.yml
-#   tags: greetd
-
 - name: Configure ASUS Fn-lock startup preference
   ansible.builtin.import_tasks: fnlock.yml
   tags: [fn-lock]

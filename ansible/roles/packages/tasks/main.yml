@@ -54,13 +54,12 @@
       # niri
       - niri
       - mate-polkit
-      - dms-shell-git
-      - greetd-dms-greeter-git
+      - dux-shell
+      - dux-greeter-bin
 
       # hyprland
       - hyprland
       - hypridle
-      - hyprlock
       - hyprpaper
       - hyprpicker
       - hyprpolkitagent
@@ -160,6 +159,7 @@
       - zen-browser-bin
 
       # fonts
+      - inter-font
       - ttf-dejavu
       - ttf-fira-code
       - ttf-firacode-nerd
