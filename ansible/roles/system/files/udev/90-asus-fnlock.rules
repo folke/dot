@@ -1,0 +1,2 @@
+# Apply the Fn-row preference after hid-asus initializes the supported keyboard.
+ACTION=="add", SUBSYSTEM=="hidraw", KERNELS=="0003:0B05:19B6.*", TAG+="systemd", ENV{SYSTEMD_WANTS}+="asus-fnlock@%k.service"

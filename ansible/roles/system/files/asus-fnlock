@@ -1,0 +1,29 @@
+#!/usr/bin/python
+import fcntl
+import re
+import sys
+from pathlib import Path
+
+
+def main():
+    if len(sys.argv) != 2 or not re.fullmatch(r"hidraw\d+", sys.argv[1]):
+        raise SystemExit("Usage: asus-fnlock hidrawN")
+
+    name = sys.argv[1]
+    device = Path("/sys/class/hidraw") / name
+    info = (device / "device/uevent").read_text().splitlines()
+    if "HID_ID=0003:00000B05:000019B6" not in info:
+        raise SystemExit(f"{name} is not the supported ASUS keyboard")
+
+    # Same HID feature report as hid-asus; zero selects media-key-first mode.
+    # This does not update the driver's cached state: the first Fn+Esc may be a no-op.
+    report = bytearray(64)
+    report[:4] = bytes([0x5A, 0xD0, 0x4E, 0x00])
+    request = (3 << 30) | (len(report) << 16) | (ord("H") << 8) | 0x06
+    with open(f"/dev/{name}", "rb+", buffering=0) as keyboard:
+        fcntl.ioctl(keyboard, request, report)
+    print(f"Enabled media-key-first mode on {name}")
+
+
+if __name__ == "__main__":
+    main()

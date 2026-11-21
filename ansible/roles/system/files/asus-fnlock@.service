@@ -1,0 +1,10 @@
+[Unit]
+Description=Set ASUS keyboard %I to media-key-first mode
+BindsTo=dev-%i.device
+After=dev-%i.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/asus-fnlock %i
+TimeoutStartSec=10s

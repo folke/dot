@@ -1,0 +1,28 @@
+- name: Install ASUS Fn-lock helper
+  become: true
+  ansible.builtin.copy:
+    src: roles/system/files/asus-fnlock
+    dest: /usr/local/bin/asus-fnlock
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Install ASUS Fn-lock device service
+  become: true
+  ansible.builtin.copy:
+    src: roles/system/files/asus-fnlock@.service
+    dest: /etc/systemd/system/asus-fnlock@.service
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload systemd
+
+- name: Install ASUS Fn-lock udev rule
+  become: true
+  ansible.builtin.copy:
+    src: roles/system/files/udev/90-asus-fnlock.rules
+    dest: /etc/udev/rules.d/90-asus-fnlock.rules
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Reload udev rules
