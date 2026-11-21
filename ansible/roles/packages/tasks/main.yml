@@ -17,7 +17,8 @@
       - cachyos-snapper-support
       - cups
       - downgrade
-      - howdy-git
+      - gaze-bin
+      - gaze-gui-bin
       - journalctl-desktop-notification
       - keyd
       - nfs-utils

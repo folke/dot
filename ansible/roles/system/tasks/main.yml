@@ -1,5 +1,3 @@
-- name: Import howdy tasks
-  ansible.builtin.import_tasks: howdy.yml
 # - name: Import greetd tasks
 #   ansible.builtin.import_tasks: greetd.yml
 #   tags: greetd

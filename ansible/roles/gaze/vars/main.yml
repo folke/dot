@@ -1,0 +1,76 @@
+gaze_pam_layouts:
+  system-auth:
+    original:
+      - auth required pam_faillock.so preauth
+      - -auth [success=2 default=ignore] pam_systemd_home.so
+      - auth [success=1 default=bad] pam_unix.so try_first_pass nullok
+      - auth [default=die] pam_faillock.so authfail
+      - auth optional pam_permit.so
+      - auth required pam_env.so
+      - auth required pam_faillock.so authsucc
+    configured:
+      - auth required pam_faillock.so preauth
+      - auth sufficient pam_gaze.so
+      - -auth [success=2 default=ignore] pam_systemd_home.so
+      - auth [success=1 default=bad] pam_unix.so try_first_pass nullok
+      - auth [default=die] pam_faillock.so authfail
+      - auth optional pam_permit.so
+      - auth required pam_env.so
+      - auth required pam_faillock.so authsucc
+    replacements:
+      - pattern: '(?m)^(auth[ \t]+required[ \t]+pam_faillock\.so[ \t]+preauth[^\n]*\n)(?!auth[ \t]+sufficient[ \t]+pam_gaze\.so)'
+        replacement: '\1auth       sufficient                  pam_gaze.so\n'
+  greetd:
+    original:
+      - auth required pam_securetty.so
+      - auth requisite pam_nologin.so
+      - auth include system-local-login
+      - auth optional pam_gnome_keyring.so
+    configured:
+      - auth required pam_securetty.so
+      - auth requisite pam_nologin.so
+      - auth required pam_shells.so
+      - auth substack system-auth
+      - auth optional pam_gnome_keyring.so use_authtok
+    replacements:
+      # Flatten only the auth includes, keeping their gates and bounding Gaze's sufficient success.
+      - pattern: '(?m)^auth[ \t]+(?:include|substack)[ \t]+system-local-login[ \t]*(#[^\n]*)?$'
+        replacement: 'auth       required     pam_shells.so\nauth       substack     system-auth \1'
+      - pattern: '(?m)^(auth[ \t]+optional[ \t]+pam_gnome_keyring\.so)([ \t]*(?:#[^\n]*)?)$'
+        replacement: '\1 use_authtok\2'
+  sudo:
+    original:
+      - auth include system-auth
+    configured:
+      - -auth requisite pam_faillock.so preauth
+      - auth sufficient pam_gaze.so
+      - auth include system-auth
+    replacements:
+      - pattern: '(?m)^(auth[ \t]+include[ \t]+system-auth[^\n]*$)'
+        replacement: '-auth       requisite     pam_faillock.so preauth\nauth        sufficient    pam_gaze.so\n\1'
+  polkit-1:
+    original:
+      - auth include system-auth
+    configured:
+      - -auth requisite pam_faillock.so preauth
+      - auth sufficient pam_gaze.so
+      - auth include system-auth
+    replacements:
+      - pattern: '(?m)^(auth[ \t]+include[ \t]+system-auth[^\n]*$)'
+        replacement: '-auth       requisite     pam_faillock.so preauth\nauth        sufficient    pam_gaze.so\n\1'
+  system-local-login:
+    original:
+      - auth include system-login
+    configured:
+      - auth include system-login
+    replacements: []
+  system-login:
+    original:
+      - auth required pam_shells.so
+      - auth requisite pam_nologin.so
+      - auth include system-auth
+    configured:
+      - auth required pam_shells.so
+      - auth requisite pam_nologin.so
+      - auth include system-auth
+    replacements: []

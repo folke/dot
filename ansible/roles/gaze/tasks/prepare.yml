@@ -1,0 +1,16 @@
+- name: Preserve existing PAM content
+  ansible.builtin.set_fact:
+    gaze_pam_prepared: >-
+      {{ gaze_pam_prepared | combine({gaze_pam_file.key: gaze_pam_original[gaze_pam_file.key]}) }}
+
+- name: Transform only known unconfigured authentication layouts
+  ansible.builtin.set_fact:
+    gaze_pam_prepared: >-
+      {{ gaze_pam_prepared | combine({gaze_pam_file.key:
+        gaze_pam_prepared[gaze_pam_file.key]
+        | regex_replace(gaze_pam_replacement.pattern, gaze_pam_replacement.replacement)}) }}
+  loop: "{{ gaze_pam_file.value.replacements }}"
+  loop_control:
+    loop_var: gaze_pam_replacement
+    label: "{{ gaze_pam_file.key }}"
+  when: gaze_pam_rules[gaze_pam_file.key] != gaze_pam_file.value.configured

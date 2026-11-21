@@ -8,3 +8,4 @@
     - { role: user, tags: ["user"] }
     - { role: apps, tags: ["apps"] }
     - { role: system, tags: ["system"] }
+    - { role: gaze, tags: ["system", "gaze"] }

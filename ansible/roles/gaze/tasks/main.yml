@@ -1,0 +1,136 @@
+- name: Find pending PAM package configurations
+  ansible.builtin.find:
+    paths: /etc/pam.d
+    patterns: "*.pacnew"
+    file_type: file
+  register: gaze_pam_pacnew
+
+- name: Require manual review of pending PAM updates
+  ansible.builtin.assert:
+    that: gaze_pam_pacnew.matched == 0
+    fail_msg: >-
+      Review and merge PAM .pacnew files before configuring Gaze:
+      {{ gaze_pam_pacnew.files | map(attribute='path') | join(', ') }}
+
+- name: Check Gaze PAM module
+  ansible.builtin.stat:
+    path: /usr/lib/security/pam_gaze.so
+  register: gaze_pam_module
+
+- name: Require Gaze installation before changing authentication
+  ansible.builtin.assert:
+    that: gaze_pam_module.stat.exists
+    fail_msg: Install gaze-bin before running the Gaze role.
+
+- name: Read existing PAM files
+  ansible.builtin.slurp:
+    src: "/etc/pam.d/{{ item }}"
+  loop: "{{ gaze_pam_layouts.keys() | list }}"
+  register: gaze_pam_files
+
+- name: Initialize PAM transformation state
+  ansible.builtin.set_fact:
+    gaze_pam_original: {}
+    gaze_pam_rules: {}
+    gaze_pam_prepared: {}
+
+- name: Decode PAM files and normalize authentication rules for validation
+  ansible.builtin.set_fact:
+    gaze_pam_original: "{{ gaze_pam_original | combine({item.item: item.content | b64decode}) }}"
+    gaze_pam_rules: >-
+      {{ gaze_pam_rules | combine({item.item:
+        (item.content | b64decode).splitlines()
+        | map('regex_replace', '#.*$', '')
+        | map('trim')
+        | select('match', '^-?auth\s+')
+        | map('regex_replace', '[ \t]+', ' ')
+        | list}) }}
+  loop: "{{ gaze_pam_files.results }}"
+  loop_control:
+    label: "{{ item.item }}"
+
+- name: Refuse unfamiliar authentication layouts before making any changes
+  ansible.builtin.assert:
+    that:
+      - gaze_pam_rules[item.key] in [item.value.original, item.value.configured]
+    fail_msg: >-
+      /etc/pam.d/{{ item.key }} has an unfamiliar auth stack. Review upstream changes
+      and update the supported layouts rather than bypassing new authentication checks.
+      Found: {{ gaze_pam_rules[item.key] }}
+  loop: "{{ gaze_pam_layouts | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Require greetd keyring session integration
+  ansible.builtin.assert:
+    that:
+      - gaze_pam_original['greetd'] is search('(?m)^session[ \t]+optional[ \t]+pam_gnome_keyring\.so[ \t]+auto_start[ \t]*(?:#.*)?$')
+    fail_msg: Review greetd's GNOME Keyring session hook before configuring face login.
+
+- name: Prepare minimal PAM changes in memory
+  ansible.builtin.include_tasks: prepare.yml
+  loop: "{{ gaze_pam_layouts | dict2items }}"
+  loop_control:
+    loop_var: gaze_pam_file
+    label: "{{ gaze_pam_file.key }}"
+
+- name: Validate all prepared authentication stacks before writing any file
+  ansible.builtin.assert:
+    that:
+      - >-
+        gaze_pam_prepared[item.key].splitlines()
+        | map('regex_replace', '#.*$', '')
+        | map('trim')
+        | select('match', '^-?auth\s+')
+        | map('regex_replace', '[ \t]+', ' ')
+        | list == item.value.configured
+    fail_msg: "Prepared /etc/pam.d/{{ item.key }} did not match the intended authentication layout."
+  loop: "{{ gaze_pam_layouts | dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
+
+- name: Apply validated PAM changes with backups
+  become: true
+  ansible.builtin.copy:
+    dest: "/etc/pam.d/{{ item }}"
+    content: "{{ gaze_pam_prepared[item] }}"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: true
+  loop: "{{ gaze_pam_layouts.keys() | list }}"
+  when: gaze_pam_prepared[item] != gaze_pam_original[item]
+
+- name: Create Gaze readiness override directories
+  become: true
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ item }}.service.d"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  loop:
+    - gazed
+    - greetd
+
+- name: Configure Gaze readiness and greetd startup ordering
+  become: true
+  ansible.builtin.copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "0644"
+  loop:
+    - src: gazed-readiness.conf
+      dest: /etc/systemd/system/gazed.service.d/readiness.conf
+    - src: greetd-gaze.conf
+      dest: /etc/systemd/system/greetd.service.d/gaze.conf
+
+- name: Enable Gaze daemon
+  become: true
+  ansible.builtin.systemd_service:
+    name: gazed.service
+    daemon_reload: true
+    enabled: true
+    state: started
