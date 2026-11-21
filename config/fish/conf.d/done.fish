@@ -87,6 +87,9 @@ function __done_get_focused_window_id
     else if test -n "$NIRI_SOCKET"
         and type -q jq
         niri msg --json focused-window | jq ".id"
+    else if test -n "$MANGO_INSTANCE_SIGNATURE"
+        and type -q jq
+        mmsg get focusing-client | jq '.id'
     else if begin
             test "$XDG_SESSION_DESKTOP" = gnome; and type -q gdbus
         end

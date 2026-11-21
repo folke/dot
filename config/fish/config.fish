@@ -167,14 +167,14 @@ abbr jg "journalctl -b --grep"
 abbr ju "journalctl --all --follow -n 100 --unit"
 abbr juu "journalctl --all --follow -n 100 --user-unit"
 
-# paru
-abbr p paru
-abbr pai "paru -S"
-abbr par "paru -Rns"
-abbr pas "paru -Ss"
-abbr pal "paru -Q"
-abbr paf "paru -Ql"
-abbr pao "paru -Qo"
+# yay
+abbr y yay
+abbr pai "yay -S"
+abbr par "yay -Rns"
+abbr pas "yay -Ss"
+abbr pal "yay -Q"
+abbr paf "yay -Ql"
+abbr pao "yay -Qo"
 
 # Windows
 fish_add_path ~/dot/windows/bin
@@ -198,3 +198,10 @@ abbr drmi "docker rmi"
 
 # OpenClaw Completion
 source "/home/folke/.openclaw/completions/openclaw.fish"
+
+# pnpm
+set -gx PNPM_HOME '/home/folke/.local/share/pnpm'
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end

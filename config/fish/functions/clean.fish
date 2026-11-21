@@ -1,7 +1,7 @@
 function clean
     sudo paccache -rk1
     sudo paccache -ruk0
-    paru -Sccd --noconfirm
+    yay -Sccd --noconfirm
     cargo cache -a
     yarn cache clean
     pnpm store prune
