@@ -46,6 +46,25 @@
     # Cardwire deliberately stops powerd in Integrated mode; do not undo that.
     state: "{{ omit if system_cardwire_active.rc == 0 else 'started' }}"
 
+- name: Create Cardwire service override directory
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/cardwired.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Keep Cardwire events but suppress verbose D-Bus dispatch logging
+  become: true
+  ansible.builtin.copy:
+    src: roles/system/files/cardwire-logging.conf
+    dest: /etc/systemd/system/cardwired.service.d/logging.conf
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart Cardwire
+
 - name: Enable Cardwire daemon
   become: true
   ansible.builtin.systemd_service:

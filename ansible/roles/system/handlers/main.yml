@@ -26,6 +26,13 @@
     argv: [cardwire, config, save]
   changed_when: true
 
+- name: Restart Cardwire
+  become: true
+  ansible.builtin.systemd_service:
+    name: cardwired.service
+    daemon_reload: true
+    state: restarted
+
 - name: Generate locales
   become: true
   ansible.builtin.command: locale-gen

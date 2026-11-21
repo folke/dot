@@ -38,7 +38,9 @@ just ansible --tags cardwire
 ```
 
 Ansible configures Integrated on battery / Hybrid on AC.
-The packaged Cardwire service is used without overrides.
+A logging-only service override sets `RUST_LOG=info,zbus=warn`, retaining useful
+Cardwire events without verbose D-Bus dispatch traces. Changing that override
+restarts only Cardwire when Ansible handlers run.
 It leaves `nvidia-powerd` enabled for Cardwire to manage and disables NVIDIA
 persistence. Additional NVIDIA-interface blocking is enabled for the laptop's
 single-iGPU/single-NVIDIA topology. Smart is available for manual selection but is
