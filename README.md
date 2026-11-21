@@ -1,7 +1,5 @@
 # Dot File
 
-![image](../.config/wall.png)
-
 You can find my Neovim dot files [here](https://github.com/folke/dot/tree/master/nvim)
 
 ![image](https://github.com/folke/dot/assets/292349/89de8c21-1027-4aa8-8618-f3e1c5c90e1c)
