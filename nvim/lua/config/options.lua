@@ -25,7 +25,7 @@ vim.keymap.set = function(mode, lhs, rhs, opts)
   return keymap_set(mode, lhs, rhs, opts)
 end
 
-vim.g.lazyvim_python_lsp = "basedpyright"
+vim.g.lazyvim_python_lsp = "ty"
 vim.g.lazyvim_python_ruff = "ruff"
 
 if vim.fn.has("win32") == 1 then
