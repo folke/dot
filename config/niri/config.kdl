@@ -20,23 +20,7 @@ input {
 }
 
 environment {
-  CLUTTER_BACKEND "wayland"
-  GDK_BACKEND "wayland,x11,*"
-  GDK_DPI_SCALE "1"
-  GDK_SCALE "1"
-  QT_AUTO_SCREEN_SCALE_FACTOR "1"
-  QT_QPA_PLATFORM "wayland;xcb"
-  QT_QPA_PLATFORMTHEME "gtk3"
-  QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
-  SDL_VIDEODRIVER "wayland"
-  GSK_RENDERER "ngl"
-  ELECTRON_OZONE_PLATFORM_HINT "auto"
-  WLR_NO_HARDWARE_CURSORS "1"
-  DMS_DISABLE_MATUGEN "1"
-  // Force vaapi backend to prevent using the dGPU
-  QT_MEDIA_BACKEND "ffmpeg"
-  QT_FFMPEG_DECODING_HW_DEVICE_TYPES "vaapi"
-  QT_FFMPEG_ENCODING_HW_DEVICE_TYPES "vaapi"
+    // See ~/.config/environment.d/90-wm.conf
 }
 
 cursor {
@@ -60,16 +44,23 @@ output "eDP-1" {
     // variable-refresh-rate
 }
 
+output "DP-3" {
+    focus-at-startup
+    mode "1920x1080@120"
+    scale 1
+    // variable-refresh-rate
+}
+
 debug {
     render-drm-device "/dev/dri/by-path/pci-0000:65:00.0-render" // iGPU (AMD)
-    // ignore-drm-device "/dev/dri/renderD129"
-    // ignore-drm-device "/dev/dri/card0"
+    ignore-drm-device "/dev/dri/by-path/pci-0000:64:00.0-render" // dGPU (NVIDIA)
+    // force-disable-connectors-on-resume
 }
 
 layout {
     gaps 16
     center-focused-column "never"
-    background-color "#1a1b26"
+    background-color "transparent"
 
     preset-column-widths {
         proportion 0.33333
@@ -122,20 +113,22 @@ clipboard {
     disable-primary
 }
 
-// spawn-at-startup "systemctl" "--user" "import-environment"
 // spawn-at-startup "dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XAUTHORITY"
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "DISPLAY" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE" "NIRI_SOCKET" "XAUTHORITY"
+// spawn-at-startup "systemctl" "--user" "import-environment"
+// spawn-at-startup "dbus-update-activation-environment" "--systemd" "--all"
 // spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
-spawn-at-startup "dms" "run"
+// spawn-at-startup "/usr/lib/mate-polkit/polkit-mate-authentication-agent-1"
+//spawn-at-startup "dms" "run"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "~/.config/niri/scripts/xclip"
+// spawn-at-startup "~/.config/niri/scripts/xclip"
 // spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-at-startup "udiskie"
 spawn-at-startup "journalctl-desktop-notification"
 spawn-at-startup "easyeffects" "--gapplication-service"
 spawn-at-startup "zen-browser"
 spawn-at-startup "xhost si:localuser:root"
-spawn-sh-at-startup "sleep 3; amixer -c2 set Master 100% unmute"
+// spawn-sh-at-startup "sleep 3; amixer -c2 set Master 100% unmute"
 // spawn-sh-at-startup "sleep 10; rog-control-center"
 // spawn-sh-at-startup "sleep 3; safeeyes"
 spawn-at-startup "~/.config/niri/scripts/dynamic-rules"
@@ -157,8 +150,18 @@ hotkey-overlay {
     skip-at-startup
 }
 
-workspace "main"
-workspace "dev"
+workspace "main" {}
+workspace "dev" {}
+
+layer-rule {
+    match namespace="^quickshell$"
+    place-within-backdrop true
+}
+
+layer-rule {
+    match namespace="dms:blurwallpaper"
+    place-within-backdrop true
+}
 
 // Maximized
 window-rule {
@@ -200,14 +203,24 @@ window-rule {
     default-window-height { proportion 0.45; }
 }
 
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    match app-id="com.danklinux.dms"
+    open-floating true
+}
+
+
 // Floating Terminal
 window-rule {
     match app-id="dev.terminal"
     open-maximized true
     open-on-workspace "dev"
+    background-effect {
+           blur true
+       }
 }
 
-screenshot-path null
+screenshot-path "/home/folke/Pictures/Screenshots"
 
 binds {
     Mod+Return     { spawn "ghostty"; }
@@ -229,8 +242,8 @@ binds {
     XF86AudioMicMute      allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "micmute"; }
     XF86AudioMute         allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "mute"; }
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "dms" "ipc" "call" "audio" "increment" "3"; }
-    XF86KbdBrightnessDown allow-when-locked=true { spawn "asusctl" "--prev-kbd-bright"; }
-    XF86KbdBrightnessUp   allow-when-locked=true { spawn "asusctl" "--next-kbd-bright"; }
+    XF86KbdBrightnessDown allow-when-locked=true { spawn "asusctl" "leds" "prev"; }
+    XF86KbdBrightnessUp   allow-when-locked=true { spawn "asusctl" "leds" "next"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "5" "backlight:amdgpu_bl1"; }
     XF86MonBrightnessUp   allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "increment" "5" "backlight:amdgpu_bl1"; }
 
@@ -291,3 +304,5 @@ binds {
 
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 }
+
+include "dms/windowrules.kdl"
