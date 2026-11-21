@@ -120,7 +120,6 @@
       - docker-compose
       - fnm-bin
       - git
-      - git-crypt
       - git-delta
       - gitleaks
       - github-cli

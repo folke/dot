@@ -40,3 +40,5 @@ config/DankMaterialShell/plugins/emojiLauncher
 /config/DankMaterialShell/plugins/easyEffects
 /nvim/colors/dms.lua
 /nvim/lua/lualine/themes/dms.lua
+.env
+/secrets.env

@@ -13,6 +13,10 @@ system *args='':   (ansible "--tags" "system" args)
 web *args='':      (ansible "--tags" "web" args)
 greetd *args='':   (ansible "--tags" "greetd" args)
 
+dotenv:
+  #!/bin/env bash
+  pass-cli inject --in-file .env.template --out-file .env --force
+
 gitleaks:
   #!/bin/env bash
   gitleaks git --redact --verbose --log-opts="--all"

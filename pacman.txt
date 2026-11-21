@@ -354,6 +354,7 @@ polkit-gnome
 poppler-glib
 power-profiles-daemon
 procs
+proton-pass
 proton-pass-cli-bin
 pv
 pyenv

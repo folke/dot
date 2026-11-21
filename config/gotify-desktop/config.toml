@@ -3,10 +3,9 @@
 url = "ws://10.0.0.16"
 
 # secret gotify token
-token = "C3pgD40hCrt8Ajr"
 # if you want to get the token from a password manager, or other external command,
 # you can also use for example:
-# token = { command = "secret-tool lookup Title 'Gotify token'" }
+token = { command = "pass-cli item view 'pass://Homelab/gotify-desktop/password'" }
 
 # optional, if true, deletes messages that have been handled, defaults to false
 auto_delete = false

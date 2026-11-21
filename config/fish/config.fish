@@ -1,7 +1,7 @@
 # @fish-lsp-disable 2002
 
 # Load secrets if available
-dotenv ~/dot/secrets.env
+dotenv ~/dot/.env
 
 status is-interactive; or exit
 
@@ -202,6 +202,6 @@ source "/home/folke/.openclaw/completions/openclaw.fish"
 # pnpm
 set -gx PNPM_HOME '/home/folke/.local/share/pnpm'
 if not string match -q -- "$PNPM_HOME/bin" $PATH
-  set -gx PATH "$PNPM_HOME/bin" $PATH
+    set -gx PATH "$PNPM_HOME/bin" $PATH
 end
 # pnpm end
