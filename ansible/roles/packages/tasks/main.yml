@@ -1,15 +1,15 @@
 # - import_tasks: repos.yml
-- name: Ensure paru is installed
+- name: Ensure yay is installed
   become: true
   ansible.builtin.package:
-    name: paru
+    name: yay
     state: present
 
-- name: Install packages (paru)
+- name: Install packages (yay)
   become: true
   kewlfft.aur.aur:
     state: present
-    use: paru
+    use: yay
     name:
       # system
       - aria2
@@ -28,7 +28,7 @@
       - safeeyes
       - snapper
       - socat
-      - topgrade
+      - topgrade-bin
       - udiskie
       - wl-clip-persist
       - xdg-desktop-portal-gnome
@@ -67,8 +67,10 @@
 
       # cli
       - atuin
+      - bandwhich
       - bat
       - bob
+      - bpftrace
       - btop
       - chafa
       - cliphist
@@ -84,9 +86,11 @@
       - gum
       - htop
       - hyperfine
+      - iotop-c
       - lazyjournal
-      - mdcat
       - ncdu
+      - nethogs
+      - nmap
       - numbat-bin
       - nvtop
       - playerctl
@@ -107,16 +111,19 @@
 
       # dev
       - act
+      - actionlint
       - ansible
       - ansible-lint
       - aspell
-      - bun-bin
+      - bun
       - deno
+      - docker-compose
       - fnm-bin
       - git
       - git-crypt
       - git-delta
       - github-cli
+      - go
       - httpie
       - jq
       - just
@@ -132,6 +139,7 @@
       - python-uv
       - rustup
       - selene
+      - shellcheck-bin
       - stylua
       - tectonic
       - tree-sitter-cli
@@ -141,6 +149,7 @@
       - alacritty
       - blueman
       - brave-bin
+      - brave-origin-bin
       - btrfs-assistant
       - discord
       - ghostty
@@ -158,6 +167,12 @@
       - wev
       - zen-browser-bin
 
+      # AI
+      - chatgpt-desktop-bin
+      - llmfit
+      - lmstudio-bin
+      - opencode
+
       # fonts
       - inter-font
       - ttf-dejavu
@@ -173,6 +188,5 @@
       - ttf-victor-mono-nerd
 
       # Homelab
-      - cv4pve-pepper-git
       - gotify-desktop
       - virt-viewer
