@@ -1,0 +1,9 @@
+[soe][Compressor#0]
+attack=130
+boostThreshold=-60
+knee=-24
+mode=1
+ratio=5
+release=600
+sidechainMode=1
+threshold=-10

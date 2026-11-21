@@ -1,0 +1,6 @@
+[soe][Gate#0]
+attack=2000
+curveThreshold=-40
+curveZone=-40
+reduction=-30
+release=2000

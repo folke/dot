@@ -1,0 +1,17 @@
+[Presets]
+lastLoadedOutputPreset=Laptop
+
+[StreamInputs]
+inputDevice=alsa_input.pci-0000_65_00.6.analog-stereo
+
+[StreamOutputs]
+mostUsedPresets=Laptop,Video,Bass Enhancing + Perfect EQ,Advanced Auto Gain,Boosted
+outputDevice=alsa_output.pci-0000_65_00.6.analog-stereo
+plugins=gate#0,compressor#0,multiband_compressor#0,equalizer#0,limiter#0
+usedPresets=Laptop:7,Advanced Auto Gain:2,Bass Enhancing + Perfect EQ:2,Video:5,Perfect EQ:1,Loudness+Autogain:1,Boosted:1
+visiblePage=pluginsPage
+visiblePlugin=equalizer#0
+
+[Window]
+height=469
+width=864
