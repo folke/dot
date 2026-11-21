@@ -78,3 +78,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+vim.filetype.add({
+  pattern = {
+    [".*/.github/workflows/.*%.yml"] = "yaml.ghaction",
+    [".*/.github/workflows/.*%.yaml"] = "yaml.ghaction",
+  },
+})
