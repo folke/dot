@@ -15,14 +15,18 @@ available on this system: Integrated, Hybrid, and Smart. Changes apply immediate
 without a reboot or logout. Existing GPU applications may retain previously opened
 device handles; close/restart them if the GPU does not sleep after blocking it.
 
-Status refreshes every three seconds. The read-only Python helper queries Cardwire
-through `busctl` and its JSON CLI, discovering the discrete GPU dynamically rather
-than assuming a GPU ID or PCI address. It never opens NVIDIA devices, reads blocked
-sysfs paths, or runs `nvidia-smi`.
+The read-only Python helper subscribes to D-Bus mode, block, power, and device
+changes using `gdbus monitor`; there is no periodic polling. GPU identity and
+available modes are discovered once and cached until a daemon restart or device
+change. Changes refresh only the live mode/power/block fields through `busctl`.
+The helper never opens NVIDIA devices, reads blocked sysfs paths, or runs
+`nvidia-smi`. It reconnects if its monitor exits and reports unknown status while
+the daemon is unavailable.
 
 ## Setup
 
-Requires `cardwire`, a running `cardwired.service`, Python, and systemd's `busctl`.
+Requires `cardwire`, a running `cardwired.service`, Python, systemd's `busctl`, and
+GLib's `gdbus` (already installed on the workstation).
 Enable **Cardwire GPU Mode** in DMS plugins; existing `optimusPlugin` bar entries
 continue to work.
 

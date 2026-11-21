@@ -11,7 +11,6 @@ PluginComponent {
 
     property string iconName: "bolt"
     property var gpu: ({ "ok": false, "state": "unknown" })
-    property string statusOutput: ""
     property string switchError: ""
     property string requestedMode: ""
     readonly property string currentMode: gpu.ok ? gpu.mode : "unknown"
@@ -29,13 +28,6 @@ PluginComponent {
         return Theme.primary;
     }
 
-    function refresh() {
-        if (!statusProcess.running) {
-            statusOutput = "";
-            statusProcess.running = true;
-        }
-    }
-
     function setMode(mode) {
         if (switchProcess.running || mode === currentMode || modeModel.indexOf(mode) < 0)
             return;
@@ -47,18 +39,20 @@ PluginComponent {
 
     Process {
         id: statusProcess
-        command: ["/usr/bin/python", root.helperPath]
-        stdout: StdioCollector {
-            onStreamFinished: root.statusOutput = this.text
+        command: ["/usr/bin/python", root.helperPath, "--watch"]
+        running: true
+        stdout: SplitParser {
+            onRead: data => {
+                try {
+                    root.gpu = JSON.parse(data);
+                } catch (error) {
+                    root.gpu = { "ok": false, "state": "unknown", "error": error.message };
+                }
+            }
         }
         onExited: (exitCode, exitStatus) => {
-            try {
-                if (exitCode !== 0)
-                    throw new Error("Status helper failed");
-                root.gpu = JSON.parse(root.statusOutput);
-            } catch (error) {
-                root.gpu = { "ok": false, "state": "unknown", "error": error.message };
-            }
+            root.gpu = { "ok": false, "state": "unknown", "error": "Cardwire status monitor disconnected" };
+            reconnectTimer.start();
         }
     }
 
@@ -72,18 +66,14 @@ PluginComponent {
                 ToastService.showInfo("Cardwire", "Switched to " + root.requestedMode);
             else
                 ToastService.showError("Cardwire", root.switchError || "Mode switch failed");
-            root.refresh();
         }
     }
 
     Timer {
-        interval: 3000
-        running: true
-        repeat: true
-        onTriggered: root.refresh()
+        id: reconnectTimer
+        interval: 5000
+        onTriggered: statusProcess.running = true
     }
-
-    Component.onCompleted: refresh()
 
     horizontalBarPill: Component {
         DankIcon {
