@@ -13,4 +13,6 @@ system *args='':   (ansible "--tags" "system" args)
 web *args='':      (ansible "--tags" "web" args)
 greetd *args='':   (ansible "--tags" "greetd" args)
 
-
+gitleaks:
+  #!/bin/env bash
+  gitleaks git --redact --verbose --log-opts="--all"

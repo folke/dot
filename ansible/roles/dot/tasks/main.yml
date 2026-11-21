@@ -1,3 +1,7 @@
+- name: Configure this repository's Git hooks
+  ansible.builtin.import_tasks: githooks.yml
+  tags: [githooks]
+
 - name: Create ~/.config
   ansible.builtin.file:
     path: ~/.config

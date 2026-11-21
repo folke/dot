@@ -138,6 +138,7 @@ git
 git-crypt
 git-delta
 github-cli
+gitleaks
 glances
 glow
 gnome-backgrounds

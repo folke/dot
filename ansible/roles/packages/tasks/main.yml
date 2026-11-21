@@ -122,6 +122,7 @@
       - git
       - git-crypt
       - git-delta
+      - gitleaks
       - github-cli
       - go
       - httpie

@@ -1,0 +1,15 @@
+- name: Read repository-local Git hooks path
+  ansible.builtin.command:
+    argv: [git, config, --local, --get, core.hooksPath]
+    chdir: "{{ dot_repo_root }}"
+  register: dot_hooks_path
+  changed_when: false
+  failed_when: dot_hooks_path.rc not in [0, 1]
+  check_mode: false
+
+- name: Enable repository-managed Git hooks
+  ansible.builtin.command:
+    argv: [git, config, --local, core.hooksPath, .githooks]
+    chdir: "{{ dot_repo_root }}"
+  when: dot_hooks_path.stdout | trim != '.githooks'
+  changed_when: true
