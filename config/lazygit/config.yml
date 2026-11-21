@@ -1,6 +1,4 @@
 gui:
-  authorColors: {}
-  branchColors: {}
   scrollHeight: 2
   scrollPastBottom: true
   mouseEvents: true
@@ -22,10 +20,13 @@ gui:
   showBottomLine: true
   commandLogSize: 8
   splitDiff: auto
+  theme:
+    authorColors: {}
+    branchColorPatterns: {}
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+      command: delta --dark --paging=never
       useConfig: false
   commit:
     signOff: false
@@ -173,7 +174,6 @@ keybinding:
     pasteCommits: v
     tagCommit: T
     checkoutCommit: <space>
-    resetCherryPick: <c-R>
     copyCommitAttributeToClipboard: "y"
     openLogMenu: <c-l>
     openInBrowser: o

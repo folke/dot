@@ -1,4 +1,3 @@
-
 [Default Applications]
 application/javascript=nvim.desktop
 application/json=nvim.desktop
@@ -9,7 +8,6 @@ application/x-extension-html=zen.desktop
 application/x-extension-shtml=zen.desktop
 application/x-extension-xht=zen.desktop
 application/x-extension-xhtml=zen.desktop
-text/html=zen.desktop
 application/x-perl=nvim.desktop
 application/x-php=nvim.desktop
 application/x-shellscript=nvim.desktop
@@ -23,8 +21,8 @@ image/jpeg=org.gnome.Loupe.desktop
 image/jxl=org.gnome.Loupe.desktop
 image/png=org.gnome.Loupe.desktop
 image/qoi=org.gnome.Loupe.desktop
-image/svg+xml-compressed=org.gnome.Loupe.desktop
 image/svg+xml=org.gnome.Loupe.desktop
+image/svg+xml-compressed=org.gnome.Loupe.desktop
 image/tiff=org.gnome.Loupe.desktop
 image/vnd.microsoft.icon=org.gnome.Loupe.desktop
 image/webp=org.gnome.Loupe.desktop
@@ -38,6 +36,7 @@ image/x-tga=org.gnome.Loupe.desktop
 inode/directory=org.gnome.Nautilus.desktop
 inode/x-empty=nvim.desktop
 text/css=nvim.desktop
+text/html=zen.desktop
 text/markdown=nvim.desktop
 text/plain=nvim.desktop
 text/x-c++hdr=nvim.desktop
@@ -51,6 +50,14 @@ text/x-python=nvim.desktop
 text/x-shellscript=nvim.desktop
 text/x-tex=nvim.desktop
 x-scheme-handler/chrome=zen.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 x-scheme-handler/http=zen.desktop
 x-scheme-handler/https=zen.desktop
-x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/mailto=zen.desktop
+x-scheme-handler/codex=chatgpt.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=zen.desktop;
+text/x-shellscript=vim.desktop;
+
+[Removed Associations]

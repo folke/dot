@@ -118,8 +118,8 @@
 	helper =
 	helper = !/usr/bin/gh auth git-credential
 
-[url "ssh://git@github.com/"]
-	insteadOf = https://github.com/
+; [url "ssh://git@github.com/"]
+; 	insteadOf = https://github.com/
 
 [help]
 	autocorrect = prompt

@@ -36,7 +36,10 @@
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
-    "example-skills@anthropic-agent-skills": true
+    "example-skills@anthropic-agent-skills": true,
+    "frontend-design@claude-plugins-official": true,
+    "lightpanda@lightpanda": true,
+    "tsgo-lsp@folke-local": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
@@ -45,10 +48,25 @@
         "repo": "anthropics/skills"
       },
       "autoUpdate": true
+    },
+    "lightpanda": {
+      "source": {
+        "source": "github",
+        "repo": "lightpanda-io/agent-skill"
+      }
     }
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
-  "showThinkingSummaries": true
+  "showThinkingSummaries": true,
+  "theme": "dark-ansi",
+  "editorMode": "vim",
+  "verbose": true,
+  "autoCompactEnabled": false,
+  "switchModelsOnFlag": true,
+  "agentPushNotifEnabled": true,
+  "tui": "fullscreen",
+  "hooks": {"SessionStart":[{"matcher":"^(startup|resume|clear|compact|fork)$","hooks":[{"type":"command","command":"bash '/home/folke/.claude/hooks/herdr-agent-state.sh' session","timeout":10}]}]}
 }
